@@ -384,7 +384,7 @@
     {
       "path": "docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_0049.yaml",
       "record_count": 10,
-      "content_sha256": "b64e2c43ffdb19cac0a84617aa5fd7ef6ef1b7e02378a4b9fdc38601830393d3",
+      "content_sha256": "82aa32d53b84b9c93171ff3359c9c741af865bf53f752bb3051cf04ccba9e16a",
       "first_candidate_file_id": "R2A-DISPOSITION-R7-0377",
       "last_candidate_file_id": "R2A-DISPOSITION-R7-0386"
     },
@@ -534,10 +534,10 @@
   "surface_mapping_coverage": {
     "mapped_candidate_count": 419,
     "unmapped_candidate_count": 88,
-    "cross_path_mapped_candidate_count": 419,
-    "same_path_mapped_candidate_count": 0,
-    "unique_mapped_surface_count": 24,
-    "mapping_evidence_count": 1507,
+    "cross_path_mapped_candidate_count": 418,
+    "same_path_mapped_candidate_count": 2,
+    "unique_mapped_surface_count": 25,
+    "mapping_evidence_count": 1508,
     "status_evidence_count": 370,
     "blocking_gap_count": 0
   },

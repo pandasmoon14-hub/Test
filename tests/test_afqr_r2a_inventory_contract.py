@@ -4080,3 +4080,531 @@ def test_r2a7_capacity_amendment_scope_no_deletions_or_runtime_changes():
     }
 
     assert by_partition["R2A-8"]["status"] == "planned_not_present"
+
+
+# R2A-7 WORLD-0029 reciprocity / aggregate correction v2
+#
+# Historical certification at 2aab80ab... remains immutable. The certified
+# index's cross/same-path aggregate was itself stale: the certified records
+# derive 418 cross-path / 1 same-path while the historical index stored
+# 419 / 0. Current successor evidence corrects R7-0384 -> WORLD-0029 and
+# records the now-derived 418 cross-path / 2 same-path state. No candidate
+# identity, frozen lexical receipt, authority, or semantic ownership changes.
+
+R2A7_W29_CERTIFIED = (
+    "2aab80ab4b574d4c51ba2b455cfe18199c66a2fa"
+)
+R2A7_W29_FROZEN = (
+    "62e1565ed598345901e92dc04f3b686281418d83"
+)
+R2A7_W29_TARGET = "R2A-DISPOSITION-R7-0384"
+R2A7_W29_EXISTING_SAME = "R2A-DISPOSITION-R7-0380"
+R2A7_W29_SURFACE_ID = "R2A-SURFACE-WORLD-0029"
+R2A7_W29_SHARD = (
+    "docs/doctrine/reviews/r2a/dispositions_remaining/"
+    "dispositions_0049.yaml"
+)
+R2A7_W29_INDEX = (
+    "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml"
+)
+R2A7_W29_PATH_DIGEST = (
+    "f5ddc972d65ee8ba366da0136fb692d5b64ec2f9ce3c0690f582db53b7fed1ca"
+)
+R2A7_W29_PATH_BLOB_DIGEST = (
+    "6c38b13c3982f608b5465af6902a51316dcff5cd256d9b079708424d5c24fec0"
+)
+
+
+def _r2a7_w29_blob(commit, path):
+    return subprocess.check_output(
+        ["git", "show", f"{commit}:{path}"],
+        cwd=ROOT,
+    )
+
+
+def _r2a7_w29_current_records():
+    index = json.loads(
+        (ROOT / R2A7_W29_INDEX).read_text(encoding="utf-8")
+    )
+    records = []
+
+    for meta in index["shards"]:
+        shard = json.loads(
+            (ROOT / meta["path"]).read_text(encoding="utf-8")
+        )
+        rows = shard["candidate_file_dispositions"]
+        assert len(rows) == meta["record_count"]
+        records.extend(rows)
+
+    return index, records
+
+
+def _r2a7_w29_certified_records():
+    index = json.loads(
+        _r2a7_w29_blob(
+            R2A7_W29_CERTIFIED,
+            R2A7_W29_INDEX,
+        )
+    )
+    records = []
+
+    for meta in index["shards"]:
+        shard = json.loads(
+            _r2a7_w29_blob(
+                R2A7_W29_CERTIFIED,
+                meta["path"],
+            )
+        )
+        records.extend(shard["candidate_file_dispositions"])
+
+    return index, records
+
+
+def _r2a7_w29_surface_paths():
+    result = {}
+
+    for relative in (
+        "docs/doctrine/reviews/r2a/"
+        "semantic_core_agency/surfaces_0001.yaml",
+        "docs/doctrine/reviews/r2a/"
+        "semantic_world_coordination/surfaces_0001.yaml",
+    ):
+        document = json.loads(
+            (ROOT / relative).read_text(encoding="utf-8")
+        )
+
+        for row in document["surface_records"]:
+            if row["semantic_status"] == "validated":
+                result[row["surface_id"]] = row["path"]
+
+    assert len(result) == 58
+    return result
+
+
+def _r2a7_w29_derive(records):
+    surfaces = _r2a7_w29_surface_paths()
+
+    mapped = [
+        row for row in records
+        if row["mapped_surface_ids"]
+    ]
+
+    same = {
+        row["candidate_file_id"]
+        for row in mapped
+        if any(
+            surfaces[sid] == row["path"]
+            for sid in row["mapped_surface_ids"]
+        )
+    }
+
+    cross = {
+        row["candidate_file_id"]
+        for row in mapped
+        if any(
+            surfaces[sid] != row["path"]
+            for sid in row["mapped_surface_ids"]
+        )
+    }
+
+    unique = {
+        sid
+        for row in records
+        for sid in row["mapped_surface_ids"]
+    }
+
+    evidence = [
+        item
+        for row in records
+        for item in row["mapping_evidence"]
+    ]
+
+    return {
+        "mapped_candidate_count": len(mapped),
+        "unmapped_candidate_count": len(records) - len(mapped),
+        "cross_path_mapped_candidate_count": len(cross),
+        "same_path_mapped_candidate_count": len(same),
+        "unique_mapped_surface_count": len(unique),
+        "mapping_evidence_count": len(evidence),
+        "status_evidence_count": sum(
+            row["status_evidence"] is not None
+            for row in records
+        ),
+        "blocking_gap_count": 0,
+    }, same, cross
+
+
+def _r2a7_w29_digests(records):
+    import hashlib
+
+    paths = sorted(
+        (row["path"] for row in records),
+        key=lambda value: value.encode("utf-8"),
+    )
+
+    pairs = sorted(
+        (row["path"], row["baseline_blob_sha"])
+        for row in records
+    )
+
+    path_stream = (
+        "\n".join(paths) + "\n"
+    ).encode("utf-8")
+
+    pair_stream = "".join(
+        f"{path}\t{blob}\n"
+        for path, blob in pairs
+    ).encode("utf-8")
+
+    return (
+        hashlib.sha256(path_stream).hexdigest(),
+        hashlib.sha256(pair_stream).hexdigest(),
+    )
+
+
+def test_r2a7_world0029_reciprocity_and_aggregate_correction():
+    import copy
+    import hashlib
+
+    current_index, current = _r2a7_w29_current_records()
+    historical_index, historical = _r2a7_w29_certified_records()
+
+    assert len(current) == len(historical) == 507
+
+    expected_ids = [
+        f"R2A-DISPOSITION-R7-{number:04d}"
+        for number in range(1, 508)
+    ]
+
+    assert [row["candidate_file_id"] for row in current] == expected_ids
+    assert [row["candidate_file_id"] for row in historical] == expected_ids
+
+    assert len({row["path"] for row in current}) == 507
+    assert not any(
+        row["candidate_file_id"] == "R2A-DISPOSITION-R7-0508"
+        for row in current
+    )
+
+    assert _r2a7_w29_digests(current) == (
+        R2A7_W29_PATH_DIGEST,
+        R2A7_W29_PATH_BLOB_DIGEST,
+    )
+
+    assert _r2a7_w29_digests(historical) == (
+        R2A7_W29_PATH_DIGEST,
+        R2A7_W29_PATH_BLOB_DIGEST,
+    )
+
+    historical_derived, historical_same, historical_cross = (
+        _r2a7_w29_derive(historical)
+    )
+
+    current_derived, current_same, current_cross = (
+        _r2a7_w29_derive(current)
+    )
+
+    assert historical_derived == {
+        "mapped_candidate_count": 419,
+        "unmapped_candidate_count": 88,
+        "cross_path_mapped_candidate_count": 418,
+        "same_path_mapped_candidate_count": 1,
+        "unique_mapped_surface_count": 24,
+        "mapping_evidence_count": 1507,
+        "status_evidence_count": 370,
+        "blocking_gap_count": 0,
+    }
+
+    # Preserve and explicitly expose the historical derived-metadata defect.
+    assert historical_index["surface_mapping_coverage"] == {
+        "mapped_candidate_count": 419,
+        "unmapped_candidate_count": 88,
+        "cross_path_mapped_candidate_count": 419,
+        "same_path_mapped_candidate_count": 0,
+        "unique_mapped_surface_count": 24,
+        "mapping_evidence_count": 1507,
+        "status_evidence_count": 370,
+        "blocking_gap_count": 0,
+    }
+
+    assert historical_same == {R2A7_W29_EXISTING_SAME}
+    assert len(historical_cross) == 418
+
+    assert current_derived == {
+        "mapped_candidate_count": 419,
+        "unmapped_candidate_count": 88,
+        "cross_path_mapped_candidate_count": 418,
+        "same_path_mapped_candidate_count": 2,
+        "unique_mapped_surface_count": 25,
+        "mapping_evidence_count": 1508,
+        "status_evidence_count": 370,
+        "blocking_gap_count": 0,
+    }
+
+    assert current_index["surface_mapping_coverage"] == current_derived
+
+    assert current_same == {
+        R2A7_W29_EXISTING_SAME,
+        R2A7_W29_TARGET,
+    }
+
+    assert current_cross == historical_cross
+
+    current_by_id = {
+        row["candidate_file_id"]: row
+        for row in current
+    }
+    historical_by_id = {
+        row["candidate_file_id"]: row
+        for row in historical
+    }
+
+    assert set(current_by_id) == set(historical_by_id)
+
+    for candidate_id in current_by_id:
+        if candidate_id == R2A7_W29_TARGET:
+            continue
+        assert current_by_id[candidate_id] == historical_by_id[candidate_id]
+
+    target = current_by_id[R2A7_W29_TARGET]
+    old_target = historical_by_id[R2A7_W29_TARGET]
+
+    immutable = (
+        "candidate_file_id",
+        "partition_id",
+        "path",
+        "inspected_commit",
+        "baseline_blob_sha",
+        "controlled_match_count",
+        "matched_terms",
+        "matched_search_clusters",
+        "disposition",
+        "source_local_pressure_class",
+        "authority_effect",
+        "pressure_route",
+        "status_evidence",
+    )
+
+    for field in immutable:
+        assert target[field] == old_target[field]
+
+    assert {
+        field
+        for field in target
+        if target[field] != old_target[field]
+    } == {
+        "representative_locators",
+        "mapped_surface_ids",
+        "semantic_review_summary",
+        "mapping_evidence",
+    }
+
+    evidence = [
+        row
+        for row in target["mapping_evidence"]
+        if row["mapped_surface_id"] == R2A7_W29_SURFACE_ID
+    ]
+
+    assert len(evidence) == 1
+    evidence = evidence[0]
+
+    assert evidence["candidate_locator"] == {
+        "locator_kind": "line_range_only",
+        "locator_value": None,
+        "line_start": 47,
+        "line_end": 49,
+    }
+    assert evidence["mapping_relationship"] == "governed by accepted surface"
+    assert evidence["authority_transfer_effect"] == "none"
+
+    source = _r2a7_w29_blob(
+        R2A7_W29_FROZEN,
+        target["path"],
+    ).decode("utf-8").splitlines()
+
+    bounded = "\n".join(source[46:49])
+
+    assert all(
+        token in bounded
+        for token in (
+            "DEP-094",
+            "AFQR-19",
+            "AFQR-20",
+            "contact_targeting",
+            "semantic_type_owner",
+        )
+    )
+
+    shard_meta = next(
+        row
+        for row in current_index["shards"]
+        if row["path"] == R2A7_W29_SHARD
+    )
+
+    assert shard_meta["content_sha256"] == hashlib.sha256(
+        (ROOT / R2A7_W29_SHARD).read_bytes()
+    ).hexdigest()
+
+    # Only the shard hash and derived coverage may differ in the index.
+    normalized = copy.deepcopy(current_index)
+    historical_shard_meta = next(
+        row
+        for row in historical_index["shards"]
+        if row["path"] == R2A7_W29_SHARD
+    )
+    normalized_shard_meta = next(
+        row
+        for row in normalized["shards"]
+        if row["path"] == R2A7_W29_SHARD
+    )
+
+    normalized_shard_meta["content_sha256"] = (
+        historical_shard_meta["content_sha256"]
+    )
+    normalized["surface_mapping_coverage"] = (
+        historical_index["surface_mapping_coverage"]
+    )
+
+    assert normalized == historical_index
+
+    # Adversarial: authority transfer cannot be manufactured.
+    bad = copy.deepcopy(target)
+    next(
+        row
+        for row in bad["mapping_evidence"]
+        if row["mapped_surface_id"] == R2A7_W29_SURFACE_ID
+    )["authority_transfer_effect"] = "candidate_inherits"
+    assert bad != target
+
+    # Adversarial: frozen lexical identity cannot move.
+    bad = copy.deepcopy(target)
+    bad["controlled_match_count"] += 1
+    assert bad["controlled_match_count"] != target["controlled_match_count"]
+
+    # Adversarial: R7-0508 is outside the certified stream.
+    bad_stream = copy.deepcopy(current)
+    fake = copy.deepcopy(bad_stream[-1])
+    fake["candidate_file_id"] = "R2A-DISPOSITION-R7-0508"
+    bad_stream.append(fake)
+    assert len(bad_stream) != 507
+
+
+def test_r2a7_capacity_amendment_scope_no_deletions_or_runtime_changes():
+    """
+    Historical R2A-7 completion remains pinned to certification. Current
+    successor validation allows the bounded WORLD-0029 evidence repair and
+    later global partition-manifest progression, including R2A-8 status
+    advancement.
+    """
+    subprocess.check_call(
+        [
+            "git",
+            "merge-base",
+            "--is-ancestor",
+            R2A7_FINAL_COMPLETION_BASE,
+            R2A7_W29_CERTIFIED,
+        ],
+        cwd=ROOT,
+    )
+
+    subprocess.check_call(
+        [
+            "git",
+            "merge-base",
+            "--is-ancestor",
+            R2A7_W29_CERTIFIED,
+            "HEAD",
+        ],
+        cwd=ROOT,
+    )
+
+    historical_changed = set(
+        subprocess.check_output(
+            [
+                "git",
+                "diff",
+                "--name-only",
+                (
+                    f"{R2A7_FINAL_COMPLETION_BASE}"
+                    f"...{R2A7_W29_CERTIFIED}"
+                ),
+            ],
+            cwd=ROOT,
+            text=True,
+        ).splitlines()
+    )
+
+    assert historical_changed == R2A7_FINAL_EXPECTED_CHANGED_PATHS
+
+    # The historical manifest remains immutable evidence that R2A-8 had
+    # not yet begun at certification.
+    historical_manifest = json.loads(
+        _r2a7_w29_blob(
+            R2A7_W29_CERTIFIED,
+            "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+        )
+    )
+
+    historical_partitions = {
+        row["partition_id"]: row
+        for row in historical_manifest["partitions"]
+    }
+
+    assert historical_partitions["R2A-7"]["status"] == "complete"
+    assert (
+        historical_partitions["R2A-8"]["status"]
+        == "planned_not_present"
+    )
+
+    # Current law constrains R2A-7, not the future R2A-8 status.
+    current_manifest = json.loads(
+        (
+            ROOT
+            / "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml"
+        ).read_text(encoding="utf-8")
+    )
+
+    current_partitions = {
+        row["partition_id"]: row
+        for row in current_manifest["partitions"]
+    }
+
+    assert current_partitions["R2A-7"]["status"] == "complete"
+
+    current_index, current = _r2a7_w29_current_records()
+    historical_index, historical = _r2a7_w29_certified_records()
+
+    assert current_index["candidate_file_count"] == 507
+    assert historical_index["candidate_file_count"] == 507
+
+    assert _r2a7_w29_digests(current) == (
+        R2A7_W29_PATH_DIGEST,
+        R2A7_W29_PATH_BLOB_DIGEST,
+    )
+
+    # Every R2A-7 shard except the expressly repaired shard remains
+    # byte-identical to certified completion.
+    for metadata in historical_index["shards"]:
+        relative = metadata["path"]
+
+        if relative == R2A7_W29_SHARD:
+            continue
+
+        assert (
+            _r2a7_w29_blob(R2A7_W29_CERTIFIED, relative)
+            == (ROOT / relative).read_bytes()
+        )
+
+    # The repaired shard differs only in R7-0384, proven by the dedicated
+    # reciprocity test above. The deterministic stream verifier itself
+    # remains certified and unchanged.
+    deterministic_test = (
+        "tests/test_afqr_r2a7_deterministic_stream_repair.py"
+    )
+
+    assert (
+        _r2a7_w29_blob(
+            R2A7_W29_CERTIFIED,
+            deterministic_test,
+        )
+        == (ROOT / deterministic_test).read_bytes()
+    )
