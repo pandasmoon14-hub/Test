@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-3-WORLD-COORDINATION-SEMANTIC-SHARD-0001",
-  "artifact_version": "0.3.1",
+  "artifact_version": "0.3.2",
   "status": "complete",
   "phase": "R2A-3",
   "authority_effect": "nonauthoritative_semantic_inventory",
@@ -50,9 +50,13 @@
       ],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0016"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0016",
+        "R2-CLAIM-0020"
+      ],
       "claim_link_reasons": [
-        "The WORLD inventory confirms the accepted separation of time, environmental process, topology, and embodiment under their component owners."
+        "The WORLD inventory confirms the accepted separation of time, environmental process, topology, and embodiment under their component owners.",
+        "INV-007 keeps embodiment, integrity, harm, environmental process, logical time, and causal order typed and distinct during persistent-play conformance."
       ],
       "source_record_kind": "r1c_invariant",
       "source_record_id": "INV-007",
@@ -170,8 +174,8 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0020"],
+      "claim_link_reasons": ["AFQR-16 already owns embodiment integrity, harm, injury, conditions, death profiles, recovery, repair, and replacement."],
       "source_record_kind": "r1d_responsibility",
       "source_record_id": "WORLD-RESP-16",
       "source_proposition": "WORLD-RESP-16 assigns AFQR-16 bounded WORLD ownership, owned concerns, explicit nonowned concerns, and applicable R1B terms.",
@@ -468,8 +472,16 @@
       ],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0019",
+        "R2-CLAIM-0020",
+        "R2-CLAIM-0021"
+      ],
+      "claim_link_reasons": [
+        "INV-009 prevents donor action economy or turn cadence from becoming Astra law merely because an evaluation represents it.",
+        "INV-009 prevents donor resource, anatomy, action-economy, or cadence assumptions from becoming universal conformance law.",
+        "Donor action economy and cadence cannot become Astra law merely because a house rule or source-local procedure is versioned for replay."
+      ],
       "source_record_kind": "r1c_invariant",
       "source_record_id": "INV-009",
       "source_proposition": "Donor action economy, anatomy, grid, cosmology, progression, resource model, or turn cadence cannot become Astra law by implication.",
@@ -878,9 +890,21 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0014"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0014",
+        "R2-CLAIM-0018",
+        "R2-CLAIM-0019",
+        "R2-CLAIM-0020",
+        "R2-CLAIM-0021",
+        "R2-CLAIM-0030"
+      ],
       "claim_link_reasons": [
-        "AFQR-19 owns scene-level action readiness, targeting, contests, reactions, and conflict resolution used when a stale command re-enters arbitration."
+        "AFQR-19 owns scene-level action readiness, targeting, contests, reactions, and conflict resolution used when a stale command re-enters arbitration.",
+        "AFQR-19 owns applicable readiness, targeting, contest, reaction, and conflict-resolution semantics while explicitly rejecting a universal combat procedure.",
+        "AFQR-19 already owns profiled and pluggable resolution semantics and explicitly does not own universal dice, initiative, turn, or combat procedure.",
+        "AFQR-19 already owns capability readiness, targeting, contests, reactions, conflict, and owner-prepared multi-domain effect resolution.",
+        "AFQR-19 owns applicable procedure-resolution semantics but not ruleset-package identity, override authority, effective intervals, or canon governance.",
+        "AFQR-19 retains contest, reaction, interrupt, conflict, and action-resolution semantics illustrated by later GM-adapter evaluation."
       ],
       "source_record_kind": "r1d_responsibility",
       "source_record_id": "WORLD-RESP-19",
@@ -925,10 +949,15 @@
       ],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0012", "R2-CLAIM-0013"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0012",
+        "R2-CLAIM-0013",
+        "R2-CLAIM-0022"
+      ],
       "claim_link_reasons": [
         "Accepted sensing invariant prohibits hidden truth from leaking through sensing, evidence, projection, runtime, or model-facing handoffs.",
-        "Signal detection is not interpretation or communication and hidden truth may not leak through projection handoffs."
+        "Signal detection is not interpretation or communication and hidden truth may not leak through projection handoffs.",
+        "Hidden truth cannot leak through sensing, evidence, projection, runtime, or model-facing handoffs used for recap and restart."
       ],
       "source_record_kind": "r1c_invariant",
       "source_record_id": "INV-003",
@@ -1131,11 +1160,17 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0011", "R2-CLAIM-0012", "R2-CLAIM-0013"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0011",
+        "R2-CLAIM-0012",
+        "R2-CLAIM-0013",
+        "R2-CLAIM-0022"
+      ],
       "claim_link_reasons": [
         "AFQR-20 owns sensing/contact state even when closure records or recap inputs reference sensing deltas.",
         "AFQR-20 owns sensing/contact state while excluding truth, knowledge, and interpretation ownership.",
-        "AFQR-20 owns signals, sensing, contacts, and tracks while explicitly excluding truth and knowledge ownership."
+        "AFQR-20 owns signals, sensing, contacts, and tracks while explicitly excluding truth and knowledge ownership.",
+        "AFQR-20 owns sensing and contact records while excluding truth, knowledge, interpretation, and evidence-admissibility ownership."
       ],
       "source_record_kind": "r1d_responsibility",
       "source_record_id": "WORLD-RESP-20",
@@ -1321,8 +1356,16 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0021",
+        "R2-CLAIM-0022",
+        "R2-CLAIM-0030"
+      ],
+      "claim_link_reasons": [
+        "Cross-phase coordination is barred from acquiring canon, conversion, runtime-truth, or component semantics and therefore preserves rather than answers the package-version owner question.",
+        "The control surface expressly prevents consumers and coordination from acquiring canon or runtime-truth ownership through adapter handoff.",
+        "Cross-phase coordination and downstream consumers cannot gain canon or runtime-truth ownership from retained actual-play or adapter evidence."
+      ],
       "source_record_kind": "control_section",
       "source_record_id": "coordination_must_not_own",
       "source_proposition": "The partition manifest lists domains coordination must not own and maps only accepted component-owner domains; canon, conversion, and runtime_truth remain prohibited domains without invented AFQR ownership.",

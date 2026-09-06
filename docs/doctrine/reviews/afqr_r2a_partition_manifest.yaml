@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-PARTITION-MANIFEST-001",
-  "artifact_version": "0.2.16",
+  "artifact_version": "0.2.17",
   "status": "active_incomplete",
   "phase": "R2A",
   "authority_effect": "nonauthoritative_work_partition",
@@ -395,7 +395,7 @@
     {
       "partition_id": "R2A-10",
       "title": "Claim assessments R2-CLAIM-0017 through R2-CLAIM-0031",
-      "status": "planned_not_present",
+      "status": "complete",
       "owned_artifact_types": [
         "claim_assessment"
       ],

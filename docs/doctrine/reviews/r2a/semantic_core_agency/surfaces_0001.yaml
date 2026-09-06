@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-2-CORE-AGENCY-SEMANTIC-SHARD-0001",
-  "artifact_version": "0.3.1",
+  "artifact_version": "0.3.2",
   "status": "complete",
   "phase": "R2A-2",
   "authority_effect": "nonauthoritative_semantic_inventory",
@@ -29,11 +29,17 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0007", "R2-CLAIM-0009", "R2-CLAIM-0015"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0007",
+        "R2-CLAIM-0009",
+        "R2-CLAIM-0015",
+        "R2-CLAIM-0017"
+      ],
       "claim_link_reasons": [
         "Accepted AFQR-01 family doctrine requires replay idempotence and identity-preserving recovery, constraining silent historical mutation.",
         "Replay idempotence and identity-preserving recovery constrain replacement resolution from being silently treated as the same committed execution.",
-        "Replay idempotence and identity-preserving recovery supply the semantic boundary that duplicate-suppression implementation must preserve."
+        "Replay idempotence and identity-preserving recovery supply the semantic boundary that duplicate-suppression implementation must preserve.",
+        "Replay idempotence and identity-preserving recovery bound detection of replay divergence without defining quarantine storage or forensic tooling."
       ],
       "semantic_summary": "R1D attributes replay idempotence and identity-preserving recovery to INV-008, while canonical R1C INV-008 governs motivation, behavior prediction, agency, and responsibility. The replay proposition remains an R1D family proposition with no conflicting R1C identifier attached.",
       "semantic_status": "validated",
@@ -66,7 +72,24 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0002", "R2-CLAIM-0004", "R2-CLAIM-0005", "R2-CLAIM-0007", "R2-CLAIM-0008", "R2-CLAIM-0009", "R2-CLAIM-0010", "R2-CLAIM-0011", "R2-CLAIM-0012", "R2-CLAIM-0014", "R2-CLAIM-0015"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0002",
+        "R2-CLAIM-0004",
+        "R2-CLAIM-0005",
+        "R2-CLAIM-0007",
+        "R2-CLAIM-0008",
+        "R2-CLAIM-0009",
+        "R2-CLAIM-0010",
+        "R2-CLAIM-0011",
+        "R2-CLAIM-0012",
+        "R2-CLAIM-0014",
+        "R2-CLAIM-0015",
+        "R2-CLAIM-0017",
+        "R2-CLAIM-0020",
+        "R2-CLAIM-0023",
+        "R2-CLAIM-0024",
+        "R2-CLAIM-0031"
+      ],
       "claim_link_reasons": [
         "AFQR-01 bounds commitment and committed-history references but does not establish canonical-branch selection policy.",
         "AFQR-01’s commitment boundary distinguishes committed transition effects from uncommitted proposals.",
@@ -78,7 +101,12 @@
         "AFQR-01 owns the commit/closure envelope rather than the domain semantics summarized by that envelope.",
         "AFQR-01 provides commitment references but does not own branch-safe visibility or disclosure semantics.",
         "AFQR-01 owns commit preconditions and transition commitment relevant to rejecting stale compiled state before commitment.",
-        "AFQR-01 owns commitment and recovery semantics relevant to preventing duplicate committed effects after crashes."
+        "AFQR-01 owns commitment and recovery semantics relevant to preventing duplicate committed effects after crashes.",
+        "AFQR-01 owns commitment, recovery, replay, and transition receipts that a later corruption quarantine must protect.",
+        "AFQR-01 may commit only owner-prepared transitions and does not acquire resource, harm, recovery, condition, or defeat semantics.",
+        "AFQR-01 commitment and recovery boundaries constrain benchmark cases for silent mutation, stale commitment, preview contamination, and replay divergence.",
+        "AFQR-01 owns transition commitment, recovery, replay, and receipts without acquiring the committed domains’ substantive semantics.",
+        "AFQR-01 owns commit preconditions and atomic commitment for owner-prepared reservation and settlement transitions, not their quantity semantics."
       ],
       "semantic_summary": "CORE-RESP-01 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
@@ -111,7 +139,30 @@
       "applicable_invariant_ids": ["INV-001"],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0001", "R2-CLAIM-0002", "R2-CLAIM-0003", "R2-CLAIM-0004", "R2-CLAIM-0007", "R2-CLAIM-0008", "R2-CLAIM-0010", "R2-CLAIM-0011", "R2-CLAIM-0012", "R2-CLAIM-0014", "R2-CLAIM-0015", "R2-CLAIM-0016"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0001",
+        "R2-CLAIM-0002",
+        "R2-CLAIM-0003",
+        "R2-CLAIM-0004",
+        "R2-CLAIM-0007",
+        "R2-CLAIM-0008",
+        "R2-CLAIM-0010",
+        "R2-CLAIM-0011",
+        "R2-CLAIM-0012",
+        "R2-CLAIM-0014",
+        "R2-CLAIM-0015",
+        "R2-CLAIM-0016",
+        "R2-CLAIM-0017",
+        "R2-CLAIM-0020",
+        "R2-CLAIM-0021",
+        "R2-CLAIM-0022",
+        "R2-CLAIM-0023",
+        "R2-CLAIM-0024",
+        "R2-CLAIM-0028",
+        "R2-CLAIM-0029",
+        "R2-CLAIM-0030",
+        "R2-CLAIM-0031"
+      ],
       "claim_link_reasons": [
         "Accepted nontransfer doctrine prevents timeline coordination, storage, replay, or commitment from manufacturing a new semantic owner.",
         "Accepted nontransfer doctrine prevents a branch registry, journal, or selection mechanism from becoming a semantic owner.",
@@ -124,7 +175,17 @@
         "Projection, storage, or context compilation cannot transfer substantive semantic ownership.",
         "Expected-version storage or arbitration infrastructure cannot become a semantic owner by mediating a stale-command conflict.",
         "A generalized journal or publication receipt does not become owner of command or committed-domain semantics by storing them.",
-        "Scheduler, tick, aggregate, or catch-up infrastructure cannot absorb world-process or time semantics by executing them."
+        "Scheduler, tick, aggregate, or catch-up infrastructure cannot absorb world-process or time semantics by executing them.",
+        "Quarantine, journaling, replay, migration, or branch-pointer handling cannot acquire the semantic ownership of affected state.",
+        "Conformance records, continuity journals, and commitment handoffs cannot absorb the distinct domain semantics exercised by this claim.",
+        "Ruleset loading, package storage, replay, and override application cannot acquire procedure, temporal, dependency, or canon semantics by mediation.",
+        "A recap or restart adapter cannot acquire truth, canon, epistemic, sensing, or closure semantics merely by consuming their outputs.",
+        "A benchmark, journal, branch mechanism, or divergence detector cannot become the semantic owner of the failures it evaluates.",
+        "INV-001 directly establishes that consumption, commitment, scheduling, arbitration, storage, and mention never transfer semantic ownership.",
+        "Scheduler, transform, persistence, or compatibility infrastructure cannot acquire logical-time semantics by representing actor-local or regional time.",
+        "Alternate-world, cross-reality, time-travel, branch, or persistence mechanisms cannot absorb time or identity semantics by representing them.",
+        "Actual-play evidence, transcripts, model outputs, and later adapter behavior cannot acquire the semantic ownership of the domains they illustrate.",
+        "Reservation storage, expiry scheduling, journaling, and commitment cannot become the typed-quantity or settlement owner by mediation."
       ],
       "semantic_summary": "Consumption, commitment, scheduling, arbitration, bridge compatibility, storage, or mention never transfers semantic ownership.",
       "semantic_status": "validated",
@@ -223,8 +284,14 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0017",
+        "R2-CLAIM-0031"
+      ],
+      "claim_link_reasons": [
+        "The current state-owner skeleton explicitly lacks commitment and replay writes, confirming that the claimed quarantine behavior remains unimplemented runtime pressure.",
+        "The current state-owner skeleton explicitly lacks resource math and owner-service behavior, confirming that generalized reservation handling is not implemented."
+      ],
       "semantic_summary": "The state-owner runtime skeleton explicitly lacks commitment, replay writes, resource math, and owner-service behavior.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -256,13 +323,27 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0004", "R2-CLAIM-0009", "R2-CLAIM-0010", "R2-CLAIM-0014", "R2-CLAIM-0015"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0004",
+        "R2-CLAIM-0009",
+        "R2-CLAIM-0010",
+        "R2-CLAIM-0014",
+        "R2-CLAIM-0015",
+        "R2-CLAIM-0017",
+        "R2-CLAIM-0018",
+        "R2-CLAIM-0023",
+        "R2-CLAIM-0030"
+      ],
       "claim_link_reasons": [
         "AFQR-02 owns command identity and durable command progress, bounding preview handling without defining branch persistence.",
         "AFQR-02 owns command identity and progress, supporting distinct identity for a replacement execution path.",
         "AFQR-02 command identity and progress are relevant to replayed execution identity without defining package applicability.",
         "AFQR-02 owns command identity, attempts, retries, suspension, escalation, and durable command progress.",
-        "AFQR-02 owns durable command progress, retry, and attempt identity that duplicate-suppression implementation must preserve."
+        "AFQR-02 owns durable command progress, retry, and attempt identity that duplicate-suppression implementation must preserve.",
+        "AFQR-02 owns command attempts, retries, suspension, escalation, and durable progress implicated when replay or recovery cannot continue safely.",
+        "AFQR-02 bounds command identity and durable progress when a later evaluation enters or resumes a named procedure, but does not mandate the evaluation catalogue.",
+        "AFQR-02 command identity and durable progress constrain duplicate, stale, retry, and interrupted-command benchmark cases.",
+        "AFQR-02 retains command identity, suspension, escalation, and durable progress semantics implicated by clarification and interruption traces."
       ],
       "semantic_summary": "CORE-RESP-02 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
@@ -328,7 +409,24 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0001", "R2-CLAIM-0002", "R2-CLAIM-0003", "R2-CLAIM-0005", "R2-CLAIM-0006", "R2-CLAIM-0007", "R2-CLAIM-0008", "R2-CLAIM-0011", "R2-CLAIM-0013", "R2-CLAIM-0016"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0001",
+        "R2-CLAIM-0002",
+        "R2-CLAIM-0003",
+        "R2-CLAIM-0005",
+        "R2-CLAIM-0006",
+        "R2-CLAIM-0007",
+        "R2-CLAIM-0008",
+        "R2-CLAIM-0011",
+        "R2-CLAIM-0013",
+        "R2-CLAIM-0016",
+        "R2-CLAIM-0017",
+        "R2-CLAIM-0021",
+        "R2-CLAIM-0023",
+        "R2-CLAIM-0024",
+        "R2-CLAIM-0028",
+        "R2-CLAIM-0029"
+      ],
       "claim_link_reasons": [
         "AFQR-04 already owns logical-time and causal-order concerns that any stable timeline identity must compose with.",
         "AFQR-04 bounds temporal ordering relevant to divergent histories but does not establish a one-active-canonical-branch rule.",
@@ -339,7 +437,13 @@
         "AFQR-04 owns temporal placement but not the authority taxonomy distinguishing metadata repair, compensation, retcon, canon revision, or alternate-history creation.",
         "AFQR-04 owns world-valid intervals, scheduling, and temporal order represented at closure.",
         "AFQR-04 owns temporal relationships used during correction and replay without owning evidence or epistemic meaning.",
-        "AFQR-04 owns logical time, scheduling, and causal order relevant to deferred or catch-up progression."
+        "AFQR-04 owns logical time, scheduling, and causal order relevant to deferred or catch-up progression.",
+        "AFQR-04 owns causal ordering and scheduling needed to reject invalid causal parents without making the quarantine mechanism a time owner.",
+        "AFQR-04 owns effective-time relationships and causal ordering but not ruleset, package, override, procedure, or canon identity.",
+        "AFQR-04 owns temporal and causal ordering relevant to wrong-version replay without thereby owning version or branch policy.",
+        "AFQR-04 retains logical-time and causal-order semantics when journals, branches, replay, or handoffs record temporal relationships.",
+        "AFQR-04 owns logical time, causal ordering, scheduling, resolution groups, and bounded cascades implicated by time transforms and dilation.",
+        "AFQR-04 owns logical-time and causal-order components implicated by time travel without defining cross-reality identity or rewrite policy."
       ],
       "semantic_summary": "CORE-RESP-04 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
@@ -408,8 +512,8 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0028"],
+      "claim_link_reasons": ["Accepted time vocabulary assigns logical time to AFQR-04 while keeping donor cadence and specialized temporal procedures non-universal."],
       "semantic_summary": "Logical time is AFQR-04-owned while donor cadence remains non-universal.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -441,10 +545,15 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0005", "R2-CLAIM-0013"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0005",
+        "R2-CLAIM-0013",
+        "R2-CLAIM-0024"
+      ],
       "claim_link_reasons": [
         "AFQR-06 owns claims, evidence admission, conflict, and arbitration consequences that corrections may create.",
-        "AFQR-06 owns claims, evidence admission, conflicts, and arbitration rather than truth or observer knowledge."
+        "AFQR-06 owns claims, evidence admission, conflicts, and arbitration rather than truth or observer knowledge.",
+        "AFQR-06 retains claim, evidence-admission, conflict, and arbitration semantics when those outputs are stored, replayed, or handed off."
       ],
       "semantic_summary": "CORE-RESP-06 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
@@ -543,8 +652,18 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0011"],
-      "claim_link_reasons": ["AFQR-07 owns typed reservation and settlement semantics where closure records reference those states."],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0011",
+        "R2-CLAIM-0020",
+        "R2-CLAIM-0023",
+        "R2-CLAIM-0031"
+      ],
+      "claim_link_reasons": [
+        "AFQR-07 owns typed reservation and settlement semantics where closure records reference those states.",
+        "AFQR-07 already owns conserved quantities, reservation, settlement, loss, transformation validity, and arbitrage prevention.",
+        "AFQR-07 owns typed scarcity, reservation, and settlement semantics exercised by duplicate-scarcity benchmark failures.",
+        "AFQR-07 owns typed quantities, reservation, settlement, losses, transformations, validity, and arbitrage prevention rather than a runtime journal."
+      ],
       "semantic_summary": "CORE-RESP-07 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -576,10 +695,15 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0001", "R2-CLAIM-0003"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0001",
+        "R2-CLAIM-0003",
+        "R2-CLAIM-0029"
+      ],
       "claim_link_reasons": [
         "AFQR-08 already owns identity and continuity distinctions implicated when timeline identity interacts with copies or alternate realities.",
-        "AFQR-08 owns identity and continuity distinctions implicated by branch ancestry and alternate-history identity."
+        "AFQR-08 owns identity and continuity distinctions implicated by branch ancestry and alternate-history identity.",
+        "AFQR-08 owns identity, continuity, copying, transformation, fusion, fission, and contextual equivalence implicated across realities."
       ],
       "semantic_summary": "CORE-RESP-08 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
@@ -678,13 +802,23 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0003", "R2-CLAIM-0006", "R2-CLAIM-0007", "R2-CLAIM-0008", "R2-CLAIM-0010"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0003",
+        "R2-CLAIM-0006",
+        "R2-CLAIM-0007",
+        "R2-CLAIM-0008",
+        "R2-CLAIM-0010",
+        "R2-CLAIM-0017",
+        "R2-CLAIM-0021"
+      ],
       "claim_link_reasons": [
         "AFQR-09 owns dependency lifecycle semantics that branch ancestry or supersession may consume without absorbing them.",
         "AFQR-09 owns dependency, revocation, migration, orphaning, and cascade consequences that timestamps cannot substitute for.",
         "AFQR-09 owns dependency consequences that a historical correction may invalidate or require to be reevaluated.",
         "AFQR-09 owns affected dependency consequences without thereby owning correction authority.",
-        "AFQR-09 dependency lifecycle may be affected by package/version changes but does not establish cross-phase historical applicability policy."
+        "AFQR-09 dependency lifecycle may be affected by package/version changes but does not establish cross-phase historical applicability policy.",
+        "AFQR-09 owns dependency migration, orphaning, and cascading consequences implicated by missing packages or incomplete migration.",
+        "AFQR-09 owns dependency, revocation, migration, and orphaning consequences that package relationships may consume without becoming package governance."
       ],
       "semantic_summary": "CORE-RESP-09 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
@@ -882,10 +1016,15 @@
       "applicable_invariant_ids": ["INV-002"],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0012", "R2-CLAIM-0013"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0012",
+        "R2-CLAIM-0013",
+        "R2-CLAIM-0022"
+      ],
       "claim_link_reasons": [
         "Observation is not automatically truth, belief, knowledge, or admissible evidence, constraining branch/disclosure projection.",
-        "Accepted doctrine explicitly separates observation from truth, belief, knowledge, and admissible evidence."
+        "Accepted doctrine explicitly separates observation from truth, belief, knowledge, and admissible evidence.",
+        "An observation or transcript is not automatically truth, belief, knowledge, or admissible evidence for recap or restart."
       ],
       "semantic_summary": "Observation is not automatically truth, belief, knowledge, or admissible evidence; each remains owner-qualified.",
       "semantic_status": "validated",
@@ -918,12 +1057,23 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": ["R2-CLAIM-0005", "R2-CLAIM-0011", "R2-CLAIM-0012", "R2-CLAIM-0013"],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0005",
+        "R2-CLAIM-0011",
+        "R2-CLAIM-0012",
+        "R2-CLAIM-0013",
+        "R2-CLAIM-0022",
+        "R2-CLAIM-0023",
+        "R2-CLAIM-0024"
+      ],
       "claim_link_reasons": [
         "AFQR-10 owns epistemic state, knowledge, belief, memory, and safe projection consequences across historical correction.",
         "AFQR-10 owns knowledge and belief state even when closure produces recap inputs or epistemic deltas.",
         "AFQR-10 owns epistemic state and safe projection boundaries relevant to excluding noncanonical or undisclosed facts.",
-        "AFQR-10 owns truth-relative epistemic state, knowledge, belief, memory, and safe projection with explicit evidence/sensing/time exclusions."
+        "AFQR-10 owns truth-relative epistemic state, knowledge, belief, memory, and safe projection with explicit evidence/sensing/time exclusions.",
+        "AFQR-10 owns authoritative truth, observer-relative epistemic state, memory, provenance, and visibility-safe projection consumed by an adapter.",
+        "AFQR-10 visibility-safe projection bounds branch-leakage tests without making the benchmark an epistemic or truth owner.",
+        "AFQR-10 retains truth, knowledge, belief, memory, provenance, and projection semantics when continuity infrastructure preserves or presents them."
       ],
       "semantic_summary": "AGENCY-RESP-10 defines epistemic ownership together with sensing, evidence, time, agency, and communication exclusions.",
       "semantic_status": "validated",
