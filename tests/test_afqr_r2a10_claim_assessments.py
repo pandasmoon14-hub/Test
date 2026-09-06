@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 BASE = "0977a5be945f14460ad28e099001d4c7009936cd"
 R2A9_CERTIFIED_HEAD = "1241816ab4b23ebe946743dd07f40ccada43da2b"
+R2A10_CERTIFIED_HEAD = "91093c760aac87c01305322a6c1656cab5070cfb"
 
 CLAIMS_PATH = (
     "docs/doctrine/reviews/r2a/"
@@ -504,7 +505,7 @@ def test_r2a10_surface_mutation_is_link_only_and_successor_bounded():
 
 def test_r2a10_manifest_transition_is_exact_and_gate_stays_incomplete():
     predecessor = json.loads(git_bytes(BASE, MANIFEST_PATH))
-    current = load(MANIFEST_PATH)
+    current = json.loads(git_bytes(R2A10_CERTIFIED_HEAD, MANIFEST_PATH))
 
     assert predecessor["artifact_version"] == "0.2.16"
     assert current["artifact_version"] == "0.2.17"
@@ -548,8 +549,23 @@ def test_r2a10_manifest_transition_is_exact_and_gate_stays_incomplete():
     contract = load(CONTRACT_PATH)
     assert contract["project_posture"]["R2A"] == "active_incomplete"
     assert contract["project_posture"]["R2B"] == "blocked"
-    assert not (ROOT / current_by_id["R2A-11"]["planned_artifact_paths"][0]).exists()
-    assert not (ROOT / current_by_id["R2A-12"]["planned_artifact_paths"][0]).exists()
+
+    certified_paths = set(
+        git(
+            "ls-tree",
+            "-r",
+            "--name-only",
+            R2A10_CERTIFIED_HEAD,
+        ).splitlines()
+    )
+    assert (
+        current_by_id["R2A-11"]["planned_artifact_paths"][0]
+        not in certified_paths
+    )
+    assert (
+        current_by_id["R2A-12"]["planned_artifact_paths"][0]
+        not in certified_paths
+    )
 
 
 def test_r2a10_adversarial_claim_mutations_fail_closed():
@@ -604,21 +620,32 @@ def test_r2a10_adversarial_claim_mutations_fail_closed():
 
 
 def test_r2a10_branch_scope_and_caps_are_exact():
-    changed = set(git("diff", "--name-only", BASE).splitlines())
-    untracked = set(
-        git("ls-files", "--others", "--exclude-standard").splitlines()
+    changed = set(
+        git(
+            "diff",
+            "--name-only",
+            BASE,
+            R2A10_CERTIFIED_HEAD,
+        ).splitlines()
     )
-    changed |= untracked
 
     assert changed == AUTHORIZED_PATHS
-    assert not git("diff", "--name-status", "--diff-filter=D", BASE)
+    assert not git(
+        "diff",
+        "--name-status",
+        "--diff-filter=D",
+        BASE,
+        R2A10_CERTIFIED_HEAD,
+    )
 
-    numstat = git("diff", "--numstat", BASE).splitlines()
+    numstat = git(
+        "diff",
+        "--numstat",
+        BASE,
+        R2A10_CERTIFIED_HEAD,
+    ).splitlines()
     assert "-\t-" not in "\n".join(numstat)
     additions = sum(int(row.split("\t")[0]) for row in numstat if row)
-
-    for path in untracked:
-        additions += len((ROOT / path).read_text(encoding="utf-8").splitlines())
 
     assert len(changed) <= 7
     assert additions <= 2500
