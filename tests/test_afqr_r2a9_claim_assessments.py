@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 BASE = "202aaa75a0373f305d3ee38e943c7a66a562778c"
+R2A9_CERTIFIED_HEAD = "1241816ab4b23ebe946743dd07f40ccada43da2b"
 
 CLAIMS_PATH = (
     "docs/doctrine/reviews/r2a/"
@@ -105,16 +106,23 @@ def git(*args: str) -> str:
     ).strip()
 
 
-def load_live_surfaces():
-    """Load successor live shards without treating historical index hashes as live."""
+def load_certified_surfaces():
+    """Load the live-shard state certified by the R2A-9 branch head."""
     surfaces = {}
 
     for index_path in (CORE_INDEX_PATH, WORLD_INDEX_PATH):
-        index = load(index_path)
+        index = json.loads(
+            git("show", f"{R2A9_CERTIFIED_HEAD}:{index_path}")
+        )
         rows = []
 
         for meta in index["shards"]:
-            shard = load(meta["path"])
+            shard = json.loads(
+                git(
+                    "show",
+                    f'{R2A9_CERTIFIED_HEAD}:{meta["path"]}',
+                )
+            )
             shard_rows = shard["surface_records"]
 
             assert len(shard_rows) == meta["record_count"]
@@ -226,7 +234,7 @@ def test_r2a9_evidence_structure_and_claim_specific_links():
         contract["controlled_values"]["semantic_roles"]
     )
 
-    surfaces = load_live_surfaces()
+    surfaces = load_certified_surfaces()
 
     for claim in data["claim_assessments"]:
         cid = claim["claim_id"]
@@ -294,9 +302,9 @@ def test_r2a9_evidence_structure_and_claim_specific_links():
         assert cid not in summary
 
 
-def test_r2a9_live_positive_link_reciprocity_is_exact():
+def test_r2a9_certified_positive_link_reciprocity_is_exact():
     data = load(CLAIMS_PATH)
-    surfaces = load_live_surfaces()
+    surfaces = load_certified_surfaces()
 
     expected = defaultdict(list)
 
@@ -331,8 +339,7 @@ def test_r2a9_live_positive_link_reciprocity_is_exact():
         assert actual_ids == expected_ids
         assert actual_reasons == expected_reasons
 
-    # Reciprocal links cannot reference claims outside this R2A-9 range
-    # while this partition is the current successor.
+    # The certified R2A-9 endpoint contains no successor claim links.
     allowed_claims = set(EXPECTED_OUTCOMES)
 
     for surface in surfaces.values():
@@ -351,17 +358,27 @@ def test_r2a9_manifest_completion_progression_is_bounded():
             f"{BASE}:{MANIFEST_PATH}",
         )
     )
+    certified = json.loads(
+        git(
+            "show",
+            f"{R2A9_CERTIFIED_HEAD}:{MANIFEST_PATH}",
+        )
+    )
     current = load(MANIFEST_PATH)
 
     assert predecessor["artifact_version"] == "0.2.15"
-    assert current["artifact_version"] == "0.2.16"
+    assert certified["artifact_version"] == "0.2.16"
 
     assert predecessor["status"] == "active_incomplete"
-    assert current["status"] == "active_incomplete"
+    assert certified["status"] == "active_incomplete"
 
     predecessor_by_partition = {
         row["partition_id"]: row
         for row in predecessor["partitions"]
+    }
+    certified_by_partition = {
+        row["partition_id"]: row
+        for row in certified["partitions"]
     }
     current_by_partition = {
         row["partition_id"]: row
@@ -371,7 +388,7 @@ def test_r2a9_manifest_completion_progression_is_bounded():
     # R2A-8 remains exactly certified.
     assert predecessor_by_partition["R2A-8"]["status"] == "complete"
     assert (
-        current_by_partition["R2A-8"]
+        certified_by_partition["R2A-8"]
         == predecessor_by_partition["R2A-8"]
     )
 
@@ -380,9 +397,9 @@ def test_r2a9_manifest_completion_progression_is_bounded():
         predecessor_by_partition["R2A-9"]["status"]
         == "planned_not_present"
     )
-    assert current_by_partition["R2A-9"]["status"] == "complete"
+    assert certified_by_partition["R2A-9"]["status"] == "complete"
 
-    r2a9 = current_by_partition["R2A-9"]
+    r2a9 = certified_by_partition["R2A-9"]
 
     assert r2a9["owned_artifact_types"] == ["claim_assessment"]
     assert r2a9["dependency_partitions"] == ["R2A-8"]
@@ -394,17 +411,17 @@ def test_r2a9_manifest_completion_progression_is_bounded():
     # No later partition begins.
     for partition_id in ("R2A-10", "R2A-11", "R2A-12"):
         assert (
-            current_by_partition[partition_id]
+            certified_by_partition[partition_id]
             == predecessor_by_partition[partition_id]
         )
         assert (
-            current_by_partition[partition_id]["status"]
+            certified_by_partition[partition_id]["status"]
             == "planned_not_present"
         )
 
-    # Strong successor check: after normalizing exactly the two
-    # authorized fields, the current manifest must equal its predecessor.
-    normalized = json.loads(json.dumps(current))
+    # Strong R2A-9 check: after normalizing exactly the two authorized
+    # fields, the certified manifest must equal its predecessor.
+    normalized = json.loads(json.dumps(certified))
     normalized["artifact_version"] = predecessor["artifact_version"]
 
     normalized_by_partition = {
@@ -416,3 +433,26 @@ def test_r2a9_manifest_completion_progression_is_bounded():
     )
 
     assert normalized == predecessor
+
+    # Later R2A partitions may advance, but may not rewrite the certified
+    # manifest identity, ownership rules, or any partition through R2A-9.
+    assert current["artifact_id"] == certified["artifact_id"]
+    assert current["phase"] == certified["phase"]
+    assert current["partition_count"] == certified["partition_count"]
+    assert current["ownership_rules"] == certified["ownership_rules"]
+
+    for partition_id in (
+        "R2A-1",
+        "R2A-2",
+        "R2A-3",
+        "R2A-4",
+        "R2A-5",
+        "R2A-6",
+        "R2A-7",
+        "R2A-8",
+        "R2A-9",
+    ):
+        assert (
+            current_by_partition[partition_id]
+            == certified_by_partition[partition_id]
+        )

@@ -649,7 +649,6 @@ def test_r2a8_manifest_completion_is_bounded():
     )
 
     # Successors may advance later partitions, but must not mutate R2A-8.
-    assert current["status"] == "active_incomplete"
     assert current["artifact_id"] == historical["artifact_id"]
     assert current["phase"] == historical["phase"]
     assert current["partition_count"] == historical["partition_count"] == 12
@@ -669,10 +668,6 @@ def test_r2a8_manifest_completion_is_bounded():
             current_by_partition[partition_id]
             == historical_by_partition[partition_id]
         )
-
-    assert current_by_partition["R2A-10"]["status"] == "planned_not_present"
-    assert current_by_partition["R2A-11"]["status"] == "planned_not_present"
-    assert current_by_partition["R2A-12"]["status"] == "planned_not_present"
 
 
 def test_r2a8_partition_manifest_progression_is_semantically_bounded():
@@ -722,11 +717,8 @@ def test_r2a8_partition_manifest_progression_is_semantically_bounded():
     assert normalized_historical == predecessor
 
     # Current successors may advance R2A-9+, but cannot rewrite R2A-8.
-    assert current["status"] == "active_incomplete"
     assert current_by_partition["R2A-8"] == historical_by_partition["R2A-8"]
-    assert current_by_partition["R2A-10"]["status"] == "planned_not_present"
-    assert current_by_partition["R2A-11"]["status"] == "planned_not_present"
-    assert current_by_partition["R2A-12"]["status"] == "planned_not_present"
+
 
 # R2A-9 successor surface historicalization.
 #
