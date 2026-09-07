@@ -1,7 +1,7 @@
 {
   "artifact_id": "AFQR-R2A-PARTITION-MANIFEST-001",
-  "artifact_version": "0.2.18",
-  "status": "active_incomplete",
+  "artifact_version": "0.2.19",
+  "status": "complete",
   "phase": "R2A",
   "authority_effect": "nonauthoritative_work_partition",
   "partition_count": 12,
@@ -446,7 +446,7 @@
     {
       "partition_id": "R2A-12",
       "title": "Independent completion review and gate update",
-      "status": "planned_not_present",
+      "status": "complete",
       "owned_artifact_types": [
         "independent_completion_review",
         "gate_update"

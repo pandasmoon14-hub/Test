@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 BASE = "b1873f8771bc1a1700076936737c80d5df50fdc1"
+R2A11_CERTIFIED_HEAD = "d3a5c7f17a4709e2422661d8063e6a134a857798"
 
 ARTIFACT_PATH = (
     "docs/doctrine/reviews/r2a/question_package_module/index.yaml"
@@ -783,31 +784,47 @@ def test_r2a11_manifest_contract_and_semantic_surfaces_stay_bounded():
 
 
 def test_r2a11_branch_scope_stays_within_authorized_paths_and_caps():
-    changed = set(git("diff", "--name-only", BASE).splitlines())
-    untracked = set(
-        git("ls-files", "--others", "--exclude-standard").splitlines()
+    historical_range = f"{BASE}...{R2A11_CERTIFIED_HEAD}"
+
+    changed = set(
+        git(
+            "diff",
+            "--name-only",
+            historical_range,
+        ).splitlines()
     )
-    changed |= untracked
 
     assert changed <= AUTHORIZED_PATHS
-    assert not git("diff", "--name-status", "--diff-filter=D", BASE)
 
-    numstat = git("diff", "--numstat", BASE).splitlines()
+    assert not git(
+        "diff",
+        "--name-status",
+        "--diff-filter=D",
+        historical_range,
+    )
+
+    numstat = git(
+        "diff",
+        "--numstat",
+        historical_range,
+    ).splitlines()
+
     assert "-\t-" not in "\n".join(numstat)
-    additions = sum(int(row.split("\t")[0]) for row in numstat if row)
 
-    for path in untracked:
-        additions += len(
-            (ROOT / path).read_text(encoding="utf-8").splitlines()
-        )
+    additions = sum(
+        int(row.split("\t")[0])
+        for row in numstat
+        if row
+    )
 
     assert len(changed) <= 7
     assert additions <= 2500
 
-
 def test_r2a11_manifest_transition_is_exact_and_gate_remains_closed():
     predecessor = json.loads(git_bytes(BASE, MANIFEST_PATH))
-    current = load(MANIFEST_PATH)
+    current = json.loads(
+        git_bytes(R2A11_CERTIFIED_HEAD, MANIFEST_PATH)
+    )
 
     assert predecessor["artifact_version"] == "0.2.17"
     assert current["artifact_version"] == "0.2.18"
@@ -855,11 +872,24 @@ def test_r2a11_manifest_transition_is_exact_and_gate_remains_closed():
 
     assert normalized == predecessor
 
-    contract = load(CONTRACT_PATH)
+    contract = json.loads(
+        git_bytes(R2A11_CERTIFIED_HEAD, CONTRACT_PATH)
+    )
     assert contract["project_posture"]["R2A"] == "active_incomplete"
     assert contract["project_posture"]["R2B"] == "blocked"
 
-    assert (ROOT / ARTIFACT_PATH).exists()
+    assert git_bytes(R2A11_CERTIFIED_HEAD, ARTIFACT_PATH)
 
     for path in current_by_id["R2A-12"]["planned_artifact_paths"]:
-        assert not (ROOT / path).exists()
+        result = subprocess.run(
+            [
+                "git",
+                "cat-file",
+                "-e",
+                f"{R2A11_CERTIFIED_HEAD}:{path}",
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            check=False,
+        )
+        assert result.returncode != 0

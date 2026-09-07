@@ -16,7 +16,7 @@ Owns source registration, normalized claim extraction, routing, owner-pressure i
 
 ## R2A — authority-surface and drift inventory
 
-**Status:** `active_incomplete`
+**Status:** `complete`
 
 R2A consumes the R2-0 ledger and inventories repository-wide authority surfaces. It distinguishes current authority from historical text, narrow fixtures from general doctrine, doctrine drift from implementation absence, and real owner conflict from mere keyword overlap. Each finding receives a lawful outcome: governed by an existing owner, normalized mapping, historical/source-local pressure, implementation/schema presupposition, no material authority relation, owner adjudication, doctrine escalation, or a later authorized gate. No-action and existing-owner outcomes are lawful; lexical matches do not manufacture work. It must not adopt doctrine or implement anything.
 
@@ -26,9 +26,21 @@ The prior control marker was `R2A=ready`; authorization of this bounded reconstr
 
 R2A is reconstructed as twelve bounded pull requests: R2A-1 defines only the inventory contract, executable discovery vectors, and partition manifest; R2A-2 and R2A-3 record semantic surfaces; R2A-4 through R2A-7 disposition candidates under deterministic precedence; R2A-8 verifies receipts, parity, and reciprocity; R2A-9 and R2A-10 split the 31 claim assessments; R2A-11 assesses the eleven unresolved questions and synthesizes package/module status without beginning R2B; and R2A-12 alone may independently review completion and update the gate. R2A-1 performs none of the inventory, routing, adjudication, or completion work assigned later. R2B, R2C, and R3–R6 remain blocked throughout R2A-1.
 
+R2A-12 independently verified R2A completion. The inventory closes without
+adopting doctrine, modifying runtime or production schemas, inventing a
+coordination owner, or beginning R2B. Historical inventory-contract and
+reconstruction snapshots remain preserved as historical evidence rather than
+being rewritten for successor currency.
+
 ## R2B — modular doctrine resolution
 
-**Status:** `blocked_pending_R2A`
+**Status:** `ready`
+
+R2A completion removes the R2A dependency blocker only. R2B remains unstarted.
+R2B-CORE, R2B-CONTINUITY, and R2B-CROSS-PHASE are
+`required_pending_authorization`; R2B-AGENCY and R2B-WORLD are `not_required`
+on current evidence. No R2B package or module may begin until separately
+authorized.
 
 Initial candidates are `R2B-CORE`, `R2B-AGENCY`, `R2B-WORLD`, `R2B-CONTINUITY`, and `R2B-CROSS-PHASE`; R2A determines which are actually needed.
 
@@ -36,7 +48,10 @@ Potential R2B-CONTINUITY modules are: timeline and temporal order; branch/canoni
 
 ## R2C — formal completion review
 
-**Status:** `blocked_pending_R2A_and_R2B`
+**Status:** `blocked`
+
+R2C remains blocked pending completion of the separately authorized required
+R2B doctrine work and a later R2C authorization.
 
 R2C verifies that every finding is resolved or lawfully deferred; research is routed; R1 authority and historical records are preserved; no combined owner is invented; implementation obligations are handed forward; and R3 receives an exact target. It grants no runtime authority.
 
@@ -46,4 +61,4 @@ R2A and any required R2B package must test actual-play, split-party, inserted ch
 
 ## Gate posture
 
-`R1=complete`; `R2=active_incomplete`; `R2-0=complete`; `R2A=active_incomplete`; `R2B=blocked`; `R2C=blocked`; `R3–R6=blocked`; `RT-002G=unauthorized`; `temporary_evidence_deletion=unauthorized`.
+`R1=complete`; `R2=active_incomplete`; `R2-0=complete`; `R2A=complete`; `R2B=ready`; `R2C=blocked`; `R3–R6=blocked`; `RT-002G=unauthorized`; `temporary_evidence_deletion=unauthorized`.
