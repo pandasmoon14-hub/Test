@@ -1,0 +1,813 @@
+{
+  "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
+  "artifact_version": "0.1.0",
+  "status": "active",
+  "layer": "0_control",
+  "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
+  "program_document": "docs/doctrine/control/post_r2a_transition_program.md",
+  "frozen_starting_baseline": "b1e4c70435ddd94a8e8fe82a11d8d6cace82b5bd",
+  "starting_event": {
+    "type": "merged_pull_request",
+    "pull_request": 374,
+    "title": "R2A-12: Independent completion review and gate update",
+    "merge_commit": "b1e4c70435ddd94a8e8fe82a11d8d6cace82b5bd"
+  },
+  "program_invariants": {
+    "future_project_identity": "Myravant",
+    "historical_project_identity": "Astra Ascension",
+    "minimum_external_source_scale": 1000,
+    "source_architecture_posture": "external_works_are_research_pressure_and_requirements_inputs_not_presumptive_myravant_content",
+    "originality_posture": "traceable_internally_independently_myravant_externally",
+    "runtime_scalability_invariant": "logical_simulation_semantics_are_independent_of_physical_execution_topology",
+    "books_are_atomic_evidence_units": true,
+    "books_are_default_myravant_production_units": false,
+    "corpus_frequency_is_doctrine_authority": false,
+    "semantic_mapping_implies_distribution_eligibility": false,
+    "rename_may_rewrite_immutable_history": false
+  },
+  "r2_gate_state": {
+    "R1": "complete",
+    "R2": "active_incomplete",
+    "R2-0": "complete",
+    "R2A": "complete",
+    "R2B": "ready",
+    "R2C": "blocked",
+    "R3-R6": "blocked",
+    "RT-002G": "unauthorized",
+    "temporary_evidence_deletion": "unauthorized"
+  },
+  "r2b_package_state": {
+    "R2B-CORE": "required_pending_authorization",
+    "R2B-AGENCY": "not_required",
+    "R2B-WORLD": "not_required",
+    "R2B-CONTINUITY": "required_pending_authorization",
+    "R2B-CROSS-PHASE": "required_pending_authorization"
+  },
+  "recommended_r2b_sequence": [
+    "R2B-CORE",
+    "R2B-CROSS-PHASE",
+    "R2B-CONTINUITY"
+  ],
+  "status_vocabulary": [
+    "identified",
+    "blocked",
+    "ready_pending_authorization",
+    "authorized",
+    "active",
+    "implemented",
+    "validated",
+    "merged",
+    "superseded",
+    "not_required"
+  ],
+  "terminal_statuses": [
+    "merged",
+    "superseded",
+    "not_required"
+  ],
+  "workstreams": [
+    {
+      "workstream_id": "PR2-CTRL",
+      "title": "Post-R2A transition control",
+      "category": "control",
+      "purpose": "Establish the post-R2A transition program and machine-readable tracking surface.",
+      "status": "active",
+      "dependencies": [],
+      "authorization_required": true,
+      "authorization_reference": "owner_directive_2026-09-07_post_r2a_transition",
+      "authority_effect": "control_and_tracking_only",
+      "starting_baseline": "b1e4c70435ddd94a8e8fe82a11d8d6cace82b5bd",
+      "owned_paths": [
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "tests/test_post_r2a_transition_program.py",
+        "docs/decisions/current_decisions_log.md",
+        "tests/test_afqr_r2a12_independent_completion_review.py"
+      ],
+      "prohibited_scope": [
+        "gameplay_doctrine_adoption",
+        "runtime_implementation",
+        "production_schema_implementation",
+        "canon_promotion",
+        "source_conversion",
+        "live_play_authorization",
+        "new_semantic_owner_creation"
+      ],
+      "entry_condition": "R2A complete and merged.",
+      "completion_condition": "Program document, machine-readable manifest, enforcement tests, and decision-log record are validated and merged.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-R2B-C",
+        "PR2-ID",
+        "PR2-SRC",
+        "PR2-SCALE"
+      ]
+    },
+    {
+      "workstream_id": "PR2-R2B-C",
+      "title": "R2B CORE doctrine resolution",
+      "category": "doctrine",
+      "purpose": "Resolve the bounded R2B-CORE doctrine seams proven necessary by R2A.",
+      "status": "ready_pending_authorization",
+      "dependencies": [
+        "PR2-CTRL"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "bounded_doctrine_resolution_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "runtime_implementation",
+        "production_schema_implementation",
+        "continuity_super_owner_creation",
+        "cross_phase_super_owner_creation"
+      ],
+      "entry_condition": "PR2-CTRL merged and explicit owner authorization granted.",
+      "completion_condition": "All authorized R2B-CORE seams are resolved or lawfully deferred with validation evidence.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [
+        "preview_persistence_promotion_qualification",
+        "correction_specific_rng_identity_preservation"
+      ],
+      "downstream_handoff": [
+        "PR2-R2B-X"
+      ]
+    },
+    {
+      "workstream_id": "PR2-R2B-X",
+      "title": "R2B CROSS-PHASE doctrine resolution",
+      "category": "doctrine",
+      "purpose": "Resolve ruleset, content-package, campaign-override, schema-version identity, applicability, pinning, and effective-interval governance.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-R2B-C"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "bounded_cross_phase_doctrine_resolution_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "canon_ownership_transfer",
+        "conversion_ownership_transfer",
+        "runtime_truth_ownership_transfer",
+        "continuity_duplicate_of_version_effectivity"
+      ],
+      "entry_condition": "PR2-R2B-C merged and explicit owner authorization granted.",
+      "completion_condition": "The version-identity and effective-interval seam is resolved exactly once without creating a cross-phase semantic super-owner.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [
+        "version_identity_and_effectivity"
+      ],
+      "downstream_handoff": [
+        "PR2-R2B-N"
+      ]
+    },
+    {
+      "workstream_id": "PR2-R2B-N",
+      "title": "R2B CONTINUITY doctrine resolution",
+      "category": "doctrine",
+      "purpose": "Resolve the bounded continuity seams proven necessary by R2A without duplicating CORE or CROSS-PHASE authority.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-R2B-X"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "bounded_continuity_doctrine_resolution_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "continuity_super_owner_creation",
+        "version_identity_effectivity_duplication",
+        "storage_ownership_transfer",
+        "replay_ownership_transfer"
+      ],
+      "entry_condition": "PR2-R2B-X merged and explicit owner authorization granted.",
+      "completion_condition": "All authorized continuity seams are resolved or lawfully deferred without creating a continuity super-owner.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [
+        "stable_authoritative_timeline_identity",
+        "world_valid_vs_record_time",
+        "branch_canonicality_class_and_ancestry",
+        "correction_compensation_retcon_supersession",
+        "branch_safe_projection_and_disclosure"
+      ],
+      "downstream_handoff": [
+        "PR2-R2C"
+      ]
+    },
+    {
+      "workstream_id": "PR2-R2C",
+      "title": "R2 formal completion review",
+      "category": "review",
+      "purpose": "Independently verify formal R2 completion after all authorized required R2B work.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-R2B-C",
+        "PR2-R2B-X",
+        "PR2-R2B-N"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "completion_review_and_gate_update_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "new_doctrine_invention",
+        "runtime_implementation",
+        "source_pipeline_implementation"
+      ],
+      "entry_condition": "All separately authorized required R2B packages are complete.",
+      "completion_condition": "Independent review establishes R2 completion or records blocking exceptions.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": []
+    },
+    {
+      "workstream_id": "PR2-ID",
+      "title": "Myravant identity migration",
+      "category": "identity",
+      "purpose": "Perform a controlled migration from current Astra Ascension branding to the owner-selected Myravant identity.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-CTRL"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "identity_and_brand_migration_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "indiscriminate_astra_search_and_replace",
+        "historical_commit_rewrite",
+        "immutable_evidence_identifier_rewrite",
+        "semantic_owner_change",
+        "gameplay_doctrine_change"
+      ],
+      "entry_condition": "PR2-CTRL merged and identity-migration contract explicitly authorized.",
+      "completion_condition": "Mutable current-facing identity is migrated while historical and provenance-bearing identities remain traceable.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-AUDIT"
+      ]
+    },
+    {
+      "workstream_id": "PR2-SRC",
+      "title": "Source research and reconnaissance architecture",
+      "category": "source_governance",
+      "purpose": "Replace presumptive donor-conversion posture with source research, pressure extraction, and requirements synthesis governance.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-CTRL"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "source_research_governance_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "bulk_source_processing",
+        "canon_promotion",
+        "one_source_one_myravant_artifact_default"
+      ],
+      "entry_condition": "PR2-CTRL merged and source-governance work explicitly authorized.",
+      "completion_condition": "Source intake, reconnaissance, pressure extraction, routing, and synthesis boundaries are explicitly governed.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-ORG",
+        "PR2-CORPUS",
+        "PR2-IR",
+        "PR2-FICT",
+        "PR2-SIMEX"
+      ]
+    },
+    {
+      "workstream_id": "PR2-ORG",
+      "title": "Originality provenance and content eligibility",
+      "category": "source_governance",
+      "purpose": "Define originality, provenance, rights classification, contamination control, and distributable-content eligibility boundaries.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-SRC"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "content_eligibility_and_provenance_governance_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "legal_safe_harbor_claims",
+        "canon_promotion_by_eligibility",
+        "provenance_destruction"
+      ],
+      "entry_condition": "PR2-SRC accepted.",
+      "completion_condition": "Originality and eligibility states are machine-trackable and remain distinct from semantic mapping and canon.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-CORPUS",
+        "PR2-IR"
+      ]
+    },
+    {
+      "workstream_id": "PR2-CORPUS",
+      "title": "Corpus scale and coverage architecture",
+      "category": "source_governance",
+      "purpose": "Establish machine-readable 1,000+ source registry, batching, coverage, novelty, saturation, and outlier governance.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-SRC",
+        "PR2-ORG"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "corpus_governance_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "source_frequency_as_doctrine_vote",
+        "uniform_deep_processing_of_all_sources",
+        "books_converted_as_primary_success_metric"
+      ],
+      "entry_condition": "PR2-SRC and PR2-ORG accepted.",
+      "completion_condition": "Corpus state, coverage, novelty, saturation, and escalation are machine-trackable at 1,000+ source scale.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-AUDIT"
+      ]
+    },
+    {
+      "workstream_id": "PR2-IR",
+      "title": "Source-analysis and Myravant-design representation separation",
+      "category": "source_governance",
+      "purpose": "Separate source-aware analysis representation from Myravant-facing synthesized requirements and design representation.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-SRC",
+        "PR2-ORG"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "information_barrier_and_representation_contract_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "conversion_ir_equals_runtime_ir",
+        "source_expression_as_design_default",
+        "provenance_loss"
+      ],
+      "entry_condition": "PR2-SRC and PR2-ORG accepted.",
+      "completion_condition": "Source-facing and Myravant-facing representations have explicit information-flow and provenance boundaries.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-AUDIT"
+      ]
+    },
+    {
+      "workstream_id": "PR2-FICT",
+      "title": "Fiction and LitRPG experience-pressure contract",
+      "category": "source_governance",
+      "purpose": "Define how fiction and LitRPG contribute experience, world-behavior, and capability pressure without becoming content donors.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-SRC"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "research_pressure_governance_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "character_import",
+        "plot_import",
+        "setting_import",
+        "recognizable_signature_package_import"
+      ],
+      "entry_condition": "PR2-SRC accepted.",
+      "completion_condition": "Fiction-derived observations route only to experience requirements, system pressures, or evaluation scenarios.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": []
+    },
+    {
+      "workstream_id": "PR2-SIMEX",
+      "title": "Simulation and infrastructure exemplar-pressure contract",
+      "category": "source_governance",
+      "purpose": "Define a small exemplar corpus for runtime architecture pressure without treating exemplar technologies as mandatory implementations.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-SRC"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "architecture_pressure_governance_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "technology_copying_as_doctrine",
+        "microservices_by_default",
+        "ecs_by_default"
+      ],
+      "entry_condition": "PR2-SRC accepted.",
+      "completion_condition": "Exemplar selection and pressure extraction rules are bounded and distinct from implementation decisions.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-SCALE"
+      ]
+    },
+    {
+      "workstream_id": "PR2-SCALE",
+      "title": "Runtime scalability and execution topology principles",
+      "category": "runtime_architecture",
+      "purpose": "Establish scalability invariants and replaceable execution-topology seams without prematurely implementing distributed infrastructure.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-CTRL"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "runtime_architecture_contract_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "distributed_runtime_implementation",
+        "ecs_mandate",
+        "microservice_mandate",
+        "database_selection_without_measurement"
+      ],
+      "entry_condition": "PR2-CTRL merged and runtime-scalability architecture work explicitly authorized.",
+      "completion_condition": "Execution-topology independence, reference-runtime equivalence, and scalability boundaries are explicitly specified.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-PART",
+        "PR2-CONC",
+        "PR2-FID",
+        "PR2-EVENT",
+        "PR2-PERSIST",
+        "PR2-BP"
+      ]
+    },
+    {
+      "workstream_id": "PR2-PART",
+      "title": "Authority partitioning and migration",
+      "category": "runtime_architecture",
+      "purpose": "Define logical authority partition boundaries and future lawful partition migration.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-SCALE"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "runtime_partitioning_contract_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "semantic_owner_transfer_by_deployment",
+        "location_equals_server_authority"
+      ],
+      "entry_condition": "PR2-SCALE accepted.",
+      "completion_condition": "Partition ownership, transfer, failure, and migration semantics are bounded without changing gameplay ownership.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": []
+    },
+    {
+      "workstream_id": "PR2-CONC",
+      "title": "Deterministic concurrency and scheduling",
+      "category": "runtime_architecture",
+      "purpose": "Define parallelizable computation, deterministic authoritative commitment, ordering, and conflict handling.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-SCALE"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "runtime_concurrency_contract_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "thread_timing_defines_truth",
+        "worker_timing_defines_truth",
+        "message_arrival_defines_truth"
+      ],
+      "entry_condition": "PR2-SCALE accepted.",
+      "completion_condition": "Equivalent bounded scenarios can define deterministic outcomes independent of worker scheduling.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-TEST"
+      ]
+    },
+    {
+      "workstream_id": "PR2-FID",
+      "title": "Relevance fidelity aggregation and reconstitution",
+      "category": "runtime_architecture",
+      "purpose": "Define lawful dynamic simulation fidelity across spatial and nonspatial relevance dimensions.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-SCALE"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "runtime_fidelity_contract_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "camera_distance_equals_relevance",
+        "full_fidelity_everywhere",
+        "aggregation_that_creates_illegal_states"
+      ],
+      "entry_condition": "PR2-SCALE accepted.",
+      "completion_condition": "Aggregate/detail transitions preserve declared semantic invariants and causal continuity.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-TEST"
+      ]
+    },
+    {
+      "workstream_id": "PR2-EVENT",
+      "title": "Command event message and projection separation",
+      "category": "runtime_architecture",
+      "purpose": "Define distinctions among requests, proposals, committed facts, deltas, notifications, and projections.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-SCALE"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "runtime_message_contract_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "pubsub_delivery_defines_truth",
+        "projection_defines_truth",
+        "notification_defines_commitment"
+      ],
+      "entry_condition": "PR2-SCALE accepted.",
+      "completion_condition": "Message classes, authority effects, idempotency, causality, ordering, and projection rebuilding boundaries are explicit.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-PERSIST",
+        "PR2-TEST"
+      ]
+    },
+    {
+      "workstream_id": "PR2-PERSIST",
+      "title": "Persistence snapshot replay recovery and reconstruction",
+      "category": "runtime_architecture",
+      "purpose": "Define durable reconstruction semantics after relevant R2 doctrine and scalability contracts are settled.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-SCALE",
+        "PR2-R2B-C",
+        "PR2-R2B-X",
+        "PR2-R2B-N"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "runtime_persistence_contract_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "storage_acquires_semantic_ownership",
+        "snapshot_acquires_semantic_ownership",
+        "replay_acquires_semantic_ownership"
+      ],
+      "entry_condition": "Relevant R2 doctrine and PR2-SCALE are accepted.",
+      "completion_condition": "Persistence, snapshot, recovery, and replay can reconstruct authoritative state without acquiring semantic ownership.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-TEST"
+      ]
+    },
+    {
+      "workstream_id": "PR2-BP",
+      "title": "Performance budgets overload and backpressure",
+      "category": "runtime_architecture",
+      "purpose": "Define bounded workload behavior, prioritization, overload degradation, deferred work, and hard-authority protections.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-SCALE"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "runtime_performance_contract_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "silent_work_drop_that_changes_truth",
+        "unbounded_queue_assumption",
+        "performance_number_as_correctness_proof"
+      ],
+      "entry_condition": "PR2-SCALE accepted.",
+      "completion_condition": "Overload behavior and work priorities are explicit, measurable, and authority-safe.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-TEST"
+      ]
+    },
+    {
+      "workstream_id": "PR2-AUDIT",
+      "title": "Repository-wide post-R2 conformance and migration inventory",
+      "category": "review",
+      "purpose": "Inventory existing repository artifacts against accepted identity, source-governance, originality, corpus, and scalability decisions.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-ID",
+        "PR2-SRC",
+        "PR2-ORG",
+        "PR2-CORPUS",
+        "PR2-IR",
+        "PR2-SCALE"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "inventory_and_disposition_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "silent_remediation_during_inventory",
+        "historical_record_rewrite",
+        "bulk_deletion"
+      ],
+      "entry_condition": "Relevant post-R2 control architecture is sufficiently settled for comparison.",
+      "completion_condition": "Every affected artifact in scope receives a lawful migration disposition.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-MIG"
+      ]
+    },
+    {
+      "workstream_id": "PR2-MIG",
+      "title": "Bounded repository remediation",
+      "category": "migration",
+      "purpose": "Apply accepted audit dispositions through bounded, reviewable migration tranches.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-AUDIT"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "bounded_migration_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "unreviewed_repo_wide_rewrite",
+        "provenance_destruction",
+        "cross_layer_authority_collapse"
+      ],
+      "entry_condition": "PR2-AUDIT accepted and individual remediation tranche authorized.",
+      "completion_condition": "All audited material receives its accepted disposition or explicit successor handoff.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "workstream_id": "PR2-TEST",
+      "title": "Post-R2 acceptance and evaluation expansion",
+      "category": "evaluation",
+      "purpose": "Expand executable evaluation for source governance, originality boundaries, topology equivalence, replay, fidelity, overload, and failure isolation.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-CONC",
+        "PR2-FID",
+        "PR2-EVENT",
+        "PR2-PERSIST",
+        "PR2-BP"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "evaluation_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "tests_invent_missing_doctrine",
+        "benchmark_results_create_authority"
+      ],
+      "entry_condition": "Relevant governing contracts are accepted.",
+      "completion_condition": "Material post-R2 invariants have executable regression or evaluation coverage.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": [
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "workstream_id": "PR2-IMPL",
+      "title": "Authorized implementation handoff",
+      "category": "implementation_gate",
+      "purpose": "Provide an explicit bounded handoff from accepted doctrine and architecture into runtime and content implementation.",
+      "status": "blocked",
+      "dependencies": [
+        "PR2-R2C",
+        "PR2-MIG",
+        "PR2-TEST"
+      ],
+      "authorization_required": true,
+      "authorization_reference": null,
+      "authority_effect": "implementation_handoff_only",
+      "starting_baseline": null,
+      "owned_paths": [],
+      "prohibited_scope": [
+        "implicit_runtime_authorization",
+        "implicit_live_play_authorization",
+        "implicit_canon_promotion"
+      ],
+      "entry_condition": "Applicable doctrine, migration, evaluation, and project gates permit implementation.",
+      "completion_condition": "Explicit implementation scope, owners, dependencies, acceptance criteria, and prohibited authority transfers are recorded.",
+      "validation_evidence": [],
+      "pull_request": null,
+      "branch_head": null,
+      "merge_commit": null,
+      "residual_gaps": [],
+      "downstream_handoff": []
+    }
+  ],
+  "program_completion_rule": {
+    "required": "Every material tracked workstream must reach a lawful terminal state or an explicit accepted successor handoff.",
+    "untracked_disappearance_allowed": false
+  }
+}

@@ -4278,3 +4278,109 @@ PR #339 review hardening replaces abandoned-object absence with the correct non-
 - **Decision:** `PASS`. Every material intake claim has one primary route and lawful owner analysis; eleven owner/representation questions remain explicit for later adjudication.
 - **Gate:** R1 remains complete. R2 is active and incomplete. R2-0 is complete. R2A is ready and next. R2B and R2C remain blocked. R3–R6 remain blocked. RT-002G and temporary evidence deletion remain unauthorized.
 - **Nonauthority:** Research consensus is pressure, not doctrine. No continuity doctrine, canon, conversion, production schema, runtime substrate or retrofit, model/narration/UI/live-play behavior, training use, GM-adapter work, RT-002G work, or evidence deletion is authorized.
+
+## 2026-09-07 decision log - Post-R2A transition control program
+
+- Decision ID: POST-R2A-TRANSITION-CONTROL-001
+- Decision date: 2026-09-07
+- Decision type: project control, sequencing, and owner-intent registration
+
+### Summary
+
+- R2A is accepted as complete at frozen baseline `b1e4c70435ddd94a8e8fe82a11d8d6cace82b5bd`, merged through PR #374.
+- The owner authorizes establishment of the bounded Post-R2A Transition Program (`PR2-CTRL`) as the project-level control surface for tracking the planned post-R2A work.
+- The owner-selected future project identity is **Myravant**.
+- `Astra Ascension` remains the historical and current repository identity until a separately authorized bounded identity migration occurs.
+- Future external-source architecture is planned for a heterogeneous corpus of at least 1,000+ sources.
+- External works are treated primarily as research, pressure, evidence, and requirements inputs rather than presumptive distributable Myravant content.
+- The project adopts the planning invariant that logical simulation semantics must remain independent of physical execution topology.
+- The recommended R2B sequencing is `R2B-CORE -> R2B-CROSS-PHASE -> R2B-CONTINUITY`.
+
+### Control artifacts
+
+The authoritative tracking surfaces introduced by this decision are:
+
+- `docs/doctrine/control/post_r2a_transition_program.md`
+- `docs/doctrine/control/post_r2a_transition_manifest.yaml`
+- `tests/test_post_r2a_transition_program.py`
+
+The human-readable program owns rationale, boundaries, anti-drift rules, and workstream descriptions.
+
+The machine-readable manifest owns tracked workstream state, dependencies, authorization references, gate state, and completion evidence.
+
+The executable test protects critical program invariants against silent drift.
+
+### Governance effect
+
+- Establishes a single tracked transition program so identity migration, source-governance reform, originality/provenance work, corpus architecture, runtime scalability architecture, conformance review, migration, evaluation, and later implementation cannot disappear into untracked conversation history.
+- Registers 23 bounded workstreams under stable `PR2-*` IDs.
+- Preserves separation among doctrine, source research/conversion, canon, runtime implementation, and live-play/model behavior.
+- Makes `PR2-R2B-C` the next recommended doctrine workstream after `PR2-CTRL`, subject to a separate explicit owner authorization.
+- Preserves `R2=active_incomplete`, `R2B=ready`, `R2C=blocked`, `R3-R6=blocked`, and `RT-002G=unauthorized`.
+- Does not begin the Myravant rename, source-pipeline implementation, runtime scalability implementation, R2B doctrine work, R2C review, canon consolidation, or live-play work.
+
+### Myravant identity posture
+
+- `Myravant` is the selected future umbrella identity.
+- Historical commits, immutable evidence IDs, provenance references, frozen artifacts, and historical uses of `Astra Ascension` are not to be rewritten merely for cosmetic naming consistency.
+- The later identity migration must distinguish mutable current-facing identity from immutable or provenance-bearing historical identity.
+- A repository-wide blind replacement of `Astra` is explicitly prohibited.
+
+### Corpus and originality posture
+
+- Individual external sources remain atomic provenance and evidence units.
+- Individual books are not default Myravant production units.
+- Source frequency may establish design pressure but does not vote doctrine into existence.
+- Semantic mapping does not imply distribution eligibility.
+- Renaming, paraphrase, translation, numeric alteration, format conversion, or AI rewriting do not by themselves establish independent Myravant ownership.
+- The target posture is internally traceable provenance with independently Myravant-authored distributable expression.
+
+### Runtime scalability posture
+
+- The initial deterministic single-process runtime may remain the semantic reference implementation.
+- Future multithreaded, multi-process, distributed, or dynamically partitioned execution must preserve declared semantic equivalence for bounded equivalent scenarios unless an explicit later contract defines a lawful difference.
+- Logical ownership does not imply microservices.
+- Physical data layout does not define Myravant ontology.
+- Thread timing, worker timing, message arrival, caches, projections, or notifications must not silently become authoritative truth.
+- ECS, microservices, distributed infrastructure, GPUs, lock-free structures, databases, message buses, or cloud platforms are not mandated by this decision.
+
+### R2B sequencing posture
+
+The recommended order is:
+
+1. `R2B-CORE`
+2. `R2B-CROSS-PHASE`
+3. `R2B-CONTINUITY`
+
+This ordering is a transition-program sequencing decision only.
+
+It does not authorize any R2B package.
+
+The order exists to reduce doctrine duplication:
+
+- CORE resolves its bounded preview-promotion and correction-specific RNG qualifications first.
+- CROSS-PHASE resolves version identity, applicability, pinning, and effective-interval governance exactly once.
+- CONTINUITY then resolves timeline, branch, correction, ancestry, canonicality, and branch-safe projection seams without re-owning the CROSS-PHASE version seam.
+
+### Guardrails reaffirmed
+
+- `PR2-CTRL` is control and tracking only.
+- No gameplay doctrine is adopted by this decision.
+- No runtime implementation is authorized.
+- No production schema implementation is authorized.
+- No canon promotion is authorized.
+- No source conversion is authorized.
+- No live-play or GM behavior is authorized.
+- No semantic owner is created.
+- No R2B package is authorized merely because it is listed as required or ready.
+- No later `PR2-*` workstream becomes active merely because it appears in the transition manifest.
+- Missing framework or ownership conflicts must continue to escalate rather than being filled with decorative Myravant terminology.
+
+### Successor-test maintenance discovered during PR2-CTRL validation
+
+- Post-R2A regression testing exposed `test_r2a12_scope_caps_and_prohibited_runtime_schema_work` as successor-sensitive.
+- The original test compared the live working tree against the pre-R2A-12 base and therefore necessarily failed once lawful successor files existed.
+- `PR2-CTRL` historicalizes that scope assertion against the immutable R2A-12 certified branch head `381b556f01b13c8ed756c859cee374d4e7c4e5bf`.
+- This follows the successor-safe historical-range pattern already established for R2A-11.
+- The historicalized test continues to require the exact seven R2A-12 authorized files, prohibit `src/`, `schemas/`, and `tests/runtime/` scope leakage, prohibit deletions, and preserve the original file-count and 2,500-addition caps.
+- This maintenance changes no R2A finding, package disposition, authority boundary, gate state, doctrine, runtime authorization, schema authorization, canon status, or live-play authorization.

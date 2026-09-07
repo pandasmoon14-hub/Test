@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 BASE = "f48bba1bab9fc8b597ab0e96920853485f26a6bb"
 R2A11_CERTIFIED_HEAD = "d3a5c7f17a4709e2422661d8063e6a134a857798"
+R2A12_CERTIFIED_HEAD = "381b556f01b13c8ed756c859cee374d4e7c4e5bf"
 
 REVIEW = (
     ROOT
@@ -169,13 +170,15 @@ def test_r2a11_successor_sensitive_boundary_is_historicalized():
 
 
 def test_r2a12_scope_caps_and_prohibited_runtime_schema_work():
+    historical_range = f"{BASE}...{R2A12_CERTIFIED_HEAD}"
+
     changed = set(
-        git("diff", "--name-only", BASE).splitlines()
+        git(
+            "diff",
+            "--name-only",
+            historical_range,
+        ).splitlines()
     )
-    untracked = set(
-        git("ls-files", "--others", "--exclude-standard").splitlines()
-    )
-    changed |= untracked
 
     assert changed == AUTHORIZED
 
@@ -188,22 +191,22 @@ def test_r2a12_scope_caps_and_prohibited_runtime_schema_work():
         "diff",
         "--name-status",
         "--diff-filter=D",
-        BASE,
+        historical_range,
     )
 
-    additions = 0
+    numstat = git(
+        "diff",
+        "--numstat",
+        historical_range,
+    ).splitlines()
 
-    for row in git("diff", "--numstat", BASE).splitlines():
-        if not row:
-            continue
-        added = row.split("\t", 1)[0]
-        assert added != "-"
-        additions += int(added)
+    assert "-\t-" not in "\n".join(numstat)
 
-    for path in untracked:
-        additions += len(
-            (ROOT / path).read_text(encoding="utf-8").splitlines()
-        )
+    additions = sum(
+        int(row.split("\t")[0])
+        for row in numstat
+        if row
+    )
 
     assert len(changed) <= 7
     assert additions <= 2500
