@@ -2569,3 +2569,96 @@ def test_r2a7_final_index_manifest_and_r2a8_boundary():
         current_by_partition["R2A-7"]
         == historical_by_partition["R2A-7"]
     )
+
+
+# ---------------------------------------------------------------------------
+# R2A-12 successor historicalization.
+#
+# All bytes above this marker are the exact accepted pre-R2A-12 file.
+# This late definition changes only which successor manifest is inspected;
+# every substantive R2A-7 assertion remains inherited from the accepted test.
+# ---------------------------------------------------------------------------
+
+R2A12_PREDECESSOR_HEAD = "f48bba1bab9fc8b597ab0e96920853485f26a6bb"
+
+
+def test_r2a7_final_index_manifest_and_r2a8_boundary():
+    index_path = DISPOSITIONS / "index.yaml"
+    assert index_path.is_file()
+
+    index = json.loads(index_path.read_text(encoding="utf-8"))
+    assert index["status"] == "complete"
+    assert index["phase"] == "R2A-7"
+    assert index["candidate_file_count"] == 507
+    assert len(index["shards"]) == 62
+    assert (
+        index["shards"][0]["first_candidate_file_id"]
+        == "R2A-DISPOSITION-R7-0001"
+    )
+    assert (
+        index["shards"][-1]["last_candidate_file_id"]
+        == "R2A-DISPOSITION-R7-0507"
+    )
+
+    for shard in index["shards"]:
+        path = ROOT / shard["path"]
+        assert path.is_file()
+        assert (
+            _r2a7_final_hashlib.sha256(path.read_bytes()).hexdigest()
+            == shard["content_sha256"]
+        )
+
+    manifest_path = MANIFEST.relative_to(ROOT).as_posix()
+    historical_manifest = json.loads(
+        git_blob(
+            R2A7_R2A8_BOUNDARY_CERTIFIED,
+            manifest_path,
+        ).decode("utf-8")
+    )
+
+    assert historical_manifest["artifact_version"] == "0.2.14"
+    assert historical_manifest["status"] == "active_incomplete"
+
+    historical_by_partition = {
+        row["partition_id"]: row
+        for row in historical_manifest["partitions"]
+    }
+
+    assert historical_by_partition["R2A-7"]["status"] == "complete"
+    assert (
+        historical_by_partition["R2A-8"]["status"]
+        == "planned_not_present"
+    )
+    assert historical_by_partition["R2A-7"]["planned_artifact_paths"] == [
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        *[
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+            for number in range(1, 63)
+        ],
+    ]
+
+    assert not _r2a7_historical_path_exists(
+        R2A7_R2A8_BOUNDARY_CERTIFIED,
+        R2A7_R2A8_AGGREGATE_PATH,
+    )
+
+    # R2A-12 may advance the live manifest. Validate the accepted
+    # pre-R2A-12 successor boundary while preserving all R2A-7 structure.
+    current_manifest = json.loads(
+        git_blob(
+            R2A12_PREDECESSOR_HEAD,
+            manifest_path,
+        ).decode("utf-8")
+    )
+    assert current_manifest["status"] == "active_incomplete"
+
+    current_by_partition = {
+        row["partition_id"]: row
+        for row in current_manifest["partitions"]
+    }
+
+    assert (
+        current_by_partition["R2A-7"]
+        == historical_by_partition["R2A-7"]
+    )

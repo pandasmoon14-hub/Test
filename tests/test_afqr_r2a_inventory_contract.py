@@ -5015,3 +5015,30 @@ test_r2a4_completed_status_and_posture = (
 test_r2a4_exact_base_scope_status_and_posture = (
     test_r2a7_final_preserves_structural_authority
 )
+
+
+# ---------------------------------------------------------------------------
+# R2A-12 successor historicalization.
+#
+# R2A-7 predecessor tests retain their certified historical semantics.
+# Their successor comparison is frozen at the accepted state immediately
+# before R2A-12, so live R2A completion does not rewrite predecessor posture.
+# ---------------------------------------------------------------------------
+
+R2A12_PREDECESSOR_HEAD = "f48bba1bab9fc8b597ab0e96920853485f26a6bb"
+
+
+def _r2a7_successor_manifest_pair():
+    historical = json.loads(
+        _r2a7_w29_blob(
+            R2A7_W29_CERTIFIED,
+            R2A8_SUCCESSOR_MANIFEST_PATH,
+        )
+    )
+    current = json.loads(
+        _r2a7_w29_blob(
+            R2A12_PREDECESSOR_HEAD,
+            R2A8_SUCCESSOR_MANIFEST_PATH,
+        )
+    )
+    return historical, current
