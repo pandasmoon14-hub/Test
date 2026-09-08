@@ -13,13 +13,15 @@ MANIFEST_PATH = (
 )
 
 EXPECTED_BASELINE = "b1e4c70435ddd94a8e8fe82a11d8d6cace82b5bd"
+R2B_CORE_BASELINE = "0a52db603589168a14f3c50beefbbf28274d0836"
+R2B_CORE_AUTHORIZATION = "owner_directive_2026-09-07_r2b_core_activation"
 
 EXPECTED_R2_GATES = {
     "R1": "complete",
     "R2": "active_incomplete",
     "R2-0": "complete",
     "R2A": "complete",
-    "R2B": "ready",
+    "R2B": "active_incomplete",
     "R2C": "blocked",
     "R3-R6": "blocked",
     "RT-002G": "unauthorized",
@@ -27,7 +29,7 @@ EXPECTED_R2_GATES = {
 }
 
 EXPECTED_R2B_PACKAGES = {
-    "R2B-CORE": "required_pending_authorization",
+    "R2B-CORE": "validated",
     "R2B-AGENCY": "not_required",
     "R2B-WORLD": "not_required",
     "R2B-CONTINUITY": "required_pending_authorization",
@@ -118,6 +120,10 @@ def test_core_program_invariants_are_preserved():
     assert invariants["corpus_frequency_is_doctrine_authority"] is False
     assert invariants["semantic_mapping_implies_distribution_eligibility"] is False
     assert invariants["rename_may_rewrite_immutable_history"] is False
+    assert (
+        invariants["post_r2_program_work_held_until_r2c_complete"]
+        is True
+    )
 
     assert (
         invariants["runtime_scalability_invariant"]
@@ -181,7 +187,7 @@ def test_all_workstream_statuses_are_legal():
         assert workstream["status"] in allowed
 
 
-def test_transition_control_is_the_only_active_workstream():
+def test_r2b_core_is_validated_and_no_workstream_is_active():
     manifest = _load_manifest()
 
     active = {
@@ -189,11 +195,17 @@ def test_transition_control_is_the_only_active_workstream():
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
+    validated = {
+        workstream["workstream_id"]
+        for workstream in manifest["workstreams"]
+        if workstream["status"] == "validated"
+    }
 
-    assert active == {"PR2-CTRL"}
+    assert active == set()
+    assert validated == {"PR2-R2B-C"}
 
 
-def test_r2b_core_is_ready_but_not_authorized():
+def test_r2b_core_is_validated_unmerged_and_bounded():
     manifest = _load_manifest()
 
     by_id = {
@@ -203,9 +215,47 @@ def test_r2b_core_is_ready_but_not_authorized():
 
     core = by_id["PR2-R2B-C"]
 
-    assert core["status"] == "ready_pending_authorization"
+    assert core["status"] == "validated"
     assert core["authorization_required"] is True
-    assert core["authorization_reference"] is None
+    assert core["authorization_reference"] == R2B_CORE_AUTHORIZATION
+    assert core["starting_baseline"] == R2B_CORE_BASELINE
+    assert core["validation_evidence"]
+    assert core["residual_gaps"] == []
+    assert core["pull_request"] is None
+    assert core["branch_head"] is None
+    assert core["merge_commit"] is None
+
+    assert set(core["owned_paths"]) == {
+        "docs/doctrine/consolidation/afqr_r2b_core_qualifications.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
+        "docs/decisions/current_decisions_log.md",
+        "tests/test_afqr_r2b_core_qualifications.py",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_afqr_r2a12_independent_completion_review.py",
+    }
+
+
+
+def test_pr2_ctrl_merge_completion_is_recorded():
+    manifest = _load_manifest()
+
+    by_id = {
+        workstream["workstream_id"]: workstream
+        for workstream in manifest["workstreams"]
+    }
+
+    ctrl = by_id["PR2-CTRL"]
+
+    assert ctrl["status"] == "merged"
+    assert ctrl["pull_request"] == 375
+    assert (
+        ctrl["branch_head"]
+        == "4256e8771d2a22845c9b29f5950d682112f9ef61"
+    )
+    assert ctrl["merge_commit"] == R2B_CORE_BASELINE
+    assert ctrl["validation_evidence"]
 
 
 def test_downstream_major_work_remains_blocked():
@@ -281,6 +331,7 @@ def test_program_and_manifest_retain_required_cross_references():
     manifest = _load_manifest()
 
     assert EXPECTED_BASELINE in program
+    assert R2B_CORE_BASELINE in program
     assert "Myravant" in program
     assert "1,000+" in program
 

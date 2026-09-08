@@ -34,17 +34,45 @@ being rewritten for successor currency.
 
 ## R2B — modular doctrine resolution
 
-**Status:** `ready`
+**Status:** `active_incomplete`
 
-R2A completion removes the R2A dependency blocker only. R2B remains unstarted.
-R2B-CORE, R2B-CONTINUITY, and R2B-CROSS-PHASE are
-`required_pending_authorization`; R2B-AGENCY and R2B-WORLD are `not_required`
-on current evidence. No R2B package or module may begin until separately
-authorized.
+R2A completion removed the inventory dependency blocker. PR2-CTRL subsequently
+merged through PR #375 at `0a52db603589168a14f3c50beefbbf28274d0836`.
 
-Initial candidates are `R2B-CORE`, `R2B-AGENCY`, `R2B-WORLD`, `R2B-CONTINUITY`, and `R2B-CROSS-PHASE`; R2A determines which are actually needed.
+The owner has separately authorized only `R2B-CORE` / `PR2-R2B-C`, beginning
+from that exact baseline.
 
-Potential R2B-CONTINUITY modules are: timeline and temporal order; branch/canonicality/fork/promotion/archive; correction/compensation/retcon/supersession; ruleset/package/override versions; session closure and snapshot; and branch-safe visibility/recap integration. Distinct ownership must not be hidden in a megafile.
+R2B-CORE is validated pending merge. It resolves exactly two bounded
+qualifications:
+
+1. preview persistence / promotion;
+2. correction-specific randomness identity preservation.
+
+Both authorized CORE residual gaps are resolved in
+`afqr_r2b_core_qualifications.md`; the workstream has no remaining CORE doctrine
+gap. Validation does not equal merge and does not activate CROSS-PHASE.
+
+The package coordinates existing AFQR-01 and AFQR-02 boundaries only. It may
+not create a CORE, preview, persistence, replay, RNG, correction, or branch
+super-owner.
+
+`R2B-CROSS-PHASE` remains required but blocked pending completed R2B-CORE and
+separate owner authorization. Its single residual seam is version identity,
+applicability, pinning, and effective intervals.
+
+`R2B-CONTINUITY` remains required but blocked pending completed
+R2B-CROSS-PHASE and separate owner authorization. Its five residual seams are:
+
+- stable authoritative timeline identity qualification;
+- world-valid versus record/commitment-time qualification;
+- branch canonicality/class/ancestry governance;
+- correction/compensation/retcon/supersession governance;
+- branch-safe projection/disclosure qualification.
+
+`R2B-AGENCY` and `R2B-WORLD` remain `not_required` on current evidence.
+
+Session closure and a duplicate CONTINUITY version/effectivity module remain
+not required. R2B-CORE must not pre-solve either later package.
 
 ## R2C — formal completion review
 
@@ -61,4 +89,4 @@ R2A and any required R2B package must test actual-play, split-party, inserted ch
 
 ## Gate posture
 
-`R1=complete`; `R2=active_incomplete`; `R2-0=complete`; `R2A=complete`; `R2B=ready`; `R2C=blocked`; `R3–R6=blocked`; `RT-002G=unauthorized`; `temporary_evidence_deletion=unauthorized`.
+`R1=complete`; `R2=active_incomplete`; `R2-0=complete`; `R2A=complete`; `R2B=active_incomplete`; `R2C=blocked`; `R3–R6=blocked`; `RT-002G=unauthorized`; `temporary_evidence_deletion=unauthorized`.

@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.1.0`
+**Artifact version:** `0.2.1`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -301,6 +301,62 @@ The rationale is:
 In particular, version identity/effective-interval governance must not be duplicated into CONTINUITY merely because continuity mechanisms consume it.
 
 Each required R2B package still requires a separate authorization action.
+
+### 5.1 Current authorized successor state — PR2-R2B-C
+
+PR2-CTRL merged through PR `#375` at
+`0a52db603589168a14f3c50beefbbf28274d0836`.
+
+The owner has subsequently authorized only:
+
+`PR2-R2B-C — R2B CORE doctrine resolution`
+
+Authorization reference:
+
+`owner_directive_2026-09-07_r2b_core_activation`
+
+The R2B-CORE starting baseline is:
+
+`0a52db603589168a14f3c50beefbbf28274d0836`
+
+The authorized R2B-CORE scope is exactly two doctrine qualifications:
+
+1. preview persistence / promotion qualification;
+2. correction-specific randomness identity preservation.
+
+Both qualifications are now resolved in the bounded R2B-CORE artifact and have
+passed focused, R2A-regression, and full-repository validation. The package is
+`validated` but not `merged`.
+
+Validation evidence:
+
+- targeted R2B-CORE and R2A-12 validation: `30 passed`;
+- R2A regression suite: `135 passed`;
+- full repository suite: `8889 passed, 10 skipped, 2 xfailed, 1 warning`;
+- `git diff --check`: clean.
+
+No R2B-CORE residual doctrine seam remains. This validation does not satisfy
+the `merged` dependency required to activate `PR2-R2B-X`.
+
+Current gate posture is:
+
+- `R2=active_incomplete`;
+- `R2B=active_incomplete`;
+- `R2B-CORE=validated` pending merge;
+- `R2B-CROSS-PHASE` remains blocked and separately unauthorized;
+- `R2B-CONTINUITY` remains blocked and separately unauthorized;
+- `R2C=blocked`;
+- `R3-R6=blocked`;
+- `RT-002G=unauthorized`;
+- temporary evidence deletion remains unauthorized.
+
+The owner has also chosen to hold post-R2 identity migration, source-governance,
+native-content, runtime-scalability implementation, canon, conversion, and
+live-play work until R2C formally closes R2.
+
+The workstream table below records the **initial PR2-CTRL registry state**.
+Current workstream state is owned by the machine-readable transition manifest
+and explicit successor decisions.
 
 ## 6. Controlled workstream registry
 

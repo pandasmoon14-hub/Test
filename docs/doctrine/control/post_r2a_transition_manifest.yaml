@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.1.0",
+  "artifact_version": "0.2.1",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -23,21 +23,22 @@
     "books_are_default_myravant_production_units": false,
     "corpus_frequency_is_doctrine_authority": false,
     "semantic_mapping_implies_distribution_eligibility": false,
-    "rename_may_rewrite_immutable_history": false
+    "rename_may_rewrite_immutable_history": false,
+    "post_r2_program_work_held_until_r2c_complete": true
   },
   "r2_gate_state": {
     "R1": "complete",
     "R2": "active_incomplete",
     "R2-0": "complete",
     "R2A": "complete",
-    "R2B": "ready",
+    "R2B": "active_incomplete",
     "R2C": "blocked",
     "R3-R6": "blocked",
     "RT-002G": "unauthorized",
     "temporary_evidence_deletion": "unauthorized"
   },
   "r2b_package_state": {
-    "R2B-CORE": "required_pending_authorization",
+    "R2B-CORE": "validated",
     "R2B-AGENCY": "not_required",
     "R2B-WORLD": "not_required",
     "R2B-CONTINUITY": "required_pending_authorization",
@@ -71,7 +72,7 @@
       "title": "Post-R2A transition control",
       "category": "control",
       "purpose": "Establish the post-R2A transition program and machine-readable tracking surface.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [],
       "authorization_required": true,
       "authorization_reference": "owner_directive_2026-09-07_post_r2a_transition",
@@ -95,10 +96,14 @@
       ],
       "entry_condition": "R2A complete and merged.",
       "completion_condition": "Program document, machine-readable manifest, enforcement tests, and decision-log record are validated and merged.",
-      "validation_evidence": [],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "validation_evidence": [
+        "tests/test_post_r2a_transition_program.py:14 passed",
+        "R2A closure regression:116 passed",
+        "full repository suite:8879 passed, 10 skipped, 2 xfailed, 1 warning"
+      ],
+      "pull_request": 375,
+      "branch_head": "4256e8771d2a22845c9b29f5950d682112f9ef61",
+      "merge_commit": "0a52db603589168a14f3c50beefbbf28274d0836",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-R2B-C",
@@ -112,31 +117,45 @@
       "title": "R2B CORE doctrine resolution",
       "category": "doctrine",
       "purpose": "Resolve the bounded R2B-CORE doctrine seams proven necessary by R2A.",
-      "status": "ready_pending_authorization",
+      "status": "validated",
       "dependencies": [
         "PR2-CTRL"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-07_r2b_core_activation",
       "authority_effect": "bounded_doctrine_resolution_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "0a52db603589168a14f3c50beefbbf28274d0836",
+      "owned_paths": [
+        "docs/doctrine/consolidation/afqr_r2b_core_qualifications.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
+        "docs/decisions/current_decisions_log.md",
+        "tests/test_afqr_r2b_core_qualifications.py",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_afqr_r2a12_independent_completion_review.py"
+      ],
       "prohibited_scope": [
         "runtime_implementation",
         "production_schema_implementation",
         "continuity_super_owner_creation",
-        "cross_phase_super_owner_creation"
+        "cross_phase_super_owner_creation",
+        "branch_semantics_definition",
+        "correction_taxonomy_duplication",
+        "rng_implementation_or_entropy_source_mandate"
       ],
       "entry_condition": "PR2-CTRL merged and explicit owner authorization granted.",
       "completion_condition": "All authorized R2B-CORE seams are resolved or lawfully deferred with validation evidence.",
-      "validation_evidence": [],
+      "validation_evidence": [
+        "targeted R2B-CORE and R2A-12 validation:30 passed",
+        "R2A regression suite:135 passed",
+        "full repository suite:8889 passed, 10 skipped, 2 xfailed, 1 warning",
+        "git diff --check:clean"
+      ],
       "pull_request": null,
       "branch_head": null,
       "merge_commit": null,
-      "residual_gaps": [
-        "preview_persistence_promotion_qualification",
-        "correction_specific_rng_identity_preservation"
-      ],
+      "residual_gaps": [],
       "downstream_handoff": [
         "PR2-R2B-X"
       ]
