@@ -4520,3 +4520,128 @@ separate explicit owner authorization. `PR2-R2B-N` and `PR2-R2C` remain blocked.
 No runtime, production-schema, canon, conversion, source-governance,
 Myravant-identity, native-content, scalability-implementation, or live-play
 work is authorized by this validation event.
+
+
+## 2026-09-08 decision — R2B-CROSS-PHASE bounded doctrine activation
+
+- **Decision ID:** `AFQR-R2B-CROSS-PHASE-AUTHORIZATION-001`
+- **Decision date:** 2026-09-08
+- **Decision type:** predecessor merge recording plus bounded R2B doctrine authorization
+- **Workstream:** `PR2-R2B-X`
+- **Branch:** `r2b-cross-phase-doctrine-resolution`
+- **Starting baseline:** `307ab295a8590d60a310d4b8d872971620fa74eb`
+- **Authorization reference:** `owner_directive_2026-09-08_r2b_cross_phase_activation`
+
+### Predecessor completion
+
+`PR2-R2B-C` / R2B-CORE merged through PR `#376`.
+
+- branch head: `8a88068b802a9819328e09691e7c1def778a778d`;
+- merge commit: `307ab295a8590d60a310d4b8d872971620fa74eb`;
+- authorized CORE residual gaps: none.
+
+This successor decision records those now-known merge facts without changing
+the already accepted R2B-CORE doctrine.
+
+### Authorization
+
+The owner explicitly authorizes only:
+
+`PR2-R2B-X — R2B CROSS-PHASE doctrine resolution`
+
+The authorized package contains exactly one doctrine module:
+
+`R2B-CROSS-PHASE-MOD-VERSION-IDENTITY-EFFECTIVITY`
+
+It may resolve only ruleset version identity, content-package version identity,
+campaign-override version identity, related schema/version identity,
+applicability, historical pinning, and effective intervals.
+
+AFQR-01, AFQR-02, AFQR-04, AFQR-09, and AFQR-19 remain separate component
+owners.
+
+### Required doctrine direction
+
+CROSS-PHASE must preserve explicit applicability rather than implicit
+`latest wins`; attribution of the concrete historical version basis actually
+used; no version refresh on replay, recovery, duplicate delivery, or technical
+retry; no silent substitution when an exact historical dependency is
+unavailable; effective intervals interpreted on an AFQR-04-owned time basis;
+no implicit precedence from overlap, load order, storage order, or recency;
+campaign-override identity without automatic override authority;
+content-package identity without canon or distribution eligibility;
+schema-version identity without domain-semantic ownership; and the existing
+AFQR-09, AFQR-19, AFQR-02, and AFQR-01 boundaries.
+
+### Explicit nonauthority
+
+This decision authorizes no runtime implementation, production schema
+implementation, package manager, dependency solver, schema migration
+implementation, universal version-numbering system, universal
+override-precedence system, canon work, conversion work, branch semantics,
+correction taxonomy, CONTINUITY work, Myravant identity migration,
+source-governance implementation, native-content production,
+runtime-scalability implementation, live-play/GM behavior, or RT-002G work.
+
+### Gate effect
+
+- `R2=active_incomplete`;
+- `R2B=active_incomplete`;
+- `R2B-CORE=merged`;
+- `R2B-CROSS-PHASE=active`;
+- `R2B-CONTINUITY=blocked`;
+- `R2C=blocked`;
+- `R3-R6=blocked`;
+- `RT-002G=unauthorized`.
+
+Post-R2 identity, source, originality, native-content, and runtime-scalability
+work remains held until formal R2C completion.
+
+
+## 2026-09-08 decision — R2B-CROSS-PHASE validation
+
+- **Decision ID:** `AFQR-R2B-CROSS-PHASE-VALIDATION-001`
+- **Decision date:** 2026-09-08
+- **Decision type:** bounded validation-state update
+- **Workstream:** `PR2-R2B-X`
+- **Starting baseline:** `307ab295a8590d60a310d4b8d872971620fa74eb`
+
+### Validation result
+
+`PR2-R2B-X` is validated pending merge.
+
+Evidence:
+
+- focused R2B-CROSS-PHASE, R2B-CORE, and transition-control suite: `36 passed`;
+- R2A regression suite: `135 passed`;
+- full repository suite: `8901 passed, 10 skipped, 2 xfailed, 1 warning`;
+- `git diff --check`: clean.
+
+The single authorized CROSS-PHASE residual seam,
+`version_identity_and_effectivity`, is resolved.
+
+The warning is the pre-existing pytest deprecation warning concerning a
+class-scoped fixture defined as an instance method in
+`tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_9.py`.
+
+### Validation is not merge
+
+This decision does not populate a pull-request number, branch-head certificate,
+or merge commit for `PR2-R2B-X`.
+
+It does not satisfy the merge dependency for `PR2-R2B-N`.
+
+### Gate effect
+
+- `R2=active_incomplete`;
+- `R2B=active_incomplete`;
+- `R2B-CORE=merged`;
+- `R2B-CROSS-PHASE=validated` pending merge;
+- `R2B-CONTINUITY=blocked`;
+- `R2C=blocked`;
+- `R3-R6=blocked`;
+- `RT-002G=unauthorized`.
+
+No runtime, production-schema, canon, conversion, branch, correction,
+Myravant-identity, source-governance, native-content, scalability, or live-play
+authority is created by validation.

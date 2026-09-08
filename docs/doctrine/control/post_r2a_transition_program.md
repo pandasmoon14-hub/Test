@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.2.1`
+**Artifact version:** `0.3.1`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -302,57 +302,81 @@ In particular, version identity/effective-interval governance must not be duplic
 
 Each required R2B package still requires a separate authorization action.
 
-### 5.1 Current authorized successor state — PR2-R2B-C
+### 5.1 Current authorized successor state — PR2-R2B-X
 
-PR2-CTRL merged through PR `#375` at
-`0a52db603589168a14f3c50beefbbf28274d0836`.
+R2B-CORE completed and merged through PR `#376`.
 
-The owner has subsequently authorized only:
-
-`PR2-R2B-C — R2B CORE doctrine resolution`
-
-Authorization reference:
-
-`owner_directive_2026-09-07_r2b_core_activation`
-
-The R2B-CORE starting baseline is:
+R2B-CORE began from the PR2-CTRL merge baseline:
 
 `0a52db603589168a14f3c50beefbbf28274d0836`
 
-The authorized R2B-CORE scope is exactly two doctrine qualifications:
+Its certified branch head is:
 
-1. preview persistence / promotion qualification;
-2. correction-specific randomness identity preservation.
+`8a88068b802a9819328e09691e7c1def778a778d`
 
-Both qualifications are now resolved in the bounded R2B-CORE artifact and have
-passed focused, R2A-regression, and full-repository validation. The package is
-`validated` but not `merged`.
+Its merge commit, and the starting baseline for CROSS-PHASE, is:
+
+`307ab295a8590d60a310d4b8d872971620fa74eb`
+
+The owner has subsequently authorized only:
+
+`PR2-R2B-X — R2B CROSS-PHASE doctrine resolution`
+
+Authorization reference:
+
+`owner_directive_2026-09-08_r2b_cross_phase_activation`
+
+R2B-CROSS-PHASE contains exactly one routed doctrine module:
+
+`R2B-CROSS-PHASE-MOD-VERSION-IDENTITY-EFFECTIVITY`
+
+That module resolves the single cross-phase seam for:
+
+- ruleset version identity;
+- content-package version identity;
+- campaign-override version identity;
+- related schema/version identity;
+- current applicability;
+- historical pinning;
+- effective intervals.
+
+AFQR-01, AFQR-02, AFQR-04, AFQR-09, and AFQR-19 remain separate component
+owners.
+
+CROSS-PHASE coordination may not become a canon, conversion, runtime-truth,
+procedure, time, dependency, commitment, package, override, schema, or version
+super-owner.
+
+The single authorized CROSS-PHASE residual seam is now resolved in
+`afqr_r2b_cross_phase_version_identity_effectivity.md`.
 
 Validation evidence:
 
-- targeted R2B-CORE and R2A-12 validation: `30 passed`;
+- focused R2B-CROSS-PHASE, R2B-CORE, and transition-control validation:
+  `36 passed`;
 - R2A regression suite: `135 passed`;
-- full repository suite: `8889 passed, 10 skipped, 2 xfailed, 1 warning`;
+- full repository suite:
+  `8901 passed, 10 skipped, 2 xfailed, 1 warning`;
 - `git diff --check`: clean.
 
-No R2B-CORE residual doctrine seam remains. This validation does not satisfy
-the `merged` dependency required to activate `PR2-R2B-X`.
+`PR2-R2B-X` is `validated` pending merge. Validation is not merge and does not
+satisfy the dependency required to activate `PR2-R2B-N`.
 
 Current gate posture is:
 
 - `R2=active_incomplete`;
 - `R2B=active_incomplete`;
-- `R2B-CORE=validated` pending merge;
-- `R2B-CROSS-PHASE` remains blocked and separately unauthorized;
+- `R2B-CORE=merged`;
+- `R2B-CROSS-PHASE=validated` pending merge;
 - `R2B-CONTINUITY` remains blocked and separately unauthorized;
 - `R2C=blocked`;
 - `R3-R6=blocked`;
 - `RT-002G=unauthorized`;
 - temporary evidence deletion remains unauthorized.
 
-The owner has also chosen to hold post-R2 identity migration, source-governance,
+The owner-confirmed hold on post-R2 identity migration, source governance,
 native-content, runtime-scalability implementation, canon, conversion, and
-live-play work until R2C formally closes R2.
+live-play work remains in force until R2C formally closes R2.
 
 The workstream table below records the **initial PR2-CTRL registry state**.
 Current workstream state is owned by the machine-readable transition manifest

@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.2.1",
+  "artifact_version": "0.3.1",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -38,11 +38,11 @@
     "temporary_evidence_deletion": "unauthorized"
   },
   "r2b_package_state": {
-    "R2B-CORE": "validated",
+    "R2B-CORE": "merged",
     "R2B-AGENCY": "not_required",
     "R2B-WORLD": "not_required",
     "R2B-CONTINUITY": "required_pending_authorization",
-    "R2B-CROSS-PHASE": "required_pending_authorization"
+    "R2B-CROSS-PHASE": "validated"
   },
   "recommended_r2b_sequence": [
     "R2B-CORE",
@@ -117,7 +117,7 @@
       "title": "R2B CORE doctrine resolution",
       "category": "doctrine",
       "purpose": "Resolve the bounded R2B-CORE doctrine seams proven necessary by R2A.",
-      "status": "validated",
+      "status": "merged",
       "dependencies": [
         "PR2-CTRL"
       ],
@@ -152,9 +152,9 @@
         "full repository suite:8889 passed, 10 skipped, 2 xfailed, 1 warning",
         "git diff --check:clean"
       ],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "pull_request": 376,
+      "branch_head": "8a88068b802a9819328e09691e7c1def778a778d",
+      "merge_commit": "307ab295a8590d60a310d4b8d872971620fa74eb",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-R2B-X"
@@ -165,30 +165,47 @@
       "title": "R2B CROSS-PHASE doctrine resolution",
       "category": "doctrine",
       "purpose": "Resolve ruleset, content-package, campaign-override, schema-version identity, applicability, pinning, and effective-interval governance.",
-      "status": "blocked",
+      "status": "validated",
       "dependencies": [
         "PR2-R2B-C"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-08_r2b_cross_phase_activation",
       "authority_effect": "bounded_cross_phase_doctrine_resolution_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "307ab295a8590d60a310d4b8d872971620fa74eb",
+      "owned_paths": [
+        "docs/doctrine/consolidation/afqr_r2b_cross_phase_version_identity_effectivity.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
+        "docs/decisions/current_decisions_log.md",
+        "tests/test_afqr_r2b_cross_phase_version_identity_effectivity.py",
+        "tests/test_post_r2a_transition_program.py"
+      ],
       "prohibited_scope": [
         "canon_ownership_transfer",
         "conversion_ownership_transfer",
         "runtime_truth_ownership_transfer",
-        "continuity_duplicate_of_version_effectivity"
+        "continuity_duplicate_of_version_effectivity",
+        "runtime_implementation",
+        "production_schema_implementation",
+        "universal_versioning_scheme",
+        "universal_override_precedence",
+        "branch_semantics_definition",
+        "correction_taxonomy_definition"
       ],
       "entry_condition": "PR2-R2B-C merged and explicit owner authorization granted.",
       "completion_condition": "The version-identity and effective-interval seam is resolved exactly once without creating a cross-phase semantic super-owner.",
-      "validation_evidence": [],
+      "validation_evidence": [
+        "focused R2B-CROSS-PHASE, R2B-CORE, and transition-control validation:36 passed",
+        "R2A regression suite:135 passed",
+        "full repository suite:8901 passed, 10 skipped, 2 xfailed, 1 warning",
+        "git diff --check:clean"
+      ],
       "pull_request": null,
       "branch_head": null,
       "merge_commit": null,
-      "residual_gaps": [
-        "version_identity_and_effectivity"
-      ],
+      "residual_gaps": [],
       "downstream_handoff": [
         "PR2-R2B-N"
       ]
