@@ -115,7 +115,10 @@ def test_r2a12_manifest_transition_is_exact():
 
 
 def test_r2a12_gate_update_is_bounded_and_does_not_authorize_r2b():
-    text = CONTROL.read_text(encoding="utf-8")
+    text = git_bytes(
+        R2A12_CERTIFIED_HEAD,
+        CONTROL.relative_to(ROOT).as_posix(),
+    ).decode("utf-8")
 
     assert "## R2A — authority-surface and drift inventory\n\n**Status:** `complete`" in text
     assert "## R2B — modular doctrine resolution\n\n**Status:** `ready`" in text

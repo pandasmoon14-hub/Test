@@ -4384,3 +4384,139 @@ The order exists to reduce doctrine duplication:
 - This follows the successor-safe historical-range pattern already established for R2A-11.
 - The historicalized test continues to require the exact seven R2A-12 authorized files, prohibit `src/`, `schemas/`, and `tests/runtime/` scope leakage, prohibit deletions, and preserve the original file-count and 2,500-addition caps.
 - This maintenance changes no R2A finding, package disposition, authority boundary, gate state, doctrine, runtime authorization, schema authorization, canon status, or live-play authorization.
+
+
+## 2026-09-07 decision — R2B-CORE bounded doctrine activation
+
+- **Decision ID:** `AFQR-R2B-CORE-AUTHORIZATION-001`
+- **Decision date:** 2026-09-07
+- **Decision type:** bounded R2B doctrine authorization and activation
+- **Workstream:** `PR2-R2B-C`
+- **Branch:** `r2b-core-doctrine-resolution`
+- **Starting baseline:** `0a52db603589168a14f3c50beefbbf28274d0836`
+- **Authorization reference:** `owner_directive_2026-09-07_r2b_core_activation`
+
+### Decision
+
+Following merged PR #375 / PR2-CTRL, the owner explicitly authorizes
+`PR2-R2B-C — R2B CORE doctrine resolution` as the only active successor
+workstream.
+
+The authorized doctrine scope is exactly:
+
+1. `R2B-CORE-MOD-PREVIEW-PERSISTENCE-PROMOTION`;
+2. `R2B-CORE-MOD-CORRECTION-RNG-IDENTITY`.
+
+The owner-confirmed package sequence remains:
+
+`R2B-CORE -> R2B-CROSS-PHASE -> R2B-CONTINUITY -> R2C`
+
+CROSS-PHASE and CONTINUITY are not activated by this decision.
+
+### Doctrine effect
+
+R2B-CORE may establish only the following bounded qualifications:
+
+- persistence, caching, journaling, serialization, storage, or transmission of
+  an uncommitted preview does not itself confer commitment, authority,
+  canonicality, or branch status;
+- later authoritative use of a retained preview requires an explicit lawful
+  transition into a separately governed target;
+- replay/recovery of a committed randomness-bearing execution cannot silently
+  generate a replacement outcome;
+- if a separately authorized correction requires new resolution, the
+  replacement execution and its randomness provenance must remain
+  distinguishable from the original while the original committed audit is
+  preserved.
+
+AFQR-01 and AFQR-02 remain separate component owners.
+
+### Explicit nonauthority
+
+This decision authorizes no:
+
+- runtime implementation;
+- production schema implementation;
+- database or persistence mechanism;
+- branch classification;
+- branch canonicality or ancestry doctrine;
+- correction/compensation/retcon/supersession taxonomy;
+- ruleset/package/version effectivity doctrine;
+- RNG service or universal randomness mechanism;
+- PRNG seed requirement;
+- canon work;
+- conversion work;
+- Myravant identity migration;
+- source-governance implementation;
+- native-content production;
+- live-play or GM behavior;
+- RT-002G work.
+
+### Gate effect
+
+- `R2=active_incomplete`;
+- `R2B=active_incomplete`;
+- `R2B-CORE=active`;
+- `R2B-CROSS-PHASE=blocked`;
+- `R2B-CONTINUITY=blocked`;
+- `R2C=blocked`;
+- `R3-R6=blocked`;
+- `RT-002G=unauthorized`.
+
+Post-R2 identity, source, originality, native-content, and runtime-scalability
+work remains deliberately held until formal R2C completion under the owner's
+confirmed sequencing decision.
+
+### Successor-test maintenance
+
+R2B-CORE activation lawfully changes the live R2 control-plan state from
+`R2B=ready` to `R2B=active_incomplete`. The merged R2A-12 test still contained
+one successor-sensitive assertion that read the live control plan while testing
+the historical R2A-12 gate result. This workstream historicalizes that assertion
+against `R2A12_CERTIFIED_HEAD`, matching the historical-range pattern already
+used elsewhere in the same R2A-12 test.
+
+This maintenance changes no R2A finding, R2B doctrine qualification, semantic
+owner, runtime or schema authority, or downstream package authorization.
+
+
+## 2026-09-07 decision — R2B-CORE validation completion
+
+- **Decision ID:** `AFQR-R2B-CORE-VALIDATION-001`
+- **Decision date:** 2026-09-07
+- **Decision type:** bounded doctrine validation completion
+- **Workstream:** `PR2-R2B-C`
+- **Branch:** `r2b-core-doctrine-resolution`
+- **Starting baseline:** `0a52db603589168a14f3c50beefbbf28274d0836`
+
+### Validation result
+
+`PR2-R2B-C` is validated pending merge.
+
+The two authorized CORE doctrine gaps are resolved:
+
+1. preview persistence / promotion qualification;
+2. correction-specific randomness identity preservation.
+
+Validation evidence:
+
+- targeted R2B-CORE and R2A-12 validation: `30 passed`;
+- R2A regression suite: `135 passed`;
+- full repository suite: `8889 passed, 10 skipped, 2 xfailed, 1 warning`;
+- `git diff --check`: clean.
+
+No authorized R2B-CORE residual gap remains.
+
+### Non-advancement rule
+
+Validation is not merge.
+
+This decision does not populate a pull-request number, branch-head certificate,
+or merge commit for `PR2-R2B-C`.
+
+`PR2-R2B-X` remains blocked until R2B-CORE is merged and CROSS-PHASE receives
+separate explicit owner authorization. `PR2-R2B-N` and `PR2-R2C` remain blocked.
+
+No runtime, production-schema, canon, conversion, source-governance,
+Myravant-identity, native-content, scalability-implementation, or live-play
+work is authorized by this validation event.
