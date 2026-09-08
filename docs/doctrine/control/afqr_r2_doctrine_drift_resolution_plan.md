@@ -36,32 +36,44 @@ being rewritten for successor currency.
 
 **Status:** `active_incomplete`
 
-R2A completion removed the inventory dependency blocker. PR2-CTRL subsequently
-merged through PR #375 at `0a52db603589168a14f3c50beefbbf28274d0836`.
+R2A completion removed the inventory dependency blocker. PR2-CTRL merged
+through PR #375.
 
-The owner has separately authorized only `R2B-CORE` / `PR2-R2B-C`, beginning
-from that exact baseline.
+R2B-CORE then completed and merged through PR #376.
 
-R2B-CORE is validated pending merge. It resolves exactly two bounded
-qualifications:
+R2B-CORE certified branch head:
 
-1. preview persistence / promotion;
-2. correction-specific randomness identity preservation.
+`8a88068b802a9819328e09691e7c1def778a778d`
 
-Both authorized CORE residual gaps are resolved in
-`afqr_r2b_core_qualifications.md`; the workstream has no remaining CORE doctrine
-gap. Validation does not equal merge and does not activate CROSS-PHASE.
+R2B-CORE merge commit:
 
-The package coordinates existing AFQR-01 and AFQR-02 boundaries only. It may
-not create a CORE, preview, persistence, replay, RNG, correction, or branch
-super-owner.
+`307ab295a8590d60a310d4b8d872971620fa74eb`
 
-`R2B-CROSS-PHASE` remains required but blocked pending completed R2B-CORE and
-separate owner authorization. Its single residual seam is version identity,
-applicability, pinning, and effective intervals.
+The owner has separately authorized only
+`R2B-CROSS-PHASE` / `PR2-R2B-X` from that exact baseline.
 
-`R2B-CONTINUITY` remains required but blocked pending completed
-R2B-CROSS-PHASE and separate owner authorization. Its five residual seams are:
+R2B-CROSS-PHASE is validated pending merge. It resolved exactly one bounded coordination seam:
+
+- ruleset, content-package, campaign-override, and related schema/version
+  identity;
+- applicability;
+- historical pinning;
+- effective intervals.
+
+The authorized module is:
+
+`R2B-CROSS-PHASE-MOD-VERSION-IDENTITY-EFFECTIVITY`
+
+Its participating AFQR references remain separate component owners:
+AFQR-01, AFQR-02, AFQR-04, AFQR-09, and AFQR-19.
+
+CROSS-PHASE may not create a combined version, package, canon, conversion,
+runtime-truth, procedure, time, dependency, commitment, override, or schema
+owner.
+
+`R2B-CONTINUITY` remains required but blocked pending completed and merged
+R2B-CROSS-PHASE plus separate owner authorization. Its five residual seams
+remain:
 
 - stable authoritative timeline identity qualification;
 - world-valid versus record/commitment-time qualification;
@@ -69,10 +81,15 @@ R2B-CROSS-PHASE and separate owner authorization. Its five residual seams are:
 - correction/compensation/retcon/supersession governance;
 - branch-safe projection/disclosure qualification.
 
+CONTINUITY must not duplicate version identity or effectivity.
+
+No R2B-CROSS-PHASE doctrine gap remains. Validation does not equal merge and
+does not activate R2B-CONTINUITY.
+
 `R2B-AGENCY` and `R2B-WORLD` remain `not_required` on current evidence.
 
-Session closure and a duplicate CONTINUITY version/effectivity module remain
-not required. R2B-CORE must not pre-solve either later package.
+Session closure remains routed to existing owners/R4 representation work and
+does not justify an additional R2B doctrine module.
 
 ## R2C — formal completion review
 
