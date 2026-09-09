@@ -39,41 +39,22 @@ being rewritten for successor currency.
 R2A completion removed the inventory dependency blocker. PR2-CTRL merged
 through PR #375.
 
-R2B-CORE then completed and merged through PR #376.
+R2B-CORE completed and merged through PR #376.
 
-R2B-CORE certified branch head:
+R2B-CROSS-PHASE completed and merged through PR #377.
 
-`8a88068b802a9819328e09691e7c1def778a778d`
+R2B-CROSS-PHASE certified branch head:
 
-R2B-CORE merge commit:
+`eededa8e0b845fa14ba303f4d34369cefdd2f861`
 
-`307ab295a8590d60a310d4b8d872971620fa74eb`
+R2B-CROSS-PHASE merge commit:
+
+`d70e9a5c1ab67c8e2bb6a2b8331c73269cc3b286`
 
 The owner has separately authorized only
-`R2B-CROSS-PHASE` / `PR2-R2B-X` from that exact baseline.
+`R2B-CONTINUITY` / `PR2-R2B-N` from that exact baseline.
 
-R2B-CROSS-PHASE is validated pending merge. It resolved exactly one bounded coordination seam:
-
-- ruleset, content-package, campaign-override, and related schema/version
-  identity;
-- applicability;
-- historical pinning;
-- effective intervals.
-
-The authorized module is:
-
-`R2B-CROSS-PHASE-MOD-VERSION-IDENTITY-EFFECTIVITY`
-
-Its participating AFQR references remain separate component owners:
-AFQR-01, AFQR-02, AFQR-04, AFQR-09, and AFQR-19.
-
-CROSS-PHASE may not create a combined version, package, canon, conversion,
-runtime-truth, procedure, time, dependency, commitment, override, or schema
-owner.
-
-`R2B-CONTINUITY` remains required but blocked pending completed and merged
-R2B-CROSS-PHASE plus separate owner authorization. Its five residual seams
-remain:
+R2B-CONTINUITY is validated pending merge. It resolved exactly five bounded coordination seams:
 
 - stable authoritative timeline identity qualification;
 - world-valid versus record/commitment-time qualification;
@@ -81,15 +62,35 @@ remain:
 - correction/compensation/retcon/supersession governance;
 - branch-safe projection/disclosure qualification.
 
-CONTINUITY must not duplicate version identity or effectivity.
+The authorized modules are exactly:
 
-No R2B-CROSS-PHASE doctrine gap remains. Validation does not equal merge and
-does not activate R2B-CONTINUITY.
+- `R2B-CONTINUITY-MOD-TIMELINE-IDENTITY-QUALIFICATION`;
+- `R2B-CONTINUITY-MOD-BITEMPORAL-QUALIFICATION`;
+- `R2B-CONTINUITY-MOD-BRANCH-CANONICALITY-ANCESTRY`;
+- `R2B-CONTINUITY-MOD-CORRECTION-GOVERNANCE`;
+- `R2B-CONTINUITY-MOD-BRANCH-SAFE-PROJECTION`.
+
+CONTINUITY coordination remains a nonowner. AFQR component ownership remains
+separate.
+
+CONTINUITY must not duplicate:
+
+- CROSS-PHASE version identity/applicability/pinning/effectivity;
+- R2B-CORE correction-specific randomness identity;
+- session-closure snapshot doctrine.
+
+It must not invent a universal branch taxonomy, universal timeline topology,
+time-travel/alternate-world metaphysics, correction service, persistence
+representation, runtime implementation, or production schema.
+
+No R2B-CONTINUITY doctrine gap remains. Validation does not equal merge and
+does not activate R2C. The independent R2C review remains separately blocked
+and unauthorized.
 
 `R2B-AGENCY` and `R2B-WORLD` remain `not_required` on current evidence.
 
-Session closure remains routed to existing owners/R4 representation work and
-does not justify an additional R2B doctrine module.
+`R2C` remains blocked pending completed and merged R2B-CONTINUITY plus a later
+separate authorization for the independent formal completion review.
 
 ## R2C — formal completion review
 

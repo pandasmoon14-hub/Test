@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.3.1",
+  "artifact_version": "0.4.1",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -41,8 +41,8 @@
     "R2B-CORE": "merged",
     "R2B-AGENCY": "not_required",
     "R2B-WORLD": "not_required",
-    "R2B-CONTINUITY": "required_pending_authorization",
-    "R2B-CROSS-PHASE": "validated"
+    "R2B-CONTINUITY": "validated",
+    "R2B-CROSS-PHASE": "merged"
   },
   "recommended_r2b_sequence": [
     "R2B-CORE",
@@ -165,7 +165,7 @@
       "title": "R2B CROSS-PHASE doctrine resolution",
       "category": "doctrine",
       "purpose": "Resolve ruleset, content-package, campaign-override, schema-version identity, applicability, pinning, and effective-interval governance.",
-      "status": "validated",
+      "status": "merged",
       "dependencies": [
         "PR2-R2B-C"
       ],
@@ -202,9 +202,9 @@
         "full repository suite:8901 passed, 10 skipped, 2 xfailed, 1 warning",
         "git diff --check:clean"
       ],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "pull_request": 377,
+      "branch_head": "eededa8e0b845fa14ba303f4d34369cefdd2f861",
+      "merge_commit": "d70e9a5c1ab67c8e2bb6a2b8331c73269cc3b286",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-R2B-N"
@@ -215,34 +215,51 @@
       "title": "R2B CONTINUITY doctrine resolution",
       "category": "doctrine",
       "purpose": "Resolve the bounded continuity seams proven necessary by R2A without duplicating CORE or CROSS-PHASE authority.",
-      "status": "blocked",
+      "status": "validated",
       "dependencies": [
         "PR2-R2B-X"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-08_r2b_continuity_activation",
       "authority_effect": "bounded_continuity_doctrine_resolution_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "d70e9a5c1ab67c8e2bb6a2b8331c73269cc3b286",
+      "owned_paths": [
+        "docs/doctrine/consolidation/afqr_r2b_continuity_qualifications.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
+        "docs/decisions/current_decisions_log.md",
+        "tests/test_afqr_r2b_continuity_qualifications.py",
+        "tests/test_post_r2a_transition_program.py"
+      ],
       "prohibited_scope": [
         "continuity_super_owner_creation",
         "version_identity_effectivity_duplication",
         "storage_ownership_transfer",
-        "replay_ownership_transfer"
+        "replay_ownership_transfer",
+        "runtime_implementation",
+        "production_schema_implementation",
+        "continuity_semantic_super_owner_creation",
+        "rng_identity_duplication",
+        "session_closure_snapshot_duplication",
+        "universal_branch_taxonomy",
+        "universal_timeline_topology",
+        "time_travel_or_alternate_world_metaphysics",
+        "canon_promotion_or_content_authority",
+        "live_play_or_gm_behavior"
       ],
       "entry_condition": "PR2-R2B-X merged and explicit owner authorization granted.",
       "completion_condition": "All authorized continuity seams are resolved or lawfully deferred without creating a continuity super-owner.",
-      "validation_evidence": [],
+      "validation_evidence": [
+        "focused R2B-CONTINUITY, R2B-CROSS-PHASE, R2B-CORE, and transition-control validation:50 passed",
+        "R2A regression suite:135 passed",
+        "full repository suite:8915 passed, 10 skipped, 2 xfailed, 1 warning",
+        "git diff --check:clean"
+      ],
       "pull_request": null,
       "branch_head": null,
       "merge_commit": null,
-      "residual_gaps": [
-        "stable_authoritative_timeline_identity",
-        "world_valid_vs_record_time",
-        "branch_canonicality_class_and_ancestry",
-        "correction_compensation_retcon_supersession",
-        "branch_safe_projection_and_disclosure"
-      ],
+      "residual_gaps": [],
       "downstream_handoff": [
         "PR2-R2C"
       ]

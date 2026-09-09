@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.3.1`
+**Artifact version:** `0.4.1`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -302,73 +302,89 @@ In particular, version identity/effective-interval governance must not be duplic
 
 Each required R2B package still requires a separate authorization action.
 
-### 5.1 Current authorized successor state — PR2-R2B-X
+### 5.1 Current authorized successor state — PR2-R2B-N
 
-R2B-CORE completed and merged through PR `#376`.
+R2B-CROSS-PHASE completed and merged through PR `#377`.
 
 R2B-CORE began from the PR2-CTRL merge baseline:
 
 `0a52db603589168a14f3c50beefbbf28274d0836`
 
-Its certified branch head is:
-
-`8a88068b802a9819328e09691e7c1def778a778d`
-
-Its merge commit, and the starting baseline for CROSS-PHASE, is:
+R2B-CROSS-PHASE began from the R2B-CORE merge baseline:
 
 `307ab295a8590d60a310d4b8d872971620fa74eb`
 
+Its certified branch head is:
+
+`eededa8e0b845fa14ba303f4d34369cefdd2f861`
+
+Its merge commit, and the starting baseline for CONTINUITY, is:
+
+`d70e9a5c1ab67c8e2bb6a2b8331c73269cc3b286`
+
 The owner has subsequently authorized only:
 
-`PR2-R2B-X — R2B CROSS-PHASE doctrine resolution`
+`PR2-R2B-N — R2B CONTINUITY doctrine resolution`
 
 Authorization reference:
 
-`owner_directive_2026-09-08_r2b_cross_phase_activation`
+`owner_directive_2026-09-08_r2b_continuity_activation`
 
-R2B-CROSS-PHASE contains exactly one routed doctrine module:
+R2B-CONTINUITY contains exactly five routed doctrine modules:
 
-`R2B-CROSS-PHASE-MOD-VERSION-IDENTITY-EFFECTIVITY`
+1. `R2B-CONTINUITY-MOD-TIMELINE-IDENTITY-QUALIFICATION`;
+2. `R2B-CONTINUITY-MOD-BITEMPORAL-QUALIFICATION`;
+3. `R2B-CONTINUITY-MOD-BRANCH-CANONICALITY-ANCESTRY`;
+4. `R2B-CONTINUITY-MOD-CORRECTION-GOVERNANCE`;
+5. `R2B-CONTINUITY-MOD-BRANCH-SAFE-PROJECTION`.
 
-That module resolves the single cross-phase seam for:
+Those modules may resolve only:
 
-- ruleset version identity;
-- content-package version identity;
-- campaign-override version identity;
-- related schema/version identity;
-- current applicability;
-- historical pinning;
-- effective intervals.
+- stable authoritative timeline identity across accepted time and identity
+  owners;
+- world-valid versus record/commitment-time qualification;
+- branch class, canonicality, ancestry, fork, promotion, and archive
+  qualifications;
+- correction, compensation, supersession, retcon, and alternate-history
+  continuity effects;
+- branch-safe projection/disclosure composition.
 
-AFQR-01, AFQR-02, AFQR-04, AFQR-09, and AFQR-19 remain separate component
-owners.
+The participating AFQR references remain separate component owners.
 
-CROSS-PHASE coordination may not become a canon, conversion, runtime-truth,
-procedure, time, dependency, commitment, package, override, schema, or version
-super-owner.
+CONTINUITY may not become a combined owner for commitment, time, identity,
+dependency, evidence, epistemic truth, sensing, canon, conversion, or runtime
+truth.
 
-The single authorized CROSS-PHASE residual seam is now resolved in
-`afqr_r2b_cross_phase_version_identity_effectivity.md`.
+Two candidate modules remain explicitly not required:
+
+- ruleset/package/override version governance, because that seam was resolved
+  exactly once by merged R2B-CROSS-PHASE;
+- session-closure snapshot doctrine, because AFQR-01 retains the closure
+  envelope and representation remains downstream.
+
+The five authorized CONTINUITY seams are now resolved in
+`afqr_r2b_continuity_qualifications.md`.
 
 Validation evidence:
 
-- focused R2B-CROSS-PHASE, R2B-CORE, and transition-control validation:
-  `36 passed`;
+- focused R2B-CONTINUITY, R2B-CROSS-PHASE, R2B-CORE, and transition-control
+  validation: `50 passed`;
 - R2A regression suite: `135 passed`;
 - full repository suite:
-  `8901 passed, 10 skipped, 2 xfailed, 1 warning`;
+  `8915 passed, 10 skipped, 2 xfailed, 1 warning`;
 - `git diff --check`: clean.
 
-`PR2-R2B-X` is `validated` pending merge. Validation is not merge and does not
-satisfy the dependency required to activate `PR2-R2B-N`.
+`PR2-R2B-N` is `validated` pending merge. Validation is not merge and does not
+satisfy the dependency required to begin `PR2-R2C`. R2C remains separately
+blocked and unauthorized.
 
 Current gate posture is:
 
 - `R2=active_incomplete`;
 - `R2B=active_incomplete`;
 - `R2B-CORE=merged`;
-- `R2B-CROSS-PHASE=validated` pending merge;
-- `R2B-CONTINUITY` remains blocked and separately unauthorized;
+- `R2B-CROSS-PHASE=merged`;
+- `R2B-CONTINUITY=validated` pending merge;
 - `R2C=blocked`;
 - `R3-R6=blocked`;
 - `RT-002G=unauthorized`;
