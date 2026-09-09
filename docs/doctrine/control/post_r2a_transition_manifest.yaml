@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.3",
+  "artifact_version": "0.4.4",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -292,7 +292,7 @@
       "title": "R2 formal completion review",
       "category": "review",
       "purpose": "Independently verify formal R2 completion after all authorized required R2B work.",
-      "status": "validated",
+      "status": "merged",
       "dependencies": [
         "PR2-R2B-C",
         "PR2-R2B-X",
@@ -333,9 +333,9 @@
         "git diff --check:clean",
         "validated working tree:clean"
       ],
-      "pull_request": null,
-      "branch_head": "949575f42f8b4ba1e01963013b35376d49433faf",
-      "merge_commit": null,
+      "pull_request": 379,
+      "branch_head": "ea47efef19e1552f40fee7b7658797b59bd35b7f",
+      "merge_commit": "843fc89f3769a8e6323fa7b683d3805a9edfc142",
       "residual_gaps": [],
       "downstream_handoff": [
         "R3",
@@ -347,21 +347,38 @@
       "title": "Myravant identity migration",
       "category": "identity",
       "purpose": "Perform a controlled migration from current Astra Ascension branding to the owner-selected Myravant identity.",
-      "status": "blocked",
+      "status": "active",
       "dependencies": [
-        "PR2-CTRL"
+        "PR2-CTRL",
+        "PR2-R2C"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-08_pr2_id_activation",
       "authority_effect": "identity_and_brand_migration_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "843fc89f3769a8e6323fa7b683d3805a9edfc142",
+      "owned_paths": [
+        "docs/doctrine/control/myravant_identity_migration_contract.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "docs/decisions/current_decisions_log.md",
+        "README.md",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "tests/test_pr2_id_myravant_identity_migration.py",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_afqr_r2c_formal_completion_review.py"
+      ],
       "prohibited_scope": [
         "indiscriminate_astra_search_and_replace",
         "historical_commit_rewrite",
         "immutable_evidence_identifier_rewrite",
         "semantic_owner_change",
-        "gameplay_doctrine_change"
+        "gameplay_doctrine_change",
+        "software_namespace_rename_without_compatibility_tranche",
+        "runtime_or_schema_semantic_change",
+        "source_governance_implementation",
+        "canon_promotion",
+        "historical_or_provenance_rewrite"
       ],
       "entry_condition": "PR2-CTRL merged and identity-migration contract explicitly authorized.",
       "completion_condition": "Mutable current-facing identity is migrated while historical and provenance-bearing identities remain traceable.",

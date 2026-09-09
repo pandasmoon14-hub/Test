@@ -4951,3 +4951,87 @@ implementation, native-content production, runtime scalability, runtime or
 production-schema implementation, persistence/replay construction, canon
 promotion, conversion work, live-play/GM behavior, model training, or
 temporary evidence deletion.
+
+## 2026-09-08 decision — Myravant identity migration activation
+
+- **Decision ID:** `PR2-ID-AUTHORIZATION-001`
+- **Decision date:** 2026-09-08
+- **Decision type:** bounded identity-migration authorization
+- **Workstream:** `PR2-ID`
+- **Branch:** `pr2-id-myravant-identity-migration`
+- **Starting baseline:** `843fc89f3769a8e6323fa7b683d3805a9edfc142`
+- **Authorization reference:** `owner_directive_2026-09-08_pr2_id_activation`
+
+### Predecessor completion
+
+`PR2-R2C` merged through PR `#379`.
+
+- final branch head:
+  `ea47efef19e1552f40fee7b7658797b59bd35b7f`;
+- merge commit:
+  `843fc89f3769a8e6323fa7b683d3805a9edfc142`;
+- formal R2 result:
+  `PASS`;
+- `R2=complete`;
+- `R3=ready_pending_authorization`.
+
+### Authorization
+
+The owner separately authorizes:
+
+`PR2-ID — Myravant identity migration`
+
+Myravant is the owner-selected current/future umbrella identity.
+
+Astra Ascension remains the historical predecessor identity wherever history,
+provenance, frozen evidence, stable identifiers, or compatibility require it.
+
+### First bounded tranche
+
+The first tranche may change only:
+
+- the Myravant identity-migration contract;
+- transition-control bookkeeping;
+- this decision record;
+- `README.md`;
+- `AGENTS.md`;
+- `CLAUDE.md`;
+- dedicated identity-migration tests;
+- successor-control tests that must reflect the R2C merge and PR2-ID activation.
+
+### Migration law
+
+Every Astra identity occurrence must be dispositioned as one of:
+
+- `migrate_current`;
+- `migrate_with_historical_qualifier`;
+- `retain_historical`;
+- `retain_compatibility`;
+- `alias_then_migrate`;
+- `escalate`.
+
+No global replacement is authorized.
+
+### Compatibility boundary
+
+This tranche does not rename:
+
+- `astra-runtime`;
+- `astra_runtime`;
+- `src/astra_runtime/`;
+- schema identifiers;
+- artifact IDs;
+- frozen evidence paths;
+- historical commits, PRs, or branch names;
+- provenance keys or hashes.
+
+Software-namespace migration requires a later dedicated compatibility tranche
+with reference inventory, alias/deprecation behavior, and regression evidence.
+
+### Explicit nonauthority
+
+PR2-ID does not authorize R3 execution, source governance, source processing,
+originality or information-barrier implementation, native-content production,
+runtime scalability, runtime/schema semantic redesign, canon promotion,
+conversion work, live-play/GM behavior, model training, or historical evidence
+rewriting.

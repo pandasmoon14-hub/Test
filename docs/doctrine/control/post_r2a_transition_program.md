@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.3`
+**Artifact version:** `0.4.4`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -67,7 +67,7 @@ The owner-selected future project identity is:
 
 **Myravant**
 
-`Astra Ascension` remains the historical and current repository identity until a bounded identity-migration workstream explicitly changes current-facing repository material.
+`Astra Ascension` is the historical predecessor identity. `PR2-ID` is now explicitly active from the merged R2C baseline, and Myravant is the current/future identity on surfaces lawfully migrated under the identity-migration contract. Historical, provenance-bearing, frozen-evidence, and compatibility surfaces retain Astra identity where required.
 
 Historical commits, immutable evidence, accepted artifact IDs, frozen baselines, provenance references, and historical records must not be rewritten merely to make them cosmetically consistent with the Myravant name.
 
@@ -300,7 +300,7 @@ The rationale was:
 
 In particular, version identity/effective-interval governance was not duplicated into CONTINUITY merely because continuity mechanisms consume it.
 
-### 5.1 Current validated successor state — PR2-R2C
+### 5.1 Completed R2C publication and active PR2-ID
 
 All three R2B packages proven necessary by R2A are now merged.
 
@@ -377,7 +377,15 @@ Validation evidence:
 - `git diff --check`: clean;
 - validated working tree: clean.
 
-No R2C pull request has been created and no R2C merge commit exists at this validation state. Publication and merge remain separately gated.
+R2C subsequently published and merged through PR `#379`.
+
+Final R2C branch head:
+
+`ea47efef19e1552f40fee7b7658797b59bd35b7f`
+
+Merge commit now on `main`:
+
+`843fc89f3769a8e6323fa7b683d3805a9edfc142`
 
 The review found no blocking R2 doctrine exception and therefore closes the R2 review layer:
 
@@ -403,6 +411,39 @@ Current gate posture is:
 - temporary evidence deletion remains unauthorized.
 
 The owner-confirmed post-R2 sequence remains held behind separate authorization. R2C completion removes the R2 dependency blocker; it does not itself authorize Myravant identity migration, source governance, originality governance, native-content production, runtime scalability, canon, conversion, implementation, or live play.
+
+
+### 5.2 PR2-ID activation
+
+After R2C merged, the owner separately authorized:
+
+`PR2-ID — Myravant identity migration`
+
+Authorization reference:
+
+`owner_directive_2026-09-08_pr2_id_activation`
+
+Starting baseline:
+
+`843fc89f3769a8e6323fa7b683d3805a9edfc142`
+
+The controlling migration contract is:
+
+`docs/doctrine/control/myravant_identity_migration_contract.md`
+
+PR2-ID changes identity and branding only. The first bounded tranche covers
+current-facing repository/navigation material and migration-control evidence.
+
+It explicitly does not authorize an indiscriminate Astra-to-Myravant
+replacement and does not rename compatibility-bearing software identifiers
+such as `astra-runtime`, `astra_runtime`, or `src/astra_runtime/`.
+
+Historical commits, accepted artifact IDs, frozen evidence, hashes, provenance,
+merged PR/branch references, and truthful historical uses of Astra Ascension
+remain preserved.
+
+R3 remains `ready_pending_authorization`. PR2-SRC and every other post-R2
+workstream remain separately blocked and unauthorized.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
@@ -816,14 +857,26 @@ The Myravant rename must therefore not be implemented as an indiscriminate repla
 
 ## 20. Immediate next gate
 
-R2C completion does not automatically activate any successor.
+R2C completion did not automatically activate a successor.
 
-Two distinct successor facts are now true:
+The owner subsequently and separately authorized `PR2-ID` Myravant identity
+migration from baseline:
 
-1. `R3` is dependency-ready with an exact 34-record conformance target, but remains `ready_pending_authorization`.
-2. The owner-selected first post-R2 build-out workstream is `PR2-ID` Myravant identity migration, but it remains blocked until a separate explicit authorization establishes its bounded migration contract.
+`843fc89f3769a8e6323fa7b683d3805a9edfc142`
 
-No source-governance, originality, information-barrier, native-content, runtime-scalability, canon, conversion, implementation, or live-play workstream is authorized merely because R2 has closed.
+Current successor state is therefore:
+
+1. `PR2-ID` is `active` under
+   `docs/doctrine/control/myravant_identity_migration_contract.md`;
+2. `R3` remains `ready_pending_authorization` with its exact 34-record
+   conformance target and is not executing;
+3. `PR2-SRC` and all other source-governance, originality,
+   information-barrier, native-content, runtime-scalability, canon,
+   conversion, implementation, and live-play workstreams remain separately
+   blocked or unauthorized.
+
+PR2-ID identity authority does not transfer authority to any of those later
+workstreams.
 
 ## 21. Completion condition for this program
 

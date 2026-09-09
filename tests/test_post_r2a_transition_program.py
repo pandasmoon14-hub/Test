@@ -29,6 +29,10 @@ R2B_CONTINUITY_PR = 378
 R2C_BASELINE = "5cae79bcdd86c93c6fe77b6492a8a087a83900b0"
 R2C_AUTHORIZATION = "owner_directive_2026-09-08_r2c_activation"
 R2C_VALIDATED_HEAD = "949575f42f8b4ba1e01963013b35376d49433faf"
+R2C_PUBLICATION_HEAD = "ea47efef19e1552f40fee7b7658797b59bd35b7f"
+R2C_PR = 379
+R2C_MERGE = "843fc89f3769a8e6323fa7b683d3805a9edfc142"
+PR2_ID_AUTHORIZATION = "owner_directive_2026-09-08_pr2_id_activation"
 
 EXPECTED_R2_GATES = {
     "R1": "complete",
@@ -103,7 +107,6 @@ TERMINAL_STATUSES = {
 }
 
 POST_R2_BLOCKED = {
-    "PR2-ID",
     "PR2-SRC",
     "PR2-ORG",
     "PR2-CORPUS",
@@ -143,7 +146,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.3"
+    assert manifest["artifact_version"] == "0.4.4"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -263,7 +266,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_is_validated_unpublished_and_no_workstream_is_active():
+def test_r2c_is_merged_and_pr2_id_is_the_only_active_workstream():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -272,22 +275,26 @@ def test_r2c_is_validated_unpublished_and_no_workstream_is_active():
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == set()
+    assert active == {"PR2-ID"}
 
     r2c = by_id["PR2-R2C"]
-    assert r2c["status"] == "validated"
+    assert r2c["status"] == "merged"
     assert r2c["authorization_reference"] == R2C_AUTHORIZATION
     assert r2c["starting_baseline"] == R2C_BASELINE
-    assert r2c["validation_evidence"] == [
-        "focused R2C, transition-control, and predecessor validation:63 passed",
-        "full repository suite:8922 passed, 10 skipped, 2 xfailed, 1 warning",
-        "git diff --check:clean",
-        "validated working tree:clean",
-    ]
-    assert r2c["pull_request"] is None
-    assert r2c["branch_head"] == R2C_VALIDATED_HEAD
-    assert r2c["merge_commit"] is None
+    assert r2c["pull_request"] == R2C_PR
+    assert r2c["branch_head"] == R2C_PUBLICATION_HEAD
+    assert r2c["merge_commit"] == R2C_MERGE
     assert r2c["residual_gaps"] == []
+
+    pr2id = by_id["PR2-ID"]
+    assert pr2id["status"] == "active"
+    assert pr2id["authorization_reference"] == PR2_ID_AUTHORIZATION
+    assert pr2id["starting_baseline"] == R2C_MERGE
+    assert set(pr2id["dependencies"]) == {"PR2-CTRL", "PR2-R2C"}
+    assert pr2id["pull_request"] is None
+    assert pr2id["branch_head"] is None
+    assert pr2id["merge_commit"] is None
+    assert pr2id["residual_gaps"] == []
 
 def test_post_r2_major_work_remains_blocked_and_unauthorized():
     manifest = _load_manifest()
@@ -327,7 +334,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.3`" in program
+    assert "**Artifact version:** `0.4.4`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
