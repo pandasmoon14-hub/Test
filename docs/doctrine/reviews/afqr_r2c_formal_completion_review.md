@@ -5,6 +5,8 @@
 **Workstream:** `PR2-R2C`
 **Status:** `complete`
 **Review result:** `PASS`
+**Validation state:** `validated`
+**Validated branch head:** `949575f42f8b4ba1e01963013b35376d49433faf`
 **Inspected merged baseline:** `5cae79bcdd86c93c6fe77b6492a8a087a83900b0`
 **Authority:** independent R2 completion review, bounded R2 gate decision, and exact R3 conformance-target handoff only
 **Authorization reference:** `owner_directive_2026-09-08_r2c_activation`
@@ -259,6 +261,23 @@ The fact that R2C is next in sequence is not itself evidence for closure.
 None.
 
 If a later review discovers that a supposed R2 closure result depended on fabricated doctrine, an unrecorded authority transfer, or a material R2A finding that lacked a lawful outcome, that new evidence must be handled through the applicable later doctrine/control process. This review does not immunize R2 from evidence-based supersession.
+
+## 5.1 Executable validation evidence
+
+The completed R2C review was validated on branch head:
+
+`949575f42f8b4ba1e01963013b35376d49433faf`
+
+Validation evidence:
+
+- focused R2C, transition-control, and predecessor validation: `63 passed`;
+- full repository suite: `8922 passed, 10 skipped, 2 xfailed, 1 warning`;
+- `git diff --check`: clean;
+- validated working tree: clean.
+
+The single warning is the pre-existing pytest deprecation warning in `tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_9.py`; it is not an R2C failure.
+
+This validation does not create publication or merge authority. At this state, R2C has no pull request and no merge commit.
 
 ## 6. Gate determination
 

@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.2`
+**Artifact version:** `0.4.3`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -300,7 +300,7 @@ The rationale was:
 
 In particular, version identity/effective-interval governance was not duplicated into CONTINUITY merely because continuity mechanisms consume it.
 
-### 5.1 Current authorized successor state — PR2-R2C
+### 5.1 Current validated successor state — PR2-R2C
 
 All three R2B packages proven necessary by R2A are now merged.
 
@@ -361,6 +361,23 @@ Formal review artifact:
 Review result:
 
 `PASS`
+
+Validation lifecycle state:
+
+`validated`
+
+Validated branch head:
+
+`949575f42f8b4ba1e01963013b35376d49433faf`
+
+Validation evidence:
+
+- focused R2C, transition-control, and predecessor validation: `63 passed`;
+- full repository suite: `8922 passed, 10 skipped, 2 xfailed, 1 warning`;
+- `git diff --check`: clean;
+- validated working tree: clean.
+
+No R2C pull request has been created and no R2C merge commit exists at this validation state. Publication and merge remain separately gated.
 
 The review found no blocking R2 doctrine exception and therefore closes the R2 review layer:
 

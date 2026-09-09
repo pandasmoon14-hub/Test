@@ -28,6 +28,7 @@ R2B_CONTINUITY_HEAD = "d94f5e8f40b1b74d6bdb23e2e419e5cb5d6fb34f"
 R2B_CONTINUITY_PR = 378
 R2C_BASELINE = "5cae79bcdd86c93c6fe77b6492a8a087a83900b0"
 R2C_AUTHORIZATION = "owner_directive_2026-09-08_r2c_activation"
+R2C_VALIDATED_HEAD = "949575f42f8b4ba1e01963013b35376d49433faf"
 
 EXPECTED_R2_GATES = {
     "R1": "complete",
@@ -142,7 +143,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.2"
+    assert manifest["artifact_version"] == "0.4.3"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -262,7 +263,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_is_the_only_active_workstream_and_remains_unpublished():
+def test_r2c_is_validated_unpublished_and_no_workstream_is_active():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -271,17 +272,22 @@ def test_r2c_is_the_only_active_workstream_and_remains_unpublished():
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == {"PR2-R2C"}
+    assert active == set()
 
     r2c = by_id["PR2-R2C"]
+    assert r2c["status"] == "validated"
     assert r2c["authorization_reference"] == R2C_AUTHORIZATION
     assert r2c["starting_baseline"] == R2C_BASELINE
-    assert r2c["validation_evidence"] == []
+    assert r2c["validation_evidence"] == [
+        "focused R2C, transition-control, and predecessor validation:63 passed",
+        "full repository suite:8922 passed, 10 skipped, 2 xfailed, 1 warning",
+        "git diff --check:clean",
+        "validated working tree:clean",
+    ]
     assert r2c["pull_request"] is None
-    assert r2c["branch_head"] is None
+    assert r2c["branch_head"] == R2C_VALIDATED_HEAD
     assert r2c["merge_commit"] is None
     assert r2c["residual_gaps"] == []
-
 
 def test_post_r2_major_work_remains_blocked_and_unauthorized():
     manifest = _load_manifest()
@@ -321,7 +327,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.2`" in program
+    assert "**Artifact version:** `0.4.3`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program

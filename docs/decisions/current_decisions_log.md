@@ -4873,3 +4873,81 @@ native-content production, runtime-scalability implementation, canon
 promotion, conversion work, live-play/GM behavior, or model training.
 
 R2C publication and merge remain separately gated.
+
+## 2026-09-08 decision — R2C formal completion review validation
+
+- **Decision ID:** `AFQR-R2C-VALIDATION-001`
+- **Decision date:** 2026-09-08
+- **Decision type:** bounded validation and pre-publication certification
+- **Workstream:** `PR2-R2C`
+- **Branch:** `r2c-formal-completion-review`
+- **Starting baseline:** `5cae79bcdd86c93c6fe77b6492a8a087a83900b0`
+- **Validated branch head:** `949575f42f8b4ba1e01963013b35376d49433faf`
+- **Authorization reference:** `owner_directive_2026-09-08_r2c_activation`
+
+### Validation evidence
+
+R2C validation completed successfully:
+
+- focused R2C, transition-control, and predecessor validation:
+  `63 passed`;
+- full repository suite:
+  `8922 passed, 10 skipped, 2 xfailed, 1 warning`;
+- `git diff --check`:
+  clean;
+- validated working tree:
+  clean.
+
+The single warning is the pre-existing pytest fixture deprecation warning in
+`tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_9.py`.
+
+### Validation disposition
+
+`PR2-R2C` advances from:
+
+`active`
+
+to:
+
+`validated`
+
+The formal review result remains:
+
+`PASS`
+
+No blocking R2 doctrine exception exists.
+
+The R2 gate result remains:
+
+- `R2=complete`;
+- `R2B=complete`;
+- `R2C=complete`;
+- `R3=ready_pending_authorization`;
+- `R4-R6=blocked`;
+- `RT-002G=unauthorized`;
+- `temporary_evidence_deletion=unauthorized`.
+
+### Exact R3 handoff remains unchanged
+
+R3 remains limited to every and only the `34` frozen R2A-6 disposition
+records whose `pressure_route == r3_conformance`.
+
+R2C validation does not authorize R3 execution.
+
+### Publication state
+
+At validation:
+
+- pull request: none;
+- merge commit: none.
+
+PR creation and merge remain separate authorization-gated transitions.
+
+### Explicit nonauthority
+
+This validation does not authorize Myravant identity migration, source
+governance, source processing, originality or information-barrier
+implementation, native-content production, runtime scalability, runtime or
+production-schema implementation, persistence/replay construction, canon
+promotion, conversion work, live-play/GM behavior, model training, or
+temporary evidence deletion.

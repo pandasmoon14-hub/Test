@@ -133,6 +133,23 @@ Review result:
 
 `PASS`
 
+Publication lifecycle state:
+
+`validated`
+
+Validated branch head:
+
+`949575f42f8b4ba1e01963013b35376d49433faf`
+
+Validation evidence:
+
+- focused R2C, transition-control, and predecessor validation: `63 passed`;
+- full repository suite: `8922 passed, 10 skipped, 2 xfailed, 1 warning`;
+- `git diff --check`: clean;
+- validated working tree: clean.
+
+No R2C pull request or merge commit exists at this validation state.
+
 R2C verified that:
 
 - every material R2A finding has a lawful outcome or explicit downstream deferral;

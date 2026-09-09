@@ -13,6 +13,7 @@ BASE = "5cae79bcdd86c93c6fe77b6492a8a087a83900b0"
 CONTINUITY_HEAD = "d94f5e8f40b1b74d6bdb23e2e419e5cb5d6fb34f"
 CONTINUITY_PR = 378
 R2C_AUTHORIZATION = "owner_directive_2026-09-08_r2c_activation"
+R2C_VALIDATED_HEAD = "949575f42f8b4ba1e01963013b35376d49433faf"
 
 REVIEW = ROOT / "docs/doctrine/reviews/afqr_r2c_formal_completion_review.md"
 MANIFEST = ROOT / "docs/doctrine/control/post_r2a_transition_manifest.yaml"
@@ -67,6 +68,8 @@ def test_r2c_review_records_independent_pass_and_nonauthority():
 
     required = [
         "**Review result:** `PASS`",
+        "**Validation state:** `validated`",
+        f"**Validated branch head:** `{R2C_VALIDATED_HEAD}`",
         f"**Inspected merged baseline:** `{BASE}`",
         "Every material R2A finding has a lawful outcome",
         "Required R2B packages match the R2A synthesis",
@@ -130,12 +133,18 @@ def test_r2c_authorization_scope_and_gate_transition_are_bounded():
     }
 
     r2c = by_id["PR2-R2C"]
-    assert r2c["status"] == "active"
+    assert r2c["status"] == "validated"
+    assert r2c["validation_evidence"] == [
+        "focused R2C, transition-control, and predecessor validation:63 passed",
+        "full repository suite:8922 passed, 10 skipped, 2 xfailed, 1 warning",
+        "git diff --check:clean",
+        "validated working tree:clean",
+    ]
     assert r2c["authorization_reference"] == R2C_AUTHORIZATION
     assert r2c["starting_baseline"] == BASE
     assert r2c["residual_gaps"] == []
     assert r2c["pull_request"] is None
-    assert r2c["branch_head"] is None
+    assert r2c["branch_head"] == R2C_VALIDATED_HEAD
     assert r2c["merge_commit"] is None
     assert set(r2c["owned_paths"]) == ALLOWED_R2C_PATHS
 

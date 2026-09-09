@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.2",
+  "artifact_version": "0.4.3",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -292,7 +292,7 @@
       "title": "R2 formal completion review",
       "category": "review",
       "purpose": "Independently verify formal R2 completion after all authorized required R2B work.",
-      "status": "active",
+      "status": "validated",
       "dependencies": [
         "PR2-R2B-C",
         "PR2-R2B-X",
@@ -327,9 +327,14 @@
       ],
       "entry_condition": "All separately authorized required R2B packages are complete and R2C is separately authorized.",
       "completion_condition": "Independent review establishes R2 completion or records blocking exceptions, fixes the exact R3 conformance target, and passes bounded validation.",
-      "validation_evidence": [],
+      "validation_evidence": [
+        "focused R2C, transition-control, and predecessor validation:63 passed",
+        "full repository suite:8922 passed, 10 skipped, 2 xfailed, 1 warning",
+        "git diff --check:clean",
+        "validated working tree:clean"
+      ],
       "pull_request": null,
-      "branch_head": null,
+      "branch_head": "949575f42f8b4ba1e01963013b35376d49433faf",
       "merge_commit": null,
       "residual_gaps": [],
       "downstream_handoff": [
