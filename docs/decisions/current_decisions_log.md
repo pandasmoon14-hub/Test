@@ -4645,3 +4645,134 @@ It does not satisfy the merge dependency for `PR2-R2B-N`.
 No runtime, production-schema, canon, conversion, branch, correction,
 Myravant-identity, source-governance, native-content, scalability, or live-play
 authority is created by validation.
+
+
+## 2026-09-08 decision — R2B-CONTINUITY bounded doctrine activation
+
+- **Decision ID:** `AFQR-R2B-CONTINUITY-AUTHORIZATION-001`
+- **Decision date:** 2026-09-08
+- **Decision type:** predecessor merge recording plus bounded R2B doctrine authorization
+- **Workstream:** `PR2-R2B-N`
+- **Branch:** `r2b-continuity-doctrine-resolution`
+- **Starting baseline:** `d70e9a5c1ab67c8e2bb6a2b8331c73269cc3b286`
+- **Authorization reference:** `owner_directive_2026-09-08_r2b_continuity_activation`
+
+### Predecessor completion
+
+`PR2-R2B-X` / R2B-CROSS-PHASE merged through PR `#377`.
+
+- branch head: `eededa8e0b845fa14ba303f4d34369cefdd2f861`;
+- merge commit: `d70e9a5c1ab67c8e2bb6a2b8331c73269cc3b286`;
+- authorized CROSS-PHASE residual gaps: none.
+
+This successor decision records those now-known merge facts without changing
+the accepted CROSS-PHASE doctrine.
+
+### Authorization
+
+The owner explicitly authorizes only:
+
+`PR2-R2B-N — R2B CONTINUITY doctrine resolution`
+
+The authorized package contains exactly five doctrine modules:
+
+- `R2B-CONTINUITY-MOD-TIMELINE-IDENTITY-QUALIFICATION`;
+- `R2B-CONTINUITY-MOD-BITEMPORAL-QUALIFICATION`;
+- `R2B-CONTINUITY-MOD-BRANCH-CANONICALITY-ANCESTRY`;
+- `R2B-CONTINUITY-MOD-CORRECTION-GOVERNANCE`;
+- `R2B-CONTINUITY-MOD-BRANCH-SAFE-PROJECTION`.
+
+### Required boundary
+
+The modules may coordinate accepted component owners only. They create no
+combined timeline, branch, correction, continuity, replay, evidence, epistemic,
+sensing, canon, conversion, or runtime-truth owner.
+
+Ruleset/package/override version identity/effectivity must not be duplicated
+from R2B-CROSS-PHASE.
+
+Correction-specific randomness identity must not be duplicated from R2B-CORE.
+
+Session-closure snapshot doctrine remains not required.
+
+### Explicit nonauthority
+
+This decision authorizes no runtime implementation, production schema,
+persistence design, replay engine, branch registry, universal branch taxonomy,
+universal timeline root, time-travel/alternate-world metaphysics, project-canon
+promotion, conversion work, Myravant identity migration, source-governance
+implementation, native-content production, runtime-scalability implementation,
+live-play/GM behavior, RT-002G work, or R2C review.
+
+### Gate effect
+
+- `R2=active_incomplete`;
+- `R2B=active_incomplete`;
+- `R2B-CORE=merged`;
+- `R2B-CROSS-PHASE=merged`;
+- `R2B-CONTINUITY=active`;
+- `R2C=blocked`;
+- `R3-R6=blocked`;
+- `RT-002G=unauthorized`.
+
+Post-R2 work remains held until formal R2C completion.
+
+
+## 2026-09-08 decision — R2B-CONTINUITY validation
+
+- **Decision ID:** `AFQR-R2B-CONTINUITY-VALIDATION-001`
+- **Decision date:** 2026-09-08
+- **Decision type:** bounded doctrine validation
+- **Workstream:** `PR2-R2B-N`
+- **Branch:** `r2b-continuity-doctrine-resolution`
+- **Starting baseline:** `d70e9a5c1ab67c8e2bb6a2b8331c73269cc3b286`
+- **Authorization reference:** `owner_directive_2026-09-08_r2b_continuity_activation`
+- **Status:** `validated` pending merge
+
+### Validation evidence
+
+- focused R2B-CONTINUITY, R2B-CROSS-PHASE, R2B-CORE, and transition-control
+  suite: `50 passed`;
+- R2A regression suite: `135 passed`;
+- full repository suite:
+  `8915 passed, 10 skipped, 2 xfailed, 1 warning`;
+- `git diff --check`: clean.
+
+The single warning remains the pre-existing `PytestRemovedIn10Warning` in
+`tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_9.py`
+concerning a class-scoped fixture defined as an instance method.
+
+### Resolution
+
+All five authorized R2B-CONTINUITY residual seams are resolved:
+
+- stable authoritative timeline identity;
+- world-valid versus record/commitment time;
+- branch canonicality/class/ancestry;
+- correction/compensation/retcon/supersession;
+- branch-safe projection/disclosure.
+
+No version/effectivity module, session-closure snapshot module, continuity
+super-owner, universal branch taxonomy, universal timeline topology, or
+time-travel/alternate-world metaphysics was created.
+
+### Publication state
+
+PR number, certified branch head, and merge commit are intentionally not
+recorded by this validation decision because publication and merge have not
+occurred yet.
+
+### Gate effect
+
+- `R2=active_incomplete`;
+- `R2B=active_incomplete`;
+- `R2B-CORE=merged`;
+- `R2B-CROSS-PHASE=merged`;
+- `R2B-CONTINUITY=validated` pending merge;
+- `R2C=blocked`;
+- `R3-R6=blocked`;
+- `RT-002G=unauthorized`.
+
+Validation does not authorize R2C, runtime/schema implementation, canon,
+conversion, Myravant identity migration, source governance, native-content
+production, runtime scalability, or live-play work.

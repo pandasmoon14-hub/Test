@@ -19,6 +19,10 @@ R2B_CROSS_PHASE_BASELINE = "307ab295a8590d60a310d4b8d872971620fa74eb"
 R2B_CROSS_PHASE_AUTHORIZATION = "owner_directive_2026-09-08_r2b_cross_phase_activation"
 R2B_CORE_HEAD = "8a88068b802a9819328e09691e7c1def778a778d"
 R2B_CORE_PR = 376
+R2B_CROSS_PHASE_HEAD = "eededa8e0b845fa14ba303f4d34369cefdd2f861"
+R2B_CROSS_PHASE_PR = 377
+R2B_CONTINUITY_BASELINE = "d70e9a5c1ab67c8e2bb6a2b8331c73269cc3b286"
+R2B_CONTINUITY_AUTHORIZATION = "owner_directive_2026-09-08_r2b_continuity_activation"
 
 EXPECTED_R2_GATES = {
     "R1": "complete",
@@ -36,8 +40,8 @@ EXPECTED_R2B_PACKAGES = {
     "R2B-CORE": "merged",
     "R2B-AGENCY": "not_required",
     "R2B-WORLD": "not_required",
-    "R2B-CONTINUITY": "required_pending_authorization",
-    "R2B-CROSS-PHASE": "validated",
+    "R2B-CONTINUITY": "validated",
+    "R2B-CROSS-PHASE": "merged",
 }
 
 EXPECTED_R2B_SEQUENCE = [
@@ -191,7 +195,7 @@ def test_all_workstream_statuses_are_legal():
         assert workstream["status"] in allowed
 
 
-def test_cross_phase_is_the_only_validated_workstream_and_none_are_active():
+def test_continuity_is_the_only_validated_workstream_and_none_are_active():
     manifest = _load_manifest()
 
     active = {
@@ -206,7 +210,7 @@ def test_cross_phase_is_the_only_validated_workstream_and_none_are_active():
     }
 
     assert active == set()
-    assert validated == {"PR2-R2B-X"}
+    assert validated == {"PR2-R2B-N"}
 
 
 def test_r2b_core_merge_completion_is_recorded():
@@ -241,7 +245,7 @@ def test_r2b_core_merge_completion_is_recorded():
     }
 
 
-def test_cross_phase_is_authorized_active_and_bounded():
+def test_cross_phase_merge_completion_is_recorded():
     manifest = _load_manifest()
 
     by_id = {
@@ -251,15 +255,15 @@ def test_cross_phase_is_authorized_active_and_bounded():
 
     cross = by_id["PR2-R2B-X"]
 
-    assert cross["status"] == "validated"
+    assert cross["status"] == "merged"
     assert cross["authorization_required"] is True
     assert cross["authorization_reference"] == R2B_CROSS_PHASE_AUTHORIZATION
     assert cross["starting_baseline"] == R2B_CROSS_PHASE_BASELINE
     assert cross["validation_evidence"]
     assert cross["residual_gaps"] == []
-    assert cross["pull_request"] is None
-    assert cross["branch_head"] is None
-    assert cross["merge_commit"] is None
+    assert cross["pull_request"] == R2B_CROSS_PHASE_PR
+    assert cross["branch_head"] == R2B_CROSS_PHASE_HEAD
+    assert cross["merge_commit"] == R2B_CONTINUITY_BASELINE
 
     assert set(cross["owned_paths"]) == {
         "docs/doctrine/consolidation/afqr_r2b_cross_phase_version_identity_effectivity.md",
@@ -268,6 +272,37 @@ def test_cross_phase_is_authorized_active_and_bounded():
         "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
         "docs/decisions/current_decisions_log.md",
         "tests/test_afqr_r2b_cross_phase_version_identity_effectivity.py",
+        "tests/test_post_r2a_transition_program.py",
+    }
+
+
+def test_continuity_is_authorized_active_and_bounded():
+    manifest = _load_manifest()
+
+    by_id = {
+        workstream["workstream_id"]: workstream
+        for workstream in manifest["workstreams"]
+    }
+
+    continuity = by_id["PR2-R2B-N"]
+
+    assert continuity["status"] == "validated"
+    assert continuity["authorization_required"] is True
+    assert continuity["authorization_reference"] == R2B_CONTINUITY_AUTHORIZATION
+    assert continuity["starting_baseline"] == R2B_CONTINUITY_BASELINE
+    assert continuity["validation_evidence"]
+    assert continuity["residual_gaps"] == []
+    assert continuity["pull_request"] is None
+    assert continuity["branch_head"] is None
+    assert continuity["merge_commit"] is None
+
+    assert set(continuity["owned_paths"]) == {
+        "docs/doctrine/consolidation/afqr_r2b_continuity_qualifications.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
+        "docs/decisions/current_decisions_log.md",
+        "tests/test_afqr_r2b_continuity_qualifications.py",
         "tests/test_post_r2a_transition_program.py",
     }
 
@@ -302,7 +337,6 @@ def test_downstream_major_work_remains_blocked():
     }
 
     blocked = {
-        "PR2-R2B-N",
         "PR2-R2C",
         "PR2-ID",
         "PR2-SRC",
@@ -367,6 +401,7 @@ def test_program_and_manifest_retain_required_cross_references():
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
+    assert R2B_CONTINUITY_BASELINE in program
     assert "Myravant" in program
     assert "1,000+" in program
 
