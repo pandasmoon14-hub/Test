@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.4",
+  "artifact_version": "0.4.5",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -366,7 +366,9 @@
         "CLAUDE.md",
         "tests/test_pr2_id_myravant_identity_migration.py",
         "tests/test_post_r2a_transition_program.py",
-        "tests/test_afqr_r2c_formal_completion_review.py"
+        "tests/test_afqr_r2c_formal_completion_review.py",
+        "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml",
+        "tests/test_pr2_id_identity_surface_disposition_ledger.py"
       ],
       "prohibited_scope": [
         "indiscriminate_astra_search_and_replace",
@@ -389,7 +391,11 @@
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-AUDIT"
-      ]
+      ],
+      "current_tranche": "PR2-ID-T2A",
+      "tranche_control_artifact": "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml",
+      "tranche_authority_effect": "identity_surface_classification_only",
+      "next_tranche_authorized": false
     },
     {
       "workstream_id": "PR2-SRC",

@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.4`
+**Artifact version:** `0.4.5`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -444,6 +444,31 @@ remain preserved.
 
 R3 remains `ready_pending_authorization`. PR2-SRC and every other post-R2
 workstream remain separately blocked and unauthorized.
+
+### 5.3 PR2-ID-T2A identity-surface disposition control
+
+The read-only PR2-ID inventory identified:
+
+- `2,495` identity-bearing occurrence lines;
+- `454` tracked files containing those occurrences;
+- `233` tracked paths whose filenames contain `Astra`.
+
+This scale proves that identity migration cannot be governed by lexical
+replacement or directory-level assumptions.
+
+T2A therefore records class- and exception-based lawful dispositions in:
+
+`docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml`
+
+T2A is classification-only. It changes no gameplay doctrine, runtime namespace,
+schema identifier, imported D-series source pack, frozen review, roadmap,
+registry, or candidate doctrine prose.
+
+The ledger preserves historical/frozen surfaces, retains compatibility-bearing
+software identifiers, escalates mixed or unverified doctrine, and identifies a
+six-file candidate set for a possible later `PR2-ID-T2B`.
+
+`PR2-ID-T2B` is not active or authorized by T2A.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

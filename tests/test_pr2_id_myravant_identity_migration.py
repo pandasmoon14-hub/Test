@@ -11,6 +11,7 @@ BASE = "843fc89f3769a8e6323fa7b683d3805a9edfc142"
 AUTH = "owner_directive_2026-09-08_pr2_id_activation"
 
 CONTRACT = ROOT / "docs/doctrine/control/myravant_identity_migration_contract.md"
+LEDGER = ROOT / "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml"
 MANIFEST = ROOT / "docs/doctrine/control/post_r2a_transition_manifest.yaml"
 PROGRAM = ROOT / "docs/doctrine/control/post_r2a_transition_program.md"
 DECISIONS = ROOT / "docs/decisions/current_decisions_log.md"
@@ -24,10 +25,12 @@ ALLOWED = {
     "AGENTS.md",
     "CLAUDE.md",
     "docs/doctrine/control/myravant_identity_migration_contract.md",
+    "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml",
     "docs/doctrine/control/post_r2a_transition_manifest.yaml",
     "docs/doctrine/control/post_r2a_transition_program.md",
     "docs/decisions/current_decisions_log.md",
     "tests/test_pr2_id_myravant_identity_migration.py",
+    "tests/test_pr2_id_identity_surface_disposition_ledger.py",
     "tests/test_post_r2a_transition_program.py",
     "tests/test_afqr_r2c_formal_completion_review.py",
 }
@@ -60,8 +63,12 @@ def test_contract_establishes_identity_without_rewriting_history():
         "alias_then_migrate",
         "escalate",
         "Historical truth outranks cosmetic consistency.",
+        "PR2-ID-T2A",
+        "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml",
     ]:
         assert value in text
+
+    assert LEDGER.is_file()
 
 
 def test_current_facing_navigation_uses_myravant():
@@ -93,7 +100,7 @@ def test_manifest_records_r2c_merge_and_pr2_id_activation():
     manifest = load_manifest()
     by_id = {row["workstream_id"]: row for row in manifest["workstreams"]}
 
-    assert manifest["artifact_version"] == "0.4.4"
+    assert manifest["artifact_version"] == "0.4.5"
     assert manifest["r2_gate_state"]["R2"] == "complete"
     assert manifest["r2_gate_state"]["R3"] == "ready_pending_authorization"
     assert manifest["r3_conformance_target"]["execution_authorized"] is False
@@ -110,6 +117,10 @@ def test_manifest_records_r2c_merge_and_pr2_id_activation():
     assert pr2id["starting_baseline"] == BASE
     assert set(pr2id["dependencies"]) == {"PR2-CTRL", "PR2-R2C"}
     assert set(pr2id["owned_paths"]) == ALLOWED
+    assert pr2id["current_tranche"] == "PR2-ID-T2A"
+    assert pr2id["tranche_control_artifact"] == "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml"
+    assert pr2id["tranche_authority_effect"] == "identity_surface_classification_only"
+    assert pr2id["next_tranche_authorized"] is False
     assert pr2id["pull_request"] is None
     assert pr2id["branch_head"] is None
     assert pr2id["merge_commit"] is None

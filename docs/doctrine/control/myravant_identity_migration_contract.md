@@ -7,6 +7,7 @@
 **Starting baseline:** `843fc89f3769a8e6323fa7b683d3805a9edfc142`
 **Authorization reference:** `owner_directive_2026-09-08_pr2_id_activation`
 **Authority effect:** identity and brand migration only
+**Current tranche:** `PR2-ID-T2A`
 
 ## 1. Purpose
 
@@ -175,6 +176,40 @@ Every PR2-ID tranche must prove, as applicable:
 - `git diff --check` is clean;
 - relevant focused tests pass;
 - the full repository suite passes before final PR2-ID completion, or any environment-limited deviation is explicitly recorded and separately accepted.
+
+## 9A. Identity-surface disposition control
+
+PR2-ID-T2A adds the machine-readable disposition ledger:
+
+`docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml`
+
+The ledger is subordinate to this migration contract. It classifies discovered
+identity surfaces; it does not amend gameplay doctrine, promote canon, redefine
+semantic ownership, or authorize a later migration tranche.
+
+The inventory basis for T2A contains 2,495 identity-bearing occurrence lines
+across 454 tracked files, with 233 tracked paths whose filenames contain
+`Astra`.
+
+At this scale, directory membership and lexical spelling are insufficient
+grounds for migration. T2A therefore uses semantic-role classification,
+precedence rules, and explicit dispositions.
+
+In particular:
+
+- historical decisions and frozen reviews retain truthful Astra identity;
+- imported D-series source packs retain their predecessor-era identity and
+  provenance;
+- `astra-runtime`, `astra_runtime`, and `src/astra_runtime/` remain
+  compatibility-bearing identifiers;
+- the roadmap and registry require separate occurrence-level adjudication;
+- verified current AFQR consolidation doctrine and the active
+  conversion/runtime firewall are identified only as candidates for a later
+  semantic-neutral doctrine tranche;
+- unmatched doctrine and test surfaces escalate rather than receiving an
+  inferred rename.
+
+T2A performs classification only. It does not activate `PR2-ID-T2B`.
 
 ## 10. Completion rule
 

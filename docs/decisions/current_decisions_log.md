@@ -5035,3 +5035,52 @@ originality or information-barrier implementation, native-content production,
 runtime scalability, runtime/schema semantic redesign, canon promotion,
 conversion work, live-play/GM behavior, model training, or historical evidence
 rewriting.
+
+## 2026-09-09 decision — PR2-ID identity-surface disposition control
+
+- **Decision ID:** `PR2-ID-T2A-DISPOSITION-CONTROL-001`
+- **Workstream:** `PR2-ID`
+- **Tranche:** `PR2-ID-T2A`
+- **Starting branch head:** `09d9aa2cc92944b4dc93104cdd4c68ea961c90c9`
+- **Authorization reference:** `owner_directive_2026-09-08_pr2_id_activation`
+- **Authority effect:** identity-surface classification only
+
+### Inventory result
+
+The read-only identity inventory identified:
+
+- 2,495 identity-bearing occurrence lines;
+- 454 tracked files containing those occurrences;
+- 233 tracked paths whose filenames contain `Astra`.
+
+### Disposition decision
+
+The controlling machine-readable classification artifact is:
+
+`docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml`
+
+The following major classes are established:
+
+- current navigation already migrated with historical qualifiers;
+- predecessor-era decisions remain historical;
+- frozen review/evidence surfaces remain historical;
+- imported D-series source packs remain historical/provenance-bearing;
+- `astra-runtime`, `astra_runtime`, and `src/astra_runtime/` remain
+  compatibility-bearing;
+- roadmap/registry filenames require alias-before-migration treatment and their
+  mixed content is escalated;
+- verified current AFQR consolidation doctrine and the active
+  conversion/runtime firewall are candidate surfaces for a later bounded
+  semantic-neutral tranche;
+- unmatched doctrine/test surfaces escalate rather than being renamed by
+  inference.
+
+### Nonauthority
+
+T2A does not edit candidate doctrine prose and does not activate T2B.
+
+It does not authorize R3 execution, source governance, source processing,
+originality or information-barrier implementation, native-content production,
+runtime scalability, runtime/schema redesign, canon promotion, live-play/GM
+behavior, model training, software namespace migration, or historical evidence
+rewriting.
