@@ -4776,3 +4776,101 @@ occurred yet.
 Validation does not authorize R2C, runtime/schema implementation, canon,
 conversion, Myravant identity migration, source governance, native-content
 production, runtime scalability, or live-play work.
+
+## 2026-09-08 decision — R2C formal completion review authorization
+
+- **Decision ID:** `AFQR-R2C-AUTHORIZATION-001`
+- **Decision date:** 2026-09-08
+- **Decision type:** predecessor merge recording plus bounded formal-completion-review authorization
+- **Workstream:** `PR2-R2C`
+- **Branch:** `r2c-formal-completion-review`
+- **Starting baseline:** `5cae79bcdd86c93c6fe77b6492a8a087a83900b0`
+- **Authorization reference:** `owner_directive_2026-09-08_r2c_activation`
+
+### Predecessor completion
+
+`PR2-R2B-N` / R2B-CONTINUITY merged through PR `#378`.
+
+- certified branch head:
+  `d94f5e8f40b1b74d6bdb23e2e419e5cb5d6fb34f`;
+- merge commit:
+  `5cae79bcdd86c93c6fe77b6492a8a087a83900b0`;
+- authorized CONTINUITY residual gaps: none.
+
+This successor decision records those publication facts without changing the
+accepted CONTINUITY doctrine or rewriting its historical validation snapshot.
+
+### Authorization
+
+The owner explicitly authorizes only:
+
+`PR2-R2C — R2 formal completion review`
+
+R2C may independently determine whether R2 has earned formal closure and,
+if the evidence supports closure, may perform the bounded R2 gate update and
+define the exact R3 conformance target.
+
+### Review result
+
+The independent review artifact:
+
+`docs/doctrine/reviews/afqr_r2c_formal_completion_review.md`
+
+records:
+
+`PASS`
+
+No blocking R2 doctrine exception was found.
+
+The review verifies that:
+
+- every material R2A finding has a lawful outcome or downstream deferral;
+- all three required R2B packages are merged;
+- R2B-AGENCY and R2B-WORLD remain correctly `not_required`;
+- no unnecessary R2B package or module was manufactured;
+- R1/R1E authority remains intact;
+- no semantic super-owner was created;
+- no runtime/schema/persistence/source/canon/live-play implementation was
+  smuggled into doctrine;
+- historical evidence remains traceable;
+- downstream and frontier obligations remain preserved.
+
+### Exact R3 handoff
+
+R3's conformance target is every and only R2A-6 runtime/schema disposition
+record whose:
+
+`pressure_route == r3_conformance`
+
+across the two frozen R2A-6 shards.
+
+The accepted R2A-6 index proves exactly `34` such records.
+
+R3 execution is not authorized by R2C.
+
+### Gate effect
+
+At the review layer:
+
+- `R1=complete`;
+- `R2=complete`;
+- `R2-0=complete`;
+- `R2A=complete`;
+- `R2B=complete`;
+- `R2C=complete`;
+- `R3=ready_pending_authorization`;
+- `R4-R6=blocked`;
+- `RT-002G=unauthorized`;
+- `temporary_evidence_deletion=unauthorized`.
+
+### Explicit nonauthority
+
+This decision creates no new gameplay doctrine or semantic owner and
+authorizes no R3 execution, runtime implementation, production-schema
+implementation, persistence/replay construction, Myravant identity migration,
+source-governance implementation, source processing, originality pipeline,
+native-content production, runtime-scalability implementation, canon
+promotion, conversion work, live-play/GM behavior, or model training.
+
+R2C publication and merge remain separately gated.
+
