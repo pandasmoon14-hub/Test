@@ -7,7 +7,6 @@ ROOT = Path(__file__).resolve().parents[1]
 PROGRAM_PATH = (
     ROOT / "docs" / "doctrine" / "control" / "post_r2a_transition_program.md"
 )
-
 MANIFEST_PATH = (
     ROOT / "docs" / "doctrine" / "control" / "post_r2a_transition_manifest.yaml"
 )
@@ -15,23 +14,31 @@ MANIFEST_PATH = (
 EXPECTED_BASELINE = "b1e4c70435ddd94a8e8fe82a11d8d6cace82b5bd"
 R2B_CORE_BASELINE = "0a52db603589168a14f3c50beefbbf28274d0836"
 R2B_CORE_AUTHORIZATION = "owner_directive_2026-09-07_r2b_core_activation"
-R2B_CROSS_PHASE_BASELINE = "307ab295a8590d60a310d4b8d872971620fa74eb"
-R2B_CROSS_PHASE_AUTHORIZATION = "owner_directive_2026-09-08_r2b_cross_phase_activation"
 R2B_CORE_HEAD = "8a88068b802a9819328e09691e7c1def778a778d"
 R2B_CORE_PR = 376
+
+R2B_CROSS_PHASE_BASELINE = "307ab295a8590d60a310d4b8d872971620fa74eb"
+R2B_CROSS_PHASE_AUTHORIZATION = "owner_directive_2026-09-08_r2b_cross_phase_activation"
 R2B_CROSS_PHASE_HEAD = "eededa8e0b845fa14ba303f4d34369cefdd2f861"
 R2B_CROSS_PHASE_PR = 377
+
 R2B_CONTINUITY_BASELINE = "d70e9a5c1ab67c8e2bb6a2b8331c73269cc3b286"
 R2B_CONTINUITY_AUTHORIZATION = "owner_directive_2026-09-08_r2b_continuity_activation"
+R2B_CONTINUITY_HEAD = "d94f5e8f40b1b74d6bdb23e2e419e5cb5d6fb34f"
+R2B_CONTINUITY_PR = 378
+R2C_BASELINE = "5cae79bcdd86c93c6fe77b6492a8a087a83900b0"
+R2C_AUTHORIZATION = "owner_directive_2026-09-08_r2c_activation"
+R2C_VALIDATED_HEAD = "949575f42f8b4ba1e01963013b35376d49433faf"
 
 EXPECTED_R2_GATES = {
     "R1": "complete",
-    "R2": "active_incomplete",
+    "R2": "complete",
     "R2-0": "complete",
     "R2A": "complete",
-    "R2B": "active_incomplete",
-    "R2C": "blocked",
-    "R3-R6": "blocked",
+    "R2B": "complete",
+    "R2C": "complete",
+    "R3": "ready_pending_authorization",
+    "R4-R6": "blocked",
     "RT-002G": "unauthorized",
     "temporary_evidence_deletion": "unauthorized",
 }
@@ -40,7 +47,7 @@ EXPECTED_R2B_PACKAGES = {
     "R2B-CORE": "merged",
     "R2B-AGENCY": "not_required",
     "R2B-WORLD": "not_required",
-    "R2B-CONTINUITY": "validated",
+    "R2B-CONTINUITY": "merged",
     "R2B-CROSS-PHASE": "merged",
 }
 
@@ -95,9 +102,37 @@ TERMINAL_STATUSES = {
     "not_required",
 }
 
+POST_R2_BLOCKED = {
+    "PR2-ID",
+    "PR2-SRC",
+    "PR2-ORG",
+    "PR2-CORPUS",
+    "PR2-IR",
+    "PR2-FICT",
+    "PR2-SIMEX",
+    "PR2-SCALE",
+    "PR2-PART",
+    "PR2-CONC",
+    "PR2-FID",
+    "PR2-EVENT",
+    "PR2-PERSIST",
+    "PR2-BP",
+    "PR2-AUDIT",
+    "PR2-MIG",
+    "PR2-TEST",
+    "PR2-IMPL",
+}
+
 
 def _load_manifest():
     return json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+
+
+def _by_id(manifest):
+    return {
+        workstream["workstream_id"]: workstream
+        for workstream in manifest["workstreams"]
+    }
 
 
 def test_control_artifacts_exist():
@@ -108,12 +143,12 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
+    assert manifest["artifact_version"] == "0.4.3"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
 
     invariants = manifest["program_invariants"]
-
     assert invariants["future_project_identity"] == "Myravant"
     assert invariants["historical_project_identity"] == "Astra Ascension"
     assert invariants["minimum_external_source_scale"] >= 1000
@@ -128,18 +163,14 @@ def test_core_program_invariants_are_preserved():
     assert invariants["corpus_frequency_is_doctrine_authority"] is False
     assert invariants["semantic_mapping_implies_distribution_eligibility"] is False
     assert invariants["rename_may_rewrite_immutable_history"] is False
-    assert (
-        invariants["post_r2_program_work_held_until_r2c_complete"]
-        is True
-    )
-
+    assert invariants["post_r2_program_work_held_until_r2c_complete"] is True
     assert (
         invariants["runtime_scalability_invariant"]
         == "logical_simulation_semantics_are_independent_of_physical_execution_topology"
     )
 
 
-def test_r2_gate_state_is_not_advanced_by_transition_control():
+def test_r2c_gate_state_and_r2b_completion_are_exact():
     manifest = _load_manifest()
 
     assert manifest["r2_gate_state"] == EXPECTED_R2_GATES
@@ -147,9 +178,26 @@ def test_r2_gate_state_is_not_advanced_by_transition_control():
     assert manifest["recommended_r2b_sequence"] == EXPECTED_R2B_SEQUENCE
 
 
+def test_r3_target_is_ready_but_not_authorized():
+    manifest = _load_manifest()
+    target = manifest["r3_conformance_target"]
+
+    assert target["status"] == "ready_pending_authorization"
+    assert target["selector"] == "pressure_route == r3_conformance"
+    assert target["candidate_count"] == 34
+    assert target["execution_authorized"] is False
+    assert target["source_index"] == (
+        "docs/doctrine/reviews/r2a/dispositions_runtime_schema/index.yaml"
+    )
+    assert set(target["excluded_pressure_routes"]) == {
+        "r4_substrate",
+        "later_gate",
+        "none",
+    }
+
+
 def test_status_vocabulary_is_bounded():
     manifest = _load_manifest()
-
     statuses = manifest["status_vocabulary"]
 
     assert len(statuses) == len(set(statuses))
@@ -160,7 +208,6 @@ def test_status_vocabulary_is_bounded():
 def test_workstream_registry_is_exact_and_unique():
     manifest = _load_manifest()
     workstreams = manifest["workstreams"]
-
     ids = [workstream["workstream_id"] for workstream in workstreams]
 
     assert len(ids) == 23
@@ -168,225 +215,107 @@ def test_workstream_registry_is_exact_and_unique():
     assert set(ids) == EXPECTED_WORKSTREAM_IDS
 
 
-def test_all_dependencies_resolve():
+def test_all_dependencies_resolve_and_statuses_are_legal():
     manifest = _load_manifest()
-
     workstreams = manifest["workstreams"]
     ids = {workstream["workstream_id"] for workstream in workstreams}
+    allowed = set(manifest["status_vocabulary"])
 
     missing = []
-
     for workstream in workstreams:
+        assert workstream["status"] in allowed
         for dependency in workstream["dependencies"]:
             if dependency not in ids:
-                missing.append(
-                    (workstream["workstream_id"], dependency)
-                )
+                missing.append((workstream["workstream_id"], dependency))
 
     assert missing == []
 
 
-def test_all_workstream_statuses_are_legal():
+def test_r2b_merge_chain_is_fully_recorded():
     manifest = _load_manifest()
+    by_id = _by_id(manifest)
 
-    allowed = set(manifest["status_vocabulary"])
+    core = by_id["PR2-R2B-C"]
+    assert core["status"] == "merged"
+    assert core["authorization_reference"] == R2B_CORE_AUTHORIZATION
+    assert core["starting_baseline"] == R2B_CORE_BASELINE
+    assert core["pull_request"] == R2B_CORE_PR
+    assert core["branch_head"] == R2B_CORE_HEAD
+    assert core["merge_commit"] == R2B_CROSS_PHASE_BASELINE
+    assert core["residual_gaps"] == []
 
-    for workstream in manifest["workstreams"]:
-        assert workstream["status"] in allowed
+    cross = by_id["PR2-R2B-X"]
+    assert cross["status"] == "merged"
+    assert cross["authorization_reference"] == R2B_CROSS_PHASE_AUTHORIZATION
+    assert cross["starting_baseline"] == R2B_CROSS_PHASE_BASELINE
+    assert cross["pull_request"] == R2B_CROSS_PHASE_PR
+    assert cross["branch_head"] == R2B_CROSS_PHASE_HEAD
+    assert cross["merge_commit"] == R2B_CONTINUITY_BASELINE
+    assert cross["residual_gaps"] == []
+
+    continuity = by_id["PR2-R2B-N"]
+    assert continuity["status"] == "merged"
+    assert continuity["authorization_reference"] == R2B_CONTINUITY_AUTHORIZATION
+    assert continuity["starting_baseline"] == R2B_CONTINUITY_BASELINE
+    assert continuity["pull_request"] == R2B_CONTINUITY_PR
+    assert continuity["branch_head"] == R2B_CONTINUITY_HEAD
+    assert continuity["merge_commit"] == R2C_BASELINE
+    assert continuity["residual_gaps"] == []
 
 
-def test_continuity_is_the_only_validated_workstream_and_none_are_active():
+def test_r2c_is_validated_unpublished_and_no_workstream_is_active():
     manifest = _load_manifest()
+    by_id = _by_id(manifest)
 
     active = {
         workstream["workstream_id"]
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    validated = {
-        workstream["workstream_id"]
-        for workstream in manifest["workstreams"]
-        if workstream["status"] == "validated"
-    }
-
     assert active == set()
-    assert validated == {"PR2-R2B-N"}
 
+    r2c = by_id["PR2-R2C"]
+    assert r2c["status"] == "validated"
+    assert r2c["authorization_reference"] == R2C_AUTHORIZATION
+    assert r2c["starting_baseline"] == R2C_BASELINE
+    assert r2c["validation_evidence"] == [
+        "focused R2C, transition-control, and predecessor validation:63 passed",
+        "full repository suite:8922 passed, 10 skipped, 2 xfailed, 1 warning",
+        "git diff --check:clean",
+        "validated working tree:clean",
+    ]
+    assert r2c["pull_request"] is None
+    assert r2c["branch_head"] == R2C_VALIDATED_HEAD
+    assert r2c["merge_commit"] is None
+    assert r2c["residual_gaps"] == []
 
-def test_r2b_core_merge_completion_is_recorded():
+def test_post_r2_major_work_remains_blocked_and_unauthorized():
     manifest = _load_manifest()
+    by_id = _by_id(manifest)
 
-    by_id = {
-        workstream["workstream_id"]: workstream
-        for workstream in manifest["workstreams"]
-    }
-
-    core = by_id["PR2-R2B-C"]
-
-    assert core["status"] == "merged"
-    assert core["authorization_required"] is True
-    assert core["authorization_reference"] == R2B_CORE_AUTHORIZATION
-    assert core["starting_baseline"] == R2B_CORE_BASELINE
-    assert core["validation_evidence"]
-    assert core["residual_gaps"] == []
-    assert core["pull_request"] == R2B_CORE_PR
-    assert core["branch_head"] == R2B_CORE_HEAD
-    assert core["merge_commit"] == R2B_CROSS_PHASE_BASELINE
-
-    assert set(core["owned_paths"]) == {
-        "docs/doctrine/consolidation/afqr_r2b_core_qualifications.md",
-        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
-        "docs/doctrine/control/post_r2a_transition_program.md",
-        "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
-        "docs/decisions/current_decisions_log.md",
-        "tests/test_afqr_r2b_core_qualifications.py",
-        "tests/test_post_r2a_transition_program.py",
-        "tests/test_afqr_r2a12_independent_completion_review.py",
-    }
-
-
-def test_cross_phase_merge_completion_is_recorded():
-    manifest = _load_manifest()
-
-    by_id = {
-        workstream["workstream_id"]: workstream
-        for workstream in manifest["workstreams"]
-    }
-
-    cross = by_id["PR2-R2B-X"]
-
-    assert cross["status"] == "merged"
-    assert cross["authorization_required"] is True
-    assert cross["authorization_reference"] == R2B_CROSS_PHASE_AUTHORIZATION
-    assert cross["starting_baseline"] == R2B_CROSS_PHASE_BASELINE
-    assert cross["validation_evidence"]
-    assert cross["residual_gaps"] == []
-    assert cross["pull_request"] == R2B_CROSS_PHASE_PR
-    assert cross["branch_head"] == R2B_CROSS_PHASE_HEAD
-    assert cross["merge_commit"] == R2B_CONTINUITY_BASELINE
-
-    assert set(cross["owned_paths"]) == {
-        "docs/doctrine/consolidation/afqr_r2b_cross_phase_version_identity_effectivity.md",
-        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
-        "docs/doctrine/control/post_r2a_transition_program.md",
-        "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
-        "docs/decisions/current_decisions_log.md",
-        "tests/test_afqr_r2b_cross_phase_version_identity_effectivity.py",
-        "tests/test_post_r2a_transition_program.py",
-    }
-
-
-def test_continuity_is_authorized_active_and_bounded():
-    manifest = _load_manifest()
-
-    by_id = {
-        workstream["workstream_id"]: workstream
-        for workstream in manifest["workstreams"]
-    }
-
-    continuity = by_id["PR2-R2B-N"]
-
-    assert continuity["status"] == "validated"
-    assert continuity["authorization_required"] is True
-    assert continuity["authorization_reference"] == R2B_CONTINUITY_AUTHORIZATION
-    assert continuity["starting_baseline"] == R2B_CONTINUITY_BASELINE
-    assert continuity["validation_evidence"]
-    assert continuity["residual_gaps"] == []
-    assert continuity["pull_request"] is None
-    assert continuity["branch_head"] is None
-    assert continuity["merge_commit"] is None
-
-    assert set(continuity["owned_paths"]) == {
-        "docs/doctrine/consolidation/afqr_r2b_continuity_qualifications.md",
-        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
-        "docs/doctrine/control/post_r2a_transition_program.md",
-        "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
-        "docs/decisions/current_decisions_log.md",
-        "tests/test_afqr_r2b_continuity_qualifications.py",
-        "tests/test_post_r2a_transition_program.py",
-    }
-
-
-
-def test_pr2_ctrl_merge_completion_is_recorded():
-    manifest = _load_manifest()
-
-    by_id = {
-        workstream["workstream_id"]: workstream
-        for workstream in manifest["workstreams"]
-    }
-
-    ctrl = by_id["PR2-CTRL"]
-
-    assert ctrl["status"] == "merged"
-    assert ctrl["pull_request"] == 375
-    assert (
-        ctrl["branch_head"]
-        == "4256e8771d2a22845c9b29f5950d682112f9ef61"
-    )
-    assert ctrl["merge_commit"] == R2B_CORE_BASELINE
-    assert ctrl["validation_evidence"]
-
-
-def test_downstream_major_work_remains_blocked():
-    manifest = _load_manifest()
-
-    by_id = {
-        workstream["workstream_id"]: workstream
-        for workstream in manifest["workstreams"]
-    }
-
-    blocked = {
-        "PR2-R2C",
-        "PR2-ID",
-        "PR2-SRC",
-        "PR2-ORG",
-        "PR2-CORPUS",
-        "PR2-IR",
-        "PR2-FICT",
-        "PR2-SIMEX",
-        "PR2-SCALE",
-        "PR2-PART",
-        "PR2-CONC",
-        "PR2-FID",
-        "PR2-EVENT",
-        "PR2-PERSIST",
-        "PR2-BP",
-        "PR2-AUDIT",
-        "PR2-MIG",
-        "PR2-TEST",
-        "PR2-IMPL",
-    }
-
-    for workstream_id in blocked:
+    for workstream_id in POST_R2_BLOCKED:
         assert by_id[workstream_id]["status"] == "blocked"
+        assert by_id[workstream_id]["authorization_reference"] is None
 
 
 def test_critical_dependency_chain_is_preserved():
     manifest = _load_manifest()
-
-    by_id = {
-        workstream["workstream_id"]: workstream
-        for workstream in manifest["workstreams"]
-    }
+    by_id = _by_id(manifest)
 
     assert by_id["PR2-R2B-C"]["dependencies"] == ["PR2-CTRL"]
     assert by_id["PR2-R2B-X"]["dependencies"] == ["PR2-R2B-C"]
     assert by_id["PR2-R2B-N"]["dependencies"] == ["PR2-R2B-X"]
-
     assert set(by_id["PR2-R2C"]["dependencies"]) == {
         "PR2-R2B-C",
         "PR2-R2B-X",
         "PR2-R2B-N",
     }
-
     assert set(by_id["PR2-PERSIST"]["dependencies"]) == {
         "PR2-SCALE",
         "PR2-R2B-C",
         "PR2-R2B-X",
         "PR2-R2B-N",
     }
-
     assert set(by_id["PR2-IMPL"]["dependencies"]) == {
         "PR2-R2C",
         "PR2-MIG",
@@ -394,16 +323,22 @@ def test_critical_dependency_chain_is_preserved():
     }
 
 
-def test_program_and_manifest_retain_required_cross_references():
+def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
+    assert "**Artifact version:** `0.4.3`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
     assert R2B_CONTINUITY_BASELINE in program
+    assert R2C_BASELINE in program
+    assert R2C_AUTHORIZATION in program
     assert "Myravant" in program
     assert "1,000+" in program
+    assert "Review result:\n\n`PASS`" in program
+    assert "`R3=ready_pending_authorization`" in program
+    assert "exactly `34` such records" in program
 
     for package in EXPECTED_R2B_SEQUENCE:
         assert package in program
@@ -415,16 +350,24 @@ def test_program_and_manifest_retain_required_cross_references():
         "Logical simulation semantics must remain independent of physical execution topology."
         in program
     )
-
     assert (
         manifest["program_document"]
         == "docs/doctrine/control/post_r2a_transition_program.md"
     )
 
 
+def test_program_explicitly_preserves_successor_authorization_boundaries():
+    program = PROGRAM_PATH.read_text(encoding="utf-8")
+
+    assert "R2C completion does not automatically activate any successor." in program
+    assert "R3` is dependency-ready with an exact 34-record conformance target" in program
+    assert "PR2-ID` Myravant identity migration" in program
+    assert "No source-governance, originality, information-barrier, native-content" in program
+    assert "RT-002G=unauthorized" in program
+
+
 def test_program_completion_rule_forbids_untracked_disappearance():
     manifest = _load_manifest()
-
     rule = manifest["program_completion_rule"]
 
     assert rule["untracked_disappearance_allowed"] is False

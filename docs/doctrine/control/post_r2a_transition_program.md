@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.1`
+**Artifact version:** `0.4.3`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -290,113 +290,121 @@ The transition program recommends the following R2B order:
 
 `R2B-CORE -> R2B-CROSS-PHASE -> R2B-CONTINUITY`
 
-This is a sequencing recommendation, not package authorization.
+This sequence is now historically complete. It remains recorded because it explains the accepted R2B dependency chain; it is not a continuing authorization rule.
 
-The rationale is:
+The rationale was:
 
-- CORE contains bounded qualifications involving preview persistence/promotion and correction-specific RNG identity/preservation;
-- CROSS-PHASE contains the single routed seam for ruleset, content-package, campaign-override, schema-version identity, pinning, applicability, and effective intervals;
-- CONTINUITY can then resolve timeline, branch, correction, ancestry, canonicality, and branch-safe projection concerns without duplicating CORE or CROSS-PHASE ownership.
+- CORE contained bounded qualifications involving preview persistence/promotion and correction-specific RNG identity/preservation;
+- CROSS-PHASE contained the single routed seam for ruleset, content-package, campaign-override, schema-version identity, pinning, applicability, and effective intervals;
+- CONTINUITY then resolved timeline, branch, correction, ancestry, canonicality, and branch-safe projection concerns without duplicating CORE or CROSS-PHASE ownership.
 
-In particular, version identity/effective-interval governance must not be duplicated into CONTINUITY merely because continuity mechanisms consume it.
+In particular, version identity/effective-interval governance was not duplicated into CONTINUITY merely because continuity mechanisms consume it.
 
-Each required R2B package still requires a separate authorization action.
+### 5.1 Current validated successor state — PR2-R2C
 
-### 5.1 Current authorized successor state — PR2-R2B-N
+All three R2B packages proven necessary by R2A are now merged.
 
-R2B-CROSS-PHASE completed and merged through PR `#377`.
+#### R2B-CORE
 
-R2B-CORE began from the PR2-CTRL merge baseline:
+Starting baseline:
 
 `0a52db603589168a14f3c50beefbbf28274d0836`
 
-R2B-CROSS-PHASE began from the R2B-CORE merge baseline:
+PR: `#376`
+
+Certified branch head:
+
+`8a88068b802a9819328e09691e7c1def778a778d`
+
+Merge commit:
 
 `307ab295a8590d60a310d4b8d872971620fa74eb`
 
-Its certified branch head is:
+#### R2B-CROSS-PHASE
+
+PR: `#377`
+
+Certified branch head:
 
 `eededa8e0b845fa14ba303f4d34369cefdd2f861`
 
-Its merge commit, and the starting baseline for CONTINUITY, is:
+Merge commit:
 
 `d70e9a5c1ab67c8e2bb6a2b8331c73269cc3b286`
 
-The owner has subsequently authorized only:
+#### R2B-CONTINUITY
 
-`PR2-R2B-N — R2B CONTINUITY doctrine resolution`
+PR: `#378`
+
+Certified branch head:
+
+`d94f5e8f40b1b74d6bdb23e2e419e5cb5d6fb34f`
+
+Merge commit and R2C starting baseline:
+
+`5cae79bcdd86c93c6fe77b6492a8a087a83900b0`
+
+The owner has separately authorized:
+
+`PR2-R2C — R2 formal completion review`
 
 Authorization reference:
 
-`owner_directive_2026-09-08_r2b_continuity_activation`
+`owner_directive_2026-09-08_r2c_activation`
 
-R2B-CONTINUITY contains exactly five routed doctrine modules:
+R2C independently reviews completion only. It may not invent new doctrine, create a semantic super-owner, implement runtime or production schemas, construct persistence/replay infrastructure, begin source processing, migrate Myravant identity, create native content, promote canon, authorize scalability implementation, or define live-play/GM behavior.
 
-1. `R2B-CONTINUITY-MOD-TIMELINE-IDENTITY-QUALIFICATION`;
-2. `R2B-CONTINUITY-MOD-BITEMPORAL-QUALIFICATION`;
-3. `R2B-CONTINUITY-MOD-BRANCH-CANONICALITY-ANCESTRY`;
-4. `R2B-CONTINUITY-MOD-CORRECTION-GOVERNANCE`;
-5. `R2B-CONTINUITY-MOD-BRANCH-SAFE-PROJECTION`.
+Formal review artifact:
 
-Those modules may resolve only:
+`docs/doctrine/reviews/afqr_r2c_formal_completion_review.md`
 
-- stable authoritative timeline identity across accepted time and identity
-  owners;
-- world-valid versus record/commitment-time qualification;
-- branch class, canonicality, ancestry, fork, promotion, and archive
-  qualifications;
-- correction, compensation, supersession, retcon, and alternate-history
-  continuity effects;
-- branch-safe projection/disclosure composition.
+Review result:
 
-The participating AFQR references remain separate component owners.
+`PASS`
 
-CONTINUITY may not become a combined owner for commitment, time, identity,
-dependency, evidence, epistemic truth, sensing, canon, conversion, or runtime
-truth.
+Validation lifecycle state:
 
-Two candidate modules remain explicitly not required:
+`validated`
 
-- ruleset/package/override version governance, because that seam was resolved
-  exactly once by merged R2B-CROSS-PHASE;
-- session-closure snapshot doctrine, because AFQR-01 retains the closure
-  envelope and representation remains downstream.
+Validated branch head:
 
-The five authorized CONTINUITY seams are now resolved in
-`afqr_r2b_continuity_qualifications.md`.
+`949575f42f8b4ba1e01963013b35376d49433faf`
 
 Validation evidence:
 
-- focused R2B-CONTINUITY, R2B-CROSS-PHASE, R2B-CORE, and transition-control
-  validation: `50 passed`;
-- R2A regression suite: `135 passed`;
-- full repository suite:
-  `8915 passed, 10 skipped, 2 xfailed, 1 warning`;
-- `git diff --check`: clean.
+- focused R2C, transition-control, and predecessor validation: `63 passed`;
+- full repository suite: `8922 passed, 10 skipped, 2 xfailed, 1 warning`;
+- `git diff --check`: clean;
+- validated working tree: clean.
 
-`PR2-R2B-N` is `validated` pending merge. Validation is not merge and does not
-satisfy the dependency required to begin `PR2-R2C`. R2C remains separately
-blocked and unauthorized.
+No R2C pull request has been created and no R2C merge commit exists at this validation state. Publication and merge remain separately gated.
+
+The review found no blocking R2 doctrine exception and therefore closes the R2 review layer:
+
+- `R1=complete`;
+- `R2=complete`;
+- `R2-0=complete`;
+- `R2A=complete`;
+- `R2B=complete`;
+- `R2C=complete`.
+
+R3 receives an exact conformance target but is not activated by R2C. The target is every and only R2A-6 record in the two frozen runtime/schema disposition shards whose `pressure_route` is `r3_conformance`; the R2A-6 index proves exactly `34` such records.
+
+Frozen target shard SHA-256 values are:
+
+- `7ddb4d6e7e7342c44a9e6e0e574309b1e084743fd469ef4eec3944b668b0cd05`;
+- `e4b1293559231990c0468908c74648ba34c355373857d1b824fd375a648e2569`.
 
 Current gate posture is:
 
-- `R2=active_incomplete`;
-- `R2B=active_incomplete`;
-- `R2B-CORE=merged`;
-- `R2B-CROSS-PHASE=merged`;
-- `R2B-CONTINUITY=validated` pending merge;
-- `R2C=blocked`;
-- `R3-R6=blocked`;
+- `R3=ready_pending_authorization`;
+- `R4-R6=blocked`;
 - `RT-002G=unauthorized`;
 - temporary evidence deletion remains unauthorized.
 
-The owner-confirmed hold on post-R2 identity migration, source governance,
-native-content, runtime-scalability implementation, canon, conversion, and
-live-play work remains in force until R2C formally closes R2.
+The owner-confirmed post-R2 sequence remains held behind separate authorization. R2C completion removes the R2 dependency blocker; it does not itself authorize Myravant identity migration, source governance, originality governance, native-content production, runtime scalability, canon, conversion, implementation, or live play.
 
-The workstream table below records the **initial PR2-CTRL registry state**.
-Current workstream state is owned by the machine-readable transition manifest
-and explicit successor decisions.
+The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
 ## 6. Controlled workstream registry
 
@@ -760,15 +768,22 @@ Performance throughput alone is not sufficient evidence of scalable correctness.
 
 ## 18. Relationship to current R2 gates
 
-This artifact does not bypass R2.
+R2 has formally closed through the independently authorized `PR2-R2C` review.
 
-R2B doctrine work must still be separately authorized.
+Current R2 state is:
 
-R2C remains blocked until all separately authorized required R2B work is complete.
+- `R1=complete`;
+- `R2=complete`;
+- `R2-0=complete`;
+- `R2A=complete`;
+- `R2B=complete`;
+- `R2C=complete`.
 
-R3-R6 remain governed by the accepted R2 control sequence unless an authority-bearing successor explicitly changes that sequence.
+R3 now has the exact 34-record conformance target defined in §5.1 and the machine-readable manifest, but R3 execution remains `ready_pending_authorization`.
 
-Runtime or schema implementation blocked by current authority remains blocked.
+R4-R6 remain blocked under their accepted later-gate dependencies.
+
+Runtime or schema implementation not otherwise authorized remains unauthorized. R2C closure is not an implementation gate.
 
 Planning a future architecture does not constitute implementation authorization.
 
@@ -801,13 +816,14 @@ The Myravant rename must therefore not be implemented as an indiscriminate repla
 
 ## 20. Immediate next gate
 
-After `PR2-CTRL` is accepted and merged, the next doctrine gate is:
+R2C completion does not automatically activate any successor.
 
-`PR2-R2B-C`
+Two distinct successor facts are now true:
 
-That workstream remains `ready_pending_authorization` until the owner explicitly authorizes bounded R2B-CORE work.
+1. `R3` is dependency-ready with an exact 34-record conformance target, but remains `ready_pending_authorization`.
+2. The owner-selected first post-R2 build-out workstream is `PR2-ID` Myravant identity migration, but it remains blocked until a separate explicit authorization establishes its bounded migration contract.
 
-No later workstream is authorized merely because it appears in this program.
+No source-governance, originality, information-barrier, native-content, runtime-scalability, canon, conversion, implementation, or live-play workstream is authorized merely because R2 has closed.
 
 ## 21. Completion condition for this program
 
