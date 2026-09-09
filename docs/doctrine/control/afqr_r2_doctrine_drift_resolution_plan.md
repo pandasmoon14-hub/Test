@@ -1,7 +1,7 @@
 # AFQR R2 Doctrine-Drift Resolution Control Plan
 
-**Layer:** `0_control`  
-**Authority:** bounded R2 sequencing and routing only  
+**Layer:** `0_control`
+**Authority:** bounded R2 sequencing and routing only
 **Overall R2 status:** `complete`
 
 ## Invariants

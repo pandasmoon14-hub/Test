@@ -1,12 +1,12 @@
 # AFQR R2C Formal Completion Review
 
-**Artifact ID:** `AFQR-R2C-FORMAL-COMPLETION-REVIEW-001`  
-**Phase:** `R2C`  
-**Workstream:** `PR2-R2C`  
-**Status:** `complete`  
-**Review result:** `PASS`  
-**Inspected merged baseline:** `5cae79bcdd86c93c6fe77b6492a8a087a83900b0`  
-**Authority:** independent R2 completion review, bounded R2 gate decision, and exact R3 conformance-target handoff only  
+**Artifact ID:** `AFQR-R2C-FORMAL-COMPLETION-REVIEW-001`
+**Phase:** `R2C`
+**Workstream:** `PR2-R2C`
+**Status:** `complete`
+**Review result:** `PASS`
+**Inspected merged baseline:** `5cae79bcdd86c93c6fe77b6492a8a087a83900b0`
+**Authority:** independent R2 completion review, bounded R2 gate decision, and exact R3 conformance-target handoff only
 **Authorization reference:** `owner_directive_2026-09-08_r2c_activation`
 
 ## 1. Review purpose
