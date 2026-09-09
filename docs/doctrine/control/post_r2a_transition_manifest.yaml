@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.1",
+  "artifact_version": "0.4.2",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -28,12 +28,13 @@
   },
   "r2_gate_state": {
     "R1": "complete",
-    "R2": "active_incomplete",
+    "R2": "complete",
     "R2-0": "complete",
     "R2A": "complete",
-    "R2B": "active_incomplete",
-    "R2C": "blocked",
-    "R3-R6": "blocked",
+    "R2B": "complete",
+    "R2C": "complete",
+    "R3": "ready_pending_authorization",
+    "R4-R6": "blocked",
     "RT-002G": "unauthorized",
     "temporary_evidence_deletion": "unauthorized"
   },
@@ -41,8 +42,30 @@
     "R2B-CORE": "merged",
     "R2B-AGENCY": "not_required",
     "R2B-WORLD": "not_required",
-    "R2B-CONTINUITY": "validated",
+    "R2B-CONTINUITY": "merged",
     "R2B-CROSS-PHASE": "merged"
+  },
+  "r3_conformance_target": {
+    "status": "ready_pending_authorization",
+    "source_index": "docs/doctrine/reviews/r2a/dispositions_runtime_schema/index.yaml",
+    "selector": "pressure_route == r3_conformance",
+    "candidate_count": 34,
+    "frozen_shards": [
+      {
+        "path": "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0001.yaml",
+        "content_sha256": "7ddb4d6e7e7342c44a9e6e0e574309b1e084743fd469ef4eec3944b668b0cd05"
+      },
+      {
+        "path": "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0002.yaml",
+        "content_sha256": "e4b1293559231990c0468908c74648ba34c355373857d1b824fd375a648e2569"
+      }
+    ],
+    "excluded_pressure_routes": [
+      "r4_substrate",
+      "later_gate",
+      "none"
+    ],
+    "execution_authorized": false
   },
   "recommended_r2b_sequence": [
     "R2B-CORE",
@@ -215,7 +238,7 @@
       "title": "R2B CONTINUITY doctrine resolution",
       "category": "doctrine",
       "purpose": "Resolve the bounded continuity seams proven necessary by R2A without duplicating CORE or CROSS-PHASE authority.",
-      "status": "validated",
+      "status": "merged",
       "dependencies": [
         "PR2-R2B-X"
       ],
@@ -256,9 +279,9 @@
         "full repository suite:8915 passed, 10 skipped, 2 xfailed, 1 warning",
         "git diff --check:clean"
       ],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "pull_request": 378,
+      "branch_head": "d94f5e8f40b1b74d6bdb23e2e419e5cb5d6fb34f",
+      "merge_commit": "5cae79bcdd86c93c6fe77b6492a8a087a83900b0",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-R2C"
@@ -269,30 +292,50 @@
       "title": "R2 formal completion review",
       "category": "review",
       "purpose": "Independently verify formal R2 completion after all authorized required R2B work.",
-      "status": "blocked",
+      "status": "active",
       "dependencies": [
         "PR2-R2B-C",
         "PR2-R2B-X",
         "PR2-R2B-N"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-08_r2c_activation",
       "authority_effect": "completion_review_and_gate_update_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "5cae79bcdd86c93c6fe77b6492a8a087a83900b0",
+      "owned_paths": [
+        "docs/doctrine/reviews/afqr_r2c_formal_completion_review.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
+        "docs/decisions/current_decisions_log.md",
+        "tests/test_afqr_r2c_formal_completion_review.py",
+        "tests/test_post_r2a_transition_program.py"
+      ],
       "prohibited_scope": [
         "new_doctrine_invention",
+        "semantic_super_owner_creation",
         "runtime_implementation",
-        "source_pipeline_implementation"
+        "production_schema_implementation",
+        "persistence_or_replay_implementation",
+        "source_pipeline_implementation",
+        "canon_promotion",
+        "myravant_identity_migration",
+        "native_content_production",
+        "runtime_scalability_implementation",
+        "live_play_or_gm_behavior",
+        "temporary_evidence_deletion"
       ],
-      "entry_condition": "All separately authorized required R2B packages are complete.",
-      "completion_condition": "Independent review establishes R2 completion or records blocking exceptions.",
+      "entry_condition": "All separately authorized required R2B packages are complete and R2C is separately authorized.",
+      "completion_condition": "Independent review establishes R2 completion or records blocking exceptions, fixes the exact R3 conformance target, and passes bounded validation.",
       "validation_evidence": [],
       "pull_request": null,
       "branch_head": null,
       "merge_commit": null,
       "residual_gaps": [],
-      "downstream_handoff": []
+      "downstream_handoff": [
+        "R3",
+        "PR2-ID"
+      ]
     },
     {
       "workstream_id": "PR2-ID",
