@@ -306,6 +306,10 @@ All three R2B packages proven necessary by R2A are now merged.
 
 #### R2B-CORE
 
+Starting baseline:
+
+`0a52db603589168a14f3c50beefbbf28274d0836`
+
 PR: `#376`
 
 Certified branch head:

@@ -4873,4 +4873,3 @@ native-content production, runtime-scalability implementation, canon
 promotion, conversion work, live-play/GM behavior, or model training.
 
 R2C publication and merge remain separately gated.
-
