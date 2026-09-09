@@ -259,8 +259,14 @@ def test_r2a_question_package_module_evidence_is_unchanged():
 
 
 def test_r2c_changed_file_footprint_is_bounded():
+    # R2C is historical once successor work begins. Validate its immutable
+    # published footprint rather than comparing the R2C base to moving HEAD.
     changed = set(
-        git("diff", "--name-only", f"{BASE}...HEAD").splitlines()
+        git(
+            "diff",
+            "--name-only",
+            f"{BASE}...{R2C_PUBLICATION_HEAD}",
+        ).splitlines()
     )
 
     assert changed
@@ -273,7 +279,7 @@ def test_r2c_changed_file_footprint_is_bounded():
         "diff",
         "--name-status",
         "--diff-filter=D",
-        f"{BASE}...HEAD",
+        f"{BASE}...{R2C_PUBLICATION_HEAD}",
     )
 
 

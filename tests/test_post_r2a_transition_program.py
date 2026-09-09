@@ -366,12 +366,14 @@ def test_program_and_manifest_retain_required_current_cross_references():
 def test_program_explicitly_preserves_successor_authorization_boundaries():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
 
-    assert "R2C completion does not automatically activate any successor." in program
-    assert "R3` is dependency-ready with an exact 34-record conformance target" in program
-    assert "PR2-ID` Myravant identity migration" in program
-    assert "No source-governance, originality, information-barrier, native-content" in program
+    # R2C itself did not activate a successor. PR2-ID was authorized later
+    # through its own explicit owner directive.
+    assert "R2C completion did not automatically activate a successor." in program
+    assert "`PR2-ID` is `active`" in program
+    assert "`R3` remains `ready_pending_authorization`" in program
+    assert "`PR2-SRC` and all other source-governance" in program
+    assert "PR2-ID identity authority does not transfer authority" in program
     assert "RT-002G=unauthorized" in program
-
 
 def test_program_completion_rule_forbids_untracked_disappearance():
     manifest = _load_manifest()
