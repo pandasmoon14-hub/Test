@@ -1,4 +1,4 @@
-"""Validation for PR2-ID-T2A dispositions and separately authorized T2B activation."""
+"""Validation for PR2-ID identity dispositions through the T2C retention record."""
 from __future__ import annotations
 
 import json
@@ -11,6 +11,8 @@ BASE = "843fc89f3769a8e6323fa7b683d3805a9edfc142"
 T2A_BASE = "09d9aa2cc92944b4dc93104cdd4c68ea961c90c9"
 T2A_HEAD = "f7c29730ebcca5d593621c1bca77dea54f5d0223"
 T2B_AUTH = "owner_directive_2026-09-09_pr2_id_t2b_activation"
+T2B_HEAD = "e00bf6d6a8b7180dff34202a5602d69cab151d7f"
+T2C_AUTH = "owner_directive_2026-09-09_pr2_id_t2c_recording_activation"
 
 LEDGER = (
     ROOT
@@ -85,7 +87,7 @@ def test_ledger_identity_and_inventory_counts_are_exact():
     assert data["artifact_id"] == (
         "PR2-ID-IDENTITY-SURFACE-DISPOSITION-LEDGER-001"
     )
-    assert data["artifact_version"] == "0.2.0"
+    assert data["artifact_version"] == "0.3.0"
     assert data["status"] == "active"
     assert data["workstream_id"] == "PR2-ID"
     assert data["tranche_id"] == "PR2-ID-T2A"
@@ -143,7 +145,8 @@ def test_t2b_candidate_set_is_exact_and_separately_authorized():
     next_tranche = data["next_candidate_tranche"]
 
     assert next_tranche["tranche_id"] == "PR2-ID-T2B"
-    assert next_tranche["status"] == "active"
+    assert next_tranche["status"] == "completed"
+    assert next_tranche["publication_head"] == T2B_HEAD
     assert next_tranche["authority_granted"] is True
     assert next_tranche["starting_branch_head"] == T2A_HEAD
     assert next_tranche["authorization_reference"] == T2B_AUTH
@@ -202,8 +205,17 @@ def test_t2b_authority_remains_bounded_and_downstream_stays_blocked():
     assert data["unresolved_escalations"] == [
         "roadmap_and_registry_currentness_and_identity_roles",
         "Astra_Doctrine_Council_governance_role_name",
-        "broader_doctrine_current_authority_classification",
-        "setting_or_canon_identity_vs_platform_identity",
-        "software_namespace_future_alias_or_deprecation_policy",
         "r1b_shared_vocabulary_identity_and_exact_parity",
+        "software_namespace_future_alias_or_deprecation_policy",
     ]
+
+    t2c = data["t2c_recording_tranche"]
+    assert t2c["tranche_id"] == "PR2-ID-T2C"
+    assert t2c["status"] == "completed"
+    assert t2c["authority_granted"] is True
+    assert t2c["starting_branch_head"] == T2B_HEAD
+    assert t2c["authorization_reference"] == T2C_AUTH
+    assert t2c["residual_files"] == 33
+    assert t2c["high_recall_identity_occurrence_lines"] == 44
+    assert t2c["content_edit_targets"] == 0
+    assert t2c["disposition"] == "retain_historical"

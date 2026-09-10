@@ -9,6 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 T2A_HEAD = "f7c29730ebcca5d593621c1bca77dea54f5d0223"
 T2B_AUTH = "owner_directive_2026-09-09_pr2_id_t2b_activation"
+T2B_HEAD = "e00bf6d6a8b7180dff34202a5602d69cab151d7f"
+T2C_AUTH = "owner_directive_2026-09-09_pr2_id_t2c_recording_activation"
 
 CORE = "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
 CROSS = "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"
@@ -127,7 +129,8 @@ def test_t2b_control_state_and_counts_are_machine_readable():
 
     nxt = ledger["next_candidate_tranche"]
     assert nxt["tranche_id"] == "PR2-ID-T2B"
-    assert nxt["status"] == "active"
+    assert nxt["status"] == "completed"
+    assert nxt["publication_head"] == T2B_HEAD
     assert nxt["authority_granted"] is True
     assert nxt["starting_branch_head"] == T2A_HEAD
     assert nxt["authorization_reference"] == T2B_AUTH
@@ -168,12 +171,12 @@ def test_t2b_control_state_and_counts_are_machine_readable():
     pr2id = next(
         row for row in manifest["workstreams"] if row["workstream_id"] == "PR2-ID"
     )
-    assert pr2id["current_tranche"] == "PR2-ID-T2B"
-    assert pr2id["current_tranche_starting_head"] == T2A_HEAD
-    assert pr2id["current_tranche_authorization_reference"] == T2B_AUTH
+    assert pr2id["current_tranche"] == "PR2-ID-T2C"
+    assert pr2id["current_tranche_starting_head"] == T2B_HEAD
+    assert pr2id["current_tranche_authorization_reference"] == T2C_AUTH
     assert pr2id["next_tranche_authorized"] is False
 
-    assert "**Current tranche:** `PR2-ID-T2B`" in contract
+    assert "## 9B. Audited current-doctrine identity migration" in contract
     assert T2B_AUTH in contract
     assert "### 5.4 PR2-ID-T2B audited current-doctrine identity migration" in program
     assert T2B_AUTH in program

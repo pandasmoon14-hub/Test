@@ -7,7 +7,7 @@
 **Starting baseline:** `843fc89f3769a8e6323fa7b683d3805a9edfc142`
 **Authorization reference:** `owner_directive_2026-09-08_pr2_id_activation`
 **Authority effect:** identity and brand migration only
-**Current tranche:** `PR2-ID-T2B`
+**Current tranche:** `PR2-ID-T2C`
 
 ## 1. Purpose
 
@@ -259,6 +259,47 @@ T2B.
 T2B changes identity wording only. It does not alter doctrine semantics,
 semantic ownership, runtime/schema behavior, source governance, canon,
 conversion behavior, live-play/GM behavior, or any downstream authorization.
+
+
+## 9C. Noncurrent identity-surface retention recording
+
+`PR2-ID-T2C` is authorized by `owner_directive_2026-09-09_pr2_id_t2c_recording_activation` from published T2B head
+`e00bf6d6a8b7180dff34202a5602d69cab151d7f`.
+
+T2C records the completed read-only residual authority audit in:
+
+`docs/doctrine/control/myravant_identity_noncurrent_surface_retention_record.yaml`
+
+The audit resolves exactly `33` residual files containing `44` high-recall
+Astra identity occurrence lines. Every one of those files is a noncurrent
+draft, planning, scaffold, schema-draft, operational-draft, or predecessor-era
+control artifact. Their lawful identity disposition is `retain_historical`.
+
+T2C therefore has `0` content-edit targets. It must not cosmetically refresh
+those 33 files to Myravant, because doing so would obscure the authority regime
+and project identity under which the noncurrent material was authored.
+
+The retained set is partitioned as:
+
+- `7` Batch-A draft doctrine files / `7` occurrence lines;
+- `5` Batch-B operational-draft files / `7` occurrence lines;
+- `10` Batch-C schema-draft files / `15` occurrence lines;
+- `6` schema/math/mechanics planning-control files / `8` occurrence lines;
+- `5` noncurrent control/scaffold artifacts / `7` occurrence lines.
+
+Four identity classes remain outside T2C and require separate adjudication:
+
+1. roadmap/registry currentness and mixed identity roles;
+2. `Astra Doctrine Council` governance-role identity;
+3. R1B shared-vocabulary identity and inherited exact-parity `one Astra type`
+   values;
+4. software/package namespace compatibility for `astra-runtime`,
+   `astra_runtime`, and `src/astra_runtime/`.
+
+T2C is control recording only. It does not alter doctrine semantics, promote
+draft material, change setting/canon identity, rename governance roles, mutate
+R1B parity values, migrate software namespaces, activate R3, authorize source
+governance, promote canon, execute conversion, or authorize live-play/GM work.
 
 ## 10. Completion rule
 

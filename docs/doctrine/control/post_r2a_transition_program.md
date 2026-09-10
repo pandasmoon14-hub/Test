@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.6`
+**Artifact version:** `0.4.7`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -493,6 +493,33 @@ T2A README wording; this validation repair does not edit README or expand T2B
 doctrine authority.
 
 T2B does not activate R3, PR2-SRC, PR2-ORG, PR2-IR, native-content production,
+runtime scalability, software namespace migration, canon promotion, conversion,
+or live-play/GM behavior.
+
+
+### 5.5 PR2-ID-T2C noncurrent identity-surface retention recording
+
+`PR2-ID-T2C` is authorized under `owner_directive_2026-09-09_pr2_id_t2c_recording_activation` from published T2B head
+`e00bf6d6a8b7180dff34202a5602d69cab151d7f`.
+
+The completed read-only residual audit resolves exactly `33` noncurrent
+identity-bearing files containing `44` high-recall Astra occurrence lines.
+Their lawful disposition is `retain_historical`; T2C has `0` content-edit
+targets and does not edit any of those 33 files.
+
+The retention record is:
+
+`docs/doctrine/control/myravant_identity_noncurrent_surface_retention_record.yaml`
+
+The audited families are `7` Batch-A draft doctrine files, `5` Batch-B
+operational drafts, `10` Batch-C schema drafts, `6` schema/math/mechanics
+planning-control files, and `5` noncurrent control/scaffold artifacts.
+
+Four separately bounded identity classes remain unresolved: roadmap/registry
+mixed identity roles, `Astra Doctrine Council` governance-role identity, R1B
+shared-vocabulary/exact-parity identity, and software namespace compatibility.
+
+T2C does not activate R3, PR2-SRC, PR2-ORG, PR2-IR, native-content production,
 runtime scalability, software namespace migration, canon promotion, conversion,
 or live-play/GM behavior.
 

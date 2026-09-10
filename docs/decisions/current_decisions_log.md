@@ -5137,3 +5137,40 @@ schema redesign, software namespace migration, source governance, source
 processing, originality/information-barrier implementation, native-content
 production, R3 execution, canon promotion, conversion execution, live-play/GM
 behavior, model training, or historical/provenance rewriting.
+
+## 2026-09-09 decision — PR2-ID-T2C noncurrent identity-surface retention recording
+
+- **Decision ID:** `PR2-ID-T2C-NONCURRENT-SURFACE-RETENTION-001`
+- **Workstream:** `PR2-ID`
+- **Tranche:** `PR2-ID-T2C`
+- **Starting branch head:** `e00bf6d6a8b7180dff34202a5602d69cab151d7f`
+- **Authorization reference:** `owner_directive_2026-09-09_pr2_id_t2c_recording_activation`
+- **Authority effect:** `noncurrent_identity_surface_retention_recording_only`
+- **Retention record:** `docs/doctrine/control/myravant_identity_noncurrent_surface_retention_record.yaml`
+
+### Recorded disposition
+
+The completed read-only residual authority audit resolves exactly `33` files
+containing `44` high-recall Astra identity occurrence lines. Those files are
+noncurrent drafts, operational drafts, schema drafts, planning/readiness
+controls, owner scaffolds/specifications, or predecessor-era control artifacts.
+
+All 33 receive `retain_historical`. T2C has `0` content-edit targets. The
+retained source files themselves are not modified.
+
+### Remaining identity classes
+
+PR2-ID remains active because these separately bounded classes remain unresolved:
+
+- roadmap/registry currentness and mixed identity roles;
+- `Astra Doctrine Council` governance-role identity;
+- R1B shared-vocabulary identity and inherited exact-parity values;
+- `astra-runtime` / `astra_runtime` / `src/astra_runtime/` compatibility.
+
+### Nonauthority
+
+T2C does not authorize doctrine-semantic changes, promotion of draft material,
+governance-role renaming, R1B parity mutation, software namespace migration,
+runtime or schema redesign, source governance, source processing, R3 execution,
+canon promotion, conversion execution, native-content production, model
+training, or live-play/GM behavior.

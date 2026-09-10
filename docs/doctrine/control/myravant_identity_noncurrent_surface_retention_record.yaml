@@ -1,0 +1,202 @@
+{
+  "artifact_id": "PR2-ID-T2C-NONCURRENT-SURFACE-RETENTION-001",
+  "artifact_version": "0.1.0",
+  "status": "completed",
+  "workstream_id": "PR2-ID",
+  "tranche_id": "PR2-ID-T2C",
+  "starting_branch_head": "e00bf6d6a8b7180dff34202a5602d69cab151d7f",
+  "authorization_reference": "owner_directive_2026-09-09_pr2_id_t2c_recording_activation",
+  "authority_effect": "noncurrent_identity_surface_retention_recording_only",
+  "audit_basis": {
+    "method": "read-only residual occurrence audit plus authority/status adjudication against the published PR2-ID-T2B head",
+    "residual_files": 33,
+    "high_recall_identity_occurrence_lines": 44,
+    "content_edit_targets": 0,
+    "disposition": "retain_historical",
+    "principle": "noncurrent drafts, plans, scaffolds, and predecessor-era control artifacts retain truthful predecessor identity rather than receiving cosmetic migration",
+    "measurement_semantics": {
+      "high_recall_identity_occurrence_lines": "Selector-derived residual identity inventory count used to define the T2C candidate set. It is not a raw substring count of every line containing 'Astra' in the retained files.",
+      "raw_astra_line_count": "Diagnostic count of retained source lines containing the exact case-sensitive substring 'Astra'. It is recorded separately and does not change disposition or authority."
+    },
+    "raw_astra_line_count": 462,
+    "raw_astra_line_counts_by_family": {
+      "batch_a_draft_doctrine": 73,
+      "batch_b_operational_drafts": 70,
+      "batch_c_schema_drafts": 214,
+      "schema_math_mechanics_planning_controls": 83,
+      "noncurrent_control_and_scaffold_artifacts": 22
+    }
+  },
+  "retention_families": [
+    {
+      "family_id": "batch_a_draft_doctrine",
+      "file_count": 7,
+      "high_recall_occurrence_lines": 7,
+      "authority_basis": [
+        "registry status=draft",
+        "registry authority_level=doctrine-draft"
+      ],
+      "paths": [
+        "docs/doctrine/setting/A03_soul_body_mind_spirit_ontology.md",
+        "docs/doctrine/setting/A04_dao_domain_element_architecture.md",
+        "docs/doctrine/advancement/A06_cultivation_and_ascension_stage_architecture.md",
+        "docs/doctrine/advancement/A10_resource_cost_backlash_and_corruption_doctrine.md",
+        "docs/doctrine/world/A12_asset_relic_implant_platform_doctrine.md",
+        "docs/doctrine/world/A13_combat_hazard_damage_and_consequence_doctrine.md",
+        "docs/doctrine/world/A14_travel_exploration_and_scale_transition_doctrine.md"
+      ]
+    },
+    {
+      "family_id": "batch_b_operational_drafts",
+      "file_count": 5,
+      "high_recall_occurrence_lines": 7,
+      "authority_basis": [
+        "file-local status posture=Batch B operational-procedure draft material",
+        "not current canon, final mechanics, runtime authority, or sourcebook prose"
+      ],
+      "paths": [
+        "docs/doctrine/operations/batch_b/B01_scene_encounter_and_activity_procedure.md",
+        "docs/doctrine/operations/batch_b/B02_action_declaration_cost_commitment_and_resolution_trigger_procedure.md",
+        "docs/doctrine/operations/batch_b/B03_item_gear_equipment_and_asset_use_procedure.md",
+        "docs/doctrine/operations/batch_b/B05_acquisition_reward_requisition_and_value_flow_procedure.md",
+        "docs/doctrine/operations/batch_b/B08_travel_exploration_navigation_and_discovery_procedure.md"
+      ]
+    },
+    {
+      "family_id": "batch_c_schema_drafts",
+      "file_count": 10,
+      "high_recall_occurrence_lines": 15,
+      "authority_basis": [
+        "registry status=draft",
+        "registry authority_level=schema-draft",
+        "conversion-stage/canon-review schema material only"
+      ],
+      "paths": [
+        "docs/doctrine/schema/C00_shared_content_record_base_and_schema_registry.md",
+        "docs/doctrine/schema/C01_creature_npc_record_schema.md",
+        "docs/doctrine/schema/C02_item_gear_record_schema.md",
+        "docs/doctrine/schema/C03_ability_power_technique_record_schema.md",
+        "docs/doctrine/schema/C04_relic_implant_installable_asset_schema.md",
+        "docs/doctrine/schema/C07_mission_scenario_adventure_record_schema.md",
+        "docs/doctrine/schema/C08_vehicle_ship_platform_record_schema.md",
+        "docs/doctrine/schema/C09_hazard_environment_record_schema.md",
+        "docs/doctrine/schema/C10_table_oracle_record_schema.md",
+        "docs/doctrine/schema/C14_source_local_setting_cosmology_record_schema.md"
+      ]
+    },
+    {
+      "family_id": "schema_math_mechanics_planning_controls",
+      "file_count": 6,
+      "high_recall_occurrence_lines": 8,
+      "authority_basis": [
+        "planning/readiness/control material only",
+        "not final mechanics, canon, runtime, sourcebook, or live-play authority"
+      ],
+      "paths": [
+        "docs/doctrine/schema_math_mechanics/SM00_schema_math_mechanics_master_scope_and_sequencing_plan.md",
+        "docs/doctrine/schema_math_mechanics/SM01_validation_schema_inventory_and_readiness_controls.md",
+        "docs/doctrine/schema_math_mechanics/SM03_pilot_packet_fixture_and_dry_run_review_plan.md",
+        "docs/doctrine/schema_math_mechanics/SM04_pilot_benchmark_and_evaluation_rubric_controls.md",
+        "docs/doctrine/schema_math_mechanics/SM05_actual_pilot_conversion_authorization_and_preflight_gate.md",
+        "docs/doctrine/schema_math_mechanics/SM06_controlled_pilot_conversion_execution_and_output_capture_plan.md"
+      ]
+    },
+    {
+      "family_id": "noncurrent_control_and_scaffold_artifacts",
+      "file_count": 5,
+      "high_recall_occurrence_lines": 7,
+      "authority_basis": [
+        "draft, owner-specification-only, scaffold-only, planning/tracking-only, or audit-preparation-only",
+        "superseded/current-state-inaccurate control posture must not be cosmetically refreshed"
+      ],
+      "paths": [
+        "docs/doctrine/control/A00_mechanical_posture_and_ruleset_non_adoption.md",
+        "docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md",
+        "docs/doctrine/control/RT012_d_series_promotion_boundary_owner_scaffold.md",
+        "docs/doctrine/control/afqr_01_20_consolidation_program_plan.md",
+        "docs/doctrine/control/runtime_boundary_generator_ownership_audit_protocol.md"
+      ]
+    }
+  ],
+  "protected_paths": [
+    "docs/doctrine/setting/A03_soul_body_mind_spirit_ontology.md",
+    "docs/doctrine/setting/A04_dao_domain_element_architecture.md",
+    "docs/doctrine/advancement/A06_cultivation_and_ascension_stage_architecture.md",
+    "docs/doctrine/advancement/A10_resource_cost_backlash_and_corruption_doctrine.md",
+    "docs/doctrine/world/A12_asset_relic_implant_platform_doctrine.md",
+    "docs/doctrine/world/A13_combat_hazard_damage_and_consequence_doctrine.md",
+    "docs/doctrine/world/A14_travel_exploration_and_scale_transition_doctrine.md",
+    "docs/doctrine/operations/batch_b/B01_scene_encounter_and_activity_procedure.md",
+    "docs/doctrine/operations/batch_b/B02_action_declaration_cost_commitment_and_resolution_trigger_procedure.md",
+    "docs/doctrine/operations/batch_b/B03_item_gear_equipment_and_asset_use_procedure.md",
+    "docs/doctrine/operations/batch_b/B05_acquisition_reward_requisition_and_value_flow_procedure.md",
+    "docs/doctrine/operations/batch_b/B08_travel_exploration_navigation_and_discovery_procedure.md",
+    "docs/doctrine/schema/C00_shared_content_record_base_and_schema_registry.md",
+    "docs/doctrine/schema/C01_creature_npc_record_schema.md",
+    "docs/doctrine/schema/C02_item_gear_record_schema.md",
+    "docs/doctrine/schema/C03_ability_power_technique_record_schema.md",
+    "docs/doctrine/schema/C04_relic_implant_installable_asset_schema.md",
+    "docs/doctrine/schema/C07_mission_scenario_adventure_record_schema.md",
+    "docs/doctrine/schema/C08_vehicle_ship_platform_record_schema.md",
+    "docs/doctrine/schema/C09_hazard_environment_record_schema.md",
+    "docs/doctrine/schema/C10_table_oracle_record_schema.md",
+    "docs/doctrine/schema/C14_source_local_setting_cosmology_record_schema.md",
+    "docs/doctrine/schema_math_mechanics/SM00_schema_math_mechanics_master_scope_and_sequencing_plan.md",
+    "docs/doctrine/schema_math_mechanics/SM01_validation_schema_inventory_and_readiness_controls.md",
+    "docs/doctrine/schema_math_mechanics/SM03_pilot_packet_fixture_and_dry_run_review_plan.md",
+    "docs/doctrine/schema_math_mechanics/SM04_pilot_benchmark_and_evaluation_rubric_controls.md",
+    "docs/doctrine/schema_math_mechanics/SM05_actual_pilot_conversion_authorization_and_preflight_gate.md",
+    "docs/doctrine/schema_math_mechanics/SM06_controlled_pilot_conversion_execution_and_output_capture_plan.md",
+    "docs/doctrine/control/A00_mechanical_posture_and_ruleset_non_adoption.md",
+    "docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md",
+    "docs/doctrine/control/RT012_d_series_promotion_boundary_owner_scaffold.md",
+    "docs/doctrine/control/afqr_01_20_consolidation_program_plan.md",
+    "docs/doctrine/control/runtime_boundary_generator_ownership_audit_protocol.md"
+  ],
+  "unresolved_identity_classes": [
+    {
+      "class_id": "roadmap_and_registry_currentness_and_identity_roles",
+      "disposition": "escalate",
+      "paths": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/astra_doctrine_registry_v0_1.yaml"
+      ],
+      "rationale": "These surfaces mix current tracking/planning roles, historical records, stable path identity, governance names, setting claims, and current project branding; identity-only file-wide migration is not lawful."
+    },
+    {
+      "class_id": "Astra_Doctrine_Council_governance_role_name",
+      "disposition": "escalate",
+      "literal": "Astra Doctrine Council",
+      "rationale": "Governance-role identity is not proven to be a cosmetic project brand label and requires a separate bounded decision."
+    },
+    {
+      "class_id": "r1b_shared_vocabulary_identity_and_exact_parity",
+      "disposition": "escalate",
+      "upstream_owner": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "downstream_literal": "one Astra type",
+      "known_downstream_occurrence_count": 8,
+      "rationale": "R1D exact-parity values cannot be renamed downstream before the R1B owner is adjudicated."
+    },
+    {
+      "class_id": "software_namespace_future_alias_or_deprecation_policy",
+      "disposition": "retain_compatibility",
+      "literals_or_paths": [
+        "astra-runtime",
+        "astra_runtime",
+        "src/astra_runtime/"
+      ],
+      "rationale": "Software/package/import identity is a compatibility contract and requires a dedicated alias/deprecation and regression tranche."
+    }
+  ],
+  "downstream_nonauthority": {
+    "R3_execution_authorized": false,
+    "PR2_SRC_authorized": false,
+    "PR2_ORG_authorized": false,
+    "PR2_IR_authorized": false,
+    "software_namespace_migration_authorized": false,
+    "canon_promotion_authorized": false,
+    "conversion_execution_authorized": false,
+    "live_play_or_gm_authorized": false
+  },
+  "completion_effect": "T2C records exact retain_historical dispositions for 33 noncurrent identity-bearing files and 44 high-recall occurrence lines without editing those files. PR2-ID remains active because four separately bounded identity classes remain unresolved."
+}
