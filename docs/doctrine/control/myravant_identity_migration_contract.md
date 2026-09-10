@@ -7,7 +7,7 @@
 **Starting baseline:** `843fc89f3769a8e6323fa7b683d3805a9edfc142`
 **Authorization reference:** `owner_directive_2026-09-08_pr2_id_activation`
 **Authority effect:** identity and brand migration only
-**Current tranche:** `PR2-ID-T2A`
+**Current tranche:** `PR2-ID-T2B`
 
 ## 1. Purpose
 
@@ -210,6 +210,55 @@ In particular:
   inferred rename.
 
 T2A performs classification only. It does not activate `PR2-ID-T2B`.
+
+
+## 9B. Audited current-doctrine identity migration
+
+`PR2-ID-T2B` is explicitly authorized by
+`owner_directive_2026-09-09_pr2_id_t2b_activation` from audited branch head
+`f7c29730ebcca5d593621c1bca77dea54f5d0223`.
+
+T2B owns only semantic-neutral current project/system identity wording in these
+six verified current doctrine/control files:
+
+1. `docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md`;
+2. `docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml`;
+3. `docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md`;
+4. `docs/doctrine/consolidation/afqr_r2b_core_qualifications.md`;
+5. `docs/doctrine/consolidation/afqr_world_action_sensing.md`;
+6. `docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md`.
+
+The completed read-only audit classified the T2B surface as:
+
+- `58` current-facing normative occurrences -> `migrate_current`;
+- `18` historical/provenance occurrences -> `retain_historical`;
+- `4` `Astra Doctrine Council` governance-role occurrences -> `escalate`;
+- `8` exact inherited `one Astra type` R1B parity occurrences -> `escalate`;
+- `1` compatibility-bearing `astra_runtime` occurrence -> `retain_compatibility`.
+
+The only coupled doctrine-validation literals authorized to move with the six
+owners are:
+
+- `tests/test_afqr_r1d_world_action_sensing.py`;
+- `tests/test_conversion_runtime_origin_firewall.py`.
+
+T2B must preserve all source/ratification paths and evidence identifiers,
+`Astra Doctrine Council`, `astra-runtime`, `astra_runtime`,
+`src/astra_runtime/`, schemas, artifact IDs, frozen evidence, hashes, accepted
+historical decisions, and repository history.
+
+The eight inherited `one Astra type` collision-risk values are also preserved
+because R1D-WORLD copies them exactly from the R1B shared-vocabulary owner.
+Their identity disposition is escalated rather than silently changing an
+upstream-owned exact-parity field.
+
+The firewall validation test also receives a bounded assertion repair to match
+the already-published T2A README wording. The README itself is not changed by
+T2B.
+
+T2B changes identity wording only. It does not alter doctrine semantics,
+semantic ownership, runtime/schema behavior, source governance, canon,
+conversion behavior, live-play/GM behavior, or any downstream authorization.
 
 ## 10. Completion rule
 

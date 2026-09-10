@@ -1,4 +1,4 @@
-"""Validation for PR2-ID-T2A identity-surface dispositions."""
+"""Validation for PR2-ID-T2A dispositions and separately authorized T2B activation."""
 from __future__ import annotations
 
 import json
@@ -9,6 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "843fc89f3769a8e6323fa7b683d3805a9edfc142"
 T2A_BASE = "09d9aa2cc92944b4dc93104cdd4c68ea961c90c9"
+T2A_HEAD = "f7c29730ebcca5d593621c1bca77dea54f5d0223"
+T2B_AUTH = "owner_directive_2026-09-09_pr2_id_t2b_activation"
 
 LEDGER = (
     ROOT
@@ -83,7 +85,7 @@ def test_ledger_identity_and_inventory_counts_are_exact():
     assert data["artifact_id"] == (
         "PR2-ID-IDENTITY-SURFACE-DISPOSITION-LEDGER-001"
     )
-    assert data["artifact_version"] == "0.1.0"
+    assert data["artifact_version"] == "0.2.0"
     assert data["status"] == "active"
     assert data["workstream_id"] == "PR2-ID"
     assert data["tranche_id"] == "PR2-ID-T2A"
@@ -136,26 +138,40 @@ def test_historical_and_compatibility_classes_do_not_become_rename_targets():
     )
 
 
-def test_t2b_candidate_set_is_exact_and_not_authorized():
+def test_t2b_candidate_set_is_exact_and_separately_authorized():
     data = load_ledger()
     next_tranche = data["next_candidate_tranche"]
 
     assert next_tranche["tranche_id"] == "PR2-ID-T2B"
-    assert next_tranche["status"] == "not_active"
-    assert next_tranche["authority_granted"] is False
+    assert next_tranche["status"] == "active"
+    assert next_tranche["authority_granted"] is True
+    assert next_tranche["starting_branch_head"] == T2A_HEAD
+    assert next_tranche["authorization_reference"] == T2B_AUTH
+    assert next_tranche["authority_effect"] == "semantic_neutral_current_doctrine_identity_migration_only"
     assert set(next_tranche["candidate_paths"]) == T2B_CANDIDATES
+    assert next_tranche["audited_occurrence_dispositions"] == {
+        "migrate_current": 58,
+        "retain_historical": 18,
+        "escalate_governance_role": 4,
+        "escalate_exact_upstream_parity": 8,
+        "retain_compatibility": 1,
+    }
+    assert set(next_tranche["coupled_test_paths"]) == {
+        "tests/test_afqr_r1d_world_action_sensing.py",
+        "tests/test_conversion_runtime_origin_firewall.py",
+    }
 
 
 def test_t2a_protected_exact_files_are_unchanged_from_r2c_baseline():
     for path in sorted(PROTECTED_EXACT):
         before = git("rev-parse", f"{BASE}:{path}")
-        after = git("rev-parse", f"HEAD:{path}")
+        after = git("rev-parse", f"{T2A_HEAD}:{path}")
         assert before == after, path
 
 
 def test_t2a_has_not_changed_prohibited_prefixes():
     changed = set(
-        git("diff", "--name-only", f"{BASE}...HEAD").splitlines()
+        git("diff", "--name-only", f"{T2A_BASE}...{T2A_HEAD}").splitlines()
     )
 
     assert not any(
@@ -174,12 +190,13 @@ def test_t2a_has_not_changed_prohibited_prefixes():
     assert "docs/doctrine/astra_doctrine_registry_v0_1.yaml" not in changed
 
 
-def test_t2a_does_not_claim_downstream_authority():
+def test_t2b_authority_remains_bounded_and_downstream_stays_blocked():
     data = load_ledger()
     effect = data["completion_effect"]
 
+    assert "T2A classification remains authoritative" in effect
+    assert "T2B is explicitly authorized" in effect
     assert "does not complete PR2-ID" in effect
-    assert "activate T2B" in effect
     assert "authorize R3" in effect
 
     assert data["unresolved_escalations"] == [
@@ -188,4 +205,5 @@ def test_t2a_does_not_claim_downstream_authority():
         "broader_doctrine_current_authority_classification",
         "setting_or_canon_identity_vs_platform_identity",
         "software_namespace_future_alias_or_deprecation_policy",
+        "r1b_shared_vocabulary_identity_and_exact_parity",
     ]

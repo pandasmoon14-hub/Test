@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.5`
+**Artifact version:** `0.4.6`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -469,6 +469,32 @@ software identifiers, escalates mixed or unverified doctrine, and identifies a
 six-file candidate set for a possible later `PR2-ID-T2B`.
 
 `PR2-ID-T2B` is not active or authorized by T2A.
+
+
+### 5.4 PR2-ID-T2B audited current-doctrine identity migration
+
+`PR2-ID-T2B` is active under `owner_directive_2026-09-09_pr2_id_t2b_activation` from audited branch head
+`f7c29730ebcca5d593621c1bca77dea54f5d0223`.
+
+The T2B read-only audit resolved exactly six doctrine/control owners and two
+coupled validation files. Its corrected occurrence dispositions are
+`58 migrate_current`, `18 retain_historical`, `4 governance-role escalations`,
+`8 exact-upstream-parity escalations`, and `1 retain_compatibility`.
+
+T2B is semantic-neutral identity migration only. Current `Astra law`,
+`Astra default`, and current-native/project wording migrate to Myravant where
+audit-classified. Exact inherited `one Astra type` R1B parity fields remain
+Astra pending upstream identity adjudication. Historical/provenance paths,
+`Astra Doctrine Council`, and compatibility-bearing `astra_runtime` remain
+unchanged.
+
+A pre-existing firewall-test assertion is also aligned to the already-published
+T2A README wording; this validation repair does not edit README or expand T2B
+doctrine authority.
+
+T2B does not activate R3, PR2-SRC, PR2-ORG, PR2-IR, native-content production,
+runtime scalability, software namespace migration, canon promotion, conversion,
+or live-play/GM behavior.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

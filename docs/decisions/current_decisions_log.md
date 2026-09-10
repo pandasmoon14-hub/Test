@@ -5084,3 +5084,56 @@ originality or information-barrier implementation, native-content production,
 runtime scalability, runtime/schema redesign, canon promotion, live-play/GM
 behavior, model training, software namespace migration, or historical evidence
 rewriting.
+
+## 2026-09-09 decision — PR2-ID-T2B audited current-doctrine identity migration
+
+- **Decision ID:** `PR2-ID-T2B-DOCTRINE-IDENTITY-MIGRATION-001`
+- **Workstream:** `PR2-ID`
+- **Tranche:** `PR2-ID-T2B`
+- **Starting branch head:** `f7c29730ebcca5d593621c1bca77dea54f5d0223`
+- **Authorization reference:** `owner_directive_2026-09-09_pr2_id_t2b_activation`
+- **Authority effect:** `semantic_neutral_current_doctrine_identity_migration_only`
+
+### Authorized scope
+
+The completed read-only T2B audit authorizes semantic-neutral current identity
+migration in exactly these six doctrine/control owners:
+
+- `docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md`
+- `docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml`
+- `docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md`
+- `docs/doctrine/consolidation/afqr_r2b_core_qualifications.md`
+- `docs/doctrine/consolidation/afqr_world_action_sensing.md`
+- `docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md`
+
+The two coupled validation literals owned by those doctrine surfaces may move
+with them:
+
+- `tests/test_afqr_r1d_world_action_sensing.py`
+- `tests/test_conversion_runtime_origin_firewall.py`
+
+Corrected audit dispositions are exact: `58 migrate_current`,
+`18 retain_historical`, `4 governance-role escalations`,
+`8 exact-upstream-parity escalations`, and `1 retain_compatibility`.
+
+The eight `one Astra type` collision-risk values remain unchanged because
+R1D-WORLD inherits them as exact parity from the R1B shared-vocabulary owner,
+which is outside T2B. Their identity disposition is therefore escalated.
+
+The firewall test's README heading/opening assertions are aligned to the
+already-published T2A README. README itself is not changed.
+
+### Required preservation
+
+T2B must retain historical/provenance source and ratification paths, stable
+artifact/evidence identifiers, `Astra Doctrine Council`, `astra-runtime`,
+`astra_runtime`, `src/astra_runtime/`, schemas, hashes, accepted historical
+records, and repository history.
+
+### Nonauthority
+
+T2B does not authorize semantic doctrine changes, owner changes, runtime or
+schema redesign, software namespace migration, source governance, source
+processing, originality/information-barrier implementation, native-content
+production, R3 execution, canon promotion, conversion execution, live-play/GM
+behavior, model training, or historical/provenance rewriting.

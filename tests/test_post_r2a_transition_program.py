@@ -33,6 +33,8 @@ R2C_PUBLICATION_HEAD = "ea47efef19e1552f40fee7b7658797b59bd35b7f"
 R2C_PR = 379
 R2C_MERGE = "843fc89f3769a8e6323fa7b683d3805a9edfc142"
 PR2_ID_AUTHORIZATION = "owner_directive_2026-09-08_pr2_id_activation"
+PR2_ID_T2B_AUTHORIZATION = "owner_directive_2026-09-09_pr2_id_t2b_activation"
+PR2_ID_T2B_STARTING_HEAD = "f7c29730ebcca5d593621c1bca77dea54f5d0223"
 
 EXPECTED_R2_GATES = {
     "R1": "complete",
@@ -146,7 +148,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.5"
+    assert manifest["artifact_version"] == "0.4.6"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -295,6 +297,14 @@ def test_r2c_is_merged_and_pr2_id_is_the_only_active_workstream():
     assert pr2id["branch_head"] is None
     assert pr2id["merge_commit"] is None
     assert pr2id["residual_gaps"] == []
+    assert pr2id["current_tranche"] == "PR2-ID-T2B"
+    assert pr2id["tranche_authority_effect"] == "semantic_neutral_current_doctrine_identity_migration_only"
+    assert pr2id["current_tranche_starting_head"] == PR2_ID_T2B_STARTING_HEAD
+    assert (
+        pr2id["current_tranche_authorization_reference"]
+        == PR2_ID_T2B_AUTHORIZATION
+    )
+    assert pr2id["next_tranche_authorized"] is False
 
 def test_post_r2_major_work_remains_blocked_and_unauthorized():
     manifest = _load_manifest()
@@ -334,7 +344,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.5`" in program
+    assert "**Artifact version:** `0.4.6`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -374,6 +384,9 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert "`PR2-SRC` and all other source-governance" in program
     assert "PR2-ID identity authority does not transfer authority" in program
     assert "RT-002G=unauthorized" in program
+    assert "### 5.4 PR2-ID-T2B audited current-doctrine identity migration" in program
+    assert PR2_ID_T2B_AUTHORIZATION in program
+    assert PR2_ID_T2B_STARTING_HEAD in program
 
 def test_program_completion_rule_forbids_untracked_disappearance():
     manifest = _load_manifest()

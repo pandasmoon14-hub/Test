@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.5",
+  "artifact_version": "0.4.6",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -368,7 +368,16 @@
         "tests/test_post_r2a_transition_program.py",
         "tests/test_afqr_r2c_formal_completion_review.py",
         "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml",
-        "tests/test_pr2_id_identity_surface_disposition_ledger.py"
+        "tests/test_pr2_id_identity_surface_disposition_ledger.py",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_r2b_core_qualifications.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md",
+        "tests/test_afqr_r1d_world_action_sensing.py",
+        "tests/test_conversion_runtime_origin_firewall.py",
+        "tests/test_pr2_id_t2b_doctrine_identity_migration.py"
       ],
       "prohibited_scope": [
         "indiscriminate_astra_search_and_replace",
@@ -392,10 +401,12 @@
       "downstream_handoff": [
         "PR2-AUDIT"
       ],
-      "current_tranche": "PR2-ID-T2A",
+      "current_tranche": "PR2-ID-T2B",
       "tranche_control_artifact": "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml",
-      "tranche_authority_effect": "identity_surface_classification_only",
-      "next_tranche_authorized": false
+      "tranche_authority_effect": "semantic_neutral_current_doctrine_identity_migration_only",
+      "next_tranche_authorized": false,
+      "current_tranche_starting_head": "f7c29730ebcca5d593621c1bca77dea54f5d0223",
+      "current_tranche_authorization_reference": "owner_directive_2026-09-09_pr2_id_t2b_activation"
     },
     {
       "workstream_id": "PR2-SRC",

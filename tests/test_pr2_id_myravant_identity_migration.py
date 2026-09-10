@@ -9,6 +9,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "843fc89f3769a8e6323fa7b683d3805a9edfc142"
 AUTH = "owner_directive_2026-09-08_pr2_id_activation"
+T1_HEAD = "09d9aa2cc92944b4dc93104cdd4c68ea961c90c9"
+T2B_START = "f7c29730ebcca5d593621c1bca77dea54f5d0223"
+T2B_AUTH = "owner_directive_2026-09-09_pr2_id_t2b_activation"
 
 CONTRACT = ROOT / "docs/doctrine/control/myravant_identity_migration_contract.md"
 LEDGER = ROOT / "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml"
@@ -20,7 +23,7 @@ AGENTS = ROOT / "AGENTS.md"
 CLAUDE = ROOT / "CLAUDE.md"
 PYPROJECT = ROOT / "pyproject.toml"
 
-ALLOWED = {
+T1_ALLOWED = {
     "README.md",
     "AGENTS.md",
     "CLAUDE.md",
@@ -33,6 +36,18 @@ ALLOWED = {
     "tests/test_pr2_id_identity_surface_disposition_ledger.py",
     "tests/test_post_r2a_transition_program.py",
     "tests/test_afqr_r2c_formal_completion_review.py",
+}
+
+T2B_OWNED = T1_ALLOWED | {
+    "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+    "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+    "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+    "docs/doctrine/consolidation/afqr_r2b_core_qualifications.md",
+    "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+    "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md",
+    "tests/test_afqr_r1d_world_action_sensing.py",
+    "tests/test_conversion_runtime_origin_firewall.py",
+    "tests/test_pr2_id_t2b_doctrine_identity_migration.py",
 }
 
 
@@ -64,6 +79,7 @@ def test_contract_establishes_identity_without_rewriting_history():
         "escalate",
         "Historical truth outranks cosmetic consistency.",
         "PR2-ID-T2A",
+        "PR2-ID-T2B",
         "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml",
     ]:
         assert value in text
@@ -100,7 +116,7 @@ def test_manifest_records_r2c_merge_and_pr2_id_activation():
     manifest = load_manifest()
     by_id = {row["workstream_id"]: row for row in manifest["workstreams"]}
 
-    assert manifest["artifact_version"] == "0.4.5"
+    assert manifest["artifact_version"] == "0.4.6"
     assert manifest["r2_gate_state"]["R2"] == "complete"
     assert manifest["r2_gate_state"]["R3"] == "ready_pending_authorization"
     assert manifest["r3_conformance_target"]["execution_authorized"] is False
@@ -116,10 +132,12 @@ def test_manifest_records_r2c_merge_and_pr2_id_activation():
     assert pr2id["authorization_reference"] == AUTH
     assert pr2id["starting_baseline"] == BASE
     assert set(pr2id["dependencies"]) == {"PR2-CTRL", "PR2-R2C"}
-    assert set(pr2id["owned_paths"]) == ALLOWED
-    assert pr2id["current_tranche"] == "PR2-ID-T2A"
+    assert set(pr2id["owned_paths"]) == T2B_OWNED
+    assert pr2id["current_tranche"] == "PR2-ID-T2B"
     assert pr2id["tranche_control_artifact"] == "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml"
-    assert pr2id["tranche_authority_effect"] == "identity_surface_classification_only"
+    assert pr2id["tranche_authority_effect"] == "semantic_neutral_current_doctrine_identity_migration_only"
+    assert pr2id["current_tranche_starting_head"] == T2B_START
+    assert pr2id["current_tranche_authorization_reference"] == T2B_AUTH
     assert pr2id["next_tranche_authorized"] is False
     assert pr2id["pull_request"] is None
     assert pr2id["branch_head"] is None
@@ -135,18 +153,21 @@ def test_manifest_records_r2c_merge_and_pr2_id_activation():
             assert row["authorization_reference"] is None
 
 
-def test_authorization_decision_is_recorded():
+def test_authorization_decisions_are_recorded():
     text = DECISIONS.read_text(encoding="utf-8")
     assert "PR2-ID-AUTHORIZATION-001" in text
     assert AUTH in text
     assert BASE in text
     assert "No global replacement is authorized." in text
+    assert "PR2-ID-T2B-DOCTRINE-IDENTITY-MIGRATION-001" in text
+    assert T2B_AUTH in text
+    assert T2B_START in text
 
 
-def test_first_tranche_diff_is_bounded():
-    changed = set(git("diff", "--name-only", f"{BASE}...HEAD").splitlines())
+def test_first_tranche_diff_is_bounded_at_its_published_head():
+    changed = set(git("diff", "--name-only", f"{BASE}...{T1_HEAD}").splitlines())
     assert changed
-    assert changed <= ALLOWED
+    assert changed <= T1_ALLOWED
     assert not any(
         path.startswith(("src/", "schemas/", "docs/doctrine/reviews/"))
         for path in changed
@@ -155,5 +176,5 @@ def test_first_tranche_diff_is_bounded():
         "diff",
         "--name-status",
         "--diff-filter=D",
-        f"{BASE}...HEAD",
+        f"{BASE}...{T1_HEAD}",
     )

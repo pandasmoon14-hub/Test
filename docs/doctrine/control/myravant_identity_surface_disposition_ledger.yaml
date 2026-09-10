@@ -1,6 +1,6 @@
 {
   "artifact_id": "PR2-ID-IDENTITY-SURFACE-DISPOSITION-LEDGER-001",
-  "artifact_version": "0.1.0",
+  "artifact_version": "0.2.0",
   "status": "active",
   "workstream_id": "PR2-ID",
   "tranche_id": "PR2-ID-T2A",
@@ -154,7 +154,8 @@
       },
       "semantic_role": "current_doctrine_system_label",
       "disposition": "migrate_current",
-      "rationale": "These consolidated AFQR artifacts are current doctrine; only semantic-neutral project/system identity wording is a future migration candidate. Evidence paths and historical identifiers remain governed by higher-precedence retain rules."
+      "rationale": "These consolidated AFQR artifacts are current doctrine; only semantic-neutral project/system identity wording is a future migration candidate. Evidence paths and historical identifiers remain governed by higher-precedence retain rules.",
+      "state": "authorized_in_t2b"
     },
     {
       "rule_id": "ID-DISP-010-FIREWALL-CURRENT-NORMATIVE",
@@ -164,7 +165,8 @@
       },
       "semantic_role": "current_doctrine_system_label",
       "disposition": "migrate_current",
-      "rationale": "The firewall is active control doctrine. Current identity prose may migrate while astra_runtime and other compatibility literals remain protected by ID-DISP-006."
+      "rationale": "The firewall is active control doctrine. Current identity prose may migrate while astra_runtime and other compatibility literals remain protected by ID-DISP-006.",
+      "state": "authorized_in_t2b"
     },
     {
       "rule_id": "ID-DISP-011-OTHER-CONTROL",
@@ -245,7 +247,7 @@
   ],
   "next_candidate_tranche": {
     "tranche_id": "PR2-ID-T2B",
-    "status": "not_active",
+    "status": "active",
     "purpose": "audited semantic-neutral migration of verified current doctrine identity wording",
     "candidate_paths": [
       "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
@@ -255,14 +257,48 @@
       "docs/doctrine/consolidation/afqr_world_action_sensing.md",
       "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
     ],
-    "authority_granted": false
+    "authority_granted": true,
+    "starting_branch_head": "f7c29730ebcca5d593621c1bca77dea54f5d0223",
+    "authorization_reference": "owner_directive_2026-09-09_pr2_id_t2b_activation",
+    "authority_effect": "semantic_neutral_current_doctrine_identity_migration_only",
+    "audited_occurrence_dispositions": {
+      "migrate_current": 58,
+      "retain_historical": 18,
+      "escalate_governance_role": 4,
+      "escalate_exact_upstream_parity": 8,
+      "retain_compatibility": 1
+    },
+    "coupled_test_paths": [
+      "tests/test_afqr_r1d_world_action_sensing.py",
+      "tests/test_conversion_runtime_origin_firewall.py"
+    ]
   },
   "unresolved_escalations": [
     "roadmap_and_registry_currentness_and_identity_roles",
     "Astra_Doctrine_Council_governance_role_name",
     "broader_doctrine_current_authority_classification",
     "setting_or_canon_identity_vs_platform_identity",
-    "software_namespace_future_alias_or_deprecation_policy"
+    "software_namespace_future_alias_or_deprecation_policy",
+    "r1b_shared_vocabulary_identity_and_exact_parity"
   ],
-  "completion_effect": "T2A classifies identity surfaces only. It does not complete PR2-ID, activate T2B, authorize R3, or authorize any post-R2 workstream."
+  "completion_effect": "T2A classification remains authoritative. T2B is explicitly authorized for the audited semantic-neutral current-doctrine identity migration only. This does not complete PR2-ID, authorize R3, or authorize any downstream post-R2 workstream.",
+  "t2b_exact_exceptions": [
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "field": "resolved_collision_boundary_records[*].corpus_collapse_risk",
+      "literal": "high to critical if donor homonyms are treated as one Astra type",
+      "occurrence_count": 8,
+      "upstream_owner": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "disposition": "escalate",
+      "rationale": "These values are exact inherited R1B parity fields. The upstream owner is outside T2B, so identity-only migration must not mutate them."
+    }
+  ],
+  "validation_repairs": [
+    {
+      "path": "tests/test_conversion_runtime_origin_firewall.py",
+      "classification": "pre_existing_assertion_drift",
+      "basis": "align firewall validation to the already-published T2A README at f7c29730ebcca5d593621c1bca77dea54f5d0223",
+      "readme_changed": false
+    }
+  ]
 }
