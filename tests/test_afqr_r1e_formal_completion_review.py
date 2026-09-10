@@ -11,7 +11,16 @@ SUPPORT=["docs/doctrine/reviews/afqr_r1e_source_and_vocabulary_audit.yaml","docs
 SHARDS=["docs/doctrine/reviews/afqr_r1e_core_projection_field_comparisons.yaml","docs/doctrine/reviews/afqr_r1e_agency_projection_field_comparisons.yaml","docs/doctrine/reviews/afqr_r1e_world_projection_field_comparisons.yaml"]
 AUTH=load_json("docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"); MANIFEST=load_json("working/afqr_consolidation_inputs/manifest.yaml"); VOCAB=load_json("docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"); R1C=load_json("docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml")
 SV,DP,ADJ,CA=[load_json(x) for x in SUPPORT]; SHARD_DOCS=[load_json(x) for x in SHARDS]
-FAMILY_PATHS={"core":"docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md","agency":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","world":"docs/doctrine/consolidation/afqr_world_action_sensing.md"}; FAMILIES={k:load_markdown_json(v) for k,v in FAMILY_PATHS.items()}
+FAMILY_PATHS={"core":"docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md","agency":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","world":"docs/doctrine/consolidation/afqr_world_action_sensing.md"}
+
+def load_markdown_json_at(ref,path):
+    text=subprocess.check_output(["git","show",f"{ref}:{path}"],cwd=ROOT,text=True)
+    marker="```json\n"; start=text.index(marker)+len(marker); end=text.index("\n```",start)
+    return json.loads(text[start:end])
+
+# R1E is a historical completion review. Its stored hashes must be re-executed
+# against the accepted R1 snapshot, not mutable post-R2 HEAD doctrine.
+FAMILIES={k:load_markdown_json_at(ACCEPTED_R1_HEAD,v) for k,v in FAMILY_PATHS.items()}
 EVIDENCE={x["source_record_id"]:x for x in MANIFEST["contained_file_records"]}; ARCHIVES={x["archive_record_id"]:x for x in MANIFEST["archive_records"]}
 ALL_PROJECTIONS=[x for shard in SHARD_DOCS for x in shard["projection_comparisons"]]+[x for shard in SHARD_DOCS for x in shard.get("embedded_core_boundary_projection_comparisons",[])]+DP.get("embedded_core_boundary_projection_comparisons",[]); PROJECTION_MAP={x["projection_ref"]:x for x in ALL_PROJECTIONS}
 
