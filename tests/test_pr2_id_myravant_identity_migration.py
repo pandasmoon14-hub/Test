@@ -16,6 +16,9 @@ T2C_START = "e00bf6d6a8b7180dff34202a5602d69cab151d7f"
 T2C_AUTH = "owner_directive_2026-09-09_pr2_id_t2c_recording_activation"
 T2D_START = "89d101fb6cbf44d2120871dbc6723ba8842e431b"
 T2D_AUTH = "owner_directive_2026-09-09_pr2_id_t2d_activation"
+T2E_START = "9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448"
+T2E_AUTH = "owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation"
+T2E_EFFECT = "identity_migration_completion_recording_only"
 
 CONTRACT = ROOT / "docs/doctrine/control/myravant_identity_migration_contract.md"
 LEDGER = ROOT / "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml"
@@ -65,6 +68,13 @@ T2D_OWNED = T2C_OWNED | {
     "tests/test_pr2_id_t2d_roadmap_registry_adjudication.py",
 }
 
+T2E_OWNED = T2D_OWNED | {
+    "docs/doctrine/reviews/pr2_id_identity_migration_completion_review.yaml",
+    "tests/test_pr2_id_t2e_completion_recording.py",
+    "tests/test_afqr_r1e_formal_completion_review.py",
+    "tests/test_afqr_r2_continuity_research_assimilation.py",
+}
+
 
 def load_manifest():
     return json.loads(MANIFEST.read_text(encoding="utf-8"))
@@ -81,7 +91,7 @@ def git(*args: str) -> str:
 def test_contract_establishes_identity_without_rewriting_history():
     text = CONTRACT.read_text(encoding="utf-8")
     assert "**Workstream:** `PR2-ID`" in text
-    assert "**Status:** `active`" in text
+    assert "**Status:** `validated`" in text
     assert f"**Starting baseline:** `{BASE}`" in text
     assert f"**Authorization reference:** `{AUTH}`" in text
 
@@ -97,6 +107,7 @@ def test_contract_establishes_identity_without_rewriting_history():
         "PR2-ID-T2B",
         "PR2-ID-T2C",
         "PR2-ID-T2D",
+        "PR2-ID-T2E",
         "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml",
     ]:
         assert value in text
@@ -133,7 +144,7 @@ def test_manifest_records_r2c_merge_and_pr2_id_activation():
     manifest = load_manifest()
     by_id = {row["workstream_id"]: row for row in manifest["workstreams"]}
 
-    assert manifest["artifact_version"] == "0.4.8"
+    assert manifest["artifact_version"] == "0.4.10"
     assert manifest["r2_gate_state"]["R2"] == "complete"
     assert manifest["r2_gate_state"]["R3"] == "ready_pending_authorization"
     assert manifest["r3_conformance_target"]["execution_authorized"] is False
@@ -145,16 +156,17 @@ def test_manifest_records_r2c_merge_and_pr2_id_activation():
     assert r2c["merge_commit"] == BASE
 
     pr2id = by_id["PR2-ID"]
-    assert pr2id["status"] == "active"
+    assert pr2id["status"] == "validated"
     assert pr2id["authorization_reference"] == AUTH
     assert pr2id["starting_baseline"] == BASE
     assert set(pr2id["dependencies"]) == {"PR2-CTRL", "PR2-R2C"}
-    assert set(pr2id["owned_paths"]) == T2D_OWNED
-    assert pr2id["current_tranche"] == "PR2-ID-T2D"
-    assert pr2id["tranche_control_artifact"] == "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml"
-    assert pr2id["tranche_authority_effect"] == "roadmap_registry_occurrence_adjudication_and_two_registry_identity_migrations_only"
-    assert pr2id["current_tranche_starting_head"] == T2D_START
-    assert pr2id["current_tranche_authorization_reference"] == T2D_AUTH
+    assert set(pr2id["owned_paths"]) == T2E_OWNED
+    assert pr2id["current_tranche"] == "PR2-ID-T2E"
+    assert pr2id["tranche_control_artifact"] == "docs/doctrine/reviews/pr2_id_identity_migration_completion_review.yaml"
+    assert pr2id["tranche_authority_effect"] == T2E_EFFECT
+    assert pr2id["current_tranche_starting_head"] == T2E_START
+    assert pr2id["current_tranche_authorization_reference"] == T2E_AUTH
+    assert pr2id["completion_audit_result"] == "PASS"
     assert pr2id["next_tranche_authorized"] is False
     assert pr2id["pull_request"] is None
     assert pr2id["branch_head"] is None
@@ -185,6 +197,9 @@ def test_authorization_decisions_are_recorded():
     assert "PR2-ID-T2D-ROADMAP-REGISTRY-ADJUDICATION-001" in text
     assert T2D_AUTH in text
     assert T2D_START in text
+    assert "PR2-ID-T2E-COMPLETION-RECORDING-001" in text
+    assert T2E_AUTH in text
+    assert T2E_START in text
 
 
 def test_first_tranche_diff_is_bounded_at_its_published_head():

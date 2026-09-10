@@ -11,6 +11,9 @@ ROOT = Path(__file__).resolve().parents[1]
 T2D_BASE = "89d101fb6cbf44d2120871dbc6723ba8842e431b"
 T2D_AUTH = "owner_directive_2026-09-09_pr2_id_t2d_activation"
 T2D_EFFECT = "roadmap_registry_occurrence_adjudication_and_two_registry_identity_migrations_only"
+T2E_START = "9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448"
+T2E_AUTH = "owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation"
+T2E_EFFECT = "identity_migration_completion_recording_only"
 
 ROADMAP = "docs/doctrine/astra_doctrine_roadmap_v0_1.md"
 REGISTRY = "docs/doctrine/astra_doctrine_registry_v0_1.yaml"
@@ -211,8 +214,9 @@ def test_manifest_and_ledger_preserve_downstream_boundaries():
     manifest = load(MANIFEST)
 
     assert record["unresolved_identity_classes_after_t2d"] == UNRESOLVED
-    assert ledger["artifact_version"] == "0.4.0"
-    assert ledger["unresolved_escalations"] == UNRESOLVED
+    assert ledger["artifact_version"] == "0.5.1"
+    assert ledger["unresolved_escalations"] == []
+    assert [row["class_id"] for row in ledger["carried_forward_obligations"]] == UNRESOLVED
 
     t2d = ledger["t2d_adjudication_tranche"]
     assert t2d["status"] == "completed"
@@ -224,14 +228,16 @@ def test_manifest_and_ledger_preserve_downstream_boundaries():
     pr2id = next(
         row for row in manifest["workstreams"] if row["workstream_id"] == "PR2-ID"
     )
-    assert manifest["artifact_version"] == "0.4.8"
-    assert pr2id["status"] == "active"
-    assert pr2id["current_tranche"] == "PR2-ID-T2D"
-    assert pr2id["tranche_authority_effect"] == T2D_EFFECT
-    assert pr2id["current_tranche_starting_head"] == T2D_BASE
-    assert pr2id["current_tranche_authorization_reference"] == T2D_AUTH
+    assert manifest["artifact_version"] == "0.4.10"
+    assert pr2id["status"] == "validated"
+    assert pr2id["current_tranche"] == "PR2-ID-T2E"
+    assert pr2id["tranche_authority_effect"] == T2E_EFFECT
+    assert pr2id["current_tranche_starting_head"] == T2E_START
+    assert pr2id["current_tranche_authorization_reference"] == T2E_AUTH
+    assert pr2id["completion_audit_result"] == "PASS"
     assert pr2id["next_tranche_authorized"] is False
-    assert pr2id["residual_gaps"] == UNRESOLVED
+    assert pr2id["residual_gaps"] == []
+    assert [row["class_id"] for row in pr2id["carried_forward_obligations"]] == UNRESOLVED
 
     assert manifest["r2_gate_state"]["R3"] == "ready_pending_authorization"
     assert manifest["r3_conformance_target"]["execution_authorized"] is False

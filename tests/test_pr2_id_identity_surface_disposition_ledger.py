@@ -89,8 +89,8 @@ def test_ledger_identity_and_inventory_counts_are_exact():
     assert data["artifact_id"] == (
         "PR2-ID-IDENTITY-SURFACE-DISPOSITION-LEDGER-001"
     )
-    assert data["artifact_version"] == "0.4.0"
-    assert data["status"] == "active"
+    assert data["artifact_version"] == "0.5.1"
+    assert data["status"] == "validated"
     assert data["workstream_id"] == "PR2-ID"
     assert data["tranche_id"] == "PR2-ID-T2A"
     assert data["starting_branch_head"] == T2A_BASE
@@ -206,10 +206,17 @@ def test_t2b_authority_remains_bounded_and_downstream_stays_blocked():
     assert data["next_candidate_tranche"]["status"] == "completed"
     assert data["t2c_recording_tranche"]["status"] == "completed"
     assert data["t2d_adjudication_tranche"]["status"] == "completed"
+    assert data["t2e_completion_tranche"]["status"] == "validated"
+    assert data["t2e_completion_tranche"]["starting_branch_head"] == "9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448"
+    assert data["t2e_completion_tranche"]["authorization_reference"] == "owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation"
+    assert data["t2e_completion_tranche"]["completion_audit_result"] == "PASS"
+    assert len(data["carried_forward_obligations"]) == 4
+    assert all(row["blocks_pr2_id_completion"] is False for row in data["carried_forward_obligations"])
     assert "does not authorize R3" in effect
     assert "downstream post-R2 workstream" in effect
 
-    assert data["unresolved_escalations"] == [
+    assert data["unresolved_escalations"] == []
+    assert [row["class_id"] for row in data["carried_forward_obligations"]] == [
         "roadmap_currentness_setting_and_planning_authority",
         "astra_prefixed_governance_and_working_group_role_identity",
         "r1b_shared_vocabulary_identity_and_exact_parity",

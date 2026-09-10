@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.8",
+  "artifact_version": "0.4.10",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -347,7 +347,7 @@
       "title": "Myravant identity migration",
       "category": "identity",
       "purpose": "Perform a controlled migration from current Astra Ascension branding to the owner-selected Myravant identity.",
-      "status": "active",
+      "status": "validated",
       "dependencies": [
         "PR2-CTRL",
         "PR2-R2C"
@@ -382,7 +382,11 @@
         "tests/test_pr2_id_t2c_noncurrent_surface_retention.py",
         "docs/doctrine/astra_doctrine_registry_v0_1.yaml",
         "docs/doctrine/control/myravant_identity_roadmap_registry_adjudication_record.yaml",
-        "tests/test_pr2_id_t2d_roadmap_registry_adjudication.py"
+        "tests/test_pr2_id_t2d_roadmap_registry_adjudication.py",
+        "docs/doctrine/reviews/pr2_id_identity_migration_completion_review.yaml",
+        "tests/test_pr2_id_t2e_completion_recording.py",
+        "tests/test_afqr_r1e_formal_completion_review.py",
+        "tests/test_afqr_r2_continuity_research_assimilation.py"
       ],
       "prohibited_scope": [
         "indiscriminate_astra_search_and_replace",
@@ -398,25 +402,66 @@
       ],
       "entry_condition": "PR2-CTRL merged and identity-migration contract explicitly authorized.",
       "completion_condition": "Mutable current-facing identity is migrated while historical and provenance-bearing identities remain traceable.",
-      "validation_evidence": [],
+      "validation_evidence": [
+        "T2E input targeted regression validation:7 passed",
+        "T2E input full repository suite at 9045a6cd:8956 passed, 10 skipped, 2 xfailed, 1 warning",
+        "T2E bounded and predecessor validation:56 passed",
+        "T2E full repository suite:8961 passed, 10 skipped, 2 xfailed, 1 warning",
+        "T2E full repository suite exit code:0",
+        "T2E git diff --check:clean"
+      ],
       "pull_request": null,
       "branch_head": null,
       "merge_commit": null,
-      "residual_gaps": [
-        "roadmap_currentness_setting_and_planning_authority",
-        "astra_prefixed_governance_and_working_group_role_identity",
-        "r1b_shared_vocabulary_identity_and_exact_parity",
-        "software_namespace_future_alias_or_deprecation_policy"
-      ],
+      "residual_gaps": [],
       "downstream_handoff": [
         "PR2-AUDIT"
       ],
-      "current_tranche": "PR2-ID-T2D",
-      "tranche_control_artifact": "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml",
-      "tranche_authority_effect": "roadmap_registry_occurrence_adjudication_and_two_registry_identity_migrations_only",
+      "current_tranche": "PR2-ID-T2E",
+      "tranche_control_artifact": "docs/doctrine/reviews/pr2_id_identity_migration_completion_review.yaml",
+      "tranche_authority_effect": "identity_migration_completion_recording_only",
       "next_tranche_authorized": false,
-      "current_tranche_starting_head": "89d101fb6cbf44d2120871dbc6723ba8842e431b",
-      "current_tranche_authorization_reference": "owner_directive_2026-09-09_pr2_id_t2d_activation"
+      "current_tranche_starting_head": "9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448",
+      "current_tranche_authorization_reference": "owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation",
+      "completion_audit_result": "PASS",
+      "completion_audit_review": "docs/doctrine/reviews/pr2_id_identity_migration_completion_review.yaml",
+      "carried_forward_obligations": [
+        {
+          "class_id": "roadmap_currentness_setting_and_planning_authority",
+          "pr2_id_disposition": "escalate",
+          "handoff_posture": "future_roadmap_currentness_and_planning_authority_review",
+          "blocks_pr2_id_completion": false,
+          "rationale": "ROADMAP-001 mixes stale planning/currentness, setting-premise, governance, and historical identity. Identity-only migration must not refresh it into current authority."
+        },
+        {
+          "class_id": "astra_prefixed_governance_and_working_group_role_identity",
+          "pr2_id_disposition": "escalate",
+          "handoff_posture": "future_governance_identity_decision",
+          "blocks_pr2_id_completion": false,
+          "rationale": "Astra-prefixed governance and working-group role names require a separate governance-role decision; T2E does not rename them."
+        },
+        {
+          "class_id": "r1b_shared_vocabulary_identity_and_exact_parity",
+          "pr2_id_disposition": "escalate",
+          "handoff_posture": "r1b_owner_identity_adjudication_if_ever_authorized",
+          "blocks_pr2_id_completion": false,
+          "rationale": "Inherited exact-parity values remain upstream-owned R1B vocabulary and are not identity-only edit targets."
+        },
+        {
+          "class_id": "software_namespace_future_alias_or_deprecation_policy",
+          "pr2_id_disposition": "retain_compatibility",
+          "handoff_posture": "separately_authorized_software_alias_or_deprecation_tranche",
+          "blocks_pr2_id_completion": false,
+          "literals_or_paths": [
+            "astra-runtime",
+            "astra_runtime",
+            "src/astra_runtime/"
+          ],
+          "rationale": "Software namespace identity is a compatibility contract. Retention is lawful until a dedicated alias/deprecation migration is authorized."
+        }
+      ],
+      "validation_state": "validated",
+      "completion_state": "validated_pending_pull_request_merge"
     },
     {
       "workstream_id": "PR2-SRC",

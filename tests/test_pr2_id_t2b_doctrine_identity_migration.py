@@ -171,7 +171,7 @@ def test_t2b_control_state_and_counts_are_machine_readable():
     pr2id = next(
         row for row in manifest["workstreams"] if row["workstream_id"] == "PR2-ID"
     )
-    assert pr2id["status"] == "active"
+    assert pr2id["status"] in {"active", "validated", "merged"}
     assert pr2id["next_tranche_authorized"] is False
 
     assert "## 9B. Audited current-doctrine identity migration" in contract

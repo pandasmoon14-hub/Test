@@ -3,11 +3,11 @@
 **Artifact ID:** `PR2-ID-MIGRATION-CONTRACT-001`
 **Workstream:** `PR2-ID`
 **Layer:** `0_control`
-**Status:** `active`
+**Status:** `validated`
 **Starting baseline:** `843fc89f3769a8e6323fa7b683d3805a9edfc142`
 **Authorization reference:** `owner_directive_2026-09-08_pr2_id_activation`
 **Authority effect:** identity and brand migration only
-**Current tranche:** `PR2-ID-T2D`
+**Current tranche:** `PR2-ID-T2E`
 
 ## 1. Purpose
 
@@ -355,6 +355,46 @@ T2D does not complete PR2-ID. The next lawful step is a separate PR2-ID
 completion audit that checks whether every remaining material identity surface
 has a lawful disposition and whether any unresolved escalation still blocks
 closure.
+
+## 9E. Completion audit and completion-recording tranche
+
+`PR2-ID-T2E` is authorized by `owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation` from published historical-checkpoint
+repair head `9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448`.
+
+The controlling completion review is:
+
+`docs/doctrine/reviews/pr2_id_identity_migration_completion_review.yaml`
+
+The independent completion audit result is `PASS`.
+
+The audit finds that every material current-facing identity surface discovered
+by the migration inventory has a lawful disposition and every authorized
+`migrate_current` / `migrate_with_historical_qualifier` edit is complete.
+Historical and provenance-bearing Astra identity remains intentionally present;
+compatibility identifiers remain explicit rather than silently ignored.
+
+Four obligations are carried forward without blocking PR2-ID closure:
+
+1. `roadmap_currentness_setting_and_planning_authority` -> `escalate`;
+2. `astra_prefixed_governance_and_working_group_role_identity` -> `escalate`;
+3. `r1b_shared_vocabulary_identity_and_exact_parity` -> `escalate`;
+4. `software_namespace_future_alias_or_deprecation_policy` ->
+   `retain_compatibility`.
+
+These are not treated as solved, renamed, or erased. They are explicitly outside
+the remaining identity-only work needed for PR2-ID closure.
+
+The audit input at `9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448` passed the complete repository suite:
+`8956 passed, 10 skipped, 2 xfailed, 1 warning`, with exit code `0`,
+`git diff --check` clean, and a clean worktree.
+
+T2E is completion recording only. Its bounded validation passed with `56 passed`,
+and its full-repository validation passed with `8961 passed, 10 skipped, 2 xfailed,
+1 warning`, exit code `0`, with `git diff --check` clean. PR2-ID is therefore
+`validated` pending pull-request merge. T2E does not rewrite the roadmap, rename
+governance roles, mutate R1B parity, migrate software namespaces, activate R3,
+authorize source governance, promote canon, execute conversion, create native
+content, or authorize live-play/GM behavior.
 
 ## 10. Completion rule
 

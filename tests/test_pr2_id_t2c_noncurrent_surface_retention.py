@@ -114,7 +114,7 @@ def test_manifest_records_t2c_without_downstream_authority():
     )
     version = tuple(int(part) for part in manifest["artifact_version"].split("."))
     assert version >= (0, 4, 7)
-    assert pr2id["status"] == "active"
+    assert pr2id["status"] in {"active", "validated", "merged"}
     assert pr2id["next_tranche_authorized"] is False
 
     assert manifest["r2_gate_state"]["R3"] == "ready_pending_authorization"

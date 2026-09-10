@@ -5221,3 +5221,83 @@ promote canon, execute conversion, begin native-content production, or
 authorize live-play/GM behavior.
 
 PR2-ID remains active pending a separate completion audit.
+
+## 2026-09-10 decision — PR2-ID-T2E completion audit recording
+
+- **Decision ID:** `PR2-ID-T2E-COMPLETION-RECORDING-001`
+- **Workstream:** `PR2-ID`
+- **Tranche:** `PR2-ID-T2E`
+- **Starting branch head:** `9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448`
+- **Authorization reference:** `owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation`
+- **Authority effect:** `identity_migration_completion_recording_only`
+- **Completion review:** `docs/doctrine/reviews/pr2_id_identity_migration_completion_review.yaml`
+
+### Authorized result
+
+The independent PR2-ID completion audit is `PASS`.
+
+Every material current-facing identity surface discovered by the migration
+inventory has a lawful disposition, and all authorized current-facing Myravant
+identity migrations are complete. T2E records this result; it does not perform
+another identity migration.
+
+The audit input at `9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448` passed the full repository suite with
+`8956 passed, 10 skipped, 2 xfailed, 1 warning`, exit code `0`, clean
+`git diff --check`, and a clean worktree.
+
+### Carried-forward obligations
+
+The following remain explicit obligations without blocking PR2-ID completion:
+
+- `roadmap_currentness_setting_and_planning_authority` -> `escalate`;
+- `astra_prefixed_governance_and_working_group_role_identity` -> `escalate`;
+- `r1b_shared_vocabulary_identity_and_exact_parity` -> `escalate`;
+- `software_namespace_future_alias_or_deprecation_policy` ->
+  `retain_compatibility`.
+
+They are not declared solved. Their future handling requires separately bounded
+authority appropriate to the owning concern.
+
+### Validation lifecycle
+
+T2E is active pending validation of this completion-recording change set.
+PR2-ID may advance to `validated` only after that validation passes. `merged`
+remains reserved for actual pull-request merge.
+
+### Nonauthority
+
+T2E does not authorize roadmap modernization, governance-role rename, R1B parity
+mutation, software namespace migration, R3 execution, source governance,
+originality/information-barrier implementation, runtime scalability, canon
+promotion, conversion execution, native-content production, model training, or
+live-play/GM behavior.
+
+## 2026-09-10 decision — PR2-ID-T2E validation finalization
+
+- **Decision ID:** `PR2-ID-T2E-VALIDATION-001`
+- **Workstream:** `PR2-ID`
+- **Tranche:** `PR2-ID-T2E`
+- **Starting branch head:** `9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448`
+- **Authority effect:** `identity_migration_completion_validation_only`
+- **Completion audit result:** `PASS`
+- **Lifecycle result:** `validated`
+
+### Validation evidence
+
+- bounded T2E and predecessor validation: `56 passed in 2.39s`;
+- full repository validation: `8961 passed, 10 skipped, 2 xfailed, 1 warning`;
+- full-suite exit code: `0`;
+- `git diff --check`: clean.
+
+PR2-ID therefore has no remaining identity-migration blocker. The four prior
+residual classes are preserved as explicit carried-forward obligations rather
+than deleted or declared solved.
+
+### Nonauthority
+
+Validation does not authorize R3 execution, PR2-SRC, PR2-ORG, PR2-IR, roadmap
+modernization, governance-role renaming, R1B parity mutation, software namespace
+migration, runtime scalability, canon promotion, conversion execution,
+native-content production, model training, or live-play/GM behavior.
+
+`merged` remains reserved for actual pull-request merge.

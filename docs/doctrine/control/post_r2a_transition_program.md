@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.8`
+**Artifact version:** `0.4.10`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -557,6 +557,39 @@ originality governance, information-barrier work, native-content production,
 runtime scalability, canon, conversion, and live-play/GM work remain separately
 unauthorized.
 
+### 5.7 PR2-ID-T2E completion audit recording
+
+`PR2-ID-T2E` is authorized under `owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation` from published
+historical-checkpoint repair head `9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448`.
+
+The controlling completion review is:
+
+`docs/doctrine/reviews/pr2_id_identity_migration_completion_review.yaml`
+
+The independent PR2-ID completion audit result is `PASS`.
+
+All authorized current-facing identity migrations are complete. The four
+remaining identity classes are explicitly carried forward rather than erased:
+roadmap/currentness authority, Astra-prefixed governance-role identity, R1B
+shared-vocabulary/exact-parity identity, and software namespace compatibility.
+The first three remain `escalate`; software namespace identity remains
+`retain_compatibility`.
+
+The audit input at the T2E starting head passed the full repository suite:
+`8956 passed, 10 skipped, 2 xfailed, 1 warning`, with exit code `0`.
+
+T2E changes no current-facing branding, roadmap content, registry identity
+content, AFQR doctrine, R1B vocabulary, runtime namespace, or schema. It records
+completion evidence and handoff boundaries only.
+
+T2E validation is complete: the bounded T2E/predecessor suite passed `56` tests,
+and the full repository suite passed `8961 passed, 10 skipped, 2 xfailed, 1 warning`
+with exit code `0` and clean `git diff --check`. PR2-ID is therefore `validated`
+pending pull-request merge. The four prior residual classes are carried-forward
+obligations rather than PR2-ID blockers. R3 remains `ready_pending_authorization`,
+and PR2-SRC, PR2-ORG, PR2-IR, runtime scalability, canon, conversion, native-content,
+and live-play/GM work remain separately unauthorized.
+
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
 ## 6. Controlled workstream registry
@@ -978,7 +1011,7 @@ migration from baseline:
 
 Current successor state is therefore:
 
-1. `PR2-ID` is `active` under
+1. `PR2-ID` is `validated` pending pull-request merge under
    `docs/doctrine/control/myravant_identity_migration_contract.md`;
 2. `R3` remains `ready_pending_authorization` with its exact 34-record
    conformance target and is not executing;

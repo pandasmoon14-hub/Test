@@ -1,7 +1,7 @@
 {
   "artifact_id": "PR2-ID-IDENTITY-SURFACE-DISPOSITION-LEDGER-001",
-  "artifact_version": "0.4.0",
-  "status": "active",
+  "artifact_version": "0.5.1",
+  "status": "validated",
   "workstream_id": "PR2-ID",
   "tranche_id": "PR2-ID-T2A",
   "authority_effect": "identity_surface_classification_only",
@@ -276,13 +276,8 @@
     ],
     "publication_head": "e00bf6d6a8b7180dff34202a5602d69cab151d7f"
   },
-  "unresolved_escalations": [
-    "roadmap_currentness_setting_and_planning_authority",
-    "astra_prefixed_governance_and_working_group_role_identity",
-    "r1b_shared_vocabulary_identity_and_exact_parity",
-    "software_namespace_future_alias_or_deprecation_policy"
-  ],
-  "completion_effect": "T2A classification, T2B semantic-neutral current-doctrine migration, and T2C noncurrent retention remain authoritative. T2D adjudicates roadmap and registry identity occurrence-by-occurrence, migrates exactly two current REGISTRY-001 identity strings, preserves ROADMAP-001, historical records, stable paths, governance roles, R1B parity, and software compatibility identifiers, and refines the remaining escalation classes. PR2-ID remains active pending a separate completion audit. This does not authorize R3 or any downstream post-R2 workstream.",
+  "unresolved_escalations": [],
+  "completion_effect": "PR2-ID is validated for completion. All authorized current-facing identity migrations are complete. No PR2-ID residual gap remains; the four previously unresolved classes are preserved under carried_forward_obligations with explicit escalate or retain_compatibility dispositions. This does not authorize R3 or any downstream post-R2 workstream.",
   "t2b_exact_exceptions": [
     {
       "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
@@ -334,5 +329,62 @@
     "roadmap_path_disposition": "alias_then_migrate",
     "registry_path_disposition": "alias_then_migrate",
     "path_migration_authorized": false
-  }
+  },
+  "t2e_completion_tranche": {
+    "tranche_id": "PR2-ID-T2E",
+    "status": "validated",
+    "authority_granted": true,
+    "starting_branch_head": "9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448",
+    "authorization_reference": "owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation",
+    "authority_effect": "identity_migration_completion_recording_only",
+    "completion_review_path": "docs/doctrine/reviews/pr2_id_identity_migration_completion_review.yaml",
+    "completion_audit_result": "PASS",
+    "t2e_validation_state": "passed",
+    "validation_evidence": [
+      "bounded T2E and predecessor suite:56 passed",
+      "full repository suite:8961 passed, 10 skipped, 2 xfailed, 1 warning",
+      "git diff --check:clean"
+    ]
+  },
+  "carried_forward_obligations": [
+    {
+      "class_id": "roadmap_currentness_setting_and_planning_authority",
+      "pr2_id_disposition": "escalate",
+      "handoff_posture": "future_roadmap_currentness_and_planning_authority_review",
+      "blocks_pr2_id_completion": false,
+      "rationale": "ROADMAP-001 mixes stale planning/currentness, setting-premise, governance, and historical identity. Identity-only migration must not refresh it into current authority."
+    },
+    {
+      "class_id": "astra_prefixed_governance_and_working_group_role_identity",
+      "pr2_id_disposition": "escalate",
+      "handoff_posture": "future_governance_identity_decision",
+      "blocks_pr2_id_completion": false,
+      "rationale": "Astra-prefixed governance and working-group role names require a separate governance-role decision; T2E does not rename them."
+    },
+    {
+      "class_id": "r1b_shared_vocabulary_identity_and_exact_parity",
+      "pr2_id_disposition": "escalate",
+      "handoff_posture": "r1b_owner_identity_adjudication_if_ever_authorized",
+      "blocks_pr2_id_completion": false,
+      "rationale": "Inherited exact-parity values remain upstream-owned R1B vocabulary and are not identity-only edit targets."
+    },
+    {
+      "class_id": "software_namespace_future_alias_or_deprecation_policy",
+      "pr2_id_disposition": "retain_compatibility",
+      "handoff_posture": "separately_authorized_software_alias_or_deprecation_tranche",
+      "blocks_pr2_id_completion": false,
+      "literals_or_paths": [
+        "astra-runtime",
+        "astra_runtime",
+        "src/astra_runtime/"
+      ],
+      "rationale": "Software namespace identity is a compatibility contract. Retention is lawful until a dedicated alias/deprecation migration is authorized."
+    }
+  ],
+  "historical_unresolved_escalations_before_t2e_validation": [
+    "roadmap_currentness_setting_and_planning_authority",
+    "astra_prefixed_governance_and_working_group_role_identity",
+    "r1b_shared_vocabulary_identity_and_exact_parity",
+    "software_namespace_future_alias_or_deprecation_policy"
+  ]
 }
