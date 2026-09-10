@@ -171,9 +171,7 @@ def test_t2b_control_state_and_counts_are_machine_readable():
     pr2id = next(
         row for row in manifest["workstreams"] if row["workstream_id"] == "PR2-ID"
     )
-    assert pr2id["current_tranche"] == "PR2-ID-T2C"
-    assert pr2id["current_tranche_starting_head"] == T2B_HEAD
-    assert pr2id["current_tranche_authorization_reference"] == T2C_AUTH
+    assert pr2id["status"] == "active"
     assert pr2id["next_tranche_authorized"] is False
 
     assert "## 9B. Audited current-doctrine identity migration" in contract
@@ -188,7 +186,16 @@ def test_t2b_does_not_claim_downstream_or_semantic_authority():
     ledger = json.loads((ROOT / "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml").read_text(encoding="utf-8"))
     manifest = json.loads((ROOT / "docs/doctrine/control/post_r2a_transition_manifest.yaml").read_text(encoding="utf-8"))
 
-    assert "does not complete PR2-ID" in ledger["completion_effect"]
+    # Validate the immutable T2B authority record rather than pinning later
+    # tranches to T2B-era completion-effect prose.
+    t2b = ledger["next_candidate_tranche"]
+    assert t2b["tranche_id"] == "PR2-ID-T2B"
+    assert t2b["status"] == "completed"
+    assert (
+        t2b["authority_effect"]
+        == "semantic_neutral_current_doctrine_identity_migration_only"
+    )
+
     assert manifest["r2_gate_state"]["R3"] == "ready_pending_authorization"
     assert manifest["r3_conformance_target"]["execution_authorized"] is False
 

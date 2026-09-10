@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.7`
+**Artifact version:** `0.4.8`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -522,6 +522,40 @@ shared-vocabulary/exact-parity identity, and software namespace compatibility.
 T2C does not activate R3, PR2-SRC, PR2-ORG, PR2-IR, native-content production,
 runtime scalability, software namespace migration, canon promotion, conversion,
 or live-play/GM behavior.
+
+
+### 5.6 PR2-ID-T2D roadmap and registry occurrence adjudication
+
+`PR2-ID-T2D` is authorized under `owner_directive_2026-09-09_pr2_id_t2d_activation` from published T2C head
+`89d101fb6cbf44d2120871dbc6723ba8842e431b`.
+
+The read-only audit is recorded in:
+
+`docs/doctrine/control/myravant_identity_roadmap_registry_adjudication_record.yaml`
+
+ROADMAP-001 remains byte-identical. Its Astra-bearing content is not a safe
+identity-only migration surface because the document mixes historical identity,
+governance-role identity, obsolete planning/currentness claims, and setting
+premise assertions.
+
+REGISTRY-001 receives exactly two semantic-neutral current-facing identity
+changes: the top-level tracking purpose names Myravant, and the current
+REGISTRY-001 hard refusal uses `Myravant-native`. All historical changelog,
+noncurrent predecessor-record, governance-role, stable-path, and software
+compatibility surfaces are preserved or escalated according to the T2D record.
+
+The governance escalation is broadened to
+`astra_prefixed_governance_and_working_group_role_identity`. This is a
+classification refinement only; no governance role is renamed.
+
+Roadmap and registry paths remain `alias_then_migrate`, with no path migration
+authorized. R1B exact-parity identity and software namespace migration remain
+outside T2D.
+
+PR2-ID stays active. R3 remains `ready_pending_authorization`; source governance,
+originality governance, information-barrier work, native-content production,
+runtime scalability, canon, conversion, and live-play/GM work remain separately
+unauthorized.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

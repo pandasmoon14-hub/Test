@@ -1,0 +1,132 @@
+{
+  "artifact_id": "PR2-ID-T2D-ROADMAP-REGISTRY-ADJUDICATION-001",
+  "artifact_version": "0.1.0",
+  "status": "completed",
+  "workstream_id": "PR2-ID",
+  "tranche_id": "PR2-ID-T2D",
+  "starting_branch_head": "89d101fb6cbf44d2120871dbc6723ba8842e431b",
+  "authorization_reference": "owner_directive_2026-09-09_pr2_id_t2d_activation",
+  "authority_effect": "roadmap_registry_occurrence_adjudication_and_two_registry_identity_migrations_only",
+  "audit_basis": {
+    "method": "read-only occurrence capture at the published T2C head followed by semantic-role classification before any edit",
+    "roadmap_astra_bearing_lines": 35,
+    "registry_astra_bearing_lines": 310,
+    "registry_compatibility_literal_lines": 61,
+    "note": "Case-sensitive Astra-bearing line counts are audit metrics. Compatibility-literal counts are separate and may overlap other semantic classes."
+  },
+  "roadmap_dispositions": {
+    "path": "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+    "content_changed_by_t2d": false,
+    "astra_bearing_lines": 35,
+    "classification": {
+      "retain_historical": 1,
+      "escalate_governance_role": 1,
+      "escalate_currentness_setting_or_mixed_identity": 33,
+      "migrate_current": 0
+    },
+    "historical_exception": {
+      "captured_line": 34,
+      "surface": "PR #204 predecessor identity statement",
+      "disposition": "retain_historical"
+    },
+    "governance_exception": {
+      "captured_line": 14,
+      "surface": "maintained_by: Astra Doctrine Council",
+      "disposition": "escalate"
+    },
+    "rationale": "ROADMAP-001 self-identifies as current planning authority while containing stale PR-204-era runtime state, a fixed 1,900-donor framing, and setting-premise assertions that cannot be cosmetically rebranded into current Myravant authority."
+  },
+  "registry_dispositions": {
+    "path": "docs/doctrine/astra_doctrine_registry_v0_1.yaml",
+    "astra_bearing_lines_before_t2d": 310,
+    "astra_bearing_lines_after_t2d": 308,
+    "classification": {
+      "retain_historical": 187,
+      "escalate_governance_role": 119,
+      "migrate_current": 2,
+      "escalate_roadmap_currentness": 2
+    },
+    "retain_historical_detail": {
+      "historical_changelog_identity_lines": 117,
+      "noncurrent_or_predecessor_record_identity_lines": 70
+    },
+    "current_registry_migrations": [
+      {
+        "captured_line": 13,
+        "old": "purpose: Track doctrine/schema file lifecycle, dependencies, gates, review state, pressure tests, donor-law creep controls, and promotion decisions for Astra Ascension.",
+        "new": "purpose: Track doctrine/schema file lifecycle, dependencies, gates, review state, pressure tests, donor-law creep controls, and promotion decisions for Myravant.",
+        "disposition": "migrate_current"
+      },
+      {
+        "captured_line": 1948,
+        "old": "  - registry cannot validate donor-shaped records as Astra-native",
+        "new": "  - registry cannot validate donor-shaped records as Myravant-native",
+        "disposition": "migrate_current"
+      }
+    ],
+    "governance_scope_refinement": {
+      "previous_class": "Astra_Doctrine_Council_governance_role_name",
+      "refined_class": "astra_prefixed_governance_and_working_group_role_identity",
+      "examples": [
+        "Astra Doctrine Council",
+        "Astra Runtime Working Group",
+        "Astra Canon Working Group",
+        "Astra Training/Evaluation Working Group",
+        "Astra Training and Evaluation Working Group"
+      ],
+      "disposition": "escalate",
+      "rationale": "The registry proves the governance identity surface is broader than one council literal. Role identity requires a separate bounded governance decision."
+    }
+  },
+  "stable_path_disposition": {
+    "roadmap_path": "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+    "registry_path": "docs/doctrine/astra_doctrine_registry_v0_1.yaml",
+    "disposition": "alias_then_migrate",
+    "migration_authorized_by_t2d": false,
+    "baseline_test_reference_counts": {
+      "roadmap_path_refs": {
+        "line_count": 5,
+        "file_count": 4
+      },
+      "registry_path_refs": {
+        "line_count": 113,
+        "file_count": 97
+      },
+      "stable_control_id_refs": {
+        "line_count": 8,
+        "file_count": 1
+      }
+    },
+    "rationale": "Both legacy control paths are consumed by executable tests and repository contracts. Path migration is compatibility work, not a cosmetic identity edit."
+  },
+  "software_compatibility_disposition": {
+    "registry_compatibility_literal_lines": 61,
+    "literals_or_paths": [
+      "astra-runtime",
+      "astra_runtime",
+      "src/astra_runtime/"
+    ],
+    "disposition": "retain_compatibility",
+    "migration_authorized_by_t2d": false
+  },
+  "unresolved_identity_classes_after_t2d": [
+    "roadmap_currentness_setting_and_planning_authority",
+    "astra_prefixed_governance_and_working_group_role_identity",
+    "r1b_shared_vocabulary_identity_and_exact_parity",
+    "software_namespace_future_alias_or_deprecation_policy"
+  ],
+  "downstream_nonauthority": {
+    "R3_execution_authorized": false,
+    "PR2_SRC_authorized": false,
+    "PR2_ORG_authorized": false,
+    "PR2_IR_authorized": false,
+    "software_namespace_migration_authorized": false,
+    "governance_role_rename_authorized": false,
+    "r1b_parity_mutation_authorized": false,
+    "roadmap_currentness_rewrite_authorized": false,
+    "canon_promotion_authorized": false,
+    "conversion_execution_authorized": false,
+    "live_play_or_gm_authorized": false
+  },
+  "completion_effect": "T2D adjudicates the roadmap/registry class occurrence-by-occurrence, changes exactly two current-facing REGISTRY-001 identity strings, leaves ROADMAP-001 byte-identical, retains historical and compatibility surfaces, and refines the governance-role escalation. PR2-ID remains active pending a separate completion audit."
+}

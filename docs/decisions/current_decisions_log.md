@@ -5174,3 +5174,50 @@ governance-role renaming, R1B parity mutation, software namespace migration,
 runtime or schema redesign, source governance, source processing, R3 execution,
 canon promotion, conversion execution, native-content production, model
 training, or live-play/GM behavior.
+
+## 2026-09-09 decision — PR2-ID-T2D roadmap/registry occurrence adjudication
+
+- **Decision ID:** `PR2-ID-T2D-ROADMAP-REGISTRY-ADJUDICATION-001`
+- **Workstream:** `PR2-ID`
+- **Tranche:** `PR2-ID-T2D`
+- **Starting branch head:** `89d101fb6cbf44d2120871dbc6723ba8842e431b`
+- **Authorization reference:** `owner_directive_2026-09-09_pr2_id_t2d_activation`
+- **Authority effect:** `roadmap_registry_occurrence_adjudication_and_two_registry_identity_migrations_only`
+- **Disposition record:** `docs/doctrine/control/myravant_identity_roadmap_registry_adjudication_record.yaml`
+
+### Authorized result
+
+The published-T2C read-only audit captured `35` case-sensitive Astra-bearing
+ROADMAP-001 lines, `310` REGISTRY-001 lines, and `61` registry lines containing
+compatibility-bearing `astra-runtime`, `astra_runtime`, or `src/astra_runtime`
+literals.
+
+ROADMAP-001 receives no content edit.
+
+REGISTRY-001 receives exactly two current-facing identity edits:
+
+1. its top-level tracking purpose changes `Astra Ascension` to `Myravant`;
+2. the current REGISTRY-001 hard refusal changes `Astra-native` to
+   `Myravant-native`.
+
+All other identity-bearing roadmap/registry content is retained, compatibility
+protected, or escalated according to the T2D record.
+
+### Governance-role refinement
+
+The earlier single-literal `Astra Doctrine Council` escalation is broadened to
+`astra_prefixed_governance_and_working_group_role_identity`. This includes
+Astra-prefixed Doctrine Council, Runtime Working Group, Canon Working Group,
+and Training/Evaluation Working Group identities. No such role is renamed by
+T2D.
+
+### Nonauthority
+
+T2D does not rewrite roadmap planning/currentness, change setting or canon
+premises, rename legacy roadmap/registry paths, migrate software/package
+namespaces, mutate R1B exact-parity fields, rewrite historical changelog or
+draft/todo predecessor records, activate R3, authorize source processing,
+promote canon, execute conversion, begin native-content production, or
+authorize live-play/GM behavior.
+
+PR2-ID remains active pending a separate completion audit.

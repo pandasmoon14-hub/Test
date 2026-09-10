@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.7",
+  "artifact_version": "0.4.8",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -379,7 +379,10 @@
         "tests/test_conversion_runtime_origin_firewall.py",
         "tests/test_pr2_id_t2b_doctrine_identity_migration.py",
         "docs/doctrine/control/myravant_identity_noncurrent_surface_retention_record.yaml",
-        "tests/test_pr2_id_t2c_noncurrent_surface_retention.py"
+        "tests/test_pr2_id_t2c_noncurrent_surface_retention.py",
+        "docs/doctrine/astra_doctrine_registry_v0_1.yaml",
+        "docs/doctrine/control/myravant_identity_roadmap_registry_adjudication_record.yaml",
+        "tests/test_pr2_id_t2d_roadmap_registry_adjudication.py"
       ],
       "prohibited_scope": [
         "indiscriminate_astra_search_and_replace",
@@ -400,20 +403,20 @@
       "branch_head": null,
       "merge_commit": null,
       "residual_gaps": [
-        "roadmap_and_registry_currentness_and_identity_roles",
-        "Astra_Doctrine_Council_governance_role_name",
+        "roadmap_currentness_setting_and_planning_authority",
+        "astra_prefixed_governance_and_working_group_role_identity",
         "r1b_shared_vocabulary_identity_and_exact_parity",
         "software_namespace_future_alias_or_deprecation_policy"
       ],
       "downstream_handoff": [
         "PR2-AUDIT"
       ],
-      "current_tranche": "PR2-ID-T2C",
+      "current_tranche": "PR2-ID-T2D",
       "tranche_control_artifact": "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml",
-      "tranche_authority_effect": "noncurrent_identity_surface_retention_recording_only",
+      "tranche_authority_effect": "roadmap_registry_occurrence_adjudication_and_two_registry_identity_migrations_only",
       "next_tranche_authorized": false,
-      "current_tranche_starting_head": "e00bf6d6a8b7180dff34202a5602d69cab151d7f",
-      "current_tranche_authorization_reference": "owner_directive_2026-09-09_pr2_id_t2c_recording_activation"
+      "current_tranche_starting_head": "89d101fb6cbf44d2120871dbc6723ba8842e431b",
+      "current_tranche_authorization_reference": "owner_directive_2026-09-09_pr2_id_t2d_activation"
     },
     {
       "workstream_id": "PR2-SRC",

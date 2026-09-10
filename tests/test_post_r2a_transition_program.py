@@ -37,6 +37,8 @@ PR2_ID_T2B_AUTHORIZATION = "owner_directive_2026-09-09_pr2_id_t2b_activation"
 PR2_ID_T2B_STARTING_HEAD = "f7c29730ebcca5d593621c1bca77dea54f5d0223"
 PR2_ID_T2C_AUTHORIZATION = "owner_directive_2026-09-09_pr2_id_t2c_recording_activation"
 PR2_ID_T2C_STARTING_HEAD = "e00bf6d6a8b7180dff34202a5602d69cab151d7f"
+PR2_ID_T2D_AUTHORIZATION = "owner_directive_2026-09-09_pr2_id_t2d_activation"
+PR2_ID_T2D_STARTING_HEAD = "89d101fb6cbf44d2120871dbc6723ba8842e431b"
 
 EXPECTED_R2_GATES = {
     "R1": "complete",
@@ -111,8 +113,8 @@ TERMINAL_STATUSES = {
 }
 
 UNRESOLVED_IDENTITY_CLASSES = [
-    "roadmap_and_registry_currentness_and_identity_roles",
-    "Astra_Doctrine_Council_governance_role_name",
+    "roadmap_currentness_setting_and_planning_authority",
+    "astra_prefixed_governance_and_working_group_role_identity",
     "r1b_shared_vocabulary_identity_and_exact_parity",
     "software_namespace_future_alias_or_deprecation_policy",
 ]
@@ -157,7 +159,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.7"
+    assert manifest["artifact_version"] == "0.4.8"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -306,12 +308,12 @@ def test_r2c_is_merged_and_pr2_id_is_the_only_active_workstream():
     assert pr2id["branch_head"] is None
     assert pr2id["merge_commit"] is None
     assert pr2id["residual_gaps"] == UNRESOLVED_IDENTITY_CLASSES
-    assert pr2id["current_tranche"] == "PR2-ID-T2C"
-    assert pr2id["tranche_authority_effect"] == "noncurrent_identity_surface_retention_recording_only"
-    assert pr2id["current_tranche_starting_head"] == PR2_ID_T2C_STARTING_HEAD
+    assert pr2id["current_tranche"] == "PR2-ID-T2D"
+    assert pr2id["tranche_authority_effect"] == "roadmap_registry_occurrence_adjudication_and_two_registry_identity_migrations_only"
+    assert pr2id["current_tranche_starting_head"] == PR2_ID_T2D_STARTING_HEAD
     assert (
         pr2id["current_tranche_authorization_reference"]
-        == PR2_ID_T2C_AUTHORIZATION
+        == PR2_ID_T2D_AUTHORIZATION
     )
     assert pr2id["next_tranche_authorized"] is False
 
@@ -353,7 +355,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.7`" in program
+    assert "**Artifact version:** `0.4.8`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -399,6 +401,9 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert "### 5.5 PR2-ID-T2C noncurrent identity-surface retention recording" in program
     assert PR2_ID_T2C_AUTHORIZATION in program
     assert PR2_ID_T2C_STARTING_HEAD in program
+    assert "### 5.6 PR2-ID-T2D roadmap and registry occurrence adjudication" in program
+    assert PR2_ID_T2D_AUTHORIZATION in program
+    assert PR2_ID_T2D_STARTING_HEAD in program
 
 def test_program_completion_rule_forbids_untracked_disappearance():
     manifest = _load_manifest()

@@ -1,4 +1,4 @@
-"""Validation for PR2-ID identity dispositions through the T2C retention record."""
+"""Validation for PR2-ID identity dispositions through T2D adjudication."""
 from __future__ import annotations
 
 import json
@@ -13,6 +13,8 @@ T2A_HEAD = "f7c29730ebcca5d593621c1bca77dea54f5d0223"
 T2B_AUTH = "owner_directive_2026-09-09_pr2_id_t2b_activation"
 T2B_HEAD = "e00bf6d6a8b7180dff34202a5602d69cab151d7f"
 T2C_AUTH = "owner_directive_2026-09-09_pr2_id_t2c_recording_activation"
+T2D_BASE = "89d101fb6cbf44d2120871dbc6723ba8842e431b"
+T2D_AUTH = "owner_directive_2026-09-09_pr2_id_t2d_activation"
 
 LEDGER = (
     ROOT
@@ -87,7 +89,7 @@ def test_ledger_identity_and_inventory_counts_are_exact():
     assert data["artifact_id"] == (
         "PR2-ID-IDENTITY-SURFACE-DISPOSITION-LEDGER-001"
     )
-    assert data["artifact_version"] == "0.3.0"
+    assert data["artifact_version"] == "0.4.0"
     assert data["status"] == "active"
     assert data["workstream_id"] == "PR2-ID"
     assert data["tranche_id"] == "PR2-ID-T2A"
@@ -197,14 +199,19 @@ def test_t2b_authority_remains_bounded_and_downstream_stays_blocked():
     data = load_ledger()
     effect = data["completion_effect"]
 
-    assert "T2A classification remains authoritative" in effect
-    assert "T2B is explicitly authorized" in effect
-    assert "does not complete PR2-ID" in effect
-    assert "authorize R3" in effect
+    # Later PR2-ID tranches may lawfully rewrite the current completion-effect
+    # summary. Validate durable tranche state and downstream nonauthority
+    # instead of requiring obsolete T2B-era prose.
+    assert data["next_candidate_tranche"]["tranche_id"] == "PR2-ID-T2B"
+    assert data["next_candidate_tranche"]["status"] == "completed"
+    assert data["t2c_recording_tranche"]["status"] == "completed"
+    assert data["t2d_adjudication_tranche"]["status"] == "completed"
+    assert "does not authorize R3" in effect
+    assert "downstream post-R2 workstream" in effect
 
     assert data["unresolved_escalations"] == [
-        "roadmap_and_registry_currentness_and_identity_roles",
-        "Astra_Doctrine_Council_governance_role_name",
+        "roadmap_currentness_setting_and_planning_authority",
+        "astra_prefixed_governance_and_working_group_role_identity",
         "r1b_shared_vocabulary_identity_and_exact_parity",
         "software_namespace_future_alias_or_deprecation_policy",
     ]
@@ -219,3 +226,19 @@ def test_t2b_authority_remains_bounded_and_downstream_stays_blocked():
     assert t2c["high_recall_identity_occurrence_lines"] == 44
     assert t2c["content_edit_targets"] == 0
     assert t2c["disposition"] == "retain_historical"
+
+    t2d = data["t2d_adjudication_tranche"]
+    assert t2d["tranche_id"] == "PR2-ID-T2D"
+    assert t2d["status"] == "completed"
+    assert t2d["authority_granted"] is True
+    assert t2d["starting_branch_head"] == T2D_BASE
+    assert t2d["authorization_reference"] == T2D_AUTH
+    assert t2d["roadmap_astra_bearing_lines"] == 35
+    assert t2d["roadmap_content_edit_targets"] == 0
+    assert t2d["registry_astra_bearing_lines"] == 310
+    assert t2d["registry_migrate_current"] == 2
+    assert t2d["registry_retain_historical"] == 187
+    assert t2d["registry_escalate_governance_role"] == 119
+    assert t2d["registry_escalate_roadmap_currentness"] == 2
+    assert t2d["registry_compatibility_literal_lines"] == 61
+    assert t2d["path_migration_authorized"] is False

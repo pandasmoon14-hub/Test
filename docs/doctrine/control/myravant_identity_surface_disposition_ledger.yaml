@@ -1,6 +1,6 @@
 {
   "artifact_id": "PR2-ID-IDENTITY-SURFACE-DISPOSITION-LEDGER-001",
-  "artifact_version": "0.3.0",
+  "artifact_version": "0.4.0",
   "status": "active",
   "workstream_id": "PR2-ID",
   "tranche_id": "PR2-ID-T2A",
@@ -138,7 +138,9 @@
       },
       "semantic_role": "mixed_or_unverified_doctrine_identity",
       "disposition": "escalate",
-      "rationale": "These files mix historical PR state, current-looking planning metadata, setting identity, governance-role names, stable paths, and project branding. File-wide replacement is not lawful."
+      "rationale": "Roadmap/registry content remains escalate-by-default because these files mix historical, current, governance, setting, stable-path, and compatibility roles. T2D records two exact migrate_current exceptions in REGISTRY-001; all other occurrences follow the T2D disposition record.",
+      "state": "refined_by_t2d_occurrence_adjudication",
+      "exact_exception_record": "docs/doctrine/control/myravant_identity_roadmap_registry_adjudication_record.yaml"
     },
     {
       "rule_id": "ID-DISP-009-AFQR-CURRENT-NORMATIVE",
@@ -275,12 +277,12 @@
     "publication_head": "e00bf6d6a8b7180dff34202a5602d69cab151d7f"
   },
   "unresolved_escalations": [
-    "roadmap_and_registry_currentness_and_identity_roles",
-    "Astra_Doctrine_Council_governance_role_name",
+    "roadmap_currentness_setting_and_planning_authority",
+    "astra_prefixed_governance_and_working_group_role_identity",
     "r1b_shared_vocabulary_identity_and_exact_parity",
     "software_namespace_future_alias_or_deprecation_policy"
   ],
-  "completion_effect": "T2A classification remains authoritative. T2B is explicitly authorized and completed at the published T2B head. T2C records exact retain_historical dispositions for 33 noncurrent residual files and 44 high-recall identity occurrence lines without editing those files. PR2-ID remains active; four separately bounded identity classes remain unresolved. This does not complete PR2-ID, authorize R3, or authorize any downstream post-R2 workstream.",
+  "completion_effect": "T2A classification, T2B semantic-neutral current-doctrine migration, and T2C noncurrent retention remain authoritative. T2D adjudicates roadmap and registry identity occurrence-by-occurrence, migrates exactly two current REGISTRY-001 identity strings, preserves ROADMAP-001, historical records, stable paths, governance roles, R1B parity, and software compatibility identifiers, and refines the remaining escalation classes. PR2-ID remains active pending a separate completion audit. This does not authorize R3 or any downstream post-R2 workstream.",
   "t2b_exact_exceptions": [
     {
       "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
@@ -312,5 +314,25 @@
     "high_recall_identity_occurrence_lines": 44,
     "content_edit_targets": 0,
     "disposition": "retain_historical"
+  },
+  "t2d_adjudication_tranche": {
+    "tranche_id": "PR2-ID-T2D",
+    "status": "completed",
+    "authority_granted": true,
+    "starting_branch_head": "89d101fb6cbf44d2120871dbc6723ba8842e431b",
+    "authorization_reference": "owner_directive_2026-09-09_pr2_id_t2d_activation",
+    "authority_effect": "roadmap_registry_occurrence_adjudication_and_two_registry_identity_migrations_only",
+    "record_path": "docs/doctrine/control/myravant_identity_roadmap_registry_adjudication_record.yaml",
+    "roadmap_astra_bearing_lines": 35,
+    "roadmap_content_edit_targets": 0,
+    "registry_astra_bearing_lines": 310,
+    "registry_migrate_current": 2,
+    "registry_retain_historical": 187,
+    "registry_escalate_governance_role": 119,
+    "registry_escalate_roadmap_currentness": 2,
+    "registry_compatibility_literal_lines": 61,
+    "roadmap_path_disposition": "alias_then_migrate",
+    "registry_path_disposition": "alias_then_migrate",
+    "path_migration_authorized": false
   }
 }

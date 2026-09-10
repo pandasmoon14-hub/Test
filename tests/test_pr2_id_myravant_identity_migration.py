@@ -14,6 +14,8 @@ T2B_START = "f7c29730ebcca5d593621c1bca77dea54f5d0223"
 T2B_AUTH = "owner_directive_2026-09-09_pr2_id_t2b_activation"
 T2C_START = "e00bf6d6a8b7180dff34202a5602d69cab151d7f"
 T2C_AUTH = "owner_directive_2026-09-09_pr2_id_t2c_recording_activation"
+T2D_START = "89d101fb6cbf44d2120871dbc6723ba8842e431b"
+T2D_AUTH = "owner_directive_2026-09-09_pr2_id_t2d_activation"
 
 CONTRACT = ROOT / "docs/doctrine/control/myravant_identity_migration_contract.md"
 LEDGER = ROOT / "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml"
@@ -57,6 +59,12 @@ T2C_OWNED = T2B_OWNED | {
     "tests/test_pr2_id_t2c_noncurrent_surface_retention.py",
 }
 
+T2D_OWNED = T2C_OWNED | {
+    "docs/doctrine/astra_doctrine_registry_v0_1.yaml",
+    "docs/doctrine/control/myravant_identity_roadmap_registry_adjudication_record.yaml",
+    "tests/test_pr2_id_t2d_roadmap_registry_adjudication.py",
+}
+
 
 def load_manifest():
     return json.loads(MANIFEST.read_text(encoding="utf-8"))
@@ -88,6 +96,7 @@ def test_contract_establishes_identity_without_rewriting_history():
         "PR2-ID-T2A",
         "PR2-ID-T2B",
         "PR2-ID-T2C",
+        "PR2-ID-T2D",
         "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml",
     ]:
         assert value in text
@@ -124,7 +133,7 @@ def test_manifest_records_r2c_merge_and_pr2_id_activation():
     manifest = load_manifest()
     by_id = {row["workstream_id"]: row for row in manifest["workstreams"]}
 
-    assert manifest["artifact_version"] == "0.4.7"
+    assert manifest["artifact_version"] == "0.4.8"
     assert manifest["r2_gate_state"]["R2"] == "complete"
     assert manifest["r2_gate_state"]["R3"] == "ready_pending_authorization"
     assert manifest["r3_conformance_target"]["execution_authorized"] is False
@@ -140,12 +149,12 @@ def test_manifest_records_r2c_merge_and_pr2_id_activation():
     assert pr2id["authorization_reference"] == AUTH
     assert pr2id["starting_baseline"] == BASE
     assert set(pr2id["dependencies"]) == {"PR2-CTRL", "PR2-R2C"}
-    assert set(pr2id["owned_paths"]) == T2C_OWNED
-    assert pr2id["current_tranche"] == "PR2-ID-T2C"
+    assert set(pr2id["owned_paths"]) == T2D_OWNED
+    assert pr2id["current_tranche"] == "PR2-ID-T2D"
     assert pr2id["tranche_control_artifact"] == "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml"
-    assert pr2id["tranche_authority_effect"] == "noncurrent_identity_surface_retention_recording_only"
-    assert pr2id["current_tranche_starting_head"] == T2C_START
-    assert pr2id["current_tranche_authorization_reference"] == T2C_AUTH
+    assert pr2id["tranche_authority_effect"] == "roadmap_registry_occurrence_adjudication_and_two_registry_identity_migrations_only"
+    assert pr2id["current_tranche_starting_head"] == T2D_START
+    assert pr2id["current_tranche_authorization_reference"] == T2D_AUTH
     assert pr2id["next_tranche_authorized"] is False
     assert pr2id["pull_request"] is None
     assert pr2id["branch_head"] is None
@@ -173,6 +182,9 @@ def test_authorization_decisions_are_recorded():
     assert "PR2-ID-T2C-NONCURRENT-SURFACE-RETENTION-001" in text
     assert T2C_AUTH in text
     assert T2C_START in text
+    assert "PR2-ID-T2D-ROADMAP-REGISTRY-ADJUDICATION-001" in text
+    assert T2D_AUTH in text
+    assert T2D_START in text
 
 
 def test_first_tranche_diff_is_bounded_at_its_published_head():

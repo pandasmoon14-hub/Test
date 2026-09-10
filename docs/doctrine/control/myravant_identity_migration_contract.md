@@ -7,7 +7,7 @@
 **Starting baseline:** `843fc89f3769a8e6323fa7b683d3805a9edfc142`
 **Authorization reference:** `owner_directive_2026-09-08_pr2_id_activation`
 **Authority effect:** identity and brand migration only
-**Current tranche:** `PR2-ID-T2C`
+**Current tranche:** `PR2-ID-T2D`
 
 ## 1. Purpose
 
@@ -300,6 +300,61 @@ T2C is control recording only. It does not alter doctrine semantics, promote
 draft material, change setting/canon identity, rename governance roles, mutate
 R1B parity values, migrate software namespaces, activate R3, authorize source
 governance, promote canon, execute conversion, or authorize live-play/GM work.
+
+
+## 9D. Roadmap and registry occurrence adjudication
+
+`PR2-ID-T2D` is authorized by `owner_directive_2026-09-09_pr2_id_t2d_activation` from published T2C head
+`89d101fb6cbf44d2120871dbc6723ba8842e431b`.
+
+The controlling T2D disposition record is:
+
+`docs/doctrine/control/myravant_identity_roadmap_registry_adjudication_record.yaml`
+
+The read-only baseline capture found exactly `35` case-sensitive Astra-bearing
+lines in ROADMAP-001 and `310` in REGISTRY-001.
+
+ROADMAP-001 receives no content edit. Its `35` lines resolve as:
+
+- `1` predecessor-history occurrence -> `retain_historical`;
+- `1` governance-role occurrence -> `escalate`;
+- `33` currentness, setting-premise, or mixed-identity occurrences -> `escalate`;
+- `0` -> `migrate_current`.
+
+This is required because the roadmap still self-identifies as current planning
+authority while containing obsolete PR-204-era runtime state, a fixed
+1,900-donor framing, and setting-premise assumptions. Identity-only authority
+must not make stale planning look newly authoritative.
+
+REGISTRY-001 resolves its `310` Astra-bearing lines as:
+
+- `187` -> `retain_historical`;
+- `119` -> governance-role `escalate`;
+- `2` -> `migrate_current`;
+- `2` -> roadmap-currentness `escalate`.
+
+T2D changes exactly two current REGISTRY-001 identity strings: the top-level
+tracking purpose now names Myravant, and the current REGISTRY-001 hard refusal
+now rejects donor-shaped records as `Myravant-native`.
+
+The governance escalation is refined from the single literal
+`Astra Doctrine Council` to the broader class
+`astra_prefixed_governance_and_working_group_role_identity`, because the
+registry also contains Astra-prefixed runtime, canon, and training/evaluation
+working-group identities. T2D does not rename any of those roles.
+
+The legacy roadmap and registry paths remain `alias_then_migrate`. T2D does not
+rename either path. The registry's `astra-runtime`, `astra_runtime`, and
+`src/astra_runtime/` references remain `retain_compatibility`.
+
+T2D does not rewrite roadmap currentness, setting/canon assumptions, governance
+roles, R1B parity values, software namespaces, historical changelog entries,
+draft/todo predecessor records, stable control IDs, or compatibility paths.
+
+T2D does not complete PR2-ID. The next lawful step is a separate PR2-ID
+completion audit that checks whether every remaining material identity surface
+has a lawful disposition and whether any unresolved escalation still blocks
+closure.
 
 ## 10. Completion rule
 
