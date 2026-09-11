@@ -5457,3 +5457,20 @@ No classified surface is modified by SRC-C. A disposition recommendation does no
 SRC-C does not authorize legacy remediation, source acquisition, bulk source processing, source-to-Myravant transformation, originality/rights/eligibility adjudication, information-barrier implementation, corpus governance, fiction/simulation-specific contracts, PR2-SRC-D review, R3 execution, runtime/schema implementation, conversion execution, autonomous research-agent execution, native-content production, model training, canon promotion, or live-play/GM behavior.
 
 PR2-SRC-D remains separately unauthorized.
+
+## 2026-09-11 decision — PR2-SRC-D independent completion review activation
+
+- **Decision ID:** `PR2-SRC-D-ACTIVATION-001`
+- **Workstream:** `PR2-SRC`
+- **Tranche:** `PR2-SRC-D`
+- **Authority reference:** `owner_directive_2026-09-11_pr2_src_d_activation`
+- **Authority effect:** `independent_source_research_completion_review_only`
+- **Starting baseline:** `21b4ba706bb3f68aeb51dc4195fe1aa60014a439`
+
+PR2-SRC-C merged through PR `#384` from certified head `b71de0fb8b5565f63dbb0019faad2cd5cf390465` as merge commit `21b4ba706bb3f68aeb51dc4195fe1aa60014a439`. Its full repository validation was `8996 passed, 10 skipped, 2 xfailed, 1 warning`; CI `#167` succeeded; `git diff --check` was clean; audited legacy surfaces modified: `0`.
+
+The independent PR2-SRC review result is `PASS`. No blocking doctrine gap remains within PR2-SRC ownership. Remaining concerns route to `PR2-ORG`, `PR2-CORPUS`, `PR2-IR`, `PR2-FICT`, `PR2-SIMEX`, or separately authorized remediation/research execution.
+
+After PR2-SRC acceptance, a separately authorized small calibration pilot may begin. The full corpus research campaign should wait for `PR2-ORG` and `PR2-CORPUS`. Unqualified research-to-Myravant design handoff waits for `PR2-ORG` and `PR2-IR`. Specialized fiction and simulation-exemplar interpretation waits for `PR2-FICT` and `PR2-SIMEX`.
+
+SRC-D does not authorize source acquisition, packet execution, bulk source processing, autonomous reconnaissance, legacy remediation, downstream workstreams, R3, runtime/schema implementation, native-content production, conversion, training, canon, or live-play/GM behavior. A PASS review does not pre-claim PR2-SRC as `merged`.

@@ -1,0 +1,19 @@
+from __future__ import annotations
+import json
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1]
+R=ROOT/"docs/doctrine/reviews/pr2_src_source_research_completion_review.yaml"; M=ROOT/"docs/doctrine/control/post_r2a_transition_manifest.yaml"; P=ROOT/"docs/doctrine/control/post_r2a_transition_program.md"; D=ROOT/"docs/decisions/current_decisions_log.md"
+BASE="21b4ba706bb3f68aeb51dc4195fe1aa60014a439"; AUTH="owner_directive_2026-09-11_pr2_src_d_activation"; EFFECT="independent_source_research_completion_review_only"
+BLOCKED={'PR2-PERSIST', 'PR2-SIMEX', 'PR2-EVENT', 'PR2-SCALE', 'PR2-CONC', 'PR2-IMPL', 'PR2-FID', 'PR2-MIG', 'PR2-FICT', 'PR2-ORG', 'PR2-CORPUS', 'PR2-PART', 'PR2-IR', 'PR2-TEST', 'PR2-BP', 'PR2-AUDIT'}
+def load(p): return json.loads(p.read_text(encoding="utf-8"))
+def rows(m): return {x["workstream_id"]:x for x in m["workstreams"]}
+def test_pass_and_no_src_owned_gap():
+ r=load(R); assert r["review_result"]=="PASS" and r["blocking_findings"]==[]; assert r["completion_findings"]["missing_pr2_src_owned_doctrine_found"] is False; assert all(v is False for v in r["nonauthority"].values())
+def test_completion_domains_are_covered():
+ f=load(R)["completion_findings"]; req=["external_source_nonauthority_governed","research_layers_remain_distinct","intake_and_reconnaissance_governed","pressure_extraction_outputs_and_stop_conditions_governed","cross_source_synthesis_governed","provenance_continuity_required","heterogeneous_methods_qualified","mechanical_ecology_and_utilization_preserved","bounded_research_packet_contract_defined","escalation_routes_explicit","legacy_surfaces_disposed","runtime_origin_firewall_intact","frequency_does_not_create_doctrine_or_prevalence"]; assert all(f[k] is True for k in req)
+def test_research_timing_is_bounded():
+ q=load(R)["research_start_posture"]; assert q["bounded_calibration_pilot"]["methodologically_ready_after_pr2_src_acceptance"] is True; assert q["bounded_calibration_pilot"]["authorized_by_this_review"] is False; assert q["full_corpus_research_campaign"]["minimum_governance_before_start"]==["PR2-ORG","PR2-CORPUS"]; assert q["research_to_myravant_design_handoff"]["required_before_unqualified_handoff"]==["PR2-ORG","PR2-IR"]; assert q["specialized_fiction_research"]["required"]==["PR2-FICT"]; assert q["specialized_simulation_exemplar_research"]["required"]==["PR2-SIMEX"]
+def test_manifest_activates_only_src_d():
+ m=load(M); by=rows(m); s=by["PR2-SRC"]; tr={x["tranche_id"]:x for x in s["planned_tranches"]}; assert m["artifact_version"]=="0.4.15"; assert s["status"]=="active" and s["current_tranche"]=="PR2-SRC-D"; assert s["current_tranche_authorization_reference"]==AUTH and s["tranche_authority_effect"]==EFFECT and s["completion_review_result"]=="PASS"; assert tr["PR2-SRC-C"]["state"]=="merged" and tr["PR2-SRC-C"]["pull_request"]==384 and tr["PR2-SRC-C"]["branch_head"]=="b71de0fb8b5565f63dbb0019faad2cd5cf390465" and tr["PR2-SRC-C"]["merge_commit"]==BASE; assert tr["PR2-SRC-D"]["state"]=="active" and tr["PR2-SRC-D"]["source_processing_authorized"] is False; assert m["r3_conformance_target"]["execution_authorized"] is False; assert all(by[w]["status"]=="blocked" and by[w]["authorization_reference"] is None for w in BLOCKED)
+def test_program_and_decision_record_review_without_terminal_preclaim():
+ p=P.read_text(encoding="utf-8"); d=D.read_text(encoding="utf-8"); assert "**Artifact version:** `0.4.15`" in p; assert "### 5.12 PR2-SRC-D independent completion review" in p; assert "The independent review result is `PASS`." in p; assert "`PR2-SRC` remains `active` while SRC-D is under review/publication." in p; assert "full corpus research campaign should not begin until `PR2-ORG` and `PR2-CORPUS` are accepted" in p; assert "PR2-SRC-D-ACTIVATION-001" in d and AUTH in d and EFFECT in d; assert "does not pre-claim PR2-SRC as `merged`" in d

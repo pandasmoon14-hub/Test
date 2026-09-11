@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.14`
+**Artifact version:** `0.4.15`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -702,6 +702,29 @@ SRC-C changes none of those six surfaces. A recommended disposition is classific
 
 `PR2-SRC` remains `active` with current tranche `PR2-SRC-C`. `PR2-SRC-D` remains separately unauthorized. R3 remains `ready_pending_authorization` with execution disabled. PR2-ORG, PR2-IR, PR2-CORPUS, PR2-FICT, PR2-SIMEX, runtime, native-content, canon, training, source-processing, conversion-execution, and live-play authorities remain separate and unactivated.
 
+### 5.12 PR2-SRC-D independent completion review
+
+PR2-SRC-C merged through PR `#384` from certified head `b71de0fb8b5565f63dbb0019faad2cd5cf390465` as merge commit `21b4ba706bb3f68aeb51dc4195fe1aa60014a439`.
+
+The owner separately authorized `PR2-SRC-D` under `owner_directive_2026-09-11_pr2_src_d_activation` from merged baseline `21b4ba706bb3f68aeb51dc4195fe1aa60014a439`.
+
+The controlling completion review is `docs/doctrine/reviews/pr2_src_source_research_completion_review.yaml`.
+
+The independent review result is `PASS`. No blocking doctrine gap remains inside PR2-SRC ownership. SRC-A governs source nonauthority, the evidence-to-requirement research pipeline, provenance continuity, synthesis, and escalation. SRC-B supplies heterogeneous methods, research-depth selection, mechanical ecology, utilization, failure/rules-in-use analysis, bounded research packets, stop conditions, and escalation. SRC-C lawfully classified legacy source/conversion surfaces without rewriting them.
+
+Remaining obligations are successor-owned: `PR2-ORG`, `PR2-CORPUS`, `PR2-IR`, `PR2-FICT`, and `PR2-SIMEX`, plus separately authorized legacy remediation and research execution.
+
+Research timing is deliberately split:
+
+- after PR2-SRC acceptance, a small separately authorized internal calibration pilot may begin with bounded source-aware packets;
+- the full corpus research campaign should not begin until `PR2-ORG` and `PR2-CORPUS` are accepted;
+- unqualified research-to-Myravant design handoff remains blocked until `PR2-ORG` and `PR2-IR` are accepted;
+- specialized fiction and simulation-exemplar interpretation waits for `PR2-FICT` and `PR2-SIMEX`.
+
+SRC-D does not authorize source acquisition, packet execution, bulk source processing, agent reconnaissance, downstream workstreams, R3, remediation, native content, canon, runtime/schema implementation, training, conversion, or live-play/GM behavior.
+
+`PR2-SRC` remains `active` while SRC-D is under review/publication. A PASS review does not become terminal `merged` workstream state before the SRC-D review is accepted and merged.
+
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
 ## 6. Controlled workstream registry
@@ -1129,21 +1152,15 @@ Current successor state is therefore:
 2. `PR2-SRC-A` is merged through PR `#382` as merge commit
    `818a79d03ac487722762a44c9a80b29391278a8f`;
 3. `PR2-SRC-B` is merged through PR `#383` as merge commit `70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa`;
-4. `PR2-SRC` remains `active` with current tranche `PR2-SRC-C` under
-   `owner_directive_2026-09-11_pr2_src_c_activation` from baseline `70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa`;
-5. `R3` remains `ready_pending_authorization` with its exact 34-record
-   conformance target and is not executing;
-6. `PR2-ORG`, `PR2-CORPUS`, `PR2-IR`, `PR2-FICT`, `PR2-SIMEX`,
-   runtime-scalability, audit, migration, implementation, native-content,
-   canon, conversion, training, and live-play workstreams remain separately
-   blocked or unauthorized.
+4. `PR2-SRC-C` is merged through PR `#384` as merge commit `21b4ba706bb3f68aeb51dc4195fe1aa60014a439`;
+5. `PR2-SRC` remains `active` with current tranche `PR2-SRC-D` under
+   `owner_directive_2026-09-11_pr2_src_d_activation` from baseline `21b4ba706bb3f68aeb51dc4195fe1aa60014a439`;
+6. the SRC-D independent completion review result is `PASS`, pending review publication/merge;
+7. `R3` remains `ready_pending_authorization` with its exact 34-record conformance target and is not executing;
+8. `PR2-ORG`, `PR2-CORPUS`, `PR2-IR`, `PR2-FICT`, `PR2-SIMEX`, runtime-scalability, audit, migration, implementation, native-content, canon, conversion, training, and live-play workstreams remain separately blocked or unauthorized.
 
 PR2-ID identity authority does not transfer authority to any later workstream.
-PR2-SRC-A source-research authority transferred into separately authorized
-SRC-B method qualification, and SRC-B authority transferred only into the separately
-authorized SRC-C classification tranche recorded above. SRC-C authority transfers no
-authority to R3, SRC-D, remediation, or any downstream source, runtime, content, canon,
-training, or live-play workstream.
+PR2-SRC-A source-research authority transferred into separately authorized SRC-B method qualification; SRC-B authority transferred into separately authorized SRC-C classification; and SRC-C completion evidence transferred only into separately authorized SRC-D completion review. SRC-D review authority transfers no execution, remediation, R3, or downstream source, runtime, content, canon, training, or live-play authority.
 
 ## 21. Completion condition for this program
 

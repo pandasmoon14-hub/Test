@@ -11,6 +11,7 @@ BASELINE="70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa"
 AUTH="owner_directive_2026-09-11_pr2_src_c_activation"
 EFFECT="legacy_source_conversion_surface_disposition_only"
 SRC_B_HEAD="cabd12d56e7e036b2b839f21486776b49ebff56b"
+SRC_C_MERGE="21b4ba706bb3f68aeb51dc4195fe1aa60014a439"
 AUDITED={
     "docs/operations/current_decisions_log_v0_1.md": [
         "blob",
@@ -41,6 +42,8 @@ EXPECTED={"docs/operations/current_decisions_log_v0_1.md":"historical_only","doc
 BLOCKED={'PR2-SCALE', 'PR2-IR', 'PR2-TEST', 'PR2-IMPL', 'PR2-EVENT', 'PR2-FICT', 'PR2-BP', 'PR2-PART', 'PR2-CONC', 'PR2-PERSIST', 'PR2-MIG', 'PR2-SIMEX', 'PR2-CORPUS', 'PR2-ORG', 'PR2-FID', 'PR2-AUDIT'}
 def git(*a): return subprocess.check_output(["git",*a],cwd=ROOT,text=True).strip()
 def load(p): return json.loads(p.read_text(encoding="utf-8"))
+def load_at(ref,p): return json.loads(git("show",f"{ref}:{p.relative_to(ROOT).as_posix()}"))
+def read_at(ref,p): return git("show",f"{ref}:{p.relative_to(ROOT).as_posix()}")
 def test_control_record_is_classification_only():
  d=load(LEDGER); assert d["authority_reference"]==AUTH and d["authority_effect"]==EFFECT; assert d["audit_baseline"]==BASELINE; assert d["classification_only"] is True; assert d["remediation_authority"]=="none" and d["deletion_authority"]=="none"; assert d["bulk_source_processing_authority"]=="none"
 def test_audited_objects_are_exact():
@@ -52,8 +55,8 @@ def test_import_manifest_confirms_23_draft_packs():
 def test_active_firewall_is_retained_and_drafts_are_not_promoted():
  rec={x["path"]:x for x in load(LEDGER)["surface_records"]}; assert rec["docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"]["declared_status_at_audit"]=="active_control_doctrine" and rec["docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"]["recommended_disposition"]=="retain"; assert rec["docs/doctrine/control/A00_mechanical_posture_and_ruleset_non_adoption.md"]["declared_status_at_audit"]=="draft" and rec["docs/doctrine/control/A00_mechanical_posture_and_ruleset_non_adoption.md"]["recommended_disposition"]=="research_only"; assert rec["docs/doctrine/native_design/d_series/source_packs"]["recommended_disposition"]=="research_only"
 def test_manifest_advances_only_to_src_c():
- m=load(MANIFEST); rows={x["workstream_id"]:x for x in m["workstreams"]}; src=rows["PR2-SRC"]; tr={x["tranche_id"]:x for x in src["planned_tranches"]}; assert m["artifact_version"]=="0.4.14"; assert src["status"]=="active" and src["current_tranche"]=="PR2-SRC-C"; assert src["current_tranche_authorization_reference"]==AUTH and src["current_tranche_starting_head"]==BASELINE; assert src["next_tranche_authorized"] is False; assert tr["PR2-SRC-B"]["state"]=="merged" and tr["PR2-SRC-B"]["branch_head"]==SRC_B_HEAD and tr["PR2-SRC-B"]["merge_commit"]==BASELINE; assert tr["PR2-SRC-C"]["state"]=="active" and tr["PR2-SRC-C"]["remediation_authorized"] is False; assert tr["PR2-SRC-D"]["state"]=="blocked_pending_separate_authorization"; assert m["r3_conformance_target"]["execution_authorized"] is False; assert all(rows[w]["status"]=="blocked" and rows[w]["authorization_reference"] is None for w in BLOCKED)
+ m=load_at(SRC_C_MERGE,MANIFEST); rows={x["workstream_id"]:x for x in m["workstreams"]}; src=rows["PR2-SRC"]; tr={x["tranche_id"]:x for x in src["planned_tranches"]}; assert m["artifact_version"]=="0.4.14"; assert src["status"]=="active" and src["current_tranche"]=="PR2-SRC-C"; assert src["current_tranche_authorization_reference"]==AUTH and src["current_tranche_starting_head"]==BASELINE; assert src["next_tranche_authorized"] is False; assert tr["PR2-SRC-B"]["state"]=="merged" and tr["PR2-SRC-B"]["branch_head"]==SRC_B_HEAD and tr["PR2-SRC-B"]["merge_commit"]==BASELINE; assert tr["PR2-SRC-C"]["state"]=="active" and tr["PR2-SRC-C"]["remediation_authorized"] is False; assert tr["PR2-SRC-D"]["state"]=="blocked_pending_separate_authorization"; assert m["r3_conformance_target"]["execution_authorized"] is False; assert all(rows[w]["status"]=="blocked" and rows[w]["authorization_reference"] is None for w in BLOCKED)
 def test_program_and_decision_log_record_boundaries():
- p=PROGRAM.read_text(encoding="utf-8"); d=DECISIONS.read_text(encoding="utf-8"); assert "**Artifact version:** `0.4.14`" in p and "### 5.11 PR2-SRC-C legacy source/conversion surface disposition" in p and "`PR2-SRC` remains `active` with current tranche `PR2-SRC-C`" in p; assert "PR2-SRC-C-ACTIVATION-001" in d and AUTH in d and EFFECT in d and "No classified surface is modified by SRC-C." in d and "PR2-SRC-D remains separately unauthorized." in d
+ p=read_at(SRC_C_MERGE,PROGRAM); d=read_at(SRC_C_MERGE,DECISIONS); assert "**Artifact version:** `0.4.14`" in p and "### 5.11 PR2-SRC-C legacy source/conversion surface disposition" in p and "`PR2-SRC` remains `active` with current tranche `PR2-SRC-C`" in p; assert "PR2-SRC-C-ACTIVATION-001" in d and AUTH in d and EFFECT in d and "No classified surface is modified by SRC-C." in d and "PR2-SRC-D remains separately unauthorized." in d
 def test_src_c_does_not_modify_audited_surfaces():
  changed={x for x in git("diff","--name-only",BASELINE).splitlines() if x}|{x for x in git("ls-files","--others","--exclude-standard").splitlines() if x}; assert not (changed & set(AUDITED)); assert not any(x.startswith("docs/doctrine/native_design/d_series/source_packs/") for x in changed)

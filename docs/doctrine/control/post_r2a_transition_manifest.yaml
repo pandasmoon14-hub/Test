@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.14",
+  "artifact_version": "0.4.15",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -525,11 +525,11 @@
         "PR2-FICT",
         "PR2-SIMEX"
       ],
-      "current_tranche": "PR2-SRC-C",
-      "tranche_control_artifact": "docs/doctrine/control/myravant_legacy_source_conversion_surface_disposition.yaml",
-      "tranche_authority_effect": "legacy_source_conversion_surface_disposition_only",
-      "current_tranche_starting_head": "70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa",
-      "current_tranche_authorization_reference": "owner_directive_2026-09-11_pr2_src_c_activation",
+      "current_tranche": "PR2-SRC-D",
+      "tranche_control_artifact": "docs/doctrine/reviews/pr2_src_source_research_completion_review.yaml",
+      "tranche_authority_effect": "independent_source_research_completion_review_only",
+      "current_tranche_starting_head": "21b4ba706bb3f68aeb51dc4195fe1aa60014a439",
+      "current_tranche_authorization_reference": "owner_directive_2026-09-11_pr2_src_d_activation",
       "next_tranche_authorized": false,
       "planned_tranches": [
         {
@@ -576,7 +576,7 @@
         {
           "tranche_id": "PR2-SRC-C",
           "purpose": "legacy_source_conversion_surface_disposition",
-          "state": "active",
+          "state": "merged",
           "authorization_reference": "owner_directive_2026-09-11_pr2_src_c_activation",
           "authority_effect": "legacy_source_conversion_surface_disposition_only",
           "starting_baseline": "70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa",
@@ -592,44 +592,61 @@
           ],
           "classification_only": true,
           "remediation_authorized": false,
-          "audited_surface_record_count": 6
+          "audited_surface_record_count": 6,
+          "pull_request": 384,
+          "branch_head": "b71de0fb8b5565f63dbb0019faad2cd5cf390465",
+          "merge_commit": "21b4ba706bb3f68aeb51dc4195fe1aa60014a439",
+          "validation_evidence": [
+            "full local repository suite:8996 passed, 10 skipped, 2 xfailed, 1 warning",
+            "GitHub Actions CI #167:success",
+            "git diff --check:clean",
+            "audited legacy surfaces modified:0"
+          ]
         },
         {
           "tranche_id": "PR2-SRC-D",
           "purpose": "independent_pr2_src_completion_review",
-          "state": "blocked_pending_separate_authorization"
+          "state": "active",
+          "authorization_reference": "owner_directive_2026-09-11_pr2_src_d_activation",
+          "authority_effect": "independent_source_research_completion_review_only",
+          "starting_baseline": "21b4ba706bb3f68aeb51dc4195fe1aa60014a439",
+          "review_artifact": "docs/doctrine/reviews/pr2_src_source_research_completion_review.yaml",
+          "review_result": "PASS",
+          "blocking_findings": [],
+          "source_processing_authorized": false
         }
       ],
       "current_tranche_owned_paths": [
         "docs/decisions/current_decisions_log.md",
-        "docs/doctrine/control/myravant_legacy_source_conversion_surface_disposition.yaml",
+        "docs/doctrine/reviews/pr2_src_source_research_completion_review.yaml",
         "docs/doctrine/control/post_r2a_transition_manifest.yaml",
         "docs/doctrine/control/post_r2a_transition_program.md",
         "tests/test_post_r2a_transition_program.py",
         "tests/test_pr2_src_legacy_surface_disposition.py",
-        "tests/test_pr2_src_research_method_qualification.py"
+        "tests/test_pr2_src_completion_review.py"
       ],
       "current_tranche_prohibited_scope": [
-        "legacy_surface_remediation",
-        "legacy_surface_deletion_or_rename",
-        "historical_record_rewrite",
+        "missing_source_doctrine_invention",
         "source_acquisition",
         "bulk_source_processing",
-        "source_to_myravant_direct_transformation",
+        "research_packet_execution",
+        "autonomous_agent_reconnaissance",
+        "legacy_surface_remediation",
         "originality_or_rights_eligibility_adjudication",
-        "information_barrier_schema_finalization",
-        "corpus_registry_or_saturation_governance",
+        "information_barrier_implementation",
+        "corpus_registry_batching_or_saturation_governance",
         "fiction_specific_interpretation_contract",
         "simulation_exemplar_specific_interpretation_contract",
-        "native_content_production",
+        "R3_execution",
         "runtime_or_schema_implementation",
+        "native_content_production",
         "conversion_execution",
-        "agent_reconnaissance_execution",
         "model_training",
         "canon_promotion",
-        "live_play_or_gm_behavior",
-        "pr2_src_completion_review"
-      ]
+        "live_play_or_gm_behavior"
+      ],
+      "completion_review_result": "PASS",
+      "completion_review_blocking_findings": []
     },
     {
       "workstream_id": "PR2-ORG",
