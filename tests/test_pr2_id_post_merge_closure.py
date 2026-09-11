@@ -14,7 +14,7 @@ DEC=ROOT/"docs/decisions/current_decisions_log.md"
 CLASSES=["roadmap_currentness_setting_and_planning_authority","astra_prefixed_governance_and_working_group_role_identity","r1b_shared_vocabulary_identity_and_exact_parity","software_namespace_future_alias_or_deprecation_policy"]
 ALLOWED={'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_pr2_id_post_merge_closure.py', 'tests/test_pr2_id_myravant_identity_migration.py', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_id_t2d_roadmap_registry_adjudication.py', 'docs/doctrine/control/myravant_identity_migration_contract.md', 'tests/test_pr2_id_t2e_completion_recording.py'}
 def load(p): return json.loads(p.read_text())
-def load_at(ref,p): return json.loads(git("show",f"{ref}:{p.relative_to(ROOT)}"))
+def load_at(ref,p): return json.loads(git("show",f"{ref}:{p.relative_to(ROOT).as_posix()}"))
 def git(*a): return subprocess.check_output(["git",*a],cwd=ROOT,text=True).strip()
 def test_merge_bookkeeping_is_exact():
  m=load_at(CLOSURE_HEAD,MAN); by={x["workstream_id"]:x for x in m["workstreams"]}; p=by["PR2-ID"]
