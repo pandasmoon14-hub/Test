@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.13",
+  "artifact_version": "0.4.14",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -525,11 +525,11 @@
         "PR2-FICT",
         "PR2-SIMEX"
       ],
-      "current_tranche": "PR2-SRC-B",
-      "tranche_control_artifact": "docs/doctrine/control/myravant_source_research_method_qualification.md",
-      "tranche_authority_effect": "heterogeneous_source_research_method_qualification_only",
-      "current_tranche_starting_head": "818a79d03ac487722762a44c9a80b29391278a8f",
-      "current_tranche_authorization_reference": "owner_directive_2026-09-11_pr2_src_b_activation",
+      "current_tranche": "PR2-SRC-C",
+      "tranche_control_artifact": "docs/doctrine/control/myravant_legacy_source_conversion_surface_disposition.yaml",
+      "tranche_authority_effect": "legacy_source_conversion_surface_disposition_only",
+      "current_tranche_starting_head": "70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa",
+      "current_tranche_authorization_reference": "owner_directive_2026-09-11_pr2_src_c_activation",
       "next_tranche_authorized": false,
       "planned_tranches": [
         {
@@ -549,7 +549,7 @@
         {
           "tranche_id": "PR2-SRC-B",
           "purpose": "heterogeneous_research_method_qualification",
-          "state": "active",
+          "state": "merged",
           "authorization_reference": "owner_directive_2026-09-11_pr2_src_b_activation",
           "authority_effect": "heterogeneous_source_research_method_qualification_only",
           "starting_baseline": "818a79d03ac487722762a44c9a80b29391278a8f",
@@ -562,12 +562,37 @@
             "tests/test_post_r2a_transition_program.py",
             "tests/test_pr2_src_source_research_architecture.py",
             "tests/test_pr2_src_research_method_qualification.py"
+          ],
+          "pull_request": 383,
+          "branch_head": "cabd12d56e7e036b2b839f21486776b49ebff56b",
+          "merge_commit": "70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa",
+          "validation_evidence": [
+            "focused SRC-B/SRC-A/transition/firewall suite:43 passed",
+            "full local repository suite:8988 passed, 10 skipped, 2 xfailed, 1 warning",
+            "GitHub Actions CI #165:success",
+            "git diff --check:clean"
           ]
         },
         {
           "tranche_id": "PR2-SRC-C",
           "purpose": "legacy_source_conversion_surface_disposition",
-          "state": "blocked_pending_separate_authorization"
+          "state": "active",
+          "authorization_reference": "owner_directive_2026-09-11_pr2_src_c_activation",
+          "authority_effect": "legacy_source_conversion_surface_disposition_only",
+          "starting_baseline": "70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa",
+          "control_artifact": "docs/doctrine/control/myravant_legacy_source_conversion_surface_disposition.yaml",
+          "owned_paths": [
+            "docs/decisions/current_decisions_log.md",
+            "docs/doctrine/control/myravant_legacy_source_conversion_surface_disposition.yaml",
+            "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+            "docs/doctrine/control/post_r2a_transition_program.md",
+            "tests/test_post_r2a_transition_program.py",
+            "tests/test_pr2_src_legacy_surface_disposition.py",
+            "tests/test_pr2_src_research_method_qualification.py"
+          ],
+          "classification_only": true,
+          "remediation_authorized": false,
+          "audited_surface_record_count": 6
         },
         {
           "tranche_id": "PR2-SRC-D",
@@ -576,31 +601,34 @@
         }
       ],
       "current_tranche_owned_paths": [
-        "docs/doctrine/control/myravant_source_research_method_qualification.md",
+        "docs/decisions/current_decisions_log.md",
+        "docs/doctrine/control/myravant_legacy_source_conversion_surface_disposition.yaml",
         "docs/doctrine/control/post_r2a_transition_manifest.yaml",
         "docs/doctrine/control/post_r2a_transition_program.md",
-        "docs/decisions/current_decisions_log.md",
         "tests/test_post_r2a_transition_program.py",
-        "tests/test_pr2_src_source_research_architecture.py",
+        "tests/test_pr2_src_legacy_surface_disposition.py",
         "tests/test_pr2_src_research_method_qualification.py"
       ],
       "current_tranche_prohibited_scope": [
-        "bulk_source_processing",
+        "legacy_surface_remediation",
+        "legacy_surface_deletion_or_rename",
+        "historical_record_rewrite",
         "source_acquisition",
+        "bulk_source_processing",
         "source_to_myravant_direct_transformation",
         "originality_or_rights_eligibility_adjudication",
         "information_barrier_schema_finalization",
         "corpus_registry_or_saturation_governance",
         "fiction_specific_interpretation_contract",
         "simulation_exemplar_specific_interpretation_contract",
-        "legacy_surface_disposition_or_remediation",
         "native_content_production",
         "runtime_or_schema_implementation",
         "conversion_execution",
         "agent_reconnaissance_execution",
         "model_training",
         "canon_promotion",
-        "live_play_or_gm_behavior"
+        "live_play_or_gm_behavior",
+        "pr2_src_completion_review"
       ]
     },
     {

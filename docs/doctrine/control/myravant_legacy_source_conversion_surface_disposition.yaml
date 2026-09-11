@@ -1,0 +1,209 @@
+{
+  "artifact_id": "PR2-SRC-C-LEGACY-SURFACE-DISPOSITION-001",
+  "artifact_version": "0.1.0",
+  "status": "active_control_record",
+  "layer": "0_control",
+  "workstream": "PR2-SRC",
+  "tranche": "PR2-SRC-C",
+  "authority_reference": "owner_directive_2026-09-11_pr2_src_c_activation",
+  "authority_effect": "legacy_source_conversion_surface_disposition_only",
+  "audit_baseline": "70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa",
+  "classification_only": true,
+  "remediation_authority": "none",
+  "deletion_authority": "none",
+  "runtime_authority": "none",
+  "canon_authority": "none",
+  "conversion_execution_authority": "none",
+  "native_content_authority": "none",
+  "bulk_source_processing_authority": "none",
+  "live_play_authority": "none",
+  "purpose": "Classify bounded legacy extraction, conversion, and source-pack surfaces before any separately authorized remediation.",
+  "governing_laws": [
+    "classification_precedes_remediation",
+    "historical_truth_and_provenance_must_not_be_rewritten_for_cosmetic_consistency",
+    "external_source_or_source_pack_presence_does_not_grant_myravant_authority",
+    "active_current_control_doctrine_is_not_demoted_merely_because_it_uses_legacy_conversion_vocabulary",
+    "a_recommended_disposition_is_not_authorization_to_execute_that_disposition"
+  ],
+  "disposition_vocabulary": [
+    "retain",
+    "terminology_update",
+    "revise",
+    "supersede",
+    "split",
+    "defer",
+    "historical_only",
+    "research_only",
+    "redesign",
+    "quarantine"
+  ],
+  "inventory_scope": {
+    "inclusion_rule": "Explicit surfaces that own or materially record legacy extraction/conversion workflow, source-pack import/nonauthority, or conversion/runtime boundary.",
+    "exclusion_rule": "Incidental mentions are not separate legacy surfaces merely because they contain source/donor/mapping/conversion vocabulary.",
+    "surface_record_count": 6,
+    "source_pack_count_recorded_by_import_manifest": 23
+  },
+  "surface_records": [
+    {
+      "surface_id": "SRC-C-SURFACE-001",
+      "path": "docs/operations/current_decisions_log_v0_1.md",
+      "object_type": "blob",
+      "object_sha_at_audit": "f7419794082c2cfaba9d2e1d1f7d9fcaa0d0452c",
+      "surface_family": "legacy_extraction_handoff_conversion_intake_operations",
+      "declared_status_at_audit": "active working log",
+      "authority_at_audit": "operational_legacy_record_not_current_source_research_architecture",
+      "legacy_posture_detected": [
+        "donor_extraction_lanes",
+        "conversion_intake_pipeline",
+        "five_conversion_mapping_outcomes",
+        "twelve_packet_conversion_pilot",
+        "planned_1900_donor_scaling"
+      ],
+      "preserved_invariants": [
+        "extraction_truth_is_separate_from_conversion_readiness",
+        "conversion_readiness_is_separate_from_canon_permission",
+        "donor_content_is_not_live_play_authority",
+        "source_local_retention_and_quarantine_are_lawful",
+        "llms_do_not_own_canonical_state"
+      ],
+      "recommended_disposition": "historical_only",
+      "reason": "Preserve execution/provenance evidence; donor-to-conversion operating posture is not current PR2-SRC architecture.",
+      "remediation_authorized": false,
+      "provenance_preservation_required": true
+    },
+    {
+      "surface_id": "SRC-C-SURFACE-002",
+      "path": "docs/doctrine/control/A00_mechanical_posture_and_ruleset_non_adoption.md",
+      "object_type": "blob",
+      "object_sha_at_audit": "ae26c76c276a515999aa33195562e2fd6c46dddc",
+      "surface_family": "bootstrap_mechanical_non_adoption_control",
+      "declared_status_at_audit": "draft",
+      "authority_at_audit": "draft_bootstrap_control_not_current_src_method",
+      "legacy_posture_detected": [
+        "donor_mapping_outcome_vocabulary",
+        "bootstrap_pre_A01_routing"
+      ],
+      "preserved_invariants": [
+        "conversion_permission_is_not_mechanical_adoption",
+        "donor_rulesets_do_not_gain_authority_by_default",
+        "mapping_must_preserve_provenance",
+        "source_local_records_are_non_authoritative"
+      ],
+      "recommended_disposition": "research_only",
+      "reason": "Contains durable non-adoption pressure but is explicitly draft/bootstrap-era.",
+      "remediation_authorized": false,
+      "provenance_preservation_required": true
+    },
+    {
+      "surface_id": "SRC-C-SURFACE-003",
+      "path": "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md",
+      "object_type": "blob",
+      "object_sha_at_audit": "a4ae23278b46071d612d18b31ef2df77ba59422a",
+      "surface_family": "active_conversion_runtime_origin_firewall",
+      "declared_status_at_audit": "active_control_doctrine",
+      "authority_at_audit": "current_active_control_doctrine",
+      "legacy_posture_detected": [
+        "conversion_and_normalization_phase_vocabulary"
+      ],
+      "preserved_invariants": [
+        "extraction_and_conversion_end_before_runtime",
+        "runtime_origin_blindness",
+        "offline_lineage_ledger",
+        "identity_breaking_canon_promotion_boundary",
+        "runtime_must_not_depend_on_extraction_or_conversion_outputs"
+      ],
+      "recommended_disposition": "retain",
+      "reason": "Current durable doctrine; PR2-SRC-A explicitly complements rather than replaces it.",
+      "remediation_authorized": false,
+      "provenance_preservation_required": true
+    },
+    {
+      "surface_id": "SRC-C-SURFACE-004",
+      "path": "docs/doctrine/control/RT012_d_series_promotion_boundary_owner_specification.md",
+      "object_type": "blob",
+      "object_sha_at_audit": "c6419d38a186a6fa1791c910a7b2448a43d6677b",
+      "surface_family": "d_series_native_design_promotion_boundary_planning",
+      "declared_status_at_audit": "owner specification planning only; non-executable; non-implementation",
+      "authority_at_audit": "current_planning_boundary_not_final_promotion_authority",
+      "legacy_posture_detected": [
+        "source_pack_pressure_routing",
+        "converted_content_non_authority_routing"
+      ],
+      "preserved_invariants": [
+        "source_pack_material_is_pressure_not_authority",
+        "converted_content_is_evidence_not_canon",
+        "promotion_requires_separate_governance",
+        "training_and_live_play_use_require_separate_authority"
+      ],
+      "recommended_disposition": "retain",
+      "reason": "Planning-only surface already preserves source-pack nonauthority and downstream handoffs.",
+      "remediation_authorized": false,
+      "provenance_preservation_required": true
+    },
+    {
+      "surface_id": "SRC-C-SURFACE-005",
+      "path": "docs/doctrine/native_design/d_series/source_packs",
+      "path_scope": "docs/doctrine/native_design/d_series/source_packs/**",
+      "object_type": "tree",
+      "object_sha_at_audit": "3992400400c6c54d757c437145253e23ca59c21a",
+      "surface_family": "d_series_imported_source_pack_family",
+      "declared_status_at_audit": "draft_source_pack_not_current_doctrine",
+      "authority_at_audit": "pressure_and_reconciliation_material_only",
+      "legacy_posture_detected": [
+        "draft_native_design_source_packs",
+        "conversion_readiness_and_mapping_material"
+      ],
+      "preserved_invariants": [
+        "source_packs_may_supply_pressure",
+        "source_packs_do_not_self_promote_to_doctrine_canon_runtime_or_sourcebook"
+      ],
+      "recommended_disposition": "research_only",
+      "reason": "Import manifest records 23 packs as draft source material, explicitly not current doctrine or canon.",
+      "remediation_authorized": false,
+      "provenance_preservation_required": true
+    },
+    {
+      "surface_id": "SRC-C-SURFACE-006",
+      "path": "docs/doctrine/native_design/d_series/_manifests/d_series_doctrine_pack_import_manifest.json",
+      "object_type": "blob",
+      "object_sha_at_audit": "9ddd092a7083fd6e9398a60f6558a4f6bb1f6cef",
+      "surface_family": "d_series_source_pack_import_provenance",
+      "declared_status_at_audit": "draft_source_pack_import",
+      "authority_at_audit": "historical_import_and_provenance_record",
+      "legacy_posture_detected": [
+        "import_source_paths",
+        "pre_myravant_authority_notes"
+      ],
+      "preserved_invariants": [
+        "exact_import_provenance",
+        "pack_level_non_authority",
+        "file_level_hash_evidence"
+      ],
+      "recommended_disposition": "historical_only",
+      "reason": "Preserve exact import provenance; rewriting would damage historical evidence.",
+      "remediation_authorized": false,
+      "provenance_preservation_required": true
+    }
+  ],
+  "disposition_summary": {
+    "retain": 2,
+    "research_only": 2,
+    "historical_only": 2,
+    "all_other_dispositions": 0
+  },
+  "audit_conclusions": [
+    "No audited legacy surface requires modification inside PR2-SRC-C.",
+    "No audited legacy surface is deleted, renamed, rewritten, or promoted.",
+    "Current firewall doctrine remains active and retained.",
+    "Draft/bootstrap and imported source-pack material remains nonauthoritative.",
+    "The legacy operations log remains preserved as historical execution evidence.",
+    "Any later remediation requires separate authorization after classification."
+  ],
+  "successor_state": {
+    "PR2-SRC-D_authorized": false,
+    "legacy_remediation_authorized": false,
+    "bulk_source_processing_authorized": false,
+    "R3_execution_authorized": false,
+    "downstream_workstreams_activated": []
+  }
+}
