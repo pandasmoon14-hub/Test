@@ -5474,3 +5474,33 @@ The independent PR2-SRC review result is `PASS`. No blocking doctrine gap remain
 After PR2-SRC acceptance, a separately authorized small calibration pilot may begin. The full corpus research campaign should wait for `PR2-ORG` and `PR2-CORPUS`. Unqualified research-to-Myravant design handoff waits for `PR2-ORG` and `PR2-IR`. Specialized fiction and simulation-exemplar interpretation waits for `PR2-FICT` and `PR2-SIMEX`.
 
 SRC-D does not authorize source acquisition, packet execution, bulk source processing, autonomous reconnaissance, legacy remediation, downstream workstreams, R3, runtime/schema implementation, native-content production, conversion, training, canon, or live-play/GM behavior. A PASS review does not pre-claim PR2-SRC as `merged`.
+
+## 2026-09-11 decision — PR2-SRC post-merge closure
+
+- **Decision ID:** `PR2-SRC-MERGE-CLOSURE-001`
+- **Workstream:** `PR2-SRC`
+- **Authority reference:** `owner_directive_2026-09-11_pr2_src_post_merge_closure`
+- **Authority effect:** `source_research_post_merge_lifecycle_reconciliation_only`
+- **Certified SRC-D branch head:** `7fd2f1c202abd7107dc2918e168d7885fb9452ce`
+- **Pull request:** `#385`
+- **Merge commit:** `376214e1b715de34160dfb03d328547f510b6586`
+- **Merge tree:** `bcf9dd80d9a39594e60a62218bff3ee64aa85abb`
+- **Lifecycle result:** `merged`
+
+PR2-SRC-D merged through PR `#385` from the certified branch head above.
+The merged SRC-D review result remains `PASS` with no blocking PR2-SRC-owned
+doctrine gap. This closure reconciles repository lifecycle state only; it does
+not revise the pre-merge review evidence or create additional source doctrine.
+
+Dependency release is readiness-only. `PR2-ORG`, `PR2-FICT`, and `PR2-SIMEX`
+become `ready_pending_authorization` because their PR2-SRC dependency is now
+satisfied, but none is authorized or active. `PR2-CORPUS` and `PR2-IR` remain
+blocked because `PR2-ORG` is still unmet.
+
+R3 remains `ready_pending_authorization` against its exact 34-record target with
+execution disabled. This closure does not authorize source acquisition, a
+calibration pilot, packet execution, bulk corpus research, autonomous
+reconnaissance, legacy remediation, originality/rights adjudication,
+information-barrier implementation, corpus execution, fiction/simulation
+research execution, runtime/schema implementation, native-content production,
+conversion, training, canon promotion, or live-play/GM behavior.

@@ -1,7 +1,7 @@
 {
   "artifact_id": "PR2-SRC-D-SOURCE-RESEARCH-COMPLETION-REVIEW-001",
-  "artifact_version": "0.1.0",
-  "status": "completion_review_candidate",
+  "artifact_version": "0.1.1",
+  "status": "complete",
   "workstream_id": "PR2-SRC",
   "tranche_id": "PR2-SRC-D",
   "starting_baseline": "21b4ba706bb3f68aeb51dc4195fe1aa60014a439",
@@ -116,5 +116,19 @@
     "model_training": false,
     "live_play_or_gm_behavior": false
   },
-  "completion_effect": "PASS: no blocking PR2-SRC doctrine gap remains. Successor-owned and execution-authorization concerns remain separate; this review activates none of them."
+  "completion_effect": "PASS: no blocking PR2-SRC doctrine gap remains. Successor-owned and execution-authorization concerns remain separate; this review activates none of them.",
+  "publication_state": "merged",
+  "pull_request": 385,
+  "branch_head": "7fd2f1c202abd7107dc2918e168d7885fb9452ce",
+  "merge_commit": "376214e1b715de34160dfb03d328547f510b6586",
+  "merge_tree": "bcf9dd80d9a39594e60a62218bff3ee64aa85abb",
+  "post_merge_closure_authorization_reference": "owner_directive_2026-09-11_pr2_src_post_merge_closure",
+  "post_merge_closure_authority_effect": "source_research_post_merge_lifecycle_reconciliation_only",
+  "post_merge_closure_recorded_from": "376214e1b715de34160dfb03d328547f510b6586",
+  "validation_evidence": [
+    "focused SRC-D/transition/firewall suite:56 passed",
+    "full local repository suite:9001 passed, 10 skipped, 2 xfailed, 1 warning",
+    "GitHub Actions CI #169:success",
+    "git diff --check:clean"
+  ]
 }

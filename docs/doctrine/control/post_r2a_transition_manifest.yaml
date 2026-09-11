@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.15",
+  "artifact_version": "0.4.16",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -470,7 +470,7 @@
       "title": "Source research and reconnaissance architecture",
       "category": "source_governance",
       "purpose": "Replace presumptive donor-conversion posture with source research, pressure extraction, and requirements synthesis governance.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-CTRL"
       ],
@@ -513,10 +513,16 @@
       ],
       "entry_condition": "PR2-CTRL merged and source-governance work explicitly authorized.",
       "completion_condition": "Source intake, reconnaissance, pressure extraction, routing, and synthesis boundaries are explicitly governed.",
-      "validation_evidence": [],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "validation_evidence": [
+        "PR2-SRC-D focused validation:56 passed",
+        "PR2-SRC-D full local repository suite:9001 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-SRC-D GitHub Actions CI #169:success",
+        "PR2-SRC-D git diff --check:clean",
+        "PR2-SRC-D independent completion review:PASS"
+      ],
+      "pull_request": 385,
+      "branch_head": "7fd2f1c202abd7107dc2918e168d7885fb9452ce",
+      "merge_commit": "376214e1b715de34160dfb03d328547f510b6586",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-ORG",
@@ -606,14 +612,24 @@
         {
           "tranche_id": "PR2-SRC-D",
           "purpose": "independent_pr2_src_completion_review",
-          "state": "active",
+          "state": "merged",
           "authorization_reference": "owner_directive_2026-09-11_pr2_src_d_activation",
           "authority_effect": "independent_source_research_completion_review_only",
           "starting_baseline": "21b4ba706bb3f68aeb51dc4195fe1aa60014a439",
           "review_artifact": "docs/doctrine/reviews/pr2_src_source_research_completion_review.yaml",
           "review_result": "PASS",
           "blocking_findings": [],
-          "source_processing_authorized": false
+          "source_processing_authorized": false,
+          "pull_request": 385,
+          "branch_head": "7fd2f1c202abd7107dc2918e168d7885fb9452ce",
+          "merge_commit": "376214e1b715de34160dfb03d328547f510b6586",
+          "merge_tree": "bcf9dd80d9a39594e60a62218bff3ee64aa85abb",
+          "validation_evidence": [
+            "focused SRC-D/transition/firewall suite:56 passed",
+            "full local repository suite:9001 passed, 10 skipped, 2 xfailed, 1 warning",
+            "GitHub Actions CI #169:success",
+            "git diff --check:clean"
+          ]
         }
       ],
       "current_tranche_owned_paths": [
@@ -646,14 +662,19 @@
         "live_play_or_gm_behavior"
       ],
       "completion_review_result": "PASS",
-      "completion_review_blocking_findings": []
+      "completion_review_blocking_findings": [],
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-11_pr2_src_post_merge_closure",
+      "post_merge_closure_authority_effect": "source_research_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "376214e1b715de34160dfb03d328547f510b6586",
+      "post_merge_closure_tree": "bcf9dd80d9a39594e60a62218bff3ee64aa85abb"
     },
     {
       "workstream_id": "PR2-ORG",
       "title": "Originality provenance and content eligibility",
       "category": "source_governance",
       "purpose": "Define originality, provenance, rights classification, contamination control, and distributable-content eligibility boundaries.",
-      "status": "blocked",
+      "status": "ready_pending_authorization",
       "dependencies": [
         "PR2-SRC"
       ],
@@ -746,7 +767,7 @@
       "title": "Fiction and LitRPG experience-pressure contract",
       "category": "source_governance",
       "purpose": "Define how fiction and LitRPG contribute experience, world-behavior, and capability pressure without becoming content donors.",
-      "status": "blocked",
+      "status": "ready_pending_authorization",
       "dependencies": [
         "PR2-SRC"
       ],
@@ -775,7 +796,7 @@
       "title": "Simulation and infrastructure exemplar-pressure contract",
       "category": "source_governance",
       "purpose": "Define a small exemplar corpus for runtime architecture pressure without treating exemplar technologies as mandatory implementations.",
-      "status": "blocked",
+      "status": "ready_pending_authorization",
       "dependencies": [
         "PR2-SRC"
       ],
