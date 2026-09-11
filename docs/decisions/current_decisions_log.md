@@ -5430,3 +5430,30 @@ PR2-SRC-C and PR2-SRC-D remain separately unauthorized.
 
 The owner-provided discussion archives remain planning/research pressure rather
 than repository authority.
+
+## 2026-09-11 decision — PR2-SRC-C legacy source/conversion surface disposition activation
+
+- **Decision ID:** `PR2-SRC-C-ACTIVATION-001`
+- **Workstream:** `PR2-SRC`
+- **Tranche:** `PR2-SRC-C`
+- **Authority reference:** `owner_directive_2026-09-11_pr2_src_c_activation`
+- **Authority effect:** `legacy_source_conversion_surface_disposition_only`
+- **Starting baseline:** `70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa`
+
+### SRC-B closure evidence
+
+PR2-SRC-B merged through PR `#383` from certified head `cabd12d56e7e036b2b839f21486776b49ebff56b` as merge commit `70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa`. Focused validation passed `43` tests; the full repository suite passed `8988 passed, 10 skipped, 2 xfailed, 1 warning`; GitHub Actions CI `#165` succeeded.
+
+### Classification decision
+
+SRC-C classifies exactly six explicit legacy surfaces/families: operations log `historical_only`; draft A00 `research_only`; active conversion/runtime firewall `retain`; RT-012 planning `retain`; D-series source packs `research_only`; D-series import manifest `historical_only`. Reusable invariants are recorded without treating legacy packaging, vocabulary, workflow, or source packs as current Myravant source architecture.
+
+### Classification-before-remediation law
+
+No classified surface is modified by SRC-C. A disposition recommendation does not authorize deletion, rename, terminology migration, revision, supersession, split, redesign, quarantine movement, promotion, or other remediation. Historical import and execution evidence remains preserved.
+
+### Explicit nonauthority
+
+SRC-C does not authorize legacy remediation, source acquisition, bulk source processing, source-to-Myravant transformation, originality/rights/eligibility adjudication, information-barrier implementation, corpus governance, fiction/simulation-specific contracts, PR2-SRC-D review, R3 execution, runtime/schema implementation, conversion execution, autonomous research-agent execution, native-content production, model training, canon promotion, or live-play/GM behavior.
+
+PR2-SRC-D remains separately unauthorized.

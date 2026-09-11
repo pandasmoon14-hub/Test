@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,6 +17,7 @@ AUTH = "owner_directive_2026-09-11_pr2_src_b_activation"
 EFFECT = "heterogeneous_source_research_method_qualification_only"
 SRC_A_HEAD = "ac82cebeeb3b8eb63fc6b4a312e90554584a1d32"
 SRC_A_PR = 382
+SRC_B_MERGE = "70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa"
 
 CURRENT_PATHS = {
     "docs/doctrine/control/myravant_source_research_method_qualification.md",
@@ -37,6 +39,18 @@ BLOCKED = {
 
 def load_manifest():
     return json.loads(MANIFEST.read_text(encoding="utf-8"))
+
+
+def git(*args):
+    return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
+
+
+def load_manifest_at(ref):
+    return json.loads(git("show", f"{ref}:{MANIFEST.relative_to(ROOT).as_posix()}"))
+
+
+def read_text_at(ref, path):
+    return git("show", f"{ref}:{path.relative_to(ROOT).as_posix()}")
 
 
 def by_id(manifest):
@@ -150,7 +164,7 @@ def test_src_b_escalates_instead_of_absorbing_successor_authority():
 
 
 def test_src_b_manifest_state_is_exact_and_downstream_stays_blocked():
-    manifest = load_manifest()
+    manifest = load_manifest_at(SRC_B_MERGE)
     rows = by_id(manifest)
     src = rows["PR2-SRC"]
     tr = {row["tranche_id"]: row for row in src["planned_tranches"]}
@@ -180,8 +194,8 @@ def test_src_b_manifest_state_is_exact_and_downstream_stays_blocked():
 
 
 def test_src_b_program_and_decision_log_cross_record_activation():
-    program = PROGRAM.read_text(encoding="utf-8")
-    decisions = DECISIONS.read_text(encoding="utf-8")
+    program = read_text_at(SRC_B_MERGE, PROGRAM)
+    decisions = read_text_at(SRC_B_MERGE, DECISIONS)
     assert "**Artifact version:** `0.4.13`" in program
     assert "### 5.10 PR2-SRC-B heterogeneous research-method qualification" in program
     assert "`PR2-SRC` remains `active` with current tranche `PR2-SRC-B`" in program

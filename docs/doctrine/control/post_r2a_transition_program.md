@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.13`
+**Artifact version:** `0.4.14`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -686,6 +686,22 @@ execution, training, canon promotion, or live-play/GM behavior is authorized.
 `ready_pending_authorization` with its frozen 34-record target and execution
 disabled.
 
+### 5.11 PR2-SRC-C legacy source/conversion surface disposition
+
+PR2-SRC-B merged through PR `#383` from certified head `cabd12d56e7e036b2b839f21486776b49ebff56b` as merge commit `70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa`.
+
+The owner separately authorized `PR2-SRC-C` under `owner_directive_2026-09-11_pr2_src_c_activation` from merged baseline `70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa`.
+
+The controlling classification ledger is `docs/doctrine/control/myravant_legacy_source_conversion_surface_disposition.yaml`.
+
+SRC-C is classification-only. It audits explicit legacy extraction, conversion-intake, conversion/runtime-boundary, and source-pack surfaces before any remediation may be considered.
+
+The bounded audit records six surfaces/families: the operations log (`historical_only`), draft A00 (`research_only`), active conversion/runtime firewall (`retain`), RT-012 promotion-boundary planning (`retain`), the D-series source-pack family (`research_only`), and its import manifest (`historical_only`). The import manifest records `23` packs as draft source material and explicitly not current doctrine or canon.
+
+SRC-C changes none of those six surfaces. A recommended disposition is classification evidence only; it does not authorize deletion, rename, rewrite, supersession, promotion, or remediation.
+
+`PR2-SRC` remains `active` with current tranche `PR2-SRC-C`. `PR2-SRC-D` remains separately unauthorized. R3 remains `ready_pending_authorization` with execution disabled. PR2-ORG, PR2-IR, PR2-CORPUS, PR2-FICT, PR2-SIMEX, runtime, native-content, canon, training, source-processing, conversion-execution, and live-play authorities remain separate and unactivated.
+
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
 ## 6. Controlled workstream registry
@@ -1112,20 +1128,21 @@ Current successor state is therefore:
    merge commit `1d1b16004b4bee0c75ca42c82900755ec29022bd`;
 2. `PR2-SRC-A` is merged through PR `#382` as merge commit
    `818a79d03ac487722762a44c9a80b29391278a8f`;
-3. `PR2-SRC` remains `active` with current tranche `PR2-SRC-B` under
-   `owner_directive_2026-09-11_pr2_src_b_activation` from baseline
-   `818a79d03ac487722762a44c9a80b29391278a8f`;
-4. `R3` remains `ready_pending_authorization` with its exact 34-record
+3. `PR2-SRC-B` is merged through PR `#383` as merge commit `70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa`;
+4. `PR2-SRC` remains `active` with current tranche `PR2-SRC-C` under
+   `owner_directive_2026-09-11_pr2_src_c_activation` from baseline `70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa`;
+5. `R3` remains `ready_pending_authorization` with its exact 34-record
    conformance target and is not executing;
-5. `PR2-ORG`, `PR2-CORPUS`, `PR2-IR`, `PR2-FICT`, `PR2-SIMEX`,
+6. `PR2-ORG`, `PR2-CORPUS`, `PR2-IR`, `PR2-FICT`, `PR2-SIMEX`,
    runtime-scalability, audit, migration, implementation, native-content,
    canon, conversion, training, and live-play workstreams remain separately
    blocked or unauthorized.
 
 PR2-ID identity authority does not transfer authority to any later workstream.
-PR2-SRC-A source-research authority transferred only into the separately
-authorized SRC-B method tranche recorded above. SRC-B authority transfers no
-authority to R3, SRC-C/D, or any downstream source, runtime, content, canon,
+PR2-SRC-A source-research authority transferred into separately authorized
+SRC-B method qualification, and SRC-B authority transferred only into the separately
+authorized SRC-C classification tranche recorded above. SRC-C authority transfers no
+authority to R3, SRC-D, remediation, or any downstream source, runtime, content, canon,
 training, or live-play workstream.
 
 ## 21. Completion condition for this program
