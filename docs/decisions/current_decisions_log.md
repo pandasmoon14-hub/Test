@@ -5383,3 +5383,50 @@ fiction- or simulation-specific research programs, legacy remediation, R3
 execution, runtime/schema implementation, conversion execution, native-content
 production, canon promotion, agent corpus execution, model training, or
 live-play/GM behavior.
+
+## 2026-09-11 decision — PR2-SRC-B heterogeneous research-method qualification activation
+
+- **Decision ID:** `PR2-SRC-B-ACTIVATION-001`
+- **Workstream:** `PR2-SRC`
+- **Tranche:** `PR2-SRC-B`
+- **Authority reference:** `owner_directive_2026-09-11_pr2_src_b_activation`
+- **Authority effect:** `heterogeneous_source_research_method_qualification_only`
+- **Starting baseline:** `818a79d03ac487722762a44c9a80b29391278a8f`
+
+### SRC-A closure evidence
+
+PR2-SRC-A merged through PR `#382`.
+
+- certified feature head: `ac82cebeeb3b8eb63fc6b4a312e90554584a1d32`;
+- merge commit: `818a79d03ac487722762a44c9a80b29391278a8f`;
+- GitHub Actions CI `#163`: Linux success, Windows success;
+- changed-file footprint: 13 files.
+
+The SRC-A doctrine remains active foundational authority for the source-research
+pipeline and nonauthority boundaries.
+
+### SRC-B method decision
+
+SRC-B may now qualify multi-label source modalities, evidence modes, scout,
+focused, deep, and synthesis research modes, mechanical ecology and utilization,
+content/catalog and generator/procedural research, rules-in-use and failure
+analysis, software/repository evidence, ordinary-life and institutional
+evidence, bounded research packet requirements, and stop/escalation conditions.
+
+The method must support at least 1,000 heterogeneous sources without requiring
+uniform deep analysis.
+
+### Explicit nonauthority
+
+SRC-B does not authorize bulk source processing, source acquisition,
+source-to-Myravant transformation, originality/rights/eligibility adjudication,
+information-barrier implementation, corpus registry/genealogy/novelty/saturation
+or bias governance, fiction-specific or simulation-specific contracts, legacy
+source/conversion disposition, SRC-D completion review, native-content
+production, runtime/schema implementation, autonomous agent research execution,
+model training, canon promotion, R3 execution, or live-play/GM behavior.
+
+PR2-SRC-C and PR2-SRC-D remain separately unauthorized.
+
+The owner-provided discussion archives remain planning/research pressure rather
+than repository authority.

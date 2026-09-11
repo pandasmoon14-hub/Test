@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,6 +16,7 @@ FIREWALL = ROOT / "docs/doctrine/control/conversion_runtime_origin_firewall_doct
 BASELINE = "4033f43b2a4ad7088955ca1a29daf47a33ef7a37"
 AUTH = "owner_directive_2026-09-10_pr2_src_a_activation"
 EFFECT = "foundational_source_research_governance_only"
+SRC_A_MERGE = "818a79d03ac487722762a44c9a80b29391278a8f"
 
 OWNED_PATHS = {
     "docs/doctrine/control/myravant_source_research_architecture.md",
@@ -54,6 +56,20 @@ BLOCKED = {
 
 def load_manifest():
     return json.loads(MANIFEST.read_text(encoding="utf-8"))
+
+
+def git(*args):
+    return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
+
+
+def load_manifest_at(ref):
+    repo_path = MANIFEST.relative_to(ROOT).as_posix()
+    return json.loads(git("show", f"{ref}:{repo_path}"))
+
+
+def read_text_at(ref, path):
+    repo_path = path.relative_to(ROOT).as_posix()
+    return git("show", f"{ref}:{repo_path}")
 
 
 def by_id(manifest):
@@ -147,7 +163,7 @@ def test_src_a_preserves_failure_rules_in_use_and_evidence_mode_pressure():
 
 
 def test_src_a_manifest_activation_is_exact():
-    manifest = load_manifest()
+    manifest = load_manifest_at(SRC_A_MERGE)
     rows = by_id(manifest)
     src = rows["PR2-SRC"]
 
@@ -173,7 +189,7 @@ def test_src_a_manifest_activation_is_exact():
 
 
 def test_src_a_does_not_activate_r3_or_downstream_work():
-    manifest = load_manifest()
+    manifest = load_manifest_at(SRC_A_MERGE)
     rows = by_id(manifest)
 
     assert manifest["r2_gate_state"]["R3"] == "ready_pending_authorization"
@@ -206,8 +222,8 @@ def test_src_a_preserves_firewall_as_complementary_authority():
 
 
 def test_src_a_program_and_decision_log_cross_record_authorization():
-    program = PROGRAM.read_text(encoding="utf-8")
-    decisions = DECISIONS.read_text(encoding="utf-8")
+    program = read_text_at(SRC_A_MERGE, PROGRAM)
+    decisions = read_text_at(SRC_A_MERGE, DECISIONS)
 
     assert "**Artifact version:** `0.4.12`" in program
     assert "### 5.9 PR2-SRC-A foundational source research governance" in program
@@ -224,7 +240,7 @@ def test_src_a_program_and_decision_log_cross_record_authorization():
 
 def test_src_a_reserves_later_tranches_without_authorizing_them():
     doctrine = DOCTRINE.read_text(encoding="utf-8")
-    manifest = load_manifest()
+    manifest = load_manifest_at(SRC_A_MERGE)
     src = by_id(manifest)["PR2-SRC"]
 
     for tranche in ["PR2-SRC-B", "PR2-SRC-C", "PR2-SRC-D"]:
