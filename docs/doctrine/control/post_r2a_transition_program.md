@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.11`
+**Artifact version:** `0.4.12`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -601,6 +601,48 @@ carried-forward obligations remain explicit and unchanged. R3 remains
 `ready_pending_authorization`, and all downstream PR2 workstreams remain separately
 blocked or unauthorized.
 
+### 5.9 PR2-SRC-A foundational source research governance
+
+A post-PR2-ID read-only sequencing adjudication determined that `PR2-AUDIT` is
+not an immediate successor because its declared dependencies include
+`PR2-SRC`, `PR2-ORG`, `PR2-CORPUS`, `PR2-IR`, and `PR2-SCALE`.
+
+`R3` remains independently `ready_pending_authorization` against its frozen
+34-record conformance target. Source-research activation does not expand,
+reinterpret, or contaminate that target.
+
+The owner separately authorized `PR2-SRC-A` under:
+
+`owner_directive_2026-09-10_pr2_src_a_activation`
+
+from merged baseline:
+
+`4033f43b2a4ad7088955ca1a29daf47a33ef7a37`
+
+The controlling foundational source-research artifact is:
+
+`docs/doctrine/control/myravant_source_research_architecture.md`
+
+SRC-A replaces presumptive source-to-converted-artifact posture with the
+governed research flow:
+
+`external evidence -> source-aware observation -> normalized pressure -> cross-source synthesis -> Myravant-facing requirement -> separately governed independent design`
+
+SRC-A owns foundational source nonauthority, provenance continuity, research
+layer distinctions, source-modality neutrality, functional/generative
+abstraction, cross-source synthesis, corpus-scale anti-drift, escalation, and
+downstream handoff boundaries.
+
+SRC-A does not authorize source processing, originality/rights adjudication,
+information-barrier implementation, corpus registry work, fiction- or
+simulation-specific research contracts, legacy remediation, native-content
+production, runtime/schema implementation, conversion execution, autonomous
+agent reconnaissance, training, canon promotion, or live-play/GM behavior.
+
+PR2-SRC remains active after SRC-A until separately authorized method,
+legacy-disposition, and completion-review tranches receive lawful outcomes.
+PR2-SRC-B, PR2-SRC-C, and PR2-SRC-D are not activated by SRC-A.
+
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
 ## 6. Controlled workstream registry
@@ -1025,15 +1067,19 @@ Current successor state is therefore:
 1. `PR2-ID` is `merged` through PR `#380` under
    `docs/doctrine/control/myravant_identity_migration_contract.md`, with
    merge commit `1d1b16004b4bee0c75ca42c82900755ec29022bd`;
-2. `R3` remains `ready_pending_authorization` with its exact 34-record
+2. `PR2-SRC` is `active` in foundational tranche `PR2-SRC-A` under
+   `owner_directive_2026-09-10_pr2_src_a_activation` from baseline `4033f43b2a4ad7088955ca1a29daf47a33ef7a37`;
+3. `R3` remains `ready_pending_authorization` with its exact 34-record
    conformance target and is not executing;
-3. `PR2-SRC` and all other source-governance, originality,
-   information-barrier, native-content, runtime-scalability, canon,
-   conversion, implementation, and live-play workstreams remain separately
+4. `PR2-ORG`, `PR2-CORPUS`, `PR2-IR`, `PR2-FICT`, `PR2-SIMEX`,
+   runtime-scalability, audit, migration, implementation, native-content,
+   canon, conversion, training, and live-play workstreams remain separately
    blocked or unauthorized.
 
-PR2-ID identity authority does not transfer authority to any of those later
-workstreams.
+PR2-ID identity authority does not transfer authority to any later workstream.
+PR2-SRC-A source-research authority likewise transfers no authority to R3 or
+to any downstream source, runtime, content, canon, training, or live-play
+workstream.
 
 ## 21. Completion condition for this program
 

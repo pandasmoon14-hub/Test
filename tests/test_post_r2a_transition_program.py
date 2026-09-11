@@ -45,6 +45,9 @@ PR2_ID_T2E_EFFECT = "identity_migration_completion_recording_only"
 PR2_ID_PR = 380
 PR2_ID_HEAD = "024236e0ce9af3b6622e0a5b7be3a1ec3d4c99a3"
 PR2_ID_MERGE = "1d1b16004b4bee0c75ca42c82900755ec29022bd"
+PR2_SRC_A_BASELINE = "4033f43b2a4ad7088955ca1a29daf47a33ef7a37"
+PR2_SRC_A_AUTHORIZATION = "owner_directive_2026-09-10_pr2_src_a_activation"
+PR2_SRC_A_EFFECT = "foundational_source_research_governance_only"
 
 EXPECTED_R2_GATES = {
     "R1": "complete",
@@ -126,7 +129,6 @@ UNRESOLVED_IDENTITY_CLASSES = [
 ]
 
 POST_R2_BLOCKED = {
-    "PR2-SRC",
     "PR2-ORG",
     "PR2-CORPUS",
     "PR2-IR",
@@ -165,7 +167,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.11"
+    assert manifest["artifact_version"] == "0.4.12"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -285,7 +287,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_is_merged_and_pr2_id_is_the_only_active_workstream():
+def test_r2c_pr2_id_are_merged_and_pr2_src_is_the_only_active_workstream():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -294,7 +296,7 @@ def test_r2c_is_merged_and_pr2_id_is_the_only_active_workstream():
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == set()
+    assert active == {"PR2-SRC"}
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -325,6 +327,28 @@ def test_r2c_is_merged_and_pr2_id_is_the_only_active_workstream():
     assert pr2id["completion_audit_result"] == "PASS"
     assert pr2id["next_tranche_authorized"] is False
 
+    src = by_id["PR2-SRC"]
+    assert src["status"] == "active"
+    assert src["authorization_reference"] == PR2_SRC_A_AUTHORIZATION
+    assert src["authority_effect"] == PR2_SRC_A_EFFECT
+    assert src["starting_baseline"] == PR2_SRC_A_BASELINE
+    assert src["current_tranche"] == "PR2-SRC-A"
+    assert src["tranche_control_artifact"] == (
+        "docs/doctrine/control/myravant_source_research_architecture.md"
+    )
+    assert src["current_tranche_starting_head"] == PR2_SRC_A_BASELINE
+    assert (
+        src["current_tranche_authorization_reference"]
+        == PR2_SRC_A_AUTHORIZATION
+    )
+    assert src["next_tranche_authorized"] is False
+    assert [row["tranche_id"] for row in src["planned_tranches"]] == [
+        "PR2-SRC-A",
+        "PR2-SRC-B",
+        "PR2-SRC-C",
+        "PR2-SRC-D",
+    ]
+
 def test_post_r2_major_work_remains_blocked_and_unauthorized():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
@@ -346,6 +370,15 @@ def test_critical_dependency_chain_is_preserved():
         "PR2-R2B-X",
         "PR2-R2B-N",
     }
+    assert by_id["PR2-SRC"]["dependencies"] == ["PR2-CTRL"]
+    assert set(by_id["PR2-AUDIT"]["dependencies"]) == {
+        "PR2-ID",
+        "PR2-SRC",
+        "PR2-ORG",
+        "PR2-CORPUS",
+        "PR2-IR",
+        "PR2-SCALE",
+    }
     assert set(by_id["PR2-PERSIST"]["dependencies"]) == {
         "PR2-SCALE",
         "PR2-R2B-C",
@@ -363,7 +396,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.11`" in program
+    assert "**Artifact version:** `0.4.12`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -400,7 +433,10 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert "R2C completion did not automatically activate a successor." in program
     assert "`PR2-ID` is `merged` through PR `#380`" in program
     assert "`R3` remains `ready_pending_authorization`" in program
-    assert "`PR2-SRC` and all other source-governance" in program
+    assert "`PR2-SRC` is `active` in foundational tranche `PR2-SRC-A`" in program
+    assert "### 5.9 PR2-SRC-A foundational source research governance" in program
+    assert PR2_SRC_A_AUTHORIZATION in program
+    assert PR2_SRC_A_BASELINE in program
     assert "PR2-ID identity authority does not transfer authority" in program
     assert "RT-002G=unauthorized" in program
     assert "### 5.4 PR2-ID-T2B audited current-doctrine identity migration" in program

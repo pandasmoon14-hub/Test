@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 START = "9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448"
 T2E_HEAD = "024236e0ce9af3b6622e0a5b7be3a1ec3d4c99a3"
+PR2_ID_CLOSURE_HEAD = "739a5aa4782173986b55020f13e88e832c527877"
 AUTH = "owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation"
 EFFECT = "identity_migration_completion_recording_only"
 
@@ -70,7 +71,7 @@ def test_t2e_review_records_pass_without_pretending_residuals_are_solved():
 
 
 def test_t2e_manifest_is_active_pending_own_validation_and_downstream_is_blocked():
-    manifest = load(MANIFEST)
+    manifest = json.loads(git("show", f"{PR2_ID_CLOSURE_HEAD}:docs/doctrine/control/post_r2a_transition_manifest.yaml"))
     assert manifest["artifact_version"] == "0.4.11"
     by_id = {row["workstream_id"]: row for row in manifest["workstreams"]}
     pr2id = by_id["PR2-ID"]

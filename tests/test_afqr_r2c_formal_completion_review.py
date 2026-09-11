@@ -224,7 +224,7 @@ def test_known_downstream_routes_remain_outside_r2c():
 
 
 def test_post_r2_workstreams_remain_unstarted():
-    manifest = load(MANIFEST)
+    manifest = json.loads(git_bytes(R2C_PUBLICATION_HEAD, MANIFEST.relative_to(ROOT).as_posix()))
     by_id = {
         row["workstream_id"]: row
         for row in manifest["workstreams"]

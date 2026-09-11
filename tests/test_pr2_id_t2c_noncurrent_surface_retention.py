@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 T2B_HEAD = "e00bf6d6a8b7180dff34202a5602d69cab151d7f"
+T2C_HEAD = "89d101fb6cbf44d2120871dbc6723ba8842e431b"
 T2C_AUTH = "owner_directive_2026-09-09_pr2_id_t2c_recording_activation"
 T2C_EFFECT = "noncurrent_identity_surface_retention_recording_only"
 
@@ -108,7 +109,7 @@ def test_only_four_separately_bounded_identity_classes_remain():
 
 
 def test_manifest_records_t2c_without_downstream_authority():
-    manifest = load(MANIFEST)
+    manifest = json.loads(subprocess.check_output(["git", "show", f"{T2C_HEAD}:docs/doctrine/control/post_r2a_transition_manifest.yaml"], cwd=ROOT, text=True))
     pr2id = next(
         row for row in manifest["workstreams"] if row["workstream_id"] == "PR2-ID"
     )

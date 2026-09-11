@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.11",
+  "artifact_version": "0.4.12",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -470,19 +470,46 @@
       "title": "Source research and reconnaissance architecture",
       "category": "source_governance",
       "purpose": "Replace presumptive donor-conversion posture with source research, pressure extraction, and requirements synthesis governance.",
-      "status": "blocked",
+      "status": "active",
       "dependencies": [
         "PR2-CTRL"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
-      "authority_effect": "source_research_governance_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "authorization_reference": "owner_directive_2026-09-10_pr2_src_a_activation",
+      "authority_effect": "foundational_source_research_governance_only",
+      "starting_baseline": "4033f43b2a4ad7088955ca1a29daf47a33ef7a37",
+      "owned_paths": [
+        "docs/doctrine/control/myravant_source_research_architecture.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "docs/decisions/current_decisions_log.md",
+        "tests/test_pr2_src_source_research_architecture.py",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_id_myravant_identity_migration.py",
+        "tests/test_pr2_id_t2b_doctrine_identity_migration.py",
+        "tests/test_pr2_id_t2c_noncurrent_surface_retention.py",
+        "tests/test_pr2_id_t2d_roadmap_registry_adjudication.py",
+        "tests/test_pr2_id_t2e_completion_recording.py",
+        "tests/test_pr2_id_post_merge_closure.py",
+        "tests/test_afqr_r2c_formal_completion_review.py"
+      ],
       "prohibited_scope": [
         "bulk_source_processing",
         "canon_promotion",
-        "one_source_one_myravant_artifact_default"
+        "one_source_one_myravant_artifact_default",
+        "source_to_myravant_direct_transformation",
+        "originality_or_rights_eligibility_adjudication",
+        "information_barrier_schema_finalization",
+        "corpus_registry_or_saturation_governance",
+        "fiction_specific_research_contract",
+        "simulation_exemplar_specific_research_contract",
+        "legacy_surface_remediation",
+        "native_content_production",
+        "runtime_or_schema_implementation",
+        "conversion_execution",
+        "agent_reconnaissance_execution",
+        "model_training",
+        "live_play_or_gm_behavior"
       ],
       "entry_condition": "PR2-CTRL merged and source-governance work explicitly authorized.",
       "completion_condition": "Source intake, reconnaissance, pressure extraction, routing, and synthesis boundaries are explicitly governed.",
@@ -497,6 +524,34 @@
         "PR2-IR",
         "PR2-FICT",
         "PR2-SIMEX"
+      ],
+      "current_tranche": "PR2-SRC-A",
+      "tranche_control_artifact": "docs/doctrine/control/myravant_source_research_architecture.md",
+      "tranche_authority_effect": "foundational_source_research_governance_only",
+      "current_tranche_starting_head": "4033f43b2a4ad7088955ca1a29daf47a33ef7a37",
+      "current_tranche_authorization_reference": "owner_directive_2026-09-10_pr2_src_a_activation",
+      "next_tranche_authorized": false,
+      "planned_tranches": [
+        {
+          "tranche_id": "PR2-SRC-A",
+          "purpose": "foundational_source_research_governance",
+          "state": "active"
+        },
+        {
+          "tranche_id": "PR2-SRC-B",
+          "purpose": "heterogeneous_research_method_qualification",
+          "state": "blocked_pending_separate_authorization"
+        },
+        {
+          "tranche_id": "PR2-SRC-C",
+          "purpose": "legacy_source_conversion_surface_disposition",
+          "state": "blocked_pending_separate_authorization"
+        },
+        {
+          "tranche_id": "PR2-SRC-D",
+          "purpose": "independent_pr2_src_completion_review",
+          "state": "blocked_pending_separate_authorization"
+        }
       ]
     },
     {

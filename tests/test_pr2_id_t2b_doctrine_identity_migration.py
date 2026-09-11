@@ -184,7 +184,7 @@ def test_t2b_control_state_and_counts_are_machine_readable():
 
 def test_t2b_does_not_claim_downstream_or_semantic_authority():
     ledger = json.loads((ROOT / "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml").read_text(encoding="utf-8"))
-    manifest = json.loads((ROOT / "docs/doctrine/control/post_r2a_transition_manifest.yaml").read_text(encoding="utf-8"))
+    manifest = json.loads(subprocess.check_output(["git", "show", f"{T2B_HEAD}:docs/doctrine/control/post_r2a_transition_manifest.yaml"], cwd=ROOT, text=True))
 
     # Validate the immutable T2B authority record rather than pinning later
     # tranches to T2B-era completion-effect prose.
