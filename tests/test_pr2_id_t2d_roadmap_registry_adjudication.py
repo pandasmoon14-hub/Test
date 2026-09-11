@@ -228,8 +228,8 @@ def test_manifest_and_ledger_preserve_downstream_boundaries():
     pr2id = next(
         row for row in manifest["workstreams"] if row["workstream_id"] == "PR2-ID"
     )
-    assert manifest["artifact_version"] == "0.4.10"
-    assert pr2id["status"] == "validated"
+    assert manifest["artifact_version"] == "0.4.11"
+    assert pr2id["status"] == "merged"
     assert pr2id["current_tranche"] == "PR2-ID-T2E"
     assert pr2id["tranche_authority_effect"] == T2E_EFFECT
     assert pr2id["current_tranche_starting_head"] == T2E_START

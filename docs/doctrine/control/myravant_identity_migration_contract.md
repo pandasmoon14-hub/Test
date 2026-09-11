@@ -3,7 +3,7 @@
 **Artifact ID:** `PR2-ID-MIGRATION-CONTRACT-001`
 **Workstream:** `PR2-ID`
 **Layer:** `0_control`
-**Status:** `validated`
+**Status:** `merged`
 **Starting baseline:** `843fc89f3769a8e6323fa7b683d3805a9edfc142`
 **Authorization reference:** `owner_directive_2026-09-08_pr2_id_activation`
 **Authority effect:** identity and brand migration only
@@ -395,6 +395,20 @@ and its full-repository validation passed with `8961 passed, 10 skipped, 2 xfail
 governance roles, mutate R1B parity, migrate software namespaces, activate R3,
 authorize source governance, promote canon, execute conversion, create native
 content, or authorize live-play/GM behavior.
+
+## 9F. Pull-request merge closure
+
+PR2-ID was merged through PR `#380` from validated branch head
+`024236e0ce9af3b6622e0a5b7be3a1ec3d4c99a3` into `main` as merge commit
+`1d1b16004b4bee0c75ca42c82900755ec29022bd`.
+
+This record advances PR2-ID from `validated` to terminal `merged` only. The four
+T2E carried-forward obligations remain unchanged and unresolved outside PR2-ID.
+
+Merge closure does not authorize R3 execution, PR2-SRC, PR2-ORG, PR2-IR,
+software namespace migration, roadmap modernization, governance-role renaming,
+R1B parity mutation, runtime scalability, source processing, canon, conversion,
+native-content production, model training, or live-play/GM behavior.
 
 ## 10. Completion rule
 
