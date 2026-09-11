@@ -5318,3 +5318,68 @@ carried-forward obligations remain preserved and nonblocking for PR2-ID. No
 downstream workstream, R3 execution, software namespace migration, roadmap
 modernization, governance-role rename, R1B parity mutation, canon, conversion,
 native-content, or live-play/GM authority is granted.
+
+## 2026-09-10 decision — PR2-SRC-A foundational source research governance activation
+
+- **Decision ID:** `PR2-SRC-A-ACTIVATION-001`
+- **Workstream:** `PR2-SRC`
+- **Tranche:** `PR2-SRC-A`
+- **Authority reference:** `owner_directive_2026-09-10_pr2_src_a_activation`
+- **Authority effect:** `foundational_source_research_governance_only`
+- **Starting baseline:** `4033f43b2a4ad7088955ca1a29daf47a33ef7a37`
+
+### Sequencing determination
+
+A read-only post-PR2-ID sequencing adjudication determined:
+
+- `PR2-AUDIT` is not an immediate successor because its declared dependencies
+  are not satisfied;
+- `R3` is independently `ready_pending_authorization` against its frozen
+  34-record target and is not activated by this decision;
+- `PR2-SRC` is the next authorized substantive post-identity workstream.
+
+### Foundational source-research decision
+
+PR2-SRC-A establishes:
+
+- external works as research evidence rather than presumptive Myravant content;
+- exact internal provenance continuity;
+- separation among source expression, source-aware observation, normalized
+  pressure, synthesis result, Myravant-facing requirement, and later Myravant
+  design;
+- cross-source synthesis as the default research-to-requirements route;
+- source-modality neutrality;
+- functional/generative abstraction for content-heavy and generator-heavy
+  sources;
+- lawful use of failure, rules-in-use, implementation, empirical, and
+  ordinary-life evidence;
+- escalation instead of decorative Myravant invention when research evidence
+  is insufficient.
+
+Owner-provided discussion archives informed the pressure analysis for this
+decision but acquire no repository authority by being consulted.
+
+### Reserved successor tranches
+
+- `PR2-SRC-B`: heterogeneous research-method qualification;
+- `PR2-SRC-C`: legacy source/conversion surface disposition;
+- `PR2-SRC-D`: independent PR2-SRC completion review.
+
+These tranches are not authorized by this decision.
+
+### Coupled validation repair
+
+Seven predecessor tests still treated later mutable control state as though
+it were part of the historical PR2-ID checkpoint. SRC-A may repair those tests
+only by anchoring their PR2-ID assertions and footprints to accepted historical
+heads. This is validation maintenance, not a change to PR2-ID authority or
+source-governance semantics.
+
+### Explicit nonauthority
+
+This decision does not authorize source processing, originality/rights
+eligibility adjudication, PR2-IR implementation, PR2-CORPUS registry work,
+fiction- or simulation-specific research programs, legacy remediation, R3
+execution, runtime/schema implementation, conversion execution, native-content
+production, canon promotion, agent corpus execution, model training, or
+live-play/GM behavior.

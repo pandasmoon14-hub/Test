@@ -14,6 +14,7 @@ T2D_EFFECT = "roadmap_registry_occurrence_adjudication_and_two_registry_identity
 T2E_START = "9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448"
 T2E_AUTH = "owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation"
 T2E_EFFECT = "identity_migration_completion_recording_only"
+PR2_ID_CLOSURE_HEAD = "739a5aa4782173986b55020f13e88e832c527877"
 
 ROADMAP = "docs/doctrine/astra_doctrine_roadmap_v0_1.md"
 REGISTRY = "docs/doctrine/astra_doctrine_registry_v0_1.yaml"
@@ -211,7 +212,7 @@ def test_governance_escalation_is_broadened_without_role_rename():
 def test_manifest_and_ledger_preserve_downstream_boundaries():
     record = load(RECORD)
     ledger = load(LEDGER)
-    manifest = load(MANIFEST)
+    manifest = json.loads(subprocess.check_output(["git", "show", f"{PR2_ID_CLOSURE_HEAD}:docs/doctrine/control/post_r2a_transition_manifest.yaml"], cwd=ROOT, text=True))
 
     assert record["unresolved_identity_classes_after_t2d"] == UNRESOLVED
     assert ledger["artifact_version"] == "0.5.1"

@@ -22,6 +22,7 @@ T2E_EFFECT = "identity_migration_completion_recording_only"
 PR2_ID_PR = 380
 PR2_ID_HEAD = "024236e0ce9af3b6622e0a5b7be3a1ec3d4c99a3"
 PR2_ID_MERGE = "1d1b16004b4bee0c75ca42c82900755ec29022bd"
+PR2_ID_CLOSURE_HEAD = "739a5aa4782173986b55020f13e88e832c527877"
 
 CONTRACT = ROOT / "docs/doctrine/control/myravant_identity_migration_contract.md"
 LEDGER = ROOT / "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml"
@@ -81,6 +82,9 @@ T2E_OWNED = T2D_OWNED | {
 
 def load_manifest():
     return json.loads(MANIFEST.read_text(encoding="utf-8"))
+
+def load_manifest_at(ref: str):
+    return json.loads(git("show", f"{ref}:docs/doctrine/control/post_r2a_transition_manifest.yaml"))
 
 
 def git(*args: str) -> str:
@@ -144,7 +148,7 @@ def test_software_namespace_is_deliberately_retained_for_compatibility():
 
 
 def test_manifest_records_r2c_merge_and_pr2_id_activation():
-    manifest = load_manifest()
+    manifest = load_manifest_at(PR2_ID_CLOSURE_HEAD)
     by_id = {row["workstream_id"]: row for row in manifest["workstreams"]}
 
     assert manifest["artifact_version"] == "0.4.11"
