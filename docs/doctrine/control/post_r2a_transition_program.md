@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.12`
+**Artifact version:** `0.4.13`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -643,6 +643,49 @@ PR2-SRC remains active after SRC-A until separately authorized method,
 legacy-disposition, and completion-review tranches receive lawful outcomes.
 PR2-SRC-B, PR2-SRC-C, and PR2-SRC-D are not activated by SRC-A.
 
+### 5.10 PR2-SRC-B heterogeneous research-method qualification
+
+PR2-SRC-A merged through PR `#382` from certified head
+`ac82cebeeb3b8eb63fc6b4a312e90554584a1d32` as merge commit:
+
+`818a79d03ac487722762a44c9a80b29391278a8f`
+
+The accepted SRC-A validation included a green GitHub Actions CI run `#163`
+on both Linux and Windows.
+
+The owner separately authorized `PR2-SRC-B` under:
+
+`owner_directive_2026-09-11_pr2_src_b_activation`
+
+from merged baseline:
+
+`818a79d03ac487722762a44c9a80b29391278a8f`
+
+The controlling method artifact is:
+
+`docs/doctrine/control/myravant_source_research_method_qualification.md`
+
+SRC-B qualifies source modality handling, evidence-mode distinctions, research
+depth, scout/focused/deep/synthesis modes, mechanical ecology and utilization,
+content/generator research, rules-in-use/failure research, software/repository
+evidence, ordinary-life/institutional evidence, bounded research packets, stop
+conditions, and escalation.
+
+SRC-B defines how later research must be bounded. It does not authorize the
+research corpus to run.
+
+No bulk source processing, source acquisition, originality/rights adjudication,
+information-barrier implementation, corpus registry/saturation work,
+fiction-specific or simulation-specific contracts, legacy disposition,
+native-content production, runtime/schema implementation, conversion, agent
+execution, training, canon promotion, or live-play/GM behavior is authorized.
+
+`PR2-SRC` remains `active` with current tranche `PR2-SRC-B`.
+
+`PR2-SRC-C` and `PR2-SRC-D` remain separately unauthorized. `R3` remains
+`ready_pending_authorization` with its frozen 34-record target and execution
+disabled.
+
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
 ## 6. Controlled workstream registry
@@ -1067,19 +1110,23 @@ Current successor state is therefore:
 1. `PR2-ID` is `merged` through PR `#380` under
    `docs/doctrine/control/myravant_identity_migration_contract.md`, with
    merge commit `1d1b16004b4bee0c75ca42c82900755ec29022bd`;
-2. `PR2-SRC` is `active` in foundational tranche `PR2-SRC-A` under
-   `owner_directive_2026-09-10_pr2_src_a_activation` from baseline `4033f43b2a4ad7088955ca1a29daf47a33ef7a37`;
-3. `R3` remains `ready_pending_authorization` with its exact 34-record
+2. `PR2-SRC-A` is merged through PR `#382` as merge commit
+   `818a79d03ac487722762a44c9a80b29391278a8f`;
+3. `PR2-SRC` remains `active` with current tranche `PR2-SRC-B` under
+   `owner_directive_2026-09-11_pr2_src_b_activation` from baseline
+   `818a79d03ac487722762a44c9a80b29391278a8f`;
+4. `R3` remains `ready_pending_authorization` with its exact 34-record
    conformance target and is not executing;
-4. `PR2-ORG`, `PR2-CORPUS`, `PR2-IR`, `PR2-FICT`, `PR2-SIMEX`,
+5. `PR2-ORG`, `PR2-CORPUS`, `PR2-IR`, `PR2-FICT`, `PR2-SIMEX`,
    runtime-scalability, audit, migration, implementation, native-content,
    canon, conversion, training, and live-play workstreams remain separately
    blocked or unauthorized.
 
 PR2-ID identity authority does not transfer authority to any later workstream.
-PR2-SRC-A source-research authority likewise transfers no authority to R3 or
-to any downstream source, runtime, content, canon, training, or live-play
-workstream.
+PR2-SRC-A source-research authority transferred only into the separately
+authorized SRC-B method tranche recorded above. SRC-B authority transfers no
+authority to R3, SRC-C/D, or any downstream source, runtime, content, canon,
+training, or live-play workstream.
 
 ## 21. Completion condition for this program
 
