@@ -66,6 +66,12 @@ PR2_SRC_C_MERGE = "21b4ba706bb3f68aeb51dc4195fe1aa60014a439"
 PR2_SRC_D_BASELINE = "21b4ba706bb3f68aeb51dc4195fe1aa60014a439"
 PR2_SRC_D_AUTHORIZATION = "owner_directive_2026-09-11_pr2_src_d_activation"
 PR2_SRC_D_EFFECT = "independent_source_research_completion_review_only"
+PR2_SRC_D_PR = 385
+PR2_SRC_D_HEAD = "7fd2f1c202abd7107dc2918e168d7885fb9452ce"
+PR2_SRC_D_MERGE = "376214e1b715de34160dfb03d328547f510b6586"
+PR2_SRC_D_TREE = "bcf9dd80d9a39594e60a62218bff3ee64aa85abb"
+PR2_SRC_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-11_pr2_src_post_merge_closure"
+PR2_SRC_CLOSURE_EFFECT = "source_research_post_merge_lifecycle_reconciliation_only"
 
 EXPECTED_R2_GATES = {
     "R1": "complete",
@@ -146,12 +152,15 @@ UNRESOLVED_IDENTITY_CLASSES = [
     "software_namespace_future_alias_or_deprecation_policy",
 ]
 
-POST_R2_BLOCKED = {
+POST_R2_READY = {
     "PR2-ORG",
-    "PR2-CORPUS",
-    "PR2-IR",
     "PR2-FICT",
     "PR2-SIMEX",
+}
+
+POST_R2_BLOCKED = {
+    "PR2-CORPUS",
+    "PR2-IR",
     "PR2-SCALE",
     "PR2-PART",
     "PR2-CONC",
@@ -185,7 +194,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.15"
+    assert manifest["artifact_version"] == "0.4.16"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -305,7 +314,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_pr2_id_are_merged_and_pr2_src_is_the_only_active_workstream():
+def test_r2c_pr2_id_pr2_src_are_merged_and_no_successor_is_active():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -314,7 +323,7 @@ def test_r2c_pr2_id_are_merged_and_pr2_src_is_the_only_active_workstream():
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == {"PR2-SRC"}
+    assert active == set()
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -346,7 +355,7 @@ def test_r2c_pr2_id_are_merged_and_pr2_src_is_the_only_active_workstream():
     assert pr2id["next_tranche_authorized"] is False
 
     src = by_id["PR2-SRC"]
-    assert src["status"] == "active"
+    assert src["status"] == "merged"
     assert src["authorization_reference"] == PR2_SRC_A_AUTHORIZATION
     assert src["authority_effect"] == PR2_SRC_A_EFFECT
     assert src["starting_baseline"] == PR2_SRC_A_BASELINE
@@ -360,6 +369,14 @@ def test_r2c_pr2_id_are_merged_and_pr2_src_is_the_only_active_workstream():
     assert src["completion_review_result"] == "PASS"
     assert src["completion_review_blocking_findings"] == []
     assert src["next_tranche_authorized"] is False
+    assert src["pull_request"] == PR2_SRC_D_PR
+    assert src["branch_head"] == PR2_SRC_D_HEAD
+    assert src["merge_commit"] == PR2_SRC_D_MERGE
+    assert src["completion_state"] == "merged"
+    assert src["post_merge_closure_authorization_reference"] == PR2_SRC_CLOSURE_AUTHORIZATION
+    assert src["post_merge_closure_authority_effect"] == PR2_SRC_CLOSURE_EFFECT
+    assert src["post_merge_closure_recorded_from"] == PR2_SRC_D_MERGE
+    assert src["post_merge_closure_tree"] == PR2_SRC_D_TREE
     assert [row["tranche_id"] for row in src["planned_tranches"]] == [
         "PR2-SRC-A",
         "PR2-SRC-B",
@@ -379,16 +396,24 @@ def test_r2c_pr2_id_are_merged_and_pr2_src_is_the_only_active_workstream():
     assert tranches["PR2-SRC-C"]["pull_request"] == PR2_SRC_C_PR
     assert tranches["PR2-SRC-C"]["branch_head"] == PR2_SRC_C_HEAD
     assert tranches["PR2-SRC-C"]["merge_commit"] == PR2_SRC_C_MERGE
-    assert tranches["PR2-SRC-D"]["state"] == "active"
+    assert tranches["PR2-SRC-D"]["state"] == "merged"
     assert tranches["PR2-SRC-D"]["authorization_reference"] == PR2_SRC_D_AUTHORIZATION
     assert tranches["PR2-SRC-D"]["authority_effect"] == PR2_SRC_D_EFFECT
     assert tranches["PR2-SRC-D"]["starting_baseline"] == PR2_SRC_D_BASELINE
     assert tranches["PR2-SRC-D"]["review_result"] == "PASS"
     assert tranches["PR2-SRC-D"]["source_processing_authorized"] is False
+    assert tranches["PR2-SRC-D"]["pull_request"] == PR2_SRC_D_PR
+    assert tranches["PR2-SRC-D"]["branch_head"] == PR2_SRC_D_HEAD
+    assert tranches["PR2-SRC-D"]["merge_commit"] == PR2_SRC_D_MERGE
+    assert tranches["PR2-SRC-D"]["merge_tree"] == PR2_SRC_D_TREE
 
-def test_post_r2_major_work_remains_blocked_and_unauthorized():
+def test_post_r2_successor_readiness_does_not_imply_authorization():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
+
+    for workstream_id in POST_R2_READY:
+        assert by_id[workstream_id]["status"] == "ready_pending_authorization"
+        assert by_id[workstream_id]["authorization_reference"] is None
 
     for workstream_id in POST_R2_BLOCKED:
         assert by_id[workstream_id]["status"] == "blocked"
@@ -433,7 +458,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.15`" in program
+    assert "**Artifact version:** `0.4.16`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -474,7 +499,9 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert "### 5.10 PR2-SRC-B heterogeneous research-method qualification" in program
     assert "### 5.11 PR2-SRC-C legacy source/conversion surface disposition" in program
     assert "### 5.12 PR2-SRC-D independent completion review" in program
-    assert "`PR2-SRC` remains `active` with current tranche `PR2-SRC-D`" in program
+    assert "### 5.13 PR2-SRC post-merge closure recording" in program
+    assert "`PR2-SRC` is terminal `merged`" in program
+    assert "`ready_pending_authorization` only; none is authorized or active" in program
     assert PR2_SRC_A_AUTHORIZATION in program
     assert PR2_SRC_A_BASELINE in program
     assert PR2_SRC_A_HEAD in program
@@ -489,6 +516,8 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert PR2_SRC_C_MERGE in program
     assert PR2_SRC_D_AUTHORIZATION in program
     assert PR2_SRC_D_BASELINE in program
+    assert PR2_SRC_D_HEAD in program
+    assert PR2_SRC_D_MERGE in program
     assert "PR2-ID identity authority does not transfer authority" in program
     assert "RT-002G=unauthorized" in program
     assert "### 5.4 PR2-ID-T2B audited current-doctrine identity migration" in program
