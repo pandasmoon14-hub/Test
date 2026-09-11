@@ -50,8 +50,8 @@ def _imported_modules(path: Path) -> set[str]:
 
 def test_readme_declares_conversion_runtime_firewall() -> None:
     text = _read(README_PATH)
-    assert "## Extraction/conversion–runtime firewall" in text
-    assert "Extraction and conversion end before runtime begins." in text
+    assert "## Source/conversion–runtime firewall" in text
+    assert "Source research, extraction, and conversion end before runtime begins." in text
     assert "Runtime is origin-blind." in text
     assert "Offline provenance is retained but isolated." in text
     assert "conversion_runtime_origin_firewall_doctrine.md" in text
@@ -63,7 +63,7 @@ def test_firewall_doctrine_requires_one_way_identity_breaking_promotion() -> Non
     assert "Identity-breaking promotion boundary" in text
     assert "Runtime-origin blindness" in text
     assert "Offline lineage ledger" in text
-    assert "new Astra-native identity" in text
+    assert "new Myravant-native identity" in text
     assert "must not contain the reverse lookup key" in text
 
 

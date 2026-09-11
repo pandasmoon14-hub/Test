@@ -4951,3 +4951,353 @@ implementation, native-content production, runtime scalability, runtime or
 production-schema implementation, persistence/replay construction, canon
 promotion, conversion work, live-play/GM behavior, model training, or
 temporary evidence deletion.
+
+## 2026-09-08 decision — Myravant identity migration activation
+
+- **Decision ID:** `PR2-ID-AUTHORIZATION-001`
+- **Decision date:** 2026-09-08
+- **Decision type:** bounded identity-migration authorization
+- **Workstream:** `PR2-ID`
+- **Branch:** `pr2-id-myravant-identity-migration`
+- **Starting baseline:** `843fc89f3769a8e6323fa7b683d3805a9edfc142`
+- **Authorization reference:** `owner_directive_2026-09-08_pr2_id_activation`
+
+### Predecessor completion
+
+`PR2-R2C` merged through PR `#379`.
+
+- final branch head:
+  `ea47efef19e1552f40fee7b7658797b59bd35b7f`;
+- merge commit:
+  `843fc89f3769a8e6323fa7b683d3805a9edfc142`;
+- formal R2 result:
+  `PASS`;
+- `R2=complete`;
+- `R3=ready_pending_authorization`.
+
+### Authorization
+
+The owner separately authorizes:
+
+`PR2-ID — Myravant identity migration`
+
+Myravant is the owner-selected current/future umbrella identity.
+
+Astra Ascension remains the historical predecessor identity wherever history,
+provenance, frozen evidence, stable identifiers, or compatibility require it.
+
+### First bounded tranche
+
+The first tranche may change only:
+
+- the Myravant identity-migration contract;
+- transition-control bookkeeping;
+- this decision record;
+- `README.md`;
+- `AGENTS.md`;
+- `CLAUDE.md`;
+- dedicated identity-migration tests;
+- successor-control tests that must reflect the R2C merge and PR2-ID activation.
+
+### Migration law
+
+Every Astra identity occurrence must be dispositioned as one of:
+
+- `migrate_current`;
+- `migrate_with_historical_qualifier`;
+- `retain_historical`;
+- `retain_compatibility`;
+- `alias_then_migrate`;
+- `escalate`.
+
+No global replacement is authorized.
+
+### Compatibility boundary
+
+This tranche does not rename:
+
+- `astra-runtime`;
+- `astra_runtime`;
+- `src/astra_runtime/`;
+- schema identifiers;
+- artifact IDs;
+- frozen evidence paths;
+- historical commits, PRs, or branch names;
+- provenance keys or hashes.
+
+Software-namespace migration requires a later dedicated compatibility tranche
+with reference inventory, alias/deprecation behavior, and regression evidence.
+
+### Explicit nonauthority
+
+PR2-ID does not authorize R3 execution, source governance, source processing,
+originality or information-barrier implementation, native-content production,
+runtime scalability, runtime/schema semantic redesign, canon promotion,
+conversion work, live-play/GM behavior, model training, or historical evidence
+rewriting.
+
+## 2026-09-09 decision — PR2-ID identity-surface disposition control
+
+- **Decision ID:** `PR2-ID-T2A-DISPOSITION-CONTROL-001`
+- **Workstream:** `PR2-ID`
+- **Tranche:** `PR2-ID-T2A`
+- **Starting branch head:** `09d9aa2cc92944b4dc93104cdd4c68ea961c90c9`
+- **Authorization reference:** `owner_directive_2026-09-08_pr2_id_activation`
+- **Authority effect:** identity-surface classification only
+
+### Inventory result
+
+The read-only identity inventory identified:
+
+- 2,495 identity-bearing occurrence lines;
+- 454 tracked files containing those occurrences;
+- 233 tracked paths whose filenames contain `Astra`.
+
+### Disposition decision
+
+The controlling machine-readable classification artifact is:
+
+`docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml`
+
+The following major classes are established:
+
+- current navigation already migrated with historical qualifiers;
+- predecessor-era decisions remain historical;
+- frozen review/evidence surfaces remain historical;
+- imported D-series source packs remain historical/provenance-bearing;
+- `astra-runtime`, `astra_runtime`, and `src/astra_runtime/` remain
+  compatibility-bearing;
+- roadmap/registry filenames require alias-before-migration treatment and their
+  mixed content is escalated;
+- verified current AFQR consolidation doctrine and the active
+  conversion/runtime firewall are candidate surfaces for a later bounded
+  semantic-neutral tranche;
+- unmatched doctrine/test surfaces escalate rather than being renamed by
+  inference.
+
+### Nonauthority
+
+T2A does not edit candidate doctrine prose and does not activate T2B.
+
+It does not authorize R3 execution, source governance, source processing,
+originality or information-barrier implementation, native-content production,
+runtime scalability, runtime/schema redesign, canon promotion, live-play/GM
+behavior, model training, software namespace migration, or historical evidence
+rewriting.
+
+## 2026-09-09 decision — PR2-ID-T2B audited current-doctrine identity migration
+
+- **Decision ID:** `PR2-ID-T2B-DOCTRINE-IDENTITY-MIGRATION-001`
+- **Workstream:** `PR2-ID`
+- **Tranche:** `PR2-ID-T2B`
+- **Starting branch head:** `f7c29730ebcca5d593621c1bca77dea54f5d0223`
+- **Authorization reference:** `owner_directive_2026-09-09_pr2_id_t2b_activation`
+- **Authority effect:** `semantic_neutral_current_doctrine_identity_migration_only`
+
+### Authorized scope
+
+The completed read-only T2B audit authorizes semantic-neutral current identity
+migration in exactly these six doctrine/control owners:
+
+- `docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md`
+- `docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml`
+- `docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md`
+- `docs/doctrine/consolidation/afqr_r2b_core_qualifications.md`
+- `docs/doctrine/consolidation/afqr_world_action_sensing.md`
+- `docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md`
+
+The two coupled validation literals owned by those doctrine surfaces may move
+with them:
+
+- `tests/test_afqr_r1d_world_action_sensing.py`
+- `tests/test_conversion_runtime_origin_firewall.py`
+
+Corrected audit dispositions are exact: `58 migrate_current`,
+`18 retain_historical`, `4 governance-role escalations`,
+`8 exact-upstream-parity escalations`, and `1 retain_compatibility`.
+
+The eight `one Astra type` collision-risk values remain unchanged because
+R1D-WORLD inherits them as exact parity from the R1B shared-vocabulary owner,
+which is outside T2B. Their identity disposition is therefore escalated.
+
+The firewall test's README heading/opening assertions are aligned to the
+already-published T2A README. README itself is not changed.
+
+### Required preservation
+
+T2B must retain historical/provenance source and ratification paths, stable
+artifact/evidence identifiers, `Astra Doctrine Council`, `astra-runtime`,
+`astra_runtime`, `src/astra_runtime/`, schemas, hashes, accepted historical
+records, and repository history.
+
+### Nonauthority
+
+T2B does not authorize semantic doctrine changes, owner changes, runtime or
+schema redesign, software namespace migration, source governance, source
+processing, originality/information-barrier implementation, native-content
+production, R3 execution, canon promotion, conversion execution, live-play/GM
+behavior, model training, or historical/provenance rewriting.
+
+## 2026-09-09 decision — PR2-ID-T2C noncurrent identity-surface retention recording
+
+- **Decision ID:** `PR2-ID-T2C-NONCURRENT-SURFACE-RETENTION-001`
+- **Workstream:** `PR2-ID`
+- **Tranche:** `PR2-ID-T2C`
+- **Starting branch head:** `e00bf6d6a8b7180dff34202a5602d69cab151d7f`
+- **Authorization reference:** `owner_directive_2026-09-09_pr2_id_t2c_recording_activation`
+- **Authority effect:** `noncurrent_identity_surface_retention_recording_only`
+- **Retention record:** `docs/doctrine/control/myravant_identity_noncurrent_surface_retention_record.yaml`
+
+### Recorded disposition
+
+The completed read-only residual authority audit resolves exactly `33` files
+containing `44` high-recall Astra identity occurrence lines. Those files are
+noncurrent drafts, operational drafts, schema drafts, planning/readiness
+controls, owner scaffolds/specifications, or predecessor-era control artifacts.
+
+All 33 receive `retain_historical`. T2C has `0` content-edit targets. The
+retained source files themselves are not modified.
+
+### Remaining identity classes
+
+PR2-ID remains active because these separately bounded classes remain unresolved:
+
+- roadmap/registry currentness and mixed identity roles;
+- `Astra Doctrine Council` governance-role identity;
+- R1B shared-vocabulary identity and inherited exact-parity values;
+- `astra-runtime` / `astra_runtime` / `src/astra_runtime/` compatibility.
+
+### Nonauthority
+
+T2C does not authorize doctrine-semantic changes, promotion of draft material,
+governance-role renaming, R1B parity mutation, software namespace migration,
+runtime or schema redesign, source governance, source processing, R3 execution,
+canon promotion, conversion execution, native-content production, model
+training, or live-play/GM behavior.
+
+## 2026-09-09 decision — PR2-ID-T2D roadmap/registry occurrence adjudication
+
+- **Decision ID:** `PR2-ID-T2D-ROADMAP-REGISTRY-ADJUDICATION-001`
+- **Workstream:** `PR2-ID`
+- **Tranche:** `PR2-ID-T2D`
+- **Starting branch head:** `89d101fb6cbf44d2120871dbc6723ba8842e431b`
+- **Authorization reference:** `owner_directive_2026-09-09_pr2_id_t2d_activation`
+- **Authority effect:** `roadmap_registry_occurrence_adjudication_and_two_registry_identity_migrations_only`
+- **Disposition record:** `docs/doctrine/control/myravant_identity_roadmap_registry_adjudication_record.yaml`
+
+### Authorized result
+
+The published-T2C read-only audit captured `35` case-sensitive Astra-bearing
+ROADMAP-001 lines, `310` REGISTRY-001 lines, and `61` registry lines containing
+compatibility-bearing `astra-runtime`, `astra_runtime`, or `src/astra_runtime`
+literals.
+
+ROADMAP-001 receives no content edit.
+
+REGISTRY-001 receives exactly two current-facing identity edits:
+
+1. its top-level tracking purpose changes `Astra Ascension` to `Myravant`;
+2. the current REGISTRY-001 hard refusal changes `Astra-native` to
+   `Myravant-native`.
+
+All other identity-bearing roadmap/registry content is retained, compatibility
+protected, or escalated according to the T2D record.
+
+### Governance-role refinement
+
+The earlier single-literal `Astra Doctrine Council` escalation is broadened to
+`astra_prefixed_governance_and_working_group_role_identity`. This includes
+Astra-prefixed Doctrine Council, Runtime Working Group, Canon Working Group,
+and Training/Evaluation Working Group identities. No such role is renamed by
+T2D.
+
+### Nonauthority
+
+T2D does not rewrite roadmap planning/currentness, change setting or canon
+premises, rename legacy roadmap/registry paths, migrate software/package
+namespaces, mutate R1B exact-parity fields, rewrite historical changelog or
+draft/todo predecessor records, activate R3, authorize source processing,
+promote canon, execute conversion, begin native-content production, or
+authorize live-play/GM behavior.
+
+PR2-ID remains active pending a separate completion audit.
+
+## 2026-09-10 decision — PR2-ID-T2E completion audit recording
+
+- **Decision ID:** `PR2-ID-T2E-COMPLETION-RECORDING-001`
+- **Workstream:** `PR2-ID`
+- **Tranche:** `PR2-ID-T2E`
+- **Starting branch head:** `9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448`
+- **Authorization reference:** `owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation`
+- **Authority effect:** `identity_migration_completion_recording_only`
+- **Completion review:** `docs/doctrine/reviews/pr2_id_identity_migration_completion_review.yaml`
+
+### Authorized result
+
+The independent PR2-ID completion audit is `PASS`.
+
+Every material current-facing identity surface discovered by the migration
+inventory has a lawful disposition, and all authorized current-facing Myravant
+identity migrations are complete. T2E records this result; it does not perform
+another identity migration.
+
+The audit input at `9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448` passed the full repository suite with
+`8956 passed, 10 skipped, 2 xfailed, 1 warning`, exit code `0`, clean
+`git diff --check`, and a clean worktree.
+
+### Carried-forward obligations
+
+The following remain explicit obligations without blocking PR2-ID completion:
+
+- `roadmap_currentness_setting_and_planning_authority` -> `escalate`;
+- `astra_prefixed_governance_and_working_group_role_identity` -> `escalate`;
+- `r1b_shared_vocabulary_identity_and_exact_parity` -> `escalate`;
+- `software_namespace_future_alias_or_deprecation_policy` ->
+  `retain_compatibility`.
+
+They are not declared solved. Their future handling requires separately bounded
+authority appropriate to the owning concern.
+
+### Validation lifecycle
+
+T2E is active pending validation of this completion-recording change set.
+PR2-ID may advance to `validated` only after that validation passes. `merged`
+remains reserved for actual pull-request merge.
+
+### Nonauthority
+
+T2E does not authorize roadmap modernization, governance-role rename, R1B parity
+mutation, software namespace migration, R3 execution, source governance,
+originality/information-barrier implementation, runtime scalability, canon
+promotion, conversion execution, native-content production, model training, or
+live-play/GM behavior.
+
+## 2026-09-10 decision — PR2-ID-T2E validation finalization
+
+- **Decision ID:** `PR2-ID-T2E-VALIDATION-001`
+- **Workstream:** `PR2-ID`
+- **Tranche:** `PR2-ID-T2E`
+- **Starting branch head:** `9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448`
+- **Authority effect:** `identity_migration_completion_validation_only`
+- **Completion audit result:** `PASS`
+- **Lifecycle result:** `validated`
+
+### Validation evidence
+
+- bounded T2E and predecessor validation: `56 passed in 2.39s`;
+- full repository validation: `8961 passed, 10 skipped, 2 xfailed, 1 warning`;
+- full-suite exit code: `0`;
+- `git diff --check`: clean.
+
+PR2-ID therefore has no remaining identity-migration blocker. The four prior
+residual classes are preserved as explicit carried-forward obligations rather
+than deleted or declared solved.
+
+### Nonauthority
+
+Validation does not authorize R3 execution, PR2-SRC, PR2-ORG, PR2-IR, roadmap
+modernization, governance-role renaming, R1B parity mutation, software namespace
+migration, runtime scalability, canon promotion, conversion execution,
+native-content production, model training, or live-play/GM behavior.
+
+`merged` remains reserved for actual pull-request merge.

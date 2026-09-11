@@ -292,7 +292,7 @@
     },
     {
       "invariant_id": "INV-009",
-      "summary": "Donor action economy, anatomy, grid, cosmology, progression, resource model, or turn cadence cannot become Astra law by implication.",
+      "summary": "Donor action economy, anatomy, grid, cosmology, progression, resource model, or turn cadence cannot become Myravant law by implication.",
       "r1b_terms": [
         "TERM-008",
         "TERM-036",
@@ -5089,7 +5089,7 @@
       "later_gate": "R1D interface/bridge doctrine; registration services and adapters require a later authorized implementation gate",
       "r1c_may_define": "R1C defines bridge nonownership, typed endpoint, and compatibility handoff constraints only.",
       "r1c_must_not_implement": "must_not_implement production schemas, runtime services, persistence, conversion behavior, bridge code, or production imports",
-      "failure_or_collapse_risk": "Omission encourages pairwise ad hoc adapters, package-symbol ownership inference, and donor-specific compatibility becoming Astra law.",
+      "failure_or_collapse_risk": "Omission encourages pairwise ad hoc adapters, package-symbol ownership inference, and donor-specific compatibility becoming Myravant law.",
       "status": "classified_unimplemented"
     },
     {

@@ -28,7 +28,7 @@ The family rules preserve every required separation. In particular, evidence adm
 COLL-03, COLL-08, and COLL-10 are family-resolution candidates pending independent R1E review, never globally closed. SUB-001, SUB-002, and SUB-005 are consumed without schemas, databases, services, resolvers, or combined owners.
 
 ## 10. Corpus pressure and phase gates
-All eighteen donor pressure classes receive lawful landings, typed handoffs, source-local retention, quarantine, or escalation. No conversion occurs and no donor subsystem becomes universal Astra law. Overall R1D remains incomplete; R1D-WORLD is the next lawful gate and R1E remains blocked.
+All eighteen donor pressure classes receive lawful landings, typed handoffs, source-local retention, quarantine, or escalation. No conversion occurs and no donor subsystem becomes universal Myravant law. Overall R1D remains incomplete; R1D-WORLD is the next lawful gate and R1E remains blocked.
 
 ## 11. Machine-reviewable normative contract
 
@@ -163,7 +163,7 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
       ],
       "unresolved_seams": [],
       "later_implementation_handoff": "post-R1E doctrine and separately authorized implementation only",
-      "donor_pressure_risks": "donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Astra default"
+      "donor_pressure_risks": "donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Myravant default"
     },
     {
       "record_id": "AGENCY-RESP-11",
@@ -232,7 +232,7 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
         "COLL-10"
       ],
       "later_implementation_handoff": "post-R1E doctrine and separately authorized implementation only",
-      "donor_pressure_risks": "donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Astra default"
+      "donor_pressure_risks": "donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Myravant default"
     },
     {
       "record_id": "AGENCY-RESP-12",
@@ -298,7 +298,7 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
         "COLL-10"
       ],
       "later_implementation_handoff": "post-R1E doctrine and separately authorized implementation only",
-      "donor_pressure_risks": "donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Astra default"
+      "donor_pressure_risks": "donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Myravant default"
     },
     {
       "record_id": "AGENCY-RESP-13",
@@ -365,7 +365,7 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
         "COLL-10"
       ],
       "later_implementation_handoff": "post-R1E doctrine and separately authorized implementation only",
-      "donor_pressure_risks": "donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Astra default"
+      "donor_pressure_risks": "donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Myravant default"
     },
     {
       "record_id": "AGENCY-RESP-14",
@@ -435,7 +435,7 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
       ],
       "unresolved_seams": [],
       "later_implementation_handoff": "post-R1E doctrine and separately authorized implementation only",
-      "donor_pressure_risks": "donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Astra default"
+      "donor_pressure_risks": "donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Myravant default"
     },
     {
       "record_id": "AGENCY-RESP-15",
@@ -509,7 +509,7 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
         "COLL-08"
       ],
       "later_implementation_handoff": "post-R1E doctrine and separately authorized implementation only",
-      "donor_pressure_risks": "donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Astra default"
+      "donor_pressure_risks": "donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Myravant default"
     }
   ],
   "internal_edge_dispositions": [
@@ -3013,7 +3013,7 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
     },
     {
       "record_id": "AGENCY-RULE-030",
-      "rule": "no donor psychology, alignment, morality, reputation, faction, language, law, or social subsystem becomes universal Astra law",
+      "rule": "no donor psychology, alignment, morality, reputation, faction, language, law, or social subsystem becomes universal Myravant law",
       "r1c_invariant_ids": [
         "INV-009"
       ],

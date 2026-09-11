@@ -105,4 +105,6 @@ def test_counts_actions_limits_and_gate():
  gate=git_text(ACCEPTED_R2_0_HEAD,PLAN); assert all(x in gate for x in ("`R1=complete`","`R2=active_incomplete`","`R2-0=complete`","`R2A=ready`","`R2B=blocked`","`R2C=blocked`","`R3–R6=blocked`","`RT-002G=unauthorized`","`temporary_evidence_deletion=unauthorized`"))
 def test_accepted_r1_authority_files_unchanged():
  paths=["docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml","docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml","docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md","docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","docs/doctrine/consolidation/afqr_world_action_sensing.md","docs/doctrine/reviews/afqr_01_20_formal_completion_review.md","docs/doctrine/reviews/afqr_r1e_source_and_vocabulary_audit.yaml","docs/doctrine/reviews/afqr_r1e_dependency_and_parity_audit.yaml","docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml","docs/doctrine/reviews/afqr_r1e_consistency_and_corpus_adequacy.yaml"]
- for p in paths: assert hashlib.sha256(git_blob('HEAD',p)).digest()==hashlib.sha256(git_blob(R1,p)).digest()
+ # This R2-0 regression owns the R1 -> accepted-R2-0 boundary. Later,
+ # separately authorized post-R2 identity migration is validated by PR2-ID tests.
+ for p in paths: assert hashlib.sha256(git_blob(ACCEPTED_R2_0_HEAD,p)).digest()==hashlib.sha256(git_blob(R1,p)).digest()

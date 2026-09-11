@@ -10,7 +10,7 @@ phase: '0'
 last_reviewed: '2026-05-18'
 next_review_due: '2026-06-18'
 maintained_by: Astra Doctrine Council
-purpose: Track doctrine/schema file lifecycle, dependencies, gates, review state, pressure tests, donor-law creep controls, and promotion decisions for Astra Ascension.
+purpose: Track doctrine/schema file lifecycle, dependencies, gates, review state, pressure tests, donor-law creep controls, and promotion decisions for Myravant.
 source_inputs_fused:
 - Pasted text.txt
 - Pasted text (2).txt
@@ -1945,7 +1945,7 @@ file_records:
   - source-local retention routing
   - quarantine/escalation queue management
   hard_refusals:
-  - registry cannot validate donor-shaped records as Astra-native
+  - registry cannot validate donor-shaped records as Myravant-native
   - registry cannot promote files without pressure-test results
   - registry cannot bypass hard locks
   - files may not be created outside registry

@@ -1,0 +1,390 @@
+{
+  "artifact_id": "PR2-ID-IDENTITY-SURFACE-DISPOSITION-LEDGER-001",
+  "artifact_version": "0.5.1",
+  "status": "validated",
+  "workstream_id": "PR2-ID",
+  "tranche_id": "PR2-ID-T2A",
+  "authority_effect": "identity_surface_classification_only",
+  "starting_branch_head": "09d9aa2cc92944b4dc93104cdd4c68ea961c90c9",
+  "authorization_reference": "owner_directive_2026-09-08_pr2_id_activation",
+  "inventory_basis": {
+    "content_occurrence_lines": 2495,
+    "files_with_occurrences": 454,
+    "astra_named_tracked_paths": 233,
+    "method": "read-only git grep and git ls-files inventory performed at the validated PR2-ID T1 head"
+  },
+  "allowed_dispositions": [
+    "migrate_current",
+    "migrate_with_historical_qualifier",
+    "retain_historical",
+    "retain_compatibility",
+    "alias_then_migrate",
+    "escalate"
+  ],
+  "semantic_roles": [
+    "current_project_brand",
+    "historical_project_identity",
+    "current_doctrine_system_label",
+    "historical_decision_identity",
+    "frozen_review_identity",
+    "imported_source_pack_identity",
+    "software_identifier",
+    "stable_path_identifier",
+    "stable_artifact_or_evidence_identifier",
+    "governance_role_name",
+    "setting_or_canon_identity",
+    "mixed_or_unverified_doctrine_identity"
+  ],
+  "precedence": [
+    "exact_exception",
+    "stable_identifier_or_compatibility",
+    "frozen_or_historical",
+    "imported_source_pack",
+    "verified_current_authority",
+    "default_escalate"
+  ],
+  "rules": [
+    {
+      "rule_id": "ID-DISP-001-NAVIGATION",
+      "selector": {
+        "paths": [
+          "README.md",
+          "AGENTS.md",
+          "CLAUDE.md"
+        ],
+        "surface": "current-facing project identity"
+      },
+      "semantic_role": "current_project_brand",
+      "disposition": "migrate_with_historical_qualifier",
+      "state": "applied_in_t1",
+      "rationale": "Current repository identity is Myravant while truthful historical Astra Ascension and compatibility references remain."
+    },
+    {
+      "rule_id": "ID-DISP-002-DECISION-HISTORY",
+      "selector": {
+        "path_prefix": "docs/decisions/",
+        "surface": "Astra identity in records describing events that occurred under the predecessor identity"
+      },
+      "semantic_role": "historical_decision_identity",
+      "disposition": "retain_historical",
+      "rationale": "Accepted decisions are historical records; new PR2-ID records may use Myravant without rewriting predecessor-era records."
+    },
+    {
+      "rule_id": "ID-DISP-003-FROZEN-REVIEWS",
+      "selector": {
+        "path_prefix": "docs/doctrine/reviews/",
+        "surface": "identity-bearing review/evidence content"
+      },
+      "semantic_role": "frozen_review_identity",
+      "disposition": "retain_historical",
+      "rationale": "Review and evidence artifacts retain the identity under which their accepted evidence was produced."
+    },
+    {
+      "rule_id": "ID-DISP-004-WORKING-EVIDENCE",
+      "selector": {
+        "path_prefix": "working/afqr_consolidation_inputs/",
+        "surface": "source/evidence/provenance identity"
+      },
+      "semantic_role": "historical_project_identity",
+      "disposition": "retain_historical",
+      "rationale": "Working AFQR evidence and source packages are provenance-bearing and are not branding surfaces."
+    },
+    {
+      "rule_id": "ID-DISP-005-D-SERIES-IMPORTED",
+      "selector": {
+        "path_prefix": "docs/doctrine/native_design/d_series/",
+        "surface": "imported draft source-pack identity and paths"
+      },
+      "semantic_role": "imported_source_pack_identity",
+      "disposition": "retain_historical",
+      "rationale": "D-series material is imported draft source material with recorded import provenance and hashes; PR2-ID must not rewrite it."
+    },
+    {
+      "rule_id": "ID-DISP-006-RUNTIME-NAMESPACE",
+      "selector": {
+        "paths_or_literals": [
+          "pyproject.toml:name=astra-runtime",
+          "src/astra_runtime/**",
+          "astra_runtime",
+          "astra-runtime"
+        ],
+        "surface": "software package/import/path identity"
+      },
+      "semantic_role": "software_identifier",
+      "disposition": "retain_compatibility",
+      "rationale": "Software identifiers are compatibility contracts, not cosmetic branding. A later alias/deprecation tranche would be required."
+    },
+    {
+      "rule_id": "ID-DISP-007-ROADMAP-REGISTRY-PATHS",
+      "selector": {
+        "paths": [
+          "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+          "docs/doctrine/astra_doctrine_registry_v0_1.yaml"
+        ],
+        "surface": "filename/path identity"
+      },
+      "semantic_role": "stable_path_identifier",
+      "disposition": "alias_then_migrate",
+      "rationale": "The paths are referenced by executable registry tests and other repository artifacts; they cannot be cosmetically renamed."
+    },
+    {
+      "rule_id": "ID-DISP-008-ROADMAP-REGISTRY-CONTENT",
+      "selector": {
+        "paths": [
+          "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+          "docs/doctrine/astra_doctrine_registry_v0_1.yaml"
+        ],
+        "surface": "identity-bearing prose and metadata"
+      },
+      "semantic_role": "mixed_or_unverified_doctrine_identity",
+      "disposition": "escalate",
+      "rationale": "Roadmap/registry content remains escalate-by-default because these files mix historical, current, governance, setting, stable-path, and compatibility roles. T2D records two exact migrate_current exceptions in REGISTRY-001; all other occurrences follow the T2D disposition record.",
+      "state": "refined_by_t2d_occurrence_adjudication",
+      "exact_exception_record": "docs/doctrine/control/myravant_identity_roadmap_registry_adjudication_record.yaml"
+    },
+    {
+      "rule_id": "ID-DISP-009-AFQR-CURRENT-NORMATIVE",
+      "selector": {
+        "paths": [
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+          "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+          "docs/doctrine/consolidation/afqr_r2b_core_qualifications.md",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+        ],
+        "surface": "current normative project/system labels such as 'Astra law' or 'Astra-native'"
+      },
+      "semantic_role": "current_doctrine_system_label",
+      "disposition": "migrate_current",
+      "rationale": "These consolidated AFQR artifacts are current doctrine; only semantic-neutral project/system identity wording is a future migration candidate. Evidence paths and historical identifiers remain governed by higher-precedence retain rules.",
+      "state": "authorized_in_t2b"
+    },
+    {
+      "rule_id": "ID-DISP-010-FIREWALL-CURRENT-NORMATIVE",
+      "selector": {
+        "path": "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md",
+        "surface": "current project/native identity wording excluding literal software identifiers"
+      },
+      "semantic_role": "current_doctrine_system_label",
+      "disposition": "migrate_current",
+      "rationale": "The firewall is active control doctrine. Current identity prose may migrate while astra_runtime and other compatibility literals remain protected by ID-DISP-006.",
+      "state": "authorized_in_t2b"
+    },
+    {
+      "rule_id": "ID-DISP-011-OTHER-CONTROL",
+      "selector": {
+        "path_prefix": "docs/doctrine/control/",
+        "surface": "identity-bearing content not matched by a more specific rule"
+      },
+      "semantic_role": "mixed_or_unverified_doctrine_identity",
+      "disposition": "escalate",
+      "rationale": "The control directory contains active doctrine, completed plans, old scaffolds, audit protocols, and historical program state. Current authority must be proven before migration."
+    },
+    {
+      "rule_id": "ID-DISP-012-OTHER-DOCTRINE",
+      "selector": {
+        "path_prefix": "docs/doctrine/",
+        "surface": "identity-bearing content not matched by a higher-precedence rule"
+      },
+      "semantic_role": "mixed_or_unverified_doctrine_identity",
+      "disposition": "escalate",
+      "rationale": "Presence under docs/doctrine does not prove current authority or make branding replacement semantic-neutral."
+    },
+    {
+      "rule_id": "ID-DISP-013-HANDOFF-OPERATIONS-HISTORY",
+      "selector": {
+        "path_prefixes": [
+          "docs/handoff/",
+          "docs/operations/",
+          "configs/handoff/"
+        ],
+        "surface": "predecessor-era handoff or operational identity"
+      },
+      "semantic_role": "historical_project_identity",
+      "disposition": "retain_historical",
+      "rationale": "Historical handoff and operations artifacts retain truthful predecessor-era identity unless separately proven current."
+    },
+    {
+      "rule_id": "ID-DISP-014-TEST-LITERALS",
+      "selector": {
+        "path_prefix": "tests/",
+        "surface": "Astra identity literal not owned by a dedicated PR2-ID current-brand assertion"
+      },
+      "semantic_role": "mixed_or_unverified_doctrine_identity",
+      "disposition": "escalate",
+      "rationale": "Tests frequently encode package names, frozen evidence, stable paths, and historical assertions. Their literals follow the owning artifact and must not be bulk-renamed."
+    },
+    {
+      "rule_id": "ID-DISP-015-STABLE-IDS",
+      "selector": {
+        "surface": "artifact IDs, evidence IDs, hashes, branch names, commit identities, PR identities, source IDs, provenance keys"
+      },
+      "semantic_role": "stable_artifact_or_evidence_identifier",
+      "disposition": "retain_historical",
+      "rationale": "Stable accepted identifiers are provenance and evidence, not branding."
+    },
+    {
+      "rule_id": "ID-DISP-016-UNKNOWN",
+      "selector": {
+        "surface": "any identity occurrence with no proven specific rule"
+      },
+      "semantic_role": "mixed_or_unverified_doctrine_identity",
+      "disposition": "escalate",
+      "rationale": "Unknown identity surfaces must escalate rather than acquiring fake certainty through naming consistency."
+    }
+  ],
+  "t2a_protected_surfaces": [
+    "src/**",
+    "pyproject.toml",
+    "docs/doctrine/reviews/**",
+    "docs/doctrine/native_design/d_series/**",
+    "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+    "docs/doctrine/astra_doctrine_registry_v0_1.yaml",
+    "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+    "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+    "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+    "docs/doctrine/consolidation/afqr_r2b_core_qualifications.md",
+    "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+    "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+  ],
+  "next_candidate_tranche": {
+    "tranche_id": "PR2-ID-T2B",
+    "status": "completed",
+    "purpose": "audited semantic-neutral migration of verified current doctrine identity wording",
+    "candidate_paths": [
+      "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "docs/doctrine/consolidation/afqr_r2b_core_qualifications.md",
+      "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+    ],
+    "authority_granted": true,
+    "starting_branch_head": "f7c29730ebcca5d593621c1bca77dea54f5d0223",
+    "authorization_reference": "owner_directive_2026-09-09_pr2_id_t2b_activation",
+    "authority_effect": "semantic_neutral_current_doctrine_identity_migration_only",
+    "audited_occurrence_dispositions": {
+      "migrate_current": 58,
+      "retain_historical": 18,
+      "escalate_governance_role": 4,
+      "escalate_exact_upstream_parity": 8,
+      "retain_compatibility": 1
+    },
+    "coupled_test_paths": [
+      "tests/test_afqr_r1d_world_action_sensing.py",
+      "tests/test_conversion_runtime_origin_firewall.py"
+    ],
+    "publication_head": "e00bf6d6a8b7180dff34202a5602d69cab151d7f"
+  },
+  "unresolved_escalations": [],
+  "completion_effect": "PR2-ID is validated for completion. All authorized current-facing identity migrations are complete. No PR2-ID residual gap remains; the four previously unresolved classes are preserved under carried_forward_obligations with explicit escalate or retain_compatibility dispositions. This does not authorize R3 or any downstream post-R2 workstream.",
+  "t2b_exact_exceptions": [
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "field": "resolved_collision_boundary_records[*].corpus_collapse_risk",
+      "literal": "high to critical if donor homonyms are treated as one Astra type",
+      "occurrence_count": 8,
+      "upstream_owner": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "disposition": "escalate",
+      "rationale": "These values are exact inherited R1B parity fields. The upstream owner is outside T2B, so identity-only migration must not mutate them."
+    }
+  ],
+  "validation_repairs": [
+    {
+      "path": "tests/test_conversion_runtime_origin_firewall.py",
+      "classification": "pre_existing_assertion_drift",
+      "basis": "align firewall validation to the already-published T2A README at f7c29730ebcca5d593621c1bca77dea54f5d0223",
+      "readme_changed": false
+    }
+  ],
+  "t2c_recording_tranche": {
+    "tranche_id": "PR2-ID-T2C",
+    "status": "completed",
+    "authority_granted": true,
+    "starting_branch_head": "e00bf6d6a8b7180dff34202a5602d69cab151d7f",
+    "authorization_reference": "owner_directive_2026-09-09_pr2_id_t2c_recording_activation",
+    "authority_effect": "noncurrent_identity_surface_retention_recording_only",
+    "record_path": "docs/doctrine/control/myravant_identity_noncurrent_surface_retention_record.yaml",
+    "residual_files": 33,
+    "high_recall_identity_occurrence_lines": 44,
+    "content_edit_targets": 0,
+    "disposition": "retain_historical"
+  },
+  "t2d_adjudication_tranche": {
+    "tranche_id": "PR2-ID-T2D",
+    "status": "completed",
+    "authority_granted": true,
+    "starting_branch_head": "89d101fb6cbf44d2120871dbc6723ba8842e431b",
+    "authorization_reference": "owner_directive_2026-09-09_pr2_id_t2d_activation",
+    "authority_effect": "roadmap_registry_occurrence_adjudication_and_two_registry_identity_migrations_only",
+    "record_path": "docs/doctrine/control/myravant_identity_roadmap_registry_adjudication_record.yaml",
+    "roadmap_astra_bearing_lines": 35,
+    "roadmap_content_edit_targets": 0,
+    "registry_astra_bearing_lines": 310,
+    "registry_migrate_current": 2,
+    "registry_retain_historical": 187,
+    "registry_escalate_governance_role": 119,
+    "registry_escalate_roadmap_currentness": 2,
+    "registry_compatibility_literal_lines": 61,
+    "roadmap_path_disposition": "alias_then_migrate",
+    "registry_path_disposition": "alias_then_migrate",
+    "path_migration_authorized": false
+  },
+  "t2e_completion_tranche": {
+    "tranche_id": "PR2-ID-T2E",
+    "status": "validated",
+    "authority_granted": true,
+    "starting_branch_head": "9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448",
+    "authorization_reference": "owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation",
+    "authority_effect": "identity_migration_completion_recording_only",
+    "completion_review_path": "docs/doctrine/reviews/pr2_id_identity_migration_completion_review.yaml",
+    "completion_audit_result": "PASS",
+    "t2e_validation_state": "passed",
+    "validation_evidence": [
+      "bounded T2E and predecessor suite:56 passed",
+      "full repository suite:8961 passed, 10 skipped, 2 xfailed, 1 warning",
+      "git diff --check:clean"
+    ]
+  },
+  "carried_forward_obligations": [
+    {
+      "class_id": "roadmap_currentness_setting_and_planning_authority",
+      "pr2_id_disposition": "escalate",
+      "handoff_posture": "future_roadmap_currentness_and_planning_authority_review",
+      "blocks_pr2_id_completion": false,
+      "rationale": "ROADMAP-001 mixes stale planning/currentness, setting-premise, governance, and historical identity. Identity-only migration must not refresh it into current authority."
+    },
+    {
+      "class_id": "astra_prefixed_governance_and_working_group_role_identity",
+      "pr2_id_disposition": "escalate",
+      "handoff_posture": "future_governance_identity_decision",
+      "blocks_pr2_id_completion": false,
+      "rationale": "Astra-prefixed governance and working-group role names require a separate governance-role decision; T2E does not rename them."
+    },
+    {
+      "class_id": "r1b_shared_vocabulary_identity_and_exact_parity",
+      "pr2_id_disposition": "escalate",
+      "handoff_posture": "r1b_owner_identity_adjudication_if_ever_authorized",
+      "blocks_pr2_id_completion": false,
+      "rationale": "Inherited exact-parity values remain upstream-owned R1B vocabulary and are not identity-only edit targets."
+    },
+    {
+      "class_id": "software_namespace_future_alias_or_deprecation_policy",
+      "pr2_id_disposition": "retain_compatibility",
+      "handoff_posture": "separately_authorized_software_alias_or_deprecation_tranche",
+      "blocks_pr2_id_completion": false,
+      "literals_or_paths": [
+        "astra-runtime",
+        "astra_runtime",
+        "src/astra_runtime/"
+      ],
+      "rationale": "Software namespace identity is a compatibility contract. Retention is lawful until a dedicated alias/deprecation migration is authorized."
+    }
+  ],
+  "historical_unresolved_escalations_before_t2e_validation": [
+    "roadmap_currentness_setting_and_planning_authority",
+    "astra_prefixed_governance_and_working_group_role_identity",
+    "r1b_shared_vocabulary_identity_and_exact_parity",
+    "software_namespace_future_alias_or_deprecation_policy"
+  ]
+}

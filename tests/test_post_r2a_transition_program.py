@@ -29,6 +29,19 @@ R2B_CONTINUITY_PR = 378
 R2C_BASELINE = "5cae79bcdd86c93c6fe77b6492a8a087a83900b0"
 R2C_AUTHORIZATION = "owner_directive_2026-09-08_r2c_activation"
 R2C_VALIDATED_HEAD = "949575f42f8b4ba1e01963013b35376d49433faf"
+R2C_PUBLICATION_HEAD = "ea47efef19e1552f40fee7b7658797b59bd35b7f"
+R2C_PR = 379
+R2C_MERGE = "843fc89f3769a8e6323fa7b683d3805a9edfc142"
+PR2_ID_AUTHORIZATION = "owner_directive_2026-09-08_pr2_id_activation"
+PR2_ID_T2B_AUTHORIZATION = "owner_directive_2026-09-09_pr2_id_t2b_activation"
+PR2_ID_T2B_STARTING_HEAD = "f7c29730ebcca5d593621c1bca77dea54f5d0223"
+PR2_ID_T2C_AUTHORIZATION = "owner_directive_2026-09-09_pr2_id_t2c_recording_activation"
+PR2_ID_T2C_STARTING_HEAD = "e00bf6d6a8b7180dff34202a5602d69cab151d7f"
+PR2_ID_T2D_AUTHORIZATION = "owner_directive_2026-09-09_pr2_id_t2d_activation"
+PR2_ID_T2D_STARTING_HEAD = "89d101fb6cbf44d2120871dbc6723ba8842e431b"
+PR2_ID_T2E_AUTHORIZATION = "owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation"
+PR2_ID_T2E_STARTING_HEAD = "9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448"
+PR2_ID_T2E_EFFECT = "identity_migration_completion_recording_only"
 
 EXPECTED_R2_GATES = {
     "R1": "complete",
@@ -102,8 +115,14 @@ TERMINAL_STATUSES = {
     "not_required",
 }
 
+UNRESOLVED_IDENTITY_CLASSES = [
+    "roadmap_currentness_setting_and_planning_authority",
+    "astra_prefixed_governance_and_working_group_role_identity",
+    "r1b_shared_vocabulary_identity_and_exact_parity",
+    "software_namespace_future_alias_or_deprecation_policy",
+]
+
 POST_R2_BLOCKED = {
-    "PR2-ID",
     "PR2-SRC",
     "PR2-ORG",
     "PR2-CORPUS",
@@ -143,7 +162,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.3"
+    assert manifest["artifact_version"] == "0.4.10"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -263,7 +282,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_is_validated_unpublished_and_no_workstream_is_active():
+def test_r2c_is_merged_and_pr2_id_is_the_only_active_workstream():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -275,19 +294,33 @@ def test_r2c_is_validated_unpublished_and_no_workstream_is_active():
     assert active == set()
 
     r2c = by_id["PR2-R2C"]
-    assert r2c["status"] == "validated"
+    assert r2c["status"] == "merged"
     assert r2c["authorization_reference"] == R2C_AUTHORIZATION
     assert r2c["starting_baseline"] == R2C_BASELINE
-    assert r2c["validation_evidence"] == [
-        "focused R2C, transition-control, and predecessor validation:63 passed",
-        "full repository suite:8922 passed, 10 skipped, 2 xfailed, 1 warning",
-        "git diff --check:clean",
-        "validated working tree:clean",
-    ]
-    assert r2c["pull_request"] is None
-    assert r2c["branch_head"] == R2C_VALIDATED_HEAD
-    assert r2c["merge_commit"] is None
+    assert r2c["pull_request"] == R2C_PR
+    assert r2c["branch_head"] == R2C_PUBLICATION_HEAD
+    assert r2c["merge_commit"] == R2C_MERGE
     assert r2c["residual_gaps"] == []
+
+    pr2id = by_id["PR2-ID"]
+    assert pr2id["status"] == "validated"
+    assert pr2id["authorization_reference"] == PR2_ID_AUTHORIZATION
+    assert pr2id["starting_baseline"] == R2C_MERGE
+    assert set(pr2id["dependencies"]) == {"PR2-CTRL", "PR2-R2C"}
+    assert pr2id["pull_request"] is None
+    assert pr2id["branch_head"] is None
+    assert pr2id["merge_commit"] is None
+    assert pr2id["residual_gaps"] == []
+    assert [row["class_id"] for row in pr2id["carried_forward_obligations"]] == UNRESOLVED_IDENTITY_CLASSES
+    assert pr2id["current_tranche"] == "PR2-ID-T2E"
+    assert pr2id["tranche_authority_effect"] == PR2_ID_T2E_EFFECT
+    assert pr2id["current_tranche_starting_head"] == PR2_ID_T2E_STARTING_HEAD
+    assert (
+        pr2id["current_tranche_authorization_reference"]
+        == PR2_ID_T2E_AUTHORIZATION
+    )
+    assert pr2id["completion_audit_result"] == "PASS"
+    assert pr2id["next_tranche_authorized"] is False
 
 def test_post_r2_major_work_remains_blocked_and_unauthorized():
     manifest = _load_manifest()
@@ -327,7 +360,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.3`" in program
+    assert "**Artifact version:** `0.4.10`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -359,12 +392,26 @@ def test_program_and_manifest_retain_required_current_cross_references():
 def test_program_explicitly_preserves_successor_authorization_boundaries():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
 
-    assert "R2C completion does not automatically activate any successor." in program
-    assert "R3` is dependency-ready with an exact 34-record conformance target" in program
-    assert "PR2-ID` Myravant identity migration" in program
-    assert "No source-governance, originality, information-barrier, native-content" in program
+    # R2C itself did not activate a successor. PR2-ID was authorized later
+    # through its own explicit owner directive.
+    assert "R2C completion did not automatically activate a successor." in program
+    assert "`PR2-ID` is `validated` pending pull-request merge" in program
+    assert "`R3` remains `ready_pending_authorization`" in program
+    assert "`PR2-SRC` and all other source-governance" in program
+    assert "PR2-ID identity authority does not transfer authority" in program
     assert "RT-002G=unauthorized" in program
-
+    assert "### 5.4 PR2-ID-T2B audited current-doctrine identity migration" in program
+    assert PR2_ID_T2B_AUTHORIZATION in program
+    assert PR2_ID_T2B_STARTING_HEAD in program
+    assert "### 5.5 PR2-ID-T2C noncurrent identity-surface retention recording" in program
+    assert PR2_ID_T2C_AUTHORIZATION in program
+    assert PR2_ID_T2C_STARTING_HEAD in program
+    assert "### 5.6 PR2-ID-T2D roadmap and registry occurrence adjudication" in program
+    assert PR2_ID_T2D_AUTHORIZATION in program
+    assert PR2_ID_T2D_STARTING_HEAD in program
+    assert "### 5.7 PR2-ID-T2E completion audit recording" in program
+    assert PR2_ID_T2E_AUTHORIZATION in program
+    assert PR2_ID_T2E_STARTING_HEAD in program
 
 def test_program_completion_rule_forbids_untracked_disappearance():
     manifest = _load_manifest()

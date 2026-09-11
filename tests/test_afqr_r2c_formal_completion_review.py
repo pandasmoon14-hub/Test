@@ -14,6 +14,9 @@ CONTINUITY_HEAD = "d94f5e8f40b1b74d6bdb23e2e419e5cb5d6fb34f"
 CONTINUITY_PR = 378
 R2C_AUTHORIZATION = "owner_directive_2026-09-08_r2c_activation"
 R2C_VALIDATED_HEAD = "949575f42f8b4ba1e01963013b35376d49433faf"
+R2C_PUBLICATION_HEAD = "ea47efef19e1552f40fee7b7658797b59bd35b7f"
+R2C_PR = 379
+R2C_MERGE = "843fc89f3769a8e6323fa7b683d3805a9edfc142"
 
 REVIEW = ROOT / "docs/doctrine/reviews/afqr_r2c_formal_completion_review.md"
 MANIFEST = ROOT / "docs/doctrine/control/post_r2a_transition_manifest.yaml"
@@ -133,7 +136,7 @@ def test_r2c_authorization_scope_and_gate_transition_are_bounded():
     }
 
     r2c = by_id["PR2-R2C"]
-    assert r2c["status"] == "validated"
+    assert r2c["status"] == "merged"
     assert r2c["validation_evidence"] == [
         "focused R2C, transition-control, and predecessor validation:63 passed",
         "full repository suite:8922 passed, 10 skipped, 2 xfailed, 1 warning",
@@ -143,9 +146,9 @@ def test_r2c_authorization_scope_and_gate_transition_are_bounded():
     assert r2c["authorization_reference"] == R2C_AUTHORIZATION
     assert r2c["starting_baseline"] == BASE
     assert r2c["residual_gaps"] == []
-    assert r2c["pull_request"] is None
-    assert r2c["branch_head"] == R2C_VALIDATED_HEAD
-    assert r2c["merge_commit"] is None
+    assert r2c["pull_request"] == R2C_PR
+    assert r2c["branch_head"] == R2C_PUBLICATION_HEAD
+    assert r2c["merge_commit"] == R2C_MERGE
     assert set(r2c["owned_paths"]) == ALLOWED_R2C_PATHS
 
     prohibited = set(r2c["prohibited_scope"])
@@ -228,7 +231,6 @@ def test_post_r2_workstreams_remain_unstarted():
     }
 
     for workstream_id in {
-        "PR2-ID",
         "PR2-SRC",
         "PR2-ORG",
         "PR2-CORPUS",
@@ -257,8 +259,14 @@ def test_r2a_question_package_module_evidence_is_unchanged():
 
 
 def test_r2c_changed_file_footprint_is_bounded():
+    # R2C is historical once successor work begins. Validate its immutable
+    # published footprint rather than comparing the R2C base to moving HEAD.
     changed = set(
-        git("diff", "--name-only", f"{BASE}...HEAD").splitlines()
+        git(
+            "diff",
+            "--name-only",
+            f"{BASE}...{R2C_PUBLICATION_HEAD}",
+        ).splitlines()
     )
 
     assert changed
@@ -271,7 +279,7 @@ def test_r2c_changed_file_footprint_is_bounded():
         "diff",
         "--name-status",
         "--diff-filter=D",
-        f"{BASE}...HEAD",
+        f"{BASE}...{R2C_PUBLICATION_HEAD}",
     )
 
 

@@ -231,7 +231,7 @@ This qualification applies to heterogeneous uncertainty sources including:
 - external randomized mechanisms;
 - mixed deterministic and randomized procedures.
 
-The presence of one mechanism does not make that mechanism universal Astra law.
+The presence of one mechanism does not make that mechanism universal Myravant law.
 
 **CORE-RNG-008 — Deterministic procedures remain deterministic.**
 

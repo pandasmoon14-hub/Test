@@ -4594,7 +4594,7 @@ Every required pressure has a landing, external handoff, source-local retention,
       "r1d_core_may_consolidate": "typed compatibility and semantic nontransfer boundaries",
       "r1d_core_must_not_implement": "registry schema, bridge code, adapters, runtime hypergraph, persistence, or APIs",
       "later_owner_or_gate": "R1E and a later explicit implementation gate",
-      "collapse_risk": "Omission encourages pairwise ad hoc adapters, package-symbol ownership inference, and donor-specific compatibility becoming Astra law.",
+      "collapse_risk": "Omission encourages pairwise ad hoc adapters, package-symbol ownership inference, and donor-specific compatibility becoming Myravant law.",
       "source_evidence_identifiers": [
         "SRC-0008"
       ],

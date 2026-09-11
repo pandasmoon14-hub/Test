@@ -20,11 +20,11 @@ This doctrine establishes a hard architectural boundary between:
 3. canon review and promotion;
 4. runtime packaging and execution.
 
-The extraction and conversion environment exists to produce reviewable evidence and candidate structures. It is not part of the Astra runtime, is not a runtime dependency, and must not be visible to runtime services, runtime retrieval, the live-play model adapter, or players.
+The extraction and conversion environment exists to produce reviewable evidence and candidate structures. It is not part of the Myravant runtime, is not a runtime dependency, and must not be visible to runtime services, runtime retrieval, the live-play model adapter, or players.
 
 ## 2. Central law
 
-> Extraction and conversion end before runtime begins. No extraction artifact, conversion artifact, donor identifier, source reference, mapping record, provenance field, or source-derived namespace may cross into runtime. Canon promotion creates a new Astra-native artifact with a new identity and a sanitized payload. Pre-canon lineage is retained only in a segregated offline governance ledger.
+> Extraction and conversion end before runtime begins. No extraction artifact, conversion artifact, donor identifier, source reference, mapping record, provenance field, or source-derived namespace may cross into runtime. Canon promotion creates a new Myravant-native artifact with a new identity and a sanitized payload. Pre-canon lineage is retained only in a segregated offline governance ledger.
 
 This law applies regardless of whether extraction and runtime code temporarily coexist in the same repository.
 
@@ -35,7 +35,7 @@ source and extraction environment
 → conversion and normalization environment
 → doctrine, conflict, lexicon, originality, and rights review
 → explicit canon-promotion decision
-→ sanitized Astra-native canonical export
+→ sanitized Myravant-native canonical export
 → runtime package
 → campaign installation and runtime state
 ```
@@ -46,7 +46,7 @@ Runtime may not query, import, reconstruct, or traverse backward into any earlie
 
 ## 4. Identity-breaking promotion boundary
 
-A canon-promotion operation must create a new Astra-native identity.
+A canon-promotion operation must create a new Myravant-native identity.
 
 The promoted artifact must not reuse or deterministically derive its runtime identity from:
 
@@ -60,7 +60,7 @@ The runtime identity begins at canon promotion. Pre-canon identity remains outsi
 
 ## 5. Runtime-origin blindness
 
-Runtime code and runtime-accessible data must behave as though promoted material is native Astra material.
+Runtime code and runtime-accessible data must behave as though promoted material is native Myravant material.
 
 Runtime-origin blindness applies to:
 
@@ -99,7 +99,7 @@ The following are prohibited in runtime-accessible schemas and payloads:
 
 - conversion intake IDs;
 - construct inventory IDs;
-- donor-to-Astra mapping records;
+- donor-to-Myravant mapping records;
 - lawful-outcome rationale;
 - normalization notes;
 - rejected-import, quarantine, or escalation records;
@@ -122,19 +122,19 @@ The following are prohibited in runtime-accessible schemas and payloads:
 
 ## 7. Runtime-allowed provenance
 
-Runtime may retain provenance only for the artifact’s life inside Astra, including:
+Runtime may retain provenance only for the artifact’s life inside Myravant, including:
 
-- Astra canonical artifact identity and version;
-- Astra rules family, module, or namespace;
+- Myravant canonical artifact identity and version;
+- Myravant rules family, module, or namespace;
 - campaign installation and migration history;
 - generator and validator versions;
 - command, event, state-transition, replay, and audit records;
 - runtime-created derivative lineage;
 - campaign-local or module-local identity created after promotion.
 
-Runtime provenance must begin at the Astra-native promotion or generation boundary.
+Runtime provenance must begin at the Myravant-native promotion or generation boundary.
 
-A runtime field named `source`, `origin`, `provenance`, or similar must be qualified as Astra-native runtime provenance and must not carry pre-canon lineage.
+A runtime field named `source`, `origin`, `provenance`, or similar must be qualified as Myravant-native runtime provenance and must not carry pre-canon lineage.
 
 ## 8. Offline lineage ledger
 
@@ -203,28 +203,28 @@ A build that includes any prohibited artifact must fail closed.
 
 Before a candidate may become runtime-eligible, the canon-promotion process must verify:
 
-1. Astra doctrine compatibility;
+1. Myravant doctrine compatibility;
 2. conflict resolution;
 3. lexicon compliance;
 4. source-local or universal scope classification;
 5. originality and rights-review disposition;
 6. removal of source and conversion identifiers;
 7. removal of source-derived formatting and comments;
-8. creation of a new Astra-native identity;
-9. validation against Astra-native schemas;
+8. creation of a new Myravant-native identity;
+9. validation against Myravant-native schemas;
 10. runtime-origin firewall certification.
 
 The promotion output must be a new artifact, not a conversion record with fields hidden or ignored.
 
 ## 12. Source-local constructs
 
-A source-local construct may survive canon review only as an Astra-governed local construct.
+A source-local construct may survive canon review only as an Myravant-governed local construct.
 
 At runtime it must use:
 
-- an Astra-issued identity;
-- an Astra-issued namespace;
-- Astra-native schema and terminology;
+- an Myravant-issued identity;
+- an Myravant-issued namespace;
+- Myravant-native schema and terminology;
 - explicit runtime interfaces;
 - no donor name or donor-derived namespace;
 - no runtime-accessible lineage to the external source.
@@ -243,7 +243,7 @@ The live-play model adapter must not receive:
 - offline provenance identifiers;
 - canon-promotion deliberation.
 
-Runtime retrieval must index only sanitized Astra-native canonical material and committed campaign state.
+Runtime retrieval must index only sanitized Myravant-native canonical material and committed campaign state.
 
 A model response that claims or implies external origin must be rejected unless the user is operating an explicitly separate authoring or governance workflow outside runtime.
 
@@ -253,9 +253,9 @@ Runtime logs and exceptions must not expose pre-canon lineage.
 
 Runtime diagnostics may refer to:
 
-- Astra artifact ID;
-- Astra schema version;
-- Astra module;
+- Myravant artifact ID;
+- Myravant schema version;
+- Myravant module;
 - runtime event or validation record.
 
 They must not refer to the source, extraction packet, conversion record, or private lineage mapping.
@@ -296,10 +296,10 @@ The firewall is not implementation-complete until all of the following hold:
 - [ ] Runtime IDs are not derived from source or conversion IDs.
 - [ ] Runtime retrieval indexes exclude extraction and conversion stores.
 - [ ] Model context builders exclude offline lineage.
-- [ ] Runtime logs and errors expose only Astra-native identifiers.
+- [ ] Runtime logs and errors expose only Myravant-native identifiers.
 - [ ] A private offline lineage ledger remains available for governance audit.
 - [ ] Promotion tests prove new identity creation and origin-field removal.
-- [ ] Source-local constructs use Astra-issued runtime namespaces.
+- [ ] Source-local constructs use Myravant-issued runtime namespaces.
 - [ ] Packaging tests fail closed when prohibited files are present.
 - [ ] Cross-boundary side-channel tests prevent stable correlation to source records.
 
@@ -326,4 +326,4 @@ This doctrine does not:
 - erase or destroy governance evidence;
 - permit laundering unapproved material by deleting attribution.
 
-Material that cannot be lawfully and coherently promoted as Astra-native canon must remain rejected, quarantined, or confined to the offline authoring environment.
+Material that cannot be lawfully and coherently promoted as Myravant-native canon must remain rejected, quarantined, or confined to the offline authoring environment.

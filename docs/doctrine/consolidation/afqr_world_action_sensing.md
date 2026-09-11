@@ -1,7 +1,7 @@
 # AFQR-16–20 R1D-WORLD: Modular World, Action, and Sensing Doctrine
 
 ## Normative boundary
-This source-backed family contract keeps embodiment, environment, topology, action resolution, and sensing modular. Consumption never transfers semantic ownership, and no donor physics, anatomy, grid, combat, damage, environment, or sensing system becomes Astra law. The embedded JSON is normative.
+This source-backed family contract keeps embodiment, environment, topology, action resolution, and sensing modular. Consumption never transfers semantic ownership, and no donor physics, anatomy, grid, combat, damage, environment, or sensing system becomes Myravant law. The embedded JSON is normative.
 
 ## Responsibility and handoff summary
 Exactly five responsibility records cover AFQR-16–20. The calculated R1C graph contributes seven internal, seventeen core/world, and five agency/world edges. Exact boundary parity preserves the already-merged R1D-CORE and R1D-AGENCY sides.
@@ -3306,7 +3306,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
     },
     {
       "record_id": "WORLD-INV-015",
-      "rule": "donor anatomy, grid, damage, action-economy, cosmology, and sensing assumptions are not Astra law",
+      "rule": "donor anatomy, grid, damage, action-economy, cosmology, and sensing assumptions are not Myravant law",
       "provenance_kind": "r1c_derived",
       "r1c_invariant_ids": [
         "INV-009"
@@ -3323,7 +3323,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
           "source_path": "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
         }
       ],
-      "rationale": "INV-009 explicitly prohibits donor anatomy, grids, action economies, cosmologies, and related profiled systems from becoming Astra law."
+      "rationale": "INV-009 explicitly prohibits donor anatomy, grids, action economies, cosmologies, and related profiled systems from becoming Myravant law."
     }
   ],
   "resolved_collision_boundary_records": [
@@ -3944,7 +3944,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "initiative needs a new AFQR-04/AFQR-19 reaction-order contract"
       ],
       "prohibited_universalizations": [
-        "one armor-class, hit-point, initiative, grid, condition, or vision procedure becoming Astra law"
+        "one armor-class, hit-point, initiative, grid, condition, or vision procedure becoming Myravant law"
       ],
       "rationale": "Fantasy anatomy and harm land in AFQR-16, terrain/weather in AFQR-17, grids and movement in AFQR-18, combat in AFQR-19, and stealth/search in AFQR-20; donor mechanics remain profiled."
     },
@@ -3996,7 +3996,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "electronic warfare requires an unsupported reaction or signal propagation contract"
       ],
       "prohibited_universalizations": [
-        "one vacuum model, radiation track, vehicle scale, sensor suite, or electronic-warfare economy becoming Astra law"
+        "one vacuum model, radiation track, vehicle scale, sensor suite, or electronic-warfare economy becoming Myravant law"
       ],
       "rationale": "Cybernetics and platform integrity land in AFQR-16, hazardous media in AFQR-17, platform geometry in AFQR-18, resolution in AFQR-19, and sensors/countermeasures in AFQR-20."
     },
@@ -4045,7 +4045,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "transformation cannot preserve AFQR-08 continuity"
       ],
       "prohibited_universalizations": [
-        "one mana-technology equivalence, astral topology, weapon procedure, or sensing model becoming Astra law"
+        "one mana-technology equivalence, astral topology, weapon procedure, or sensing model becoming Myravant law"
       ],
       "rationale": "Each hybrid construct lands by semantics across AFQR-16–20; no AFQR-13 handoff is invented because the pressure names no social-state construct."
     },
@@ -4095,7 +4095,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "tribulation effects cannot be represented through AFQR-17 exposure and AFQR-16 harm"
       ],
       "prohibited_universalizations": [
-        "one meridian/core anatomy, tribulation schedule, domain jurisdiction, cultivation cadence, or perception truth model becoming Astra law"
+        "one meridian/core anatomy, tribulation schedule, domain jurisdiction, cultivation cadence, or perception truth model becoming Myravant law"
       ],
       "rationale": "Refinement uses AFQR-16, tribulations AFQR-17, domains/movement AFQR-18, conflict AFQR-19, and perception AFQR-20, with AFQR-07 conservation and AFQR-08 continuity handoffs."
     },
@@ -4132,7 +4132,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "a package needs a new resource or reaction contract"
       ],
       "prohibited_universalizations": [
-        "one class progression, action economy, recharge schedule, or combat package becoming Astra law"
+        "one class progression, action economy, recharge schedule, or combat package becoming Myravant law"
       ],
       "rationale": "AFQR-19 is the sole necessary world landing for readiness and combat; AFQR-03 receives action requirements, and no motivation handoff is invented."
     },
@@ -4179,7 +4179,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "an employment relation needs an actual governed AFQR-09 dependency"
       ],
       "prohibited_universalizations": [
-        "one profession list, tool range, hazard schedule, or sensory assumption becoming Astra law"
+        "one profession list, tool range, hazard schedule, or sensory assumption becoming Myravant law"
       ],
       "rationale": "Occupational injury, hazards, movement, and sensing land in AFQR-16/17/18/20; command requirements and genuine governed employment dependencies cross to core owners."
     },
@@ -4227,7 +4227,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "a trait cannot be separated among embodiment, movement, combat, and sensing owners"
       ],
       "prohibited_universalizations": [
-        "one point cost, attribute cap, defense formula, or sensory range becoming Astra law"
+        "one point cost, attribute cap, defense formula, or sensory range becoming Myravant law"
       ],
       "rationale": "Physical resilience lands in AFQR-16, movement in AFQR-18, combat in AFQR-19, and sensory traits in AFQR-20; point settlement uses AFQR-07 only when a quantity is conserved."
     },
@@ -4273,7 +4273,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "a clock needs a new ordering contract beyond AFQR-04"
       ],
       "prohibited_universalizations": [
-        "one stress track, consequence ladder, scene clock, zone system, or fictional-positioning rule becoming Astra law"
+        "one stress track, consequence ladder, scene clock, zone system, or fictional-positioning rule becoming Myravant law"
       ],
       "rationale": "Harm tracks land in AFQR-16, zones in AFQR-18, and contests in AFQR-19; clocks hand off to AFQR-04 without transferring time ownership."
     },
@@ -4316,7 +4316,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "replacement cannot preserve AFQR-08 continuity"
       ],
       "prohibited_universalizations": [
-        "one implant-slot, humanity-loss, replacement-body, or neural-range model becoming Astra law"
+        "one implant-slot, humanity-loss, replacement-body, or neural-range model becoming Myravant law"
       ],
       "rationale": "AFQR-16 owns augmentation embodiment and replacement; AFQR-20 owns neural sensing; AFQR-08 preserves identity and AFQR-09 applies only to actual governed implant dependencies."
     },
@@ -4361,7 +4361,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "telepathy needs a new AFQR-14 communication modality contract"
       ],
       "prohibited_universalizations": [
-        "one mind-point economy, telepathy range, possession procedure, or mental-conflict resolver becoming Astra law"
+        "one mind-point economy, telepathy range, possession procedure, or mental-conflict resolver becoming Myravant law"
       ],
       "rationale": "AFQR-20 owns psionic acquisition and AFQR-19 targeting/conflict, while identity, consent, and communication cross to AFQR-08/11/14."
     },
@@ -4409,7 +4409,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "a mutation lacks an AFQR-08 continuity disposition"
       ],
       "prohibited_universalizations": [
-        "one sanity track, mutation table, contamination clock, or unreliable-perception procedure becoming Astra law"
+        "one sanity track, mutation table, contamination clock, or unreliable-perception procedure becoming Myravant law"
       ],
       "rationale": "Injury/transformation land in AFQR-16, contamination in AFQR-17, and unreliable sensing in AFQR-20, with identity, evidence, epistemic, and agency handoffs."
     },
@@ -4454,7 +4454,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "surveillance requires a new AFQR-20/19 contact-target contract"
       ],
       "prohibited_universalizations": [
-        "one automatic-clue rule, search-turn procedure, surveillance range, or detection-success model becoming Astra law"
+        "one automatic-clue rule, search-turn procedure, surveillance range, or detection-success model becoming Myravant law"
       ],
       "rationale": "AFQR-20 owns search, contacts, and tracking and AFQR-18 location; AFQR-06 admits evidence, AFQR-10 records knowledge, and AFQR-14 interprets communicated clues."
     },
@@ -4506,7 +4506,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "multi-scale combat needs a new movement/target/reaction contract"
       ],
       "prohibited_universalizations": [
-        "one vehicle action economy, facing system, hit-location table, sensor lock, or crew initiative becoming Astra law"
+        "one vehicle action economy, facing system, hit-location table, sensor lock, or crew initiative becoming Myravant law"
       ],
       "rationale": "Platform integrity, topology, resolution, and sensing land in AFQR-16/18/19/20; identity, governed dependencies, settlement, and operator agency retain separate owners."
     },
@@ -4553,7 +4553,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "control requires a new AFQR-11 agency contract"
       ],
       "prohibited_universalizations": [
-        "one summon action tax, shared hit-point pool, swarm grid, or familiar-sensing rule becoming Astra law"
+        "one summon action tax, shared hit-point pool, swarm grid, or familiar-sensing rule becoming Myravant law"
       ],
       "rationale": "Distributed embodiment and position land in AFQR-16/18, multi-actor resolution in AFQR-19, and sensing in AFQR-20; identity, dependency, and agency remain separate."
     },
@@ -4601,7 +4601,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "a recipe transforms a typed quantity without a conservation owner"
       ],
       "prohibited_universalizations": [
-        "one recipe list, salvage yield, repair formula, crafting clock, or platform schema becoming Astra law"
+        "one recipe list, salvage yield, repair formula, crafting clock, or platform schema becoming Myravant law"
       ],
       "rationale": "Repair and constructed integrity use AFQR-16, modification AFQR-17, and platform topology AFQR-18; AFQR-09 receives governed component, operator, contract, or support dependencies only when an actual typed dependency exists."
     },
@@ -4649,7 +4649,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "a creature hazard cannot separate AFQR-17 exposure from AFQR-16 harm"
       ],
       "prohibited_universalizations": [
-        "one stat block, challenge rating, anatomy, reach grid, species sense, or attack cadence becoming Astra law"
+        "one stat block, challenge rating, anatomy, reach grid, species sense, or attack cadence becoming Myravant law"
       ],
       "rationale": "Plural anatomy, ecology, movement, conflict, and senses route across AFQR-16–20; identity and personhood are never inferred from species anatomy."
     },
@@ -4700,7 +4700,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "a quantity-changing result needs an AFQR-07 conservation or settlement contract"
       ],
       "prohibited_universalizations": [
-        "one random weather table, critical chart, encounter-distance table, targeting matrix, or sensing oracle becoming Astra law"
+        "one random weather table, critical chart, encounter-distance table, targeting matrix, or sensing oracle becoming Myravant law"
       ],
       "rationale": "Timing uses AFQR-04; injury AFQR-16; weather AFQR-17; distance/topology AFQR-18; targeting AFQR-19; sensing AFQR-20; AFQR-07 applies only when a typed quantity is created, destroyed, reserved, transformed, or settled."
     },
@@ -4750,7 +4750,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "a scripted sequence requires a new AFQR-04 ordering contract"
       ],
       "prohibited_universalizations": [
-        "one adventure map, scripted encounter cadence, hazard shortcut, or boxed-text sensory outcome becoming Astra law"
+        "one adventure map, scripted encounter cadence, hazard shortcut, or boxed-text sensory outcome becoming Myravant law"
       ],
       "rationale": "Scenario hazards, maps, combat, and sensing land in AFQR-17–20; actions and scheduling cross to AFQR-03/04 while participant agency and briefing interpretation remain AFQR-11/14."
     }
