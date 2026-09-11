@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.10",
+  "artifact_version": "0.4.11",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -347,7 +347,7 @@
       "title": "Myravant identity migration",
       "category": "identity",
       "purpose": "Perform a controlled migration from current Astra Ascension branding to the owner-selected Myravant identity.",
-      "status": "validated",
+      "status": "merged",
       "dependencies": [
         "PR2-CTRL",
         "PR2-R2C"
@@ -410,9 +410,9 @@
         "T2E full repository suite exit code:0",
         "T2E git diff --check:clean"
       ],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "pull_request": 380,
+      "branch_head": "024236e0ce9af3b6622e0a5b7be3a1ec3d4c99a3",
+      "merge_commit": "1d1b16004b4bee0c75ca42c82900755ec29022bd",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-AUDIT"
@@ -461,7 +461,9 @@
         }
       ],
       "validation_state": "validated",
-      "completion_state": "validated_pending_pull_request_merge"
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-10_pr2_id_post_merge_closure",
+      "post_merge_closure_recorded_from": "1d1b16004b4bee0c75ca42c82900755ec29022bd"
     },
     {
       "workstream_id": "PR2-SRC",

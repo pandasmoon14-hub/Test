@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.10`
+**Artifact version:** `0.4.11`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -590,6 +590,17 @@ obligations rather than PR2-ID blockers. R3 remains `ready_pending_authorization
 and PR2-SRC, PR2-ORG, PR2-IR, runtime scalability, canon, conversion, native-content,
 and live-play/GM work remain separately unauthorized.
 
+### 5.8 PR2-ID post-merge closure recording
+
+PR2-ID was merged through PR `#380` from validated branch head
+`024236e0ce9af3b6622e0a5b7be3a1ec3d4c99a3` into `main` as merge commit
+`1d1b16004b4bee0c75ca42c82900755ec29022bd`.
+
+This is lifecycle reconciliation only. PR2-ID is terminal `merged`; the four T2E
+carried-forward obligations remain explicit and unchanged. R3 remains
+`ready_pending_authorization`, and all downstream PR2 workstreams remain separately
+blocked or unauthorized.
+
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
 ## 6. Controlled workstream registry
@@ -1011,8 +1022,9 @@ migration from baseline:
 
 Current successor state is therefore:
 
-1. `PR2-ID` is `validated` pending pull-request merge under
-   `docs/doctrine/control/myravant_identity_migration_contract.md`;
+1. `PR2-ID` is `merged` through PR `#380` under
+   `docs/doctrine/control/myravant_identity_migration_contract.md`, with
+   merge commit `1d1b16004b4bee0c75ca42c82900755ec29022bd`;
 2. `R3` remains `ready_pending_authorization` with its exact 34-record
    conformance target and is not executing;
 3. `PR2-SRC` and all other source-governance, originality,

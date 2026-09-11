@@ -19,6 +19,9 @@ T2D_AUTH = "owner_directive_2026-09-09_pr2_id_t2d_activation"
 T2E_START = "9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448"
 T2E_AUTH = "owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation"
 T2E_EFFECT = "identity_migration_completion_recording_only"
+PR2_ID_PR = 380
+PR2_ID_HEAD = "024236e0ce9af3b6622e0a5b7be3a1ec3d4c99a3"
+PR2_ID_MERGE = "1d1b16004b4bee0c75ca42c82900755ec29022bd"
 
 CONTRACT = ROOT / "docs/doctrine/control/myravant_identity_migration_contract.md"
 LEDGER = ROOT / "docs/doctrine/control/myravant_identity_surface_disposition_ledger.yaml"
@@ -91,7 +94,7 @@ def git(*args: str) -> str:
 def test_contract_establishes_identity_without_rewriting_history():
     text = CONTRACT.read_text(encoding="utf-8")
     assert "**Workstream:** `PR2-ID`" in text
-    assert "**Status:** `validated`" in text
+    assert "**Status:** `merged`" in text
     assert f"**Starting baseline:** `{BASE}`" in text
     assert f"**Authorization reference:** `{AUTH}`" in text
 
@@ -144,7 +147,7 @@ def test_manifest_records_r2c_merge_and_pr2_id_activation():
     manifest = load_manifest()
     by_id = {row["workstream_id"]: row for row in manifest["workstreams"]}
 
-    assert manifest["artifact_version"] == "0.4.10"
+    assert manifest["artifact_version"] == "0.4.11"
     assert manifest["r2_gate_state"]["R2"] == "complete"
     assert manifest["r2_gate_state"]["R3"] == "ready_pending_authorization"
     assert manifest["r3_conformance_target"]["execution_authorized"] is False
@@ -156,7 +159,7 @@ def test_manifest_records_r2c_merge_and_pr2_id_activation():
     assert r2c["merge_commit"] == BASE
 
     pr2id = by_id["PR2-ID"]
-    assert pr2id["status"] == "validated"
+    assert pr2id["status"] == "merged"
     assert pr2id["authorization_reference"] == AUTH
     assert pr2id["starting_baseline"] == BASE
     assert set(pr2id["dependencies"]) == {"PR2-CTRL", "PR2-R2C"}
@@ -168,9 +171,9 @@ def test_manifest_records_r2c_merge_and_pr2_id_activation():
     assert pr2id["current_tranche_authorization_reference"] == T2E_AUTH
     assert pr2id["completion_audit_result"] == "PASS"
     assert pr2id["next_tranche_authorized"] is False
-    assert pr2id["pull_request"] is None
-    assert pr2id["branch_head"] is None
-    assert pr2id["merge_commit"] is None
+    assert pr2id["pull_request"] == PR2_ID_PR
+    assert pr2id["branch_head"] == PR2_ID_HEAD
+    assert pr2id["merge_commit"] == PR2_ID_MERGE
 
     for wid, row in by_id.items():
         if wid == "PR2-ID":
@@ -198,6 +201,7 @@ def test_authorization_decisions_are_recorded():
     assert T2D_AUTH in text
     assert T2D_START in text
     assert "PR2-ID-T2E-COMPLETION-RECORDING-001" in text
+    assert "PR2-ID-MERGE-CLOSURE-001" in text
     assert T2E_AUTH in text
     assert T2E_START in text
 

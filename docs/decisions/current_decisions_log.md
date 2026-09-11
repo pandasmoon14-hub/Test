@@ -5301,3 +5301,20 @@ migration, runtime scalability, canon promotion, conversion execution,
 native-content production, model training, or live-play/GM behavior.
 
 `merged` remains reserved for actual pull-request merge.
+
+## 2026-09-10 decision — PR2-ID post-merge closure
+
+- **Decision ID:** `PR2-ID-MERGE-CLOSURE-001`
+- **Workstream:** `PR2-ID`
+- **Authority reference:** `owner_directive_2026-09-10_pr2_id_post_merge_closure`
+- **Authority effect:** `identity_migration_post_merge_lifecycle_reconciliation_only`
+- **Validated branch head:** `024236e0ce9af3b6622e0a5b7be3a1ec3d4c99a3`
+- **Pull request:** `#380`
+- **Merge commit:** `1d1b16004b4bee0c75ca42c82900755ec29022bd`
+- **Lifecycle result:** `merged`
+
+The merge closure records the already-completed PR #380 merge. The four T2E
+carried-forward obligations remain preserved and nonblocking for PR2-ID. No
+downstream workstream, R3 execution, software namespace migration, roadmap
+modernization, governance-role rename, R1B parity mutation, canon, conversion,
+native-content, or live-play/GM authority is granted.

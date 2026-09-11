@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 START = "9045a6cd4ec1fbfb23eac27b2fd5d8ef3e822448"
+T2E_HEAD = "024236e0ce9af3b6622e0a5b7be3a1ec3d4c99a3"
 AUTH = "owner_directive_2026-09-10_pr2_id_t2e_completion_recording_activation"
 EFFECT = "identity_migration_completion_recording_only"
 
@@ -70,11 +71,11 @@ def test_t2e_review_records_pass_without_pretending_residuals_are_solved():
 
 def test_t2e_manifest_is_active_pending_own_validation_and_downstream_is_blocked():
     manifest = load(MANIFEST)
-    assert manifest["artifact_version"] == "0.4.10"
+    assert manifest["artifact_version"] == "0.4.11"
     by_id = {row["workstream_id"]: row for row in manifest["workstreams"]}
     pr2id = by_id["PR2-ID"]
 
-    assert pr2id["status"] == "validated"
+    assert pr2id["status"] == "merged"
     assert pr2id["current_tranche"] == "PR2-ID-T2E"
     assert pr2id["current_tranche_starting_head"] == START
     assert pr2id["current_tranche_authorization_reference"] == AUTH
@@ -107,11 +108,9 @@ def test_t2e_ledger_preserves_the_four_obligations_and_completion_rule():
 
 
 def test_t2e_does_not_modify_identity_or_semantic_surfaces():
-    changed = set(git("diff", "--name-only", START).splitlines())
-    changed |= set(
-        git("ls-files", "--others", "--exclude-standard").splitlines()
+    changed = set(
+        git("diff", "--name-only", f"{START}...{T2E_HEAD}").splitlines()
     )
-    changed.discard("")
     assert changed == ALLOWED_T2E_PATHS
     assert not any(
         path.startswith(("src/", "schemas/", "docs/doctrine/consolidation/"))
