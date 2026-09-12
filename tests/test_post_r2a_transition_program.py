@@ -93,6 +93,11 @@ PR2_IR_MERGE = "2b9c21fae92dd210a12e5f7e3d6c8d8931db0201"
 PR2_IR_TREE = "8e99389020a3626e32dc7cb17e62cec081d96e54"
 PR2_IR_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-12_pr2_ir_post_merge_closure"
 PR2_IR_CLOSURE_EFFECT = "information_barrier_post_merge_lifecycle_reconciliation_only"
+PR2_CORPUS_BASELINE = "92a4b6e15d9df10dedf4cec8bd1267111975cba2"
+PR2_CORPUS_AUTHORIZATION = "owner_directive_2026-09-12_pr2_corpus_activation"
+PR2_CORPUS_EFFECT = "corpus_governance_only"
+PR2_CORPUS_CONTRACT = "docs/doctrine/control/myravant_corpus_scale_coverage_governance.md"
+PR2_CORPUS_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_corpus_scale_coverage_governance.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_corpus_scale_coverage_governance.py', 'tests/test_pr2_ir_post_merge_closure.py'}
 PR2_IR_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_source_design_information_barrier_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_ir_information_barrier.py', 'tests/test_pr2_org_post_merge_closure.py'}
 PR2_ORG_OWNED_PATHS = {'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'tests/test_pr2_src_completion_review.py', 'tests/test_pr2_src_post_merge_closure.py', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_org_originality_provenance_eligibility.py', 'docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md', 'docs/doctrine/control/post_r2a_transition_program.md', 'docs/decisions/current_decisions_log.md'}
 
@@ -176,7 +181,6 @@ UNRESOLVED_IDENTITY_CLASSES = [
 ]
 
 POST_R2_READY = {
-    "PR2-CORPUS",
     "PR2-FICT",
     "PR2-SIMEX",
 }
@@ -215,7 +219,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.20"
+    assert manifest["artifact_version"] == "0.4.21"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -335,7 +339,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_pr2_id_pr2_src_pr2_org_pr2_ir_are_merged_and_no_successor_is_active():
+def test_r2c_pr2_id_pr2_src_pr2_org_pr2_ir_are_merged_and_pr2_corpus_is_only_active_successor():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -344,7 +348,7 @@ def test_r2c_pr2_id_pr2_src_pr2_org_pr2_ir_are_merged_and_no_successor_is_active
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == set()
+    assert active == {"PR2-CORPUS"}
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -460,6 +464,17 @@ def test_r2c_pr2_id_pr2_src_pr2_org_pr2_ir_are_merged_and_no_successor_is_active
     assert ir["post_merge_closure_recorded_from"] == PR2_IR_MERGE
     assert ir["post_merge_closure_tree"] == PR2_IR_TREE
 
+    corpus = by_id["PR2-CORPUS"]
+    assert corpus["status"] == "active"
+    assert corpus["authorization_reference"] == PR2_CORPUS_AUTHORIZATION
+    assert corpus["authority_effect"] == PR2_CORPUS_EFFECT
+    assert corpus["starting_baseline"] == PR2_CORPUS_BASELINE
+    assert corpus["control_artifact"] == PR2_CORPUS_CONTRACT
+    assert set(corpus["owned_paths"]) == PR2_CORPUS_OWNED_PATHS
+    assert corpus["pull_request"] is None
+    assert corpus["branch_head"] is None
+    assert corpus["merge_commit"] is None
+
 def test_post_r2_successor_readiness_does_not_imply_authorization():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
@@ -474,6 +489,11 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
     assert ir["authorization_reference"] == PR2_IR_AUTHORIZATION
     assert ir["starting_baseline"] == PR2_IR_BASELINE
     assert ir["post_merge_closure_authorization_reference"] == PR2_IR_CLOSURE_AUTHORIZATION
+
+    corpus = by_id["PR2-CORPUS"]
+    assert corpus["status"] == "active"
+    assert corpus["authorization_reference"] == PR2_CORPUS_AUTHORIZATION
+    assert corpus["starting_baseline"] == PR2_CORPUS_BASELINE
 
     for workstream_id in POST_R2_READY:
         assert by_id[workstream_id]["status"] == "ready_pending_authorization"
@@ -522,7 +542,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.20`" in program
+    assert "**Artifact version:** `0.4.21`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -576,6 +596,11 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert PR2_IR_CONTRACT in program
     assert PR2_IR_CLOSURE_AUTHORIZATION in program
     assert PR2_IR_MERGE in program
+    assert "### 5.18 PR2-CORPUS corpus-scale coverage-governance activation" in program
+    assert PR2_CORPUS_AUTHORIZATION in program
+    assert PR2_CORPUS_BASELINE in program
+    assert PR2_CORPUS_CONTRACT in program
+    assert "PR2-CORPUS is the only active\nsuccessor workstream" in program
     assert PR2_ORG_AUTHORIZATION in program
     assert PR2_ORG_BASELINE in program
     assert PR2_ORG_CONTRACT in program

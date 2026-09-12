@@ -5626,3 +5626,37 @@ CI `#177` success; `git diff --check` clean; and semantic audit PASS.
 `ready_pending_authorization` with no authorization reference. No successor is
 activated by this closure. R3 remains `ready_pending_authorization` against the
 exact 34-record target with execution disabled.
+
+## 2026-09-12 decision — PR2-CORPUS activation
+
+- **Decision ID:** `PR2-CORPUS-ACTIVATION-001`
+- **Workstream:** `PR2-CORPUS`
+- **Authority reference:** `owner_directive_2026-09-12_pr2_corpus_activation`
+- **Authority effect:** `corpus_governance_only`
+- **Starting baseline:** `92a4b6e15d9df10dedf4cec8bd1267111975cba2`
+- **Control artifact:** `docs/doctrine/control/myravant_corpus_scale_coverage_governance.md`
+
+PR2-SRC, PR2-ORG, and PR2-IR are terminal merged. PR2-CORPUS is therefore
+explicitly authorized and active from the PR2-IR post-merge closure baseline.
+
+PR2-CORPUS governs the 1,000+ source research portfolio: stable registry
+identity, coverage dimensions, bounded batching, genealogy/effective
+independence, novelty accounting, local provisional saturation and reopening,
+outlier preservation, and corpus-level bias/gap accounting.
+
+The 1,000+ scale requirement is architectural, not a raw completion quota.
+Source count is not coverage. Registration is not research. Repeated lineage is
+not independent corroboration. Source frequency cannot create Myravant doctrine.
+Saturation must remain bounded, provisional, and reversible.
+
+This activation does not authorize source acquisition, source-research packet
+execution, bulk corpus processing, autonomous reconnaissance, PR2-FICT or
+PR2-SIMEX execution, originality/rights adjudication, information-barrier
+redefinition, native-content authoring, canon promotion, runtime/schema
+implementation, R3 execution, model training, conversion execution, or
+live-play/GM behavior.
+
+`PR2-FICT` and `PR2-SIMEX` remain `ready_pending_authorization` with no
+authorization reference or starting baseline. R3 remains
+`ready_pending_authorization` against the exact 34-record target with execution
+disabled.

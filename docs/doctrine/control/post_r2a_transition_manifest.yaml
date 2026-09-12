@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.20",
+  "artifact_version": "0.4.21",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -737,20 +737,40 @@
       "title": "Corpus scale and coverage architecture",
       "category": "source_governance",
       "purpose": "Establish machine-readable 1,000+ source registry, batching, coverage, novelty, saturation, and outlier governance.",
-      "status": "ready_pending_authorization",
+      "status": "active",
       "dependencies": [
         "PR2-SRC",
         "PR2-ORG"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-12_pr2_corpus_activation",
       "authority_effect": "corpus_governance_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "92a4b6e15d9df10dedf4cec8bd1267111975cba2",
+      "owned_paths": [
+        "docs/decisions/current_decisions_log.md",
+        "docs/doctrine/control/myravant_corpus_scale_coverage_governance.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_corpus_scale_coverage_governance.py",
+        "tests/test_pr2_ir_post_merge_closure.py"
+      ],
       "prohibited_scope": [
         "source_frequency_as_doctrine_vote",
         "uniform_deep_processing_of_all_sources",
-        "books_converted_as_primary_success_metric"
+        "books_converted_as_primary_success_metric",
+        "source_acquisition_or_bulk_processing",
+        "research_method_redefinition",
+        "source_research_execution",
+        "originality_rights_similarity_or_distribution_adjudication",
+        "source_design_information_barrier_redefinition",
+        "fiction_or_simulation_specific_research_execution",
+        "native_content_authoring",
+        "canon_promotion",
+        "runtime_or_schema_implementation",
+        "conversion_execution",
+        "model_training",
+        "live_play_or_gm_behavior"
       ],
       "entry_condition": "PR2-SRC and PR2-ORG accepted.",
       "completion_condition": "Corpus state, coverage, novelty, saturation, and escalation are machine-trackable at 1,000+ source scale.",
@@ -761,7 +781,8 @@
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-AUDIT"
-      ]
+      ],
+      "control_artifact": "docs/doctrine/control/myravant_corpus_scale_coverage_governance.md"
     },
     {
       "workstream_id": "PR2-IR",
