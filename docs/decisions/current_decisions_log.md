@@ -5660,3 +5660,29 @@ live-play/GM behavior.
 authorization reference or starting baseline. R3 remains
 `ready_pending_authorization` against the exact 34-record target with execution
 disabled.
+
+## 2026-09-12 decision — PR2-CORPUS post-merge closure
+
+- **Decision ID:** `PR2-CORPUS-POST-MERGE-CLOSURE-001`
+- **Workstream:** `PR2-CORPUS`
+- **Authority reference:** `owner_directive_2026-09-12_pr2_corpus_post_merge_closure`
+- **Authority effect:** `corpus_governance_post_merge_lifecycle_reconciliation_only`
+- **Accepted PR:** `#391`
+- **Certified branch head:** `f9881379bbbd492674c938724349da41fcd55141`
+- **Merge commit:** `e8e2c0cef0fb1d9b7fdf758fb221f9d9b9ad3bb1`
+- **Merge tree:** `ae9949d1d34cb3208f7036d8bee74f6ca8c7e87b`
+
+PR2-CORPUS is terminal `merged`. This decision records post-merge lifecycle
+state only; it does not alter the controlling corpus-scale coverage-governance
+doctrine, authorize corpus execution, or expand PR2-CORPUS authority.
+
+Accepted activation evidence is: focused PR2-CORPUS validation `77 passed`;
+full local repository suite `9043 passed, 10 skipped, 2 xfailed, 1 warning`;
+GitHub Actions CI `#181` success; `git diff --check` clean; exact seven-file
+activation footprint; and semantic/gate audit PASS.
+
+`PR2-FICT` and `PR2-SIMEX` remain `ready_pending_authorization` with no
+authorization reference or starting baseline. No successor is activated by this
+closure. Corpus execution remains unauthorized. R3 remains
+`ready_pending_authorization` against the exact 34-record target with execution
+disabled.

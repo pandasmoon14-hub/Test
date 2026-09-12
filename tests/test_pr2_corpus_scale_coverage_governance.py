@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,6 +20,7 @@ BASE = "92a4b6e15d9df10dedf4cec8bd1267111975cba2"
 AUTH = "owner_directive_2026-09-12_pr2_corpus_activation"
 EFFECT = "corpus_governance_only"
 CONTROL = "docs/doctrine/control/myravant_corpus_scale_coverage_governance.md"
+MERGE = "e8e2c0cef0fb1d9b7fdf758fb221f9d9b9ad3bb1"
 OWNED = {
     "docs/decisions/current_decisions_log.md",
     "docs/doctrine/control/myravant_corpus_scale_coverage_governance.md",
@@ -32,6 +34,18 @@ OWNED = {
 
 def load(path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def read_at(ref, path):
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{path.relative_to(ROOT).as_posix()}"],
+        cwd=ROOT,
+        text=True,
+    )
+
+
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
 
 
 def rows(manifest):
@@ -128,7 +142,7 @@ def test_existing_src_org_ir_owners_remain_authoritative():
 
 
 def test_manifest_activates_only_corpus_and_preserves_other_gates():
-    manifest = load(MAN)
+    manifest = load_at(MERGE, MAN)
     by = rows(manifest)
     corpus = by["PR2-CORPUS"]
     assert manifest["artifact_version"] == "0.4.21"
@@ -162,8 +176,8 @@ def test_ir_closure_is_frozen_as_historical_snapshot():
 
 
 def test_program_and_decision_record_activation_without_execution_authority():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(MERGE, PROG)
+    decisions = read_at(MERGE, DEC)
     assert "**Artifact version:** `0.4.21`" in program
     assert "### 5.18 PR2-CORPUS corpus-scale coverage-governance activation" in program
     assert AUTH in program

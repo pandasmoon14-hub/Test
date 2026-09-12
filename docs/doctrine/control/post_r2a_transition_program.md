@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.21`
+**Artifact version:** `0.4.22`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -930,6 +930,37 @@ successor workstream.
 
 R3 remains `ready_pending_authorization` against its exact 34-record conformance
 target with execution disabled.
+
+### 5.19 PR2-CORPUS post-merge closure recording
+
+PR2-CORPUS activation merged through PR `#391` with certified branch head
+`f9881379bbbd492674c938724349da41fcd55141` and merge commit
+`e8e2c0cef0fb1d9b7fdf758fb221f9d9b9ad3bb1`. The merge tree is
+`ae9949d1d34cb3208f7036d8bee74f6ca8c7e87b`.
+
+The owner separately authorized bounded post-merge lifecycle reconciliation under
+`owner_directive_2026-09-12_pr2_corpus_post_merge_closure` with authority effect
+`corpus_governance_post_merge_lifecycle_reconciliation_only`.
+
+PR2-CORPUS is terminal `merged`. This closure records GitHub acceptance. It
+does not change the substantive corpus-scale governance contract, expand
+PR2-CORPUS authority, authorize corpus execution, or authorize any downstream
+workstream.
+
+The accepted activation evidence includes focused PR2-CORPUS validation
+(`77 passed`), full local repository suite
+(`9043 passed, 10 skipped, 2 xfailed, 1 warning`), GitHub Actions CI `#181`
+success, clean `git diff --check`, exact seven-file activation footprint, and
+semantic/gate audit PASS.
+
+`PR2-FICT` and `PR2-SIMEX` remain `ready_pending_authorization` with no
+authorization reference or starting baseline. No successor is active. Corpus
+execution remains unauthorized. R3 remains `ready_pending_authorization` against
+the exact 34-record conformance target with execution disabled.
+
+The PR2-CORPUS activation evidence is preserved as historical snapshot evidence
+at the PR `#391` merge commit rather than being rewritten to follow later
+lifecycle state.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
