@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.16",
+  "artifact_version": "0.4.17",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -674,19 +674,39 @@
       "title": "Originality provenance and content eligibility",
       "category": "source_governance",
       "purpose": "Define originality, provenance, rights classification, contamination control, and distributable-content eligibility boundaries.",
-      "status": "ready_pending_authorization",
+      "status": "active",
       "dependencies": [
         "PR2-SRC"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-11_pr2_org_activation",
       "authority_effect": "content_eligibility_and_provenance_governance_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "c14da427bf5c5c21c7ef1655e83aea3519587cc6",
+      "owned_paths": [
+        "docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "docs/decisions/current_decisions_log.md",
+        "tests/test_pr2_org_originality_provenance_eligibility.py",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_src_completion_review.py",
+        "tests/test_pr2_src_post_merge_closure.py"
+      ],
       "prohibited_scope": [
         "legal_safe_harbor_claims",
         "canon_promotion_by_eligibility",
-        "provenance_destruction"
+        "provenance_destruction",
+        "source_acquisition_or_bulk_processing",
+        "source_research_reexecution",
+        "information_barrier_or_representation_implementation",
+        "corpus_registry_batching_coverage_or_saturation_governance",
+        "fiction_or_simulation_specific_research_execution",
+        "native_content_authoring",
+        "runtime_or_schema_implementation",
+        "conversion_execution",
+        "model_training",
+        "live_play_or_gm_behavior",
+        "in_world_rights_jurisdiction_or_adjudication_doctrine"
       ],
       "entry_condition": "PR2-SRC accepted.",
       "completion_condition": "Originality and eligibility states are machine-trackable and remain distinct from semantic mapping and canon.",
@@ -698,7 +718,8 @@
       "downstream_handoff": [
         "PR2-CORPUS",
         "PR2-IR"
-      ]
+      ],
+      "control_artifact": "docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md"
     },
     {
       "workstream_id": "PR2-CORPUS",

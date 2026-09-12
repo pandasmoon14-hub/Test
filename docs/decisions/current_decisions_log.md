@@ -5504,3 +5504,37 @@ reconnaissance, legacy remediation, originality/rights adjudication,
 information-barrier implementation, corpus execution, fiction/simulation
 research execution, runtime/schema implementation, native-content production,
 conversion, training, canon promotion, or live-play/GM behavior.
+
+## 2026-09-11 decision — PR2-ORG activation
+
+- **Decision ID:** `PR2-ORG-ACTIVATION-001`
+- **Workstream:** `PR2-ORG`
+- **Authority reference:** `owner_directive_2026-09-11_pr2_org_activation`
+- **Authority effect:** `content_eligibility_and_provenance_governance_only`
+- **Starting baseline:** `c14da427bf5c5c21c7ef1655e83aea3519587cc6`
+- **Control artifact:** `docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md`
+
+PR2-SRC and its post-merge lifecycle closure are complete. PR2-ORG is therefore
+explicitly authorized and active from the exact PR #386 merge baseline.
+
+PR2-ORG owns project-side provenance classification relevant to eligibility,
+rights-review state, originality/similarity review, contamination/quarantine,
+and content-eligibility disposition. It must preserve the project posture
+`Traceable internally; independently Myravant externally.`
+
+Renaming, translation, paraphrase, numeric modification, format conversion,
+mechanical relabeling, recombination, AI rewriting, or successful conversion do
+not establish originality by themselves.
+
+This activation does not authorize source acquisition, research-packet
+execution, bulk corpus processing, PR2-IR implementation, PR2-CORPUS execution,
+PR2-FICT or PR2-SIMEX execution, native-content authoring, canon promotion,
+runtime/schema implementation, R3 execution, model training, or live-play/GM
+behavior.
+
+AFQR-15 remains the owner for in-world institutions, rights, law, jurisdiction,
+adjudication, legitimacy, and enforcement. PR2-ORG concerns external-source and
+candidate eligibility governance only.
+
+`PR2-CORPUS` and `PR2-IR` remain blocked pending accepted PR2-ORG.
+`PR2-FICT` and `PR2-SIMEX` remain `ready_pending_authorization`.
