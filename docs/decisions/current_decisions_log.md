@@ -5538,3 +5538,38 @@ candidate eligibility governance only.
 
 `PR2-CORPUS` and `PR2-IR` remain blocked pending accepted PR2-ORG.
 `PR2-FICT` and `PR2-SIMEX` remain `ready_pending_authorization`.
+
+## 2026-09-11 decision — PR2-ORG post-merge closure
+
+- **Decision ID:** `PR2-ORG-MERGE-CLOSURE-001`
+- **Workstream:** `PR2-ORG`
+- **Authority reference:** `owner_directive_2026-09-11_pr2_org_post_merge_closure`
+- **Authority effect:** `originality_eligibility_post_merge_lifecycle_reconciliation_only`
+- **Certified PR2-ORG branch head:** `a7aed059e1b96872150c05203dfdb9c07affe831`
+- **Pull request:** `#387`
+- **Merge commit:** `031053afd9ac581cfc421554ee3383a11a0dc2bd`
+- **Merge tree:** `ac770e1c69a448545b0a58eb7ed49a0b13f81614`
+- **Lifecycle result:** `merged`
+
+PR2-ORG merged through PR `#387` from the certified branch head above. The
+accepted originality/provenance/eligibility contract remains unchanged. This
+decision reconciles repository lifecycle state only and does not create or
+expand project-side rights, originality, similarity, eligibility, canon,
+runtime, source-research, or live-play authority.
+
+Dependency release is readiness-only. `PR2-CORPUS` and `PR2-IR` become
+`ready_pending_authorization`; neither receives an authorization reference,
+starting baseline, execution authority, or active state. `PR2-FICT` and
+`PR2-SIMEX` remain separately `ready_pending_authorization`.
+
+The owner-confirmed sequencing continues to prefer `PR2-IR` as the next
+source-governance authorization target. PR2-CORPUS remains separately ready.
+Neither is activated by this closure.
+
+R3 remains `ready_pending_authorization` against the exact 34-record target with
+execution disabled. This closure does not authorize source acquisition,
+calibration-pilot execution, research-packet execution, bulk corpus processing,
+autonomous reconnaissance, PR2-CORPUS execution, PR2-IR implementation,
+PR2-FICT or PR2-SIMEX execution, legacy remediation, native-content production,
+canon promotion, runtime/schema implementation, R3 execution, model training,
+conversion execution, or live-play/GM behavior.
