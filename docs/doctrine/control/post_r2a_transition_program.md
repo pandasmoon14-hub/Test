@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.16`
+**Artifact version:** `0.4.17`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -751,6 +751,47 @@ research execution, runtime/schema implementation, native-content production,
 conversion, model training, canon promotion, and live-play/GM behavior all
 remain separately unauthorized.
 
+### 5.14 PR2-ORG originality, provenance, and content-eligibility activation
+
+PR2-SRC post-merge closure merged through PR `#386` as merge commit
+`c14da427bf5c5c21c7ef1655e83aea3519587cc6`.
+
+The owner separately authorized `PR2-ORG` under
+`owner_directive_2026-09-11_pr2_org_activation` from that exact merged baseline.
+
+The controlling contract is:
+
+`docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md`
+
+PR2-ORG owns project-side provenance classification relevant to eligibility,
+rights-review state, originality/similarity review, contamination/quarantine,
+and content-eligibility disposition. Its controlling principle is
+`Traceable internally; independently Myravant externally.`
+
+PR2-ORG explicitly rejects renaming, translation, paraphrase, numeric change,
+format conversion, mechanical relabeling, recombination, AI rewriting, or
+successful conversion as automatic proof of originality.
+
+Eligibility remains separate from semantic mapping and canon. The earlier
+Section 12 eligibility terms were planning examples rather than a required
+single flat enum. PR2-ORG normalizes those concerns into separate rights,
+originality/similarity, contamination/quarantine, final eligibility, and canon-
+handoff dimensions.
+
+`eligible_for_separate_canon_review` is a handoff state only; it does not
+perform canon promotion.
+
+PR2-ORG does not re-own PR2-SRC research provenance, implement the PR2-IR
+information barrier, operate the PR2-CORPUS registry, perform source research,
+author native content, decide runtime identity, activate R3, or define
+live-play behavior. AFQR-15 remains the owner for in-world institutions, law,
+rights, jurisdiction, adjudication, legitimacy, and enforcement; PR2-ORG owns
+only external-source/candidate eligibility governance.
+
+`PR2-CORPUS` and `PR2-IR` remain blocked until PR2-ORG is accepted. `PR2-FICT`
+and `PR2-SIMEX` remain `ready_pending_authorization` but are not activated.
+R3 remains `ready_pending_authorization` with execution disabled.
+
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
 ## 6. Controlled workstream registry
@@ -1175,34 +1216,32 @@ Current successor state is therefore:
 1. `PR2-ID` is `merged` through PR `#380` under
    `docs/doctrine/control/myravant_identity_migration_contract.md`, with
    merge commit `1d1b16004b4bee0c75ca42c82900755ec29022bd`;
-2. `PR2-SRC-A` is merged through PR `#382` as merge commit
-   `818a79d03ac487722762a44c9a80b29391278a8f`;
-3. `PR2-SRC-B` is merged through PR `#383` as merge commit
-   `70f7195100d0ccb7ba3c4cbd0dc34d684717ccaa`;
-4. `PR2-SRC-C` is merged through PR `#384` as merge commit
-   `21b4ba706bb3f68aeb51dc4195fe1aa60014a439`;
-5. `PR2-SRC-D` is merged through PR `#385` from certified head
-   `7fd2f1c202abd7107dc2918e168d7885fb9452ce` as merge commit `376214e1b715de34160dfb03d328547f510b6586`;
-6. `PR2-SRC` is terminal `merged`; the completion review result is `PASS` and
-   no blocking PR2-SRC-owned doctrine gap remains;
-7. `PR2-ORG`, `PR2-FICT`, and `PR2-SIMEX` are
-   `ready_pending_authorization` only; none is authorized or active;
-8. `PR2-CORPUS` and `PR2-IR` remain blocked pending `PR2-ORG`;
-9. `R3` remains `ready_pending_authorization` with its exact 34-record
+2. `PR2-SRC` is terminal `merged` after SRC-A/B/C/D and the PR #386 closure;
+3. `PR2-ORG` is `active` under `owner_directive_2026-09-11_pr2_org_activation` from baseline
+   `c14da427bf5c5c21c7ef1655e83aea3519587cc6`;
+4. the controlling PR2-ORG contract is
+   `docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md`;
+5. `PR2-FICT` and `PR2-SIMEX` remain `ready_pending_authorization` only;
+6. `PR2-CORPUS` and `PR2-IR` remain blocked pending accepted PR2-ORG;
+7. `R3` remains `ready_pending_authorization` with its exact 34-record
    conformance target and is not executing;
-10. runtime-scalability, audit, migration, implementation, native-content,
-    canon, conversion, training, research execution, and live-play workstreams
-    remain separately blocked or unauthorized.
+8. runtime-scalability, audit, migration, implementation, native-content,
+   canon, conversion, training, source execution, and live-play workstreams
+   remain separately blocked or unauthorized.
 
 PR2-ID identity authority does not transfer authority to any later workstream.
-PR2-SRC-A source-research authority transferred into separately authorized
-SRC-B method qualification; SRC-B authority transferred into separately
-authorized SRC-C classification; SRC-C completion evidence transferred only
-into separately authorized SRC-D completion review; and SRC-D is now merged.
 PR2-SRC closure transfers no execution, remediation, R3, source-successor,
 runtime, content, canon, training, or live-play authority. Dependency
 satisfaction grants readiness for separate authorization only where explicitly
 recorded above.
+
+PR2-ORG authority is limited to project-side originality, provenance-for-
+eligibility, rights-review state, similarity review, contamination/quarantine,
+and content eligibility. It transfers no authority from AFQR-15, PR2-SRC,
+PR2-IR, PR2-CORPUS, canon, runtime, or live play.
+
+Dependency satisfaction and ORG activation do not authorize corpus execution,
+research-to-design handoff, native-content production, or canon promotion.
 
 ## 21. Completion condition for this program
 

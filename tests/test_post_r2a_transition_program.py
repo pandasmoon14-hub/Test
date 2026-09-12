@@ -72,6 +72,12 @@ PR2_SRC_D_MERGE = "376214e1b715de34160dfb03d328547f510b6586"
 PR2_SRC_D_TREE = "bcf9dd80d9a39594e60a62218bff3ee64aa85abb"
 PR2_SRC_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-11_pr2_src_post_merge_closure"
 PR2_SRC_CLOSURE_EFFECT = "source_research_post_merge_lifecycle_reconciliation_only"
+PR2_SRC_CLOSURE_MERGE = "c14da427bf5c5c21c7ef1655e83aea3519587cc6"
+PR2_ORG_BASELINE = "c14da427bf5c5c21c7ef1655e83aea3519587cc6"
+PR2_ORG_AUTHORIZATION = "owner_directive_2026-09-11_pr2_org_activation"
+PR2_ORG_EFFECT = "content_eligibility_and_provenance_governance_only"
+PR2_ORG_CONTRACT = "docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md"
+PR2_ORG_OWNED_PATHS = {'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'tests/test_pr2_src_completion_review.py', 'tests/test_pr2_src_post_merge_closure.py', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_org_originality_provenance_eligibility.py', 'docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md', 'docs/doctrine/control/post_r2a_transition_program.md', 'docs/decisions/current_decisions_log.md'}
 
 EXPECTED_R2_GATES = {
     "R1": "complete",
@@ -153,7 +159,6 @@ UNRESOLVED_IDENTITY_CLASSES = [
 ]
 
 POST_R2_READY = {
-    "PR2-ORG",
     "PR2-FICT",
     "PR2-SIMEX",
 }
@@ -194,7 +199,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.16"
+    assert manifest["artifact_version"] == "0.4.17"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -314,7 +319,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_pr2_id_pr2_src_are_merged_and_no_successor_is_active():
+def test_r2c_pr2_id_pr2_src_are_merged_and_pr2_org_is_only_active_successor():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -323,7 +328,7 @@ def test_r2c_pr2_id_pr2_src_are_merged_and_no_successor_is_active():
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == set()
+    assert active == {"PR2-ORG"}
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -407,9 +412,24 @@ def test_r2c_pr2_id_pr2_src_are_merged_and_no_successor_is_active():
     assert tranches["PR2-SRC-D"]["merge_commit"] == PR2_SRC_D_MERGE
     assert tranches["PR2-SRC-D"]["merge_tree"] == PR2_SRC_D_TREE
 
+    org = by_id["PR2-ORG"]
+    assert org["status"] == "active"
+    assert org["authorization_reference"] == PR2_ORG_AUTHORIZATION
+    assert org["authority_effect"] == PR2_ORG_EFFECT
+    assert org["starting_baseline"] == PR2_ORG_BASELINE
+    assert org["control_artifact"] == PR2_ORG_CONTRACT
+    assert set(org["owned_paths"]) == PR2_ORG_OWNED_PATHS
+    assert org["pull_request"] is None
+    assert org["branch_head"] is None
+    assert org["merge_commit"] is None
+
 def test_post_r2_successor_readiness_does_not_imply_authorization():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
+
+    org = by_id["PR2-ORG"]
+    assert org["status"] == "active"
+    assert org["authorization_reference"] == PR2_ORG_AUTHORIZATION
 
     for workstream_id in POST_R2_READY:
         assert by_id[workstream_id]["status"] == "ready_pending_authorization"
@@ -458,7 +478,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.16`" in program
+    assert "**Artifact version:** `0.4.17`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -501,7 +521,11 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert "### 5.12 PR2-SRC-D independent completion review" in program
     assert "### 5.13 PR2-SRC post-merge closure recording" in program
     assert "`PR2-SRC` is terminal `merged`" in program
-    assert "`ready_pending_authorization` only; none is authorized or active" in program
+    assert "### 5.14 PR2-ORG originality, provenance, and content-eligibility activation" in program
+    assert "`PR2-ORG` is `active`" in program
+    assert PR2_ORG_AUTHORIZATION in program
+    assert PR2_ORG_BASELINE in program
+    assert PR2_ORG_CONTRACT in program
     assert PR2_SRC_A_AUTHORIZATION in program
     assert PR2_SRC_A_BASELINE in program
     assert PR2_SRC_A_HEAD in program
