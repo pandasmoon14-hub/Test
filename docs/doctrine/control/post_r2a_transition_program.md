@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.20`
+**Artifact version:** `0.4.21`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -892,6 +892,44 @@ conformance target with execution disabled.
 The PR2-IR activation evidence is preserved as historical snapshot evidence at
 the PR `#389` merge commit rather than being rewritten to follow later lifecycle
 state.
+
+### 5.18 PR2-CORPUS corpus-scale coverage-governance activation
+
+PR2-IR post-merge closure merged through PR `#390` as merge commit
+`92a4b6e15d9df10dedf4cec8bd1267111975cba2`.
+
+The owner separately authorized `PR2-CORPUS` under
+`owner_directive_2026-09-12_pr2_corpus_activation` from that exact merged
+baseline.
+
+The controlling contract is:
+
+`docs/doctrine/control/myravant_corpus_scale_coverage_governance.md`
+
+PR2-CORPUS owns only corpus-scale portfolio governance: registry identity,
+coverage dimensions, bounded batching, research genealogy and effective
+independence, novelty accounting, local provisional saturation, reopening,
+outlier preservation, and corpus-level skew/bias and gap accounting.
+
+The architecture assumes at least 1,000 heterogeneous external sources but does
+not make source count a completion metric. Registration is not research.
+Genealogical repetition is not independent corroboration. Saturation is local,
+provisional, scoped, and reversible. Source frequency never votes Myravant
+doctrine into existence.
+
+PR2-CORPUS consumes PR2-SRC research states but does not execute source
+research or redefine scout/focused/deep methods. It does not replace PR2-ORG
+originality/eligibility governance or PR2-IR information-barrier governance.
+It does not acquire sources, run research packets, author native content,
+promote canon, implement runtime/schema behavior, execute R3, train models,
+perform conversion, or define live-play behavior.
+
+`PR2-FICT` and `PR2-SIMEX` remain `ready_pending_authorization` with no
+authorization reference or starting baseline. PR2-CORPUS is the only active
+successor workstream.
+
+R3 remains `ready_pending_authorization` against its exact 34-record conformance
+target with execution disabled.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

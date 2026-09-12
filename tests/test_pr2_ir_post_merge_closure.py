@@ -18,6 +18,7 @@ TREE = "8e99389020a3626e32dc7cb17e62cec081d96e54"
 PR = 389
 AUTH = "owner_directive_2026-09-12_pr2_ir_post_merge_closure"
 EFFECT = "information_barrier_post_merge_lifecycle_reconciliation_only"
+CLOSURE_SNAPSHOT = "92a4b6e15d9df10dedf4cec8bd1267111975cba2"
 
 
 def load(path):
@@ -36,8 +37,12 @@ def read_at(ref, path):
     )
 
 
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
+
+
 def test_ir_is_terminal_merged_with_exact_acceptance_evidence():
-    manifest = load(MAN)
+    manifest = load_at(CLOSURE_SNAPSHOT, MAN)
     by = rows(manifest)
     ir = by["PR2-IR"]
 
@@ -61,7 +66,7 @@ def test_ir_is_terminal_merged_with_exact_acceptance_evidence():
 
 
 def test_closure_activates_no_successor_and_preserves_r3():
-    manifest = load(MAN)
+    manifest = load_at(CLOSURE_SNAPSHOT, MAN)
     by = rows(manifest)
 
     active = {row["workstream_id"] for row in manifest["workstreams"] if row["status"] == "active"}
@@ -90,8 +95,8 @@ def test_activation_test_is_frozen_against_merge_snapshot():
 
 
 def test_program_and_decisions_record_bounded_closure():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(CLOSURE_SNAPSHOT, PROG)
+    decisions = read_at(CLOSURE_SNAPSHOT, DEC)
 
     assert "**Artifact version:** `0.4.20`" in program
     assert "### 5.17 PR2-IR post-merge closure recording" in program
