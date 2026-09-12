@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.18",
+  "artifact_version": "0.4.19",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -768,20 +768,38 @@
       "title": "Source-analysis and Myravant-design representation separation",
       "category": "source_governance",
       "purpose": "Separate source-aware analysis representation from Myravant-facing synthesized requirements and design representation.",
-      "status": "ready_pending_authorization",
+      "status": "active",
       "dependencies": [
         "PR2-SRC",
         "PR2-ORG"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-11_pr2_ir_activation",
       "authority_effect": "information_barrier_and_representation_contract_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "8e2ba57ad61aac366e2d34c47811a3d17fd59220",
+      "owned_paths": [
+        "docs/decisions/current_decisions_log.md",
+        "docs/doctrine/control/myravant_source_design_information_barrier_contract.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_ir_information_barrier.py",
+        "tests/test_pr2_org_post_merge_closure.py"
+      ],
       "prohibited_scope": [
         "conversion_ir_equals_runtime_ir",
         "source_expression_as_design_default",
-        "provenance_loss"
+        "provenance_loss",
+        "source_acquisition_or_research_execution",
+        "corpus_registry_batching_coverage_or_saturation_governance",
+        "originality_rights_similarity_or_distribution_adjudication",
+        "fiction_or_simulation_specific_research_execution",
+        "native_content_authoring",
+        "canon_promotion",
+        "runtime_or_schema_implementation",
+        "conversion_execution",
+        "model_training",
+        "live_play_or_gm_behavior"
       ],
       "entry_condition": "PR2-SRC and PR2-ORG accepted.",
       "completion_condition": "Source-facing and Myravant-facing representations have explicit information-flow and provenance boundaries.",
@@ -792,7 +810,8 @@
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-AUDIT"
-      ]
+      ],
+      "control_artifact": "docs/doctrine/control/myravant_source_design_information_barrier_contract.md"
     },
     {
       "workstream_id": "PR2-FICT",
