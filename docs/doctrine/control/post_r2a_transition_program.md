@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.17`
+**Artifact version:** `0.4.18`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -791,6 +791,40 @@ only external-source/candidate eligibility governance.
 `PR2-CORPUS` and `PR2-IR` remain blocked until PR2-ORG is accepted. `PR2-FICT`
 and `PR2-SIMEX` remain `ready_pending_authorization` but are not activated.
 R3 remains `ready_pending_authorization` with execution disabled.
+
+### 5.15 PR2-ORG post-merge closure recording
+
+PR2-ORG merged through PR `#387` from certified branch head
+`a7aed059e1b96872150c05203dfdb9c07affe831` into `main` as merge commit
+`031053afd9ac581cfc421554ee3383a11a0dc2bd` with merge tree
+`ac770e1c69a448545b0a58eb7ed49a0b13f81614`.
+
+This is lifecycle reconciliation only. The PR2-ORG originality, provenance, and
+content-eligibility contract remains authoritative and unchanged. PR2-ORG is
+terminal `merged`; no new originality, rights, similarity, contamination,
+eligibility, canon, runtime, research, or live-play doctrine is created by this
+closure.
+
+Dependency satisfaction is readiness-only. `PR2-CORPUS` and `PR2-IR` are now
+`ready_pending_authorization` because both of their declared PR2-SRC and
+PR2-ORG dependencies are satisfied. Neither is authorized or active.
+`PR2-FICT` and `PR2-SIMEX` remain independently
+`ready_pending_authorization` and likewise remain unauthorized.
+
+The owner-confirmed post-R2 sequencing continues to place `PR2-IR` as the next
+preferred source-governance authorization target after originality governance.
+That recommendation does not activate PR2-IR and does not remove the separately
+ready PR2-CORPUS workstream.
+
+R3 remains independently `ready_pending_authorization` against its exact
+34-record conformance target with execution disabled.
+
+This closure does not authorize source acquisition, calibration-pilot execution,
+research-packet execution, bulk corpus processing, autonomous reconnaissance,
+PR2-CORPUS execution, PR2-IR implementation, PR2-FICT or PR2-SIMEX execution,
+legacy remediation, native-content authoring, canon promotion, runtime/schema
+implementation, R3 execution, model training, conversion execution, or
+live-play/GM behavior.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

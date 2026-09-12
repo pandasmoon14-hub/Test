@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.17",
+  "artifact_version": "0.4.18",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -674,7 +674,7 @@
       "title": "Originality provenance and content eligibility",
       "category": "source_governance",
       "purpose": "Define originality, provenance, rights classification, contamination control, and distributable-content eligibility boundaries.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-SRC"
       ],
@@ -710,23 +710,34 @@
       ],
       "entry_condition": "PR2-SRC accepted.",
       "completion_condition": "Originality and eligibility states are machine-trackable and remain distinct from semantic mapping and canon.",
-      "validation_evidence": [],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "validation_evidence": [
+        "PR2-ORG focused validation:47 passed",
+        "PR2-ORG full local repository suite:9013 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-ORG GitHub Actions CI #173:success",
+        "PR2-ORG git diff --check:clean",
+        "PR2-ORG semantic audit:PASS"
+      ],
+      "pull_request": 387,
+      "branch_head": "a7aed059e1b96872150c05203dfdb9c07affe831",
+      "merge_commit": "031053afd9ac581cfc421554ee3383a11a0dc2bd",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-CORPUS",
         "PR2-IR"
       ],
-      "control_artifact": "docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md"
+      "control_artifact": "docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md",
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-11_pr2_org_post_merge_closure",
+      "post_merge_closure_authority_effect": "originality_eligibility_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "031053afd9ac581cfc421554ee3383a11a0dc2bd",
+      "post_merge_closure_tree": "ac770e1c69a448545b0a58eb7ed49a0b13f81614"
     },
     {
       "workstream_id": "PR2-CORPUS",
       "title": "Corpus scale and coverage architecture",
       "category": "source_governance",
       "purpose": "Establish machine-readable 1,000+ source registry, batching, coverage, novelty, saturation, and outlier governance.",
-      "status": "blocked",
+      "status": "ready_pending_authorization",
       "dependencies": [
         "PR2-SRC",
         "PR2-ORG"
@@ -757,7 +768,7 @@
       "title": "Source-analysis and Myravant-design representation separation",
       "category": "source_governance",
       "purpose": "Separate source-aware analysis representation from Myravant-facing synthesized requirements and design representation.",
-      "status": "blocked",
+      "status": "ready_pending_authorization",
       "dependencies": [
         "PR2-SRC",
         "PR2-ORG"

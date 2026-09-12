@@ -1,6 +1,6 @@
 # Executable validation for PR2-ORG originality/provenance/eligibility governance.
 from __future__ import annotations
-import json
+import json, subprocess
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -14,9 +14,13 @@ AFQR=ROOT/"docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
 BASE="c14da427bf5c5c21c7ef1655e83aea3519587cc6"
 AUTH="owner_directive_2026-09-11_pr2_org_activation"
 EFFECT="content_eligibility_and_provenance_governance_only"
+MERGED_ACTIVATION_SNAPSHOT="031053afd9ac581cfc421554ee3383a11a0dc2bd"
 OWNED={'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'tests/test_pr2_src_completion_review.py', 'tests/test_pr2_src_post_merge_closure.py', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_org_originality_provenance_eligibility.py', 'docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md', 'docs/doctrine/control/post_r2a_transition_program.md', 'docs/decisions/current_decisions_log.md'}
 
 def load(p): return json.loads(p.read_text(encoding="utf-8"))
+def git(*a): return subprocess.check_output(["git",*a],cwd=ROOT,text=True).strip()
+def load_at(ref,p): return json.loads(git("show",f"{ref}:{p.relative_to(ROOT).as_posix()}"))
+def read_at(ref,p): return git("show",f"{ref}:{p.relative_to(ROOT).as_posix()}")
 def rows(m): return {x["workstream_id"]:x for x in m["workstreams"]}
 
 def test_contract_declares_bounded_authority():
@@ -66,7 +70,7 @@ def test_contract_handles_corpus_scale_and_outliers_without_fake_certainty():
  assert "It does not issue jurisdiction-specific legal conclusions." in t
 
 def test_manifest_activates_only_pr2_org_and_preserves_downstream_blocks():
- m=load(MAN); by=rows(m); o=by["PR2-ORG"]
+ m=load_at(MERGED_ACTIVATION_SNAPSHOT,MAN); by=rows(m); o=by["PR2-ORG"]
  assert m["artifact_version"]=="0.4.17"
  assert o["status"]=="active" and o["authorization_reference"]==AUTH and o["authority_effect"]==EFFECT and o["starting_baseline"]==BASE
  assert o["control_artifact"]=="docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md"
@@ -92,7 +96,7 @@ def test_org_does_not_absorb_ir_corpus_afqr15_or_runtime_firewall():
  assert "Extraction and conversion end before runtime begins." in f
 
 def test_program_and_decision_record_activation_without_downstream_authorization():
- p=PROG.read_text(encoding="utf-8"); d=DEC.read_text(encoding="utf-8")
+ p=read_at(MERGED_ACTIVATION_SNAPSHOT,PROG); d=read_at(MERGED_ACTIVATION_SNAPSHOT,DEC)
  assert "**Artifact version:** `0.4.17`" in p
  assert "### 5.14 PR2-ORG originality, provenance, and content-eligibility activation" in p
  assert AUTH in p and BASE in p
