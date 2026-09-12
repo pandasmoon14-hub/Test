@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.22`
+**Artifact version:** `0.4.23`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -961,6 +961,48 @@ the exact 34-record conformance target with execution disabled.
 The PR2-CORPUS activation evidence is preserved as historical snapshot evidence
 at the PR `#391` merge commit rather than being rewritten to follow later
 lifecycle state.
+
+### 5.20 PR2-FICT fiction/LitRPG experience-pressure activation
+
+PR2-CORPUS post-merge closure merged through PR `#392` as merge commit
+`fb9d4596c80ad779f5f58dd4fce066fb7ba797c9`.
+
+The owner separately authorized `PR2-FICT` under
+`owner_directive_2026-09-12_pr2_fict_activation` from that exact merged baseline.
+
+The controlling contract is:
+
+`docs/doctrine/control/myravant_fiction_litrpg_experience_pressure_contract.md`
+
+PR2-FICT owns only fiction/LitRPG-specific interpretation: how source-local
+narrative depictions may produce normalized experience requirements, system
+pressures (including world-behavior, interaction, outlier, and
+tradeoff-qualified pressures), or evaluation-scenario candidates without
+becoming Myravant content or implementation evidence.
+
+Fictional depiction is not implementation evidence. Plot events are not
+automatically stable system rules. Protagonist capability is not player
+baseline. Narrative omission is not proof that a cost or process is unnecessary.
+Narrative desirability is not measured user preference. Source-local cosmology,
+progression, powers, characters, plots, settings, items, terminology, and other
+recognizable packages do not become Myravant law or content.
+
+PR2-FICT consumes PR2-SRC research governance, while PR2-CORPUS retains corpus
+selection/coverage/genealogy authority, PR2-ORG retains
+originality/eligibility authority, and PR2-IR retains the source-to-design
+information barrier.
+
+This activation does not acquire sources, run fiction research packets, execute
+the corpus, author native content, promote canon, implement runtime/schema
+behavior, train models, perform conversion, activate live-play/GM behavior, or
+execute R3.
+
+PR2-FICT is the only active successor workstream. PR2-SIMEX remains
+`ready_pending_authorization` with no authorization reference or starting
+baseline.
+
+R3 remains `ready_pending_authorization` against the exact 34-record conformance
+target with execution disabled.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

@@ -103,6 +103,11 @@ PR2_CORPUS_MERGE = "e8e2c0cef0fb1d9b7fdf758fb221f9d9b9ad3bb1"
 PR2_CORPUS_TREE = "ae9949d1d34cb3208f7036d8bee74f6ca8c7e87b"
 PR2_CORPUS_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-12_pr2_corpus_post_merge_closure"
 PR2_CORPUS_CLOSURE_EFFECT = "corpus_governance_post_merge_lifecycle_reconciliation_only"
+PR2_FICT_BASELINE = "fb9d4596c80ad779f5f58dd4fce066fb7ba797c9"
+PR2_FICT_AUTHORIZATION = "owner_directive_2026-09-12_pr2_fict_activation"
+PR2_FICT_EFFECT = "research_pressure_governance_only"
+PR2_FICT_CONTRACT = "docs/doctrine/control/myravant_fiction_litrpg_experience_pressure_contract.md"
+PR2_FICT_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_fiction_litrpg_experience_pressure_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_fict_experience_pressure_contract.py', 'tests/test_pr2_corpus_post_merge_closure.py'}
 PR2_CORPUS_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_corpus_scale_coverage_governance.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_corpus_scale_coverage_governance.py', 'tests/test_pr2_ir_post_merge_closure.py'}
 PR2_IR_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_source_design_information_barrier_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_ir_information_barrier.py', 'tests/test_pr2_org_post_merge_closure.py'}
 PR2_ORG_OWNED_PATHS = {'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'tests/test_pr2_src_completion_review.py', 'tests/test_pr2_src_post_merge_closure.py', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_org_originality_provenance_eligibility.py', 'docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md', 'docs/doctrine/control/post_r2a_transition_program.md', 'docs/decisions/current_decisions_log.md'}
@@ -187,7 +192,6 @@ UNRESOLVED_IDENTITY_CLASSES = [
 ]
 
 POST_R2_READY = {
-    "PR2-FICT",
     "PR2-SIMEX",
 }
 
@@ -225,7 +229,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.22"
+    assert manifest["artifact_version"] == "0.4.23"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -345,7 +349,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_pr2_id_pr2_src_pr2_org_pr2_ir_pr2_corpus_are_merged_and_no_successor_is_active():
+def test_r2c_pr2_id_pr2_src_pr2_org_pr2_ir_pr2_corpus_are_merged_and_pr2_fict_is_only_active_successor():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -354,7 +358,7 @@ def test_r2c_pr2_id_pr2_src_pr2_org_pr2_ir_pr2_corpus_are_merged_and_no_successo
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == set()
+    assert active == {"PR2-FICT"}
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -486,6 +490,17 @@ def test_r2c_pr2_id_pr2_src_pr2_org_pr2_ir_pr2_corpus_are_merged_and_no_successo
     assert corpus["post_merge_closure_recorded_from"] == PR2_CORPUS_MERGE
     assert corpus["post_merge_closure_tree"] == PR2_CORPUS_TREE
 
+    fict = by_id["PR2-FICT"]
+    assert fict["status"] == "active"
+    assert fict["authorization_reference"] == PR2_FICT_AUTHORIZATION
+    assert fict["authority_effect"] == PR2_FICT_EFFECT
+    assert fict["starting_baseline"] == PR2_FICT_BASELINE
+    assert fict["control_artifact"] == PR2_FICT_CONTRACT
+    assert set(fict["owned_paths"]) == PR2_FICT_OWNED_PATHS
+    assert fict["pull_request"] is None
+    assert fict["branch_head"] is None
+    assert fict["merge_commit"] is None
+
 def test_post_r2_successor_readiness_does_not_imply_authorization():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
@@ -506,6 +521,11 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
     assert corpus["authorization_reference"] == PR2_CORPUS_AUTHORIZATION
     assert corpus["starting_baseline"] == PR2_CORPUS_BASELINE
     assert corpus["post_merge_closure_authorization_reference"] == PR2_CORPUS_CLOSURE_AUTHORIZATION
+
+    fict = by_id["PR2-FICT"]
+    assert fict["status"] == "active"
+    assert fict["authorization_reference"] == PR2_FICT_AUTHORIZATION
+    assert fict["starting_baseline"] == PR2_FICT_BASELINE
 
     for workstream_id in POST_R2_READY:
         assert by_id[workstream_id]["status"] == "ready_pending_authorization"
@@ -554,7 +574,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.22`" in program
+    assert "**Artifact version:** `0.4.23`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -616,6 +636,11 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert "PR2-CORPUS is terminal `merged`" in program
     assert PR2_CORPUS_CLOSURE_AUTHORIZATION in program
     assert PR2_CORPUS_MERGE in program
+    assert "### 5.20 PR2-FICT fiction/LitRPG experience-pressure activation" in program
+    assert PR2_FICT_AUTHORIZATION in program
+    assert PR2_FICT_BASELINE in program
+    assert PR2_FICT_CONTRACT in program
+    assert "PR2-FICT is the only active successor workstream." in program
     assert PR2_ORG_AUTHORIZATION in program
     assert PR2_ORG_BASELINE in program
     assert PR2_ORG_CONTRACT in program

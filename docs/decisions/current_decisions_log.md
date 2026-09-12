@@ -5686,3 +5686,37 @@ authorization reference or starting baseline. No successor is activated by this
 closure. Corpus execution remains unauthorized. R3 remains
 `ready_pending_authorization` against the exact 34-record target with execution
 disabled.
+
+## 2026-09-12 decision — PR2-FICT activation
+
+- **Decision ID:** `PR2-FICT-ACTIVATION-001`
+- **Workstream:** `PR2-FICT`
+- **Authority reference:** `owner_directive_2026-09-12_pr2_fict_activation`
+- **Authority effect:** `research_pressure_governance_only`
+- **Starting baseline:** `fb9d4596c80ad779f5f58dd4fce066fb7ba797c9`
+- **Control artifact:** `docs/doctrine/control/myravant_fiction_litrpg_experience_pressure_contract.md`
+
+PR2-FICT is explicitly authorized and active from the PR2-CORPUS post-merge
+closure baseline.
+
+Its scope is fiction/LitRPG-specific interpretation only. Fictional depiction is
+not implementation evidence, a plot event is not automatically a stable system
+rule, protagonist capability is not a player baseline, narrative omission is not
+proof of absence, and source-local metaphysics or recognizable content do not
+become Myravant doctrine.
+
+Substantive outputs route only to normalized experience requirements,
+system pressures (including world-behavior, interaction, outlier, and
+tradeoff-qualified pressures), or source-independent evaluation-scenario
+candidates. Uncertainty, handoff, escalation, and rejection remain governance
+dispositions rather than new downstream requirement classes.
+
+This activation does not authorize source acquisition, source-research packet
+execution, corpus execution, character/plot/setting/signature-package import,
+originality or rights adjudication, information-barrier redefinition, native
+content authoring, canon promotion, runtime/schema implementation, model
+training, conversion execution, or live-play/GM behavior.
+
+`PR2-SIMEX` remains `ready_pending_authorization` with no authorization
+reference or starting baseline. R3 remains `ready_pending_authorization` against
+the exact 34-record target with execution disabled.

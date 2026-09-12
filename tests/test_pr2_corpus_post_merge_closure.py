@@ -18,6 +18,7 @@ TREE = "ae9949d1d34cb3208f7036d8bee74f6ca8c7e87b"
 PR = 391
 AUTH = "owner_directive_2026-09-12_pr2_corpus_post_merge_closure"
 EFFECT = "corpus_governance_post_merge_lifecycle_reconciliation_only"
+CLOSURE_SNAPSHOT = "fb9d4596c80ad779f5f58dd4fce066fb7ba797c9"
 
 
 def load(path):
@@ -36,8 +37,11 @@ def read_at(ref, path):
     )
 
 
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
+
 def test_corpus_is_terminal_merged_with_exact_acceptance_evidence():
-    manifest = load(MAN)
+    manifest = load_at(CLOSURE_SNAPSHOT, MAN)
     by = rows(manifest)
     corpus = by["PR2-CORPUS"]
 
@@ -61,7 +65,7 @@ def test_corpus_is_terminal_merged_with_exact_acceptance_evidence():
 
 
 def test_closure_activates_no_successor_and_preserves_execution_boundaries():
-    manifest = load(MAN)
+    manifest = load_at(CLOSURE_SNAPSHOT, MAN)
     by = rows(manifest)
 
     active = {
@@ -94,8 +98,8 @@ def test_activation_test_is_frozen_against_merge_snapshot():
 
 
 def test_program_and_decisions_record_bounded_closure():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(CLOSURE_SNAPSHOT, PROG)
+    decisions = read_at(CLOSURE_SNAPSHOT, DEC)
 
     assert "**Artifact version:** `0.4.22`" in program
     assert "### 5.19 PR2-CORPUS post-merge closure recording" in program
