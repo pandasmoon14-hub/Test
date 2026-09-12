@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.21",
+  "artifact_version": "0.4.22",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -737,7 +737,7 @@
       "title": "Corpus scale and coverage architecture",
       "category": "source_governance",
       "purpose": "Establish machine-readable 1,000+ source registry, batching, coverage, novelty, saturation, and outlier governance.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-SRC",
         "PR2-ORG"
@@ -774,15 +774,26 @@
       ],
       "entry_condition": "PR2-SRC and PR2-ORG accepted.",
       "completion_condition": "Corpus state, coverage, novelty, saturation, and escalation are machine-trackable at 1,000+ source scale.",
-      "validation_evidence": [],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "validation_evidence": [
+        "PR2-CORPUS focused validation:77 passed",
+        "PR2-CORPUS full local repository suite:9043 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-CORPUS GitHub Actions CI #181:success",
+        "PR2-CORPUS git diff --check:clean",
+        "PR2-CORPUS semantic audit:PASS"
+      ],
+      "pull_request": 391,
+      "branch_head": "f9881379bbbd492674c938724349da41fcd55141",
+      "merge_commit": "e8e2c0cef0fb1d9b7fdf758fb221f9d9b9ad3bb1",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-AUDIT"
       ],
-      "control_artifact": "docs/doctrine/control/myravant_corpus_scale_coverage_governance.md"
+      "control_artifact": "docs/doctrine/control/myravant_corpus_scale_coverage_governance.md",
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-12_pr2_corpus_post_merge_closure",
+      "post_merge_closure_authority_effect": "corpus_governance_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "e8e2c0cef0fb1d9b7fdf758fb221f9d9b9ad3bb1",
+      "post_merge_closure_tree": "ae9949d1d34cb3208f7036d8bee74f6ca8c7e87b"
     },
     {
       "workstream_id": "PR2-IR",
