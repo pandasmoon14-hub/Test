@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.22",
+  "artifact_version": "0.4.23",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -861,20 +861,41 @@
       "title": "Fiction and LitRPG experience-pressure contract",
       "category": "source_governance",
       "purpose": "Define how fiction and LitRPG contribute experience, world-behavior, and capability pressure without becoming content donors.",
-      "status": "ready_pending_authorization",
+      "status": "active",
       "dependencies": [
         "PR2-SRC"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-12_pr2_fict_activation",
       "authority_effect": "research_pressure_governance_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "fb9d4596c80ad779f5f58dd4fce066fb7ba797c9",
+      "owned_paths": [
+        "docs/decisions/current_decisions_log.md",
+        "docs/doctrine/control/myravant_fiction_litrpg_experience_pressure_contract.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_fict_experience_pressure_contract.py",
+        "tests/test_pr2_corpus_post_merge_closure.py"
+      ],
       "prohibited_scope": [
         "character_import",
         "plot_import",
         "setting_import",
-        "recognizable_signature_package_import"
+        "recognizable_signature_package_import",
+        "source_acquisition_or_research_execution",
+        "fiction_as_implementation_evidence",
+        "fiction_as_myravant_metaphysics",
+        "fiction_as_feature_specification",
+        "corpus_selection_batching_or_saturation_governance",
+        "originality_rights_similarity_or_distribution_adjudication",
+        "source_design_information_barrier_redefinition",
+        "native_content_authoring",
+        "canon_promotion",
+        "runtime_or_schema_implementation",
+        "model_training",
+        "conversion_execution",
+        "live_play_or_gm_behavior"
       ],
       "entry_condition": "PR2-SRC accepted.",
       "completion_condition": "Fiction-derived observations route only to experience requirements, system pressures, or evaluation scenarios.",
@@ -883,7 +904,8 @@
       "branch_head": null,
       "merge_commit": null,
       "residual_gaps": [],
-      "downstream_handoff": []
+      "downstream_handoff": [],
+      "control_artifact": "docs/doctrine/control/myravant_fiction_litrpg_experience_pressure_contract.md"
     },
     {
       "workstream_id": "PR2-SIMEX",
