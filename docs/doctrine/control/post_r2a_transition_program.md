@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.18`
+**Artifact version:** `0.4.19`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -825,6 +825,45 @@ PR2-CORPUS execution, PR2-IR implementation, PR2-FICT or PR2-SIMEX execution,
 legacy remediation, native-content authoring, canon promotion, runtime/schema
 implementation, R3 execution, model training, conversion execution, or
 live-play/GM behavior.
+
+### 5.16 PR2-IR source-analysis / Myravant-design information-barrier activation
+
+PR2-ORG post-merge closure merged through PR `#388` as merge commit
+`8e2ba57ad61aac366e2d34c47811a3d17fd59220`.
+
+The owner separately authorized `PR2-IR` under
+`owner_directive_2026-09-11_pr2_ir_activation` from that exact merged baseline.
+
+The controlling contract is:
+
+`docs/doctrine/control/myravant_source_design_information_barrier_contract.md`
+
+PR2-IR owns only the explicit representation and information-flow boundary
+between source-aware research and separately governed Myravant-facing design.
+It introduces a three-plane separation: source-aware research, governance
+bridge, and Myravant design. Exact internal provenance remains auditable in the
+research/governance planes without becoming ordinary design-context input.
+
+The default design handoff carries Myravant-facing requirements, constraints,
+tradeoffs, uncertainty, outlier pressure, acceptance/falsification conditions,
+and Myravant requirement dependencies. Source expression, source locators,
+source-specific terminology, source-format structures, one-to-one inventories,
+donor mappings, research transcripts, and source-aware retrieval state remain
+outside the ordinary independent-design payload unless a separately governed
+exception route applies.
+
+PR2-IR does not certify originality or rights. PR2-ORG remains authoritative for
+originality, similarity, rights, contamination, and distribution eligibility.
+PR2-IR also does not redefine PR2-SRC research methods, operate PR2-CORPUS,
+author native content, promote canon, define runtime/compiler IR, implement
+runtime/schema behavior, activate R3, train models, or define live-play behavior.
+
+`PR2-CORPUS`, `PR2-FICT`, and `PR2-SIMEX` remain
+`ready_pending_authorization` and are not activated. PR2-IR is the only active
+successor workstream.
+
+R3 remains `ready_pending_authorization` against its exact 34-record conformance
+target with execution disabled.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

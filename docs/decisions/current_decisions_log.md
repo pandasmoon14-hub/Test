@@ -5573,3 +5573,32 @@ autonomous reconnaissance, PR2-CORPUS execution, PR2-IR implementation,
 PR2-FICT or PR2-SIMEX execution, legacy remediation, native-content production,
 canon promotion, runtime/schema implementation, R3 execution, model training,
 conversion execution, or live-play/GM behavior.
+
+## 2026-09-11 decision — PR2-IR activation
+
+- **Decision ID:** `PR2-IR-ACTIVATION-001`
+- **Workstream:** `PR2-IR`
+- **Authority reference:** `owner_directive_2026-09-11_pr2_ir_activation`
+- **Authority effect:** `information_barrier_and_representation_contract_only`
+- **Starting baseline:** `8e2ba57ad61aac366e2d34c47811a3d17fd59220`
+- **Control artifact:** `docs/doctrine/control/myravant_source_design_information_barrier_contract.md`
+
+PR2-SRC and PR2-ORG are terminal merged. PR2-IR is therefore explicitly
+authorized and active from the PR2-ORG post-merge closure baseline.
+
+PR2-IR owns only the information-flow and representation boundary between
+source-aware research and separately governed Myravant-facing design. It must
+preserve exact internal traceability while preventing source expression and
+unnecessary source-shaped detail from becoming ordinary independent-design
+context.
+
+This activation does not authorize source acquisition, source-research packet
+execution, bulk corpus processing, PR2-CORPUS execution, PR2-FICT or PR2-SIMEX
+execution, originality/rights adjudication, native-content authoring, canon
+promotion, runtime/compiler IR, runtime/schema implementation, R3 execution,
+model training, conversion execution, or live-play/GM behavior.
+
+`PR2-CORPUS`, `PR2-FICT`, and `PR2-SIMEX` remain
+`ready_pending_authorization` with no authorization reference. R3 remains
+`ready_pending_authorization` against the exact 34-record target with execution
+disabled.

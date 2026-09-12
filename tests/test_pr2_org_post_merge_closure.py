@@ -16,6 +16,7 @@ TREE="ac770e1c69a448545b0a58eb7ed49a0b13f81614"
 AUTH="owner_directive_2026-09-11_pr2_org_post_merge_closure"
 EFFECT="originality_eligibility_post_merge_lifecycle_reconciliation_only"
 ACTIVATION_AUTH="owner_directive_2026-09-11_pr2_org_activation"
+CLOSURE_SNAPSHOT="8e2ba57ad61aac366e2d34c47811a3d17fd59220"
 
 def git(*a): return subprocess.check_output(["git",*a],cwd=ROOT,text=True).strip()
 def load(p): return json.loads(p.read_text(encoding="utf-8"))
@@ -29,7 +30,7 @@ def read_at(ref,p):
 def rows(m): return {x["workstream_id"]:x for x in m["workstreams"]}
 
 def test_org_merge_bookkeeping_is_exact():
- m=load(MAN); by=rows(m); o=by["PR2-ORG"]
+ m=load_at(CLOSURE_SNAPSHOT,MAN); by=rows(m); o=by["PR2-ORG"]
  assert m["artifact_version"]=="0.4.18"
  assert o["status"]=="merged" and o["completion_state"]=="merged"
  assert o["pull_request"]==PR and o["branch_head"]==HEAD and o["merge_commit"]==MERGE
@@ -55,7 +56,7 @@ def test_activation_snapshot_is_preserved_as_historical_evidence():
  assert "read_at(MERGED_ACTIVATION_SNAPSHOT,PROG)" in t
 
 def test_dependency_release_is_readiness_only():
- m=load(MAN); by=rows(m)
+ m=load_at(CLOSURE_SNAPSHOT,MAN); by=rows(m)
  for w in ("PR2-CORPUS","PR2-IR","PR2-FICT","PR2-SIMEX"):
   assert by[w]["status"]=="ready_pending_authorization" and by[w]["authorization_reference"] is None
  for w in ("PR2-CORPUS","PR2-IR"):
@@ -66,14 +67,14 @@ def test_dependency_release_is_readiness_only():
 
 def test_closure_does_not_change_org_contract_or_activate_successor():
  assert CONTRACT.read_text(encoding="utf-8")==read_at(MERGE,CONTRACT)
- m=load(MAN)
+ m=load_at(CLOSURE_SNAPSHOT,MAN)
  assert [x["workstream_id"] for x in m["workstreams"] if x["status"]=="active"]==[]
  c=CONTRACT.read_text(encoding="utf-8")
  for token in ("source_research_authority: none","corpus_governance_authority: none","information_barrier_authority: none","canon_promotion_authority: none","runtime_authority: none"):
   assert token in c
 
 def test_program_and_decision_record_closure_without_execution_authority():
- p=PROG.read_text(encoding="utf-8"); d=DEC.read_text(encoding="utf-8")
+ p=read_at(CLOSURE_SNAPSHOT,PROG); d=read_at(CLOSURE_SNAPSHOT,DEC)
  assert "**Artifact version:** `0.4.18`" in p
  assert "### 5.15 PR2-ORG post-merge closure recording" in p
  assert "PR2-ORG is\nterminal `merged`" in p
