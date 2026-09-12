@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.19",
+  "artifact_version": "0.4.20",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -768,7 +768,7 @@
       "title": "Source-analysis and Myravant-design representation separation",
       "category": "source_governance",
       "purpose": "Separate source-aware analysis representation from Myravant-facing synthesized requirements and design representation.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-SRC",
         "PR2-ORG"
@@ -803,15 +803,26 @@
       ],
       "entry_condition": "PR2-SRC and PR2-ORG accepted.",
       "completion_condition": "Source-facing and Myravant-facing representations have explicit information-flow and provenance boundaries.",
-      "validation_evidence": [],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "validation_evidence": [
+        "PR2-IR focused validation:PASS",
+        "PR2-IR full local repository suite:9029 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-IR GitHub Actions CI #177:success",
+        "PR2-IR git diff --check:clean",
+        "PR2-IR semantic audit:PASS"
+      ],
+      "pull_request": 389,
+      "branch_head": "ac48a9896840e5b9b236de8f7b4cc0febd9fdf5a",
+      "merge_commit": "2b9c21fae92dd210a12e5f7e3d6c8d8931db0201",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-AUDIT"
       ],
-      "control_artifact": "docs/doctrine/control/myravant_source_design_information_barrier_contract.md"
+      "control_artifact": "docs/doctrine/control/myravant_source_design_information_barrier_contract.md",
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-12_pr2_ir_post_merge_closure",
+      "post_merge_closure_authority_effect": "information_barrier_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "2b9c21fae92dd210a12e5f7e3d6c8d8931db0201",
+      "post_merge_closure_tree": "8e99389020a3626e32dc7cb17e62cec081d96e54"
     },
     {
       "workstream_id": "PR2-FICT",
