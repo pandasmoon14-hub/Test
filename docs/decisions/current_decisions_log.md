@@ -5602,3 +5602,27 @@ model training, conversion execution, or live-play/GM behavior.
 `ready_pending_authorization` with no authorization reference. R3 remains
 `ready_pending_authorization` against the exact 34-record target with execution
 disabled.
+
+## 2026-09-12 decision — PR2-IR post-merge closure
+
+- **Decision ID:** `PR2-IR-POST-MERGE-CLOSURE-001`
+- **Workstream:** `PR2-IR`
+- **Authority reference:** `owner_directive_2026-09-12_pr2_ir_post_merge_closure`
+- **Authority effect:** `information_barrier_post_merge_lifecycle_reconciliation_only`
+- **Accepted PR:** `#389`
+- **Certified branch head:** `ac48a9896840e5b9b236de8f7b4cc0febd9fdf5a`
+- **Merge commit:** `2b9c21fae92dd210a12e5f7e3d6c8d8931db0201`
+- **Merge tree:** `8e99389020a3626e32dc7cb17e62cec081d96e54`
+
+PR2-IR is terminal `merged`. This decision records post-merge lifecycle state
+only; it does not alter the controlling information-barrier doctrine or expand
+PR2-IR authority.
+
+Accepted validation evidence is: focused PR2-IR certification PASS; full local
+repository suite `9029 passed, 10 skipped, 2 xfailed, 1 warning`; GitHub Actions
+CI `#177` success; `git diff --check` clean; and semantic audit PASS.
+
+`PR2-CORPUS`, `PR2-FICT`, and `PR2-SIMEX` remain
+`ready_pending_authorization` with no authorization reference. No successor is
+activated by this closure. R3 remains `ready_pending_authorization` against the
+exact 34-record target with execution disabled.

@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.19`
+**Artifact version:** `0.4.20`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -864,6 +864,34 @@ successor workstream.
 
 R3 remains `ready_pending_authorization` against its exact 34-record conformance
 target with execution disabled.
+
+### 5.17 PR2-IR post-merge closure recording
+
+PR2-IR activation merged through PR `#389` with certified branch head
+`ac48a9896840e5b9b236de8f7b4cc0febd9fdf5a` and merge commit
+`2b9c21fae92dd210a12e5f7e3d6c8d8931db0201`. The merge tree is
+`8e99389020a3626e32dc7cb17e62cec081d96e54`.
+
+The owner separately authorized bounded post-merge lifecycle reconciliation under
+`owner_directive_2026-09-12_pr2_ir_post_merge_closure` with authority effect
+`information_barrier_post_merge_lifecycle_reconciliation_only`.
+
+PR2-IR is terminal `merged`. This closure records GitHub acceptance. It
+does not change the substantive information-barrier contract, expand PR2-IR
+authority, or authorize any downstream workstream.
+
+The accepted evidence includes the focused PR2-IR certification, full local
+repository suite (`9029 passed, 10 skipped, 2 xfailed, 1 warning`), GitHub
+Actions CI `#177` success, clean `git diff --check`, and semantic audit PASS.
+
+`PR2-CORPUS`, `PR2-FICT`, and `PR2-SIMEX` remain
+`ready_pending_authorization` with no authorization reference. No successor is
+active. R3 remains `ready_pending_authorization` against the exact 34-record
+conformance target with execution disabled.
+
+The PR2-IR activation evidence is preserved as historical snapshot evidence at
+the PR `#389` merge commit rather than being rewritten to follow later lifecycle
+state.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

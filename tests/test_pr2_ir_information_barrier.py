@@ -17,6 +17,7 @@ FIREWALL = ROOT / "docs/doctrine/control/conversion_runtime_origin_firewall_doct
 ORG_CLOSURE_TEST = ROOT / "tests/test_pr2_org_post_merge_closure.py"
 
 BASE = "8e2ba57ad61aac366e2d34c47811a3d17fd59220"
+MERGE = "2b9c21fae92dd210a12e5f7e3d6c8d8931db0201"
 AUTH = "owner_directive_2026-09-11_pr2_ir_activation"
 EFFECT = "information_barrier_and_representation_contract_only"
 CONTROL = "docs/doctrine/control/myravant_source_design_information_barrier_contract.md"
@@ -41,6 +42,18 @@ def rows(manifest):
 
 def git(*args):
     return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
+
+
+def read_at(ref, path):
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{path.relative_to(ROOT).as_posix()}"],
+        cwd=ROOT,
+        text=True,
+    )
+
+
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
 
 
 def test_contract_declares_bounded_authority():
@@ -172,7 +185,7 @@ def test_existing_src_org_and_runtime_owners_remain_authoritative():
 
 
 def test_manifest_activates_only_ir_and_preserves_all_other_gates():
-    manifest = load(MAN)
+    manifest = load_at(MERGE, MAN)
     by = rows(manifest)
     ir = by["PR2-IR"]
 
@@ -208,8 +221,8 @@ def test_org_closure_test_is_frozen_against_its_merged_snapshot():
 
 
 def test_program_and_decision_record_activation_without_downstream_authority():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(MERGE, PROG)
+    decisions = read_at(MERGE, DEC)
 
     assert "**Artifact version:** `0.4.19`" in program
     assert "### 5.16 PR2-IR source-analysis / Myravant-design information-barrier activation" in program

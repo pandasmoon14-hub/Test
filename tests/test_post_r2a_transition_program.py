@@ -87,6 +87,12 @@ PR2_IR_BASELINE = "8e2ba57ad61aac366e2d34c47811a3d17fd59220"
 PR2_IR_AUTHORIZATION = "owner_directive_2026-09-11_pr2_ir_activation"
 PR2_IR_EFFECT = "information_barrier_and_representation_contract_only"
 PR2_IR_CONTRACT = "docs/doctrine/control/myravant_source_design_information_barrier_contract.md"
+PR2_IR_PR = 389
+PR2_IR_HEAD = "ac48a9896840e5b9b236de8f7b4cc0febd9fdf5a"
+PR2_IR_MERGE = "2b9c21fae92dd210a12e5f7e3d6c8d8931db0201"
+PR2_IR_TREE = "8e99389020a3626e32dc7cb17e62cec081d96e54"
+PR2_IR_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-12_pr2_ir_post_merge_closure"
+PR2_IR_CLOSURE_EFFECT = "information_barrier_post_merge_lifecycle_reconciliation_only"
 PR2_IR_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_source_design_information_barrier_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_ir_information_barrier.py', 'tests/test_pr2_org_post_merge_closure.py'}
 PR2_ORG_OWNED_PATHS = {'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'tests/test_pr2_src_completion_review.py', 'tests/test_pr2_src_post_merge_closure.py', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_org_originality_provenance_eligibility.py', 'docs/doctrine/control/myravant_originality_provenance_eligibility_contract.md', 'docs/doctrine/control/post_r2a_transition_program.md', 'docs/decisions/current_decisions_log.md'}
 
@@ -209,7 +215,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.19"
+    assert manifest["artifact_version"] == "0.4.20"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -329,7 +335,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_pr2_id_pr2_src_pr2_org_are_merged_and_pr2_ir_is_only_active_successor():
+def test_r2c_pr2_id_pr2_src_pr2_org_pr2_ir_are_merged_and_no_successor_is_active():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -338,7 +344,7 @@ def test_r2c_pr2_id_pr2_src_pr2_org_are_merged_and_pr2_ir_is_only_active_success
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == {"PR2-IR"}
+    assert active == set()
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -439,15 +445,20 @@ def test_r2c_pr2_id_pr2_src_pr2_org_are_merged_and_pr2_ir_is_only_active_success
     assert org["post_merge_closure_tree"] == PR2_ORG_TREE
 
     ir = by_id["PR2-IR"]
-    assert ir["status"] == "active"
+    assert ir["status"] == "merged"
     assert ir["authorization_reference"] == PR2_IR_AUTHORIZATION
     assert ir["authority_effect"] == PR2_IR_EFFECT
     assert ir["starting_baseline"] == PR2_IR_BASELINE
     assert ir["control_artifact"] == PR2_IR_CONTRACT
     assert set(ir["owned_paths"]) == PR2_IR_OWNED_PATHS
-    assert ir["pull_request"] is None
-    assert ir["branch_head"] is None
-    assert ir["merge_commit"] is None
+    assert ir["pull_request"] == PR2_IR_PR
+    assert ir["branch_head"] == PR2_IR_HEAD
+    assert ir["merge_commit"] == PR2_IR_MERGE
+    assert ir["completion_state"] == "merged"
+    assert ir["post_merge_closure_authorization_reference"] == PR2_IR_CLOSURE_AUTHORIZATION
+    assert ir["post_merge_closure_authority_effect"] == PR2_IR_CLOSURE_EFFECT
+    assert ir["post_merge_closure_recorded_from"] == PR2_IR_MERGE
+    assert ir["post_merge_closure_tree"] == PR2_IR_TREE
 
 def test_post_r2_successor_readiness_does_not_imply_authorization():
     manifest = _load_manifest()
@@ -459,9 +470,10 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
     assert org["post_merge_closure_authorization_reference"] == PR2_ORG_CLOSURE_AUTHORIZATION
 
     ir = by_id["PR2-IR"]
-    assert ir["status"] == "active"
+    assert ir["status"] == "merged"
     assert ir["authorization_reference"] == PR2_IR_AUTHORIZATION
     assert ir["starting_baseline"] == PR2_IR_BASELINE
+    assert ir["post_merge_closure_authorization_reference"] == PR2_IR_CLOSURE_AUTHORIZATION
 
     for workstream_id in POST_R2_READY:
         assert by_id[workstream_id]["status"] == "ready_pending_authorization"
@@ -510,7 +522,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.19`" in program
+    assert "**Artifact version:** `0.4.20`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -557,10 +569,13 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert "### 5.15 PR2-ORG post-merge closure recording" in program
     assert "PR2-ORG is\nterminal `merged`" in program
     assert "### 5.16 PR2-IR source-analysis / Myravant-design information-barrier activation" in program
-    assert "PR2-IR is the only active\nsuccessor workstream" in program
+    assert "### 5.17 PR2-IR post-merge closure recording" in program
+    assert "PR2-IR is terminal `merged`" in program
     assert PR2_IR_AUTHORIZATION in program
     assert PR2_IR_BASELINE in program
     assert PR2_IR_CONTRACT in program
+    assert PR2_IR_CLOSURE_AUTHORIZATION in program
+    assert PR2_IR_MERGE in program
     assert PR2_ORG_AUTHORIZATION in program
     assert PR2_ORG_BASELINE in program
     assert PR2_ORG_CONTRACT in program
