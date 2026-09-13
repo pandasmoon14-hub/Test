@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.23`
+**Artifact version:** `0.4.24`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1003,6 +1003,42 @@ baseline.
 
 R3 remains `ready_pending_authorization` against the exact 34-record conformance
 target with execution disabled.
+
+### 5.21 PR2-FICT post-merge closure recording
+
+PR2-FICT activation merged through PR `#393` with certified branch head
+`31e5c4f71eef200ee7ad43c0c9f76ec6995ed806` and merge commit
+`6a768616166d35fcf51dd8345895847e0554ed28`. The merge tree is
+`105b51247673fc7941491bc743e4100d7d317701`.
+
+The owner separately authorized bounded post-merge lifecycle reconciliation under
+`owner_directive_2026-09-12_pr2_fict_post_merge_closure` with authority effect
+`fiction_pressure_governance_post_merge_lifecycle_reconciliation_only`.
+
+PR2-FICT is terminal `merged`. This closure records GitHub acceptance only. It
+does not change the substantive fiction/LitRPG experience-pressure contract,
+expand PR2-FICT authority, authorize source acquisition or source-research
+execution, authorize corpus execution, or authorize any downstream workstream.
+
+The accepted activation evidence includes the full local repository suite
+(`9057 passed, 10 skipped, 2 xfailed, 1 warning`), GitHub Actions CI `#185`
+success, clean `git diff --check`, exact seven-file activation footprint, and
+the PR2-FICT adversarial structural audit PASS. No separate focused-test count is
+recorded because no distinct focused-test result was preserved as closure
+evidence.
+
+`PR2-SIMEX` remains `ready_pending_authorization` with no authorization
+reference or starting baseline. No successor is active. Source acquisition,
+source-research execution, corpus execution, native-content authoring, canon
+promotion, runtime/schema implementation, model training, conversion execution,
+and live-play/GM behavior remain unauthorized.
+
+R3 remains `ready_pending_authorization` against the exact 34-record conformance
+target with execution disabled.
+
+The PR2-FICT activation evidence is preserved as historical snapshot evidence at
+the PR `#393` merge commit rather than being rewritten to follow later lifecycle
+state.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

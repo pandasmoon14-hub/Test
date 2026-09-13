@@ -5720,3 +5720,33 @@ training, conversion execution, or live-play/GM behavior.
 `PR2-SIMEX` remains `ready_pending_authorization` with no authorization
 reference or starting baseline. R3 remains `ready_pending_authorization` against
 the exact 34-record target with execution disabled.
+
+## 2026-09-12 decision — PR2-FICT post-merge closure
+
+- **Decision ID:** `PR2-FICT-POST-MERGE-CLOSURE-001`
+- **Workstream:** `PR2-FICT`
+- **Authority reference:** `owner_directive_2026-09-12_pr2_fict_post_merge_closure`
+- **Authority effect:** `fiction_pressure_governance_post_merge_lifecycle_reconciliation_only`
+- **Accepted PR:** `#393`
+- **Certified branch head:** `31e5c4f71eef200ee7ad43c0c9f76ec6995ed806`
+- **Merge commit:** `6a768616166d35fcf51dd8345895847e0554ed28`
+- **Merge tree:** `105b51247673fc7941491bc743e4100d7d317701`
+
+PR2-FICT is terminal `merged`. This decision records post-merge lifecycle state
+only; it does not alter the controlling fiction/LitRPG experience-pressure
+doctrine, authorize research execution, or expand PR2-FICT authority.
+
+Accepted activation evidence is: full local repository suite
+`9057 passed, 10 skipped, 2 xfailed, 1 warning`; GitHub Actions CI `#185`
+success; `git diff --check` clean; exact seven-file activation footprint; and
+the PR2-FICT adversarial structural audit PASS. No separate focused-test count
+is asserted because no distinct focused-test result was preserved as closure
+evidence.
+
+`PR2-SIMEX` remains `ready_pending_authorization` with no authorization
+reference or starting baseline. No successor is activated by this closure.
+Source acquisition, source-research execution, corpus execution, native-content
+authoring, canon promotion, runtime/schema implementation, model training,
+conversion execution, and live-play/GM behavior remain unauthorized. R3 remains
+`ready_pending_authorization` against the exact 34-record target with execution
+disabled.

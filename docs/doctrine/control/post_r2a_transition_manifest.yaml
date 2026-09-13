@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.23",
+  "artifact_version": "0.4.24",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -861,7 +861,7 @@
       "title": "Fiction and LitRPG experience-pressure contract",
       "category": "source_governance",
       "purpose": "Define how fiction and LitRPG contribute experience, world-behavior, and capability pressure without becoming content donors.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-SRC"
       ],
@@ -899,13 +899,24 @@
       ],
       "entry_condition": "PR2-SRC accepted.",
       "completion_condition": "Fiction-derived observations route only to experience requirements, system pressures, or evaluation scenarios.",
-      "validation_evidence": [],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "validation_evidence": [
+        "PR2-FICT full local repository suite:9057 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-FICT GitHub Actions CI #185:success",
+        "PR2-FICT git diff --check:clean",
+        "PR2-FICT exact seven-file activation footprint:PASS",
+        "PR2-FICT adversarial structural audit:PASS"
+      ],
+      "pull_request": 393,
+      "branch_head": "31e5c4f71eef200ee7ad43c0c9f76ec6995ed806",
+      "merge_commit": "6a768616166d35fcf51dd8345895847e0554ed28",
       "residual_gaps": [],
       "downstream_handoff": [],
-      "control_artifact": "docs/doctrine/control/myravant_fiction_litrpg_experience_pressure_contract.md"
+      "control_artifact": "docs/doctrine/control/myravant_fiction_litrpg_experience_pressure_contract.md",
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-12_pr2_fict_post_merge_closure",
+      "post_merge_closure_authority_effect": "fiction_pressure_governance_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "6a768616166d35fcf51dd8345895847e0554ed28",
+      "post_merge_closure_tree": "105b51247673fc7941491bc743e4100d7d317701"
     },
     {
       "workstream_id": "PR2-SIMEX",

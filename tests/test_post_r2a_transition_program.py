@@ -107,6 +107,12 @@ PR2_FICT_BASELINE = "fb9d4596c80ad779f5f58dd4fce066fb7ba797c9"
 PR2_FICT_AUTHORIZATION = "owner_directive_2026-09-12_pr2_fict_activation"
 PR2_FICT_EFFECT = "research_pressure_governance_only"
 PR2_FICT_CONTRACT = "docs/doctrine/control/myravant_fiction_litrpg_experience_pressure_contract.md"
+PR2_FICT_PR = 393
+PR2_FICT_HEAD = "31e5c4f71eef200ee7ad43c0c9f76ec6995ed806"
+PR2_FICT_MERGE = "6a768616166d35fcf51dd8345895847e0554ed28"
+PR2_FICT_TREE = "105b51247673fc7941491bc743e4100d7d317701"
+PR2_FICT_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-12_pr2_fict_post_merge_closure"
+PR2_FICT_CLOSURE_EFFECT = "fiction_pressure_governance_post_merge_lifecycle_reconciliation_only"
 PR2_FICT_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_fiction_litrpg_experience_pressure_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_fict_experience_pressure_contract.py', 'tests/test_pr2_corpus_post_merge_closure.py'}
 PR2_CORPUS_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_corpus_scale_coverage_governance.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_corpus_scale_coverage_governance.py', 'tests/test_pr2_ir_post_merge_closure.py'}
 PR2_IR_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_source_design_information_barrier_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_ir_information_barrier.py', 'tests/test_pr2_org_post_merge_closure.py'}
@@ -229,7 +235,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.23"
+    assert manifest["artifact_version"] == "0.4.24"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -349,7 +355,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_pr2_id_pr2_src_pr2_org_pr2_ir_pr2_corpus_are_merged_and_pr2_fict_is_only_active_successor():
+def test_r2c_pr2_id_pr2_src_pr2_org_pr2_ir_pr2_corpus_pr2_fict_are_merged_and_no_successor_is_active():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -358,7 +364,7 @@ def test_r2c_pr2_id_pr2_src_pr2_org_pr2_ir_pr2_corpus_are_merged_and_pr2_fict_is
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == {"PR2-FICT"}
+    assert active == set()
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -491,15 +497,20 @@ def test_r2c_pr2_id_pr2_src_pr2_org_pr2_ir_pr2_corpus_are_merged_and_pr2_fict_is
     assert corpus["post_merge_closure_tree"] == PR2_CORPUS_TREE
 
     fict = by_id["PR2-FICT"]
-    assert fict["status"] == "active"
+    assert fict["status"] == "merged"
     assert fict["authorization_reference"] == PR2_FICT_AUTHORIZATION
     assert fict["authority_effect"] == PR2_FICT_EFFECT
     assert fict["starting_baseline"] == PR2_FICT_BASELINE
     assert fict["control_artifact"] == PR2_FICT_CONTRACT
     assert set(fict["owned_paths"]) == PR2_FICT_OWNED_PATHS
-    assert fict["pull_request"] is None
-    assert fict["branch_head"] is None
-    assert fict["merge_commit"] is None
+    assert fict["pull_request"] == PR2_FICT_PR
+    assert fict["branch_head"] == PR2_FICT_HEAD
+    assert fict["merge_commit"] == PR2_FICT_MERGE
+    assert fict["completion_state"] == "merged"
+    assert fict["post_merge_closure_authorization_reference"] == PR2_FICT_CLOSURE_AUTHORIZATION
+    assert fict["post_merge_closure_authority_effect"] == PR2_FICT_CLOSURE_EFFECT
+    assert fict["post_merge_closure_recorded_from"] == PR2_FICT_MERGE
+    assert fict["post_merge_closure_tree"] == PR2_FICT_TREE
 
 def test_post_r2_successor_readiness_does_not_imply_authorization():
     manifest = _load_manifest()
@@ -523,9 +534,10 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
     assert corpus["post_merge_closure_authorization_reference"] == PR2_CORPUS_CLOSURE_AUTHORIZATION
 
     fict = by_id["PR2-FICT"]
-    assert fict["status"] == "active"
+    assert fict["status"] == "merged"
     assert fict["authorization_reference"] == PR2_FICT_AUTHORIZATION
     assert fict["starting_baseline"] == PR2_FICT_BASELINE
+    assert fict["post_merge_closure_authorization_reference"] == PR2_FICT_CLOSURE_AUTHORIZATION
 
     for workstream_id in POST_R2_READY:
         assert by_id[workstream_id]["status"] == "ready_pending_authorization"
@@ -574,7 +586,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.23`" in program
+    assert "**Artifact version:** `0.4.24`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -640,7 +652,10 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert PR2_FICT_AUTHORIZATION in program
     assert PR2_FICT_BASELINE in program
     assert PR2_FICT_CONTRACT in program
-    assert "PR2-FICT is the only active successor workstream." in program
+    assert "### 5.21 PR2-FICT post-merge closure recording" in program
+    assert "PR2-FICT is terminal `merged`" in program
+    assert PR2_FICT_CLOSURE_AUTHORIZATION in program
+    assert PR2_FICT_MERGE in program
     assert PR2_ORG_AUTHORIZATION in program
     assert PR2_ORG_BASELINE in program
     assert PR2_ORG_CONTRACT in program
