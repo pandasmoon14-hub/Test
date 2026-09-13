@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -20,6 +21,7 @@ BASE = "fb9d4596c80ad779f5f58dd4fce066fb7ba797c9"
 AUTH = "owner_directive_2026-09-12_pr2_fict_activation"
 EFFECT = "research_pressure_governance_only"
 CONTROL = "docs/doctrine/control/myravant_fiction_litrpg_experience_pressure_contract.md"
+MERGE = "6a768616166d35fcf51dd8345895847e0554ed28"
 OWNED = {
     "docs/decisions/current_decisions_log.md",
     "docs/doctrine/control/myravant_fiction_litrpg_experience_pressure_contract.md",
@@ -33,6 +35,18 @@ OWNED = {
 
 def load(path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def read_at(ref, path):
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{path.relative_to(ROOT).as_posix()}"],
+        cwd=ROOT,
+        text=True,
+    )
+
+
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
 
 
 def rows(manifest):
@@ -161,7 +175,7 @@ def test_existing_source_governance_owners_remain_authoritative():
 
 
 def test_manifest_activates_only_fict_and_preserves_other_gates():
-    manifest = load(MAN)
+    manifest = load_at(MERGE, MAN)
     by = rows(manifest)
     fict = by["PR2-FICT"]
 
@@ -202,8 +216,8 @@ def test_corpus_closure_is_frozen_as_historical_snapshot():
 
 
 def test_program_and_decision_record_activation_without_execution_authority():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(MERGE, PROG)
+    decisions = read_at(MERGE, DEC)
 
     assert "**Artifact version:** `0.4.23`" in program
     assert "### 5.20 PR2-FICT fiction/LitRPG experience-pressure activation" in program
