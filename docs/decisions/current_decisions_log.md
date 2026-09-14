@@ -5750,3 +5750,31 @@ authoring, canon promotion, runtime/schema implementation, model training,
 conversion execution, and live-play/GM behavior remain unauthorized. R3 remains
 `ready_pending_authorization` against the exact 34-record target with execution
 disabled.
+
+## 2026-09-13 decision — PR2-SIMEX activation
+
+- **Decision ID:** `PR2-SIMEX-ACTIVATION-001`
+- **Workstream:** `PR2-SIMEX`
+- **Authority reference:** `owner_directive_2026-09-13_pr2_simex_activation`
+- **Authority effect:** `architecture_pressure_governance_only`
+- **Starting baseline:** `302732db03175726de2cdd7c24e78eb257520083`
+- **Control artifact:** `docs/doctrine/control/myravant_simulation_infrastructure_exemplar_pressure_contract.md`
+
+PR2-SIMEX is explicitly authorized and active from the PR2-FICT post-merge
+closure baseline.
+
+Its scope is simulation/infrastructure-exemplar-specific interpretation only.
+A source implementation may support an architecture pressure, tradeoff,
+counterexample, failure pressure, or evaluation need. It does not become a
+Myravant runtime prescription merely because it exists, scales, is popular, or
+is successful in its own operating envelope.
+
+This activation does not authorize exemplar research execution, source
+acquisition, corpus execution, corpus selection, research-method redefinition,
+originality or rights adjudication, information-barrier redefinition, PR2-SCALE
+architecture decisions, runtime/schema implementation, native-content authoring,
+canon promotion, model training, conversion execution, or live-play/GM behavior.
+
+PR2-SIMEX does not activate PR2-SCALE. PR2-SCALE remains `blocked` and
+unauthorized. R3 remains `ready_pending_authorization` against the exact
+34-record target with execution disabled.

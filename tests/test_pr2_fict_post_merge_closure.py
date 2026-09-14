@@ -18,6 +18,7 @@ TREE = "105b51247673fc7941491bc743e4100d7d317701"
 PR = 393
 AUTH = "owner_directive_2026-09-12_pr2_fict_post_merge_closure"
 EFFECT = "fiction_pressure_governance_post_merge_lifecycle_reconciliation_only"
+CLOSURE_SNAPSHOT = "302732db03175726de2cdd7c24e78eb257520083"
 
 
 def load(path):
@@ -36,8 +37,12 @@ def read_at(ref, path):
     )
 
 
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
+
+
 def test_fict_is_terminal_merged_with_exact_acceptance_evidence():
-    manifest = load(MAN)
+    manifest = load_at(CLOSURE_SNAPSHOT, MAN)
     by = rows(manifest)
     fict = by["PR2-FICT"]
 
@@ -61,7 +66,7 @@ def test_fict_is_terminal_merged_with_exact_acceptance_evidence():
 
 
 def test_closure_activates_no_successor_and_preserves_execution_boundaries():
-    manifest = load(MAN)
+    manifest = load_at(CLOSURE_SNAPSHOT, MAN)
     by = rows(manifest)
 
     active = {
@@ -94,8 +99,8 @@ def test_activation_test_is_frozen_against_merge_snapshot():
 
 
 def test_program_and_decisions_record_bounded_closure():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(CLOSURE_SNAPSHOT, PROG)
+    decisions = read_at(CLOSURE_SNAPSHOT, DEC)
 
     assert "**Artifact version:** `0.4.24`" in program
     assert "### 5.21 PR2-FICT post-merge closure recording" in program

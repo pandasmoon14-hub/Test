@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.24`
+**Artifact version:** `0.4.25`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1039,6 +1039,45 @@ target with execution disabled.
 The PR2-FICT activation evidence is preserved as historical snapshot evidence at
 the PR `#393` merge commit rather than being rewritten to follow later lifecycle
 state.
+
+### 5.22 PR2-SIMEX simulation/infrastructure exemplar-pressure activation
+
+PR2-FICT post-merge closure merged through PR `#394` as merge commit
+`302732db03175726de2cdd7c24e78eb257520083`.
+
+The owner separately authorized `PR2-SIMEX` under
+`owner_directive_2026-09-13_pr2_simex_activation` from that exact merged baseline.
+
+The controlling contract is:
+
+`docs/doctrine/control/myravant_simulation_infrastructure_exemplar_pressure_contract.md`
+
+PR2-SIMEX owns only simulation/infrastructure-exemplar-specific interpretation:
+how lawfully researched technical evidence may produce normalized architecture
+pressures, counterpressures/tradeoffs, or source-independent evaluation-scenario
+candidates without turning source technologies into Myravant implementation
+decisions.
+
+Exemplar implementation is evidence, not prescription. Observed success remains
+conditional on its workload and operating envelope. Observed failure is bounded
+failure evidence rather than universal prohibition. Mechanism is not
+requirement. Scale and benchmark claims retain their material context. Physical
+topology does not define semantic authority.
+
+PR2-SRC retains research-method authority. PR2-CORPUS retains corpus selection,
+batching, genealogy, coverage, novelty, and saturation authority. PR2-ORG retains
+originality/eligibility authority. PR2-IR retains the source-to-design
+information barrier. PR2-SIMEX does not make PR2-SCALE decisions.
+
+This activation does not acquire sources, execute exemplar research, execute the
+corpus, select a runtime technology stack, define runtime/schema implementation,
+author native content, promote canon, train models, perform conversion, activate
+live-play/GM behavior, or execute R3.
+
+PR2-SIMEX is the only active successor workstream. PR2-SCALE remains `blocked` and unauthorized.
+
+R3 remains `ready_pending_authorization` against the exact 34-record conformance
+target with execution disabled.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
