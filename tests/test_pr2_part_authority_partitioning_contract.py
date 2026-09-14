@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -12,6 +13,7 @@ DEC = ROOT / "docs/decisions/current_decisions_log.md"
 SCALE_CLOSURE_TEST = ROOT / "tests/test_pr2_scale_post_merge_closure.py"
 
 BASE = "26e0d5ea870ab8aac23fd0aeb0e200cd3a4bf965"
+MERGE = "ba992c51d781a37a85da4757c2c00af3e9da1f8e"
 AUTH = "owner_directive_2026-09-14_pr2_part_activation"
 EFFECT = "runtime_partitioning_contract_only"
 CONTROL = "docs/doctrine/control/myravant_authority_partitioning_migration_contract.md"
@@ -30,12 +32,24 @@ def load(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def read_at(ref, path):
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{path.relative_to(ROOT).as_posix()}"],
+        cwd=ROOT,
+        text=True,
+    )
+
+
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
+
+
 def rows(manifest):
     return {row["workstream_id"]: row for row in manifest["workstreams"]}
 
 
 def test_contract_declares_bounded_partitioning_authority():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     assert "artifact_id: PR2-PART-AUTHORITY-PARTITIONING-MIGRATION-001" in text
     assert f"authority_reference: {AUTH}" in text
     assert f"authority_effect: {EFFECT}" in text
@@ -53,7 +67,7 @@ def test_contract_declares_bounded_partitioning_authority():
 
 
 def test_partition_is_runtime_boundary_not_semantic_owner():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for token in (
         "Core partition nonownership law",
         "coordination and execution-responsibility",
@@ -66,7 +80,7 @@ def test_partition_is_runtime_boundary_not_semantic_owner():
 
 
 def test_logical_partition_identity_is_separate_from_placement_and_continuity():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for token in (
         "Logical partition identity is not physical placement",
         "!= process identity",
@@ -78,7 +92,7 @@ def test_logical_partition_identity_is_separate_from_placement_and_continuity():
 
 
 def test_partition_model_is_not_spatial_or_technology_mandate():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     assert "No universal partition dimension" in text
     for token in (
         "map region;",
@@ -93,7 +107,7 @@ def test_partition_model_is_not_spatial_or_technology_mandate():
 
 
 def test_migration_preserves_semantics_and_has_attributable_cutover():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for token in (
         "Migration is responsibility transfer, not semantic-owner transfer",
         "Migration must have an attributable cutover basis",
@@ -106,7 +120,7 @@ def test_migration_preserves_semantics_and_has_attributable_cutover():
 
 
 def test_overlap_precomputation_and_split_brain_do_not_gain_authority():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for token in (
         "Overlap is not automatically dual authority",
         "Precomputed work does not gain commitment by migration",
@@ -118,7 +132,7 @@ def test_overlap_precomputation_and_split_brain_do_not_gain_authority():
 
 
 def test_cross_partition_interactions_preserve_existing_semantics():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     assert "Cross-partition interaction law" in text
     for token in (
         "legality checks;",
@@ -134,7 +148,7 @@ def test_cross_partition_interactions_preserve_existing_semantics():
 
 
 def test_downstream_owners_are_explicitly_preserved():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for wid in ("PR2-CONC", "PR2-EVENT", "PR2-PERSIST", "PR2-FID", "PR2-BP"):
         assert f"PR2-PART does not activate {wid}." in text
     assert "PR2-PART does not execute R3" in text
@@ -142,7 +156,7 @@ def test_downstream_owners_are_explicitly_preserved():
 
 
 def test_manifest_activates_only_part_and_preserves_r3():
-    manifest = load(MAN)
+    manifest = load_at(MERGE, MAN)
     by = rows(manifest)
     part = by["PR2-PART"]
 
@@ -178,7 +192,7 @@ def test_manifest_activates_only_part_and_preserves_r3():
 
 
 def test_scale_closure_is_frozen_as_historical_snapshot():
-    text = SCALE_CLOSURE_TEST.read_text(encoding="utf-8")
+    text = read_at(MERGE, SCALE_CLOSURE_TEST)
     assert f'CLOSURE_SNAPSHOT = "{BASE}"' in text
     assert text.count("load_at(CLOSURE_SNAPSHOT, MAN)") == 2
     assert "read_at(CLOSURE_SNAPSHOT, PROG)" in text
@@ -188,8 +202,8 @@ def test_scale_closure_is_frozen_as_historical_snapshot():
 
 
 def test_program_and_decisions_record_part_only_activation():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(MERGE, PROG)
+    decisions = read_at(MERGE, DEC)
 
     assert "**Artifact version:** `0.4.29`" in program
     assert "### 5.26 PR2-PART authority partitioning and migration activation" in program

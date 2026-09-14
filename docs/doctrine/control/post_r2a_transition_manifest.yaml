@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.29",
+  "artifact_version": "0.4.30",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1063,7 +1063,7 @@
       "title": "Authority partitioning and migration",
       "category": "runtime_architecture",
       "purpose": "Define logical authority partition boundaries and future lawful partition migration.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-SCALE"
       ],
@@ -1105,16 +1105,22 @@
         "PR2-PART full local repository suite:9103 passed, 10 skipped, 2 xfailed, 1 warning",
         "PR2-PART git diff --check:clean",
         "PR2-PART exact seven-file activation footprint:PASS",
-        "PR2-PART structural authority audit:PASS"
+        "PR2-PART structural authority audit:PASS",
+        "PR2-PART GitHub Actions CI #197:success"
       ],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "pull_request": 399,
+      "branch_head": "4b3c98328df32d02593f5632603d59c06ebbf879",
+      "merge_commit": "ba992c51d781a37a85da4757c2c00af3e9da1f8e",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-CONC"
       ],
-      "control_artifact": "docs/doctrine/control/myravant_authority_partitioning_migration_contract.md"
+      "control_artifact": "docs/doctrine/control/myravant_authority_partitioning_migration_contract.md",
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-14_pr2_part_post_merge_closure",
+      "post_merge_closure_authority_effect": "runtime_partitioning_governance_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "ba992c51d781a37a85da4757c2c00af3e9da1f8e",
+      "post_merge_closure_tree": "de108cccbe0d8018b90be5bfde8e317616e5fea4"
     },
     {
       "workstream_id": "PR2-CONC",

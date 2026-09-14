@@ -5897,3 +5897,26 @@ separately authorized.
 
 R3 remains `ready_pending_authorization` against the exact 34-record target with
 execution disabled.
+
+## 2026-09-14 decision — PR2-PART post-merge closure
+
+- **Decision ID:** `PR2-PART-POST-MERGE-CLOSURE-001`
+- **Workstream:** `PR2-PART`
+- **Accepted pull request:** `#399`
+- **Accepted branch head:** `4b3c98328df32d02593f5632603d59c06ebbf879`
+- **Accepted merge commit:** `ba992c51d781a37a85da4757c2c00af3e9da1f8e`
+- **Accepted merge tree:** `de108cccbe0d8018b90be5bfde8e317616e5fea4`
+- **Authority reference:** `owner_directive_2026-09-14_pr2_part_post_merge_closure`
+- **Authority effect:** `runtime_partitioning_governance_post_merge_lifecycle_reconciliation_only`
+
+PR2-PART is terminal `merged`. This decision records accepted GitHub lifecycle
+state only and does not alter the substantive partitioning/migration contract.
+
+No successor is activated by the PR2-PART closure. PR2-CONC remains blocked and
+unauthorized, as do PR2-EVENT, PR2-PERSIST, PR2-FID, and PR2-BP.
+
+R3 remains `ready_pending_authorization` against the exact 34-record target with
+execution disabled.
+
+The owner-selected sequence `PART -> CONC -> EVENT -> PERSIST -> FID -> BP ->
+R3` remains sequencing intent only; each successor requires separate authority.

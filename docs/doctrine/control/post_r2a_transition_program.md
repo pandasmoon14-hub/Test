@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.29`
+**Artifact version:** `0.4.30`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1226,6 +1226,46 @@ No downstream runtime workstream is activated by this decision.
 
 R3 remains `ready_pending_authorization` against the exact 34-record conformance
 target with execution disabled.
+
+### 5.27 PR2-PART post-merge closure recording
+
+PR2-PART activation merged through PR `#399` with certified branch head
+`4b3c98328df32d02593f5632603d59c06ebbf879` into `main` as merge commit
+`ba992c51d781a37a85da4757c2c00af3e9da1f8e` with merge tree
+`de108cccbe0d8018b90be5bfde8e317616e5fea4`.
+
+The owner separately authorized bounded post-merge lifecycle reconciliation under
+`owner_directive_2026-09-14_pr2_part_post_merge_closure` with authority effect
+`runtime_partitioning_governance_post_merge_lifecycle_reconciliation_only`.
+
+PR2-PART is terminal `merged`. This closure records GitHub acceptance only. It
+does not change the substantive authority-partitioning/migration contract,
+expand PR2-PART authority, implement partitioning infrastructure, define
+concurrency/event/persistence/fidelity/backpressure semantics, or activate a
+downstream workstream.
+
+Accepted activation evidence includes the full local repository suite
+(`9103 passed, 10 skipped, 2 xfailed, 1 warning`), GitHub Actions CI `#197`
+success, clean `git diff --check`, the exact seven-file activation footprint,
+and the PR2-PART structural authority audit PASS.
+
+No successor is active after PR2-PART closure.
+PR2-CONC remains `blocked` and unauthorized.
+PR2-EVENT, PR2-PERSIST, PR2-FID, and PR2-BP also remain `blocked` and
+unauthorized. PR2-AUDIT, PR2-MIG, PR2-TEST, and PR2-IMPL remain blocked.
+
+The owner-selected pre-R3 sequence remains:
+
+`PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
+
+This closure does not itself authorize the next step in that sequence.
+
+R3 remains `ready_pending_authorization` against the exact 34-record conformance
+target with execution disabled.
+
+The PR2-PART activation evidence is preserved as historical snapshot evidence at
+the PR `#399` merge commit rather than being rewritten to follow later lifecycle
+state.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
