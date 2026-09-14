@@ -16,6 +16,7 @@ PR = 397
 HEAD = "01f82d331792e266e44b59ffc261e9b55f15decf"
 MERGE = "862ee41369ec8cba5768cb13aa59ecd853a7f8c4"
 TREE = "77717680ea254bb81043a7109b4842164834c925"
+CLOSURE_SNAPSHOT = "26e0d5ea870ab8aac23fd0aeb0e200cd3a4bf965"
 AUTH = "owner_directive_2026-09-14_pr2_scale_post_merge_closure"
 EFFECT = "runtime_scalability_governance_post_merge_lifecycle_reconciliation_only"
 
@@ -36,8 +37,12 @@ def read_at(ref, path):
     )
 
 
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
+
+
 def test_scale_is_terminal_merged_with_exact_acceptance_evidence():
-    manifest = load(MAN)
+    manifest = load_at(CLOSURE_SNAPSHOT, MAN)
     scale = rows(manifest)["PR2-SCALE"]
     assert manifest["artifact_version"] == "0.4.28"
     assert scale["status"] == "merged"
@@ -58,7 +63,7 @@ def test_scale_is_terminal_merged_with_exact_acceptance_evidence():
 
 
 def test_closure_activates_no_successor_and_preserves_r3():
-    manifest = load(MAN)
+    manifest = load_at(CLOSURE_SNAPSHOT, MAN)
     by = rows(manifest)
     assert {row["workstream_id"] for row in manifest["workstreams"] if row["status"] == "active"} == set()
     for wid in (
@@ -78,7 +83,7 @@ def test_closure_does_not_change_scale_contract():
 
 
 def test_activation_test_is_frozen_against_merge_snapshot():
-    text = ACTIVATION_TEST.read_text(encoding="utf-8")
+    text = read_at(CLOSURE_SNAPSHOT, ACTIVATION_TEST)
     assert f'MERGE = "{MERGE}"' in text
     assert "load_at(MERGE, MAN)" in text
     assert "read_at(MERGE, CONTRACT)" in text
@@ -88,8 +93,8 @@ def test_activation_test_is_frozen_against_merge_snapshot():
 
 
 def test_program_and_decisions_record_bounded_closure():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(CLOSURE_SNAPSHOT, PROG)
+    decisions = read_at(CLOSURE_SNAPSHOT, DEC)
     assert "**Artifact version:** `0.4.28`" in program
     assert "### 5.25 PR2-SCALE post-merge closure recording" in program
     assert AUTH in program and EFFECT in program and HEAD in program and MERGE in program and TREE in program

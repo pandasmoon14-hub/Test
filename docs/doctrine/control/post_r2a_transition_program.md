@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.28`
+**Artifact version:** `0.4.29`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1182,6 +1182,50 @@ target with execution disabled.
 The PR2-SCALE activation evidence is preserved as historical snapshot evidence
 at the PR `#397` merge commit rather than being rewritten to follow later
 lifecycle state.
+
+### 5.26 PR2-PART authority partitioning and migration activation
+
+PR2-SCALE post-merge closure merged through PR `#398` as merge commit
+`26e0d5ea870ab8aac23fd0aeb0e200cd3a4bf965`.
+
+The owner separately authorized `PR2-PART` under
+`owner_directive_2026-09-14_pr2_part_activation` from that exact merged baseline.
+
+The controlling contract is:
+
+`docs/doctrine/control/myravant_authority_partitioning_migration_contract.md`
+
+PR2-PART owns only logical runtime partition identity/boundaries, runtime
+responsibility assignment, migration/cutover preservation, partition failure
+exposure, authority-ambiguity prevention, cross-partition semantic preservation,
+and bounded handoffs to later runtime owners.
+
+A logical partition is a runtime coordination/execution-responsibility boundary,
+not a semantic owner. Physical placement, server identity, shard identity,
+database placement, or migration does not create or transfer gameplay ownership,
+entity identity, branch identity, canonicality, rule meaning, truth, or
+visibility authority.
+
+PR2-PART does not define concurrency/scheduler commitment (`PR2-CONC`),
+command/event/message delivery (`PR2-EVENT`), persistence/replay/recovery
+(`PR2-PERSIST`), fidelity/reconstitution (`PR2-FID`), or
+performance/backpressure (`PR2-BP`). It does not mandate sharding, spatial
+zoning, consensus, replication, failover algorithms, microservices, actors,
+ECS, event sourcing, databases, message buses, cloud providers, runtime code,
+or production schemas.
+
+The owner-selected pre-R3 execution order is:
+
+`PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
+
+This is sequencing authority only. It does not rewrite the manifest dependency
+graph and does not pre-authorize any successor.
+
+PR2-PART is the only active successor workstream.
+No downstream runtime workstream is activated by this decision.
+
+R3 remains `ready_pending_authorization` against the exact 34-record conformance
+target with execution disabled.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
