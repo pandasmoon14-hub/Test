@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.24",
+  "artifact_version": "0.4.25",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -922,31 +922,60 @@
       "workstream_id": "PR2-SIMEX",
       "title": "Simulation and infrastructure exemplar-pressure contract",
       "category": "source_governance",
-      "purpose": "Define a small exemplar corpus for runtime architecture pressure without treating exemplar technologies as mandatory implementations.",
-      "status": "ready_pending_authorization",
+      "purpose": "Define qualification and interpretation rules for a small simulation/infrastructure exemplar corpus so it can pressure runtime architecture without treating exemplar technologies as mandatory implementations.",
+      "status": "active",
       "dependencies": [
         "PR2-SRC"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-13_pr2_simex_activation",
       "authority_effect": "architecture_pressure_governance_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "302732db03175726de2cdd7c24e78eb257520083",
+      "owned_paths": [
+        "docs/decisions/current_decisions_log.md",
+        "docs/doctrine/control/myravant_simulation_infrastructure_exemplar_pressure_contract.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_simex_exemplar_pressure_contract.py",
+        "tests/test_pr2_fict_post_merge_closure.py"
+      ],
       "prohibited_scope": [
         "technology_copying_as_doctrine",
         "microservices_by_default",
-        "ecs_by_default"
+        "ecs_by_default",
+        "source_acquisition_or_research_execution",
+        "corpus_selection_batching_or_saturation_governance",
+        "research_method_redefinition",
+        "originality_rights_similarity_or_distribution_adjudication",
+        "source_design_information_barrier_redefinition",
+        "runtime_architecture_decision",
+        "runtime_or_schema_implementation",
+        "specific_database_message_bus_cloud_provider_mandate",
+        "benchmark_extrapolation_without_context",
+        "source_technology_as_myravant_requirement",
+        "native_content_authoring",
+        "canon_promotion",
+        "model_training",
+        "conversion_execution",
+        "live_play_or_gm_behavior"
       ],
       "entry_condition": "PR2-SRC accepted.",
-      "completion_condition": "Exemplar selection and pressure extraction rules are bounded and distinct from implementation decisions.",
-      "validation_evidence": [],
+      "completion_condition": "Exemplar qualification, selection-request, and pressure-extraction rules are bounded and distinct from corpus selection, runtime architecture decisions, and implementation.",
+      "validation_evidence": [
+        "PR2-SIMEX full local repository suite:9072 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-SIMEX git diff --check:clean",
+        "PR2-SIMEX exact seven-file activation footprint:PASS",
+        "PR2-SIMEX structural authority audit:PASS"
+      ],
       "pull_request": null,
       "branch_head": null,
       "merge_commit": null,
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-SCALE"
-      ]
+      ],
+      "control_artifact": "docs/doctrine/control/myravant_simulation_infrastructure_exemplar_pressure_contract.md"
     },
     {
       "workstream_id": "PR2-SCALE",
