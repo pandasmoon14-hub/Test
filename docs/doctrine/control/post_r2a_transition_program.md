@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.26`
+**Artifact version:** `0.4.27`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1113,6 +1113,43 @@ target with execution disabled.
 The PR2-SIMEX activation evidence is preserved as historical snapshot evidence
 at the PR `#395` merge commit rather than being rewritten to follow later
 lifecycle state.
+
+### 5.24 PR2-SCALE runtime scalability and execution-topology activation
+
+PR2-SIMEX post-merge closure merged through PR `#396` as merge commit
+`5268f85135b9ad5d67719b37305b204554729bed`.
+
+The owner separately authorized `PR2-SCALE` under
+`owner_directive_2026-09-14_pr2_scale_activation` from that exact merged baseline.
+
+The controlling contract is:
+
+`docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md`
+
+PR2-SCALE owns only the cross-topology runtime architecture seam: logical
+simulation semantics remain independent of physical execution topology, a
+deterministic reference-execution role provides an equivalence baseline, scale
+claims retain workload/context, and later optimized execution forms must
+demonstrate semantic equivalence inside declared envelopes.
+
+Physical placement does not transfer semantic ownership. Worker count, process
+count, host count, physical completion order, database placement, service
+boundaries, and deployment regions do not become world law merely because an
+implementation uses them.
+
+PR2-SCALE does not define the detailed semantics owned by `PR2-PART`,
+`PR2-CONC`, `PR2-FID`, `PR2-EVENT`, `PR2-PERSIST`, or `PR2-BP`. It does not
+mandate microservices, ECS, actors, event sourcing, a database, a message bus, a
+cloud provider, distributed deployment, or another implementation technology.
+
+This activation does not implement runtime/schema behavior, execute R3, activate
+source/corpus processing, author native content, promote canon, train models,
+perform conversion, or activate live-play/GM behavior.
+
+PR2-SCALE is the only active successor workstream. No downstream runtime workstream is activated by this decision.
+
+R3 remains `ready_pending_authorization` against the exact 34-record conformance
+target with execution disabled.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
