@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.25`
+**Artifact version:** `0.4.26`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1078,6 +1078,41 @@ PR2-SIMEX is the only active successor workstream. PR2-SCALE remains `blocked` a
 
 R3 remains `ready_pending_authorization` against the exact 34-record conformance
 target with execution disabled.
+
+### 5.23 PR2-SIMEX post-merge closure recording
+
+PR2-SIMEX activation merged through PR `#395` with certified branch head
+`1c0fafaa862f01b623baa51d8e557dd0a3095414` and merge commit
+`5c48a8e4393374dba3f9f2edc5541c1bb75906f4`. The merge tree is
+`99955d4b9fb54abc494c254fb2364bbfc75d4049`.
+
+The owner separately authorized bounded post-merge lifecycle reconciliation under
+`owner_directive_2026-09-13_pr2_simex_post_merge_closure` with authority effect
+`simulation_infrastructure_exemplar_pressure_governance_post_merge_lifecycle_reconciliation_only`.
+
+PR2-SIMEX is terminal `merged`. This closure records GitHub acceptance only. It
+does not change the substantive simulation/infrastructure exemplar-pressure
+contract, expand PR2-SIMEX authority, authorize exemplar research execution,
+select runtime architecture, or activate PR2-SCALE.
+
+The accepted activation evidence includes the full local repository suite
+(`9072 passed, 10 skipped, 2 xfailed, 1 warning`), GitHub Actions CI `#189`
+success, clean `git diff --check`, exact seven-file activation footprint, and
+the PR2-SIMEX structural authority audit PASS. No separate focused-test count is
+recorded because no distinct successful focused-suite count was preserved as
+durable activation evidence.
+
+No successor is active. PR2-SCALE remains `blocked` and unauthorized. Source
+acquisition, source-research execution, corpus execution, native-content
+authoring, canon promotion, runtime/schema implementation, model training,
+conversion execution, and live-play/GM behavior remain unauthorized.
+
+R3 remains `ready_pending_authorization` against the exact 34-record conformance
+target with execution disabled.
+
+The PR2-SIMEX activation evidence is preserved as historical snapshot evidence
+at the PR `#395` merge commit rather than being rewritten to follow later
+lifecycle state.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

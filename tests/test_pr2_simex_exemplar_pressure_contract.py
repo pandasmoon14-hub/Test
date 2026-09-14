@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -20,6 +21,7 @@ BASE = "302732db03175726de2cdd7c24e78eb257520083"
 AUTH = "owner_directive_2026-09-13_pr2_simex_activation"
 EFFECT = "architecture_pressure_governance_only"
 CONTROL = "docs/doctrine/control/myravant_simulation_infrastructure_exemplar_pressure_contract.md"
+MERGE = "5c48a8e4393374dba3f9f2edc5541c1bb75906f4"
 OWNED = {
     "docs/decisions/current_decisions_log.md",
     "docs/doctrine/control/myravant_simulation_infrastructure_exemplar_pressure_contract.md",
@@ -37,6 +39,18 @@ def load(path):
 
 def rows(manifest):
     return {row["workstream_id"]: row for row in manifest["workstreams"]}
+
+
+def read_at(ref, path):
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{path.relative_to(ROOT).as_posix()}"],
+        cwd=ROOT,
+        text=True,
+    )
+
+
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
 
 
 def test_contract_declares_bounded_authority():
@@ -169,7 +183,7 @@ def test_existing_governance_owners_remain_authoritative():
 
 
 def test_manifest_activates_only_simex_and_preserves_runtime_gates():
-    manifest = load(MAN)
+    manifest = load_at(MERGE, MAN)
     by = rows(manifest)
     simex = by["PR2-SIMEX"]
 
@@ -210,8 +224,8 @@ def test_fict_closure_is_frozen_as_historical_snapshot():
 
 
 def test_program_and_decision_record_activation_without_design_authority():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(MERGE, PROG)
+    decisions = read_at(MERGE, DEC)
 
     assert "**Artifact version:** `0.4.25`" in program
     assert "### 5.22 PR2-SIMEX simulation/infrastructure exemplar-pressure activation" in program

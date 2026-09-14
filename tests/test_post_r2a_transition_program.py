@@ -117,6 +117,12 @@ PR2_SIMEX_BASELINE = "302732db03175726de2cdd7c24e78eb257520083"
 PR2_SIMEX_AUTHORIZATION = "owner_directive_2026-09-13_pr2_simex_activation"
 PR2_SIMEX_EFFECT = "architecture_pressure_governance_only"
 PR2_SIMEX_CONTRACT = "docs/doctrine/control/myravant_simulation_infrastructure_exemplar_pressure_contract.md"
+PR2_SIMEX_PR = 395
+PR2_SIMEX_HEAD = "1c0fafaa862f01b623baa51d8e557dd0a3095414"
+PR2_SIMEX_MERGE = "5c48a8e4393374dba3f9f2edc5541c1bb75906f4"
+PR2_SIMEX_TREE = "99955d4b9fb54abc494c254fb2364bbfc75d4049"
+PR2_SIMEX_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-13_pr2_simex_post_merge_closure"
+PR2_SIMEX_CLOSURE_EFFECT = "simulation_infrastructure_exemplar_pressure_governance_post_merge_lifecycle_reconciliation_only"
 PR2_SIMEX_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_simulation_infrastructure_exemplar_pressure_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_simex_exemplar_pressure_contract.py', 'tests/test_pr2_fict_post_merge_closure.py'}
 PR2_FICT_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_fiction_litrpg_experience_pressure_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_fict_experience_pressure_contract.py', 'tests/test_pr2_corpus_post_merge_closure.py'}
 PR2_CORPUS_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_corpus_scale_coverage_governance.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_corpus_scale_coverage_governance.py', 'tests/test_pr2_ir_post_merge_closure.py'}
@@ -238,7 +244,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.25"
+    assert manifest["artifact_version"] == "0.4.26"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -358,7 +364,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_through_pr2_fict_are_merged_and_pr2_simex_is_only_active_successor():
+def test_r2c_through_pr2_simex_are_merged_and_no_successor_is_active():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -367,7 +373,7 @@ def test_r2c_through_pr2_fict_are_merged_and_pr2_simex_is_only_active_successor(
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == {"PR2-SIMEX"}
+    assert active == set()
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -516,15 +522,20 @@ def test_r2c_through_pr2_fict_are_merged_and_pr2_simex_is_only_active_successor(
     assert fict["post_merge_closure_tree"] == PR2_FICT_TREE
 
     simex = by_id["PR2-SIMEX"]
-    assert simex["status"] == "active"
+    assert simex["status"] == "merged"
     assert simex["authorization_reference"] == PR2_SIMEX_AUTHORIZATION
     assert simex["authority_effect"] == PR2_SIMEX_EFFECT
     assert simex["starting_baseline"] == PR2_SIMEX_BASELINE
     assert simex["control_artifact"] == PR2_SIMEX_CONTRACT
     assert set(simex["owned_paths"]) == PR2_SIMEX_OWNED_PATHS
-    assert simex["pull_request"] is None
-    assert simex["branch_head"] is None
-    assert simex["merge_commit"] is None
+    assert simex["pull_request"] == PR2_SIMEX_PR
+    assert simex["branch_head"] == PR2_SIMEX_HEAD
+    assert simex["merge_commit"] == PR2_SIMEX_MERGE
+    assert simex["completion_state"] == "merged"
+    assert simex["post_merge_closure_authorization_reference"] == PR2_SIMEX_CLOSURE_AUTHORIZATION
+    assert simex["post_merge_closure_authority_effect"] == PR2_SIMEX_CLOSURE_EFFECT
+    assert simex["post_merge_closure_recorded_from"] == PR2_SIMEX_MERGE
+    assert simex["post_merge_closure_tree"] == PR2_SIMEX_TREE
 
 def test_post_r2_successor_readiness_does_not_imply_authorization():
     manifest = _load_manifest()
@@ -554,9 +565,10 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
     assert fict["post_merge_closure_authorization_reference"] == PR2_FICT_CLOSURE_AUTHORIZATION
 
     simex = by_id["PR2-SIMEX"]
-    assert simex["status"] == "active"
+    assert simex["status"] == "merged"
     assert simex["authorization_reference"] == PR2_SIMEX_AUTHORIZATION
     assert simex["starting_baseline"] == PR2_SIMEX_BASELINE
+    assert simex["post_merge_closure_authorization_reference"] == PR2_SIMEX_CLOSURE_AUTHORIZATION
 
     for workstream_id in POST_R2_READY:
         assert by_id[workstream_id]["status"] == "ready_pending_authorization"
@@ -605,7 +617,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.25`" in program
+    assert "**Artifact version:** `0.4.26`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -681,6 +693,11 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert PR2_SIMEX_CONTRACT in program
     assert "PR2-SIMEX is the only active successor workstream." in program
     assert "PR2-SCALE remains `blocked`" in program
+    assert "### 5.23 PR2-SIMEX post-merge closure recording" in program
+    assert "PR2-SIMEX is terminal `merged`" in program
+    assert PR2_SIMEX_CLOSURE_AUTHORIZATION in program
+    assert PR2_SIMEX_MERGE in program
+    assert "No successor is active." in program
     assert PR2_ORG_AUTHORIZATION in program
     assert PR2_ORG_BASELINE in program
     assert PR2_ORG_CONTRACT in program
