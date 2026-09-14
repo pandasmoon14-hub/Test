@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.27`
+**Artifact version:** `0.4.28`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1150,6 +1150,38 @@ PR2-SCALE is the only active successor workstream. No downstream runtime workstr
 
 R3 remains `ready_pending_authorization` against the exact 34-record conformance
 target with execution disabled.
+
+### 5.25 PR2-SCALE post-merge closure recording
+
+PR2-SCALE activation merged through PR `#397` with certified branch head
+`01f82d331792e266e44b59ffc261e9b55f15decf` and merge commit
+`862ee41369ec8cba5768cb13aa59ecd853a7f8c4`. The merge tree is
+`77717680ea254bb81043a7109b4842164834c925`.
+
+The owner separately authorized bounded post-merge lifecycle reconciliation under
+`owner_directive_2026-09-14_pr2_scale_post_merge_closure` with authority effect
+`runtime_scalability_governance_post_merge_lifecycle_reconciliation_only`.
+
+PR2-SCALE is terminal `merged`. This closure records GitHub acceptance only. It
+does not change the substantive runtime scalability/execution-topology contract,
+expand PR2-SCALE authority, implement distributed infrastructure, select a
+technology stack, or define any downstream runtime package.
+
+Accepted activation evidence includes the full local repository suite
+(`9087 passed, 10 skipped, 2 xfailed, 1 warning`), GitHub Actions CI `#193`
+success, clean `git diff --check`, exact seven-file activation footprint, and
+the PR2-SCALE structural authority audit PASS.
+
+No successor is active after PR2-SCALE closure.
+PR2-PART, PR2-CONC, PR2-FID, PR2-EVENT, PR2-PERSIST, and PR2-BP remain `blocked` and unauthorized.
+PR2-AUDIT, PR2-MIG, PR2-TEST, and PR2-IMPL also remain `blocked` and unauthorized.
+
+R3 remains `ready_pending_authorization` against the exact 34-record conformance
+target with execution disabled.
+
+The PR2-SCALE activation evidence is preserved as historical snapshot evidence
+at the PR `#397` merge commit rather than being rewritten to follow later
+lifecycle state.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

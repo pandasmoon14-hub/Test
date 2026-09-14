@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -12,6 +13,7 @@ DEC = ROOT / "docs/decisions/current_decisions_log.md"
 SIMEX_CLOSURE_TEST = ROOT / "tests/test_pr2_simex_post_merge_closure.py"
 
 BASE = "5268f85135b9ad5d67719b37305b204554729bed"
+MERGE = "862ee41369ec8cba5768cb13aa59ecd853a7f8c4"
 AUTH = "owner_directive_2026-09-14_pr2_scale_activation"
 EFFECT = "runtime_architecture_contract_only"
 CONTROL = "docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md"
@@ -34,8 +36,20 @@ def rows(manifest):
     return {row["workstream_id"]: row for row in manifest["workstreams"]}
 
 
+def read_at(ref, path):
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{path.relative_to(ROOT).as_posix()}"],
+        cwd=ROOT,
+        text=True,
+    )
+
+
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
+
+
 def test_contract_declares_bounded_runtime_architecture_authority():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     assert "artifact_id: PR2-SCALE-RUNTIME-SCALABILITY-EXECUTION-TOPOLOGY-001" in text
     assert f"authority_reference: {AUTH}" in text
     assert f"authority_effect: {EFFECT}" in text
@@ -55,7 +69,7 @@ def test_contract_declares_bounded_runtime_architecture_authority():
 
 
 def test_topology_independence_and_nontransfer_are_explicit():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for token in (
         "Logical simulation semantics must remain independent of physical execution topology.",
         "A physical execution boundary does not create semantic authority.",
@@ -68,7 +82,7 @@ def test_topology_independence_and_nontransfer_are_explicit():
 
 
 def test_reference_execution_is_role_not_technology_mandate():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     assert "reference-execution role" in text
     assert "semantic/evaluation role, not a permanent technology mandate" in text
     assert "PR2-SCALE does not claim that a complete conforming reference runtime already exists." in text
@@ -83,7 +97,7 @@ def test_reference_execution_is_role_not_technology_mandate():
 
 
 def test_scale_claims_require_context():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     assert "Scale is multidimensional" in text
     assert "Workload-envelope law" in text
     assert "one million dormant records" in text
@@ -93,7 +107,7 @@ def test_scale_claims_require_context():
 
 
 def test_technology_choices_are_not_mandated():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for token in (
         "microservices;",
         "Entity Component Systems;",
@@ -110,7 +124,7 @@ def test_technology_choices_are_not_mandated():
 
 
 def test_downstream_runtime_owners_remain_separate():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for workstream_id in (
         "PR2-PART",
         "PR2-CONC",
@@ -124,7 +138,7 @@ def test_downstream_runtime_owners_remain_separate():
 
 
 def test_equivalence_can_fail_closed():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for token in (
         "`equivalent_within_declared_envelope`",
         "`equivalent_with_declared_constraints`",
@@ -139,7 +153,7 @@ def test_equivalence_can_fail_closed():
 
 
 def test_manifest_activates_only_scale_and_preserves_downstream_blocks():
-    manifest = load(MAN)
+    manifest = load_at(MERGE, MAN)
     by = rows(manifest)
     scale = by["PR2-SCALE"]
 
@@ -184,7 +198,7 @@ def test_manifest_activates_only_scale_and_preserves_downstream_blocks():
 
 
 def test_simex_closure_is_frozen_as_historical_snapshot():
-    text = SIMEX_CLOSURE_TEST.read_text(encoding="utf-8")
+    text = read_at(MERGE, SIMEX_CLOSURE_TEST)
     assert f'CLOSURE_SNAPSHOT = "{BASE}"' in text
     assert text.count("load_at(CLOSURE_SNAPSHOT, MAN)") == 2
     assert "read_at(CLOSURE_SNAPSHOT, PROG)" in text
@@ -192,8 +206,8 @@ def test_simex_closure_is_frozen_as_historical_snapshot():
 
 
 def test_program_and_decision_record_activation_without_implementation_authority():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(MERGE, PROG)
+    decisions = read_at(MERGE, DEC)
 
     assert "**Artifact version:** `0.4.27`" in program
     assert "### 5.24 PR2-SCALE runtime scalability and execution-topology activation" in program

@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.27",
+  "artifact_version": "0.4.28",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -988,7 +988,7 @@
       "title": "Runtime scalability and execution topology principles",
       "category": "runtime_architecture",
       "purpose": "Establish topology-independent runtime semantics, reference-execution equivalence obligations, workload-envelope discipline, and bounded handoffs to later runtime-architecture owners without implementing distributed infrastructure.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-CTRL"
       ],
@@ -1036,11 +1036,12 @@
         "PR2-SCALE full local repository suite:9087 passed, 10 skipped, 2 xfailed, 1 warning",
         "PR2-SCALE git diff --check:clean",
         "PR2-SCALE exact seven-file activation footprint:PASS",
-        "PR2-SCALE structural authority audit:PASS"
+        "PR2-SCALE structural authority audit:PASS",
+        "PR2-SCALE GitHub Actions CI #193:success"
       ],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "pull_request": 397,
+      "branch_head": "01f82d331792e266e44b59ffc261e9b55f15decf",
+      "merge_commit": "862ee41369ec8cba5768cb13aa59ecd853a7f8c4",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-PART",
@@ -1050,7 +1051,12 @@
         "PR2-PERSIST",
         "PR2-BP"
       ],
-      "control_artifact": "docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md"
+      "control_artifact": "docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md",
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-14_pr2_scale_post_merge_closure",
+      "post_merge_closure_authority_effect": "runtime_scalability_governance_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "862ee41369ec8cba5768cb13aa59ecd853a7f8c4",
+      "post_merge_closure_tree": "77717680ea254bb81043a7109b4842164834c925"
     },
     {
       "workstream_id": "PR2-PART",
