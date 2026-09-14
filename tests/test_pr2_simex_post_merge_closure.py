@@ -18,6 +18,7 @@ TREE = "99955d4b9fb54abc494c254fb2364bbfc75d4049"
 PR = 395
 AUTH = "owner_directive_2026-09-13_pr2_simex_post_merge_closure"
 EFFECT = "simulation_infrastructure_exemplar_pressure_governance_post_merge_lifecycle_reconciliation_only"
+CLOSURE_SNAPSHOT = "5268f85135b9ad5d67719b37305b204554729bed"
 
 
 def load(path):
@@ -36,8 +37,12 @@ def read_at(ref, path):
     )
 
 
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
+
+
 def test_simex_is_terminal_merged_with_exact_acceptance_evidence():
-    manifest = load(MAN)
+    manifest = load_at(CLOSURE_SNAPSHOT, MAN)
     simex = rows(manifest)["PR2-SIMEX"]
     assert manifest["artifact_version"] == "0.4.26"
     assert simex["status"] == "merged"
@@ -58,7 +63,7 @@ def test_simex_is_terminal_merged_with_exact_acceptance_evidence():
 
 
 def test_closure_activates_no_successor_and_preserves_boundaries():
-    manifest = load(MAN)
+    manifest = load_at(CLOSURE_SNAPSHOT, MAN)
     by = rows(manifest)
     assert {r["workstream_id"] for r in manifest["workstreams"] if r["status"] == "active"} == set()
     assert by["PR2-SCALE"]["status"] == "blocked"
@@ -82,8 +87,8 @@ def test_activation_test_is_frozen_against_merge_snapshot():
 
 
 def test_program_and_decisions_record_bounded_closure():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(CLOSURE_SNAPSHOT, PROG)
+    decisions = read_at(CLOSURE_SNAPSHOT, DEC)
     assert "**Artifact version:** `0.4.26`" in program
     assert "### 5.23 PR2-SIMEX post-merge closure recording" in program
     assert AUTH in program and EFFECT in program and HEAD in program and MERGE in program and TREE in program

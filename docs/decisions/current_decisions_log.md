@@ -5807,3 +5807,34 @@ Source acquisition, source-research execution, corpus execution, native-content
 authoring, canon promotion, runtime/schema implementation, model training,
 conversion execution, and live-play/GM behavior remain unauthorized. R3 remains
 `ready_pending_authorization` against the exact 34-record target with execution disabled.
+
+## 2026-09-14 decision — PR2-SCALE activation
+
+- **Decision ID:** `PR2-SCALE-ACTIVATION-001`
+- **Workstream:** `PR2-SCALE`
+- **Authority reference:** `owner_directive_2026-09-14_pr2_scale_activation`
+- **Authority effect:** `runtime_architecture_contract_only`
+- **Starting baseline:** `5268f85135b9ad5d67719b37305b204554729bed`
+- **Control artifact:** `docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md`
+
+PR2-SCALE is explicitly authorized and active from the PR2-SIMEX post-merge
+closure baseline.
+
+Its scope is runtime-scalability architecture only: topology-independent
+semantics, reference-execution equivalence obligations, contextualized scale
+claims, replaceable execution mechanisms, and bounded handoffs to later runtime
+architecture owners.
+
+This activation does not authorize distributed runtime implementation,
+production schemas, partitioning semantics, concurrency/scheduler semantics,
+fidelity/reconstitution semantics, event/message delivery semantics,
+persistence/replay/recovery semantics, performance budgets/backpressure,
+technology-stack selection, R3 execution, native-content authoring, canon,
+model training, conversion execution, or live-play/GM behavior.
+
+PR2-SCALE does not activate PR2-PART, PR2-CONC, PR2-FID, PR2-EVENT,
+PR2-PERSIST, or PR2-BP. Those workstreams remain blocked and separately
+authorized.
+
+R3 remains `ready_pending_authorization` against the exact 34-record target with
+execution disabled.

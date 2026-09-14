@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.26",
+  "artifact_version": "0.4.27",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -987,25 +987,57 @@
       "workstream_id": "PR2-SCALE",
       "title": "Runtime scalability and execution topology principles",
       "category": "runtime_architecture",
-      "purpose": "Establish scalability invariants and replaceable execution-topology seams without prematurely implementing distributed infrastructure.",
-      "status": "blocked",
+      "purpose": "Establish topology-independent runtime semantics, reference-execution equivalence obligations, workload-envelope discipline, and bounded handoffs to later runtime-architecture owners without implementing distributed infrastructure.",
+      "status": "active",
       "dependencies": [
         "PR2-CTRL"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-14_pr2_scale_activation",
       "authority_effect": "runtime_architecture_contract_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "5268f85135b9ad5d67719b37305b204554729bed",
+      "owned_paths": [
+        "docs/decisions/current_decisions_log.md",
+        "docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_scale_runtime_scalability_contract.py",
+        "tests/test_pr2_simex_post_merge_closure.py"
+      ],
       "prohibited_scope": [
         "distributed_runtime_implementation",
+        "runtime_or_production_schema_implementation",
+        "partitioning_semantics_definition",
+        "concurrency_or_scheduler_semantics_definition",
+        "fidelity_tier_or_reconstitution_semantics_definition",
+        "event_message_delivery_semantics_definition",
+        "persistence_replay_recovery_semantics_definition",
+        "performance_budget_or_backpressure_definition",
         "ecs_mandate",
         "microservice_mandate",
-        "database_selection_without_measurement"
+        "actor_model_mandate",
+        "event_sourcing_mandate",
+        "database_selection_without_measurement",
+        "message_bus_selection",
+        "cloud_provider_selection",
+        "worker_count_as_semantics",
+        "machine_count_as_semantics",
+        "physical_topology_as_semantic_authority",
+        "native_content_authoring",
+        "canon_promotion",
+        "model_training",
+        "conversion_execution",
+        "live_play_or_gm_behavior"
       ],
       "entry_condition": "PR2-CTRL merged and runtime-scalability architecture work explicitly authorized.",
-      "completion_condition": "Execution-topology independence, reference-runtime equivalence, and scalability boundaries are explicitly specified.",
-      "validation_evidence": [],
+      "completion_condition": "Topology independence, reference-execution equivalence obligations, workload-envelope discipline, fail-closed unsupported-topology outcomes, and bounded downstream runtime-architecture handoffs are explicitly specified without implementing or selecting a distributed technology stack.",
+      "validation_evidence": [
+        "PR2-SCALE full local repository suite:9087 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-SCALE git diff --check:clean",
+        "PR2-SCALE exact seven-file activation footprint:PASS",
+        "PR2-SCALE structural authority audit:PASS"
+      ],
       "pull_request": null,
       "branch_head": null,
       "merge_commit": null,
@@ -1017,7 +1049,8 @@
         "PR2-EVENT",
         "PR2-PERSIST",
         "PR2-BP"
-      ]
+      ],
+      "control_artifact": "docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md"
     },
     {
       "workstream_id": "PR2-PART",
