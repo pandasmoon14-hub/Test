@@ -5838,3 +5838,31 @@ authorized.
 
 R3 remains `ready_pending_authorization` against the exact 34-record target with
 execution disabled.
+
+## 2026-09-14 decision — PR2-SCALE post-merge closure
+
+- **Decision ID:** `PR2-SCALE-POST-MERGE-CLOSURE-001`
+- **Workstream:** `PR2-SCALE`
+- **Authority reference:** `owner_directive_2026-09-14_pr2_scale_post_merge_closure`
+- **Authority effect:** `runtime_scalability_governance_post_merge_lifecycle_reconciliation_only`
+- **Accepted PR:** `#397`
+- **Certified branch head:** `01f82d331792e266e44b59ffc261e9b55f15decf`
+- **Merge commit:** `862ee41369ec8cba5768cb13aa59ecd853a7f8c4`
+- **Merge tree:** `77717680ea254bb81043a7109b4842164834c925`
+
+PR2-SCALE is terminal `merged`. This decision records post-merge lifecycle state
+only. It does not alter the controlling runtime scalability/execution-topology
+contract, authorize runtime implementation, select deployment technologies, or
+expand PR2-SCALE authority.
+
+Accepted activation evidence is: full local repository suite
+`9087 passed, 10 skipped, 2 xfailed, 1 warning`; GitHub Actions CI `#193`
+success; `git diff --check` clean; exact seven-file activation footprint; and
+the PR2-SCALE structural authority audit PASS.
+
+No successor is activated by the PR2-SCALE closure. PR2-PART, PR2-CONC,
+PR2-FID, PR2-EVENT, PR2-PERSIST, and PR2-BP remain blocked and separately
+authorized. PR2-AUDIT, PR2-MIG, PR2-TEST, and PR2-IMPL also remain blocked.
+
+R3 remains `ready_pending_authorization` against the exact 34-record target with
+execution disabled.
