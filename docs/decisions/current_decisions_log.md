@@ -5778,3 +5778,32 @@ canon promotion, model training, conversion execution, or live-play/GM behavior.
 PR2-SIMEX does not activate PR2-SCALE. PR2-SCALE remains `blocked` and
 unauthorized. R3 remains `ready_pending_authorization` against the exact
 34-record target with execution disabled.
+
+## 2026-09-13 decision — PR2-SIMEX post-merge closure
+
+- **Decision ID:** `PR2-SIMEX-POST-MERGE-CLOSURE-001`
+- **Workstream:** `PR2-SIMEX`
+- **Authority reference:** `owner_directive_2026-09-13_pr2_simex_post_merge_closure`
+- **Authority effect:** `simulation_infrastructure_exemplar_pressure_governance_post_merge_lifecycle_reconciliation_only`
+- **Accepted PR:** `#395`
+- **Certified branch head:** `1c0fafaa862f01b623baa51d8e557dd0a3095414`
+- **Merge commit:** `5c48a8e4393374dba3f9f2edc5541c1bb75906f4`
+- **Merge tree:** `99955d4b9fb54abc494c254fb2364bbfc75d4049`
+
+PR2-SIMEX is terminal `merged`. This decision records post-merge lifecycle state
+only; it does not alter the controlling simulation/infrastructure
+exemplar-pressure contract, authorize exemplar research execution, select a
+runtime architecture, or expand PR2-SIMEX authority.
+
+Accepted activation evidence is: full local repository suite
+`9072 passed, 10 skipped, 2 xfailed, 1 warning`; GitHub Actions CI `#189`
+success; `git diff --check` clean; exact seven-file activation footprint; and
+the PR2-SIMEX structural authority audit PASS. No separate focused-test count is
+asserted because no distinct successful focused-suite count was preserved as
+durable activation evidence.
+
+No successor is activated by this closure. PR2-SCALE remains `blocked` and unauthorized.
+Source acquisition, source-research execution, corpus execution, native-content
+authoring, canon promotion, runtime/schema implementation, model training,
+conversion execution, and live-play/GM behavior remain unauthorized. R3 remains
+`ready_pending_authorization` against the exact 34-record target with execution disabled.

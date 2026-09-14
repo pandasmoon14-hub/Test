@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.25",
+  "artifact_version": "0.4.26",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -923,7 +923,7 @@
       "title": "Simulation and infrastructure exemplar-pressure contract",
       "category": "source_governance",
       "purpose": "Define qualification and interpretation rules for a small simulation/infrastructure exemplar corpus so it can pressure runtime architecture without treating exemplar technologies as mandatory implementations.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-SRC"
       ],
@@ -966,16 +966,22 @@
         "PR2-SIMEX full local repository suite:9072 passed, 10 skipped, 2 xfailed, 1 warning",
         "PR2-SIMEX git diff --check:clean",
         "PR2-SIMEX exact seven-file activation footprint:PASS",
-        "PR2-SIMEX structural authority audit:PASS"
+        "PR2-SIMEX structural authority audit:PASS",
+        "PR2-SIMEX GitHub Actions CI #189:success"
       ],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "pull_request": 395,
+      "branch_head": "1c0fafaa862f01b623baa51d8e557dd0a3095414",
+      "merge_commit": "5c48a8e4393374dba3f9f2edc5541c1bb75906f4",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-SCALE"
       ],
-      "control_artifact": "docs/doctrine/control/myravant_simulation_infrastructure_exemplar_pressure_contract.md"
+      "control_artifact": "docs/doctrine/control/myravant_simulation_infrastructure_exemplar_pressure_contract.md",
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-13_pr2_simex_post_merge_closure",
+      "post_merge_closure_authority_effect": "simulation_infrastructure_exemplar_pressure_governance_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "5c48a8e4393374dba3f9f2edc5541c1bb75906f4",
+      "post_merge_closure_tree": "99955d4b9fb54abc494c254fb2364bbfc75d4049"
     },
     {
       "workstream_id": "PR2-SCALE",
