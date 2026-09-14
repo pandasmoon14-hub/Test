@@ -5866,3 +5866,34 @@ authorized. PR2-AUDIT, PR2-MIG, PR2-TEST, and PR2-IMPL also remain blocked.
 
 R3 remains `ready_pending_authorization` against the exact 34-record target with
 execution disabled.
+
+## 2026-09-14 decision — PR2-PART activation
+
+- **Decision ID:** `PR2-PART-ACTIVATION-001`
+- **Workstream:** `PR2-PART`
+- **Authority reference:** `owner_directive_2026-09-14_pr2_part_activation`
+- **Authority effect:** `runtime_partitioning_contract_only`
+- **Starting baseline:** `26e0d5ea870ab8aac23fd0aeb0e200cd3a4bf965`
+- **Control artifact:** `docs/doctrine/control/myravant_authority_partitioning_migration_contract.md`
+
+PR2-PART is authorized as the sole active workstream after terminal PR2-SCALE
+closure.
+
+Its scope is logical runtime partitioning and migration governance only. A
+partition is an execution-responsibility boundary and does not create or transfer
+gameplay ownership, semantic ownership, identity, branch/canon authority, rule
+meaning, truth, or disclosure authority.
+
+This decision does not authorize runtime/schema implementation, sharding
+algorithms, consensus/replication technology, concurrency semantics, event
+delivery semantics, persistence/recovery semantics, fidelity semantics,
+performance/backpressure semantics, R3 execution, native content, canon, model
+training, conversion execution, or live-play/GM behavior.
+
+PR2-PART does not activate PR2-CONC, PR2-EVENT, PR2-PERSIST, PR2-FID, or
+PR2-BP. The owner-selected sequence `PART -> CONC -> EVENT -> PERSIST -> FID ->
+BP -> R3` is recorded as sequencing intent only; every successor remains
+separately authorized.
+
+R3 remains `ready_pending_authorization` against the exact 34-record target with
+execution disabled.
