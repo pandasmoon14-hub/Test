@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.32`
+**Artifact version:** `0.4.33`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1354,6 +1354,54 @@ target with execution disabled.
 The PR2-CONC activation evidence is preserved as historical snapshot evidence at
 the PR `#401` merge commit rather than being rewritten to follow later lifecycle
 state.
+
+### 5.30 PR2-EVENT command/event/message/projection activation
+
+The owner separately authorized bounded PR2-EVENT activation under
+`owner_directive_2026-09-15_pr2_event_activation` with authority effect
+`runtime_message_contract_only`.
+
+PR2-EVENT starts from accepted PR2-CONC closure merge
+`e765d00e57e3a444ecd16078a3390eb49958f5b2` and is the only active successor workstream. Its control artifact is
+`docs/doctrine/control/myravant_command_event_message_projection_contract.md`.
+
+PR2-EVENT owns only runtime representation and delivery boundaries: separation
+among requests, proposals, committed-fact representations, transport messages,
+deltas, notifications, acknowledgements, and projections; transport-message and
+transport-attempt identity; duplicate/redelivery and idempotent-consumption
+obligations; carriage of separately owned causality/order/version context; and
+projection derivation/freshness/rebuilding boundaries.
+
+AFQR-01 retains semantic commitment, replay, recovery, and transition receipts.
+AFQR-02 retains command, command-attempt, retry, suspension, escalation, and
+durable command-progress identity. AFQR-04 retains logical time, causal ordering,
+simultaneity, scheduling, and resolution groups. PR2-PART retains partition and
+migration semantics. PR2-CONC retains scheduler nonauthority and deterministic
+commitment qualification.
+
+Message delivery, publication, acknowledgement, arrival order, queue order,
+projection state, notification receipt, and redelivery do not create semantic
+truth merely by occurring. PR2-EVENT does not mandate event sourcing, CQRS,
+actors, pub/sub, queues, replicated logs, a database, a message bus, a cloud
+provider, runtime code, or production schemas.
+
+PR2-EVENT is the only active successor workstream.
+PR2-PERSIST remains `blocked` and unauthorized. PR2-FID and PR2-BP also remain
+`blocked` and unauthorized. PR2-AUDIT, PR2-MIG, PR2-TEST, and PR2-IMPL remain
+blocked.
+
+The owner-selected pre-R3 sequence remains:
+
+`PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
+
+This activation does not authorize any later step in that sequence. In
+particular, it does not activate PR2-PERSIST.
+
+R3 remains `ready_pending_authorization` against the exact 34-record conformance
+target with execution disabled.
+
+Validation evidence is recorded only after the activation candidate is tested;
+activation does not pre-certify itself.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

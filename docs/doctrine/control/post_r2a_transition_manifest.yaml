@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.32",
+  "artifact_version": "0.4.33",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1225,23 +1225,57 @@
       "title": "Command event message and projection separation",
       "category": "runtime_architecture",
       "purpose": "Define distinctions among requests, proposals, committed facts, deltas, notifications, and projections.",
-      "status": "blocked",
+      "status": "active",
       "dependencies": [
         "PR2-SCALE"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-15_pr2_event_activation",
       "authority_effect": "runtime_message_contract_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "e765d00e57e3a444ecd16078a3390eb49958f5b2",
+      "owned_paths": [
+        "docs/decisions/current_decisions_log.md",
+        "docs/doctrine/control/myravant_command_event_message_projection_contract.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_event_message_projection_contract.py",
+        "tests/test_pr2_conc_post_merge_closure.py"
+      ],
       "prohibited_scope": [
         "pubsub_delivery_defines_truth",
         "projection_defines_truth",
-        "notification_defines_commitment"
+        "notification_defines_commitment",
+        "runtime_or_production_schema_implementation",
+        "semantic_commitment_owner_redefinition",
+        "semantic_event_identity_redefinition",
+        "command_attempt_retry_identity_redefinition",
+        "logical_time_causality_ordering_redefinition",
+        "concurrency_scheduler_semantics_redefinition",
+        "partition_identity_or_migration_semantics_redefinition",
+        "persistence_replay_recovery_semantics_definition",
+        "fidelity_semantics_definition",
+        "performance_budget_or_backpressure_definition",
+        "knowledge_visibility_or_disclosure_doctrine_redefinition",
+        "universal_delivery_guarantee_mandate",
+        "event_sourcing_cqrs_actor_pubsub_or_queue_mandate",
+        "database_message_bus_or_cloud_selection",
+        "native_content_authoring",
+        "canon_promotion",
+        "source_or_corpus_execution",
+        "model_training",
+        "conversion_execution",
+        "live_play_or_gm_behavior",
+        "r3_execution"
       ],
       "entry_condition": "PR2-SCALE accepted.",
       "completion_condition": "Message classes, authority effects, idempotency, causality, ordering, and projection rebuilding boundaries are explicit.",
-      "validation_evidence": [],
+      "validation_evidence": [
+        "PR2-EVENT full local repository suite:9142 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-EVENT git diff --check:clean",
+        "PR2-EVENT exact seven-file activation footprint:PASS",
+        "PR2-EVENT structural authority audit:PASS"
+      ],
       "pull_request": null,
       "branch_head": null,
       "merge_commit": null,
@@ -1249,7 +1283,8 @@
       "downstream_handoff": [
         "PR2-PERSIST",
         "PR2-TEST"
-      ]
+      ],
+      "control_artifact": "docs/doctrine/control/myravant_command_event_message_projection_contract.md"
     },
     {
       "workstream_id": "PR2-PERSIST",
