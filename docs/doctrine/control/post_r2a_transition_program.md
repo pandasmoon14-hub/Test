@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.30`
+**Artifact version:** `0.4.31`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1266,6 +1266,53 @@ target with execution disabled.
 The PR2-PART activation evidence is preserved as historical snapshot evidence at
 the PR `#399` merge commit rather than being rewritten to follow later lifecycle
 state.
+
+### 5.28 PR2-CONC deterministic concurrency and scheduling activation
+
+PR2-PART post-merge closure merged through PR `#400` as merge commit
+`0c24b4dad5e2f8e35b93cfb38632c5d3fb92b96a`.
+
+The owner separately authorized `PR2-CONC` under
+`owner_directive_2026-09-14_pr2_conc_activation` from that exact merged baseline.
+
+The controlling contract is:
+
+`docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md`
+
+PR2-CONC owns only runtime concurrency qualification: independently computable
+work, scheduler nonauthority, physical-versus-authoritative ordering,
+conflict classification, deterministic commitment qualification,
+speculation/recomputation boundaries, worker-count equivalence, and
+cross-partition concurrent-commitment preservation.
+
+It consumes rather than replaces existing doctrine. AFQR-01 retains semantic
+commitment and qualified state/write ownership; AFQR-02 retains command,
+attempt, and retry identity; AFQR-04 retains logical time, causal ordering,
+simultaneity, scheduling, and deterministic resolution groups. PR2-PART
+retains partition identity, responsibility, and migration/cutover semantics.
+
+Thread timing, worker timing, completion timing, message arrival, queue order,
+and wall-clock latency cannot determine authoritative truth merely by occurring
+first. Deterministic concurrency does not erase lawful dice, cards, explicit
+choice, or other separately governed uncertainty; it prevents the runtime
+scheduler from becoming an additional hidden randomizer.
+
+PR2-CONC does not mandate locks, transactions, two-phase commit, consensus,
+sagas, actors, event sourcing, replication, a database, a message bus, a cloud
+provider, runtime code, or production schemas.
+
+PR2-CONC is the only active successor workstream.
+PR2-EVENT remains `blocked` and unauthorized. PR2-PERSIST, PR2-FID, and
+PR2-BP also remain blocked and unauthorized.
+
+The owner-selected pre-R3 sequence remains:
+
+`PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
+
+This activation does not authorize any later step in that sequence.
+
+R3 remains `ready_pending_authorization` against the exact 34-record conformance
+target with execution disabled.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

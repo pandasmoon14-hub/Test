@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.30",
+  "artifact_version": "0.4.31",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1127,30 +1127,62 @@
       "title": "Deterministic concurrency and scheduling",
       "category": "runtime_architecture",
       "purpose": "Define parallelizable computation, deterministic authoritative commitment, ordering, and conflict handling.",
-      "status": "blocked",
+      "status": "active",
       "dependencies": [
         "PR2-SCALE"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-14_pr2_conc_activation",
       "authority_effect": "runtime_concurrency_contract_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "0c24b4dad5e2f8e35b93cfb38632c5d3fb92b96a",
+      "owned_paths": [
+        "docs/decisions/current_decisions_log.md",
+        "docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_conc_deterministic_concurrency_contract.py",
+        "tests/test_pr2_part_post_merge_closure.py"
+      ],
       "prohibited_scope": [
         "thread_timing_defines_truth",
         "worker_timing_defines_truth",
-        "message_arrival_defines_truth"
+        "message_arrival_defines_truth",
+        "runtime_or_production_schema_implementation",
+        "afqr_01_commitment_owner_redefinition",
+        "afqr_02_command_attempt_retry_identity_redefinition",
+        "afqr_04_logical_time_simultaneity_or_resolution_group_redefinition",
+        "partition_identity_or_migration_semantics_redefinition",
+        "event_message_delivery_semantics_definition",
+        "persistence_replay_recovery_semantics_definition",
+        "fidelity_semantics_definition",
+        "performance_budget_or_backpressure_definition",
+        "universal_conflict_resolution_policy",
+        "consensus_lock_transaction_or_replication_algorithm_mandate",
+        "database_message_bus_or_cloud_selection",
+        "native_content_authoring",
+        "canon_promotion",
+        "model_training",
+        "conversion_execution",
+        "live_play_or_gm_behavior",
+        "r3_execution"
       ],
       "entry_condition": "PR2-SCALE accepted.",
       "completion_condition": "Equivalent bounded scenarios can define deterministic outcomes independent of worker scheduling.",
-      "validation_evidence": [],
+      "validation_evidence": [
+        "PR2-CONC full local repository suite:9119 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-CONC git diff --check:clean",
+        "PR2-CONC exact seven-file activation footprint:PASS",
+        "PR2-CONC structural authority audit:PASS"
+      ],
       "pull_request": null,
       "branch_head": null,
       "merge_commit": null,
       "residual_gaps": [],
       "downstream_handoff": [
-        "PR2-TEST"
-      ]
+        "PR2-EVENT"
+      ],
+      "control_artifact": "docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md"
     },
     {
       "workstream_id": "PR2-FID",

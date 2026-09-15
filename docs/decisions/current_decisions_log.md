@@ -5920,3 +5920,31 @@ execution disabled.
 
 The owner-selected sequence `PART -> CONC -> EVENT -> PERSIST -> FID -> BP ->
 R3` remains sequencing intent only; each successor requires separate authority.
+
+## 2026-09-14 decision — PR2-CONC activation
+
+- **Decision ID:** `PR2-CONC-ACTIVATION-001`
+- **Workstream:** `PR2-CONC`
+- **Authority reference:** `owner_directive_2026-09-14_pr2_conc_activation`
+- **Authority effect:** `runtime_concurrency_contract_only`
+- **Starting baseline:** `0c24b4dad5e2f8e35b93cfb38632c5d3fb92b96a`
+- **Control artifact:** `docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md`
+
+PR2-CONC is authorized as the sole active workstream after terminal PR2-PART
+closure.
+
+Its scope is runtime concurrency qualification only. Scheduler timing does not
+define authoritative truth, conflict priority, semantic simultaneity, or world
+order.
+
+This decision does not redefine AFQR-01 commitment, AFQR-02 command/attempt/
+retry identity, AFQR-04 logical time/simultaneity/scheduling, PR2-PART
+partition/migration semantics, event delivery, persistence/recovery, fidelity,
+performance/backpressure, runtime/schema implementation, or technology choice.
+
+PR2-CONC does not activate PR2-EVENT, PR2-PERSIST, PR2-FID, or PR2-BP.
+R3 remains `ready_pending_authorization` against the exact 34-record target
+with execution disabled.
+
+The sequence `PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3` remains
+sequencing intent; every successor requires separate authorization.
