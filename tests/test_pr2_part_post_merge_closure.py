@@ -15,6 +15,7 @@ ACTIVATION_TEST = ROOT / "tests/test_pr2_part_authority_partitioning_contract.py
 PR = 399
 HEAD = "4b3c98328df32d02593f5632603d59c06ebbf879"
 MERGE = "ba992c51d781a37a85da4757c2c00af3e9da1f8e"
+CLOSURE_SNAPSHOT = "0c24b4dad5e2f8e35b93cfb38632c5d3fb92b96a"
 TREE = "de108cccbe0d8018b90be5bfde8e317616e5fea4"
 AUTH = "owner_directive_2026-09-14_pr2_part_post_merge_closure"
 EFFECT = "runtime_partitioning_governance_post_merge_lifecycle_reconciliation_only"
@@ -36,8 +37,12 @@ def read_at(ref, path):
     )
 
 
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
+
+
 def test_part_is_terminal_merged_with_exact_acceptance_evidence():
-    manifest = load(MAN)
+    manifest = load_at(CLOSURE_SNAPSHOT, MAN)
     part = rows(manifest)["PR2-PART"]
     assert manifest["artifact_version"] == "0.4.30"
     assert part["status"] == "merged"
@@ -58,7 +63,7 @@ def test_part_is_terminal_merged_with_exact_acceptance_evidence():
 
 
 def test_closure_activates_no_successor_and_preserves_r3():
-    manifest = load(MAN)
+    manifest = load_at(CLOSURE_SNAPSHOT, MAN)
     by = rows(manifest)
     assert {row["workstream_id"] for row in manifest["workstreams"] if row["status"] == "active"} == set()
     for wid in (
@@ -74,11 +79,11 @@ def test_closure_activates_no_successor_and_preserves_r3():
 
 
 def test_closure_does_not_change_part_contract():
-    assert CONTRACT.read_text(encoding="utf-8") == read_at(MERGE, CONTRACT)
+    assert read_at(CLOSURE_SNAPSHOT, CONTRACT) == read_at(MERGE, CONTRACT)
 
 
 def test_activation_test_is_frozen_against_accepted_merge():
-    text = ACTIVATION_TEST.read_text(encoding="utf-8")
+    text = read_at(CLOSURE_SNAPSHOT, ACTIVATION_TEST)
     assert f'MERGE = "{MERGE}"' in text
     assert "load_at(MERGE, MAN)" in text
     assert "read_at(MERGE, CONTRACT)" in text
@@ -88,8 +93,8 @@ def test_activation_test_is_frozen_against_accepted_merge():
 
 
 def test_program_and_decisions_record_bounded_closure():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(CLOSURE_SNAPSHOT, PROG)
+    decisions = read_at(CLOSURE_SNAPSHOT, DEC)
     assert "**Artifact version:** `0.4.30`" in program
     assert "### 5.27 PR2-PART post-merge closure recording" in program
     assert AUTH in program and EFFECT in program and HEAD in program and MERGE in program and TREE in program
