@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.31`
+**Artifact version:** `0.4.32`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1313,6 +1313,47 @@ This activation does not authorize any later step in that sequence.
 
 R3 remains `ready_pending_authorization` against the exact 34-record conformance
 target with execution disabled.
+
+### 5.29 PR2-CONC post-merge closure recording
+
+PR2-CONC activation merged through PR `#401` with certified branch head
+`684740e41ab3ae10759d6b999c23e8cc6ff9c470` into `main` as merge commit
+`5752de38f432c59f9e603ffd1ef38384e621a407` with merge tree
+`f5cdf3282132537088088ee6aa0592a82354b063`.
+
+The owner separately authorized bounded post-merge lifecycle reconciliation under
+`owner_directive_2026-09-14_pr2_conc_post_merge_closure` with authority effect
+`runtime_concurrency_governance_post_merge_lifecycle_reconciliation_only`.
+
+PR2-CONC is terminal `merged`. This closure records GitHub acceptance only. It
+does not change the substantive deterministic concurrency/scheduling contract,
+expand PR2-CONC authority, implement concurrency infrastructure, redefine
+AFQR-01 commitment, AFQR-02 command/attempt/retry identity, AFQR-04 logical
+time/simultaneity/scheduling, or define EVENT/PERSIST/FID/BP semantics.
+
+Accepted activation evidence includes the full local repository suite
+(`9119 passed, 10 skipped, 2 xfailed, 1 warning`), GitHub Actions CI `#201`
+success, clean `git diff --check`, the exact seven-file activation footprint,
+the PR2-CONC structural authority audit PASS, and the post-evidence focused
+regression (`90 passed`).
+
+No successor is active after PR2-CONC closure.
+PR2-EVENT remains `blocked` and unauthorized.
+PR2-PERSIST, PR2-FID, and PR2-BP also remain `blocked` and unauthorized.
+PR2-AUDIT, PR2-MIG, PR2-TEST, and PR2-IMPL remain blocked.
+
+The owner-selected pre-R3 sequence remains:
+
+`PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
+
+This closure does not itself authorize the next step in that sequence.
+
+R3 remains `ready_pending_authorization` against the exact 34-record conformance
+target with execution disabled.
+
+The PR2-CONC activation evidence is preserved as historical snapshot evidence at
+the PR `#401` merge commit rather than being rewritten to follow later lifecycle
+state.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

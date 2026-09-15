@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -12,6 +13,7 @@ DEC = ROOT / "docs/decisions/current_decisions_log.md"
 PART_CLOSURE_TEST = ROOT / "tests/test_pr2_part_post_merge_closure.py"
 
 BASE = "0c24b4dad5e2f8e35b93cfb38632c5d3fb92b96a"
+MERGE = "5752de38f432c59f9e603ffd1ef38384e621a407"
 AUTH = "owner_directive_2026-09-14_pr2_conc_activation"
 EFFECT = "runtime_concurrency_contract_only"
 CONTROL = "docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md"
@@ -30,12 +32,24 @@ def load(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def read_at(ref, path):
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{path.relative_to(ROOT).as_posix()}"],
+        cwd=ROOT,
+        text=True,
+    )
+
+
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
+
+
 def rows(manifest):
     return {row["workstream_id"]: row for row in manifest["workstreams"]}
 
 
 def test_contract_declares_bounded_concurrency_authority():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     assert "artifact_id: PR2-CONC-DETERMINISTIC-CONCURRENCY-SCHEDULING-001" in text
     assert f"authority_reference: {AUTH}" in text
     assert f"authority_effect: {EFFECT}" in text
@@ -55,7 +69,7 @@ def test_contract_declares_bounded_concurrency_authority():
 
 
 def test_existing_semantic_owners_are_preserved():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for token in (
         "AFQR-01 retains qualified state/write ownership",
         "commitment, recovery, replay",
@@ -70,7 +84,7 @@ def test_existing_semantic_owners_are_preserved():
 
 
 def test_scheduler_and_physical_order_are_nonauthoritative():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for token in (
         "Core concurrency nonauthority law",
         "physical concurrency",
@@ -85,7 +99,7 @@ def test_scheduler_and_physical_order_are_nonauthoritative():
 
 
 def test_determinism_does_not_erase_lawful_randomness_or_choice():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     assert "Determinism means runtime-authority determinism" in text
     for token in (
         "dice, cards",
@@ -98,7 +112,7 @@ def test_determinism_does_not_erase_lawful_randomness_or_choice():
 
 
 def test_independence_conflict_and_commitment_are_bounded():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for token in (
         "Independently computable work",
         "Independence is not permanent commutativity",
@@ -112,7 +126,7 @@ def test_independence_conflict_and_commitment_are_bounded():
 
 
 def test_logical_time_and_simultaneous_groups_are_not_reowned():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for token in (
         "Semantic simultaneity may execute sequentially",
         "Physical concurrency may represent semantic sequence",
@@ -124,7 +138,7 @@ def test_logical_time_and_simultaneous_groups_are_not_reowned():
 
 
 def test_cross_partition_concurrency_consumes_part_without_technology_mandate():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for token in (
         "Cross-partition concurrency consumes PR2-PART",
         "Cross-partition interaction still requires one lawful outcome",
@@ -136,7 +150,7 @@ def test_cross_partition_concurrency_consumes_part_without_technology_mandate():
 
 
 def test_downstream_owners_remain_separate():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(MERGE, CONTRACT)
     for wid in ("PR2-EVENT", "PR2-PERSIST", "PR2-FID", "PR2-BP"):
         assert f"PR2-CONC does not activate {wid}." in text
     assert "PR2-CONC does not:" in text
@@ -145,7 +159,7 @@ def test_downstream_owners_remain_separate():
 
 
 def test_manifest_activates_only_conc_and_preserves_r3():
-    manifest = load(MAN)
+    manifest = load_at(MERGE, MAN)
     by = rows(manifest)
     conc = by["PR2-CONC"]
 
@@ -182,7 +196,7 @@ def test_manifest_activates_only_conc_and_preserves_r3():
 
 
 def test_part_closure_is_frozen_as_historical_snapshot():
-    text = PART_CLOSURE_TEST.read_text(encoding="utf-8")
+    text = read_at(MERGE, PART_CLOSURE_TEST)
     assert f'CLOSURE_SNAPSHOT = "{BASE}"' in text
     assert text.count("load_at(CLOSURE_SNAPSHOT, MAN)") == 2
     assert "read_at(CLOSURE_SNAPSHOT, CONTRACT)" in text
@@ -192,8 +206,8 @@ def test_part_closure_is_frozen_as_historical_snapshot():
 
 
 def test_program_and_decisions_record_conc_only_activation():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(MERGE, PROG)
+    decisions = read_at(MERGE, DEC)
 
     assert "**Artifact version:** `0.4.31`" in program
     assert "### 5.28 PR2-CONC deterministic concurrency and scheduling activation" in program
