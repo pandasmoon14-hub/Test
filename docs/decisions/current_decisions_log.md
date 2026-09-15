@@ -5948,3 +5948,26 @@ with execution disabled.
 
 The sequence `PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3` remains
 sequencing intent; every successor requires separate authorization.
+
+## 2026-09-14 decision — PR2-CONC post-merge closure
+
+- **Decision ID:** `PR2-CONC-POST-MERGE-CLOSURE-001`
+- **Workstream:** `PR2-CONC`
+- **Accepted pull request:** `#401`
+- **Accepted branch head:** `684740e41ab3ae10759d6b999c23e8cc6ff9c470`
+- **Accepted merge commit:** `5752de38f432c59f9e603ffd1ef38384e621a407`
+- **Accepted merge tree:** `f5cdf3282132537088088ee6aa0592a82354b063`
+- **Authority reference:** `owner_directive_2026-09-14_pr2_conc_post_merge_closure`
+- **Authority effect:** `runtime_concurrency_governance_post_merge_lifecycle_reconciliation_only`
+
+PR2-CONC is terminal `merged`. This decision records accepted GitHub lifecycle
+state only and does not alter the substantive deterministic concurrency/scheduling contract.
+
+No successor is activated by the PR2-CONC closure. PR2-EVENT remains blocked
+and unauthorized, as do PR2-PERSIST, PR2-FID, and PR2-BP.
+
+R3 remains `ready_pending_authorization` against the exact 34-record target with
+execution disabled.
+
+The owner-selected sequence `PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
+remains sequencing intent only; each successor requires separate authority.

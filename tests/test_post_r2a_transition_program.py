@@ -147,6 +147,12 @@ PR2_CONC_BASELINE = "0c24b4dad5e2f8e35b93cfb38632c5d3fb92b96a"
 PR2_CONC_AUTHORIZATION = "owner_directive_2026-09-14_pr2_conc_activation"
 PR2_CONC_EFFECT = "runtime_concurrency_contract_only"
 PR2_CONC_CONTRACT = "docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md"
+PR2_CONC_PR = 401
+PR2_CONC_HEAD = "684740e41ab3ae10759d6b999c23e8cc6ff9c470"
+PR2_CONC_MERGE = "5752de38f432c59f9e603ffd1ef38384e621a407"
+PR2_CONC_TREE = "f5cdf3282132537088088ee6aa0592a82354b063"
+PR2_CONC_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-14_pr2_conc_post_merge_closure"
+PR2_CONC_CLOSURE_EFFECT = "runtime_concurrency_governance_post_merge_lifecycle_reconciliation_only"
 PR2_CONC_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_conc_deterministic_concurrency_contract.py', 'tests/test_pr2_part_post_merge_closure.py'}
 PR2_PART_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_authority_partitioning_migration_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_part_authority_partitioning_contract.py', 'tests/test_pr2_scale_post_merge_closure.py'}
 PR2_SCALE_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_scale_runtime_scalability_contract.py', 'tests/test_pr2_simex_post_merge_closure.py'}
@@ -268,7 +274,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.31"
+    assert manifest["artifact_version"] == "0.4.32"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -388,7 +394,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_through_pr2_part_are_merged_and_pr2_conc_is_only_active_successor():
+def test_r2c_through_pr2_conc_are_merged_and_no_successor_is_active():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -397,7 +403,7 @@ def test_r2c_through_pr2_part_are_merged_and_pr2_conc_is_only_active_successor()
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == {"PR2-CONC"}
+    assert active == set()
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -594,16 +600,21 @@ def test_r2c_through_pr2_part_are_merged_and_pr2_conc_is_only_active_successor()
     assert part["post_merge_closure_tree"] == PR2_PART_TREE
 
     conc = by_id["PR2-CONC"]
-    assert conc["status"] == "active"
+    assert conc["status"] == "merged"
     assert conc["authorization_reference"] == PR2_CONC_AUTHORIZATION
     assert conc["authority_effect"] == PR2_CONC_EFFECT
     assert conc["starting_baseline"] == PR2_CONC_BASELINE
     assert conc["control_artifact"] == PR2_CONC_CONTRACT
     assert set(conc["owned_paths"]) == PR2_CONC_OWNED_PATHS
     assert conc["downstream_handoff"] == ["PR2-EVENT"]
-    assert conc["pull_request"] is None
-    assert conc["branch_head"] is None
-    assert conc["merge_commit"] is None
+    assert conc["pull_request"] == PR2_CONC_PR
+    assert conc["branch_head"] == PR2_CONC_HEAD
+    assert conc["merge_commit"] == PR2_CONC_MERGE
+    assert conc["completion_state"] == "merged"
+    assert conc["post_merge_closure_authorization_reference"] == PR2_CONC_CLOSURE_AUTHORIZATION
+    assert conc["post_merge_closure_authority_effect"] == PR2_CONC_CLOSURE_EFFECT
+    assert conc["post_merge_closure_recorded_from"] == PR2_CONC_MERGE
+    assert conc["post_merge_closure_tree"] == PR2_CONC_TREE
 
 def test_post_r2_successor_readiness_does_not_imply_authorization():
     manifest = _load_manifest()
@@ -651,9 +662,10 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
     assert part["post_merge_closure_authorization_reference"] == PR2_PART_CLOSURE_AUTHORIZATION
 
     conc = by_id["PR2-CONC"]
-    assert conc["status"] == "active"
+    assert conc["status"] == "merged"
     assert conc["authorization_reference"] == PR2_CONC_AUTHORIZATION
     assert conc["starting_baseline"] == PR2_CONC_BASELINE
+    assert conc["post_merge_closure_authorization_reference"] == PR2_CONC_CLOSURE_AUTHORIZATION
 
     for workstream_id in POST_R2_READY:
         assert by_id[workstream_id]["status"] == "ready_pending_authorization"
@@ -702,7 +714,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.31`" in program
+    assert "**Artifact version:** `0.4.32`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -812,6 +824,11 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert PR2_CONC_CONTRACT in program
     assert "PR2-CONC is the only active successor workstream." in program
     assert "PR2-EVENT remains `blocked` and unauthorized." in program
+    assert "### 5.29 PR2-CONC post-merge closure recording" in program
+    assert PR2_CONC_CLOSURE_AUTHORIZATION in program
+    assert PR2_CONC_MERGE in program
+    assert PR2_CONC_TREE in program
+    assert "No successor is active after PR2-CONC closure." in program
     assert PR2_ORG_AUTHORIZATION in program
     assert PR2_ORG_BASELINE in program
     assert PR2_ORG_CONTRACT in program
