@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.33`
+**Artifact version:** `0.4.34`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1402,6 +1402,54 @@ target with execution disabled.
 
 Validation evidence is recorded only after the activation candidate is tested;
 activation does not pre-certify itself.
+
+### 5.31 PR2-EVENT post-merge closure recording
+
+PR2-EVENT activation merged through PR `#403` from certified branch head
+`a70cca1310e3a8a70fef40c325c850c69202c6b2` into `main` as merge commit
+`e9a41cc7b144ffab0ca8fa91c4a9b3a9a1a56214` with merge tree
+`201998a6eb39814e75e0bd696886eabd6bd0e66e`.
+
+The owner separately authorized bounded post-merge lifecycle reconciliation under
+`owner_directive_2026-09-15_pr2_event_post_merge_closure` with authority effect
+`runtime_message_projection_governance_post_merge_lifecycle_reconciliation_only`.
+
+PR2-EVENT is terminal `merged`. This closure records accepted GitHub lifecycle
+state only. It does not alter the substantive command/event/message/projection
+contract, expand PR2-EVENT authority, or implement runtime messaging,
+projections, persistence, recovery, replay, fidelity, overload, or backpressure
+infrastructure.
+
+Accepted activation evidence includes the full local repository suite
+(`9142 passed, 10 skipped, 2 xfailed, 1 warning`), GitHub Actions CI `#205`
+success, clean `git diff --check`, the exact seven-file activation footprint,
+and the PR2-EVENT structural authority audit PASS.
+
+AFQR-01 retains semantic commitment, replay/recovery, and receipt ownership.
+AFQR-02 retains command/attempt/retry identity. AFQR-04 retains logical time,
+causality, simultaneity, and scheduling. R2B-CORE retains committed-randomness
+preservation. R2B-CROSS-PHASE retains version/effectivity ownership.
+R2B-CONTINUITY retains continuity and correction boundaries. PR2-PART and
+PR2-CONC retain their accepted partitioning and concurrency boundaries.
+
+No successor is active after PR2-EVENT closure.
+PR2-PERSIST remains `blocked` and unauthorized.
+PR2-FID and PR2-BP also remain `blocked` and unauthorized.
+PR2-AUDIT, PR2-MIG, PR2-TEST, and PR2-IMPL remain blocked.
+
+The owner-selected pre-R3 sequence remains:
+
+`PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
+
+This closure does not authorize PR2-PERSIST or any later step.
+
+R3 remains `ready_pending_authorization` against the exact 34-record conformance
+target with execution disabled. No historical R3 completion is asserted by this
+closure.
+
+The PR2-EVENT activation evidence is preserved as historical snapshot evidence
+at the PR `#403` merge commit rather than being rewritten to follow later
+lifecycle state.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

@@ -157,6 +157,12 @@ PR2_EVENT_BASELINE = "e765d00e57e3a444ecd16078a3390eb49958f5b2"
 PR2_EVENT_AUTHORIZATION = "owner_directive_2026-09-15_pr2_event_activation"
 PR2_EVENT_EFFECT = "runtime_message_contract_only"
 PR2_EVENT_CONTRACT = "docs/doctrine/control/myravant_command_event_message_projection_contract.md"
+PR2_EVENT_PR = 403
+PR2_EVENT_HEAD = "a70cca1310e3a8a70fef40c325c850c69202c6b2"
+PR2_EVENT_MERGE = "e9a41cc7b144ffab0ca8fa91c4a9b3a9a1a56214"
+PR2_EVENT_TREE = "201998a6eb39814e75e0bd696886eabd6bd0e66e"
+PR2_EVENT_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-15_pr2_event_post_merge_closure"
+PR2_EVENT_CLOSURE_EFFECT = "runtime_message_projection_governance_post_merge_lifecycle_reconciliation_only"
 PR2_EVENT_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_command_event_message_projection_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_event_message_projection_contract.py', 'tests/test_pr2_conc_post_merge_closure.py'}
 PR2_CONC_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_conc_deterministic_concurrency_contract.py', 'tests/test_pr2_part_post_merge_closure.py'}
 PR2_PART_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_authority_partitioning_migration_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_part_authority_partitioning_contract.py', 'tests/test_pr2_scale_post_merge_closure.py'}
@@ -278,7 +284,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.33"
+    assert manifest["artifact_version"] == "0.4.34"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -398,7 +404,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_through_pr2_conc_are_merged_and_pr2_event_is_only_active_successor():
+def test_r2c_through_pr2_event_are_merged_and_no_successor_is_active():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -407,7 +413,7 @@ def test_r2c_through_pr2_conc_are_merged_and_pr2_event_is_only_active_successor(
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == {"PR2-EVENT"}
+    assert active == set()
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -621,16 +627,21 @@ def test_r2c_through_pr2_conc_are_merged_and_pr2_event_is_only_active_successor(
     assert conc["post_merge_closure_tree"] == PR2_CONC_TREE
 
     event = by_id["PR2-EVENT"]
-    assert event["status"] == "active"
+    assert event["status"] == "merged"
     assert event["authorization_reference"] == PR2_EVENT_AUTHORIZATION
     assert event["authority_effect"] == PR2_EVENT_EFFECT
     assert event["starting_baseline"] == PR2_EVENT_BASELINE
     assert event["control_artifact"] == PR2_EVENT_CONTRACT
     assert set(event["owned_paths"]) == PR2_EVENT_OWNED_PATHS
     assert event["downstream_handoff"] == ["PR2-PERSIST", "PR2-TEST"]
-    assert event["pull_request"] is None
-    assert event["branch_head"] is None
-    assert event["merge_commit"] is None
+    assert event["pull_request"] == PR2_EVENT_PR
+    assert event["branch_head"] == PR2_EVENT_HEAD
+    assert event["merge_commit"] == PR2_EVENT_MERGE
+    assert event["completion_state"] == "merged"
+    assert event["post_merge_closure_authorization_reference"] == PR2_EVENT_CLOSURE_AUTHORIZATION
+    assert event["post_merge_closure_authority_effect"] == PR2_EVENT_CLOSURE_EFFECT
+    assert event["post_merge_closure_recorded_from"] == PR2_EVENT_MERGE
+    assert event["post_merge_closure_tree"] == PR2_EVENT_TREE
 
 def test_post_r2_successor_readiness_does_not_imply_authorization():
     manifest = _load_manifest()
@@ -684,10 +695,11 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
     assert conc["post_merge_closure_authorization_reference"] == PR2_CONC_CLOSURE_AUTHORIZATION
 
     event = by_id["PR2-EVENT"]
-    assert event["status"] == "active"
+    assert event["status"] == "merged"
     assert event["authorization_reference"] == PR2_EVENT_AUTHORIZATION
     assert event["starting_baseline"] == PR2_EVENT_BASELINE
     assert event["control_artifact"] == PR2_EVENT_CONTRACT
+    assert event["post_merge_closure_authorization_reference"] == PR2_EVENT_CLOSURE_AUTHORIZATION
 
     for workstream_id in POST_R2_READY:
         assert by_id[workstream_id]["status"] == "ready_pending_authorization"
@@ -736,7 +748,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.33`" in program
+    assert "**Artifact version:** `0.4.34`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -857,6 +869,13 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert PR2_EVENT_CONTRACT in program
     assert "PR2-EVENT is the only active successor workstream." in program
     assert "PR2-PERSIST remains `blocked` and unauthorized." in program
+    assert "### 5.31 PR2-EVENT post-merge closure recording" in program
+    assert PR2_EVENT_CLOSURE_AUTHORIZATION in program
+    assert PR2_EVENT_HEAD in program
+    assert PR2_EVENT_MERGE in program
+    assert PR2_EVENT_TREE in program
+    assert "PR2-EVENT is terminal `merged`." in program
+    assert "No successor is active after PR2-EVENT closure." in program
     assert PR2_ORG_AUTHORIZATION in program
     assert PR2_ORG_BASELINE in program
     assert PR2_ORG_CONTRACT in program
