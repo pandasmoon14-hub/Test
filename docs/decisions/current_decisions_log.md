@@ -5971,3 +5971,33 @@ execution disabled.
 
 The owner-selected sequence `PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
 remains sequencing intent only; each successor requires separate authority.
+
+## 2026-09-15 decision — PR2-EVENT activation
+
+- **Decision ID:** `PR2-EVENT-ACTIVATION-001`
+- **Workstream:** `PR2-EVENT`
+- **Authority reference:** `owner_directive_2026-09-15_pr2_event_activation`
+- **Authority effect:** `runtime_message_contract_only`
+- **Starting baseline:** `e765d00e57e3a444ecd16078a3390eb49958f5b2`
+- **Control artifact:** `docs/doctrine/control/myravant_command_event_message_projection_contract.md`
+
+PR2-EVENT is authorized as the sole active workstream after terminal PR2-CONC
+closure.
+
+Its scope is runtime command/event/message/projection separation and delivery
+qualification only. Transport delivery, publication, acknowledgement, arrival
+order, projection state, notification, and redelivery do not define semantic
+truth merely by occurring.
+
+This decision does not redefine AFQR-01 commitment/replay/receipts, AFQR-02
+command/attempt/retry identity, AFQR-04 logical time/causality/scheduling,
+PR2-PART partition/migration semantics, PR2-CONC scheduler/concurrency semantics,
+PR2-PERSIST durable reconstruction, PR2-FID fidelity, PR2-BP overload/backpressure,
+runtime/schema implementation, or technology choice.
+
+PR2-EVENT does not activate PR2-PERSIST, PR2-FID, or PR2-BP. R3 remains
+`ready_pending_authorization` against the exact 34-record target with execution
+disabled.
+
+The sequence `PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3` remains
+sequencing intent; every successor requires separate authorization.
