@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.33",
+  "artifact_version": "0.4.34",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1225,7 +1225,7 @@
       "title": "Command event message and projection separation",
       "category": "runtime_architecture",
       "purpose": "Define distinctions among requests, proposals, committed facts, deltas, notifications, and projections.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-SCALE"
       ],
@@ -1274,17 +1274,23 @@
         "PR2-EVENT full local repository suite:9142 passed, 10 skipped, 2 xfailed, 1 warning",
         "PR2-EVENT git diff --check:clean",
         "PR2-EVENT exact seven-file activation footprint:PASS",
-        "PR2-EVENT structural authority audit:PASS"
+        "PR2-EVENT structural authority audit:PASS",
+        "PR2-EVENT GitHub Actions CI #205:success"
       ],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "pull_request": 403,
+      "branch_head": "a70cca1310e3a8a70fef40c325c850c69202c6b2",
+      "merge_commit": "e9a41cc7b144ffab0ca8fa91c4a9b3a9a1a56214",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-PERSIST",
         "PR2-TEST"
       ],
-      "control_artifact": "docs/doctrine/control/myravant_command_event_message_projection_contract.md"
+      "control_artifact": "docs/doctrine/control/myravant_command_event_message_projection_contract.md",
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-15_pr2_event_post_merge_closure",
+      "post_merge_closure_authority_effect": "runtime_message_projection_governance_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "e9a41cc7b144ffab0ca8fa91c4a9b3a9a1a56214",
+      "post_merge_closure_tree": "201998a6eb39814e75e0bd696886eabd6bd0e66e"
     },
     {
       "workstream_id": "PR2-PERSIST",

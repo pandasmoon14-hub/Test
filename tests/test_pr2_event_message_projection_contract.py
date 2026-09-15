@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,10 +16,23 @@ BASE = "e765d00e57e3a444ecd16078a3390eb49958f5b2"
 AUTH = "owner_directive_2026-09-15_pr2_event_activation"
 EFFECT = "runtime_message_contract_only"
 ARTIFACT = "PR2-EVENT-COMMAND-EVENT-MESSAGE-PROJECTION-001"
+MERGE = "e9a41cc7b144ffab0ca8fa91c4a9b3a9a1a56214"
+
+
+def read_at(ref, path):
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{path.relative_to(ROOT).as_posix()}"],
+        cwd=ROOT,
+        text=True,
+    )
+
+
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
 
 
 def load_manifest():
-    return json.loads(MAN.read_text(encoding="utf-8"))
+    return load_at(MERGE, MAN)
 
 
 def rows(manifest):
@@ -26,7 +40,7 @@ def rows(manifest):
 
 
 def contract_text():
-    return CONTRACT.read_text(encoding="utf-8")
+    return read_at(MERGE, CONTRACT)
 
 
 def test_event_activation_identity_and_exact_single_active_workstream():
@@ -57,7 +71,7 @@ def test_event_owned_surface_is_bounded_and_predecessor_closure_is_frozen():
         "tests/test_pr2_event_message_projection_contract.py",
         "tests/test_pr2_conc_post_merge_closure.py",
     }
-    closure = CONC_CLOSURE_TEST.read_text(encoding="utf-8")
+    closure = read_at(MERGE, CONC_CLOSURE_TEST)
     assert f'ACCEPTED_MERGE = "{BASE}"' in closure
     assert "load_at(ACCEPTED_MERGE, MAN)" in closure
     assert "read_at(ACCEPTED_MERGE, PROG)" in closure
@@ -228,8 +242,8 @@ def test_corpus_pressure_outliers_and_anti_collapse_are_explicit():
 
 
 def test_program_and_decisions_record_bounded_event_activation():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(MERGE, PROG)
+    decisions = read_at(MERGE, DEC)
     assert "**Artifact version:** `0.4.33`" in program
     assert "### 5.30 PR2-EVENT command/event/message/projection activation" in program
     assert AUTH in program and EFFECT in program and BASE in program
