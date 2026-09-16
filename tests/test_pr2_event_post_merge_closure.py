@@ -18,6 +18,7 @@ MERGE = "e9a41cc7b144ffab0ca8fa91c4a9b3a9a1a56214"
 TREE = "201998a6eb39814e75e0bd696886eabd6bd0e66e"
 AUTH = "owner_directive_2026-09-15_pr2_event_post_merge_closure"
 EFFECT = "runtime_message_projection_governance_post_merge_lifecycle_reconciliation_only"
+ACCEPTED_MERGE = "56a5cf065bc37588ee6b62b3a51f1576d0168d6e"
 
 
 def load(path):
@@ -36,8 +37,12 @@ def read_at(ref, path):
     )
 
 
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
+
+
 def test_event_is_terminal_merged_with_exact_acceptance_evidence():
-    manifest = load(MAN)
+    manifest = load_at(ACCEPTED_MERGE, MAN)
     event = rows(manifest)["PR2-EVENT"]
 
     assert manifest["artifact_version"] == "0.4.34"
@@ -60,7 +65,7 @@ def test_event_is_terminal_merged_with_exact_acceptance_evidence():
 
 
 def test_closure_activates_no_successor_and_preserves_r3():
-    manifest = load(MAN)
+    manifest = load_at(ACCEPTED_MERGE, MAN)
     by = rows(manifest)
 
     assert {
@@ -88,11 +93,11 @@ def test_closure_activates_no_successor_and_preserves_r3():
 
 
 def test_closure_does_not_change_event_contract():
-    assert CONTRACT.read_text(encoding="utf-8") == read_at(MERGE, CONTRACT)
+    assert read_at(ACCEPTED_MERGE, CONTRACT) == read_at(MERGE, CONTRACT)
 
 
 def test_activation_test_is_frozen_against_accepted_merge():
-    text = ACTIVATION_TEST.read_text(encoding="utf-8")
+    text = read_at(ACCEPTED_MERGE, ACTIVATION_TEST)
 
     assert f'MERGE = "{MERGE}"' in text
     assert "load_at(MERGE, MAN)" in text
@@ -103,8 +108,8 @@ def test_activation_test_is_frozen_against_accepted_merge():
 
 
 def test_program_and_decisions_record_bounded_closure():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(ACCEPTED_MERGE, PROG)
+    decisions = read_at(ACCEPTED_MERGE, DEC)
 
     assert "**Artifact version:** `0.4.34`" in program
     assert "### 5.31 PR2-EVENT post-merge closure recording" in program

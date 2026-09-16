@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.34",
+  "artifact_version": "0.4.35",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1297,7 +1297,7 @@
       "title": "Persistence snapshot replay recovery and reconstruction",
       "category": "runtime_architecture",
       "purpose": "Define durable reconstruction semantics after relevant R2 doctrine and scalability contracts are settled.",
-      "status": "blocked",
+      "status": "active",
       "dependencies": [
         "PR2-SCALE",
         "PR2-R2B-C",
@@ -1305,25 +1305,61 @@
         "PR2-R2B-N"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-15_pr2_persist_activation",
       "authority_effect": "runtime_persistence_contract_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "56a5cf065bc37588ee6b62b3a51f1576d0168d6e",
+      "owned_paths": [
+        "docs/decisions/current_decisions_log.md",
+        "docs/doctrine/control/myravant_persistence_snapshot_replay_recovery_contract.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_persist_persistence_recovery_contract.py",
+        "tests/test_pr2_event_post_merge_closure.py"
+      ],
       "prohibited_scope": [
         "storage_acquires_semantic_ownership",
         "snapshot_acquires_semantic_ownership",
-        "replay_acquires_semantic_ownership"
+        "replay_acquires_semantic_ownership",
+        "semantic_commitment_owner_redefinition",
+        "afqr_01_replay_or_recovery_owner_redefinition",
+        "afqr_02_command_attempt_retry_identity_redefinition",
+        "afqr_04_logical_time_or_causality_redefinition",
+        "timeline_branch_or_canonicality_redefinition",
+        "correction_compensation_retcon_or_supersession_redefinition",
+        "version_applicability_or_effectivity_redefinition",
+        "committed_randomness_reroll_or_replacement",
+        "event_message_or_projection_semantics_redefinition",
+        "fidelity_or_aggregation_semantics_definition",
+        "performance_budget_or_backpressure_definition",
+        "runtime_or_production_schema_implementation",
+        "database_storage_engine_event_store_or_wal_mandate",
+        "consensus_quorum_replication_or_cloud_mandate",
+        "native_content_authoring",
+        "canon_promotion",
+        "source_or_corpus_execution",
+        "model_training",
+        "conversion_execution",
+        "live_play_or_gm_behavior",
+        "r3_execution"
       ],
-      "entry_condition": "Relevant R2 doctrine and PR2-SCALE are accepted.",
+      "entry_condition": "Accepted PR2-EVENT post-merge closure plus relevant R2 doctrine and PR2-SCALE.",
       "completion_condition": "Persistence, snapshot, recovery, and replay can reconstruct authoritative state without acquiring semantic ownership.",
-      "validation_evidence": [],
+      "validation_evidence": [
+        "PR2-PERSIST full local repository suite:9156 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-PERSIST git diff --check:clean",
+        "PR2-PERSIST exact seven-file activation footprint:PASS",
+        "PR2-PERSIST structural authority audit:PASS"
+      ],
       "pull_request": null,
       "branch_head": null,
       "merge_commit": null,
       "residual_gaps": [],
       "downstream_handoff": [
+        "PR2-FID",
         "PR2-TEST"
-      ]
+      ],
+      "control_artifact": "docs/doctrine/control/myravant_persistence_snapshot_replay_recovery_contract.md"
     },
     {
       "workstream_id": "PR2-BP",

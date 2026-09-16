@@ -6027,3 +6027,37 @@ executed or completed.
 
 The owner-selected sequence `PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
 remains sequencing intent only; each successor requires separate authority.
+
+## 2026-09-15 decision — PR2-PERSIST activation
+
+- Decision ID: `PR2-PERSIST-ACTIVATION-001`
+- Workstream: `PR2-PERSIST`
+- Authority reference: `owner_directive_2026-09-15_pr2_persist_activation`
+- Authority effect: `runtime_persistence_contract_only`
+- Starting baseline: `56a5cf065bc37588ee6b62b3a51f1576d0168d6e`
+- Control artifact: `docs/doctrine/control/myravant_persistence_snapshot_replay_recovery_contract.md`
+
+PR2-PERSIST is authorized as the sole active runtime successor after
+accepted PR2-EVENT post-merge closure.
+
+Its authority is limited to persistence, snapshot, reconstruction, and
+recovery architecture. Storage, snapshots, backups, replicas, journals,
+materialized state, and replay machinery do not acquire semantic ownership
+merely because they preserve or reconstruct authoritative information.
+
+AFQR-01 commitment/replay/recovery semantics, AFQR-02 command identity,
+AFQR-04 logical time, R2B-CORE committed-randomness preservation,
+R2B-CROSS-PHASE version applicability, R2B-CONTINUITY
+timeline/branch/correction semantics, and PR2-EVENT message/projection
+semantics remain separately owned.
+
+This decision does not authorize runtime implementation, production
+schemas, database or storage technology selection, event sourcing,
+write-ahead logs, consensus, quorums, cloud dependency, PR2-FID, PR2-BP,
+or R3 execution.
+
+R3 remains `ready_pending_authorization` against the exact 34-record target
+with execution disabled.
+
+The sequence `PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3` remains
+sequencing intent. Every later step requires separate authorization.
