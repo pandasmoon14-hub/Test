@@ -17,6 +17,7 @@ R2C_VALIDATED_HEAD = "949575f42f8b4ba1e01963013b35376d49433faf"
 R2C_PUBLICATION_HEAD = "ea47efef19e1552f40fee7b7658797b59bd35b7f"
 R2C_PR = 379
 R2C_MERGE = "843fc89f3769a8e6323fa7b683d3805a9edfc142"
+R3_PRE_ACTIVATION_BASELINE = "a92e47bb2e0d5ffd853da2c1bbf6425efc8c659c"
 
 REVIEW = ROOT / "docs/doctrine/reviews/afqr_r2c_formal_completion_review.md"
 MANIFEST = ROOT / "docs/doctrine/control/post_r2a_transition_manifest.yaml"
@@ -63,6 +64,13 @@ def git_bytes(ref: str, path: str) -> bytes:
 
 
 def load(path: Path) -> dict:
+    if path == MANIFEST:
+        return json.loads(
+            git_bytes(
+                R3_PRE_ACTIVATION_BASELINE,
+                MANIFEST.relative_to(ROOT).as_posix(),
+            )
+        )
     return json.loads(path.read_text(encoding="utf-8"))
 
 

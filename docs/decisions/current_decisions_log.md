@@ -6217,3 +6217,66 @@ target with execution disabled.
 
 Runtime and production-schema implementation remain unauthorized pending
 separate owner authorization.
+
+## 2026-09-16 decision — R3 initial conformance execution
+
+- **Decision ID:** `R3-INITIAL-CONFORMANCE-EXECUTION-001`
+- **Authorization reference:** `owner_directive_2026-09-16_r3_initial_conformance`
+- **Authority effect:** `r3_conformance_review_only`
+- **Starting baseline:** `a92e47bb2e0d5ffd853da2c1bbf6425efc8c659c`
+- **Exact target:** `34` frozen `r3_conformance` records
+- **Review artifact:** `docs/doctrine/reviews/r3_initial_conformance_review.yaml`
+
+R3 has assessed every and only the exact 34-record frozen target.
+
+All 34 target blobs remain unchanged from their R2A evidence.
+
+Disposition totals are:
+
+- 15 conformant as nonauthoritative surfaces;
+- 17 conformant at current scope with remediation/qualification required
+  before authoritative or general runtime promotion;
+- 2 direct nonconformances requiring remediation.
+
+The direct nonconformances are
+`R2A-DISPOSITION-RS-0028` and `R2A-DISPOSITION-RS-0030`.
+
+R3 review authority does not authorize their repair.
+
+Existing downstream owners remain the route for audit, bounded migration,
+evaluation, and eventual implementation handoff.
+
+R4 activation is not authorized by this decision.
+
+PR2-AUDIT, PR2-MIG, PR2-TEST, PR2-IMPL, runtime implementation, and
+production-schema implementation remain separately unauthorized.
+
+R3 remains active pending executable validation/publication of this review.
+
+## 2026-09-16 decision — R3 initial conformance validation and completion
+
+- **Decision ID:** `R3-INITIAL-CONFORMANCE-VALIDATION-001`
+- **Starting baseline:** `a92e47bb2e0d5ffd853da2c1bbf6425efc8c659c`
+- **Target:** exact `34` frozen `r3_conformance` records
+- **Focused validation:** `39 passed`
+- **Full repository suite:**
+  `9211 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Review result:** validated complete with nonconformances routed
+
+R3 is complete as a bounded conformance review.
+
+Completion does not clear runtime promotion.
+
+Fifteen candidates are conformant as nonauthoritative surfaces,
+seventeen require qualification/remediation before promotion, and two
+are direct nonconformances.
+
+`R2A-DISPOSITION-RS-0028` and `R2A-DISPOSITION-RS-0030` remain direct
+promotion-blocking nonconformances.
+
+Nineteen candidates are promotion-blocking in total.
+
+R4-R6 remain blocked.
+
+PR2-AUDIT, PR2-MIG, PR2-TEST, PR2-IMPL, runtime implementation, and
+production-schema implementation remain separately unauthorized.

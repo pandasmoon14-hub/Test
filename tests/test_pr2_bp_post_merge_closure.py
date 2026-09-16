@@ -19,9 +19,12 @@ MERGE = "7ef7b6df93936f3dbedefe1dcc362f50fb4f482f"
 TREE = "b76f92c664fa51fe25a2fe5df8923cef7efc1611"
 AUTH = "owner_directive_2026-09-16_pr2_bp_post_merge_closure"
 EFFECT = "runtime_performance_governance_post_merge_lifecycle_reconciliation_only"
+ACCEPTED_MERGE = "a92e47bb2e0d5ffd853da2c1bbf6425efc8c659c"
 
 
 def load(path):
+    if path == MAN:
+        return json.loads(read_at(ACCEPTED_MERGE, path))
     return json.loads(path.read_text(encoding="utf-8"))
 
 
@@ -103,13 +106,13 @@ def test_closure_activates_no_successor_and_preserves_r3():
 
 def test_closure_does_not_change_bp_contract():
     assert (
-        CONTRACT.read_text(encoding="utf-8")
+        read_at(ACCEPTED_MERGE, CONTRACT)
         == read_at(MERGE, CONTRACT)
     )
 
 
 def test_activation_test_is_frozen_at_accepted_merge():
-    text = ACTIVATION_TEST.read_text(encoding="utf-8")
+    text = read_at(ACCEPTED_MERGE, ACTIVATION_TEST)
 
     assert f'ACCEPTED_MERGE = "{MERGE}"' in text
     assert "load_at(ACCEPTED_MERGE, MAN)" in text
@@ -120,8 +123,8 @@ def test_activation_test_is_frozen_at_accepted_merge():
 
 
 def test_program_and_decision_record_bounded_closure():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(ACCEPTED_MERGE, PROG)
+    decisions = read_at(ACCEPTED_MERGE, DEC)
 
     assert "**Artifact version:** `0.4.40`" in program
     assert "### 5.37 PR2-BP post-merge closure recording" in program

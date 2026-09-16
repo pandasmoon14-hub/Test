@@ -197,6 +197,10 @@ PR2_BP_MERGE = "7ef7b6df93936f3dbedefe1dcc362f50fb4f482f"
 PR2_BP_TREE = "b76f92c664fa51fe25a2fe5df8923cef7efc1611"
 PR2_BP_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-16_pr2_bp_post_merge_closure"
 PR2_BP_CLOSURE_EFFECT = "runtime_performance_governance_post_merge_lifecycle_reconciliation_only"
+R3_AUTHORIZATION = "owner_directive_2026-09-16_r3_initial_conformance"
+R3_EFFECT = "r3_conformance_review_only"
+R3_BASELINE = "a92e47bb2e0d5ffd853da2c1bbf6425efc8c659c"
+R3_REVIEW = "docs/doctrine/reviews/r3_initial_conformance_review.yaml"
 PR2_CONC_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_conc_deterministic_concurrency_contract.py', 'tests/test_pr2_part_post_merge_closure.py'}
 PR2_PART_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_authority_partitioning_migration_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_part_authority_partitioning_contract.py', 'tests/test_pr2_scale_post_merge_closure.py'}
 PR2_SCALE_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_scale_runtime_scalability_contract.py', 'tests/test_pr2_simex_post_merge_closure.py'}
@@ -213,7 +217,7 @@ EXPECTED_R2_GATES = {
     "R2A": "complete",
     "R2B": "complete",
     "R2C": "complete",
-    "R3": "ready_pending_authorization",
+    "R3": "complete",
     "R4-R6": "blocked",
     "RT-002G": "unauthorized",
     "temporary_evidence_deletion": "unauthorized",
@@ -314,7 +318,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.40"
+    assert manifest["artifact_version"] == "0.4.42"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -349,23 +353,77 @@ def test_r2c_gate_state_and_r2b_completion_are_exact():
     assert manifest["recommended_r2b_sequence"] == EXPECTED_R2B_SEQUENCE
 
 
-def test_r3_target_is_ready_but_not_authorized():
+def test_r3_target_is_validated_complete_and_exact():
     manifest = _load_manifest()
     target = manifest["r3_conformance_target"]
 
-    assert target["status"] == "ready_pending_authorization"
+    assert manifest["r2_gate_state"]["R3"] == "complete"
+    assert manifest["r2_gate_state"]["R4-R6"] == "blocked"
+
+    assert target["status"] == "validated"
     assert target["selector"] == "pressure_route == r3_conformance"
     assert target["candidate_count"] == 34
-    assert target["execution_authorized"] is False
-    assert target["source_index"] == (
-        "docs/doctrine/reviews/r2a/dispositions_runtime_schema/index.yaml"
+    assert target["assessed_candidate_count"] == 34
+    assert target["execution_authorized"] is True
+    assert target["authorization_reference"] == R3_AUTHORIZATION
+    assert target["authority_effect"] == R3_EFFECT
+    assert target["starting_baseline"] == R3_BASELINE
+    assert target["review_artifact"] == R3_REVIEW
+    assert target["review_state"] == "validated_complete"
+    assert target["completion_state"] == (
+        "validated_complete_with_nonconformances_routed"
     )
+
+    assert target["source_index"] == (
+        "docs/doctrine/reviews/r2a/"
+        "dispositions_runtime_schema/index.yaml"
+    )
+
     assert set(target["excluded_pressure_routes"]) == {
         "r4_substrate",
         "later_gate",
         "none",
     }
 
+    assert target["current_blob_state_counts"] == {
+        "unchanged_since_r2a": 34,
+    }
+
+    assert target["outcome_counts"] == {
+        "conformant_as_nonauthoritative_surface": 15,
+        "conformant_with_required_remediation_before_promotion": 17,
+        "nonconformant_requires_remediation": 2,
+    }
+
+    assert target["direct_nonconformance_candidate_ids"] == [
+        "R2A-DISPOSITION-RS-0028",
+        "R2A-DISPOSITION-RS-0030",
+    ]
+
+    assert target["promotion_blocking_candidate_count"] == 19
+    assert target["runtime_promotion_clear"] is False
+    assert target["r4_activation_authorized"] is False
+    assert target["downstream_remediation_authorized"] is False
+
+    assert set(target["validation_evidence"]) == {
+        "R3 focused conformance validation:39 passed",
+        (
+            "R3 full local repository suite:"
+            "9211 passed, 10 skipped, 2 xfailed, 1 warning"
+        ),
+        "R3 git diff --check:clean",
+        "R3 exact eight-file review footprint:PASS",
+        "R3 runtime/schema noninterference audit:PASS",
+    }
+
+    program = PROGRAM_PATH.read_text(encoding="utf-8")
+
+    assert (
+        "### 5.39 R3 initial conformance validation and completion"
+        in program
+    )
+    assert "R3 gate state is now `complete`." in program
+    assert "`runtime_promotion_clear=false`" in program
 
 def test_status_vocabulary_is_bounded():
     manifest = _load_manifest()
@@ -864,7 +922,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.40`" in program
+    assert "**Artifact version:** `0.4.42`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program

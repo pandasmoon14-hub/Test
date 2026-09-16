@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.40",
+  "artifact_version": "0.4.42",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -33,7 +33,7 @@
     "R2A": "complete",
     "R2B": "complete",
     "R2C": "complete",
-    "R3": "ready_pending_authorization",
+    "R3": "complete",
     "R4-R6": "blocked",
     "RT-002G": "unauthorized",
     "temporary_evidence_deletion": "unauthorized"
@@ -46,7 +46,7 @@
     "R2B-CROSS-PHASE": "merged"
   },
   "r3_conformance_target": {
-    "status": "ready_pending_authorization",
+    "status": "validated",
     "source_index": "docs/doctrine/reviews/r2a/dispositions_runtime_schema/index.yaml",
     "selector": "pressure_route == r3_conformance",
     "candidate_count": 34,
@@ -65,7 +65,37 @@
       "later_gate",
       "none"
     ],
-    "execution_authorized": false
+    "execution_authorized": true,
+    "authorization_reference": "owner_directive_2026-09-16_r3_initial_conformance",
+    "authority_effect": "r3_conformance_review_only",
+    "starting_baseline": "a92e47bb2e0d5ffd853da2c1bbf6425efc8c659c",
+    "review_artifact": "docs/doctrine/reviews/r3_initial_conformance_review.yaml",
+    "review_state": "validated_complete",
+    "assessed_candidate_count": 34,
+    "current_blob_state_counts": {
+      "unchanged_since_r2a": 34
+    },
+    "outcome_counts": {
+      "conformant_as_nonauthoritative_surface": 15,
+      "conformant_with_required_remediation_before_promotion": 17,
+      "nonconformant_requires_remediation": 2
+    },
+    "direct_nonconformance_candidate_ids": [
+      "R2A-DISPOSITION-RS-0028",
+      "R2A-DISPOSITION-RS-0030"
+    ],
+    "promotion_blocking_candidate_count": 19,
+    "runtime_promotion_clear": false,
+    "r4_activation_authorized": false,
+    "downstream_remediation_authorized": false,
+    "validation_evidence": [
+      "R3 focused conformance validation:39 passed",
+      "R3 full local repository suite:9211 passed, 10 skipped, 2 xfailed, 1 warning",
+      "R3 git diff --check:clean",
+      "R3 exact eight-file review footprint:PASS",
+      "R3 runtime/schema noninterference audit:PASS"
+    ],
+    "completion_state": "validated_complete_with_nonconformances_routed"
   },
   "recommended_r2b_sequence": [
     "R2B-CORE",
