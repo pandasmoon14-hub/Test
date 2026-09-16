@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.40`
+**Artifact version:** `0.4.42`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1824,6 +1824,138 @@ does not authorize or execute R3.
 
 Runtime implementation, production-schema implementation, PR2-TEST,
 PR2-AUDIT, PR2-MIG, and PR2-IMPL remain separately unauthorized.
+
+
+### 5.38 R3 initial conformance execution and review
+
+The owner explicitly authorized bounded R3 initial conformance under:
+
+`owner_directive_2026-09-16_r3_initial_conformance`
+
+Authority effect:
+
+`r3_conformance_review_only`
+
+Starting baseline:
+
+`a92e47bb2e0d5ffd853da2c1bbf6425efc8c659c`
+
+R3 executed against every and only the exact 34 frozen R2A-6
+runtime/schema disposition records whose `pressure_route` is
+`r3_conformance`.
+
+The read-only target reconstruction proved:
+
+- all 34 candidate paths still exist at the R3 baseline;
+- all 34 Git blobs are byte-identical to their frozen R2A blobs;
+- all 34 retain R2A authority effect
+  `implementation_presupposition_only`;
+- all 34 retain R2A disposition
+  `internal_nonauthoritative_pressure_only`;
+- no `r4_substrate`, `later_gate`, or `none` record entered R3.
+
+The substantive R3 review records:
+
+- 15 `conformant_as_nonauthoritative_surface`;
+- 17 `conformant_with_required_remediation_before_promotion`;
+- 2 `nonconformant_requires_remediation`.
+
+The two direct nonconformances are:
+
+- `R2A-DISPOSITION-RS-0028` —
+  `src/astra_runtime/domain/object_lever_event_commit_state_delta_path.py`;
+- `R2A-DISPOSITION-RS-0030` —
+  `src/astra_runtime/domain/object_lever_replay_audit_check.py`.
+
+RS-0028 currently derives a `committed` object/lever event/state-delta
+result from its preview path without consuming an AFQR-01-qualified
+semantic commitment transition/receipt.
+
+RS-0030 then treats that RT-002E result as an already committed basis for
+replay/audit verification and therefore inherits the invalid commitment
+premise.
+
+R3 does not repair either runtime artifact. Runtime implementation and
+production-schema implementation remain outside R3 authority.
+
+The accepted downstream route is through existing project owners rather
+than a new remediation subsystem:
+
+`PR2-AUDIT -> PR2-MIG -> PR2-TEST -> PR2-IMPL`
+
+Each remains separately authorization-gated.
+
+R3 review completion is distinct from runtime-promotion readiness.
+Nineteen candidates carry promotion-blocking qualifications or remediation
+obligations, including the two direct nonconformances.
+
+At this execution-recording point, R3 is `active` while this completed substantive review awaits
+executable validation and publication.
+
+`R4-R6` remain blocked.
+
+`PR2-AUDIT`, `PR2-MIG`, `PR2-TEST`, and `PR2-IMPL` remain blocked and
+unauthorized.
+
+No runtime file, production schema, gameplay doctrine, semantic owner,
+canon surface, live-play behavior, or R4 workstream is created or modified
+by this review.
+
+Review artifact:
+
+`docs/doctrine/reviews/r3_initial_conformance_review.yaml`
+
+
+### 5.39 R3 initial conformance validation and completion
+
+R3 initial conformance completed executable validation against the
+exact 34-record frozen target.
+
+Validation evidence:
+
+- focused conformance regression: `39 passed`;
+- full repository suite:
+  `9211 passed, 10 skipped, 2 xfailed, 1 warning`;
+- `git diff --check`: clean;
+- exact eight-file R3 review footprint: PASS;
+- runtime/schema noninterference audit: PASS.
+
+R3 gate state is now `complete`.
+
+R3 completion means the bounded conformance review was fully executed,
+dispositioned, validated, and recorded. It does not mean every reviewed
+runtime surface is cleared for authoritative promotion.
+
+Final R3 outcomes remain:
+
+- 15 conformant as nonauthoritative surfaces;
+- 17 conformant at present scope but requiring qualification or
+  remediation before promotion;
+- 2 direct nonconformances requiring remediation.
+
+The direct nonconformances remain:
+
+- `R2A-DISPOSITION-RS-0028`;
+- `R2A-DISPOSITION-RS-0030`.
+
+Nineteen candidates remain promotion-blocking in total.
+
+Therefore:
+
+- `runtime_promotion_clear=false`;
+- `R4-R6` remain blocked;
+- R4 activation is not authorized;
+- PR2-AUDIT is not authorized;
+- PR2-MIG is not authorized;
+- PR2-TEST is not authorized;
+- PR2-IMPL is not authorized;
+- runtime implementation is not authorized;
+- production-schema implementation is not authorized.
+
+The findings remain routed to existing downstream owners and require
+separate owner authorization before remediation or implementation.
+
+No runtime or production-schema implementation was modified by R3.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
