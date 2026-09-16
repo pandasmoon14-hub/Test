@@ -19,6 +19,7 @@ MERGE = "c077abf5a90e896ef535d4956c49803cbf8163b6"
 TREE = "766d61cb47101f15eefb14db88607f3473c006e3"
 AUTH = "owner_directive_2026-09-16_pr2_fid_post_merge_closure"
 EFFECT = "runtime_fidelity_governance_post_merge_lifecycle_reconciliation_only"
+ACCEPTED_MERGE = "59520af5f2a68a5979091c00bb632f0cb5d2600e"
 
 
 def load(path):
@@ -44,8 +45,12 @@ def read_at(ref, path):
     )
 
 
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
+
+
 def test_fid_is_terminal_merged_with_exact_acceptance_evidence():
-    manifest = load(MAN)
+    manifest = load_at(ACCEPTED_MERGE, MAN)
     fid = rows(manifest)["PR2-FID"]
 
     assert manifest["artifact_version"] == "0.4.38"
@@ -82,7 +87,7 @@ def test_fid_is_terminal_merged_with_exact_acceptance_evidence():
 
 
 def test_closure_activates_no_successor_and_preserves_r3():
-    manifest = load(MAN)
+    manifest = load_at(ACCEPTED_MERGE, MAN)
     by = rows(manifest)
 
     assert {
@@ -120,13 +125,13 @@ def test_closure_activates_no_successor_and_preserves_r3():
 
 def test_closure_does_not_change_fid_contract():
     assert (
-        CONTRACT.read_text(encoding="utf-8")
+        read_at(ACCEPTED_MERGE, CONTRACT)
         == read_at(MERGE, CONTRACT)
     )
 
 
 def test_activation_test_is_frozen_at_accepted_merge():
-    text = ACTIVATION_TEST.read_text(encoding="utf-8")
+    text = read_at(ACCEPTED_MERGE, ACTIVATION_TEST)
 
     assert f'ACCEPTED_MERGE = "{MERGE}"' in text
     assert "load_at(ACCEPTED_MERGE, MAN)" in text
@@ -137,8 +142,8 @@ def test_activation_test_is_frozen_at_accepted_merge():
 
 
 def test_program_and_decision_record_bounded_closure():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(ACCEPTED_MERGE, PROG)
+    decisions = read_at(ACCEPTED_MERGE, DEC)
 
     assert "**Artifact version:** `0.4.38`" in program
     assert (
@@ -179,7 +184,7 @@ def test_program_and_decision_record_bounded_closure():
 
 
 def test_closure_preserves_fid_nonauthority_boundaries():
-    text = CONTRACT.read_text(encoding="utf-8")
+    text = read_at(ACCEPTED_MERGE, CONTRACT)
 
     flat = " ".join(text.split())
 
