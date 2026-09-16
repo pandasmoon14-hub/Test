@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.39",
+  "artifact_version": "0.4.40",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1429,7 +1429,7 @@
       "title": "Performance budgets overload and backpressure",
       "category": "runtime_architecture",
       "purpose": "Define bounded workload behavior, prioritization, overload degradation, deferred work, and hard-authority protections.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-SCALE"
       ],
@@ -1492,16 +1492,22 @@
         "PR2-BP full local repository suite:9196 passed, 10 skipped, 2 xfailed, 1 warning",
         "PR2-BP git diff --check:clean",
         "PR2-BP exact seven-file activation footprint:PASS",
-        "PR2-BP structural authority audit:PASS"
+        "PR2-BP structural authority audit:PASS",
+        "PR2-BP GitHub Actions CI #217:success"
       ],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "pull_request": 409,
+      "branch_head": "001a46a543fc83bd6032ea0605cc28d7627ca0d9",
+      "merge_commit": "7ef7b6df93936f3dbedefe1dcc362f50fb4f482f",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-TEST"
       ],
-      "control_artifact": "docs/doctrine/control/myravant_performance_budget_overload_backpressure_contract.md"
+      "control_artifact": "docs/doctrine/control/myravant_performance_budget_overload_backpressure_contract.md",
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-16_pr2_bp_post_merge_closure",
+      "post_merge_closure_authority_effect": "runtime_performance_governance_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "7ef7b6df93936f3dbedefe1dcc362f50fb4f482f",
+      "post_merge_closure_tree": "b76f92c664fa51fe25a2fe5df8923cef7efc1611"
     },
     {
       "workstream_id": "PR2-AUDIT",

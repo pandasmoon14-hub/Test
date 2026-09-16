@@ -6191,3 +6191,29 @@ R3 remains `ready_pending_authorization` against the exact 34-record target
 with execution disabled.
 
 Implementation remains unauthorized pending separate owner authorization.
+
+## 2026-09-16 decision — PR2-BP post-merge closure
+
+- **Decision ID:** `PR2-BP-POST-MERGE-CLOSURE-001`
+- **Workstream:** `PR2-BP`
+- **Accepted activation PR:** `#409`
+- **Accepted activation head:** `001a46a543fc83bd6032ea0605cc28d7627ca0d9`
+- **Accepted merge:** `7ef7b6df93936f3dbedefe1dcc362f50fb4f482f`
+- **Accepted merge tree:** `b76f92c664fa51fe25a2fe5df8923cef7efc1611`
+- **Accepted CI:** `#217` success
+- **Closure authority reference:** `owner_directive_2026-09-16_pr2_bp_post_merge_closure`
+- **Closure authority effect:** `runtime_performance_governance_post_merge_lifecycle_reconciliation_only`
+
+PR2-BP is terminal `merged`.
+
+The substantive BP contract is unchanged by closure.
+
+No successor is activated by the PR2-BP closure.
+
+PR2-TEST remains blocked and unauthorized.
+
+R3 remains `ready_pending_authorization` against the exact 34-record
+target with execution disabled.
+
+Runtime and production-schema implementation remain unauthorized pending
+separate owner authorization.

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,10 +16,27 @@ FID_CLOSURE = ROOT / "tests/test_pr2_fid_post_merge_closure.py"
 BASE = "59520af5f2a68a5979091c00bb632f0cb5d2600e"
 AUTH = "owner_directive_2026-09-16_pr2_bp_activation"
 EFFECT = "runtime_performance_contract_only"
+ACCEPTED_MERGE = "7ef7b6df93936f3dbedefe1dcc362f50fb4f482f"
+
+
+def read_at(ref, path):
+    return subprocess.check_output(
+        [
+            "git",
+            "show",
+            f"{ref}:{path.relative_to(ROOT).as_posix()}",
+        ],
+        cwd=ROOT,
+        text=True,
+    )
+
+
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
 
 
 def manifest():
-    return json.loads(MAN.read_text(encoding="utf-8"))
+    return load_at(ACCEPTED_MERGE, MAN)
 
 
 def rows(data):
@@ -29,7 +47,7 @@ def rows(data):
 
 
 def contract_text():
-    return CONTRACT.read_text(encoding="utf-8")
+    return read_at(ACCEPTED_MERGE, CONTRACT)
 
 
 def flat_contract():
@@ -169,7 +187,7 @@ def test_r3_and_implementation_remain_separate():
 
 
 def test_fid_closure_is_frozen_at_accepted_merge():
-    text = FID_CLOSURE.read_text(encoding="utf-8")
+    text = read_at(ACCEPTED_MERGE, FID_CLOSURE)
 
     assert f'ACCEPTED_MERGE = "{BASE}"' in text
     assert "load_at(ACCEPTED_MERGE, MAN)" in text
@@ -180,8 +198,8 @@ def test_fid_closure_is_frozen_at_accepted_merge():
 
 
 def test_program_and_decisions_record_bounded_bp_activation():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(ACCEPTED_MERGE, PROG)
+    decisions = read_at(ACCEPTED_MERGE, DEC)
 
     assert "**Artifact version:** `0.4.39`" in program
     assert (

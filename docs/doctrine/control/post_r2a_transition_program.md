@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.39`
+**Artifact version:** `0.4.40`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1786,6 +1786,44 @@ implementation, production-schema implementation, or live-play behavior.
 
 Validation evidence is recorded only after the activation candidate is
 actually tested.
+
+
+### 5.37 PR2-BP post-merge closure recording
+
+PR2-BP activation PR `#409` was accepted with:
+
+- activation head `001a46a543fc83bd6032ea0605cc28d7627ca0d9`;
+- merge commit `7ef7b6df93936f3dbedefe1dcc362f50fb4f482f`;
+- merge tree `b76f92c664fa51fe25a2fe5df8923cef7efc1611`;
+- GitHub Actions CI `#217` successful on Linux and Windows.
+
+Post-merge lifecycle reconciliation is authorized under
+`owner_directive_2026-09-16_pr2_bp_post_merge_closure` with authority effect `runtime_performance_governance_post_merge_lifecycle_reconciliation_only`.
+
+PR2-BP is terminal `merged`.
+
+The accepted substantive control artifact remains:
+
+`docs/doctrine/control/myravant_performance_budget_overload_backpressure_contract.md`
+
+This closure does not modify that contract.
+
+No successor is active after PR2-BP closure.
+
+`PR2-TEST` remains `blocked` and unauthorized.
+
+`R3` remains `ready_pending_authorization` against the exact
+`34`-record conformance target with execution disabled.
+
+The runtime-architecture sequence through BP is now closed:
+
+`PART -> CONC -> EVENT -> PERSIST -> FID -> BP`
+
+The next selected boundary is R3 initial conformance, but this closure
+does not authorize or execute R3.
+
+Runtime implementation, production-schema implementation, PR2-TEST,
+PR2-AUDIT, PR2-MIG, and PR2-IMPL remain separately unauthorized.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
