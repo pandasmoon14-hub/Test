@@ -6159,3 +6159,35 @@ The sequence
 `PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
 remains sequencing intent only. PR2-BP and every later workstream require
 separate owner authority.
+
+## 2026-09-16 decision — PR2-BP activation
+
+- **Decision ID:** `PR2-BP-ACTIVATION-001`
+- **Workstream:** `PR2-BP`
+- **Authority reference:** `owner_directive_2026-09-16_pr2_bp_activation`
+- **Authority effect:** `runtime_performance_contract_only`
+- **Starting baseline:** `59520af5f2a68a5979091c00bb632f0cb5d2600e`
+- **Control artifact:** `docs/doctrine/control/myravant_performance_budget_overload_backpressure_contract.md`
+
+PR2-BP is authorized as the sole active runtime successor after accepted
+PR2-FID post-merge closure.
+
+Its authority is limited to performance-budget semantics, workload
+envelopes, overload behavior, bounded buffering, operational admission
+pressure, backpressure, work prioritization, lawful degradation, deferred
+work, hotspot pressure, and overload recovery.
+
+Performance does not acquire authority over commitment, time, identity,
+causality, ordering, persistence, fidelity, knowledge, sensing, version
+applicability, randomness, canon, or gameplay legality.
+
+Numeric thresholds must remain attributable to measured workload and
+environment context. No universal production threshold is established by
+this activation.
+
+PR2-TEST remains blocked and unauthorized.
+
+R3 remains `ready_pending_authorization` against the exact 34-record target
+with execution disabled.
+
+Implementation remains unauthorized pending separate owner authorization.

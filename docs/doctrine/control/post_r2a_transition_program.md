@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.38`
+**Artifact version:** `0.4.39`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1718,6 +1718,74 @@ conformance target with execution disabled.
 The PR2-FID activation evidence is preserved as historical snapshot
 evidence at the PR `#407` accepted merge rather than being rewritten to
 follow later lifecycle state.
+
+
+### 5.36 PR2-BP performance budgets, overload, and backpressure activation
+
+PR2-FID post-merge closure was accepted through PR `#408`, with accepted
+closure merge `59520af5f2a68a5979091c00bb632f0cb5d2600e`.
+
+The owner separately authorized bounded PR2-BP activation under
+`owner_directive_2026-09-16_pr2_bp_activation` with authority effect `runtime_performance_contract_only` from that exact accepted
+baseline.
+
+The controlling artifact is:
+
+`docs/doctrine/control/myravant_performance_budget_overload_backpressure_contract.md`
+
+PR2-BP is the only active runtime successor workstream.
+
+PR2-BP governs workload-envelope discipline, performance-budget semantics,
+bounded buffering, overload behavior, operational admission pressure,
+backpressure, prioritization of operational work, lawful degradation,
+deferred work, hotspot pressure, and overload recovery.
+
+Performance remains operational rather than semantic authority.
+
+Numeric budgets must retain their measured workload and environment
+context. This activation does not invent universal production thresholds.
+
+Queue position, physical completion order, worker availability, wall-clock
+delay, or service priority do not become world truth, logical time,
+commitment order, or gameplay value.
+
+A saturated path may reject work before an existing owner treats it as
+accepted, defer work, backpressure its producer, degrade optional work,
+invoke an already-lawful cheaper fidelity mode, fail safely, or escalate.
+
+Overload may not silently discard work whose disappearance would change
+authoritative meaning.
+
+PR2-FID retains authority over whether a cheaper fidelity mode is lawful.
+PR2-BP may request such a mode but cannot force an illegal transition.
+
+PR2-CONC retains authoritative ordering.
+PR2-EVENT retains command/event/message/projection distinctions.
+PR2-PERSIST retains replay and recovery semantics.
+AFQR-04 retains logical time.
+Existing identity, knowledge, sensing, version, randomness, relation, and
+commitment owners remain unchanged.
+
+Operational backpressure exposed to clients must not leak protected hidden
+information.
+
+Local/offline execution remains first-class. No cloud, queue, scheduler,
+autoscaler, database, broker, or AI-provider technology is selected.
+
+PR2-TEST remains blocked and unauthorized.
+
+R3 remains `ready_pending_authorization` against the exact 34-record
+conformance target with execution disabled.
+
+The owner-selected sequence remains:
+
+`PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
+
+This activation does not authorize PR2-BP closure, PR2-TEST, R3, runtime
+implementation, production-schema implementation, or live-play behavior.
+
+Validation evidence is recorded only after the activation candidate is
+actually tested.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
