@@ -169,6 +169,12 @@ PR2_PERSIST_AUTHORIZATION = "owner_directive_2026-09-15_pr2_persist_activation"
 PR2_PERSIST_EFFECT = "runtime_persistence_contract_only"
 PR2_PERSIST_CONTRACT = "docs/doctrine/control/myravant_persistence_snapshot_replay_recovery_contract.md"
 PR2_PERSIST_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_persistence_snapshot_replay_recovery_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_persist_persistence_recovery_contract.py', 'tests/test_pr2_event_post_merge_closure.py'}
+PR2_PERSIST_PR = 405
+PR2_PERSIST_HEAD = "814476c63d5ee65701f1abfff19db5b347c1dd05"
+PR2_PERSIST_MERGE = "e53e64f92fe2639d68c96bfa70825c6f6ec39f03"
+PR2_PERSIST_TREE = "9171db95438dfc75460ed7c340f3be5d84813825"
+PR2_PERSIST_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-15_pr2_persist_post_merge_closure"
+PR2_PERSIST_CLOSURE_EFFECT = "runtime_persistence_governance_post_merge_lifecycle_reconciliation_only"
 PR2_CONC_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_conc_deterministic_concurrency_contract.py', 'tests/test_pr2_part_post_merge_closure.py'}
 PR2_PART_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_authority_partitioning_migration_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_part_authority_partitioning_contract.py', 'tests/test_pr2_scale_post_merge_closure.py'}
 PR2_SCALE_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_scale_runtime_scalability_contract.py', 'tests/test_pr2_simex_post_merge_closure.py'}
@@ -288,7 +294,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.35"
+    assert manifest["artifact_version"] == "0.4.36"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -408,7 +414,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_through_pr2_event_are_merged_and_pr2_persist_is_only_active_successor():
+def test_r2c_through_pr2_persist_are_merged_and_no_successor_is_active():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -417,7 +423,7 @@ def test_r2c_through_pr2_event_are_merged_and_pr2_persist_is_only_active_success
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == {"PR2-PERSIST"}
+    assert active == set()
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -648,16 +654,22 @@ def test_r2c_through_pr2_event_are_merged_and_pr2_persist_is_only_active_success
     assert event["post_merge_closure_tree"] == PR2_EVENT_TREE
 
     persist = by_id["PR2-PERSIST"]
-    assert persist["status"] == "active"
+    assert persist["status"] == "merged"
     assert persist["authorization_reference"] == PR2_PERSIST_AUTHORIZATION
     assert persist["authority_effect"] == PR2_PERSIST_EFFECT
     assert persist["starting_baseline"] == PR2_PERSIST_BASELINE
     assert persist["control_artifact"] == PR2_PERSIST_CONTRACT
     assert set(persist["owned_paths"]) == PR2_PERSIST_OWNED_PATHS
     assert persist["downstream_handoff"] == ["PR2-FID", "PR2-TEST"]
-    assert persist["pull_request"] is None
-    assert persist["branch_head"] is None
-    assert persist["merge_commit"] is None
+    assert persist["pull_request"] == PR2_PERSIST_PR
+    assert persist["branch_head"] == PR2_PERSIST_HEAD
+    assert persist["merge_commit"] == PR2_PERSIST_MERGE
+    assert persist["completion_state"] == "merged"
+    assert persist["post_merge_closure_authorization_reference"] == PR2_PERSIST_CLOSURE_AUTHORIZATION
+    assert persist["post_merge_closure_authority_effect"] == PR2_PERSIST_CLOSURE_EFFECT
+    assert persist["post_merge_closure_recorded_from"] == PR2_PERSIST_MERGE
+    assert persist["post_merge_closure_tree"] == PR2_PERSIST_TREE
+
 
 def test_post_r2_successor_readiness_does_not_imply_authorization():
     manifest = _load_manifest()
@@ -718,10 +730,11 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
     assert event["post_merge_closure_authorization_reference"] == PR2_EVENT_CLOSURE_AUTHORIZATION
 
     persist = by_id["PR2-PERSIST"]
-    assert persist["status"] == "active"
+    assert persist["status"] == "merged"
     assert persist["authorization_reference"] == PR2_PERSIST_AUTHORIZATION
     assert persist["starting_baseline"] == PR2_PERSIST_BASELINE
     assert persist["control_artifact"] == PR2_PERSIST_CONTRACT
+    assert persist["post_merge_closure_authorization_reference"] == PR2_PERSIST_CLOSURE_AUTHORIZATION
 
     for workstream_id in POST_R2_READY:
         assert by_id[workstream_id]["status"] == "ready_pending_authorization"
@@ -770,7 +783,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.35`" in program
+    assert "**Artifact version:** `0.4.36`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -905,6 +918,13 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert "PR2-PERSIST is the only active runtime successor workstream." in program
     assert "PR2-FID remains `blocked` and unauthorized." in program
     assert "PR2-BP remains `blocked` and unauthorized." in program
+    assert "### 5.33 PR2-PERSIST post-merge closure recording" in program
+    assert PR2_PERSIST_CLOSURE_AUTHORIZATION in program
+    assert PR2_PERSIST_HEAD in program
+    assert PR2_PERSIST_MERGE in program
+    assert PR2_PERSIST_TREE in program
+    assert "PR2-PERSIST is terminal `merged`." in program
+    assert "No successor is active after PR2-PERSIST closure." in program
     assert PR2_ORG_AUTHORIZATION in program
     assert PR2_ORG_BASELINE in program
     assert PR2_ORG_CONTRACT in program

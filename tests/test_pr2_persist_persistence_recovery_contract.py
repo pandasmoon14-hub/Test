@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,10 +16,23 @@ EVENT_CLOSURE = ROOT / "tests/test_pr2_event_post_merge_closure.py"
 BASE = "56a5cf065bc37588ee6b62b3a51f1576d0168d6e"
 AUTH = "owner_directive_2026-09-15_pr2_persist_activation"
 EFFECT = "runtime_persistence_contract_only"
+MERGE = "e53e64f92fe2639d68c96bfa70825c6f6ec39f03"
+
+
+def read_at(ref, path):
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{path.relative_to(ROOT).as_posix()}"],
+        cwd=ROOT,
+        text=True,
+    )
+
+
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
 
 
 def load_manifest():
-    return json.loads(MAN.read_text(encoding="utf-8"))
+    return load_at(MERGE, MAN)
 
 
 def rows(data):
@@ -26,7 +40,7 @@ def rows(data):
 
 
 def contract_text():
-    return CONTRACT.read_text(encoding="utf-8")
+    return read_at(MERGE, CONTRACT)
 
 
 def test_persist_is_only_active_workstream():
@@ -126,7 +140,7 @@ def test_persistence_remains_technology_neutral_and_offline_capable():
 
 
 def test_event_closure_is_frozen_at_accepted_merge():
-    text = EVENT_CLOSURE.read_text(encoding="utf-8")
+    text = read_at(MERGE, EVENT_CLOSURE)
 
     assert f'ACCEPTED_MERGE = "{BASE}"' in text
     assert "load_at(ACCEPTED_MERGE, MAN)" in text
@@ -136,8 +150,8 @@ def test_event_closure_is_frozen_at_accepted_merge():
 
 
 def test_program_and_decision_record_bounded_activation():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(MERGE, PROG)
+    decisions = read_at(MERGE, DEC)
 
     assert "**Artifact version:** `0.4.35`" in program
     assert "### 5.32 PR2-PERSIST persistence/recovery activation" in program

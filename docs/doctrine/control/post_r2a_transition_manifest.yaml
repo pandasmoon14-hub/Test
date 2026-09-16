@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.35",
+  "artifact_version": "0.4.36",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1297,7 +1297,7 @@
       "title": "Persistence snapshot replay recovery and reconstruction",
       "category": "runtime_architecture",
       "purpose": "Define durable reconstruction semantics after relevant R2 doctrine and scalability contracts are settled.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-SCALE",
         "PR2-R2B-C",
@@ -1349,17 +1349,23 @@
         "PR2-PERSIST full local repository suite:9156 passed, 10 skipped, 2 xfailed, 1 warning",
         "PR2-PERSIST git diff --check:clean",
         "PR2-PERSIST exact seven-file activation footprint:PASS",
-        "PR2-PERSIST structural authority audit:PASS"
+        "PR2-PERSIST structural authority audit:PASS",
+        "PR2-PERSIST GitHub Actions CI #209:success"
       ],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "pull_request": 405,
+      "branch_head": "814476c63d5ee65701f1abfff19db5b347c1dd05",
+      "merge_commit": "e53e64f92fe2639d68c96bfa70825c6f6ec39f03",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-FID",
         "PR2-TEST"
       ],
-      "control_artifact": "docs/doctrine/control/myravant_persistence_snapshot_replay_recovery_contract.md"
+      "control_artifact": "docs/doctrine/control/myravant_persistence_snapshot_replay_recovery_contract.md",
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-15_pr2_persist_post_merge_closure",
+      "post_merge_closure_authority_effect": "runtime_persistence_governance_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "e53e64f92fe2639d68c96bfa70825c6f6ec39f03",
+      "post_merge_closure_tree": "9171db95438dfc75460ed7c340f3be5d84813825"
     },
     {
       "workstream_id": "PR2-BP",
