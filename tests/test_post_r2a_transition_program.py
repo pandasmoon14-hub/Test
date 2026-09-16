@@ -180,6 +180,12 @@ PR2_FID_AUTHORIZATION = "owner_directive_2026-09-15_pr2_fid_activation"
 PR2_FID_EFFECT = "runtime_fidelity_contract_only"
 PR2_FID_CONTRACT = "docs/doctrine/control/myravant_relevance_fidelity_aggregation_reconstitution_contract.md"
 PR2_FID_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_relevance_fidelity_aggregation_reconstitution_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_fid_relevance_fidelity_contract.py', 'tests/test_pr2_persist_post_merge_closure.py'}
+PR2_FID_PR = 407
+PR2_FID_HEAD = "6a3fd4de79fb421fc03352b311c1168faa71255a"
+PR2_FID_MERGE = "c077abf5a90e896ef535d4956c49803cbf8163b6"
+PR2_FID_TREE = "766d61cb47101f15eefb14db88607f3473c006e3"
+PR2_FID_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-16_pr2_fid_post_merge_closure"
+PR2_FID_CLOSURE_EFFECT = "runtime_fidelity_governance_post_merge_lifecycle_reconciliation_only"
 PR2_CONC_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_conc_deterministic_concurrency_contract.py', 'tests/test_pr2_part_post_merge_closure.py'}
 PR2_PART_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_authority_partitioning_migration_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_part_authority_partitioning_contract.py', 'tests/test_pr2_scale_post_merge_closure.py'}
 PR2_SCALE_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_scale_runtime_scalability_contract.py', 'tests/test_pr2_simex_post_merge_closure.py'}
@@ -298,7 +304,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.37"
+    assert manifest["artifact_version"] == "0.4.38"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -418,7 +424,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_through_pr2_persist_are_merged_and_pr2_fid_is_only_active_successor():
+def test_r2c_through_pr2_fid_are_merged_and_no_successor_is_active():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -427,7 +433,7 @@ def test_r2c_through_pr2_persist_are_merged_and_pr2_fid_is_only_active_successor
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == {"PR2-FID"}
+    assert active == set()
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -675,16 +681,22 @@ def test_r2c_through_pr2_persist_are_merged_and_pr2_fid_is_only_active_successor
     assert persist["post_merge_closure_tree"] == PR2_PERSIST_TREE
 
     fid = by_id["PR2-FID"]
-    assert fid["status"] == "active"
+    assert fid["status"] == "merged"
     assert fid["authorization_reference"] == PR2_FID_AUTHORIZATION
     assert fid["authority_effect"] == PR2_FID_EFFECT
     assert fid["starting_baseline"] == PR2_FID_BASELINE
     assert fid["control_artifact"] == PR2_FID_CONTRACT
     assert set(fid["owned_paths"]) == PR2_FID_OWNED_PATHS
     assert fid["downstream_handoff"] == ["PR2-BP", "PR2-TEST"]
-    assert fid["pull_request"] is None
-    assert fid["branch_head"] is None
-    assert fid["merge_commit"] is None
+    assert fid["pull_request"] == PR2_FID_PR
+    assert fid["branch_head"] == PR2_FID_HEAD
+    assert fid["merge_commit"] == PR2_FID_MERGE
+    assert fid["completion_state"] == "merged"
+    assert fid["post_merge_closure_authorization_reference"] == PR2_FID_CLOSURE_AUTHORIZATION
+    assert fid["post_merge_closure_authority_effect"] == PR2_FID_CLOSURE_EFFECT
+    assert fid["post_merge_closure_recorded_from"] == PR2_FID_MERGE
+    assert fid["post_merge_closure_tree"] == PR2_FID_TREE
+
 
 
 def test_post_r2_successor_readiness_does_not_imply_authorization():
@@ -753,10 +765,11 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
     assert persist["post_merge_closure_authorization_reference"] == PR2_PERSIST_CLOSURE_AUTHORIZATION
 
     fid = by_id["PR2-FID"]
-    assert fid["status"] == "active"
+    assert fid["status"] == "merged"
     assert fid["authorization_reference"] == PR2_FID_AUTHORIZATION
     assert fid["starting_baseline"] == PR2_FID_BASELINE
     assert fid["control_artifact"] == PR2_FID_CONTRACT
+    assert fid["post_merge_closure_authorization_reference"] == PR2_FID_CLOSURE_AUTHORIZATION
 
     for workstream_id in POST_R2_READY:
         assert by_id[workstream_id]["status"] == "ready_pending_authorization"
@@ -805,7 +818,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.37`" in program
+    assert "**Artifact version:** `0.4.38`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -953,6 +966,13 @@ def test_program_explicitly_preserves_successor_authorization_boundaries():
     assert PR2_FID_CONTRACT in program
     assert "PR2-FID is the only active runtime successor workstream." in program
     assert "PR2-BP remains `blocked` and unauthorized." in program
+    assert "### 5.35 PR2-FID post-merge closure recording" in program
+    assert PR2_FID_CLOSURE_AUTHORIZATION in program
+    assert PR2_FID_HEAD in program
+    assert PR2_FID_MERGE in program
+    assert PR2_FID_TREE in program
+    assert "PR2-FID is terminal `merged`." in program
+    assert "No successor is active after PR2-FID closure." in program
     assert PR2_ORG_AUTHORIZATION in program
     assert PR2_ORG_BASELINE in program
     assert PR2_ORG_CONTRACT in program

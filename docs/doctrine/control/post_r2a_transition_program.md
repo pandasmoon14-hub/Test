@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.37`
+**Artifact version:** `0.4.38`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1641,6 +1641,83 @@ conformance target with execution disabled.
 
 Validation evidence is recorded only after the activation candidate is
 tested; activation does not pre-certify itself.
+
+
+### 5.35 PR2-FID post-merge closure recording
+
+PR2-FID activation merged through PR `#407` from certified branch head
+`6a3fd4de79fb421fc03352b311c1168faa71255a` into `main` as merge commit
+`c077abf5a90e896ef535d4956c49803cbf8163b6` with merge tree
+`766d61cb47101f15eefb14db88607f3473c006e3`.
+
+The owner separately authorized bounded post-merge lifecycle
+reconciliation under `owner_directive_2026-09-16_pr2_fid_post_merge_closure` with authority effect
+`runtime_fidelity_governance_post_merge_lifecycle_reconciliation_only`.
+
+PR2-FID is terminal `merged`.
+
+This closure records accepted GitHub lifecycle state only. It does not
+alter the substantive relevance, fidelity, aggregation, reconstitution,
+materialization-boundary, or background/foreground reconciliation
+contract.
+
+Accepted activation evidence includes the full local repository suite
+(`9175 passed, 10 skipped, 2 xfailed, 1 warning`), GitHub Actions CI
+`#213` success, clean `git diff --check`, the exact seven-file activation
+footprint, and the PR2-FID structural authority audit PASS.
+
+Relevance remains multidimensional and scoped. Camera distance, player
+proximity, visibility, and render presence do not become authority.
+
+Fidelity remains simulation resolution rather than truth, identity,
+commitment, canon, or permission rank.
+
+Lower fidelity may omit currently represented detail but may not erase
+committed facts. Reconstitution may restore detail supported by retained
+authoritative basis but may not invent committed history. Previously
+unresolved detail remains subject to separately lawful materialization.
+
+AFQR-01 retains commitment, replay, and recovery authority.
+AFQR-04 retains logical time and causality.
+AFQR-08 retains identity and continuity.
+AFQR-09 retains governed relations and dependencies.
+AFQR-10 retains truth, knowledge, belief, memory, uncertainty, and
+projection semantics.
+AFQR-20 retains sensing and detection.
+R2B-CORE retains committed-randomness preservation.
+R2B-CROSS-PHASE retains version identity and applicability.
+R2B-CONTINUITY retains timeline, branch, canonicality, and correction
+distinctions.
+PR2-PART retains partition semantics.
+PR2-CONC retains concurrency and commitment ordering.
+PR2-EVENT retains event/message/projection semantics.
+PR2-PERSIST retains durable reconstruction machinery.
+
+PR2-BP retains performance budgets, overload, degradation, prioritization,
+and backpressure. Performance pressure does not retroactively change the
+accepted PR2-FID semantic boundary.
+
+No successor is active after PR2-FID closure.
+
+PR2-BP remains `blocked` and unauthorized.
+
+PR2-TEST remains blocked and unauthorized.
+
+PR2-AUDIT, PR2-MIG, and PR2-IMPL remain blocked.
+
+The owner-selected pre-R3 sequence remains:
+
+`PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
+
+This closure does not authorize PR2-BP, PR2-TEST, R3, runtime
+implementation, or production-schema implementation.
+
+R3 remains `ready_pending_authorization` against the exact 34-record
+conformance target with execution disabled.
+
+The PR2-FID activation evidence is preserved as historical snapshot
+evidence at the PR `#407` accepted merge rather than being rewritten to
+follow later lifecycle state.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

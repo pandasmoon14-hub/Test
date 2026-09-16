@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,10 +16,27 @@ PERSIST_CLOSURE = ROOT / "tests/test_pr2_persist_post_merge_closure.py"
 BASE = "bc79bc629f3cc6bff220c8e71c37d9df515b9f8c"
 AUTH = "owner_directive_2026-09-15_pr2_fid_activation"
 EFFECT = "runtime_fidelity_contract_only"
+ACCEPTED_MERGE = "c077abf5a90e896ef535d4956c49803cbf8163b6"
+
+
+def read_at(ref, path):
+    return subprocess.check_output(
+        [
+            "git",
+            "show",
+            f"{ref}:{path.relative_to(ROOT).as_posix()}",
+        ],
+        cwd=ROOT,
+        text=True,
+    )
+
+
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
 
 
 def load_manifest():
-    return json.loads(MAN.read_text(encoding="utf-8"))
+    return load_at(ACCEPTED_MERGE, MAN)
 
 
 def rows(data):
@@ -29,7 +47,7 @@ def rows(data):
 
 
 def contract_text():
-    return CONTRACT.read_text(encoding="utf-8")
+    return read_at(ACCEPTED_MERGE, CONTRACT)
 
 
 def test_fid_is_only_active_workstream():
@@ -200,7 +218,7 @@ def test_fidelity_cycle_equivalence_and_topology_separation():
 
 
 def test_persist_closure_is_frozen_at_accepted_merge():
-    text = PERSIST_CLOSURE.read_text(encoding="utf-8")
+    text = read_at(ACCEPTED_MERGE, PERSIST_CLOSURE)
 
     assert f'ACCEPTED_MERGE = "{BASE}"' in text
     assert "load_at(ACCEPTED_MERGE, MAN)" in text
@@ -211,8 +229,8 @@ def test_persist_closure_is_frozen_at_accepted_merge():
 
 
 def test_program_and_decisions_record_bounded_fid_activation():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(ACCEPTED_MERGE, PROG)
+    decisions = read_at(ACCEPTED_MERGE, DEC)
 
     assert "**Artifact version:** `0.4.37`" in program
     assert (
