@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.34`
+**Artifact version:** `0.4.35`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1450,6 +1450,61 @@ closure.
 The PR2-EVENT activation evidence is preserved as historical snapshot evidence
 at the PR `#403` merge commit rather than being rewritten to follow later
 lifecycle state.
+
+
+### 5.32 PR2-PERSIST persistence/recovery activation
+
+PR2-EVENT post-merge closure was accepted through PR `#404`, with
+accepted closure merge `56a5cf065bc37588ee6b62b3a51f1576d0168d6e`.
+
+The owner separately authorized bounded PR2-PERSIST activation under
+`owner_directive_2026-09-15_pr2_persist_activation` with authority effect `runtime_persistence_contract_only` from that exact accepted
+baseline.
+
+The controlling artifact is:
+
+`docs/doctrine/control/myravant_persistence_snapshot_replay_recovery_contract.md`
+
+PR2-PERSIST is the only active runtime successor workstream.
+
+Its scope is durable representation and reconstruction architecture:
+snapshot qualification, reconstruction-basis attribution, replay/recovery
+machinery nonauthority, crash-window handling, corruption and
+missing-basis behavior, backup/replica nonauthority, compaction
+correctness, and local/offline continuity.
+
+AFQR-01 retains commitment, recovery, replay, receipts, and committed
+audit semantics. AFQR-02 retains command/attempt/retry identity and
+durable command progress. AFQR-04 retains logical time and causality.
+R2B-CORE retains proposal nonauthority and committed-randomness
+preservation. R2B-CROSS-PHASE retains historical version pinning and
+applicability. R2B-CONTINUITY retains timeline, branch, and correction
+semantics. PR2-EVENT retains message and projection semantics.
+
+Storage durability is not semantic ownership. Snapshot materialization is
+not canonicality. Replay reconstruction is not semantic re-execution.
+Recovery is not correction. Replica majority is not semantic authority.
+
+PR2-PERSIST mandates no database, event store, event-sourcing architecture,
+write-ahead log, replicated log, consensus algorithm, quorum policy,
+cloud service, production runtime code, or production schema.
+
+PR2-FID remains `blocked` and unauthorized.
+
+PR2-BP remains `blocked` and unauthorized.
+
+The owner-selected sequence remains:
+
+`PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
+
+This activation does not authorize PERSIST closure, PR2-FID, PR2-BP,
+or R3.
+
+R3 remains `ready_pending_authorization` against the exact 34-record
+conformance target with execution disabled.
+
+Validation evidence is recorded only after the activation candidate is
+tested; activation does not pre-certify itself.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
