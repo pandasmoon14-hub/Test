@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.37",
+  "artifact_version": "0.4.38",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1195,7 +1195,7 @@
       "title": "Relevance fidelity aggregation and reconstitution",
       "category": "runtime_architecture",
       "purpose": "Define lawful dynamic simulation fidelity across spatial and nonspatial relevance dimensions.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-SCALE"
       ],
@@ -1259,17 +1259,23 @@
         "PR2-FID full local repository suite:9175 passed, 10 skipped, 2 xfailed, 1 warning",
         "PR2-FID git diff --check:clean",
         "PR2-FID exact seven-file activation footprint:PASS",
-        "PR2-FID structural authority audit:PASS"
+        "PR2-FID structural authority audit:PASS",
+        "PR2-FID GitHub Actions CI #213:success"
       ],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "pull_request": 407,
+      "branch_head": "6a3fd4de79fb421fc03352b311c1168faa71255a",
+      "merge_commit": "c077abf5a90e896ef535d4956c49803cbf8163b6",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-BP",
         "PR2-TEST"
       ],
-      "control_artifact": "docs/doctrine/control/myravant_relevance_fidelity_aggregation_reconstitution_contract.md"
+      "control_artifact": "docs/doctrine/control/myravant_relevance_fidelity_aggregation_reconstitution_contract.md",
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-16_pr2_fid_post_merge_closure",
+      "post_merge_closure_authority_effect": "runtime_fidelity_governance_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "c077abf5a90e896ef535d4956c49803cbf8163b6",
+      "post_merge_closure_tree": "766d61cb47101f15eefb14db88607f3473c006e3"
     },
     {
       "workstream_id": "PR2-EVENT",
