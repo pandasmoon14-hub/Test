@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.36`
+**Artifact version:** `0.4.37`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1566,6 +1566,81 @@ asserted by this closure.
 The PR2-PERSIST activation evidence is preserved as historical snapshot
 evidence at the PR `#405` merge commit rather than being rewritten to follow
 later lifecycle state.
+
+
+### 5.34 PR2-FID relevance/fidelity/aggregation/reconstitution activation
+
+PR2-PERSIST post-merge closure was accepted through PR `#406`, with
+accepted closure merge `bc79bc629f3cc6bff220c8e71c37d9df515b9f8c`.
+
+The owner separately authorized bounded PR2-FID activation under
+`owner_directive_2026-09-15_pr2_fid_activation` with authority effect `runtime_fidelity_contract_only` from that exact accepted
+baseline.
+
+The controlling artifact is:
+
+`docs/doctrine/control/myravant_relevance_fidelity_aggregation_reconstitution_contract.md`
+
+PR2-FID is the only active runtime successor workstream.
+
+PR2-FID governs relevance, simulation fidelity, aggregation qualification,
+reconstitution, lawful materialization boundaries, cross-fidelity
+interaction, and background/foreground reconciliation.
+
+Relevance is multidimensional and scoped. Camera distance, player proximity,
+visibility, and render presence do not create authority.
+
+Fidelity is not truth rank, identity rank, commitment rank, canon rank, or
+permission rank. There is no universal fidelity-tier list.
+
+Previously committed detail may be omitted from an active representation but
+is not thereby erased. Unresolved detail is not committed detail.
+
+Aggregation is lawful only when its retained basis preserves the declared
+semantic invariant surface. Aggregate facts do not imply arbitrary
+microstate facts.
+
+Reconstitution restores detail supported by retained authoritative basis.
+Materialization separately resolves previously unresolved detail. Fidelity
+promotion alone authorizes neither new facts nor rewritten history.
+
+If omitted detail is material to authoritative commitment, the required
+scope must be lawfully reconstituted or materialized before commitment
+unless an existing domain owner already defines an applicable lawful
+aggregate-resolution rule.
+
+AFQR-01 retains commitment/replay/recovery. AFQR-04 retains time and
+causality. AFQR-08 retains identity. AFQR-09 retains governed relations and
+dependencies. AFQR-10 retains truth/knowledge/projection. AFQR-20 retains
+sensing. R2B-CORE retains committed-randomness preservation.
+R2B-CROSS-PHASE retains version applicability/effectivity.
+R2B-CONTINUITY retains timeline/branch/correction boundaries.
+PR2-PERSIST retains durable reconstruction machinery.
+
+Fidelity reduction is not a lawful reason to reject a fictionally coherent
+player attempt. Required simulation scope should instead be promoted,
+lawfully materialized, failed for a real semantic reason, or escalated.
+
+PR2-FID mandates no ECS, LOD framework, spatial partitioning, interest
+manager, simulation tick rate, database, scheduler, distributed runtime, or
+cloud provider.
+
+PR2-BP remains `blocked` and unauthorized.
+
+PR2-TEST remains blocked.
+
+The owner-selected sequence remains:
+
+`PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
+
+This activation does not authorize FID closure, PR2-BP, PR2-TEST, R3, or
+implementation.
+
+R3 remains `ready_pending_authorization` against the exact 34-record
+conformance target with execution disabled.
+
+Validation evidence is recorded only after the activation candidate is
+tested; activation does not pre-certify itself.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
