@@ -6090,3 +6090,40 @@ that R3 has already executed or completed.
 The owner-selected sequence
 `PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3`
 remains sequencing intent only; each successor requires separate authority.
+
+## 2026-09-15 decision — PR2-FID activation
+
+- **Decision ID:** `PR2-FID-ACTIVATION-001`
+- **Workstream:** `PR2-FID`
+- **Authority reference:** `owner_directive_2026-09-15_pr2_fid_activation`
+- **Authority effect:** `runtime_fidelity_contract_only`
+- **Starting baseline:** `bc79bc629f3cc6bff220c8e71c37d9df515b9f8c`
+- **Control artifact:** `docs/doctrine/control/myravant_relevance_fidelity_aggregation_reconstitution_contract.md`
+
+PR2-FID is authorized as the sole active runtime successor after accepted
+PR2-PERSIST post-merge closure.
+
+Its authority is limited to relevance, simulation fidelity, aggregation,
+reconstitution, lawful materialization boundaries, and
+background/foreground reconciliation.
+
+Fidelity does not acquire truth, identity, commitment, persistence,
+knowledge, sensing, timeline, version, randomness, scheduling, or
+performance-budget authority.
+
+Lower fidelity may omit representation of committed detail but may not erase
+it. Reconstitution may restore supported detail but may not invent committed
+history. Previously unresolved detail requires separately lawful
+materialization before it becomes authoritative.
+
+No universal fidelity-tier list, LOD technology, ECS, spatial partition,
+interest manager, database, scheduler, distributed topology, or cloud
+technology is selected by this decision.
+
+PR2-BP and PR2-TEST remain blocked and unauthorized.
+
+R3 remains `ready_pending_authorization` against the exact 34-record target
+with execution disabled.
+
+The sequence `PART -> CONC -> EVENT -> PERSIST -> FID -> BP -> R3` remains
+sequencing intent; each successor requires separate authority.
