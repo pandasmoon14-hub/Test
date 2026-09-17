@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = "b8c00ed48f2859eeef4a9229b3aec0ea4cd1405c"
 AUTH = "owner_directive_2026-09-16_pr2_audit_a_r3_r4_entry_disposition"
 EFFECT = "inventory_and_disposition_only"
+AUDIT_A_ACCEPTED_MERGE = "503cd04e69225398d32d3ad4848c05522b96e83c"
 
 AUDIT = (
     ROOT
@@ -35,7 +36,21 @@ RETAIN = "retain_nonauthoritative_until_separately_authorized_promotion"
 MIGRATE = "bounded_migration_required_before_authoritative_promotion"
 
 
+def git_text_at(ref, path):
+    rel = path.relative_to(ROOT).as_posix()
+
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{rel}"],
+        cwd=ROOT,
+    ).decode("utf-8")
+
+
 def load(path):
+    if path == MAN:
+        return json.loads(
+            git_text_at(AUDIT_A_ACCEPTED_MERGE, path)
+        )
+
     return json.loads(path.read_text(encoding="utf-8"))
 
 

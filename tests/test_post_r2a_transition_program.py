@@ -208,6 +208,18 @@ PR2_AUDIT_A_REVIEW = (
     "docs/doctrine/reviews/"
     "pr2_audit_r3_promotion_blocker_r4_entry_disposition.yaml"
 )
+
+R4_0_BASELINE = "503cd04e69225398d32d3ad4848c05522b96e83c"
+R4_0_AUTHORIZATION = "owner_directive_2026-09-16_r4_0_read_only_substrate_reconciliation"
+R4_0_EFFECT = "read_only_substrate_reconciliation_only"
+R4_0_REVIEW = (
+    "docs/doctrine/reviews/"
+    "r4_0_substrate_reconciliation.yaml"
+)
+AUDIT_A_PR = 412
+AUDIT_A_HEAD = "0592a3701d6ecaf13f2bcec849ae6ac58d584232"
+AUDIT_A_MERGE = "503cd04e69225398d32d3ad4848c05522b96e83c"
+AUDIT_A_TREE = "0e593ea18290541d36af020bdde445df41371b6f"
 PR2_CONC_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_conc_deterministic_concurrency_contract.py', 'tests/test_pr2_part_post_merge_closure.py'}
 PR2_PART_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_authority_partitioning_migration_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_part_authority_partitioning_contract.py', 'tests/test_pr2_scale_post_merge_closure.py'}
 PR2_SCALE_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_scale_runtime_scalability_contract.py', 'tests/test_pr2_simex_post_merge_closure.py'}
@@ -324,7 +336,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.44"
+    assert manifest["artifact_version"] == "0.4.46"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -886,39 +898,65 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
     assert audit["authorization_reference"] == PR2_AUDIT_A_AUTHORIZATION
     assert audit["authority_effect"] == PR2_AUDIT_A_EFFECT
     assert audit["starting_baseline"] == PR2_AUDIT_A_BASELINE
-    assert audit["current_tranche"] == "PR2-AUDIT-A"
+
+    assert audit["completed_tranches"] == [
+        {
+            "tranche_id": "PR2-AUDIT-A",
+            "state": "merged",
+            "authorization_reference": PR2_AUDIT_A_AUTHORIZATION,
+            "pull_request": AUDIT_A_PR,
+            "branch_head": AUDIT_A_HEAD,
+            "merge_commit": AUDIT_A_MERGE,
+            "merge_tree": AUDIT_A_TREE,
+            "review_artifact": PR2_AUDIT_A_REVIEW,
+            "validation_state": "validated",
+        }
+    ]
+
+    assert audit["current_tranche"] == "PR2-AUDIT-B"
+    assert audit["current_tranche_alias"] == "R4-0"
     assert (
-        audit["current_tranche_review_artifact"]
-        == PR2_AUDIT_A_REVIEW
+        audit["current_tranche_authorization_reference"]
+        == R4_0_AUTHORIZATION
     )
+    assert audit["current_tranche_authority_effect"] == R4_0_EFFECT
+    assert audit["current_tranche_starting_baseline"] == R4_0_BASELINE
+    assert audit["current_tranche_review_artifact"] == R4_0_REVIEW
     assert (
         audit["current_tranche_state"]
         == "validated_complete"
     )
     assert audit["current_tranche_completion_state"] == (
-        "validated_complete_with_bounded_dispositions"
+        "validated_complete_with_zero_direct_runtime_substrate_candidates"
     )
     assert set(audit["current_tranche_validation_evidence"]) == {
-        "PR2-AUDIT-A focused validation:31 passed",
+        "R4-0 focused pre-certification:29 passed",
         (
-            "PR2-AUDIT-A full local repository suite:"
-            "9218 passed, 10 skipped, 2 xfailed, 1 warning"
+            "R4-0 full local repository suite:"
+            "9226 passed, 10 skipped, 2 xfailed, 1 warning"
         ),
-        "PR2-AUDIT-A git diff --check:clean",
-        "PR2-AUDIT-A exact seven-file footprint:PASS",
-        "PR2-AUDIT-A runtime/schema noninterference audit:PASS",
+        "R4-0 focused post-suite regression:29 passed",
+        "R4-0 git diff --check:clean",
+        "R4-0 exact seven-file footprint:PASS",
+        "R4-0 runtime/schema noninterference audit:PASS",
     }
     assert audit["current_tranche_target"] == {
-        "r3_promotion_blockers": 19,
         "r4_substrate_context_records": 16,
     }
-    assert audit["current_tranche_remediation_authorized"] is False
-    assert audit["current_tranche_r4_activation_authorized"] is False
+    assert audit["current_tranche_disposition_counts"] == {
+        "legacy_conversion_handoff_not_runtime_substrate": 10,
+        "retain_offline_extraction_tooling_not_runtime_substrate": 6,
+    }
     assert (
-        audit[
-            "current_tranche_r4_0_read_only_reconciliation_"
-            "ready_pending_authorization"
-        ]
+        audit["current_tranche_direct_runtime_substrate_candidate_count"]
+        == 0
+    )
+    assert audit["current_tranche_r4_activation_authorized"] is False
+    assert audit["current_tranche_implementation_authorized"] is False
+    assert audit["current_tranche_remediation_authorized"] is False
+    assert audit["current_tranche_next_tranche_authorized"] is False
+    assert (
+        audit["current_tranche_r4_a_ready_pending_authorization"]
         is True
     )
 
@@ -969,7 +1007,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.44`" in program
+    assert "**Artifact version:** `0.4.46`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program

@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.44`
+**Artifact version:** `0.4.46`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -2054,6 +2054,100 @@ implementation, production-schema implementation, or remediation.
 
 Overall PR2-AUDIT remains `active`; completion of this bounded tranche
 is not repository-wide audit completion.
+
+### 5.42 PR2-AUDIT-B / R4-0 read-only substrate reconciliation
+
+PR2-AUDIT-A merged through PR `#412` from certified head
+`0592a3701d6ecaf13f2bcec849ae6ac58d584232` into `main` as merge commit `503cd04e69225398d32d3ad4848c05522b96e83c` with merge tree
+`0e593ea18290541d36af020bdde445df41371b6f`.
+
+The owner then separately authorized the bounded R4-0 reconciliation:
+
+`owner_directive_2026-09-16_r4_0_read_only_substrate_reconciliation`
+
+Authority effect:
+
+`read_only_substrate_reconciliation_only`
+
+R4-0 assesses every and only the 16 frozen R2A records routed as
+`r4_substrate`. All 16 remain byte-identical to the versions assessed by
+R2A and Audit-A.
+
+Reconciliation result:
+
+- 10 schemas are legacy source/conversion handoff representation carrying
+  pre-Myravant extraction, donor, mapping, conversion, canon-routing, or
+  Astra-era semantics;
+- 6 schemas are offline AetherForge/extraction-support representation;
+- 0 of the 16 are eligible for direct promotion as authoritative Myravant
+  runtime substrate.
+
+The legacy conversion/handoff schemas are preserved as evidence or offline
+tooling pressure. If any represented function remains necessary, a new
+Myravant-native representation must be designed from current authority and
+playable need rather than produced by renaming or promoting the legacy
+schema.
+
+The six extraction-support schemas may remain useful outside the runtime
+boundary. Their storage or validation role does not grant runtime semantic
+ownership.
+
+No schema or runtime file is edited by R4-0.
+
+R4 remains blocked.
+
+`PR2-MIG`, `PR2-TEST`, and `PR2-IMPL` remain blocked and unauthorized.
+
+`R4-A` Myravant-native substrate design is only
+`ready_pending_authorization`; it is not activated by this review.
+
+Overall `PR2-AUDIT` remains active because R4-0 is a bounded reconciliation,
+not a claim of repository-wide audit completion.
+
+Review artifact:
+
+`docs/doctrine/reviews/r4_0_substrate_reconciliation.yaml`
+
+### 5.43 R4-0 validation and bounded completion
+
+R4-0 / PR2-AUDIT-B completed executable validation.
+
+Evidence:
+
+- focused pre-certification suite: `29 passed`;
+- full repository suite:
+  `9226 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused post-suite regression: `29 passed`;
+- `git diff --check`: clean;
+- exact seven-file footprint: PASS;
+- runtime/schema implementation noninterference: PASS.
+
+The R4-0 disposition is therefore `validated_complete`.
+
+The validated result remains:
+
+- 16 frozen `r4_substrate` records assessed;
+- 10 legacy conversion/handoff schemas;
+- 6 offline extraction-tooling schemas;
+- 0 direct authoritative Myravant runtime-substrate candidates;
+- 0 schema edits;
+- 0 runtime edits.
+
+None of the sixteen legacy/offline schemas may be directly promoted as
+authoritative Myravant runtime substrate.
+
+Where a legacy conversion/handoff function remains necessary, its future
+runtime-facing representation must be designed independently as
+Myravant-native substrate from current authority and playable need.
+
+R4 remains blocked.
+
+`R4-A` is ready only for separate owner authorization.
+
+`PR2-MIG`, `PR2-TEST`, and `PR2-IMPL` remain blocked and unauthorized.
+
+Overall `PR2-AUDIT` remains active. Completion of R4-0 does not claim
+repository-wide audit completion.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
