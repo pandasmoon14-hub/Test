@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = "503cd04e69225398d32d3ad4848c05522b96e83c"
 AUTH = "owner_directive_2026-09-16_r4_0_read_only_substrate_reconciliation"
 EFFECT = "read_only_substrate_reconciliation_only"
+R4_0_ACCEPTED_MERGE = "fa4f1d795275eaaad4ee525aea7e3f3c2c2bd5e9"
 
 REVIEW = (
     ROOT
@@ -37,7 +38,21 @@ LEGACY = "legacy_conversion_handoff_not_runtime_substrate"
 OFFLINE = "retain_offline_extraction_tooling_not_runtime_substrate"
 
 
+def git_text_at(ref, path):
+    rel = path.relative_to(ROOT).as_posix()
+
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{rel}"],
+        cwd=ROOT,
+    ).decode("utf-8")
+
+
 def load(path):
+    if path == MAN:
+        return json.loads(
+            git_text_at(R4_0_ACCEPTED_MERGE, path)
+        )
+
     return json.loads(path.read_text(encoding="utf-8"))
 
 

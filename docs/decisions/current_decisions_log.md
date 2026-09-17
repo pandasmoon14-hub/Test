@@ -6401,3 +6401,55 @@ R4-A native substrate design is ready pending separate authorization.
 
 PR2-MIG, PR2-TEST, PR2-IMPL, runtime implementation, schema
 implementation, and remediation remain unauthorized.
+
+## 2026-09-17 decision — R4-A Myravant-native substrate design
+
+- **Decision ID:** `R4-A-NATIVE-SUBSTRATE-DESIGN-001`
+- **Authorization reference:** `owner_directive_2026-09-17_r4_a_myravant_native_substrate_design`
+- **Authority effect:** `myravant_native_substrate_design_only`
+- **Starting baseline:** `fa4f1d795275eaaad4ee525aea7e3f3c2c2bd5e9`
+- **Historical substrate classes assessed:** `5`
+- **Native playable capabilities selected:** `1`
+- **Runtime/schema edits authorized:** `0`
+
+R4-A rejects direct implementation of the five historical generalized
+substrate classes.
+
+The selected native capability is:
+
+`persistent_world_entity_and_location_relation_representation`
+
+This capability is intended to let persistent campaign-local people or
+creatures, places, and objects survive beyond the hard-coded vertical
+slice and carry a typed, AFQR-18-routed `located_at` relation.
+
+Representation does not transfer semantic ownership. Identity remains
+distinct from control, agency, embodiment, ownership, social state,
+institutional authority, sensing, knowledge, and truth.
+
+Existing runtime identity, event, persistence, replay, visibility,
+projection, validation, and state-owner interface surfaces are reused.
+
+A future R4-B implementation candidate is defined but remains blocked by
+the existing post-R2 gate chain. It is neither ready nor authorized.
+
+Overall PR2-AUDIT remains active. R4 remains blocked. Runtime promotion
+remains uncleared.
+
+## 2026-09-17 decision — R4-A validation
+
+- **Decision ID:** `R4-A-VALIDATION-001`
+- **Validation state:** `validated_complete`
+- **Full repository suite:** `9232 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite regression:** `28 passed`
+
+R4-A is validated as a design-only native substrate selection.
+
+The selected capability remains
+`persistent_world_entity_and_location_relation_representation`.
+
+No runtime or schema implementation was modified.
+
+Overall PR2-AUDIT remains active. R4 remains blocked. Runtime promotion
+remains uncleared. R4-B remains a candidate only and is not ready or
+authorized.
