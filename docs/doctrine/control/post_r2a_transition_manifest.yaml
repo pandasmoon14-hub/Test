@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.42",
+  "artifact_version": "0.4.44",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1544,7 +1544,7 @@
       "title": "Repository-wide post-R2 conformance and migration inventory",
       "category": "review",
       "purpose": "Inventory existing repository artifacts against accepted identity, source-governance, originality, corpus, and scalability decisions.",
-      "status": "blocked",
+      "status": "active",
       "dependencies": [
         "PR2-ID",
         "PR2-SRC",
@@ -1554,10 +1554,18 @@
         "PR2-SCALE"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-16_pr2_audit_a_r3_r4_entry_disposition",
       "authority_effect": "inventory_and_disposition_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "b8c00ed48f2859eeef4a9229b3aec0ea4cd1405c",
+      "owned_paths": [
+        "docs/decisions/current_decisions_log.md",
+        "docs/doctrine/reviews/pr2_audit_r3_promotion_blocker_r4_entry_disposition.yaml",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_r3_initial_conformance_review.py",
+        "tests/test_pr2_audit_r3_r4_entry_disposition.py"
+      ],
       "prohibited_scope": [
         "silent_remediation_during_inventory",
         "historical_record_rewrite",
@@ -1572,6 +1580,48 @@
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-MIG"
+      ],
+      "current_tranche": "PR2-AUDIT-A",
+      "current_tranche_authorization_reference": "owner_directive_2026-09-16_pr2_audit_a_r3_r4_entry_disposition",
+      "current_tranche_authority_effect": "inventory_and_disposition_only",
+      "current_tranche_starting_baseline": "b8c00ed48f2859eeef4a9229b3aec0ea4cd1405c",
+      "current_tranche_review_artifact": "docs/doctrine/reviews/pr2_audit_r3_promotion_blocker_r4_entry_disposition.yaml",
+      "current_tranche_state": "validated_complete",
+      "current_tranche_target": {
+        "r3_promotion_blockers": 19,
+        "r4_substrate_context_records": 16
+      },
+      "current_tranche_disposition_counts": {
+        "bounded_migration_required_before_authoritative_promotion": 2,
+        "retain_nonauthoritative_until_separately_authorized_promotion": 17
+      },
+      "current_tranche_migration_required_candidate_ids": [
+        "R2A-DISPOSITION-RS-0028",
+        "R2A-DISPOSITION-RS-0030"
+      ],
+      "current_tranche_r4_0_read_only_reconciliation_ready_pending_authorization": true,
+      "current_tranche_r4_activation_authorized": false,
+      "current_tranche_remediation_authorized": false,
+      "current_tranche_next_tranche_authorized": false,
+      "current_tranche_prohibited_scope": [
+        "runtime_implementation",
+        "production_schema_implementation",
+        "runtime_file_remediation",
+        "schema_file_remediation",
+        "pr2_mig_activation",
+        "pr2_test_activation",
+        "pr2_impl_activation",
+        "r4_activation",
+        "r4_substrate_implementation",
+        "repository_wide_bulk_rewrite"
+      ],
+      "current_tranche_completion_state": "validated_complete_with_bounded_dispositions",
+      "current_tranche_validation_evidence": [
+        "PR2-AUDIT-A focused validation:31 passed",
+        "PR2-AUDIT-A full local repository suite:9218 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-AUDIT-A git diff --check:clean",
+        "PR2-AUDIT-A exact seven-file footprint:PASS",
+        "PR2-AUDIT-A runtime/schema noninterference audit:PASS"
       ]
     },
     {

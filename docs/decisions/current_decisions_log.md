@@ -6280,3 +6280,63 @@ R4-R6 remain blocked.
 
 PR2-AUDIT, PR2-MIG, PR2-TEST, PR2-IMPL, runtime implementation, and
 production-schema implementation remain separately unauthorized.
+
+## 2026-09-16 decision — PR2-AUDIT-A R3 blocker / R4-entry disposition
+
+- **Decision ID:** `PR2-AUDIT-A-R3-R4-ENTRY-DISPOSITION-001`
+- **Authorization reference:** `owner_directive_2026-09-16_pr2_audit_a_r3_r4_entry_disposition`
+- **Authority effect:** `inventory_and_disposition_only`
+- **Starting baseline:** `b8c00ed48f2859eeef4a9229b3aec0ea4cd1405c`
+- **R3 promotion blockers assessed:** `19`
+- **R4 substrate context records:** `16`
+
+The first bounded PR2-AUDIT tranche consumes the accepted R3 findings
+and assigns migration posture without editing runtime or schema files.
+
+Disposition:
+
+- 17 R3 blockers are retained at their current nonauthoritative scope
+  with no immediate migration required;
+- `R2A-DISPOSITION-RS-0028` and
+  `R2A-DISPOSITION-RS-0030` require bounded migration before
+  authoritative runtime promotion.
+
+All 19 remain promotion-blocking.
+
+The R3 blocker paths do not overlap the 16 `r4_substrate` paths.
+
+A read-only R4-0 reconciliation may therefore be separately authorized
+after this tranche is validated. That eligibility does not activate R4
+and does not authorize schema or runtime implementation.
+
+PR2-MIG, PR2-TEST, PR2-IMPL, R4 activation, runtime implementation, and
+production-schema implementation remain unauthorized.
+
+## 2026-09-16 decision — PR2-AUDIT-A validation
+
+- **Decision ID:** `PR2-AUDIT-A-VALIDATION-001`
+- **Starting baseline:** `b8c00ed48f2859eeef4a9229b3aec0ea4cd1405c`
+- **Focused validation:** `31 passed`
+- **Full repository suite:**
+  `9218 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Tranche state:** `validated_complete`
+
+PR2-AUDIT-A is complete as a bounded inventory/disposition tranche.
+
+Seventeen R3 promotion blockers require no current migration while
+retained at their nonauthoritative scope.
+
+`R2A-DISPOSITION-RS-0028` and
+`R2A-DISPOSITION-RS-0030` require bounded migration before
+authoritative runtime promotion.
+
+All 19 remain promotion-blocking.
+
+The 19 blocker paths are disjoint from the 16 `r4_substrate` paths.
+
+Read-only R4-0 reconciliation is ready pending separate authorization.
+
+PR2-AUDIT remains active.
+
+R4, PR2-MIG, PR2-TEST, PR2-IMPL, runtime implementation, and
+production-schema implementation remain unauthorized.
