@@ -201,6 +201,13 @@ R3_AUTHORIZATION = "owner_directive_2026-09-16_r3_initial_conformance"
 R3_EFFECT = "r3_conformance_review_only"
 R3_BASELINE = "a92e47bb2e0d5ffd853da2c1bbf6425efc8c659c"
 R3_REVIEW = "docs/doctrine/reviews/r3_initial_conformance_review.yaml"
+PR2_AUDIT_A_BASELINE = "b8c00ed48f2859eeef4a9229b3aec0ea4cd1405c"
+PR2_AUDIT_A_AUTHORIZATION = "owner_directive_2026-09-16_pr2_audit_a_r3_r4_entry_disposition"
+PR2_AUDIT_A_EFFECT = "inventory_and_disposition_only"
+PR2_AUDIT_A_REVIEW = (
+    "docs/doctrine/reviews/"
+    "pr2_audit_r3_promotion_blocker_r4_entry_disposition.yaml"
+)
 PR2_CONC_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_conc_deterministic_concurrency_contract.py', 'tests/test_pr2_part_post_merge_closure.py'}
 PR2_PART_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_authority_partitioning_migration_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_part_authority_partitioning_contract.py', 'tests/test_pr2_scale_post_merge_closure.py'}
 PR2_SCALE_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_scale_runtime_scalability_contract.py', 'tests/test_pr2_simex_post_merge_closure.py'}
@@ -292,7 +299,6 @@ UNRESOLVED_IDENTITY_CLASSES = [
 POST_R2_READY = set()
 
 POST_R2_BLOCKED = {
-    "PR2-AUDIT",
     "PR2-MIG",
     "PR2-TEST",
     "PR2-IMPL",
@@ -318,7 +324,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.42"
+    assert manifest["artifact_version"] == "0.4.44"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -492,7 +498,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_through_pr2_bp_are_merged_and_no_successor_is_active():
+def test_r2c_through_pr2_bp_are_merged_and_pr2_audit_is_only_active_successor():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -501,7 +507,7 @@ def test_r2c_through_pr2_bp_are_merged_and_no_successor_is_active():
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == set()
+    assert active == {"PR2-AUDIT"}
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -875,6 +881,47 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
         == PR2_BP_CLOSURE_AUTHORIZATION
     )
 
+    audit = by_id["PR2-AUDIT"]
+    assert audit["status"] == "active"
+    assert audit["authorization_reference"] == PR2_AUDIT_A_AUTHORIZATION
+    assert audit["authority_effect"] == PR2_AUDIT_A_EFFECT
+    assert audit["starting_baseline"] == PR2_AUDIT_A_BASELINE
+    assert audit["current_tranche"] == "PR2-AUDIT-A"
+    assert (
+        audit["current_tranche_review_artifact"]
+        == PR2_AUDIT_A_REVIEW
+    )
+    assert (
+        audit["current_tranche_state"]
+        == "validated_complete"
+    )
+    assert audit["current_tranche_completion_state"] == (
+        "validated_complete_with_bounded_dispositions"
+    )
+    assert set(audit["current_tranche_validation_evidence"]) == {
+        "PR2-AUDIT-A focused validation:31 passed",
+        (
+            "PR2-AUDIT-A full local repository suite:"
+            "9218 passed, 10 skipped, 2 xfailed, 1 warning"
+        ),
+        "PR2-AUDIT-A git diff --check:clean",
+        "PR2-AUDIT-A exact seven-file footprint:PASS",
+        "PR2-AUDIT-A runtime/schema noninterference audit:PASS",
+    }
+    assert audit["current_tranche_target"] == {
+        "r3_promotion_blockers": 19,
+        "r4_substrate_context_records": 16,
+    }
+    assert audit["current_tranche_remediation_authorized"] is False
+    assert audit["current_tranche_r4_activation_authorized"] is False
+    assert (
+        audit[
+            "current_tranche_r4_0_read_only_reconciliation_"
+            "ready_pending_authorization"
+        ]
+        is True
+    )
+
     for workstream_id in POST_R2_READY:
         assert by_id[workstream_id]["status"] == "ready_pending_authorization"
         assert by_id[workstream_id]["authorization_reference"] is None
@@ -922,7 +969,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.42`" in program
+    assert "**Artifact version:** `0.4.44`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program

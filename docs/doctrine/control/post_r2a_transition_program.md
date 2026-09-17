@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.42`
+**Artifact version:** `0.4.44`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -1956,6 +1956,104 @@ The findings remain routed to existing downstream owners and require
 separate owner authorization before remediation or implementation.
 
 No runtime or production-schema implementation was modified by R3.
+
+### 5.40 PR2-AUDIT-A R3 promotion-blocker and R4-entry disposition
+
+The owner separately authorized the first bounded PR2-AUDIT tranche:
+
+`owner_directive_2026-09-16_pr2_audit_a_r3_r4_entry_disposition`
+
+Authority effect:
+
+`inventory_and_disposition_only`
+
+Starting baseline:
+
+`b8c00ed48f2859eeef4a9229b3aec0ea4cd1405c`
+
+This tranche consumes the validated R3 review rather than repeating it.
+Every and only the 19 R3 `promotion_blocking=true` candidates are in
+scope.
+
+PR2-AUDIT-A records two disposition classes:
+
+- 17 candidates are retained as nonauthoritative surfaces with no
+  current migration required;
+- 2 candidates require bounded migration before authoritative runtime
+  promotion: `R2A-DISPOSITION-RS-0028` and
+  `R2A-DISPOSITION-RS-0030`.
+
+Retention is not promotion clearance. The 17 retained candidates remain
+promotion-blocking unless a future authorized implementation preserves
+their named semantic-owner boundaries and receives applicable executable
+evaluation.
+
+The R4 context is separately reconstructed from the frozen R2A runtime /
+schema disposition index. Exactly 16 records remain routed as
+`r4_substrate`.
+
+The 19 R3 promotion-blocker paths and 16 R4-substrate paths are disjoint.
+
+Therefore this tranche establishes only that a future read-only `R4-0`
+substrate reconciliation may be separately authorized without first
+editing the 19 R3 runtime artifacts.
+
+This does not activate R4.
+
+It does not authorize R4 substrate implementation.
+
+`runtime_promotion_clear` remains false.
+
+`PR2-MIG`, `PR2-TEST`, and `PR2-IMPL` remain blocked and unauthorized.
+
+Runtime and production-schema implementation remain unauthorized.
+
+PR2-AUDIT remains active after this tranche because this bounded tranche
+does not claim repository-wide audit completion.
+
+Review artifact:
+
+`docs/doctrine/reviews/pr2_audit_r3_promotion_blocker_r4_entry_disposition.yaml`
+
+### 5.41 PR2-AUDIT-A validation and bounded completion
+
+PR2-AUDIT-A completed executable validation.
+
+Validation evidence:
+
+- focused Audit-A/R3/transition regression: `31 passed`;
+- full repository suite:
+  `9218 passed, 10 skipped, 2 xfailed, 1 warning`;
+- `git diff --check`: clean;
+- exact seven-file Audit-A footprint: PASS;
+- runtime/schema implementation noninterference: PASS.
+
+The bounded tranche is `validated_complete`.
+
+Its disposition remains:
+
+- 17 R3 promotion blockers are retained at their current
+  nonauthoritative scope and require no present code migration;
+- `R2A-DISPOSITION-RS-0028` and
+  `R2A-DISPOSITION-RS-0030` require bounded migration before
+  authoritative runtime promotion.
+
+All 19 remain promotion-blocking.
+
+Exactly 16 frozen records remain routed to `r4_substrate`, and their
+paths are disjoint from the 19 R3 promotion-blocker paths.
+
+A read-only `R4-0` reconciliation is therefore eligible for separate
+owner authorization.
+
+This validation does not activate R4 or authorize R4 substrate
+implementation.
+
+It does not authorize PR2-MIG, PR2-TEST, PR2-IMPL, runtime
+implementation, production-schema implementation, or remediation.
+
+Overall PR2-AUDIT remains `active`; completion of this bounded tranche
+is not repository-wide audit completion.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

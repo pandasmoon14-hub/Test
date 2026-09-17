@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = "a92e47bb2e0d5ffd853da2c1bbf6425efc8c659c"
 AUTH = "owner_directive_2026-09-16_r3_initial_conformance"
 EFFECT = "r3_conformance_review_only"
+R3_ACCEPTED_MERGE = "b8c00ed48f2859eeef4a9229b3aec0ea4cd1405c"
 
 REVIEW = ROOT / "docs/doctrine/reviews/r3_initial_conformance_review.yaml"
 MAN = ROOT / "docs/doctrine/control/post_r2a_transition_manifest.yaml"
@@ -22,13 +23,38 @@ OUTCOME_QUALIFY = "conformant_with_required_remediation_before_promotion"
 OUTCOME_FAIL = "nonconformant_requires_remediation"
 
 
+def _rel(path):
+    if isinstance(path, Path):
+        return path.relative_to(ROOT).as_posix()
+    return str(path)
+
+
+def git_bytes_at(ref, path):
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{_rel(path)}"],
+        cwd=ROOT,
+    )
+
+
+def git_text_at(ref, path):
+    return git_bytes_at(ref, path).decode("utf-8")
+
+
 def load(path):
+    if path in {MAN, REVIEW, INDEX}:
+        return json.loads(
+            git_text_at(R3_ACCEPTED_MERGE, path)
+        )
     return json.loads(path.read_text(encoding="utf-8"))
 
 
 def git_blob(path):
     return subprocess.check_output(
-        ["git", "hash-object", path],
+        [
+            "git",
+            "rev-parse",
+            f"{R3_ACCEPTED_MERGE}:{path}",
+        ],
         cwd=ROOT,
         text=True,
     ).strip()
@@ -43,7 +69,7 @@ def frozen_target():
 
     for shard_ref in target["frozen_shards"]:
         path = ROOT / shard_ref["path"]
-        raw = path.read_bytes()
+        raw = git_bytes_at(R3_ACCEPTED_MERGE, path)
 
         assert hashlib.sha256(raw).hexdigest() == (
             shard_ref["content_sha256"]
@@ -118,13 +144,10 @@ def test_review_has_exact_frozen_34_record_population():
     )
 
 
-def test_all_34_current_files_still_match_frozen_r2a_blobs():
+def test_all_34_r3_snapshot_files_match_frozen_r2a_blobs():
     review = load(REVIEW)
 
     for row in review["candidate_dispositions"]:
-        path = ROOT / row["path"]
-
-        assert path.is_file()
         assert row["r3_blob_state"] == "unchanged_since_r2a"
         assert row["frozen_r2a_blob_sha"] == row["r3_baseline_blob_sha"]
         assert git_blob(row["path"]) == row["frozen_r2a_blob_sha"]
@@ -176,9 +199,10 @@ def test_rs0028_records_unqualified_commitment_defect():
         "unauthorized_preview_to_commit_transition"
     )
 
-    source = (
-        ROOT / row["path"]
-    ).read_text(encoding="utf-8")
+    source = git_text_at(
+        R3_ACCEPTED_MERGE,
+        ROOT / row["path"],
+    )
 
     assert (
         "commit_object_lever_preview_to_event_and_state_delta"
@@ -210,9 +234,10 @@ def test_rs0030_is_downstream_of_the_unqualified_commitment():
         "audit_depends_on_unqualified_commitment"
     )
 
-    source = (
-        ROOT / row["path"]
-    ).read_text(encoding="utf-8")
+    source = git_text_at(
+        R3_ACCEPTED_MERGE,
+        ROOT / row["path"],
+    )
 
     assert "ObjectLeverEventCommitResult" in source
     assert "already-committed RT-002E" in source
@@ -250,10 +275,11 @@ def test_legacy_astra_runtime_identity_is_not_misclassified_as_failure():
         "record_identifier_compatibility_surface"
     )
 
-    identity_contract = (
+    identity_contract = git_text_at(
+        R3_ACCEPTED_MERGE,
         ROOT
-        / "docs/doctrine/control/myravant_identity_migration_contract.md"
-    ).read_text(encoding="utf-8")
+        / "docs/doctrine/control/myravant_identity_migration_contract.md",
+    )
 
     assert "astra_runtime" in identity_contract
 

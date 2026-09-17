@@ -1,0 +1,583 @@
+{
+  "artifact_id": "MYRAVANT-PR2-AUDIT-R3-PROMOTION-BLOCKER-R4-ENTRY-DISPOSITION-001",
+  "artifact_version": "0.1.1",
+  "status": "validated_complete",
+  "workstream_id": "PR2-AUDIT",
+  "tranche_id": "PR2-AUDIT-A",
+  "authorization_reference": "owner_directive_2026-09-16_pr2_audit_a_r3_r4_entry_disposition",
+  "authority_effect": "inventory_and_disposition_only",
+  "starting_baseline": "b8c00ed48f2859eeef4a9229b3aec0ea4cd1405c",
+  "scope": {
+    "r3_review_artifact": "docs/doctrine/reviews/r3_initial_conformance_review.yaml",
+    "r3_promotion_blocker_count": 19,
+    "r4_substrate_context_count": 16,
+    "r3_blocker_r4_substrate_path_overlap_count": 0,
+    "repository_wide_audit_complete": false,
+    "remediation_authorized": false,
+    "pr2_mig_authorized": false,
+    "pr2_test_authorized": false,
+    "pr2_impl_authorized": false,
+    "r4_activation_authorized": false,
+    "runtime_implementation_authorized": false,
+    "production_schema_implementation_authorized": false
+  },
+  "summary": {
+    "assessed_r3_promotion_blocker_count": 19,
+    "audit_disposition_counts": {
+      "bounded_migration_required_before_authoritative_promotion": 2,
+      "retain_nonauthoritative_until_separately_authorized_promotion": 17
+    },
+    "current_migration_required_count": 2,
+    "current_migration_not_required_count": 17,
+    "migration_required_candidate_ids": [
+      "R2A-DISPOSITION-RS-0028",
+      "R2A-DISPOSITION-RS-0030"
+    ],
+    "r4_substrate_context_count": 16,
+    "r4_substrate_state_counts": {
+      "unchanged_since_r2a": 16
+    },
+    "r3_blocker_r4_substrate_path_overlap_count": 0,
+    "runtime_promotion_clear": false,
+    "r4_0_read_only_reconciliation_ready_pending_authorization": true,
+    "r4_activation_authorized": false,
+    "r4_substrate_implementation_authorized": false,
+    "repository_wide_pr2_audit_complete": false,
+    "current_tranche_validated": true
+  },
+  "audit_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0022",
+      "path": "src/astra_runtime/domain/action_legality_skeleton.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "closed_command_family_legality_pressure",
+      "r3_rationale": "The skeleton is nonexecuting, but unsupported-command-family and fixed player-message vocabulary must not become a permanent rejection rule for otherwise fictionally coherent actions.",
+      "audit_baseline_blob_sha": "111f18d396ca26a4655e6cc909aec4b62f8b8d7c",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0023",
+      "path": "src/astra_runtime/domain/command_kind_routing_skeleton.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "fixed_command_family_routing_pressure",
+      "r3_rationale": "Unknown command kinds currently route to QUARANTINE_UNKNOWN_COMMAND_KIND; promotion requires lawful free-form interpretation or clarification rather than treating an absent fixed verb/family as sufficient rejection.",
+      "audit_baseline_blob_sha": "18c2f0b004959e8cc65fcf2cbcde353a63e78f33",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0024",
+      "path": "src/astra_runtime/domain/command_lifecycle.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "command_lifecycle_owner_qualification",
+      "r3_rationale": "Lifecycle labels remain representations only; AFQR-02 retains command, attempt, retry, suspension, escalation, and durable-progress semantics.",
+      "audit_baseline_blob_sha": "58106e4c51e1f3d3f8595bf817f68e4c568257f3",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0025",
+      "path": "src/astra_runtime/domain/context_packet_compiler.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "projection_epistemic_qualification",
+      "r3_rationale": "Context packets remain derivative; packet visibility cannot itself define sensing, knowledge, truth, or disclosure authority.",
+      "audit_baseline_blob_sha": "6778e00cc70a16a3df8d4e4da69f2bbad4802e69",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0026",
+      "path": "src/astra_runtime/domain/event_commitment.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "commitment_result_receipt_qualification",
+      "r3_rationale": "The immutable skeleton performs no state mutation or ledger append, but its committed labels can be constructed without enforcing an AFQR-01 committed-event receipt; promotion must make the semantic commitment basis explicit.",
+      "audit_baseline_blob_sha": "8eebedff2815ae208629fc6c9bded8edda391f9e",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0028",
+      "path": "src/astra_runtime/domain/object_lever_event_commit_state_delta_path.py",
+      "r3_outcome": "nonconformant_requires_remediation",
+      "r3_finding_code": "unauthorized_preview_to_commit_transition",
+      "r3_rationale": "commit_object_lever_preview_to_event_and_state_delta promotes a preview-derived path to committed status and manufactures committed-event/state-delta receipts without an AFQR-01-qualified commitment transition.",
+      "audit_baseline_blob_sha": "c66cf5b15acbba474bbd2f7541e785a01ad03b78",
+      "audit_disposition": "bounded_migration_required_before_authoritative_promotion",
+      "migration_required_now": true,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 identified a direct semantic nonconformance in the unchanged runtime artifact. The current artifact must not be promoted unchanged. A separately authorized bounded migration is required before an implementation handoff may traverse this path.",
+      "downstream_route": [
+        "PR2-MIG",
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0030",
+      "path": "src/astra_runtime/domain/object_lever_replay_audit_check.py",
+      "r3_outcome": "nonconformant_requires_remediation",
+      "r3_finding_code": "audit_depends_on_unqualified_commitment",
+      "r3_rationale": "The replay/audit path treats the RT-002E result as an already committed event basis; until RS-0028 is repaired and the audit is anchored to lawful AFQR-01 commitment evidence, this verification chain is not conformant.",
+      "audit_baseline_blob_sha": "d775df3901254b189fc865eaf42f47f149b36a8e",
+      "audit_disposition": "bounded_migration_required_before_authoritative_promotion",
+      "migration_required_now": true,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 identified a direct semantic nonconformance in the unchanged runtime artifact. The current artifact must not be promoted unchanged. A separately authorized bounded migration is required before an implementation handoff may traverse this path.",
+      "downstream_route": [
+        "PR2-MIG",
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0033",
+      "path": "src/astra_runtime/domain/read_only_vertical_slice_state_owner_facade.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "read_only_owner_and_visibility_labels",
+      "r3_rationale": "The facade is read-only and false-authority fenced, but owner-family and visibility labels must remain references and must not acquire state, sensing, knowledge, or truth ownership.",
+      "audit_baseline_blob_sha": "2993e4afb44a06e359f27052ac9f842099a0b3e0",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0035",
+      "path": "src/astra_runtime/domain/scene_command_execution_skeleton.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "scene_assembly_profile_qualification",
+      "r3_rationale": "Scene-command assembly is nonexecuting; its bounded subject/route vocabulary must remain profile-local rather than become Myravant's universal action surface.",
+      "audit_baseline_blob_sha": "c3f836ab439867987300dbf014c68be980f9390a",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0037",
+      "path": "src/astra_runtime/domain/state_projection.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "state_projection_visibility_qualification",
+      "r3_rationale": "Projection is derivative; fixed visibility vocabulary cannot itself establish authoritative state, sensing, knowledge, truth, or disclosure entitlement.",
+      "audit_baseline_blob_sha": "5c53f4a87fbfd3f5d0a967bc47f228b9efa26aec",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0038",
+      "path": "src/astra_runtime/domain/state_store.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "state_store_authority_label_qualification",
+      "r3_rationale": "The surface stores immutable references and performs no persistence or mutation, but labels such as authoritative_runtime, canon_sourcebook, and authority_level must not confer the authority they name.",
+      "audit_baseline_blob_sha": "b9b6d1438eed34f11cc69ee0f02c9faafb827516",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0039",
+      "path": "src/astra_runtime/domain/tiny_vertical_slice.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "vertical_slice_fixture_non_generalization",
+      "r3_rationale": "The fixed tiny-slice commands and entities are lawful fixture-local data only; they must never become the general Myravant command vocabulary or world ontology.",
+      "audit_baseline_blob_sha": "4f1d9c89f3056de3705d2201f81f058a4f31dac7",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0040",
+      "path": "src/astra_runtime/domain/transaction_lifecycle.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "transaction_lifecycle_commitment_qualification",
+      "r3_rationale": "Transaction lifecycle records are nonexecuting references; committed/commit-ready labels must consume AFQR-01 commitment evidence and AFQR-02 command identity rather than establish either.",
+      "audit_baseline_blob_sha": "d4fdefce27891f871225abf90ae55cb3d23e0f19",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0042",
+      "path": "src/astra_runtime/domain/validation_integration.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "validation_owner_qualification",
+      "r3_rationale": "Validation integration defines reference/status vocabulary but no governing validation rules; pass/fail and authority-mismatch labels cannot substitute for the actual semantic owners.",
+      "audit_baseline_blob_sha": "8ac942231d6e58295ea290d67f996ad4f4057920",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0046",
+      "path": "src/astra_runtime/kernel/context_projection.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "context_projection_epistemic_qualification",
+      "r3_rationale": "Projection/redaction machinery is derivative; its tiers must not collapse sensing, knowledge, truth, evidence, or disclosure authority.",
+      "audit_baseline_blob_sha": "28af643aafc3b97b179665e9122197fe338965b1",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0047",
+      "path": "src/astra_runtime/kernel/event_ledger.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "event_ledger_order_commitment_qualification",
+      "r3_rationale": "Ledger representation, append position, and sequence cannot themselves create semantic commitment, logical time, causal order, or canonical truth.",
+      "audit_baseline_blob_sha": "fad769e2593b7a83b59f2446c86ddbf3ce307ab5",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0048",
+      "path": "src/astra_runtime/kernel/hidden_information.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "hidden_information_epistemic_qualification",
+      "r3_rationale": "Hidden-information representation may protect disclosure but must not become the owner of truth, sensing, detection, knowledge, belief, or evidence semantics.",
+      "audit_baseline_blob_sha": "275902d34e529da14f750058a839fce828f4ea97",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0049",
+      "path": "src/astra_runtime/kernel/persistence_boundary.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "persistence_prepare_nonauthority_qualification",
+      "r3_rationale": "The boundary performs no durable persistence; prepared status and storage preparation must remain distinct from semantic commitment, canonicality, or successful durable reconstruction.",
+      "audit_baseline_blob_sha": "df546e02bd6cb53d7146fca63f066aa0212bc54b",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0051",
+      "path": "src/astra_runtime/kernel/replay_audit.py",
+      "r3_outcome": "conformant_with_required_remediation_before_promotion",
+      "r3_finding_code": "replay_hash_order_qualification",
+      "r3_rationale": "Replay/hash audit is not a replay engine; sequence numbers and hash equality must not become semantic replay, logical order, commitment, or reconstruction authority.",
+      "audit_baseline_blob_sha": "87e881ba0a173463bcd8f4dcea8ccf8cf7e34ca3",
+      "audit_disposition": "retain_nonauthoritative_until_separately_authorized_promotion",
+      "migration_required_now": false,
+      "promotion_blocking": true,
+      "current_file_edit_authorized": false,
+      "r4_0_read_only_reconciliation_effect": "does_not_block_read_only_reconciliation",
+      "r4_substrate_implementation_effect": "not_adjudicated_by_this_tranche",
+      "audit_rationale": "R3 found the artifact conformant only at its present nonauthoritative scope. No current code migration is required while that scope is retained. Any future authoritative/general promotion must preserve the named owner boundary and receive separately authorized executable evaluation and implementation.",
+      "downstream_route": [
+        "PR2-TEST",
+        "PR2-IMPL"
+      ]
+    }
+  ],
+  "r4_substrate_context": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0001",
+      "path": "schemas/handoff/content_unit.schema.json",
+      "r2a_baseline_blob_sha": "ff75df6f41eacc7a50cb2b5734e76bf8fd084104",
+      "audit_baseline_blob_sha": "ff75df6f41eacc7a50cb2b5734e76bf8fd084104",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0002",
+      "path": "schemas/handoff/conversion_intake_result.schema.json",
+      "r2a_baseline_blob_sha": "bb80200de474602cdaedbac6b37a4d45fbc44bad",
+      "audit_baseline_blob_sha": "bb80200de474602cdaedbac6b37a4d45fbc44bad",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0003",
+      "path": "schemas/handoff/conversion_result.schema.json",
+      "r2a_baseline_blob_sha": "c1a9131c464c94a779a9c8b77704bac2962a94a8",
+      "audit_baseline_blob_sha": "c1a9131c464c94a779a9c8b77704bac2962a94a8",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0004",
+      "path": "schemas/handoff/extraction_repair_queue.schema.json",
+      "r2a_baseline_blob_sha": "aa4e770972bf973cb9e65a64f9c20a44f75f9880",
+      "audit_baseline_blob_sha": "aa4e770972bf973cb9e65a64f9c20a44f75f9880",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0005",
+      "path": "schemas/handoff/map_unit.schema.json",
+      "r2a_baseline_blob_sha": "3aee4f1f76c504bc2c81840927d3a63ab8a23f43",
+      "audit_baseline_blob_sha": "3aee4f1f76c504bc2c81840927d3a63ab8a23f43",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0006",
+      "path": "schemas/handoff/mapping_ledger.schema.json",
+      "r2a_baseline_blob_sha": "6455c76c07307447a73f07ed674df263a4b6b548",
+      "audit_baseline_blob_sha": "6455c76c07307447a73f07ed674df263a4b6b548",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0007",
+      "path": "schemas/handoff/packet_manifest.schema.json",
+      "r2a_baseline_blob_sha": "179da3c9b3cf8fef97fb7bedc33df4041ef9d60e",
+      "audit_baseline_blob_sha": "179da3c9b3cf8fef97fb7bedc33df4041ef9d60e",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0008",
+      "path": "schemas/handoff/queue_record.schema.json",
+      "r2a_baseline_blob_sha": "9dfb398f1737bbf5419b5c5a0aaf67c927b4188a",
+      "audit_baseline_blob_sha": "9dfb398f1737bbf5419b5c5a0aaf67c927b4188a",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0009",
+      "path": "schemas/handoff/readiness_classes.schema.json",
+      "r2a_baseline_blob_sha": "004f37db61f21a947ed4c6e0a607a3b640a67730",
+      "audit_baseline_blob_sha": "004f37db61f21a947ed4c6e0a607a3b640a67730",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0010",
+      "path": "schemas/handoff/statblock_unit.schema.json",
+      "r2a_baseline_blob_sha": "d3a2f3ae97847f7be19e3a06fa89bd1cc1b4cbe2",
+      "audit_baseline_blob_sha": "d3a2f3ae97847f7be19e3a06fa89bd1cc1b4cbe2",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0011",
+      "path": "schemas/handoff/table_unit.schema.json",
+      "r2a_baseline_blob_sha": "b8e40a2646d424668d999f3e29177ac193cda21f",
+      "audit_baseline_blob_sha": "b8e40a2646d424668d999f3e29177ac193cda21f",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0012",
+      "path": "schemas/manifest.schema.json",
+      "r2a_baseline_blob_sha": "f51703b37f7d45ac3d67174534c71e0e76aa7002",
+      "audit_baseline_blob_sha": "f51703b37f7d45ac3d67174534c71e0e76aa7002",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0013",
+      "path": "schemas/page_metadata.schema.json",
+      "r2a_baseline_blob_sha": "09dcdd4b387a773128b922c6df9c499b727f263f",
+      "audit_baseline_blob_sha": "09dcdd4b387a773128b922c6df9c499b727f263f",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0014",
+      "path": "schemas/quality_report.schema.json",
+      "r2a_baseline_blob_sha": "b4a3fb0247af861b83772573153291868aae1258",
+      "audit_baseline_blob_sha": "b4a3fb0247af861b83772573153291868aae1258",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0015",
+      "path": "schemas/repair_queue.schema.json",
+      "r2a_baseline_blob_sha": "486b3db7d2c745ade654785360cce871fd864c33",
+      "audit_baseline_blob_sha": "486b3db7d2c745ade654785360cce871fd864c33",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-RS-0016",
+      "path": "schemas/table_sidecar.schema.json",
+      "r2a_baseline_blob_sha": "3aa6651b2159c89ece610485a5c183f242c6336a",
+      "audit_baseline_blob_sha": "3aa6651b2159c89ece610485a5c183f242c6336a",
+      "audit_baseline_state": "unchanged_since_r2a",
+      "r2a_disposition": "internal_nonauthoritative_pressure_only",
+      "r2a_authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r4_substrate"
+    }
+  ],
+  "validation_state": "validated",
+  "validation_evidence": [
+    "PR2-AUDIT-A focused validation:31 passed",
+    "PR2-AUDIT-A full local repository suite:9218 passed, 10 skipped, 2 xfailed, 1 warning",
+    "PR2-AUDIT-A git diff --check:clean",
+    "PR2-AUDIT-A exact seven-file footprint:PASS",
+    "PR2-AUDIT-A runtime/schema noninterference audit:PASS"
+  ]
+}
