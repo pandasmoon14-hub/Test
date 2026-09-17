@@ -6340,3 +6340,64 @@ PR2-AUDIT remains active.
 
 R4, PR2-MIG, PR2-TEST, PR2-IMPL, runtime implementation, and
 production-schema implementation remain unauthorized.
+
+## 2026-09-16 decision — R4-0 read-only substrate reconciliation
+
+- **Decision ID:** `R4-0-SUBSTRATE-RECONCILIATION-001`
+- **Authorization reference:** `owner_directive_2026-09-16_r4_0_read_only_substrate_reconciliation`
+- **Authority effect:** `read_only_substrate_reconciliation_only`
+- **Starting baseline:** `503cd04e69225398d32d3ad4848c05522b96e83c`
+- **R4 substrate records assessed:** `16`
+- **Schema/runtime edits authorized:** `0`
+
+Audit-A publication through PR `#412` is accepted as predecessor evidence.
+
+R4-0 reconciles the 16 frozen `r4_substrate` schemas against current
+Myravant source/runtime separation law.
+
+Outcome:
+
+- 10 are legacy conversion/handoff schemas and are not direct runtime
+  substrate;
+- 6 are offline extraction-tooling schemas and may remain outside runtime
+  where useful;
+- 0 are direct Myravant runtime-substrate candidates.
+
+Direct promotion or cosmetic renaming of these schemas is not a substitute
+for Myravant-native design.
+
+`R4-A` native substrate design is ready pending separate owner
+authorization.
+
+R4 implementation, PR2-MIG, PR2-TEST, PR2-IMPL, schema remediation, and
+runtime remediation remain unauthorized.
+
+## 2026-09-16 decision — R4-0 validation
+
+- **Decision ID:** `R4-0-VALIDATION-001`
+- **Starting baseline:** `503cd04e69225398d32d3ad4848c05522b96e83c`
+- **Focused certification:** `29 passed`
+- **Full repository suite:**
+  `9226 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Post-suite focused regression:** `29 passed`
+- **Tranche state:** `validated_complete`
+
+R4-0 / PR2-AUDIT-B is validated as a bounded read-only substrate
+reconciliation.
+
+The final disposition remains:
+
+- 10 legacy conversion/handoff schemas;
+- 6 offline extraction-tooling schemas;
+- 0 direct Myravant runtime-substrate candidates.
+
+No schema or runtime implementation was changed.
+
+Overall PR2-AUDIT remains active.
+
+R4 remains blocked.
+
+R4-A native substrate design is ready pending separate authorization.
+
+PR2-MIG, PR2-TEST, PR2-IMPL, runtime implementation, schema
+implementation, and remediation remain unauthorized.

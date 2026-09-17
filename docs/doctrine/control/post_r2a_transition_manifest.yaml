@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.44",
+  "artifact_version": "0.4.46",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1559,12 +1559,14 @@
       "starting_baseline": "b8c00ed48f2859eeef4a9229b3aec0ea4cd1405c",
       "owned_paths": [
         "docs/decisions/current_decisions_log.md",
-        "docs/doctrine/reviews/pr2_audit_r3_promotion_blocker_r4_entry_disposition.yaml",
         "docs/doctrine/control/post_r2a_transition_manifest.yaml",
         "docs/doctrine/control/post_r2a_transition_program.md",
+        "docs/doctrine/reviews/pr2_audit_r3_promotion_blocker_r4_entry_disposition.yaml",
+        "docs/doctrine/reviews/r4_0_substrate_reconciliation.yaml",
         "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_audit_r3_r4_entry_disposition.py",
         "tests/test_r3_initial_conformance_review.py",
-        "tests/test_pr2_audit_r3_r4_entry_disposition.py"
+        "tests/test_r4_0_substrate_reconciliation.py"
       ],
       "prohibited_scope": [
         "silent_remediation_during_inventory",
@@ -1581,47 +1583,58 @@
       "downstream_handoff": [
         "PR2-MIG"
       ],
-      "current_tranche": "PR2-AUDIT-A",
-      "current_tranche_authorization_reference": "owner_directive_2026-09-16_pr2_audit_a_r3_r4_entry_disposition",
-      "current_tranche_authority_effect": "inventory_and_disposition_only",
-      "current_tranche_starting_baseline": "b8c00ed48f2859eeef4a9229b3aec0ea4cd1405c",
-      "current_tranche_review_artifact": "docs/doctrine/reviews/pr2_audit_r3_promotion_blocker_r4_entry_disposition.yaml",
+      "current_tranche": "PR2-AUDIT-B",
+      "current_tranche_authorization_reference": "owner_directive_2026-09-16_r4_0_read_only_substrate_reconciliation",
+      "current_tranche_authority_effect": "read_only_substrate_reconciliation_only",
+      "current_tranche_starting_baseline": "503cd04e69225398d32d3ad4848c05522b96e83c",
+      "current_tranche_review_artifact": "docs/doctrine/reviews/r4_0_substrate_reconciliation.yaml",
       "current_tranche_state": "validated_complete",
       "current_tranche_target": {
-        "r3_promotion_blockers": 19,
         "r4_substrate_context_records": 16
       },
       "current_tranche_disposition_counts": {
-        "bounded_migration_required_before_authoritative_promotion": 2,
-        "retain_nonauthoritative_until_separately_authorized_promotion": 17
+        "legacy_conversion_handoff_not_runtime_substrate": 10,
+        "retain_offline_extraction_tooling_not_runtime_substrate": 6
       },
-      "current_tranche_migration_required_candidate_ids": [
-        "R2A-DISPOSITION-RS-0028",
-        "R2A-DISPOSITION-RS-0030"
-      ],
-      "current_tranche_r4_0_read_only_reconciliation_ready_pending_authorization": true,
       "current_tranche_r4_activation_authorized": false,
       "current_tranche_remediation_authorized": false,
       "current_tranche_next_tranche_authorized": false,
       "current_tranche_prohibited_scope": [
-        "runtime_implementation",
-        "production_schema_implementation",
-        "runtime_file_remediation",
-        "schema_file_remediation",
+        "schema_edit",
+        "runtime_edit",
+        "r4_activation",
+        "r4_substrate_implementation",
         "pr2_mig_activation",
         "pr2_test_activation",
         "pr2_impl_activation",
-        "r4_activation",
-        "r4_substrate_implementation",
-        "repository_wide_bulk_rewrite"
+        "legacy_schema_rename_as_native_design",
+        "legacy_schema_direct_runtime_promotion"
       ],
-      "current_tranche_completion_state": "validated_complete_with_bounded_dispositions",
+      "completed_tranches": [
+        {
+          "tranche_id": "PR2-AUDIT-A",
+          "state": "merged",
+          "authorization_reference": "owner_directive_2026-09-16_pr2_audit_a_r3_r4_entry_disposition",
+          "pull_request": 412,
+          "branch_head": "0592a3701d6ecaf13f2bcec849ae6ac58d584232",
+          "merge_commit": "503cd04e69225398d32d3ad4848c05522b96e83c",
+          "merge_tree": "0e593ea18290541d36af020bdde445df41371b6f",
+          "review_artifact": "docs/doctrine/reviews/pr2_audit_r3_promotion_blocker_r4_entry_disposition.yaml",
+          "validation_state": "validated"
+        }
+      ],
+      "current_tranche_alias": "R4-0",
+      "current_tranche_direct_runtime_substrate_candidate_count": 0,
+      "current_tranche_implementation_authorized": false,
+      "current_tranche_r4_a_ready_pending_authorization": true,
+      "current_tranche_completion_state": "validated_complete_with_zero_direct_runtime_substrate_candidates",
       "current_tranche_validation_evidence": [
-        "PR2-AUDIT-A focused validation:31 passed",
-        "PR2-AUDIT-A full local repository suite:9218 passed, 10 skipped, 2 xfailed, 1 warning",
-        "PR2-AUDIT-A git diff --check:clean",
-        "PR2-AUDIT-A exact seven-file footprint:PASS",
-        "PR2-AUDIT-A runtime/schema noninterference audit:PASS"
+        "R4-0 focused pre-certification:29 passed",
+        "R4-0 full local repository suite:9226 passed, 10 skipped, 2 xfailed, 1 warning",
+        "R4-0 focused post-suite regression:29 passed",
+        "R4-0 git diff --check:clean",
+        "R4-0 exact seven-file footprint:PASS",
+        "R4-0 runtime/schema noninterference audit:PASS"
       ]
     },
     {
@@ -1722,5 +1735,37 @@
   "program_completion_rule": {
     "required": "Every material tracked workstream must reach a lawful terminal state or an explicit accepted successor handoff.",
     "untracked_disappearance_allowed": false
+  },
+  "r4_substrate_reconciliation_target": {
+    "status": "validated",
+    "tranche_id": "R4-0",
+    "tracking_workstream": "PR2-AUDIT",
+    "tracking_tranche": "PR2-AUDIT-B",
+    "selector": "pressure_route == r4_substrate",
+    "candidate_count": 16,
+    "authorization_reference": "owner_directive_2026-09-16_r4_0_read_only_substrate_reconciliation",
+    "authority_effect": "read_only_substrate_reconciliation_only",
+    "starting_baseline": "503cd04e69225398d32d3ad4848c05522b96e83c",
+    "review_artifact": "docs/doctrine/reviews/r4_0_substrate_reconciliation.yaml",
+    "review_state": "validated_complete",
+    "disposition_counts": {
+      "legacy_conversion_handoff_not_runtime_substrate": 10,
+      "retain_offline_extraction_tooling_not_runtime_substrate": 6
+    },
+    "direct_runtime_substrate_candidate_count": 0,
+    "schema_edits_authorized": false,
+    "runtime_edits_authorized": false,
+    "r4_activation_authorized": false,
+    "r4_implementation_authorized": false,
+    "r4_a_ready_pending_authorization": true,
+    "validation_evidence": [
+      "R4-0 focused pre-certification:29 passed",
+      "R4-0 full local repository suite:9226 passed, 10 skipped, 2 xfailed, 1 warning",
+      "R4-0 focused post-suite regression:29 passed",
+      "R4-0 git diff --check:clean",
+      "R4-0 exact seven-file footprint:PASS",
+      "R4-0 runtime/schema noninterference audit:PASS"
+    ],
+    "completion_state": "validated_complete_with_zero_direct_runtime_substrate_candidates"
   }
 }
