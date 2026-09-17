@@ -1,0 +1,243 @@
+{
+  "artifact_id": "MYRAVANT-R4-A-NATIVE-SUBSTRATE-DESIGN-001",
+  "artifact_version": "0.1.1",
+  "status": "validated_complete",
+  "tranche_id": "R4-A",
+  "tracking_workstream": "PR2-AUDIT",
+  "tracking_tranche": "PR2-AUDIT-C",
+  "authorization_reference": "owner_directive_2026-09-17_r4_a_myravant_native_substrate_design",
+  "authority_effect": "myravant_native_substrate_design_only",
+  "starting_baseline": "fa4f1d795275eaaad4ee525aea7e3f3c2c2bd5e9",
+  "predecessor": {
+    "tranche_id": "R4-0",
+    "tracking_tranche": "PR2-AUDIT-B",
+    "pull_request": 413,
+    "branch_head": "d7ab9a2eff47b0a11855ad46e8c3b03434e7b7ec",
+    "merge_commit": "fa4f1d795275eaaad4ee525aea7e3f3c2c2bd5e9",
+    "merge_tree": "cf0217da37e38f546ee0185fbced11104c9dfb5d",
+    "review_artifact": "docs/doctrine/reviews/r4_0_substrate_reconciliation.yaml"
+  },
+  "scope": {
+    "historical_deferred_substrate_classes": 5,
+    "selected_native_capabilities": 1,
+    "runtime_edit_count": 0,
+    "schema_edit_count": 0,
+    "migration_authorized": false,
+    "implementation_authorized": false,
+    "r4_activation_authorized": false,
+    "pr2_mig_authorized": false,
+    "pr2_test_authorized": false,
+    "pr2_impl_authorized": false
+  },
+  "governing_evidence": [
+    "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",
+    "docs/doctrine/reviews/runtime_domain_pr_9_post_pr8_runtime_generalization_planning.md",
+    "docs/doctrine/reviews/runtime_domain_rt_001g_state_owner_interface_prerequisite_review.md",
+    "docs/doctrine/reviews/r4_0_substrate_reconciliation.yaml",
+    "src/astra_runtime/domain/state_owner_interface_contract_skeleton.py",
+    "src/astra_runtime/domain/read_only_vertical_slice_state_owner_facade.py",
+    "src/astra_runtime/domain/tiny_vertical_slice.py"
+  ],
+  "historical_substrate_dispositions": [
+    {
+      "substrate_id": "SUB-001",
+      "historical_name": "generalized governed-relation registry",
+      "historical_requiring_afqrs": [
+        "AFQR-09",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "historical_owner_separation_preserved": true,
+      "historical_combined_owner_prohibition_preserved": true,
+      "r4_a_disposition": "narrow_native_relation_pressure_selected_for_persistent_world_slice",
+      "generalized_form_selected": false,
+      "contributes_to_selected_capability": true,
+      "implementation_authorized": false,
+      "rationale": "Persistent play requires identity-stable relationships between world entities, but a universal governed-relation registry would collapse dependency, social, and institutional semantics. The next native slice needs only a typed relation envelope whose semantic owner remains explicit."
+    },
+    {
+      "substrate_id": "SUB-002",
+      "historical_name": "generalized bitemporal truth/evidence store",
+      "historical_requiring_afqrs": [
+        "AFQR-04",
+        "AFQR-06",
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "historical_owner_separation_preserved": true,
+      "historical_combined_owner_prohibition_preserved": true,
+      "r4_a_disposition": "generalized_bitemporal_store_deferred_until_concrete_playable_need",
+      "generalized_form_selected": false,
+      "contributes_to_selected_capability": false,
+      "implementation_authorized": false,
+      "rationale": "The next playable slice does not require a new global truth or evidence store. Existing time, persistence, replay, hidden-information, and projection boundaries must remain separate. A broader bitemporal representation remains deferred until a concrete gameplay requirement proves it necessary."
+    },
+    {
+      "substrate_id": "SUB-003",
+      "historical_name": "generalized owner-reducer transaction journal",
+      "historical_requiring_afqrs": [
+        "AFQR-01",
+        "AFQR-02",
+        "AFQR-04",
+        "AFQR-09"
+      ],
+      "historical_owner_separation_preserved": true,
+      "historical_combined_owner_prohibition_preserved": true,
+      "r4_a_disposition": "generalized_transaction_journal_not_required_for_next_playable_slice",
+      "generalized_form_selected": false,
+      "contributes_to_selected_capability": false,
+      "implementation_authorized": false,
+      "rationale": "The live runtime already contains command, preview, delta, event, persistence, and replay surfaces. R4-A must reuse that spine rather than create a second generalized transaction journal. This does not claim every authoritative promotion path is cleared."
+    },
+    {
+      "substrate_id": "SUB-004",
+      "historical_name": "registered interface/bridge hypergraph",
+      "historical_requiring_afqrs": [
+        "AFQR-05"
+      ],
+      "historical_owner_separation_preserved": true,
+      "historical_combined_owner_prohibition_preserved": true,
+      "r4_a_disposition": "generalized_bridge_hypergraph_not_required_for_next_playable_slice",
+      "generalized_form_selected": false,
+      "contributes_to_selected_capability": false,
+      "implementation_authorized": false,
+      "rationale": "The current runtime already has typed interface and bridge surfaces sufficient for the bounded next slice. A generalized runtime hypergraph would add abstraction without demonstrated playable need."
+    },
+    {
+      "substrate_id": "SUB-005",
+      "historical_name": "generalized spatial, signal, embodiment, institution, and social owner contracts",
+      "historical_requiring_afqrs": [
+        "AFQR-13",
+        "AFQR-15",
+        "AFQR-16",
+        "AFQR-18",
+        "AFQR-20"
+      ],
+      "historical_owner_separation_preserved": true,
+      "historical_combined_owner_prohibition_preserved": true,
+      "r4_a_disposition": "combined_owner_family_prohibited_narrow_spatial_pressure_selected",
+      "generalized_form_selected": false,
+      "contributes_to_selected_capability": true,
+      "implementation_authorized": false,
+      "rationale": "Persistent entities need a lawful location relationship, but spatial, sensing, embodiment, institutional, and social semantics must remain separately owned. The selected slice consumes only the minimum AFQR-18-routed spatial relation pressure."
+    }
+  ],
+  "existing_runtime_reuse": [
+    "src/astra_runtime/kernel/record_identity.py",
+    "src/astra_runtime/kernel/schema_registry.py",
+    "src/astra_runtime/kernel/command_envelope.py",
+    "src/astra_runtime/kernel/transaction_preview.py",
+    "src/astra_runtime/kernel/state_delta.py",
+    "src/astra_runtime/kernel/event_ledger.py",
+    "src/astra_runtime/kernel/persistence_boundary.py",
+    "src/astra_runtime/kernel/replay_audit.py",
+    "src/astra_runtime/kernel/hidden_information.py",
+    "src/astra_runtime/kernel/context_projection.py",
+    "src/astra_runtime/kernel/validation_pipeline.py",
+    "src/astra_runtime/domain/state_owner_interface_contract_skeleton.py",
+    "src/astra_runtime/domain/read_only_vertical_slice_state_owner_facade.py",
+    "src/astra_runtime/domain/tiny_vertical_slice.py"
+  ],
+  "selected_native_capability": {
+    "capability_id": "R4-A-CAP-001",
+    "name": "persistent_world_entity_and_location_relation_representation",
+    "purpose": "Provide the minimum deterministic representation needed for people or creatures, places, and objects to retain campaign-local identity across turns and sessions and to express a lawful current-location relationship without creating a universal world-state owner.",
+    "playable_need": [
+      "world entities must survive beyond the hard-coded tiny vertical slice and remain referentially stable across turns and sessions",
+      "a character or creature and an object must be representable as being at a persistent place without scene-local hard coding",
+      "later actions must be able to route location-dependent questions to the spatial owner rather than infer them from raw state"
+    ],
+    "entity_representation_requirements": {
+      "campaign_local_stable_identity": true,
+      "minimum_playable_coverage": [
+        "character_or_creature_identity",
+        "place_identity",
+        "object_identity"
+      ],
+      "coverage_is_closed_enum": false,
+      "classification_may_imply_control": false,
+      "classification_may_imply_agency": false,
+      "classification_may_imply_ownership": false,
+      "classification_may_imply_authority": false,
+      "must_reuse_existing_record_identity_surface_where_compatible": true
+    },
+    "relation_representation_requirements": {
+      "typed_relation_envelope_required": true,
+      "minimum_fields": [
+        "relation_id",
+        "relation_type",
+        "subject_entity_id",
+        "object_entity_id",
+        "semantic_owner"
+      ],
+      "initial_relation_type": "located_at",
+      "initial_relation_semantic_owner": "AFQR-18",
+      "relation_extension_requires_owner_qualification": true,
+      "relation_record_may_transfer_semantic_ownership": false,
+      "relation_record_may_imply_social_state": false,
+      "relation_record_may_imply_institutional_authority": false,
+      "relation_record_may_imply_knowledge_or_visibility": false
+    },
+    "determinism_requirements": {
+      "canonical_serialization_required": true,
+      "stable_ordering_required": true,
+      "model_generated_identity_authority": false,
+      "model_generated_relation_authority": false
+    },
+    "state_owner_integration": {
+      "reuse_state_owner_interface_envelope": true,
+      "state_owner_snapshot_may_store_or_transport_payload": true,
+      "state_owner_snapshot_gains_semantic_ownership": false,
+      "raw_state_read_becomes_authorized": false
+    },
+    "explicit_non_goals": [
+      "universal_world_state_manager",
+      "generalized_governed_relation_registry",
+      "global_bitemporal_truth_or_evidence_store",
+      "second_owner_reducer_transaction_journal",
+      "registered_interface_bridge_hypergraph",
+      "combined_spatial_signal_embodiment_institution_social_owner",
+      "general_social_relationship_system",
+      "institution_or_jurisdiction_system",
+      "embodiment_or_harm_system",
+      "sensing_or_detection_system",
+      "combat_system",
+      "model_owned_world_state"
+    ]
+  },
+  "implementation_handoff": {
+    "candidate_package": "R4-B",
+    "candidate_name": "persistent_world_entity_location_representation_implementation",
+    "candidate_defined": true,
+    "ready_pending_authorization": false,
+    "authorized": false,
+    "blocked_by_existing_post_r2_gates": [
+      "PR2-AUDIT",
+      "PR2-MIG",
+      "PR2-TEST",
+      "PR2-IMPL"
+    ],
+    "note": "R4-A defines the bounded playable implementation target but does not bypass the existing post-R2 implementation gate chain."
+  },
+  "summary": {
+    "historical_substrate_class_count": 5,
+    "selected_pressure_contributor_count": 2,
+    "generalized_form_selected_count": 0,
+    "selected_native_capability_count": 1,
+    "runtime_edit_count": 0,
+    "schema_edit_count": 0,
+    "r4_activation_authorized": false,
+    "runtime_promotion_clear": false,
+    "repository_wide_pr2_audit_complete": false,
+    "current_tranche_validated": true
+  },
+  "validation_state": "validated",
+  "validation_evidence": [
+    "R4-A focused pre-certification:28 passed",
+    "R4-A full local repository suite:9232 passed, 10 skipped, 2 xfailed, 1 warning",
+    "R4-A focused post-suite regression:28 passed",
+    "R4-A git diff --check:clean",
+    "R4-A exact seven-file footprint:PASS",
+    "R4-A runtime/schema noninterference audit:PASS"
+  ]
+}

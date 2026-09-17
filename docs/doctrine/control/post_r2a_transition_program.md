@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.46`
+**Artifact version:** `0.4.48`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -2148,6 +2148,76 @@ R4 remains blocked.
 
 Overall `PR2-AUDIT` remains active. Completion of R4-0 does not claim
 repository-wide audit completion.
+
+### 5.44 R4-A Myravant-native substrate design
+
+R4-0 merged through PR `#413` at `fa4f1d795275eaaad4ee525aea7e3f3c2c2bd5e9`.
+
+The owner separately authorized the bounded R4-A design tranche:
+
+`owner_directive_2026-09-17_r4_a_myravant_native_substrate_design`
+
+Authority effect:
+
+`myravant_native_substrate_design_only`
+
+R4-A is design-only. It does not edit runtime or schema implementation and
+does not activate R4.
+
+The historical substrate ledger contains five accepted deferred substrate
+classes. R4-A does not treat those five classes as an implementation
+checklist.
+
+Disposition:
+
+- SUB-001 contributes narrow relation-representation pressure but does not
+  authorize a universal governed-relation registry.
+- SUB-002 remains deferred; no new global bitemporal truth/evidence store
+  is required for the next playable slice.
+- SUB-003 does not justify a second generalized transaction journal; the
+  existing command/event/delta/persistence/replay spine is reused.
+- SUB-004 does not justify a generalized interface/bridge hypergraph for
+  the next slice.
+- SUB-005 contributes only narrow spatial-location pressure; spatial,
+  sensing, embodiment, institution, and social semantics remain separately
+  owned.
+
+One Myravant-native playable capability is selected:
+
+`persistent_world_entity_and_location_relation_representation`
+
+Its minimum purpose is to let campaign-local people or creatures, places,
+and objects retain stable identity across turns and sessions and to support
+an owner-qualified `located_at` relationship.
+
+Entity classification does not imply control, agency, ownership, or
+authority. Relation records do not own their domain semantics. The initial
+`located_at` relation routes spatial meaning to AFQR-18.
+
+Existing record-identity, owner-interface, event, persistence, replay,
+projection, validation, and hidden-information surfaces are reused rather
+than replaced.
+
+R4-B is recorded only as a future implementation candidate. It is not
+`ready_pending_authorization` and is not authorized while the existing
+`PR2-AUDIT -> PR2-MIG / PR2-TEST -> PR2-IMPL` gate chain remains
+unresolved.
+
+R4-A validation state: `validated_complete`.
+
+Full local repository certification: `9232 passed, 10 skipped, 2 xfailed, 1 warning`.
+
+Focused post-suite regression: `28 passed`.
+
+Overall PR2-AUDIT remains active.
+
+R4 remains blocked.
+
+Runtime promotion remains uncleared.
+
+Review artifact:
+
+`docs/doctrine/reviews/r4_a_myravant_native_substrate_design.yaml`
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
