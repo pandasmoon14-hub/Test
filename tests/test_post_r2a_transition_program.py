@@ -244,6 +244,12 @@ AUDIT_D_REVIEW = (
     "docs/doctrine/reviews/"
     "pr2_audit_completion_synthesis.yaml"
 )
+AUDIT_D_PR = 415
+AUDIT_D_HEAD = "21916c30eb96dbeb2b84c6b056709339ec31048d"
+AUDIT_D_MERGE = "720ee27248aac46e8f4e39492d51fda331778209"
+AUDIT_D_TREE = "04c094a41eda056b58f59bb5553ab718535d1f41"
+PR2_AUDIT_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-18_pr2_audit_post_merge_closure"
+PR2_AUDIT_CLOSURE_EFFECT = "repository_wide_post_r2_audit_post_merge_lifecycle_reconciliation_only"
 PR2_CONC_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_conc_deterministic_concurrency_contract.py', 'tests/test_pr2_part_post_merge_closure.py'}
 PR2_PART_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_authority_partitioning_migration_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_part_authority_partitioning_contract.py', 'tests/test_pr2_scale_post_merge_closure.py'}
 PR2_SCALE_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_scale_runtime_scalability_contract.py', 'tests/test_pr2_simex_post_merge_closure.py'}
@@ -332,10 +338,9 @@ UNRESOLVED_IDENTITY_CLASSES = [
     "software_namespace_future_alias_or_deprecation_policy",
 ]
 
-POST_R2_READY = set()
+POST_R2_READY = {"PR2-MIG"}
 
 POST_R2_BLOCKED = {
-    "PR2-MIG",
     "PR2-TEST",
     "PR2-IMPL",
 }
@@ -360,7 +365,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.50"
+    assert manifest["artifact_version"] == "0.4.51"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -534,7 +539,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_through_pr2_bp_are_merged_and_pr2_audit_is_only_active_successor():
+def test_r2c_through_pr2_bp_are_merged_and_no_successor_is_active_before_authorization():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -543,7 +548,7 @@ def test_r2c_through_pr2_bp_are_merged_and_pr2_audit_is_only_active_successor():
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == {"PR2-AUDIT"}
+    assert active == set()
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -919,7 +924,7 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
 
     audit = by_id["PR2-AUDIT"]
 
-    assert audit["status"] == "active"
+    assert audit["status"] == "merged"
     assert audit["authorization_reference"] == PR2_AUDIT_A_AUTHORIZATION
     assert audit["authority_effect"] == PR2_AUDIT_A_EFFECT
     assert audit["starting_baseline"] == PR2_AUDIT_A_BASELINE
@@ -960,61 +965,48 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
             "review_artifact": R4_A_REVIEW,
             "validation_state": "validated",
         },
+        {
+            "tranche_id": "PR2-AUDIT-D",
+            "alias": "AUDIT-CLOSE",
+            "state": "merged",
+            "authorization_reference": AUDIT_D_AUTHORIZATION,
+            "pull_request": AUDIT_D_PR,
+            "branch_head": AUDIT_D_HEAD,
+            "merge_commit": AUDIT_D_MERGE,
+            "merge_tree": AUDIT_D_TREE,
+            "review_artifact": AUDIT_D_REVIEW,
+            "validation_state": "validated",
+        },
     ]
 
     assert audit["current_tranche"] == "PR2-AUDIT-D"
     assert audit["current_tranche_alias"] == "AUDIT-CLOSE"
-    assert (
-        audit["current_tranche_authorization_reference"]
-        == AUDIT_D_AUTHORIZATION
-    )
-    assert (
-        audit["current_tranche_authority_effect"]
-        == AUDIT_D_EFFECT
-    )
-    assert (
-        audit["current_tranche_starting_baseline"]
-        == AUDIT_D_BASELINE
-    )
-    assert (
-        audit["current_tranche_review_artifact"]
-        == AUDIT_D_REVIEW
-    )
-    assert (
-        audit["current_tranche_state"]
-        == "validated_complete"
-    )
-    assert audit["current_tranche_completion_state"] == (
-        "validated_complete_pending_merge"
-    )
-    assert audit["current_tranche_target"] == {
-        "dependency_workstreams": 6,
-        "input_inventory_groups": 5,
-        "current_migration_required_records": 2,
-        "undispositioned_input_groups": 0,
-    }
-    assert (
-        audit["current_tranche_repository_wide_completion_recommended"]
-        is True
-    )
+    assert audit["current_tranche_state"] == "merged"
     assert (
         audit["current_tranche_repository_wide_audit_complete"]
-        is False
-    )
-    assert audit["current_tranche_migration_required_candidate_ids"] == [
-        "R2A-DISPOSITION-RS-0028",
-        "R2A-DISPOSITION-RS-0030",
-    ]
-    assert audit["current_tranche_r4_activation_authorized"] is False
-    assert audit["current_tranche_implementation_authorized"] is False
-    assert audit["current_tranche_remediation_authorized"] is False
-    assert audit["current_tranche_next_tranche_authorized"] is False
-    assert (
-        audit[
-            "current_tranche_pr2_mig_ready_after_validation_and_merge"
-        ]
         is True
     )
+    assert audit["current_tranche_completion_state"] == (
+        "merged_repository_wide_audit_complete"
+    )
+
+    assert audit["pull_request"] == AUDIT_D_PR
+    assert audit["branch_head"] == AUDIT_D_HEAD
+    assert audit["merge_commit"] == AUDIT_D_MERGE
+
+    assert (
+        audit["post_merge_closure_authorization_reference"]
+        == PR2_AUDIT_CLOSURE_AUTHORIZATION
+    )
+    assert (
+        audit["post_merge_closure_authority_effect"]
+        == PR2_AUDIT_CLOSURE_EFFECT
+    )
+    assert (
+        audit["post_merge_closure_recorded_from"]
+        == AUDIT_D_MERGE
+    )
+    assert audit["post_merge_closure_tree"] == AUDIT_D_TREE
 
     for workstream_id in POST_R2_READY:
         assert by_id[workstream_id]["status"] == "ready_pending_authorization"
@@ -1063,7 +1055,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.50`" in program
+    assert "**Artifact version:** `0.4.51`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program

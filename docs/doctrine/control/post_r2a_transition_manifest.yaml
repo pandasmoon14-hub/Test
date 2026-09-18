@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.50",
+  "artifact_version": "0.4.51",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1544,7 +1544,7 @@
       "title": "Repository-wide post-R2 conformance and migration inventory",
       "category": "review",
       "purpose": "Inventory existing repository artifacts against accepted identity, source-governance, originality, corpus, and scalability decisions.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-ID",
         "PR2-SRC",
@@ -1567,6 +1567,7 @@
         "docs/doctrine/reviews/r4_a_myravant_native_substrate_design.yaml",
         "tests/test_post_r2a_transition_program.py",
         "tests/test_pr2_audit_completion_synthesis.py",
+        "tests/test_pr2_audit_post_merge_closure.py",
         "tests/test_pr2_audit_r3_r4_entry_disposition.py",
         "tests/test_r3_initial_conformance_review.py",
         "tests/test_r4_0_substrate_reconciliation.py",
@@ -1579,10 +1580,17 @@
       ],
       "entry_condition": "Relevant post-R2 control architecture is sufficiently settled for comparison.",
       "completion_condition": "Every affected artifact in scope receives a lawful migration disposition.",
-      "validation_evidence": [],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "validation_evidence": [
+        "PR2-AUDIT-D focused pre-certification:42 passed",
+        "PR2-AUDIT-D full local repository suite:9239 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-AUDIT-D focused post-suite regression:42 passed",
+        "PR2-AUDIT-D git diff --check:clean",
+        "PR2-AUDIT-D exact seven-file footprint:PASS",
+        "PR2-AUDIT-D runtime/schema noninterference audit:PASS"
+      ],
+      "pull_request": 415,
+      "branch_head": "21916c30eb96dbeb2b84c6b056709339ec31048d",
+      "merge_commit": "720ee27248aac46e8f4e39492d51fda331778209",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-MIG"
@@ -1592,7 +1600,7 @@
       "current_tranche_authority_effect": "repository_wide_post_r2_audit_completion_synthesis_only",
       "current_tranche_starting_baseline": "6455659b61bc0b56fa6c41f95e15f5b1b94d077a",
       "current_tranche_review_artifact": "docs/doctrine/reviews/pr2_audit_completion_synthesis.yaml",
-      "current_tranche_state": "validated_complete",
+      "current_tranche_state": "merged",
       "current_tranche_target": {
         "dependency_workstreams": 6,
         "input_inventory_groups": 5,
@@ -1653,18 +1661,30 @@
           "merge_tree": "6e71bcc985fd10762cf51bfc95d413e9184e2f6a",
           "review_artifact": "docs/doctrine/reviews/r4_a_myravant_native_substrate_design.yaml",
           "validation_state": "validated"
+        },
+        {
+          "tranche_id": "PR2-AUDIT-D",
+          "alias": "AUDIT-CLOSE",
+          "state": "merged",
+          "authorization_reference": "owner_directive_2026-09-17_pr2_audit_d_completion_synthesis",
+          "pull_request": 415,
+          "branch_head": "21916c30eb96dbeb2b84c6b056709339ec31048d",
+          "merge_commit": "720ee27248aac46e8f4e39492d51fda331778209",
+          "merge_tree": "04c094a41eda056b58f59bb5553ab718535d1f41",
+          "review_artifact": "docs/doctrine/reviews/pr2_audit_completion_synthesis.yaml",
+          "validation_state": "validated"
         }
       ],
       "current_tranche_alias": "AUDIT-CLOSE",
       "current_tranche_implementation_authorized": false,
       "current_tranche_repository_wide_completion_recommended": true,
-      "current_tranche_repository_wide_audit_complete": false,
+      "current_tranche_repository_wide_audit_complete": true,
       "current_tranche_migration_required_candidate_ids": [
         "R2A-DISPOSITION-RS-0028",
         "R2A-DISPOSITION-RS-0030"
       ],
       "current_tranche_pr2_mig_ready_after_validation_and_merge": true,
-      "current_tranche_completion_state": "validated_complete_pending_merge",
+      "current_tranche_completion_state": "merged_repository_wide_audit_complete",
       "current_tranche_validation_evidence": [
         "PR2-AUDIT-D focused pre-certification:42 passed",
         "PR2-AUDIT-D full local repository suite:9239 passed, 10 skipped, 2 xfailed, 1 warning",
@@ -1672,14 +1692,19 @@
         "PR2-AUDIT-D git diff --check:clean",
         "PR2-AUDIT-D exact seven-file footprint:PASS",
         "PR2-AUDIT-D runtime/schema noninterference audit:PASS"
-      ]
+      ],
+      "completion_state": "merged",
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-18_pr2_audit_post_merge_closure",
+      "post_merge_closure_authority_effect": "repository_wide_post_r2_audit_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "720ee27248aac46e8f4e39492d51fda331778209",
+      "post_merge_closure_tree": "04c094a41eda056b58f59bb5553ab718535d1f41"
     },
     {
       "workstream_id": "PR2-MIG",
       "title": "Bounded repository remediation",
       "category": "migration",
       "purpose": "Apply accepted audit dispositions through bounded, reviewable migration tranches.",
-      "status": "blocked",
+      "status": "ready_pending_authorization",
       "dependencies": [
         "PR2-AUDIT"
       ],
@@ -1703,7 +1728,18 @@
       "downstream_handoff": [
         "PR2-TEST",
         "PR2-IMPL"
-      ]
+      ],
+      "readiness_source": "PR2-AUDIT",
+      "readiness_recorded_from": "720ee27248aac46e8f4e39492d51fda331778209",
+      "readiness_candidate_ids": [
+        "R2A-DISPOSITION-RS-0028",
+        "R2A-DISPOSITION-RS-0030"
+      ],
+      "readiness_execution_order": [
+        "R2A-DISPOSITION-RS-0028",
+        "R2A-DISPOSITION-RS-0030"
+      ],
+      "migration_execution_authorized": false
     },
     {
       "workstream_id": "PR2-TEST",
@@ -1837,7 +1873,7 @@
     "completion_state": "validated_complete_with_bounded_native_design"
   },
   "pr2_audit_completion_target": {
-    "status": "validated",
+    "status": "merged",
     "tranche_id": "PR2-AUDIT-D",
     "authorization_reference": "owner_directive_2026-09-17_pr2_audit_d_completion_synthesis",
     "authority_effect": "repository_wide_post_r2_audit_completion_synthesis_only",
@@ -1852,9 +1888,9 @@
       "R2A-DISPOSITION-RS-0030"
     ],
     "repository_wide_audit_completion_recommended": true,
-    "repository_wide_audit_complete": false,
+    "repository_wide_audit_complete": true,
     "pr2_mig_ready_after_validation_and_merge": true,
-    "pr2_mig_ready_now": false,
+    "pr2_mig_ready_now": true,
     "pr2_mig_authorized": false,
     "pr2_test_authorized": false,
     "pr2_impl_authorized": false,
@@ -1871,6 +1907,10 @@
       "PR2-AUDIT-D runtime/schema noninterference audit:PASS"
     ],
     "review_state": "validated_complete",
-    "completion_state": "validated_complete_pending_merge"
+    "completion_state": "merged_repository_wide_audit_complete",
+    "post_merge_closure_authorization_reference": "owner_directive_2026-09-18_pr2_audit_post_merge_closure",
+    "post_merge_closure_authority_effect": "repository_wide_post_r2_audit_post_merge_lifecycle_reconciliation_only",
+    "post_merge_closure_recorded_from": "720ee27248aac46e8f4e39492d51fda331778209",
+    "post_merge_closure_tree": "04c094a41eda056b58f59bb5553ab718535d1f41"
   }
 }
