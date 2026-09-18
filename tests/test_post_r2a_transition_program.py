@@ -250,6 +250,11 @@ AUDIT_D_MERGE = "720ee27248aac46e8f4e39492d51fda331778209"
 AUDIT_D_TREE = "04c094a41eda056b58f59bb5553ab718535d1f41"
 PR2_AUDIT_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-18_pr2_audit_post_merge_closure"
 PR2_AUDIT_CLOSURE_EFFECT = "repository_wide_post_r2_audit_post_merge_lifecycle_reconciliation_only"
+PR2_MIG_A_BASELINE = "33e09250ef2d68946bd058044f15306c66bbefaf"
+PR2_MIG_A_AUTHORIZATION = "owner_directive_2026-09-18_pr2_mig_rs_0028"
+PR2_MIG_A_EFFECT = "bounded_rs_0028_commitment_qualification_migration_only"
+PR2_MIG_A_CANDIDATE = "R2A-DISPOSITION-RS-0028"
+PR2_MIG_A_TARGET = "src/astra_runtime/domain/object_lever_event_commit_state_delta_path.py"
 PR2_CONC_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_conc_deterministic_concurrency_contract.py', 'tests/test_pr2_part_post_merge_closure.py'}
 PR2_PART_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_authority_partitioning_migration_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_part_authority_partitioning_contract.py', 'tests/test_pr2_scale_post_merge_closure.py'}
 PR2_SCALE_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_scale_runtime_scalability_contract.py', 'tests/test_pr2_simex_post_merge_closure.py'}
@@ -338,7 +343,7 @@ UNRESOLVED_IDENTITY_CLASSES = [
     "software_namespace_future_alias_or_deprecation_policy",
 ]
 
-POST_R2_READY = {"PR2-MIG"}
+POST_R2_READY = set()
 
 POST_R2_BLOCKED = {
     "PR2-TEST",
@@ -365,7 +370,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.51"
+    assert manifest["artifact_version"] == "0.4.54"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -539,7 +544,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_through_pr2_bp_are_merged_and_no_successor_is_active_before_authorization():
+def test_r2c_through_pr2_bp_are_merged_and_pr2_mig_a_is_only_active_successor():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -548,7 +553,7 @@ def test_r2c_through_pr2_bp_are_merged_and_no_successor_is_active_before_authori
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == set()
+    assert active == {"PR2-MIG"}
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -838,6 +843,151 @@ def test_r2c_through_pr2_bp_are_merged_and_no_successor_is_active_before_authori
     )
     assert bp["post_merge_closure_tree"] == PR2_BP_TREE
 
+    mig = by_id["PR2-MIG"]
+
+    assert mig["status"] == "active"
+
+    assert (
+        mig["authorization_reference"]
+        == PR2_MIG_A_AUTHORIZATION
+    )
+
+    assert (
+        mig["starting_baseline"]
+        == PR2_MIG_A_BASELINE
+    )
+
+    assert mig["current_tranche"] == "PR2-MIG-A"
+
+    assert (
+        mig["current_tranche_candidate_id"]
+        == PR2_MIG_A_CANDIDATE
+    )
+
+    assert (
+        mig["current_tranche_state"]
+        == "validated_complete_pending_merge"
+    )
+
+    assert (
+        mig["current_tranche_authorization_reference"]
+        == PR2_MIG_A_AUTHORIZATION
+    )
+
+    assert (
+        mig["current_tranche_authority_effect"]
+        == PR2_MIG_A_EFFECT
+    )
+
+    assert (
+        mig["current_tranche_target_path"]
+        == PR2_MIG_A_TARGET
+    )
+
+    assert mig["migration_execution_authorized"] is True
+
+    assert mig["migration_execution_scope"] == [
+        "R2A-DISPOSITION-RS-0028"
+    ]
+
+    assert mig["remaining_candidate_ids"] == [
+        "R2A-DISPOSITION-RS-0030"
+    ]
+
+    behavior = mig["current_tranche_required_behavior"]
+
+    assert (
+        behavior[
+            "preview_ready_may_self_promote_to_committed"
+        ]
+        is False
+    )
+
+    assert (
+        behavior["preview_ready_status_after_migration"]
+        == "commit_ready"
+    )
+
+    assert (
+        behavior[
+            "preview_ready_decision_after_migration"
+        ]
+        == "awaiting_qualified_transition"
+    )
+
+    assert (
+        behavior["positive_local_commit_record_created"]
+        is False
+    )
+
+    assert (
+        behavior[
+            "positive_local_state_delta_receipt_created"
+        ]
+        is False
+    )
+
+    scope = mig["current_tranche_scope"]
+
+    assert scope["rs_0030_runtime_edit_authorized"] is False
+
+    assert (
+        scope["event_commitment_owner_edit_authorized"]
+        is False
+    )
+
+    assert (
+        scope[
+            "afqr_01_commit_owner_implementation_authorized"
+        ]
+        is False
+    )
+
+    assert (
+        mig["current_tranche_runtime_promotion_authorized"]
+        is False
+    )
+
+    assert (
+        mig["current_tranche_next_tranche_authorized"]
+        is False
+    )
+
+
+    assert (
+        mig["current_tranche_completion_state"]
+        == "validated_complete_pending_merge"
+    )
+
+    assert mig["current_tranche_validation_state"] == "validated"
+
+    assert mig["current_tranche_candidate_validated"] is True
+
+    evidence = mig["current_tranche_validation_evidence"]
+
+    assert len(evidence) == 4
+
+    full = next(
+        item
+        for item in evidence
+        if item["evidence_type"] == "full_repository_suite"
+    )
+
+    assert full == {
+        "evidence_type": "full_repository_suite",
+        "result": "pass",
+        "passed": 9251,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "warning_class": "PytestRemovedIn10Warning",
+    }
+
+    assert mig["next_candidate_id"] == "R2A-DISPOSITION-RS-0030"
+    assert mig["next_candidate_authorized"] is False
+    assert mig["next_tranche_id"] == "PR2-MIG-B"
+    assert mig["next_tranche_authorized"] is False
+
 
 
 def test_post_r2_successor_readiness_does_not_imply_authorization():
@@ -1055,7 +1205,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.51`" in program
+    assert "**Artifact version:** `0.4.54`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program

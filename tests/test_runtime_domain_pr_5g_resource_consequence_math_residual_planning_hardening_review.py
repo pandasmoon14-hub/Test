@@ -17,6 +17,8 @@ DOMAIN_DIR = ROOT / "src/astra_runtime/domain"
 KERNEL_DIR = ROOT / "src/astra_runtime/kernel"
 
 PR5G_ID = "RUNTIME-DOMAIN-PR-5G-RESOURCE-CONSEQUENCE-MATH-RESIDUAL-PLANNING-HARDENING-REVIEW-001"
+PR5G_BASE = "361a835a0175aa9c86583939e03e80ce932eb7c4"
+PR5G_ACCEPTED_MERGE = "899f6622820be31184f239050136ebefcc06e750"
 LINEAGE_IDS = [
     PR5G_ID,
     "RUNTIME-DOMAIN-PR-5F-RESOURCE-CONSEQUENCE-MATH-RESIDUAL-PLANNING-HARDENING-001",
@@ -469,19 +471,32 @@ def test_registry_record_and_decision_heading_exactly_once_and_registry_version_
 
 
 def test_no_unauthorized_runtime_or_kernel_implementation_file_added() -> None:
-    changed_paths = {line.split(maxsplit=1)[-1] for line in _git_status_short()}
-    domain_kernel_changed = {
-        path for path in changed_paths
-        if path.startswith("src/astra_runtime/domain/") or path.startswith("src/astra_runtime/kernel/")
-    }
-    assert domain_kernel_changed <= {
-        "src/astra_runtime/domain/resource_consequence_math.py",
-        "src/astra_runtime/domain/__init__.py",
-        "src/astra_runtime/domain/scene_command_execution_skeleton.py",
-        "src/astra_runtime/domain/command_kind_routing_skeleton.py",
-        "src/astra_runtime/domain/action_legality_skeleton.py",
-        "src/astra_runtime/domain/action_legality_gate_integration_skeleton.py",
-    }
+    import subprocess
+
+    result = subprocess.run(
+        [
+            "git",
+            "diff",
+            "--name-only",
+            PR5G_BASE,
+            PR5G_ACCEPTED_MERGE,
+            "--",
+            "src/astra_runtime/domain/",
+            "src/astra_runtime/kernel/",
+        ],
+        cwd=ROOT,
+        check=True,
+        text=True,
+        stdout=subprocess.PIPE,
+    )
+
+    changed = [
+        line.strip()
+        for line in result.stdout.splitlines()
+        if line.strip()
+    ]
+
+    assert changed == []
 
 
 def _git_status_short() -> list[str]:

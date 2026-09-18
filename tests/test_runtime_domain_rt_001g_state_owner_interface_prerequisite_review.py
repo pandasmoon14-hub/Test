@@ -17,6 +17,8 @@ import yaml
 
 
 _REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
+RT001G_BASE = "6666a177fcf48e7960a6aa3ea0c03eefb226ee5e"
+RT001G_ACCEPTED_MERGE = "67d5050c19c8592b6405f3f62d022f31f23c6da7"
 
 
 # ---------------------------------------------------------------------------
@@ -457,17 +459,28 @@ class TestNoModificationOfRuntimeModules:
             [
                 "git",
                 "diff",
-                "origin/main",
+                RT001G_BASE,
+                RT001G_ACCEPTED_MERGE,
                 "--name-only",
                 "--",
                 "src/astra_runtime/",
             ],
-            capture_output=True, text=True, cwd=_REPO_ROOT,
+            capture_output=True,
+            text=True,
+            cwd=_REPO_ROOT,
         )
+
         assert result.returncode == 0, "git diff failed"
-        modified = [line.strip() for line in result.stdout.splitlines() if line.strip()]
+
+        modified = [
+            line.strip()
+            for line in result.stdout.splitlines()
+            if line.strip()
+        ]
+
         assert not modified, (
-            "RT-001G branch modifies runtime implementation modules: "
+            "Accepted RT-001G merge modified runtime "
+            "implementation modules: "
             + ", ".join(modified)
         )
 

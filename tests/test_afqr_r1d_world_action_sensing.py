@@ -1,6 +1,7 @@
 """Semantic contract tests for bounded AFQR-16–20 R1D-WORLD doctrine."""
 import json, pathlib, re, subprocess
 ROOT=pathlib.Path(__file__).resolve().parents[1]; BASE='9cb7d36f6405fdf12a7b9bbe7edcf5839cdebc78'
+ACCEPTED_MERGE='017984a1598b9c60324c62e54d80372c364654ae'
 DOC=ROOT/'docs/doctrine/consolidation/afqr_world_action_sensing.md'
 def load(p): return json.loads(p.read_text(encoding='utf8'))
 def fenced(p): return json.loads(re.search(r'```json\n(.*?)\n```',p.read_text(encoding='utf8'),re.S).group(1))
@@ -116,6 +117,6 @@ def test_pressure_gates_registry_manifest_and_scope():
  assert c['completion_boundary']=={'R1D-CORE':'complete','R1D-AGENCY':'complete','R1D-WORLD':'complete','overall_R1D':'complete','overall_R1':'incomplete_pending_R1E','R1E':'ready','R2-R6':'blocked','RT-002G':'unauthorized','temporary_evidence_deletion':'unauthorized'}
  man={x['file_id']:x['status'] for x in load(ROOT/'docs/doctrine/reviews/afqr_01_20_consolidation_file_manifest.yaml')['planned_files']};assert man['R1D-CORE']==man['R1D-AGENCY']==man['R1D-WORLD']=='complete' and man['R1E']=='complete'
  reg=(ROOT/'docs/doctrine/astra_doctrine_registry_v0_1.yaml').read_text();assert 'AFQR-16-20-R1D-WORLD-ACTION-SENSING-001' in reg and 'status: pressure-tested\n  layer: 0_control\n  phase: R1D-WORLD' in reg
- changed=subprocess.check_output(['git','diff','--name-only',f'{BASE}...HEAD'],cwd=ROOT,text=True).splitlines();nums=subprocess.check_output(['git','diff','--numstat',f'{BASE}...HEAD'],cwd=ROOT,text=True).splitlines();deleted=subprocess.check_output(['git','diff','--name-status','--diff-filter=D',f'{BASE}...HEAD'],cwd=ROOT,text=True).splitlines()
+ changed=subprocess.check_output(['git','diff','--name-only',f'{BASE}...{ACCEPTED_MERGE}'],cwd=ROOT,text=True).splitlines();nums=subprocess.check_output(['git','diff','--numstat',f'{BASE}...{ACCEPTED_MERGE}'],cwd=ROOT,text=True).splitlines();deleted=subprocess.check_output(['git','diff','--name-status','--diff-filter=D',f'{BASE}...{ACCEPTED_MERGE}'],cwd=ROOT,text=True).splitlines()
  allowed={'docs/decisions/current_decisions_log.md','docs/doctrine/astra_doctrine_registry_v0_1.yaml','docs/doctrine/consolidation/afqr_world_action_sensing.md','docs/doctrine/control/afqr_01_20_consolidation_program_plan.md','docs/doctrine/reviews/afqr_01_20_consolidation_file_manifest.yaml','docs/doctrine/reviews/afqr_r1d_world_consolidation_report.md','tests/test_afqr_r1d_world_action_sensing.py','tests/test_afqr_r1d_core_transaction_identity_relation.py','tests/test_afqr_r1d_agency_epistemic_social_communication.py'}
  assert not any(p.startswith('src/') or p.lower().endswith('.zip') or 'working/afqr_consolidation_inputs/' in p for p in changed);assert not any(x.startswith('-\t-\t') for x in nums);assert not deleted

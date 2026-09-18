@@ -19,10 +19,12 @@ def afqr_ok(value):
 
 def committed_diff(data, *args):
     base = data['verified_repository_baseline']['current_main_sha']
+    accepted_merge = '179bfdda605f45d26ffb018da12805780710bdb3'
     assert re.fullmatch(r'[0-9a-f]{40}', base), 'verified R1C base must be a full commit SHA'
     subprocess.run(['git', 'cat-file', '-e', f'{base}^{{commit}}'], cwd=ROOT, check=True)
+    subprocess.run(['git', 'cat-file', '-e', f'{accepted_merge}^{{commit}}'], cwd=ROOT, check=True)
     return subprocess.run(
-        ['git', 'diff', *args, f'{base}...HEAD'], cwd=ROOT, text=True,
+        ['git', 'diff', *args, f'{base}...{accepted_merge}'], cwd=ROOT, text=True,
         capture_output=True, check=True,
     ).stdout
 

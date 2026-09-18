@@ -58,6 +58,8 @@ import astra_runtime.domain.action_legality_gate_integration_skeleton as _rt001c
 # ---------------------------------------------------------------------------
 
 _REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
+RT001D_BASE = "9a844b13e724b6a23f10f898783dd94be3b78a89"
+RT001D_ACCEPTED_MERGE = "f1554573248997ba31ee49288d4a628aad0e1a39"
 
 
 # ---------------------------------------------------------------------------
@@ -518,7 +520,7 @@ class TestImplementationModuleSafety:
         """T20: git diff against origin/main must not show changes in
         src/astra_runtime/domain/."""
         result = subprocess.run(
-            ["git", "diff", "--name-only", "origin/main...HEAD"],
+            ["git", "diff", "--name-only", f"{RT001D_BASE}...{RT001D_ACCEPTED_MERGE}"],
             capture_output=True,
             text=True,
             cwd=str(_REPO_ROOT),

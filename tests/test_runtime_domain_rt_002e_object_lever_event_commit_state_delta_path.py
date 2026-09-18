@@ -50,26 +50,72 @@ def test_eligibility_validates_inputs():
     assert elig.block_reasons == ()
     assert e.validate_object_lever_commit_eligibility(elig) is True
 
-def test_state_delta_receipt_and_committed_event_record_validators():
-    result=e.commit_object_lever_preview_to_event_and_state_delta(preview())
-    assert e.validate_object_lever_state_delta_receipt(result.state_delta_receipt) is True
-    assert e.validate_object_lever_committed_event_record(result.committed_event_record) is True
-    assert e.validate_object_lever_event_commit_result(result) is True
 
-def test_commit_prepared_preview_creates_committed():
-    result=e.commit_object_lever_preview_to_event_and_state_delta(preview(), result_id="commit-1", committed_event_id="ev-1", state_delta_receipt_id="sd-1", metadata={"audit":["rt-002e"]})
-    assert result.commit_status == "committed"
-    assert result.commit_decision == "object_lever_event_committed"
-    assert result.committed_event_record.event_record_kind == "object_lever_interaction_committed_event"
-    assert result.state_delta_receipt.state_delta_kind == "object_lever_interaction_state_delta_receipt"
-    assert result.state_delta_receipt.state_delta_label == "object_lever_interaction_recorded"
-    assert result.state_delta_receipt.source_reference_ids["bridge_result_id"] == "bridge-1"
-    assert result.state_delta_receipt.source_reference_ids["preview_candidate_id"] == "pc-1"
-    backend=e.serialize_object_lever_event_commit_result(result)
-    assert json.loads(json.dumps(backend, sort_keys=True)) == backend
-    visible=e.serialize_object_lever_event_commit_result_visible(result)
-    assert json.loads(json.dumps(visible, sort_keys=True)) == visible
-    assert "metadata" not in visible and "authority_flags" not in visible
+def test_ready_preview_returns_valid_uncommitted_result():
+    result=(
+        e.commit_object_lever_preview_to_event_and_state_delta(
+            preview()
+        )
+    )
+
+    assert result.commit_status == "commit_ready"
+    assert (
+        result.commit_decision
+        == "awaiting_qualified_transition"
+    )
+    assert result.committed_event_record is None
+    assert result.state_delta_receipt is None
+
+    assert (
+        e.validate_object_lever_event_commit_result(result)
+        is True
+    )
+
+
+def test_prepared_preview_does_not_self_promote_to_committed():
+    result=(
+        e.commit_object_lever_preview_to_event_and_state_delta(
+            preview(),
+            result_id="commit-1",
+            committed_event_id="ev-1",
+            state_delta_receipt_id="sd-1",
+            metadata={"audit":["rt-002e"]},
+        )
+    )
+
+    assert result.commit_status == "commit_ready"
+    assert (
+        result.commit_decision
+        == "awaiting_qualified_transition"
+    )
+
+    assert result.committed_event_record is None
+    assert result.state_delta_receipt is None
+
+    backend=e.serialize_object_lever_event_commit_result(
+        result
+    )
+
+    assert (
+        backend["commit_status"]
+        == "commit_ready"
+    )
+
+    assert (
+        backend["committed_event_record"]
+        is None
+    )
+
+    visible=(
+        e.serialize_object_lever_event_commit_result_visible(
+            result
+        )
+    )
+
+    assert (
+        visible["commit_decision"]
+        == "awaiting_qualified_transition"
+    )
 
 def test_blocked_deferred_unknown_insufficient_previews():
     cases=[("blocked","legality_read_available","commit_blocked","blocked"),("deferred","deferred","commit_deferred","deferred"),("unknown","unknown","commit_unknown","unknown"),("insufficient_projection","insufficient_projection","commit_insufficient_preview","insufficient_preview")]
@@ -122,13 +168,36 @@ def test_output_contains_no_forbidden_execution_fields():
     for term in ["event_store_append","event_append","event_payload","persistence_write","replay_write","rng_result","oracle_result","resource_settlement","consequence_application","damage_application","condition_application","model_prompt","arbitrary_mutation","state_before","state_after","raw_state"]:
         assert term not in s
 
+
 def test_backend_and_visible_serializers_redact_backend_fields():
-    result=e.commit_object_lever_preview_to_event_and_state_delta(preview(), metadata={"audit":["rt-002e"]})
-    backend=e.serialize_object_lever_event_commit_result(result)
-    assert "metadata" in backend and "authority_flags" in backend
-    visible=e.serialize_object_lever_event_commit_result_visible(result)
-    assert "metadata" not in visible and "authority_flags" not in visible and "source_reference" not in visible
-    assert visible["commit_decision"] == "object_lever_event_committed"
+    result=(
+        e.commit_object_lever_preview_to_event_and_state_delta(
+            preview(),
+            metadata={"audit":["rt-002e"]},
+        )
+    )
+
+    backend=e.serialize_object_lever_event_commit_result(
+        result
+    )
+
+    assert "metadata" in backend
+    assert "authority_flags" in backend
+
+    visible=(
+        e.serialize_object_lever_event_commit_result_visible(
+            result
+        )
+    )
+
+    assert "metadata" not in visible
+    assert "authority_flags" not in visible
+    assert "source_reference" not in visible
+
+    assert (
+        visible["commit_decision"]
+        == "awaiting_qualified_transition"
+    )
 
 def test_import_boundaries_and_domain_exports_and_docs():
     source=inspect.getsource(e)
@@ -227,13 +296,69 @@ def test_event_record_eligibility_coherence_rejected():
     with pytest.raises(e.InvalidObjectLeverCommittedEventRecordError):
         e.ObjectLeverCommittedEventRecord(committed_event_id="ev", event_record_kind="object_lever_interaction_committed_event", command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, source_reference=committed_src, eligibility=block_elig, state_delta_receipt=committed_delta)
 
+
 def test_helper_outputs_remain_valid():
-    for decision,status,expected_status,expected_decision in [("permitted_for_preview","legality_read_available","committed","object_lever_event_committed"),("blocked","legality_read_available","commit_blocked","blocked"),("deferred","deferred","commit_deferred","deferred"),("unknown","unknown","commit_unknown","unknown"),("insufficient_projection","insufficient_projection","commit_insufficient_preview","insufficient_preview")]:
-        result=e.commit_object_lever_preview_to_event_and_state_delta(preview(decision,status))
+    cases=[
+        (
+            "permitted_for_preview",
+            "legality_read_available",
+            "commit_ready",
+            "awaiting_qualified_transition",
+        ),
+        (
+            "blocked",
+            "legality_read_available",
+            "commit_blocked",
+            "blocked",
+        ),
+        (
+            "deferred",
+            "deferred",
+            "commit_deferred",
+            "deferred",
+        ),
+        (
+            "unknown",
+            "unknown",
+            "commit_unknown",
+            "unknown",
+        ),
+        (
+            "insufficient_projection",
+            "insufficient_projection",
+            "commit_insufficient_preview",
+            "insufficient_preview",
+        ),
+    ]
+
+    for (
+        decision,
+        status,
+        expected_status,
+        expected_decision,
+    ) in cases:
+        result=(
+            e.commit_object_lever_preview_to_event_and_state_delta(
+                preview(decision,status)
+            )
+        )
+
         assert result.commit_status == expected_status
         assert result.commit_decision == expected_decision
-        assert e.validate_object_lever_event_commit_result(result) is True
-        if expected_status == "committed":
-            assert result.committed_event_record.eligibility.eligibility_status == "commit_ready"
+
+        assert (
+            e.validate_object_lever_event_commit_result(
+                result
+            )
+            is True
+        )
+
+        if expected_status == "commit_ready":
+            assert result.committed_event_record is None
+            assert result.state_delta_receipt is None
         else:
-            assert result.committed_event_record.eligibility.eligibility_status == expected_status
+            assert (
+                result.committed_event_record.
+                eligibility.eligibility_status
+                == expected_status
+            )

@@ -2,8 +2,9 @@
 
 Narrow event/state-delta commit path for command family
 ``interact_with_object_lever``. Consumes RT-002D preview bridge results and
-produces a controlled committed event record and a bounded state-delta commit
-receipt only when an approved RT-002D preview candidate is available. This
+produces a bounded commitment-eligibility result from an RT-002D preview.
+Preview readiness is not authoritative commitment and remains ``commit_ready``
+until a lawful AFQR-01 transition owner commits the change outside RT-002E. This
 module does not execute commands, mutate state in a general way, append to an
 event store, persist or replay, run RNG or oracles, settle
 resources/consequences, call models, narrate, or expose hidden truth.
@@ -74,14 +75,14 @@ __all__ = [
 OBJECT_LEVER_COMMIT_COMMAND_FAMILY = OBJECT_LEVER_PREVIEW_BRIDGE_COMMAND_FAMILY
 OBJECT_LEVER_COMMIT_STATUSES = frozenset({"commit_ready", "commit_blocked", "commit_deferred", "commit_unknown", "commit_insufficient_preview", "committed"})
 OBJECT_LEVER_COMMIT_ELIGIBILITY_STATUSES = frozenset({"commit_ready", "commit_blocked", "commit_deferred", "commit_unknown", "commit_insufficient_preview"})
-OBJECT_LEVER_COMMIT_DECISIONS = frozenset({"object_lever_event_committed", "blocked", "deferred", "unknown", "insufficient_preview"})
-_COMMIT_STATUS_TO_DECISION = {"committed":"object_lever_event_committed","commit_blocked":"blocked","commit_deferred":"deferred","commit_unknown":"unknown","commit_insufficient_preview":"insufficient_preview"}
+OBJECT_LEVER_COMMIT_DECISIONS = frozenset({"object_lever_event_committed", "awaiting_qualified_transition", "blocked", "deferred", "unknown", "insufficient_preview"})
+_COMMIT_STATUS_TO_DECISION = {"commit_ready":"awaiting_qualified_transition","committed":"object_lever_event_committed","commit_blocked":"blocked","commit_deferred":"deferred","commit_unknown":"unknown","commit_insufficient_preview":"insufficient_preview"}
 _EVENT_KIND_TO_STATUS = {"object_lever_interaction_committed_event":"committed","object_lever_interaction_blocked_event":"commit_blocked","object_lever_interaction_deferred_event":"commit_deferred","object_lever_interaction_unknown_event":"commit_unknown","object_lever_interaction_insufficient_preview_event":"commit_insufficient_preview"}
 _DELTA_KIND_TO_STATUS = {"object_lever_interaction_state_delta_receipt":"committed","no_state_delta_due_to_block":"commit_blocked","no_state_delta_due_to_deferred":"commit_deferred","no_state_delta_due_to_unknown":"commit_unknown","no_state_delta_due_to_insufficient_preview":"commit_insufficient_preview"}
 OBJECT_LEVER_EVENT_RECORD_KINDS = frozenset({"object_lever_interaction_committed_event", "object_lever_interaction_blocked_event", "object_lever_interaction_deferred_event", "object_lever_interaction_unknown_event", "object_lever_interaction_insufficient_preview_event"})
 OBJECT_LEVER_STATE_DELTA_KINDS = frozenset({"object_lever_interaction_state_delta_receipt", "no_state_delta_due_to_block", "no_state_delta_due_to_deferred", "no_state_delta_due_to_unknown", "no_state_delta_due_to_insufficient_preview"})
 OBJECT_LEVER_COMMIT_BLOCK_REASONS = frozenset({"preview_not_prepared", "preview_blocked", "preview_deferred", "preview_unknown", "preview_insufficient", "missing_preview_candidate", "invalid_command_family", "missing_safe_references", "hidden_information_not_available", "event_commit_not_constructible", "state_delta_not_constructible"})
-OBJECT_LEVER_COMMIT_NON_AUTHORITY_NOTE = ("RT-002E produces only a narrow committed event record and bounded state-delta commit receipt for the object/lever interaction vertical slice; it authorizes no general command execution, general state mutation engine, general event engine, persistence/replay writes, RNG/table/oracle execution, resource/consequence settlement, combat/ability/skill/effect resolution, damage/condition application, inventory transfer, faction/social change, hidden fact resolution, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.")
+OBJECT_LEVER_COMMIT_NON_AUTHORITY_NOTE = ("RT-002E is a narrow object/lever commitment-eligibility adapter. Preview readiness remains nonauthoritative commit_ready state. RT-002E does not own AFQR-01 transition commitment and does not create a positive committed event/state-delta representation from preview readiness. It authorizes no general command execution, general state mutation engine, general event engine, persistence/replay writes, RNG/table/oracle execution, resource/consequence settlement, combat/ability/skill/effect resolution, damage/condition application, inventory transfer, faction/social change, hidden fact resolution, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.")
 FORBIDDEN_OBJECT_LEVER_COMMIT_METADATA_KEYS = frozenset({"hidden_fact", "hidden_facts", "secret", "secrets", "backend_only_fact", "backend_only_facts", "state_payload", "raw_state", "actual_state", "truth_payload", "projection_payload", "record_payload", "world_state", "legality_payload", "preview_payload", "transaction_execution", "command_execution", "execution_result", "arbitrary_mutation", "mutation_payload", "state_before", "state_after", "state_delta_payload", "event_store_append", "event_payload", "event_append", "event_commitment_payload", "persistence_write", "replay_write", "resource_settlement", "consequence_application", "damage_application", "condition_application", "rng_result", "oracle_result", "model_prompt", "narration"})
 
 class ObjectLeverEventCommitStateDeltaPathError(ValueError): pass
@@ -294,17 +295,95 @@ def validate_object_lever_committed_event_record(v) -> bool:
     try: _no_forbidden(v.metadata,"metadata",InvalidObjectLeverCommittedEventRecordError); _json(v.metadata,"metadata",InvalidObjectLeverCommittedEventRecordError)
     except InvalidObjectLeverCommittedEventRecordError: return False
     return True
+
 def validate_object_lever_event_commit_result(v) -> bool:
-    if not isinstance(v,ObjectLeverEventCommitResult): return False
-    if v.commit_status not in OBJECT_LEVER_COMMIT_STATUSES: return False
-    if v.commit_decision not in OBJECT_LEVER_COMMIT_DECISIONS: return False
-    if v.committed_event_record is not None and not validate_object_lever_committed_event_record(v.committed_event_record): return False
-    if v.state_delta_receipt is not None and not validate_object_lever_state_delta_receipt(v.state_delta_receipt): return False
-    if not isinstance(v.block_reasons, tuple) or not isinstance(v.safe_reference_ids, tuple): return False
-    if not all(reason in OBJECT_LEVER_COMMIT_BLOCK_REASONS for reason in v.block_reasons): return False
-    if not validate_object_lever_event_commit_authority_flags(v.authority_flags): return False
-    try: _no_forbidden(v.metadata,"metadata",InvalidObjectLeverEventCommitResultError); _json(v.metadata,"metadata",InvalidObjectLeverEventCommitResultError)
-    except InvalidObjectLeverEventCommitResultError: return False
+    if not isinstance(v,ObjectLeverEventCommitResult):
+        return False
+
+    if v.commit_status not in OBJECT_LEVER_COMMIT_STATUSES:
+        return False
+
+    if v.commit_decision not in OBJECT_LEVER_COMMIT_DECISIONS:
+        return False
+
+    expected=_COMMIT_STATUS_TO_DECISION.get(v.commit_status)
+
+    if expected is None or v.commit_decision != expected:
+        return False
+
+    if (
+        v.committed_event_record is not None
+        and not validate_object_lever_committed_event_record(
+            v.committed_event_record
+        )
+    ):
+        return False
+
+    if (
+        v.state_delta_receipt is not None
+        and not validate_object_lever_state_delta_receipt(
+            v.state_delta_receipt
+        )
+    ):
+        return False
+
+    if v.commit_status == "commit_ready":
+        if v.committed_event_record is not None:
+            return False
+
+        if v.state_delta_receipt is not None:
+            return False
+
+        if v.block_reasons:
+            return False
+
+    if v.committed_event_record is not None:
+        record_status=_EVENT_KIND_TO_STATUS.get(
+            v.committed_event_record.event_record_kind
+        )
+
+        if record_status != v.commit_status:
+            return False
+
+    if v.state_delta_receipt is not None:
+        receipt_status=_DELTA_KIND_TO_STATUS.get(
+            v.state_delta_receipt.state_delta_kind
+        )
+
+        if receipt_status != v.commit_status:
+            return False
+
+    if not isinstance(v.block_reasons,tuple):
+        return False
+
+    if not isinstance(v.safe_reference_ids,tuple):
+        return False
+
+    if not all(
+        reason in OBJECT_LEVER_COMMIT_BLOCK_REASONS
+        for reason in v.block_reasons
+    ):
+        return False
+
+    if not validate_object_lever_event_commit_authority_flags(
+        v.authority_flags
+    ):
+        return False
+
+    try:
+        _no_forbidden(
+            v.metadata,
+            "metadata",
+            InvalidObjectLeverEventCommitResultError,
+        )
+        _json(
+            v.metadata,
+            "metadata",
+            InvalidObjectLeverEventCommitResultError,
+        )
+    except InvalidObjectLeverEventCommitResultError:
+        return False
+
     return True
 
 def _has_required_object_lever_safe_references(safe_reference_ids: Sequence[str]) -> bool:
@@ -340,26 +419,143 @@ def evaluate_object_lever_commit_eligibility(source_reference: ObjectLeverCommit
         status="commit_blocked" if status=="commit_ready" else status; reasons.append("missing_safe_references")
     return ObjectLeverCommitEligibility(command_family=source_reference.command_family, eligibility_status=status, bridge_decision=source_reference.bridge_decision, bridge_status=source_reference.bridge_status, block_reasons=tuple(dict.fromkeys(reasons)), safe_reference_ids=source_reference.safe_reference_ids)
 
-def _event_kind(status: str) -> str:
-    return {"commit_ready":"object_lever_interaction_committed_event","commit_blocked":"object_lever_interaction_blocked_event","commit_deferred":"object_lever_interaction_deferred_event","commit_unknown":"object_lever_interaction_unknown_event","commit_insufficient_preview":"object_lever_interaction_insufficient_preview_event","committed":"object_lever_interaction_committed_event"}[status]
-def _delta_kind(status: str) -> str:
-    return {"commit_ready":"object_lever_interaction_state_delta_receipt","commit_blocked":"no_state_delta_due_to_block","commit_deferred":"no_state_delta_due_to_deferred","commit_unknown":"no_state_delta_due_to_unknown","commit_insufficient_preview":"no_state_delta_due_to_insufficient_preview","committed":"object_lever_interaction_state_delta_receipt"}[status]
 
-def commit_object_lever_preview_to_event_and_state_delta(bridge_result: ObjectLeverTransactionPreviewBridgeResult, *, result_id: str | None=None, committed_event_id: str | None=None, state_delta_receipt_id: str | None=None, metadata: Mapping[str,Any] | None=None) -> ObjectLeverEventCommitResult:
-    if not isinstance(bridge_result,ObjectLeverTransactionPreviewBridgeResult): raise InvalidObjectLeverEventCommitResultError("bridge_result must be ObjectLeverTransactionPreviewBridgeResult")
-    source=build_object_lever_commit_source_ref(bridge_result)
-    elig=evaluate_object_lever_commit_eligibility(source)
+def _event_kind(status: str) -> str:
+    return {
+        "committed":
+            "object_lever_interaction_committed_event",
+        "commit_blocked":
+            "object_lever_interaction_blocked_event",
+        "commit_deferred":
+            "object_lever_interaction_deferred_event",
+        "commit_unknown":
+            "object_lever_interaction_unknown_event",
+        "commit_insufficient_preview":
+            "object_lever_interaction_insufficient_preview_event",
+    }[status]
+
+def _delta_kind(status: str) -> str:
+    return {
+        "committed":
+            "object_lever_interaction_state_delta_receipt",
+        "commit_blocked":
+            "no_state_delta_due_to_block",
+        "commit_deferred":
+            "no_state_delta_due_to_deferred",
+        "commit_unknown":
+            "no_state_delta_due_to_unknown",
+        "commit_insufficient_preview":
+            "no_state_delta_due_to_insufficient_preview",
+    }[status]
+
+
+def commit_object_lever_preview_to_event_and_state_delta(
+    bridge_result: ObjectLeverTransactionPreviewBridgeResult,
+    *,
+    result_id: str | None=None,
+    committed_event_id: str | None=None,
+    state_delta_receipt_id: str | None=None,
+    metadata: Mapping[str,Any] | None=None,
+) -> ObjectLeverEventCommitResult:
+    if not isinstance(
+        bridge_result,
+        ObjectLeverTransactionPreviewBridgeResult,
+    ):
+        raise InvalidObjectLeverEventCommitResultError(
+            "bridge_result must be "
+            "ObjectLeverTransactionPreviewBridgeResult"
+        )
+
+    source=build_object_lever_commit_source_ref(
+        bridge_result
+    )
+
+    elig=evaluate_object_lever_commit_eligibility(
+        source
+    )
+
+    resolved_result_id=(
+        result_id
+        or f"commit:{source.bridge_result_id}"
+    )
+
+    # RS-0028 remediation:
+    #
+    # Preview readiness is only eligibility for a later lawful
+    # AFQR-01 transition. RT-002E must not convert that proposal
+    # state into authoritative commitment.
     if elig.eligibility_status == "commit_ready":
-        status="committed"; decision="object_lever_event_committed"
-    else:
-        status=elig.eligibility_status; decision={"commit_blocked":"blocked","commit_deferred":"deferred","commit_unknown":"unknown","commit_insufficient_preview":"insufficient_preview"}[status]
-    if status == "committed":
-        delta=ObjectLeverStateDeltaReceipt(state_delta_receipt_id=state_delta_receipt_id or f"state-delta:{source.bridge_result_id}", state_delta_kind=_delta_kind(status), command_family=source.command_family, source_reference_ids={"bridge_result_id":source.bridge_result_id,**({"preview_candidate_id":source.preview_candidate_id} if source.preview_candidate_id else {})}, affected_safe_reference_ids=source.safe_reference_ids, state_delta_label="object_lever_interaction_recorded", metadata=metadata)
-        event=ObjectLeverCommittedEventRecord(committed_event_id=committed_event_id or f"committed-event:{source.bridge_result_id}", event_record_kind=_event_kind(status), command_family=source.command_family, source_reference=source, eligibility=elig, state_delta_receipt=delta, safe_reference_ids=source.safe_reference_ids, metadata=metadata)
-        return ObjectLeverEventCommitResult(result_id=result_id or f"commit:{source.bridge_result_id}", commit_status=status, commit_decision=decision, committed_event_record=event, state_delta_receipt=delta, safe_reference_ids=source.safe_reference_ids, metadata=metadata)
-    delta=ObjectLeverStateDeltaReceipt(state_delta_receipt_id=state_delta_receipt_id or f"state-delta:{source.bridge_result_id}", state_delta_kind=_delta_kind(status), command_family=source.command_family, source_reference_ids={"bridge_result_id":source.bridge_result_id,**({"preview_candidate_id":source.preview_candidate_id} if source.preview_candidate_id else {})}, affected_safe_reference_ids=(), state_delta_label=_delta_kind(status).replace("_"," "), metadata=metadata)
-    event=ObjectLeverCommittedEventRecord(committed_event_id=committed_event_id or f"committed-event:{source.bridge_result_id}", event_record_kind=_event_kind(status), command_family=source.command_family, source_reference=source, eligibility=elig, state_delta_receipt=delta, safe_reference_ids=(), metadata=metadata)
-    return ObjectLeverEventCommitResult(result_id=result_id or f"commit:{source.bridge_result_id}", commit_status=status, commit_decision=decision, committed_event_record=event, state_delta_receipt=delta, block_reasons=elig.block_reasons, safe_reference_ids=source.safe_reference_ids, metadata=metadata)
+        return ObjectLeverEventCommitResult(
+            result_id=resolved_result_id,
+            commit_status="commit_ready",
+            commit_decision="awaiting_qualified_transition",
+            committed_event_record=None,
+            state_delta_receipt=None,
+            block_reasons=(),
+            safe_reference_ids=source.safe_reference_ids,
+            metadata=metadata,
+        )
+
+    status=elig.eligibility_status
+
+    decision={
+        "commit_blocked":"blocked",
+        "commit_deferred":"deferred",
+        "commit_unknown":"unknown",
+        "commit_insufficient_preview":
+            "insufficient_preview",
+    }[status]
+
+    delta=ObjectLeverStateDeltaReceipt(
+        state_delta_receipt_id=(
+            state_delta_receipt_id
+            or f"state-delta:{source.bridge_result_id}"
+        ),
+        state_delta_kind=_delta_kind(status),
+        command_family=source.command_family,
+        source_reference_ids={
+            "bridge_result_id":
+                source.bridge_result_id,
+            **(
+                {
+                    "preview_candidate_id":
+                        source.preview_candidate_id
+                }
+                if source.preview_candidate_id
+                else {}
+            ),
+        },
+        affected_safe_reference_ids=(),
+        state_delta_label=(
+            _delta_kind(status).replace("_"," ")
+        ),
+        metadata=metadata,
+    )
+
+    event=ObjectLeverCommittedEventRecord(
+        committed_event_id=(
+            committed_event_id
+            or f"committed-event:{source.bridge_result_id}"
+        ),
+        event_record_kind=_event_kind(status),
+        command_family=source.command_family,
+        source_reference=source,
+        eligibility=elig,
+        state_delta_receipt=delta,
+        safe_reference_ids=(),
+        metadata=metadata,
+    )
+
+    return ObjectLeverEventCommitResult(
+        result_id=resolved_result_id,
+        commit_status=status,
+        commit_decision=decision,
+        committed_event_record=event,
+        state_delta_receipt=delta,
+        block_reasons=elig.block_reasons,
+        safe_reference_ids=source.safe_reference_ids,
+        metadata=metadata,
+    )
 
 def serialize_object_lever_state_delta_receipt(r):
     if not validate_object_lever_state_delta_receipt(r): raise InvalidObjectLeverStateDeltaReceiptError("invalid receipt")

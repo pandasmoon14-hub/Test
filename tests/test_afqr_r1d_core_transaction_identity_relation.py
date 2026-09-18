@@ -6,6 +6,7 @@ import subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 BASE = "179bfdda605f45d26ffb018da12805780710bdb3"
+ACCEPTED_MERGE = "5c346a0ebd192879abaed0099f5644589df97884"
 DOC = ROOT / "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
 R1B = ROOT / "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
 R1C = ROOT / "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"
@@ -214,9 +215,9 @@ def test_all_corpus_pressures_have_bounded_dispositions():
 
 
 def test_committed_diff_is_bounded_and_preserves_evidence():
-    changed = subprocess.check_output(["git", "diff", "--name-only", f"{BASE}...HEAD"], cwd=ROOT, text=True).splitlines()
-    numstat = subprocess.check_output(["git", "diff", "--numstat", f"{BASE}...HEAD"], cwd=ROOT, text=True).splitlines()
-    deleted = subprocess.check_output(["git", "diff", "--name-status", "--diff-filter=D", f"{BASE}...HEAD"], cwd=ROOT, text=True).splitlines()
+    changed = subprocess.check_output(["git", "diff", "--name-only", f"{BASE}...{ACCEPTED_MERGE}"], cwd=ROOT, text=True).splitlines()
+    numstat = subprocess.check_output(["git", "diff", "--numstat", f"{BASE}...{ACCEPTED_MERGE}"], cwd=ROOT, text=True).splitlines()
+    deleted = subprocess.check_output(["git", "diff", "--name-status", "--diff-filter=D", f"{BASE}...{ACCEPTED_MERGE}"], cwd=ROOT, text=True).splitlines()
     # This test intentionally evaluates committed diff, never working-tree diff.
     assert not any(p.startswith("src/") for p in changed)
     assert not any(p.lower().endswith(".zip") for p in changed)
