@@ -255,6 +255,12 @@ PR2_MIG_A_AUTHORIZATION = "owner_directive_2026-09-18_pr2_mig_rs_0028"
 PR2_MIG_A_EFFECT = "bounded_rs_0028_commitment_qualification_migration_only"
 PR2_MIG_A_CANDIDATE = "R2A-DISPOSITION-RS-0028"
 PR2_MIG_A_TARGET = "src/astra_runtime/domain/object_lever_event_commit_state_delta_path.py"
+PR2_MIG_A_PR = 417
+PR2_MIG_A_HEAD = "f853830ff8b1f4a8f5fccba030fe66c796e03f21"
+PR2_MIG_A_MERGE = "3d2125e91da1d6f687dd5d72805c39cafef9afb6"
+PR2_MIG_A_TREE = "07c2c8f70d220f3b3e382bc2ad67e73d2c342eca"
+PR2_MIG_A_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-18_pr2_mig_a_post_merge_closure"
+PR2_MIG_A_CLOSURE_EFFECT = "bounded_rs_0028_post_merge_lifecycle_reconciliation_only"
 PR2_CONC_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_conc_deterministic_concurrency_contract.py', 'tests/test_pr2_part_post_merge_closure.py'}
 PR2_PART_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_authority_partitioning_migration_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_part_authority_partitioning_contract.py', 'tests/test_pr2_scale_post_merge_closure.py'}
 PR2_SCALE_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_scale_runtime_scalability_contract.py', 'tests/test_pr2_simex_post_merge_closure.py'}
@@ -370,7 +376,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.54"
+    assert manifest["artifact_version"] == "0.4.55"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -866,7 +872,7 @@ def test_r2c_through_pr2_bp_are_merged_and_pr2_mig_a_is_only_active_successor():
 
     assert (
         mig["current_tranche_state"]
-        == "validated_complete_pending_merge"
+        == "merged"
     )
 
     assert (
@@ -884,11 +890,9 @@ def test_r2c_through_pr2_bp_are_merged_and_pr2_mig_a_is_only_active_successor():
         == PR2_MIG_A_TARGET
     )
 
-    assert mig["migration_execution_authorized"] is True
+    assert mig["migration_execution_authorized"] is False
 
-    assert mig["migration_execution_scope"] == [
-        "R2A-DISPOSITION-RS-0028"
-    ]
+    assert mig["migration_execution_scope"] == []
 
     assert mig["remaining_candidate_ids"] == [
         "R2A-DISPOSITION-RS-0030"
@@ -956,7 +960,7 @@ def test_r2c_through_pr2_bp_are_merged_and_pr2_mig_a_is_only_active_successor():
 
     assert (
         mig["current_tranche_completion_state"]
-        == "validated_complete_pending_merge"
+        == "merged"
     )
 
     assert mig["current_tranche_validation_state"] == "validated"
@@ -986,7 +990,49 @@ def test_r2c_through_pr2_bp_are_merged_and_pr2_mig_a_is_only_active_successor():
     assert mig["next_candidate_id"] == "R2A-DISPOSITION-RS-0030"
     assert mig["next_candidate_authorized"] is False
     assert mig["next_tranche_id"] == "PR2-MIG-B"
+    assert mig["next_tranche_state"] == "ready_pending_authorization"
+    assert mig["next_tranche_candidate_id"] == "R2A-DISPOSITION-RS-0030"
     assert mig["next_tranche_authorized"] is False
+    assert mig["next_tranche_authorization_reference"] is None
+    assert mig["next_tranche_starting_baseline"] is None
+
+    assert mig["pull_request"] == PR2_MIG_A_PR
+    assert mig["branch_head"] == PR2_MIG_A_HEAD
+    assert mig["merge_commit"] == PR2_MIG_A_MERGE
+
+    assert mig["current_tranche_pull_request"] == PR2_MIG_A_PR
+    assert mig["current_tranche_branch_head"] == PR2_MIG_A_HEAD
+    assert mig["current_tranche_merge_commit"] == PR2_MIG_A_MERGE
+    assert mig["current_tranche_merge_tree"] == PR2_MIG_A_TREE
+
+    assert mig["post_merge_closure_authorization_reference"] == (
+        PR2_MIG_A_CLOSURE_AUTHORIZATION
+    )
+    assert mig["post_merge_closure_authority_effect"] == (
+        PR2_MIG_A_CLOSURE_EFFECT
+    )
+    assert mig["post_merge_closure_recorded_from"] == PR2_MIG_A_MERGE
+    assert mig["post_merge_closure_tree"] == PR2_MIG_A_TREE
+
+    assert mig["completed_tranches"] == [
+        {
+            "tranche_id": "PR2-MIG-A",
+            "candidate_id": "R2A-DISPOSITION-RS-0028",
+            "state": "merged",
+            "authorization_reference": PR2_MIG_A_AUTHORIZATION,
+            "authority_effect": PR2_MIG_A_EFFECT,
+            "starting_baseline": PR2_MIG_A_BASELINE,
+            "target_path": PR2_MIG_A_TARGET,
+            "pull_request": PR2_MIG_A_PR,
+            "branch_head": PR2_MIG_A_HEAD,
+            "merge_commit": PR2_MIG_A_MERGE,
+            "merge_tree": PR2_MIG_A_TREE,
+            "validation_state": "validated",
+            "ci_run": 234,
+            "ci_run_id": 35396966183,
+            "ci_result": "success",
+        }
+    ]
 
 
 
@@ -1205,7 +1251,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.54`" in program
+    assert "**Artifact version:** `0.4.55`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program

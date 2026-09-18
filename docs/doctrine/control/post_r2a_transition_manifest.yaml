@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.54",
+  "artifact_version": "0.4.55",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1739,10 +1739,17 @@
       ],
       "entry_condition": "PR2-AUDIT accepted and individual remediation tranche authorized.",
       "completion_condition": "All audited material receives its accepted disposition or explicit successor handoff.",
-      "validation_evidence": [],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "validation_evidence": [
+        "PR2-MIG-A full local repository suite:9251 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-MIG-A targeted historical guard regression:3 passed",
+        "PR2-MIG-A bounded regression:182 passed, 1 skipped",
+        "PR2-MIG-A terminal focused certification:90 passed, 1 skipped",
+        "PR2-MIG-A GitHub Actions CI #234:success",
+        "PR2-MIG-A merged PR #417 exact 18-file footprint:PASS"
+      ],
+      "pull_request": 417,
+      "branch_head": "f853830ff8b1f4a8f5fccba030fe66c796e03f21",
+      "merge_commit": "3d2125e91da1d6f687dd5d72805c39cafef9afb6",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-TEST",
@@ -1758,10 +1765,10 @@
         "R2A-DISPOSITION-RS-0028",
         "R2A-DISPOSITION-RS-0030"
       ],
-      "migration_execution_authorized": true,
+      "migration_execution_authorized": false,
       "current_tranche": "PR2-MIG-A",
       "current_tranche_candidate_id": "R2A-DISPOSITION-RS-0028",
-      "current_tranche_state": "validated_complete_pending_merge",
+      "current_tranche_state": "merged",
       "current_tranche_authorization_reference": "owner_directive_2026-09-18_pr2_mig_rs_0028",
       "current_tranche_authority_effect": "bounded_rs_0028_commitment_qualification_migration_only",
       "current_tranche_starting_baseline": "33e09250ef2d68946bd058044f15306c66bbefaf",
@@ -1794,9 +1801,7 @@
         "afqr_01_commitment_owned_by_rt_002e": false,
         "rs_0030_compatibility_migration_required_after_rs_0028": true
       },
-      "migration_execution_scope": [
-        "R2A-DISPOSITION-RS-0028"
-      ],
+      "migration_execution_scope": [],
       "remaining_candidate_ids": [
         "R2A-DISPOSITION-RS-0030"
       ],
@@ -1832,7 +1837,7 @@
           "historical_guard_test_file_count": 3
         }
       ],
-      "current_tranche_completion_state": "validated_complete_pending_merge",
+      "current_tranche_completion_state": "merged",
       "current_tranche_validation_state": "validated",
       "current_tranche_candidate_validated": true,
       "next_candidate_id": "R2A-DISPOSITION-RS-0030",
@@ -1863,8 +1868,43 @@
         "runtime_implementation_files_added_by_correction": 0,
         "legacy_runtime_allowlist_expanded": false,
         "resulting_pr_changed_path_count": 18,
-        "replacement_ci_required_before_merge": true
-      }
+        "replacement_ci_required_before_merge": true,
+        "replacement_ci_run": 234,
+        "replacement_ci_run_id": 35396966183,
+        "replacement_ci_result": "success",
+        "replacement_ci_requirement_satisfied": true
+      },
+      "completed_tranches": [
+        {
+          "tranche_id": "PR2-MIG-A",
+          "candidate_id": "R2A-DISPOSITION-RS-0028",
+          "state": "merged",
+          "authorization_reference": "owner_directive_2026-09-18_pr2_mig_rs_0028",
+          "authority_effect": "bounded_rs_0028_commitment_qualification_migration_only",
+          "starting_baseline": "33e09250ef2d68946bd058044f15306c66bbefaf",
+          "target_path": "src/astra_runtime/domain/object_lever_event_commit_state_delta_path.py",
+          "pull_request": 417,
+          "branch_head": "f853830ff8b1f4a8f5fccba030fe66c796e03f21",
+          "merge_commit": "3d2125e91da1d6f687dd5d72805c39cafef9afb6",
+          "merge_tree": "07c2c8f70d220f3b3e382bc2ad67e73d2c342eca",
+          "validation_state": "validated",
+          "ci_run": 234,
+          "ci_run_id": 35396966183,
+          "ci_result": "success"
+        }
+      ],
+      "current_tranche_merge_commit": "3d2125e91da1d6f687dd5d72805c39cafef9afb6",
+      "current_tranche_merge_tree": "07c2c8f70d220f3b3e382bc2ad67e73d2c342eca",
+      "current_tranche_pull_request": 417,
+      "current_tranche_branch_head": "f853830ff8b1f4a8f5fccba030fe66c796e03f21",
+      "next_tranche_state": "ready_pending_authorization",
+      "next_tranche_candidate_id": "R2A-DISPOSITION-RS-0030",
+      "next_tranche_authorization_reference": null,
+      "next_tranche_starting_baseline": null,
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-18_pr2_mig_a_post_merge_closure",
+      "post_merge_closure_authority_effect": "bounded_rs_0028_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "3d2125e91da1d6f687dd5d72805c39cafef9afb6",
+      "post_merge_closure_tree": "07c2c8f70d220f3b3e382bc2ad67e73d2c342eca"
     },
     {
       "workstream_id": "PR2-TEST",
@@ -2007,9 +2047,8 @@
     "dependency_workstream_count": 6,
     "input_inventory_group_count": 5,
     "undispositioned_input_group_count": 0,
-    "current_migration_required_count": 2,
+    "current_migration_required_count": 1,
     "migration_required_candidate_ids": [
-      "R2A-DISPOSITION-RS-0028",
       "R2A-DISPOSITION-RS-0030"
     ],
     "repository_wide_audit_completion_recommended": true,
@@ -2038,6 +2077,11 @@
     "post_merge_closure_recorded_from": "720ee27248aac46e8f4e39492d51fda331778209",
     "post_merge_closure_tree": "04c094a41eda056b58f59bb5553ab718535d1f41",
     "pr2_mig_current_tranche": "PR2-MIG-A",
-    "pr2_mig_current_candidate_id": "R2A-DISPOSITION-RS-0028"
+    "pr2_mig_current_candidate_id": "R2A-DISPOSITION-RS-0028",
+    "pr2_mig_last_completed_tranche": "PR2-MIG-A",
+    "pr2_mig_last_completed_candidate_id": "R2A-DISPOSITION-RS-0028",
+    "pr2_mig_next_tranche": "PR2-MIG-B",
+    "pr2_mig_next_candidate_id": "R2A-DISPOSITION-RS-0030",
+    "pr2_mig_next_ready_pending_authorization": true
   }
 }
