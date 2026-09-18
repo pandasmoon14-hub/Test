@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.48`
+**Artifact version:** `0.4.50`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -2218,6 +2218,77 @@ Runtime promotion remains uncleared.
 Review artifact:
 
 `docs/doctrine/reviews/r4_a_myravant_native_substrate_design.yaml`
+
+### 5.45 PR2-AUDIT-D completion synthesis
+
+R4-A merged through PR `#414` at `6455659b61bc0b56fa6c41f95e15f5b1b94d077a`.
+
+The owner authorized the bounded PR2-AUDIT-D completion-synthesis
+tranche:
+
+`owner_directive_2026-09-17_pr2_audit_d_completion_synthesis`
+
+Authority effect:
+
+`repository_wide_post_r2_audit_completion_synthesis_only`
+
+Audit-D does not restart repository-wide doctrine discovery. It
+synthesizes the accepted predecessor inventories that already identified
+and dispositioned the affected identity, source/conversion, R3
+promotion-blocker, and R4 substrate surfaces.
+
+Completion evidence entering this tranche:
+
+- PR2-ID reports no unclassified material current-facing identity
+  surfaces and carries four explicitly dispositioned future obligations;
+- PR2-SRC reports legacy source/conversion surfaces disposed and no
+  missing PR2-SRC-owned doctrine;
+- PR2-ORG, PR2-CORPUS, PR2-IR, and PR2-SCALE are merged with no
+  residual gaps;
+- Audit-A dispositioned all 19 R3 promotion blockers;
+- R4-0 dispositioned all 16 legacy substrate-context records;
+- R4-A dispositioned all five historical deferred substrate classes and
+  selected one bounded Myravant-native capability.
+
+The current remediation set is exactly two records:
+
+1. `R2A-DISPOSITION-RS-0028` —
+   `src/astra_runtime/domain/object_lever_event_commit_state_delta_path.py`
+2. `R2A-DISPOSITION-RS-0030` —
+   `src/astra_runtime/domain/object_lever_replay_audit_check.py`
+
+RS-0028 must be migrated before RS-0030 because the replay/audit path
+inherits the unqualified commitment premise from the commit path.
+
+Audit-D authorizes no remediation.
+
+The repository-wide audit completion recommendation is `PASS`, pending
+executable validation and merge of this tranche.
+
+Audit-D validation state: `validated_complete`.
+
+Full local repository certification: `9239 passed, 10 skipped, 2 xfailed, 1 warning`.
+
+Focused post-suite regression: `42 passed`.
+
+Validation does not itself close PR2-AUDIT; merge of the certified tranche is still required.
+
+Until that occurs:
+
+- overall PR2-AUDIT remains `active`;
+- PR2-MIG remains `blocked` and unauthorized;
+- PR2-TEST remains `blocked` and unauthorized;
+- PR2-IMPL remains `blocked` and unauthorized;
+- R4-B remains candidate-only and blocked;
+- R4 remains blocked;
+- runtime promotion remains uncleared.
+
+If Audit-D validates and merges, PR2-MIG may become
+`ready_pending_authorization`; it is not automatically activated.
+
+Review artifact:
+
+`docs/doctrine/reviews/pr2_audit_completion_synthesis.yaml`
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

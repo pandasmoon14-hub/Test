@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -9,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = "fa4f1d795275eaaad4ee525aea7e3f3c2c2bd5e9"
 AUTH = "owner_directive_2026-09-17_r4_a_myravant_native_substrate_design"
 EFFECT = "myravant_native_substrate_design_only"
+R4_A_ACCEPTED_MERGE = "6455659b61bc0b56fa6c41f95e15f5b1b94d077a"
 
 REVIEW = (
     ROOT
@@ -27,7 +29,21 @@ MAN = (
 )
 
 
+def git_text_at(ref, path):
+    rel = path.relative_to(ROOT).as_posix()
+
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{rel}"],
+        cwd=ROOT,
+    ).decode("utf-8")
+
+
 def load(path):
+    if path == MAN:
+        return json.loads(
+            git_text_at(R4_A_ACCEPTED_MERGE, path)
+        )
+
     return json.loads(path.read_text(encoding="utf-8"))
 
 

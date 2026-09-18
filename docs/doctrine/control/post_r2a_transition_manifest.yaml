@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.48",
+  "artifact_version": "0.4.50",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1561,10 +1561,12 @@
         "docs/decisions/current_decisions_log.md",
         "docs/doctrine/control/post_r2a_transition_manifest.yaml",
         "docs/doctrine/control/post_r2a_transition_program.md",
+        "docs/doctrine/reviews/pr2_audit_completion_synthesis.yaml",
         "docs/doctrine/reviews/pr2_audit_r3_promotion_blocker_r4_entry_disposition.yaml",
         "docs/doctrine/reviews/r4_0_substrate_reconciliation.yaml",
         "docs/doctrine/reviews/r4_a_myravant_native_substrate_design.yaml",
         "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_audit_completion_synthesis.py",
         "tests/test_pr2_audit_r3_r4_entry_disposition.py",
         "tests/test_r3_initial_conformance_review.py",
         "tests/test_r4_0_substrate_reconciliation.py",
@@ -1585,15 +1587,17 @@
       "downstream_handoff": [
         "PR2-MIG"
       ],
-      "current_tranche": "PR2-AUDIT-C",
-      "current_tranche_authorization_reference": "owner_directive_2026-09-17_r4_a_myravant_native_substrate_design",
-      "current_tranche_authority_effect": "myravant_native_substrate_design_only",
-      "current_tranche_starting_baseline": "fa4f1d795275eaaad4ee525aea7e3f3c2c2bd5e9",
-      "current_tranche_review_artifact": "docs/doctrine/reviews/r4_a_myravant_native_substrate_design.yaml",
+      "current_tranche": "PR2-AUDIT-D",
+      "current_tranche_authorization_reference": "owner_directive_2026-09-17_pr2_audit_d_completion_synthesis",
+      "current_tranche_authority_effect": "repository_wide_post_r2_audit_completion_synthesis_only",
+      "current_tranche_starting_baseline": "6455659b61bc0b56fa6c41f95e15f5b1b94d077a",
+      "current_tranche_review_artifact": "docs/doctrine/reviews/pr2_audit_completion_synthesis.yaml",
       "current_tranche_state": "validated_complete",
       "current_tranche_target": {
-        "historical_deferred_substrate_classes": 5,
-        "selected_native_capabilities": 1
+        "dependency_workstreams": 6,
+        "input_inventory_groups": 5,
+        "current_migration_required_records": 2,
+        "undispositioned_input_groups": 0
       },
       "current_tranche_r4_activation_authorized": false,
       "current_tranche_remediation_authorized": false,
@@ -1601,17 +1605,18 @@
       "current_tranche_prohibited_scope": [
         "runtime_edit",
         "schema_edit",
-        "r4_activation",
-        "runtime_promotion",
-        "universal_world_state_manager",
-        "generalized_relation_registry_implementation",
-        "generalized_bitemporal_store_implementation",
-        "generalized_transaction_journal_implementation",
-        "generalized_bridge_hypergraph_implementation",
-        "combined_semantic_owner_implementation",
+        "migration_execution",
+        "legacy_surface_remediation",
+        "identity_namespace_migration",
+        "historical_record_rewrite",
         "pr2_mig_activation",
         "pr2_test_activation",
-        "pr2_impl_activation"
+        "pr2_impl_activation",
+        "r4_b_activation",
+        "r4_activation",
+        "runtime_promotion",
+        "native_content_authoring",
+        "canon_promotion"
       ],
       "completed_tranches": [
         {
@@ -1636,21 +1641,37 @@
           "merge_tree": "cf0217da37e38f546ee0185fbced11104c9dfb5d",
           "review_artifact": "docs/doctrine/reviews/r4_0_substrate_reconciliation.yaml",
           "validation_state": "validated"
+        },
+        {
+          "tranche_id": "PR2-AUDIT-C",
+          "alias": "R4-A",
+          "state": "merged",
+          "authorization_reference": "owner_directive_2026-09-17_r4_a_myravant_native_substrate_design",
+          "pull_request": 414,
+          "branch_head": "08a0cb05edc2d9ca99b71ec32ff12163c1e58c08",
+          "merge_commit": "6455659b61bc0b56fa6c41f95e15f5b1b94d077a",
+          "merge_tree": "6e71bcc985fd10762cf51bfc95d413e9184e2f6a",
+          "review_artifact": "docs/doctrine/reviews/r4_a_myravant_native_substrate_design.yaml",
+          "validation_state": "validated"
         }
       ],
-      "current_tranche_alias": "R4-A",
+      "current_tranche_alias": "AUDIT-CLOSE",
       "current_tranche_implementation_authorized": false,
-      "current_tranche_selected_native_capability": "persistent_world_entity_and_location_relation_representation",
-      "current_tranche_r4_b_candidate_defined": true,
-      "current_tranche_r4_b_ready_pending_authorization": false,
-      "current_tranche_completion_state": "validated_complete_with_bounded_native_design",
+      "current_tranche_repository_wide_completion_recommended": true,
+      "current_tranche_repository_wide_audit_complete": false,
+      "current_tranche_migration_required_candidate_ids": [
+        "R2A-DISPOSITION-RS-0028",
+        "R2A-DISPOSITION-RS-0030"
+      ],
+      "current_tranche_pr2_mig_ready_after_validation_and_merge": true,
+      "current_tranche_completion_state": "validated_complete_pending_merge",
       "current_tranche_validation_evidence": [
-        "R4-A focused pre-certification:28 passed",
-        "R4-A full local repository suite:9232 passed, 10 skipped, 2 xfailed, 1 warning",
-        "R4-A focused post-suite regression:28 passed",
-        "R4-A git diff --check:clean",
-        "R4-A exact seven-file footprint:PASS",
-        "R4-A runtime/schema noninterference audit:PASS"
+        "PR2-AUDIT-D focused pre-certification:42 passed",
+        "PR2-AUDIT-D full local repository suite:9239 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-AUDIT-D focused post-suite regression:42 passed",
+        "PR2-AUDIT-D git diff --check:clean",
+        "PR2-AUDIT-D exact seven-file footprint:PASS",
+        "PR2-AUDIT-D runtime/schema noninterference audit:PASS"
       ]
     },
     {
@@ -1814,5 +1835,42 @@
     ],
     "review_state": "validated_complete",
     "completion_state": "validated_complete_with_bounded_native_design"
+  },
+  "pr2_audit_completion_target": {
+    "status": "validated",
+    "tranche_id": "PR2-AUDIT-D",
+    "authorization_reference": "owner_directive_2026-09-17_pr2_audit_d_completion_synthesis",
+    "authority_effect": "repository_wide_post_r2_audit_completion_synthesis_only",
+    "starting_baseline": "6455659b61bc0b56fa6c41f95e15f5b1b94d077a",
+    "review_artifact": "docs/doctrine/reviews/pr2_audit_completion_synthesis.yaml",
+    "dependency_workstream_count": 6,
+    "input_inventory_group_count": 5,
+    "undispositioned_input_group_count": 0,
+    "current_migration_required_count": 2,
+    "migration_required_candidate_ids": [
+      "R2A-DISPOSITION-RS-0028",
+      "R2A-DISPOSITION-RS-0030"
+    ],
+    "repository_wide_audit_completion_recommended": true,
+    "repository_wide_audit_complete": false,
+    "pr2_mig_ready_after_validation_and_merge": true,
+    "pr2_mig_ready_now": false,
+    "pr2_mig_authorized": false,
+    "pr2_test_authorized": false,
+    "pr2_impl_authorized": false,
+    "r4_b_ready_now": false,
+    "r4_b_authorized": false,
+    "runtime_promotion_clear": false,
+    "r4_activation_authorized": false,
+    "validation_evidence": [
+      "PR2-AUDIT-D focused pre-certification:42 passed",
+      "PR2-AUDIT-D full local repository suite:9239 passed, 10 skipped, 2 xfailed, 1 warning",
+      "PR2-AUDIT-D focused post-suite regression:42 passed",
+      "PR2-AUDIT-D git diff --check:clean",
+      "PR2-AUDIT-D exact seven-file footprint:PASS",
+      "PR2-AUDIT-D runtime/schema noninterference audit:PASS"
+    ],
+    "review_state": "validated_complete",
+    "completion_state": "validated_complete_pending_merge"
   }
 }

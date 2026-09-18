@@ -6453,3 +6453,45 @@ No runtime or schema implementation was modified.
 Overall PR2-AUDIT remains active. R4 remains blocked. Runtime promotion
 remains uncleared. R4-B remains a candidate only and is not ready or
 authorized.
+
+## 2026-09-17 decision — PR2-AUDIT-D completion synthesis
+
+- **Decision ID:** `PR2-AUDIT-D-COMPLETION-SYNTHESIS-001`
+- **Authorization reference:** `owner_directive_2026-09-17_pr2_audit_d_completion_synthesis`
+- **Authority effect:** `repository_wide_post_r2_audit_completion_synthesis_only`
+- **Starting baseline:** `6455659b61bc0b56fa6c41f95e15f5b1b94d077a`
+- **Current migration-required records:** `2`
+- **Remediation authorized:** `false`
+
+PR2-AUDIT-D consolidates the accepted predecessor inventories rather than
+reopening broad doctrine discovery.
+
+Every input inventory group has a lawful disposition. The only current
+bounded migration candidates are RS-0028 and RS-0030, in that order.
+
+Audit completion is recommended pending executable validation and merge.
+
+PR2-MIG, PR2-TEST, PR2-IMPL, R4-B implementation, R4 activation, and
+runtime promotion remain unauthorized.
+
+## 2026-09-18 decision — PR2-AUDIT-D validation
+
+- **Decision ID:** `PR2-AUDIT-D-VALIDATION-001`
+- **Validation state:** `validated_complete`
+- **Full repository suite:** `9239 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite regression:** `42 passed`
+- **Current migration-required records:** `2`
+
+Audit-D is validated as a bounded repository-wide completion synthesis.
+
+The migration inventory remains exactly:
+
+1. `R2A-DISPOSITION-RS-0028`
+2. `R2A-DISPOSITION-RS-0030`
+
+No migration execution is authorized.
+
+PR2-AUDIT remains active until the certified Audit-D tranche is merged.
+PR2-MIG remains blocked and unauthorized until that closure occurs.
+PR2-TEST, PR2-IMPL, R4-B implementation, R4 activation, and runtime
+promotion remain unauthorized.
