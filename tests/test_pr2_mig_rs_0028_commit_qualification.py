@@ -9,25 +9,32 @@ from pathlib import Path
 import pytest
 
 import astra_runtime.domain.object_lever_event_commit_state_delta_path as e
-import astra_runtime.domain.object_lever_replay_audit_check as f
 import astra_runtime.domain.object_lever_transaction_preview_bridge as b
 
 ROOT = Path(__file__).resolve().parents[1]
 RS0028_ACCEPTED_MERGE = "3d2125e91da1d6f687dd5d72805c39cafef9afb6"
 MANIFEST = ROOT / "docs/doctrine/control/post_r2a_transition_manifest.yaml"
+RS0030_RUNTIME = (
+    ROOT
+    / "src/astra_runtime/domain/"
+    "object_lever_replay_audit_check.py"
+)
 
 
-def load_manifest_at_rs0028_merge():
-    text = subprocess.check_output(
+def read_at_rs0028_merge(path):
+    return subprocess.check_output(
         [
             "git",
             "show",
-            f"{RS0028_ACCEPTED_MERGE}:{MANIFEST.relative_to(ROOT).as_posix()}",
+            f"{RS0028_ACCEPTED_MERGE}:{path.relative_to(ROOT).as_posix()}",
         ],
         cwd=ROOT,
         text=True,
     )
-    return json.loads(text)
+
+
+def load_manifest_at_rs0028_merge():
+    return json.loads(read_at_rs0028_merge(MANIFEST))
 from astra_runtime.domain.object_lever_interaction_legality_reader import (
     create_object_lever_legality_reading,
     create_object_lever_legality_reader_result,
@@ -102,36 +109,37 @@ def test_ready_result_cannot_claim_committed_decision():
 
 
 
-def test_rs0030_remains_separately_gated_for_commit_ready_result():
-    commit_result=(
-        e.commit_object_lever_preview_to_event_and_state_delta(
-            preview()
-        )
-    )
+def test_rs0030_remained_separately_gated_at_rs0028_merge():
+    source = read_at_rs0028_merge(RS0030_RUNTIME)
+    tree = ast.parse(source)
 
-    assert commit_result.commit_status == "commit_ready"
+    mapping = None
 
-    assert (
-        commit_result.commit_decision
-        == "awaiting_qualified_transition"
-    )
+    for node in tree.body:
+        if not isinstance(node, ast.Assign):
+            continue
 
-    assert commit_result.committed_event_record is None
-    assert commit_result.state_delta_receipt is None
+        if not any(
+            isinstance(target, ast.Name)
+            and target.id == "_COMMIT_STATUS_TO_DECISION"
+            for target in node.targets
+        ):
+            continue
 
-    # RS-0030 remains the next separately gated migration.
-    # Its historical private commit-status map does not yet
-    # understand the newly lawful RT-002E proposal state.
-    #
-    # PR2-MIG-A must not edit RS-0030 merely to conceal that
-    # remaining dependency.
-    with pytest.raises(
-        f.InvalidObjectLeverReplayAuditSourceRefError,
-        match="commit_status and commit_decision are not coherent",
-    ):
-        f.audit_object_lever_event_commit_result(
-            commit_result
-        )
+        mapping = ast.literal_eval(node.value)
+        break
+
+    assert mapping is not None
+
+    assert mapping == {
+        "committed": "object_lever_event_committed",
+        "commit_blocked": "blocked",
+        "commit_deferred": "deferred",
+        "commit_unknown": "unknown",
+        "commit_insufficient_preview": "insufficient_preview",
+    }
+
+    assert "commit_ready" not in mapping
 
 
 def test_rs0028_does_not_implement_afqr01_commit_owner():

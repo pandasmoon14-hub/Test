@@ -3,8 +3,9 @@
 Tiny deterministic replay/audit check for exactly one command family:
 ``interact_with_object_lever``. Consumes RT-002E
 ``ObjectLeverEventCommitResult`` values and produces a stable in-memory audit
-snapshot and replay-check receipt only when RT-002E reports a coherent
-committed object/lever event/state-delta result.
+bounded audit result for lawful RT-002E source states. Positive audit
+verification and replay-check receipts are produced only when RT-002E reports
+a coherent committed object/lever event/state-delta result.
 
 This module does not write to persistence, replay indexes, event stores, or
 broad audit infrastructure. It does not replay commands, reconstruct state,
@@ -81,7 +82,7 @@ __all__ = [
 OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY = OBJECT_LEVER_COMMIT_COMMAND_FAMILY
 OBJECT_LEVER_REPLAY_AUDIT_STATUSES = frozenset({"audit_ready", "audit_blocked", "audit_deferred", "audit_unknown", "audit_insufficient_commit", "audit_verified"})
 OBJECT_LEVER_REPLAY_AUDIT_DECISIONS = frozenset({"object_lever_audit_verified", "blocked", "deferred", "unknown", "insufficient_commit"})
-_COMMIT_STATUS_TO_DECISION = {"committed":"object_lever_event_committed","commit_blocked":"blocked","commit_deferred":"deferred","commit_unknown":"unknown","commit_insufficient_preview":"insufficient_preview"}
+_COMMIT_STATUS_TO_DECISION = {"commit_ready":"awaiting_qualified_transition","committed":"object_lever_event_committed","commit_blocked":"blocked","commit_deferred":"deferred","commit_unknown":"unknown","commit_insufficient_preview":"insufficient_preview"}
 _AUDIT_STATUS_TO_DECISION = {"audit_verified":"object_lever_audit_verified","audit_blocked":"blocked","audit_deferred":"deferred","audit_unknown":"unknown","audit_insufficient_commit":"insufficient_commit","audit_ready":"unknown"}
 OBJECT_LEVER_AUDIT_SNAPSHOT_KINDS = frozenset({"object_lever_committed_event_audit_snapshot", "object_lever_blocked_event_audit_snapshot", "object_lever_deferred_event_audit_snapshot", "object_lever_unknown_event_audit_snapshot", "object_lever_insufficient_commit_audit_snapshot"})
 OBJECT_LEVER_REPLAY_CHECK_KINDS = frozenset({"object_lever_committed_event_replay_check", "object_lever_blocked_event_replay_check", "object_lever_deferred_event_replay_check", "object_lever_unknown_event_replay_check", "object_lever_insufficient_commit_replay_check"})
@@ -90,7 +91,7 @@ _AUDIT_STATUS_TO_REPLAY_CHECK_KIND = {"audit_ready":"object_lever_committed_even
 _REPLAY_CHECK_KIND_TO_STATUS = {"object_lever_committed_event_replay_check":"audit_verified","object_lever_blocked_event_replay_check":"audit_blocked","object_lever_deferred_event_replay_check":"audit_deferred","object_lever_unknown_event_replay_check":"audit_unknown","object_lever_insufficient_commit_replay_check":"audit_insufficient_commit"}
 _ELIGIBILITY_STATUS_TO_AUDIT_STATUS = {"audit_ready":"audit_verified","audit_blocked":"audit_blocked","audit_deferred":"audit_deferred","audit_unknown":"audit_unknown","audit_insufficient_commit":"audit_insufficient_commit"}
 OBJECT_LEVER_REPLAY_AUDIT_BLOCK_REASONS = frozenset({"commit_not_auditable", "commit_blocked", "commit_deferred", "commit_unknown", "commit_insufficient", "missing_committed_event_record", "missing_state_delta_receipt", "invalid_command_family", "missing_safe_references", "audit_snapshot_not_constructible", "replay_check_not_constructible", "hidden_information_not_available", "non_deterministic_serialization_detected", "audit_identity_mismatch"})
-OBJECT_LEVER_REPLAY_AUDIT_NON_AUTHORITY_NOTE = ("RT-002F produces only a narrow deterministic in-memory replay/audit-check receipt for an already-committed RT-002E object/lever event/state-delta result; it authorizes no durable persistence writes, replay index writes, event-store append/read, command re-execution, state reconstruction, general replay engine, state mutation, state-delta application, RNG/table/oracle execution, resource/consequence settlement, damage/condition application, combat/ability/skill/effect resolution, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.")
+OBJECT_LEVER_REPLAY_AUDIT_NON_AUTHORITY_NOTE = ("RT-002F consumes a narrow RT-002E object/lever result without acquiring commitment or replay authority. A positive replay/audit-check receipt is available only for an already-committed coherent source result; commit_ready remains noncommitted and nonverified. RT-002F authorizes no durable persistence writes, replay index writes, event-store append/read, command re-execution, state reconstruction, general replay engine, state mutation, state-delta application, RNG/table/oracle execution, resource/consequence settlement, damage/condition application, combat/ability/skill/effect resolution, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.")
 FORBIDDEN_OBJECT_LEVER_REPLAY_AUDIT_METADATA_KEYS = frozenset({"hidden_fact", "hidden_facts", "secret", "secrets", "backend_only_fact", "backend_only_facts", "state_payload", "raw_state", "actual_state", "truth_payload", "projection_payload", "record_payload", "world_state", "legality_payload", "preview_payload", "commit_payload", "event_payload", "event_store_append", "event_store_read", "event_log", "persistence_write", "persistent_record", "replay_write", "replay_index", "replay_store", "state_reconstruction", "command_reexecution", "transaction_execution", "command_execution", "execution_result", "arbitrary_mutation", "mutation_payload", "state_before", "state_after", "state_delta_payload", "resource_settlement", "consequence_application", "damage_application", "condition_application", "rng_result", "oracle_result", "model_prompt", "narration", "event_append", "event_commitment_payload"})
 
 class ObjectLeverReplayAuditCheckError(ValueError): pass
@@ -387,7 +388,9 @@ def evaluate_object_lever_replay_audit_eligibility(source_reference: ObjectLever
     reasons=[]; status="audit_ready"
     if source_reference.command_family != OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY:
         status="audit_blocked"; reasons.append("invalid_command_family")
-    if source_reference.commit_status == "committed":
+    if source_reference.commit_status == "commit_ready":
+        status="audit_insufficient_commit"; reasons.append("commit_not_auditable")
+    elif source_reference.commit_status == "committed":
         if source_reference.commit_block_reasons:
             status="audit_blocked"; reasons.append("commit_blocked")
     elif source_reference.commit_status == "commit_blocked":

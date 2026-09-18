@@ -25,12 +25,14 @@ PR = 417
 HEAD = "f853830ff8b1f4a8f5fccba030fe66c796e03f21"
 MERGE = "3d2125e91da1d6f687dd5d72805c39cafef9afb6"
 TREE = "07c2c8f70d220f3b3e382bc2ad67e73d2c342eca"
+CLOSURE_MERGE = "b4b52cab91916e050e20ad54ff3559153436a944"
+CLOSURE_TREE = "c41322bc060fa77d0d447010c45c584e73764ee4"
 AUTH = "owner_directive_2026-09-18_pr2_mig_a_post_merge_closure"
 EFFECT = "bounded_rs_0028_post_merge_lifecycle_reconciliation_only"
 
 
 def load(path):
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(read_at(CLOSURE_MERGE, path))
 
 
 def rows(manifest):
@@ -140,11 +142,13 @@ def test_pr2_mig_b_is_ready_but_not_authorized():
 
 
 def test_closure_does_not_modify_either_runtime_candidate():
-    assert read_at(MERGE, RS0028_RUNTIME) == RS0028_RUNTIME.read_text(
-        encoding="utf-8"
+    assert read_at(MERGE, RS0028_RUNTIME) == read_at(
+        CLOSURE_MERGE,
+        RS0028_RUNTIME,
     )
-    assert read_at(MERGE, RS0030_RUNTIME) == RS0030_RUNTIME.read_text(
-        encoding="utf-8"
+    assert read_at(MERGE, RS0030_RUNTIME) == read_at(
+        CLOSURE_MERGE,
+        RS0030_RUNTIME,
     )
 
 
@@ -169,8 +173,8 @@ def test_no_downstream_gate_is_silently_advanced():
 
 
 def test_program_and_decision_log_record_bounded_closure():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(CLOSURE_MERGE, PROG)
+    decisions = read_at(CLOSURE_MERGE, DEC)
 
     assert "**Artifact version:** `0.4.55`" in program
     assert "### 5.50 PR2-MIG-A post-merge closure recording" in program
