@@ -6495,3 +6495,25 @@ PR2-AUDIT remains active until the certified Audit-D tranche is merged.
 PR2-MIG remains blocked and unauthorized until that closure occurs.
 PR2-TEST, PR2-IMPL, R4-B implementation, R4 activation, and runtime
 promotion remain unauthorized.
+
+## 2026-09-18 decision — PR2-AUDIT post-merge closure
+
+- **Decision ID:** `PR2-AUDIT-POST-MERGE-CLOSURE-001`
+- **Authorization reference:** `owner_directive_2026-09-18_pr2_audit_post_merge_closure`
+- **Authority effect:** `repository_wide_post_r2_audit_post_merge_lifecycle_reconciliation_only`
+- **Audit-D merge:** `720ee27248aac46e8f4e39492d51fda331778209`
+- **Audit-D PR:** `#415`
+- **Repository-wide audit complete:** `true`
+- **PR2-MIG ready pending authorization:** `true`
+- **Migration execution authorized:** `false`
+
+PR2-AUDIT is terminal `merged`.
+
+The accepted migration inventory contains exactly RS-0028 followed by
+RS-0030.
+
+PR2-MIG is now `ready_pending_authorization`, but no remediation or
+runtime implementation is authorized by this closure.
+
+PR2-TEST, PR2-IMPL, R4-B, R4 activation, and runtime promotion remain
+blocked or unauthorized.

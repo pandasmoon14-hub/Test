@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -9,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = "6455659b61bc0b56fa6c41f95e15f5b1b94d077a"
 AUTH = "owner_directive_2026-09-17_pr2_audit_d_completion_synthesis"
 EFFECT = "repository_wide_post_r2_audit_completion_synthesis_only"
+AUDIT_D_ACCEPTED_MERGE = "720ee27248aac46e8f4e39492d51fda331778209"
 
 REVIEW = (
     ROOT
@@ -59,7 +61,21 @@ R4_A = (
 )
 
 
+def git_text_at(ref, path):
+    rel = path.relative_to(ROOT).as_posix()
+
+    return subprocess.check_output(
+        ["git", "show", f"{ref}:{rel}"],
+        cwd=ROOT,
+    ).decode("utf-8")
+
+
 def load(path):
+    if path == MAN:
+        return json.loads(
+            git_text_at(AUDIT_D_ACCEPTED_MERGE, path)
+        )
+
     return json.loads(path.read_text(encoding="utf-8"))
 
 

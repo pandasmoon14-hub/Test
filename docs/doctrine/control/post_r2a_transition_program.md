@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.50`
+**Artifact version:** `0.4.51`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -2289,6 +2289,51 @@ If Audit-D validates and merges, PR2-MIG may become
 Review artifact:
 
 `docs/doctrine/reviews/pr2_audit_completion_synthesis.yaml`
+
+### 5.46 PR2-AUDIT post-merge closure
+
+PR2-AUDIT-D merged through PR `#415` at `720ee27248aac46e8f4e39492d51fda331778209`.
+
+The owner authorized the bounded post-merge lifecycle reconciliation:
+
+`owner_directive_2026-09-18_pr2_audit_post_merge_closure`
+
+Authority effect:
+
+`repository_wide_post_r2_audit_post_merge_lifecycle_reconciliation_only`
+
+The accepted Audit-D result establishes repository-wide PR2-AUDIT
+completion.
+
+All affected in-scope input groups have lawful dispositions.
+
+The bounded migration-required set remains exactly:
+
+1. `R2A-DISPOSITION-RS-0028`
+2. `R2A-DISPOSITION-RS-0030`
+
+Required order remains RS-0028 before RS-0030 because the replay/audit
+path inherits the commitment premise from the commit path.
+
+PR2-AUDIT is now terminal `merged`.
+
+`PR2-MIG` advances to `ready_pending_authorization`.
+
+This readiness does not authorize migration execution.
+
+`PR2-MIG.authorization_reference` remains null and its starting
+implementation baseline remains unset until a separately authorized
+migration tranche begins.
+
+`PR2-TEST` remains blocked and unauthorized.
+
+`PR2-IMPL` remains blocked and unauthorized.
+
+R4-B remains candidate-only and blocked.
+
+R4-R6 remain blocked.
+
+Runtime promotion remains uncleared.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
