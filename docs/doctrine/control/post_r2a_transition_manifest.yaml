@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.51",
+  "artifact_version": "0.4.53",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1704,15 +1704,27 @@
       "title": "Bounded repository remediation",
       "category": "migration",
       "purpose": "Apply accepted audit dispositions through bounded, reviewable migration tranches.",
-      "status": "ready_pending_authorization",
+      "status": "active",
       "dependencies": [
         "PR2-AUDIT"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
+      "authorization_reference": "owner_directive_2026-09-18_pr2_mig_rs_0028",
       "authority_effect": "bounded_migration_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "starting_baseline": "33e09250ef2d68946bd058044f15306c66bbefaf",
+      "owned_paths": [
+        "docs/decisions/current_decisions_log.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "src/astra_runtime/domain/object_lever_event_commit_state_delta_path.py",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_audit_post_merge_closure.py",
+        "tests/test_runtime_domain_rt_002e_object_lever_event_commit_state_delta_path.py",
+        "tests/test_pr2_mig_rs_0028_commit_qualification.py",
+        "tests/test_afqr_r1b_shared_vocabulary_and_type_owners.py",
+        "tests/test_runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.py",
+        "tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py"
+      ],
       "prohibited_scope": [
         "unreviewed_repo_wide_rewrite",
         "provenance_destruction",
@@ -1739,7 +1751,83 @@
         "R2A-DISPOSITION-RS-0028",
         "R2A-DISPOSITION-RS-0030"
       ],
-      "migration_execution_authorized": false
+      "migration_execution_authorized": true,
+      "current_tranche": "PR2-MIG-A",
+      "current_tranche_candidate_id": "R2A-DISPOSITION-RS-0028",
+      "current_tranche_state": "validated_complete_pending_merge",
+      "current_tranche_authorization_reference": "owner_directive_2026-09-18_pr2_mig_rs_0028",
+      "current_tranche_authority_effect": "bounded_rs_0028_commitment_qualification_migration_only",
+      "current_tranche_starting_baseline": "33e09250ef2d68946bd058044f15306c66bbefaf",
+      "current_tranche_target_path": "src/astra_runtime/domain/object_lever_event_commit_state_delta_path.py",
+      "current_tranche_scope": {
+        "runtime_file_count": 1,
+        "production_schema_file_count": 0,
+        "rs_0030_runtime_edit_authorized": false,
+        "event_commitment_owner_edit_authorized": false,
+        "afqr_01_commit_owner_implementation_authorized": false,
+        "general_transition_manager_authorized": false,
+        "general_state_mutation_authorized": false,
+        "runtime_promotion_authorized": false,
+        "r4_activation_authorized": false,
+        "historical_guard_test_file_count": 3,
+        "historical_guard_test_updates_authorized": true,
+        "historical_guard_test_update_kind": "accepted_merge_snapshot_only",
+        "historical_guard_runtime_allowlist_expansion_authorized": false
+      },
+      "current_tranche_required_behavior": {
+        "preview_ready_may_self_promote_to_committed": false,
+        "preview_ready_status_after_migration": "commit_ready",
+        "preview_ready_decision_after_migration": "awaiting_qualified_transition",
+        "positive_local_commit_record_created": false,
+        "positive_local_state_delta_receipt_created": false,
+        "afqr_01_commitment_owned_by_rt_002e": false,
+        "rs_0030_compatibility_migration_required_after_rs_0028": true
+      },
+      "migration_execution_scope": [
+        "R2A-DISPOSITION-RS-0028"
+      ],
+      "remaining_candidate_ids": [
+        "R2A-DISPOSITION-RS-0030"
+      ],
+      "current_tranche_next_tranche_authorized": false,
+      "current_tranche_runtime_promotion_authorized": false,
+      "current_tranche_validation_evidence": [
+        {
+          "evidence_type": "full_repository_suite",
+          "result": "pass",
+          "passed": 9251,
+          "skipped": 10,
+          "xfailed": 2,
+          "warnings": 1,
+          "warning_class": "PytestRemovedIn10Warning"
+        },
+        {
+          "evidence_type": "targeted_historical_guard_regression",
+          "result": "pass",
+          "passed": 3
+        },
+        {
+          "evidence_type": "bounded_pr2_mig_a_regression",
+          "result": "pass",
+          "passed": 182,
+          "skipped": 1
+        },
+        {
+          "evidence_type": "candidate_scope_certification",
+          "result": "pass",
+          "changed_path_count": 11,
+          "runtime_implementation_path_count": 1,
+          "runtime_candidate_id": "R2A-DISPOSITION-RS-0028",
+          "historical_guard_test_file_count": 3
+        }
+      ],
+      "current_tranche_completion_state": "validated_complete_pending_merge",
+      "current_tranche_validation_state": "validated",
+      "current_tranche_candidate_validated": true,
+      "next_candidate_id": "R2A-DISPOSITION-RS-0030",
+      "next_candidate_authorized": false,
+      "next_tranche_id": "PR2-MIG-B",
+      "next_tranche_authorized": false
     },
     {
       "workstream_id": "PR2-TEST",
@@ -1890,8 +1978,8 @@
     "repository_wide_audit_completion_recommended": true,
     "repository_wide_audit_complete": true,
     "pr2_mig_ready_after_validation_and_merge": true,
-    "pr2_mig_ready_now": true,
-    "pr2_mig_authorized": false,
+    "pr2_mig_ready_now": false,
+    "pr2_mig_authorized": true,
     "pr2_test_authorized": false,
     "pr2_impl_authorized": false,
     "r4_b_ready_now": false,
@@ -1911,6 +1999,8 @@
     "post_merge_closure_authorization_reference": "owner_directive_2026-09-18_pr2_audit_post_merge_closure",
     "post_merge_closure_authority_effect": "repository_wide_post_r2_audit_post_merge_lifecycle_reconciliation_only",
     "post_merge_closure_recorded_from": "720ee27248aac46e8f4e39492d51fda331778209",
-    "post_merge_closure_tree": "04c094a41eda056b58f59bb5553ab718535d1f41"
+    "post_merge_closure_tree": "04c094a41eda056b58f59bb5553ab718535d1f41",
+    "pr2_mig_current_tranche": "PR2-MIG-A",
+    "pr2_mig_current_candidate_id": "R2A-DISPOSITION-RS-0028"
   }
 }

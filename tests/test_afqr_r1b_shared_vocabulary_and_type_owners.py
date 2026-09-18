@@ -6,6 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 VOC=ROOT/'docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml'
 REV=ROOT/'docs/doctrine/reviews'; WORK=ROOT/'working/afqr_consolidation_inputs'
 BASE='1855cb2460542c0f912a0830276c9cdea90f1b07'
+ACCEPTED_MERGE='12ec32803f93ca5d0a70a8f245545932387be9e6'
 REQUIRED=[VOC,REV/'afqr_r1b_vocabulary_resolution_report.md',REV/'afqr_r1b_unresolved_term_escalation_ledger.yaml',REV/'afqr_01_20_authority_status_index.yaml',REV/'afqr_01_20_dependency_matrix.yaml',REV/'afqr_01_20_shared_term_collision_inventory.md',REV/'afqr_01_20_consolidation_file_manifest.yaml',WORK/'manifest.yaml']
 def load(p): return json.loads(p.read_text(encoding='utf8'))
 def git(*args): return subprocess.run(['git',*args],cwd=ROOT,text=True,check=True,capture_output=True).stdout
@@ -73,9 +74,9 @@ def test_collision_escalations_aliases_and_r1c_only_gate():
  assert d['alias_records']==[] and d['next_gate']=='R1C'
  assert set(d['blocked_gates'])=={'R1D','R1E','R2','R3','R4','R5','R6','RT-002G'}
 def test_no_production_zip_or_binary_diff():
- assert git('diff','--name-only',BASE,'--','*.zip').strip()==''
- assert git('diff','--name-only',BASE,'--','src/**').strip()==''
- assert all('-\t-' not in line for line in git('diff','--numstat',BASE).splitlines())
+ assert git('diff','--name-only',BASE,ACCEPTED_MERGE,'--','*.zip').strip()==''
+ assert git('diff','--name-only',BASE,ACCEPTED_MERGE,'--','src/**').strip()==''
+ assert all('-\t-' not in line for line in git('diff','--numstat',BASE,ACCEPTED_MERGE).splitlines())
 
 def test_state_qualified_semantic_owners_are_not_afqr01_commitment_ownership():
  state=terms()['state']; forms={q['qualified_form']:q for q in state['qualified_forms']}

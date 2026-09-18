@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.51`
+**Artifact version:** `0.4.53`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -2332,6 +2332,116 @@ migration tranche begins.
 R4-B remains candidate-only and blocked.
 
 R4-R6 remain blocked.
+
+Runtime promotion remains uncleared.
+
+### 5.47 PR2-MIG-A — RS-0028 remediation
+
+PR2-AUDIT post-merge closure is accepted at `33e09250ef2d68946bd058044f15306c66bbefaf`.
+
+The owner separately authorized the first bounded PR2-MIG tranche:
+
+`owner_directive_2026-09-18_pr2_mig_rs_0028`
+
+Authority effect:
+
+`bounded_rs_0028_commitment_qualification_migration_only`
+
+PR2-MIG-A remediates exactly:
+
+`R2A-DISPOSITION-RS-0028`
+
+Runtime target:
+
+`src/astra_runtime/domain/object_lever_event_commit_state_delta_path.py`
+
+The R3 defect was an unauthorized transition from preview eligibility
+directly to locally fabricated commitment.
+
+PR2-MIG-A removes that transition.
+
+A prepared RT-002E preview now remains:
+
+- status: `commit_ready`;
+- decision: `awaiting_qualified_transition`;
+- committed-event record: absent;
+- positive state-delta receipt: absent.
+
+RT-002E therefore expresses eligibility for later lawful commitment
+without owning or fabricating AFQR-01 commitment.
+
+This tranche does not implement an AFQR-01 transition journal,
+commitment owner, generalized state-mutation manager, persistence
+writer, event-store append path, or replacement commitment service.
+
+`R2A-DISPOSITION-RS-0030` remains separately gated.
+
+RT-002F still carries its historical private commit-status/decision
+map and does not yet accept the newly lawful RT-002E
+`commit_ready / awaiting_qualified_transition` pair. That incompatibility
+is preserved as evidence for PR2-MIG-B rather than silently repaired
+in PR2-MIG-A.
+
+
+Full-repository certification also exposed three older package-local
+guardrail tests whose non-implementation assertions were still comparing
+against the present working tree. PR2-MIG-A may historicalize those tests
+only against their accepted merge snapshots. This does not expand any old
+package's runtime authority and does not add RS-0028 to a legacy runtime
+allowlist.
+
+PR2-MIG is active only for RS-0028.
+
+PR2-MIG-B / RS-0030 is not authorized.
+
+PR2-TEST and PR2-IMPL remain blocked.
+
+R4-B and R4-R6 remain blocked.
+
+Runtime promotion remains uncleared.
+
+### 5.48 PR2-MIG-A — RS-0028 validation completion
+
+PR2-MIG-A / `R2A-DISPOSITION-RS-0028` completed its bounded validation.
+
+Full repository certification:
+
+- `9251 passed`;
+- `10 skipped`;
+- `2 xfailed`;
+- `1 warning`.
+
+The warning is the existing pytest
+`PytestRemovedIn10Warning` concerning a class-scoped fixture and is
+unrelated to RS-0028 behavior.
+
+Post-suite certification also passed:
+
+- `3 passed` for the historical guardrail checks;
+- `182 passed, 1 skipped` for the bounded PR2-MIG-A regression set;
+- exact candidate footprint: `11` paths;
+- runtime implementation paths changed: exactly `1`;
+- that runtime path is the RS-0028 target only.
+
+Validated behavior:
+
+- preview readiness remains `commit_ready`;
+- its decision is `awaiting_qualified_transition`;
+- RT-002E does not create a positive committed-event record;
+- RT-002E does not create a positive state-delta receipt;
+- RT-002E does not acquire AFQR-01 commitment ownership;
+- no substitute commitment owner was introduced.
+
+PR2-MIG-A is therefore
+`validated_complete_pending_merge`.
+
+`R2A-DISPOSITION-RS-0030` remains the next migration candidate.
+
+PR2-MIG-B is not authorized.
+
+PR2-TEST and PR2-IMPL remain blocked.
+
+R4-B and R4-R6 remain blocked.
 
 Runtime promotion remains uncleared.
 

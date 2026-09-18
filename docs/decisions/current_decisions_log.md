@@ -6517,3 +6517,64 @@ runtime implementation is authorized by this closure.
 
 PR2-TEST, PR2-IMPL, R4-B, R4 activation, and runtime promotion remain
 blocked or unauthorized.
+
+## 2026-09-18 decision — PR2-MIG-A RS-0028 remediation
+
+- **Decision ID:** `PR2-MIG-A-RS-0028-ACTIVATION-001`
+- **Authorization reference:** `owner_directive_2026-09-18_pr2_mig_rs_0028`
+- **Authority effect:** `bounded_rs_0028_commitment_qualification_migration_only`
+- **Starting baseline:** `33e09250ef2d68946bd058044f15306c66bbefaf`
+- **Candidate:** `R2A-DISPOSITION-RS-0028`
+- **Runtime target:** `src/astra_runtime/domain/object_lever_event_commit_state_delta_path.py`
+- **RS-0030 runtime edit authorized:** `false`
+- **AFQR-01 commit-owner implementation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+PR2-MIG-A removes RT-002E's unauthorized preview-to-commit transition.
+
+A prepared preview remains `commit_ready` with
+`awaiting_qualified_transition`. RT-002E does not construct a positive
+committed-event record or state-delta receipt from preview eligibility.
+
+No substitute AFQR-01 commitment mechanism is introduced.
+
+RS-0030 remains the next separately gated migration candidate.
+
+Three stale historical non-implementation tests are updated only to
+evaluate their own accepted merge snapshots. No legacy runtime allowlist
+is expanded and no historical package receives new implementation
+authority.
+
+PR2-TEST, PR2-IMPL, R4-B, R4 activation, and runtime promotion remain
+blocked or unauthorized.
+
+## 2026-09-18 decision — PR2-MIG-A RS-0028 validation
+
+- **Decision ID:** `PR2-MIG-A-RS-0028-VALIDATION-002`
+- **Candidate:** `R2A-DISPOSITION-RS-0028`
+- **Validation state:** `validated_complete_pending_merge`
+- **Full suite:** `9251 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Bounded regression:** `182 passed, 1 skipped`
+- **Historical guardrail regression:** `3 passed`
+- **Changed paths:** `11`
+- **Runtime implementation paths changed:** `1`
+- **Next candidate:** `R2A-DISPOSITION-RS-0030`
+- **Next candidate authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+RS-0028 remediation is validated.
+
+RT-002E no longer promotes preview eligibility into locally fabricated
+commitment. Prepared previews remain `commit_ready` with
+`awaiting_qualified_transition`, without a positive committed-event record
+or positive state-delta receipt.
+
+No AFQR-01 replacement commitment owner was introduced.
+
+The three historical guardrail updates remain accepted-merge snapshot
+checks only; no legacy runtime allowlist was expanded.
+
+RS-0030 remains separately gated and unauthorized.
+
+PR2-TEST, PR2-IMPL, R4-B, R4 activation, and runtime promotion remain
+blocked or unauthorized.
