@@ -6609,3 +6609,34 @@ RS-0028 runtime behavior is unchanged by this correction. RS-0030 remains
 separately gated and unauthorized. PR2-TEST, PR2-IMPL, R4-B, R4 activation,
 and runtime promotion remain blocked or unauthorized.
 
+## 2026-09-18 decision — PR2-MIG-A post-merge closure
+
+- **Decision ID:** `PR2-MIG-A-POST-MERGE-CLOSURE-004`
+- **Authorization reference:** `owner_directive_2026-09-18_pr2_mig_a_post_merge_closure`
+- **Authority effect:** `bounded_rs_0028_post_merge_lifecycle_reconciliation_only`
+- **Pull request:** `#417`
+- **Accepted branch head:** `f853830ff8b1f4a8f5fccba030fe66c796e03f21`
+- **Merge commit:** `3d2125e91da1d6f687dd5d72805c39cafef9afb6`
+- **Merge tree:** `07c2c8f70d220f3b3e382bc2ad67e73d2c342eca`
+- **Replacement CI:** `#234 success`
+- **Completed candidate:** `R2A-DISPOSITION-RS-0028`
+- **Remaining candidate:** `R2A-DISPOSITION-RS-0030`
+- **PR2-MIG-B state:** `ready_pending_authorization`
+- **PR2-MIG-B authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+PR2-MIG-A is terminal merged. Its accepted remediation prevents RT-002E
+preview readiness from self-promoting into locally fabricated commitment.
+
+The current migration inventory now contains only RS-0030.
+
+This closure does not authorize PR2-MIG-B or any RS-0030 runtime edit.
+Migration execution authority is reset to false pending a separate owner
+directive.
+
+PR2-MIG remains active as the overall workstream while the remaining accepted
+migration candidate is unresolved.
+
+PR2-TEST, PR2-IMPL, R4-B, R4 activation, and runtime promotion remain blocked
+or unauthorized.
+

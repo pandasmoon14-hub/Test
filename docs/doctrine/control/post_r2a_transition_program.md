@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.54`
+**Artifact version:** `0.4.55`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -2475,6 +2475,52 @@ merge.
 
 PR2-MIG-B / RS-0030 remains unauthorized. PR2-TEST, PR2-IMPL, R4-B, R4-R6,
 and runtime promotion remain blocked or unauthorized.
+
+### 5.50 PR2-MIG-A post-merge closure recording
+
+Authorization reference:
+
+`owner_directive_2026-09-18_pr2_mig_a_post_merge_closure`
+
+Authority effect:
+
+`bounded_rs_0028_post_merge_lifecycle_reconciliation_only`
+
+PR2-MIG-A / `R2A-DISPOSITION-RS-0028` merged through PR `#417`.
+
+Accepted branch head:
+
+`f853830ff8b1f4a8f5fccba030fe66c796e03f21`
+
+Accepted merge commit:
+
+`3d2125e91da1d6f687dd5d72805c39cafef9afb6`
+
+Accepted merge tree:
+
+`07c2c8f70d220f3b3e382bc2ad67e73d2c342eca`
+
+Replacement GitHub Actions CI run `#234` succeeded on both Linux and
+Windows after the bounded historical-guard compatibility correction.
+
+PR2-MIG-A is terminal `merged`.
+
+The remaining migration inventory is now exactly one candidate:
+
+`R2A-DISPOSITION-RS-0030`
+
+PR2-MIG-B is `ready_pending_authorization`. Readiness does not authorize
+runtime edits or migration execution. PR2-MIG execution authority is reset
+to `false` until a separate owner directive activates PR2-MIG-B.
+
+PR2-MIG remains the active workstream overall because the accepted migration
+inventory is not yet exhausted.
+
+PR2-TEST and PR2-IMPL remain blocked and unauthorized.
+
+R4-B and R4-R6 remain blocked.
+
+Runtime promotion remains uncleared.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

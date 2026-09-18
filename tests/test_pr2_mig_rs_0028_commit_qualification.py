@@ -2,12 +2,32 @@ from __future__ import annotations
 
 import ast
 import inspect
+import json
+import subprocess
+from pathlib import Path
 
 import pytest
 
 import astra_runtime.domain.object_lever_event_commit_state_delta_path as e
 import astra_runtime.domain.object_lever_replay_audit_check as f
 import astra_runtime.domain.object_lever_transaction_preview_bridge as b
+
+ROOT = Path(__file__).resolve().parents[1]
+RS0028_ACCEPTED_MERGE = "3d2125e91da1d6f687dd5d72805c39cafef9afb6"
+MANIFEST = ROOT / "docs/doctrine/control/post_r2a_transition_manifest.yaml"
+
+
+def load_manifest_at_rs0028_merge():
+    text = subprocess.check_output(
+        [
+            "git",
+            "show",
+            f"{RS0028_ACCEPTED_MERGE}:{MANIFEST.relative_to(ROOT).as_posix()}",
+        ],
+        cwd=ROOT,
+        text=True,
+    )
+    return json.loads(text)
 from astra_runtime.domain.object_lever_interaction_legality_reader import (
     create_object_lever_legality_reading,
     create_object_lever_legality_reader_result,
@@ -175,18 +195,7 @@ def test_negative_preview_dispositions_remain_representable():
 
 
 def test_historical_guard_updates_are_snapshot_only():
-    import json
-    from pathlib import Path
-
-    root = Path(__file__).resolve().parents[1]
-
-    manifest = json.loads(
-        (
-            root
-            / "docs/doctrine/control/"
-            "post_r2a_transition_manifest.yaml"
-        ).read_text(encoding="utf-8")
-    )
+    manifest = load_manifest_at_rs0028_merge()
 
     mig = {
         row["workstream_id"]: row
@@ -251,17 +260,7 @@ def test_historical_guard_updates_are_snapshot_only():
 
 
 def test_ci_historical_guard_correction_scope():
-    import json
-    from pathlib import Path
-
-    root = Path(__file__).resolve().parents[1]
-    manifest = json.loads(
-        (
-            root
-            / "docs/doctrine/control/"
-            "post_r2a_transition_manifest.yaml"
-        ).read_text(encoding="utf-8")
-    )
+    manifest = load_manifest_at_rs0028_merge()
     mig = {
         row["workstream_id"]: row
         for row in manifest["workstreams"]
@@ -295,18 +294,7 @@ def test_ci_historical_guard_correction_scope():
     assert correction["replacement_ci_required_before_merge"] is True
 
 def test_rs0028_terminal_validation_evidence():
-    import json
-    from pathlib import Path
-
-    root = Path(__file__).resolve().parents[1]
-
-    manifest = json.loads(
-        (
-            root
-            / "docs/doctrine/control/"
-            "post_r2a_transition_manifest.yaml"
-        ).read_text(encoding="utf-8")
-    )
+    manifest = load_manifest_at_rs0028_merge()
 
     mig = {
         row["workstream_id"]: row
