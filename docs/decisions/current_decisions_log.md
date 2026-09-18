@@ -6640,3 +6640,84 @@ migration candidate is unresolved.
 PR2-TEST, PR2-IMPL, R4-B, R4 activation, and runtime promotion remain blocked
 or unauthorized.
 
+
+
+## 2026-09-18 decision — PR2-MIG-B RS-0030 remediation
+
+- **Decision ID:** `PR2-MIG-B-RS-0030-ACTIVATION-005`
+- **Authorization reference:** `owner_directive_2026-09-18_pr2_mig_rs_0030`
+- **Authority effect:** `bounded_rs_0030_replay_audit_qualification_migration_only`
+- **Starting baseline:** `b4b52cab91916e050e20ad54ff3559153436a944`
+- **Candidate:** `R2A-DISPOSITION-RS-0030`
+- **Runtime target:** `src/astra_runtime/domain/object_lever_replay_audit_check.py`
+- **RT-002E runtime edit authorized:** `false`
+- **AFQR-01 commit-owner implementation authorized:** `false`
+- **General replay authority authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+PR2-MIG-B repairs RT-002F's compatibility with the lawful
+RT-002E `commit_ready / awaiting_qualified_transition` source state.
+
+That source state becomes valid input to replay/audit qualification,
+but remains noncommitted. It resolves to
+`audit_insufficient_commit / insufficient_commit` with
+`commit_not_auditable`, without an audit snapshot or replay-check
+receipt.
+
+The existing positive verification path remains reserved for coherent
+committed evidence.
+
+RT-002F does not acquire commitment, persistence, state mutation,
+event-store, command re-execution, or generalized replay authority.
+
+Two stale PR2-MIG-A assertions are historicalized only against their
+accepted merge snapshots. No historical runtime allowlist is expanded.
+
+Initial focused validation is `45 passed, 1 skipped`. This does not
+constitute final PR2-MIG-B validation.
+
+No migration candidate exists after RS-0030, but the migration
+inventory does not reach zero until RS-0030 is validated, merged, and
+closed through a separate post-merge lifecycle reconciliation.
+
+PR2-TEST, PR2-IMPL, R4-B, R4 activation, and runtime promotion remain
+blocked or unauthorized.
+
+
+## 2026-09-18 decision — PR2-MIG-B RS-0030 validation
+
+- **Decision ID:** `PR2-MIG-B-RS-0030-VALIDATION-006`
+- **Candidate:** `R2A-DISPOSITION-RS-0030`
+- **Validation state:** `validated_complete_pending_merge`
+- **Bounded regression:** `518 passed, 4 skipped`
+- **Full suite:** `9267 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Post-suite focused certification:** `96 passed, 1 skipped`
+- **Changed paths:** `9`
+- **Runtime implementation paths changed:** `1`
+- **Production schema paths changed:** `0`
+- **Runtime promotion authorized:** `false`
+
+RS-0030 remediation is validated.
+
+RT-002F now accepts the lawful RT-002E
+`commit_ready / awaiting_qualified_transition` proposal state without
+promoting it to commitment or positive audit verification.
+
+That state yields
+`audit_insufficient_commit / insufficient_commit` with
+`commit_not_auditable`, no audit snapshot, and no replay-check receipt.
+
+The coherent committed-source verification path remains intact.
+
+RT-002F does not acquire AFQR-01 commitment ownership, persistence
+authority, state-mutation authority, or generalized replay authority.
+
+The two PR2-MIG-A compatibility-test changes remain accepted-merge
+snapshot checks. No legacy runtime allowlist is expanded.
+
+No accepted migration candidate follows RS-0030. The migration
+inventory nevertheless remains open until RS-0030 is merged and
+post-merge closure is separately recorded.
+
+PR2-TEST, PR2-IMPL, R4-B, R4 activation, and runtime promotion remain
+blocked or unauthorized.

@@ -13,7 +13,7 @@ OUTPUT_FORBIDDEN=["event_store_append","event_store_read","event_log","persisten
 
 
 def _commit_decision(status):
-    return {"committed":"object_lever_event_committed","commit_blocked":"blocked","commit_deferred":"deferred","commit_unknown":"unknown","commit_insufficient_preview":"insufficient_preview"}[status]
+    return {"commit_ready":"awaiting_qualified_transition","committed":"object_lever_event_committed","commit_blocked":"blocked","commit_deferred":"deferred","commit_unknown":"unknown","commit_insufficient_preview":"insufficient_preview"}[status]
 
 
 def _base_src(safe=("scene:1","actor:1","object_lever:1")):
@@ -38,7 +38,9 @@ def _base_record(kind="object_lever_interaction_committed_event", delta=None, el
 
 def commit_result(status="committed", safe=("scene:1","actor:1","object_lever:1"), block_reasons=(), metadata=None):
     decision=_commit_decision(status)
-    if status == "committed":
+    if status == "commit_ready":
+        record=None; delta=None
+    elif status == "committed":
         record=_base_record(safe=safe); delta=_base_delta()
     else:
         mapping={"commit_blocked":("object_lever_interaction_blocked_event","no_state_delta_due_to_block","no state delta due to block"),"commit_deferred":("object_lever_interaction_deferred_event","no_state_delta_due_to_deferred","no state delta due to deferred"),"commit_unknown":("object_lever_interaction_unknown_event","no_state_delta_due_to_unknown","no state delta due to unknown"),"commit_insufficient_preview":("object_lever_interaction_insufficient_preview_event","no_state_delta_due_to_insufficient_preview","no state delta due to insufficient preview")}
@@ -142,6 +144,17 @@ def test_committed_result_creates_verified():
     assert result.replay_check_receipt is not None
     assert result.replay_check_receipt.identity_matches is True
     assert result.block_reasons == ()
+
+
+def test_ready_result_is_lawful_but_not_auditable_commitment():
+    result=f.audit_object_lever_event_commit_result(
+        commit_result(status="commit_ready")
+    )
+    assert result.audit_status == "audit_insufficient_commit"
+    assert result.audit_decision == "insufficient_commit"
+    assert result.audit_snapshot is None
+    assert result.replay_check_receipt is None
+    assert "commit_not_auditable" in result.block_reasons
 
 
 def test_blocked_result_creates_blocked():
@@ -319,7 +332,7 @@ def test_duck_typed_committed_input_with_non_rt002e_record_receipt_does_not_veri
 
 
 def test_helper_outputs_for_all_statuses_still_validate():
-    for status in ["committed","commit_blocked","commit_deferred","commit_unknown","commit_insufficient_preview"]:
+    for status in ["commit_ready","committed","commit_blocked","commit_deferred","commit_unknown","commit_insufficient_preview"]:
         result=f.audit_object_lever_event_commit_result(commit_result(status=status))
         assert f.validate_object_lever_replay_audit_result(result) is True
 

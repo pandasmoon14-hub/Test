@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.55`
+**Artifact version:** `0.4.57`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -2515,6 +2515,144 @@ to `false` until a separate owner directive activates PR2-MIG-B.
 
 PR2-MIG remains the active workstream overall because the accepted migration
 inventory is not yet exhausted.
+
+PR2-TEST and PR2-IMPL remain blocked and unauthorized.
+
+R4-B and R4-R6 remain blocked.
+
+Runtime promotion remains uncleared.
+
+### 5.51 PR2-MIG-B — RS-0030 replay/audit qualification
+
+The owner separately authorized PR2-MIG-B:
+
+`owner_directive_2026-09-18_pr2_mig_rs_0030`
+
+Authority effect:
+
+`bounded_rs_0030_replay_audit_qualification_migration_only`
+
+Starting baseline:
+
+`b4b52cab91916e050e20ad54ff3559153436a944`
+
+PR2-MIG-B remediates exactly:
+
+`R2A-DISPOSITION-RS-0030`
+
+Runtime target:
+
+`src/astra_runtime/domain/object_lever_replay_audit_check.py`
+
+RS-0028 established that RT-002E preview readiness is a lawful
+noncommitted proposal state:
+
+- status: `commit_ready`;
+- decision: `awaiting_qualified_transition`;
+- committed-event record: absent;
+- positive state-delta receipt: absent.
+
+RS-0030 exists because RT-002F's private commit-status/decision
+coherence map did not recognize that lawful noncommitted source pair.
+
+PR2-MIG-B makes the pair representable by RT-002F without promoting it
+to commitment or positive replay/audit verification.
+
+Required behavior for a lawful RT-002E ready source is:
+
+- source status: `commit_ready`;
+- source decision: `awaiting_qualified_transition`;
+- audit status: `audit_insufficient_commit`;
+- audit decision: `insufficient_commit`;
+- block reason includes `commit_not_auditable`;
+- audit snapshot: absent;
+- replay-check receipt: absent.
+
+The existing positive path for a genuinely committed source remains
+unchanged. RT-002F does not acquire AFQR-01 commitment ownership,
+persistence authority, state-mutation authority, or general replay
+authority.
+
+Two PR2-MIG-A tests whose assertions describe historical repository
+state are snapshot-bound to their accepted merges. No legacy runtime
+allowlist is expanded.
+
+Initial focused validation passed:
+
+- `45 passed`;
+- `1 skipped`.
+
+This is initial tranche evidence only. It is not full-repository
+certification and does not mark RS-0030 validated or complete.
+
+The current accepted migration inventory contains no candidate after
+RS-0030. RS-0030 itself remains unresolved until bounded validation,
+merge, and post-merge closure complete.
+
+PR2-TEST and PR2-IMPL remain blocked and unauthorized.
+
+R4-B and R4-R6 remain blocked.
+
+Runtime promotion remains uncleared.
+
+### 5.52 PR2-MIG-B — RS-0030 validation completion
+
+PR2-MIG-B / `R2A-DISPOSITION-RS-0030` completed its bounded
+pre-merge validation.
+
+Bounded regression:
+
+- `518 passed, 4 skipped`.
+
+Full repository certification:
+
+- `9267 passed`;
+- `10 skipped`;
+- `2 xfailed`;
+- `1 warning`.
+
+The warning is the existing pytest `PytestRemovedIn10Warning`
+concerning a class-scoped fixture and is unrelated to RS-0030.
+
+Post-suite focused certification:
+
+- `96 passed`;
+- `1 skipped`.
+
+Candidate-scope certification:
+
+- exact changed-path count: `9`;
+- runtime implementation paths changed: exactly `1`;
+- production schema paths changed: `0`;
+- runtime candidate:
+  `R2A-DISPOSITION-RS-0030`;
+- historical PR2-MIG-A tests updated: exactly `2`;
+- historical updates remain accepted-merge snapshot checks only.
+
+Validated behavior:
+
+- RT-002F recognizes the lawful
+  `commit_ready / awaiting_qualified_transition` pair;
+- that pair remains noncommitted;
+- it produces
+  `audit_insufficient_commit / insufficient_commit`;
+- `commit_not_auditable` records why positive audit
+  verification is unavailable;
+- no audit snapshot is created for the ready proposal state;
+- no replay-check receipt is created for the ready proposal
+  state;
+- coherent historical committed inputs retain the existing
+  positive verification path;
+- RT-002F acquires neither AFQR-01 commitment authority nor
+  generalized replay authority;
+- RT-002E remains unchanged by PR2-MIG-B.
+
+PR2-MIG-B is therefore
+`validated_complete_pending_merge`.
+
+There is no accepted migration candidate after RS-0030, but the
+migration-required inventory remains open until this candidate is
+merged and a separate post-merge closure reconciles lifecycle state.
 
 PR2-TEST and PR2-IMPL remain blocked and unauthorized.
 
