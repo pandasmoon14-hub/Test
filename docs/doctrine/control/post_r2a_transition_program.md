@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.53`
+**Artifact version:** `0.4.54`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -2444,6 +2444,37 @@ PR2-TEST and PR2-IMPL remain blocked.
 R4-B and R4-R6 remain blocked.
 
 Runtime promotion remains uncleared.
+
+### 5.49 PR2-MIG-A — CI historical-guard compatibility correction
+
+GitHub Actions run `#233` evaluated the PR synthetic merge ref and exposed
+seven additional historical branch-scope guards that still compared their
+old package-local claims against the current PR diff. Three further failures
+were cascading nested-test failures from those guards.
+
+The affected historical packages are R1C, R1D-CORE, R1D-AGENCY, R1D-WORLD,
+RT-001D, RT-001I, and RT-002A.
+
+Each guard is corrected only to evaluate its own accepted merge range.
+Review-only packages retain their original no-runtime-change claim. RT-002A
+retains only the runtime paths that were actually present in its accepted
+merge. No legacy runtime allowlist is expanded.
+
+This CI correction adds zero runtime implementation files and makes no change
+to the RS-0028 runtime remediation, RS-0030, kernel code, or production
+schemas.
+
+The earlier `9251 passed, 10 skipped, 2 xfailed, 1 warning` local full-suite
+result remains historical evidence for the eleven-path candidate on which it
+was run. It is not relabeled as validation of these seven later test-only
+corrections.
+
+After this correction, the PR contains 18 changed paths: the original eleven
+plus seven historical-guard tests. Replacement GitHub CI must pass before
+merge.
+
+PR2-MIG-B / RS-0030 remains unauthorized. PR2-TEST, PR2-IMPL, R4-B, R4-R6,
+and runtime promotion remain blocked or unauthorized.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

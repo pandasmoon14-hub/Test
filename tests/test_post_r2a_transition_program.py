@@ -370,7 +370,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.53"
+    assert manifest["artifact_version"] == "0.4.54"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -1205,7 +1205,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.53`" in program
+    assert "**Artifact version:** `0.4.54`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program

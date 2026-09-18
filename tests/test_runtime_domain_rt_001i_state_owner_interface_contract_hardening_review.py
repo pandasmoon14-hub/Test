@@ -17,6 +17,8 @@ import yaml
 from tests.historical_branch_diff_guard import require_owning_historical_branch
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
+RT001I_BASE = "db53c09da9a9e82d9d39082ca3898741e696642a"
+RT001I_ACCEPTED_MERGE = "32533589bfc409b4a6b46a3fd1251706dd2d7e17"
 REVIEW_ARTIFACT_PATH = (
     REPO_ROOT
     / "docs"
@@ -657,7 +659,7 @@ class TestBranchDiffContained:
     def test_branch_diff_is_limited_to_allowed_files(self):
         require_owning_historical_branch(REPO_ROOT, "rt-001i")
         result = subprocess.run(
-            ["git", "diff", "--name-only", "origin/main...HEAD"],
+            ["git", "diff", "--name-only", f"{RT001I_BASE}...{RT001I_ACCEPTED_MERGE}"],
             capture_output=True, text=True, check=True, cwd=REPO_ROOT,
         )
         changed = [p for p in result.stdout.strip().splitlines() if p.strip()]
@@ -668,7 +670,7 @@ class TestBranchDiffContained:
 
     def test_no_runtime_implementation_module_modified(self):
         result = subprocess.run(
-            ["git", "diff", "--name-only", "origin/main...HEAD"],
+            ["git", "diff", "--name-only", f"{RT001I_BASE}...{RT001I_ACCEPTED_MERGE}"],
             capture_output=True, text=True, check=True, cwd=REPO_ROOT,
         )
         changed = [p for p in result.stdout.strip().splitlines() if p.strip()]

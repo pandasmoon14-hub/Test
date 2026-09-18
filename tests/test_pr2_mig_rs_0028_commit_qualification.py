@@ -195,7 +195,7 @@ def test_historical_guard_updates_are_snapshot_only():
 
     scope = mig["current_tranche_scope"]
 
-    assert scope["historical_guard_test_file_count"] == 3
+    assert scope["historical_guard_test_file_count"] == 10
 
     assert (
         scope["historical_guard_test_updates_authorized"]
@@ -225,10 +225,74 @@ def test_historical_guard_updates_are_snapshot_only():
             "tests/test_runtime_domain_rt_001g_"
             "state_owner_interface_prerequisite_review.py"
         ),
+        "tests/test_afqr_r1c_cross_invariants_and_dependencies.py",
+        "tests/test_afqr_r1d_core_transaction_identity_relation.py",
+        (
+            "tests/test_afqr_r1d_agency_"
+            "epistemic_social_communication.py"
+        ),
+        "tests/test_afqr_r1d_world_action_sensing.py",
+        (
+            "tests/test_runtime_domain_rt_001d_"
+            "action_legality_integration_hardening_review.py"
+        ),
+        (
+            "tests/test_runtime_domain_rt_001i_"
+            "state_owner_interface_contract_hardening_review.py"
+        ),
+        (
+            "tests/test_runtime_domain_rt_002a_"
+            "read_only_vertical_slice_state_owner_facade.py"
+        ),
     }
 
     assert expected <= set(mig["owned_paths"])
 
+
+
+def test_ci_historical_guard_correction_scope():
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[1]
+    manifest = json.loads(
+        (
+            root
+            / "docs/doctrine/control/"
+            "post_r2a_transition_manifest.yaml"
+        ).read_text(encoding="utf-8")
+    )
+    mig = {
+        row["workstream_id"]: row
+        for row in manifest["workstreams"]
+    }["PR2-MIG"]
+
+    scope = mig["current_tranche_scope"]
+    correction = mig["current_tranche_ci_guard_correction"]
+
+    assert scope["historical_guard_test_file_count"] == 10
+    assert scope["ci_historical_guard_test_file_count"] == 7
+    assert scope["ci_historical_guard_repair_authorized"] is True
+    assert (
+        scope["ci_historical_guard_repair_kind"]
+        == "accepted_merge_snapshot_only"
+    )
+    assert (
+        scope[
+            "ci_historical_guard_repair_runtime_allowlist_expansion_authorized"
+        ]
+        is False
+    )
+
+    assert correction["source_workflow_run"] == 233
+    assert correction["source_workflow_run_id"] == 35394370006
+    assert correction["root_stale_historical_guard_failures"] == 7
+    assert correction["cascading_failures"] == 3
+    assert correction["accepted_merge_snapshot_only"] is True
+    assert correction["runtime_implementation_files_added_by_correction"] == 0
+    assert correction["legacy_runtime_allowlist_expanded"] is False
+    assert correction["resulting_pr_changed_path_count"] == 18
+    assert correction["replacement_ci_required_before_merge"] is True
 
 def test_rs0028_terminal_validation_evidence():
     import json

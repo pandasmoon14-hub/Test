@@ -6578,3 +6578,34 @@ RS-0030 remains separately gated and unauthorized.
 
 PR2-TEST, PR2-IMPL, R4-B, R4 activation, and runtime promotion remain
 blocked or unauthorized.
+
+## 2026-09-18 decision — PR2-MIG-A CI historical-guard correction
+
+- **Decision ID:** `PR2-MIG-A-RS-0028-CI-GUARD-CORRECTION-003`
+- **Source CI run:** `#233` / `35394370006`
+- **Source head:** `63c4b755d62c985ab41ca3220cb331de0c55af95`
+- **Observed CI result:** `10 failed, 9149 passed, 18 skipped, 2 xfailed, 1 warning` on both Linux and Windows
+- **Root stale historical guards:** `7`
+- **Cascading failures:** `3`
+- **Correction runtime implementation files added:** `0`
+- **Resulting PR changed paths:** `18`
+- **Legacy runtime allowlist expansion:** `false`
+- **Replacement CI required before merge:** `true`
+
+The seven root failures came from R1C, R1D-CORE, R1D-AGENCY, R1D-WORLD,
+RT-001D, RT-001I, and RT-002A package-local diff guards evaluating the
+current synthetic PR merge diff rather than their own accepted historical
+merge ranges.
+
+The correction snapshot-binds those guards to the accepted merge ranges that
+their assertions describe. RT-002A remains bounded to the runtime files
+actually present in its accepted merge.
+
+The previously recorded 9251-pass full local suite remains evidence for the
+eleven-path candidate on which it ran; it is not retroactively claimed as
+validation of these seven later test-only corrections.
+
+RS-0028 runtime behavior is unchanged by this correction. RS-0030 remains
+separately gated and unauthorized. PR2-TEST, PR2-IMPL, R4-B, R4 activation,
+and runtime promotion remain blocked or unauthorized.
+

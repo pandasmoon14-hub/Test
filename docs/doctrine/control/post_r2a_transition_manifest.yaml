@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.53",
+  "artifact_version": "0.4.54",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1723,7 +1723,14 @@
         "tests/test_pr2_mig_rs_0028_commit_qualification.py",
         "tests/test_afqr_r1b_shared_vocabulary_and_type_owners.py",
         "tests/test_runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.py",
-        "tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py"
+        "tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py",
+        "tests/test_afqr_r1c_cross_invariants_and_dependencies.py",
+        "tests/test_afqr_r1d_core_transaction_identity_relation.py",
+        "tests/test_afqr_r1d_agency_epistemic_social_communication.py",
+        "tests/test_afqr_r1d_world_action_sensing.py",
+        "tests/test_runtime_domain_rt_001d_action_legality_integration_hardening_review.py",
+        "tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py",
+        "tests/test_runtime_domain_rt_002a_read_only_vertical_slice_state_owner_facade.py"
       ],
       "prohibited_scope": [
         "unreviewed_repo_wide_rewrite",
@@ -1769,10 +1776,14 @@
         "general_state_mutation_authorized": false,
         "runtime_promotion_authorized": false,
         "r4_activation_authorized": false,
-        "historical_guard_test_file_count": 3,
+        "historical_guard_test_file_count": 10,
         "historical_guard_test_updates_authorized": true,
         "historical_guard_test_update_kind": "accepted_merge_snapshot_only",
-        "historical_guard_runtime_allowlist_expansion_authorized": false
+        "historical_guard_runtime_allowlist_expansion_authorized": false,
+        "ci_historical_guard_test_file_count": 7,
+        "ci_historical_guard_repair_authorized": true,
+        "ci_historical_guard_repair_kind": "accepted_merge_snapshot_only",
+        "ci_historical_guard_repair_runtime_allowlist_expansion_authorized": false
       },
       "current_tranche_required_behavior": {
         "preview_ready_may_self_promote_to_committed": false,
@@ -1827,7 +1838,33 @@
       "next_candidate_id": "R2A-DISPOSITION-RS-0030",
       "next_candidate_authorized": false,
       "next_tranche_id": "PR2-MIG-B",
-      "next_tranche_authorized": false
+      "next_tranche_authorized": false,
+      "current_tranche_ci_guard_correction": {
+        "source_workflow_run": 233,
+        "source_workflow_run_id": 35394370006,
+        "source_head": "63c4b755d62c985ab41ca3220cb331de0c55af95",
+        "result": "failure_requiring_test_only_historicalization",
+        "platforms": [
+          "core-linux",
+          "core-windows"
+        ],
+        "root_stale_historical_guard_failures": 7,
+        "cascading_failures": 3,
+        "correction_test_paths": [
+          "tests/test_afqr_r1c_cross_invariants_and_dependencies.py",
+          "tests/test_afqr_r1d_core_transaction_identity_relation.py",
+          "tests/test_afqr_r1d_agency_epistemic_social_communication.py",
+          "tests/test_afqr_r1d_world_action_sensing.py",
+          "tests/test_runtime_domain_rt_001d_action_legality_integration_hardening_review.py",
+          "tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py",
+          "tests/test_runtime_domain_rt_002a_read_only_vertical_slice_state_owner_facade.py"
+        ],
+        "accepted_merge_snapshot_only": true,
+        "runtime_implementation_files_added_by_correction": 0,
+        "legacy_runtime_allowlist_expanded": false,
+        "resulting_pr_changed_path_count": 18,
+        "replacement_ci_required_before_merge": true
+      }
     },
     {
       "workstream_id": "PR2-TEST",
