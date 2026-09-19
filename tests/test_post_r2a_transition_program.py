@@ -366,13 +366,13 @@ UNRESOLVED_IDENTITY_CLASSES = [
     "software_namespace_future_alias_or_deprecation_policy",
 ]
 
-POST_R2_READY = set()
+POST_R2_READY = {
+    "PR2-IMPL",
+}
 
 POST_R2_ACTIVE = set()
 
-POST_R2_BLOCKED = {
-    "PR2-IMPL",
-}
+POST_R2_BLOCKED = set()
 
 
 def _load_manifest():
@@ -394,7 +394,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.61"
+    assert manifest["artifact_version"] == "0.4.62"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -580,7 +580,7 @@ def test_r2c_through_pr2_mig_are_merged_and_no_migration_successor_remains():
     assert active == set()
 
     pr2_test = by_id["PR2-TEST"]
-    assert pr2_test["status"] == "validated"
+    assert pr2_test["status"] == "merged"
     assert (
         pr2_test["authorization_reference"]
         == PR2_TEST_AUTHORIZATION
@@ -590,7 +590,7 @@ def test_r2c_through_pr2_mig_are_merged_and_no_migration_successor_remains():
     assert pr2_test["control_artifact"] == PR2_TEST_CONTRACT
     assert (
         pr2_test["completion_state"]
-        == "validated_complete_with_future_implementation_handoffs"
+        == "merged_complete_with_future_implementation_handoffs"
     )
 
     r2c = by_id["PR2-R2C"]
@@ -1276,7 +1276,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.61`" in program
+    assert "**Artifact version:** `0.4.62`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
