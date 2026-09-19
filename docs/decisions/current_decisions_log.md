@@ -6785,3 +6785,79 @@ PR2-TEST and PR2-IMPL remain blocked and unauthorized.
 
 R4-B, R4 activation, and runtime promotion remain separately blocked
 or unauthorized.
+
+## 2026-09-18 decision — PR2-TEST initial activation
+
+- **Decision ID:** `PR2-TEST-ACTIVATION-001`
+- **Authorization reference:** `owner_directive_2026-09-18_pr2_test_activation`
+- **Authority effect:** `post_r2_acceptance_evaluation_only`
+- **Starting baseline:** `02d63b38e83000099e2654d74db0d0454bf97346`
+- **Starting tree:** `031d38ec2ec973cb5812dde11824b4e838cf752e`
+- **Branch:** `pr2-test-acceptance-evaluation`
+- **Control artifact:** `docs/doctrine/control/myravant_post_r2_acceptance_evaluation_contract.md`
+- **PR2-TEST state:** `active`
+- **PR2-IMPL state:** `blocked`
+- **Runtime implementation authorized:** `false`
+- **Production schema implementation authorized:** `false`
+- **R4-B authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The initial activation establishes exactly seven evaluation families:
+
+1. `source_governance`;
+2. `originality_and_information_barrier`;
+3. `deterministic_topology_equivalence`;
+4. `persistence_replay_and_recovery`;
+5. `fidelity_aggregation_and_reconstitution`;
+6. `overload_backpressure_and_lawful_degradation`;
+7. `failure_isolation_and_authority_ambiguity`.
+
+Evaluation may demonstrate, falsify, or expose compliance; it may not
+create the authority, mechanic, world fact, or semantic rule being
+evaluated.
+
+Tests do not invent missing doctrine. Benchmark results do not create
+authority. A test failure routes to the existing semantic owner and does
+not independently authorize repair.
+
+The immediate next PR2-TEST activity is a bounded executable gap
+assessment across the seven evaluation families. Existing executable
+coverage should be reused before new coverage is added.
+
+No arbitrary test-count quota defines PR2-TEST completion.
+
+This activation changes no runtime implementation and no production
+schema. It does not activate PR2-IMPL, R4-B, R4-R6, or runtime promotion.
+
+## 2026-09-18 decision — PR2-TEST initial activation validation
+
+- **Decision ID:** `PR2-TEST-INITIAL-ACTIVATION-VALIDATION-001`
+- **Validation state:** `validated_initial_activation`
+- **Starting baseline:** `02d63b38e83000099e2654d74db0d0454bf97346`
+- **Bounded activation regression:** `169 passed`
+- **Broader PR2 regression:** `354 passed`
+- **Full suite:** `9285 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite regression:** `169 passed`
+- **Changed paths:** `7`
+- **Runtime implementation paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **PR2-TEST status:** `active`
+- **PR2-TEST completion state:** `active_evaluation_expansion`
+- **PR2-IMPL authorized:** `false`
+- **R4-B authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The initial PR2-TEST activation package is locally certified.
+
+This validation establishes the evaluation control surface and does not
+declare PR2-TEST complete.
+
+The next lawful PR2-TEST activity is bounded executable gap assessment across
+the seven authorized evaluation families.
+
+The observed full-suite warning is an existing pytest deprecation warning and
+does not represent a failure of this activation package.
+
+No runtime implementation, production schema implementation, PR2-IMPL
+activation, R4-B activation, or runtime promotion is authorized by this
+validation.
