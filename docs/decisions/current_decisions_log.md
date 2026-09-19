@@ -7111,3 +7111,61 @@ introduced by PR2-IMPL activation.
 
 Validation evidence does not authorize an implementation package or
 transfer semantic authority.
+
+## 2026-09-19 decision — PR2-IMPL activation post-merge closure
+
+- **Decision ID:** `PR2-IMPL-ACTIVATION-POST-MERGE-CLOSURE-001`
+- **Authorization reference:** `owner_directive_2026-09-19_pr2_impl_post_merge_closure`
+- **Authority effect:** `bounded_implementation_handoff_post_merge_lifecycle_reconciliation_only`
+- **Pull request:** `#425`
+- **Certified branch head:** `070daa79b9507c577424d1a9b8c4769db746753e`
+- **Merge commit:** `0609657c81193cbc7b5905d38fb9efeddcb11d1d`
+- **Merge tree:** `a652378b901dce055dde3957d5cea5cb3663ba57`
+- **GitHub Actions CI:** `#250`
+- **GitHub Actions run ID:** `35469059294`
+- **CI result:** `success`
+- **PR2-IMPL state:** `active`
+- **PR2-IMPL completion state:** `active_bounded_implementation_handoff_definition`
+- **Future implementation handoffs preserved:** `5`
+- **First playable candidate:** `R4-B`
+- **R4-B ready pending authorization:** `false`
+- **R4-B authorized:** `false`
+- **Runtime implementation authorized:** `false`
+- **Production schema authorized:** `false`
+- **R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+This decision records post-merge lifecycle reconciliation only.
+
+PR2-IMPL is not completed by this closure.
+
+No implementation package or semantic authority is activated by this
+closure.
+
+## 2026-09-19 decision — PR2-IMPL activation post-merge closure validation
+
+- **Decision ID:** `PR2-IMPL-ACTIVATION-POST-MERGE-CLOSURE-VALIDATION-002`
+- **Focused pre-certification regression:** `43 passed`
+- **Broader PR2 regression:** `397 passed`
+- **Full repository suite:** `9328 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite regression:** `43 passed`
+- **git diff --check:** `clean`
+- **Changed paths:** `6`
+- **Runtime implementation paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **PR2-IMPL status:** `active`
+- **PR2-IMPL completion state:** `active_bounded_implementation_handoff_definition`
+- **Future implementation handoffs preserved:** `5`
+- **R4-B ready pending authorization:** `false`
+- **R4-B authorized:** `false`
+- **Runtime implementation authorized:** `false`
+- **Production schema authorized:** `false`
+- **R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The PR2-IMPL activation post-merge lifecycle reconciliation is locally
+certified.
+
+This certification does not complete PR2-IMPL, authorize R4-B, authorize
+runtime or production-schema implementation, or transfer semantic
+authority.

@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.63",
+  "artifact_version": "0.4.64",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -2225,11 +2225,19 @@
         "PR2-IMPL activation focused post-suite regression:51 passed",
         "PR2-IMPL activation git diff --check:clean",
         "PR2-IMPL activation exact seven-file footprint:PASS",
-        "PR2-IMPL activation runtime/schema noninterference:PASS"
+        "PR2-IMPL activation runtime/schema noninterference:PASS",
+        "PR2-IMPL GitHub Actions CI #250:success",
+        "PR2-IMPL post-merge closure focused pre-certification:43 passed",
+        "PR2-IMPL post-merge closure broader PR2 regression:397 passed",
+        "PR2-IMPL post-merge closure full local repository suite:9328 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-IMPL post-merge closure focused post-suite regression:43 passed",
+        "PR2-IMPL post-merge closure git diff --check:clean",
+        "PR2-IMPL post-merge closure exact six-file footprint:PASS",
+        "PR2-IMPL post-merge closure runtime/schema noninterference:PASS"
       ],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "pull_request": 425,
+      "branch_head": "070daa79b9507c577424d1a9b8c4769db746753e",
+      "merge_commit": "0609657c81193cbc7b5905d38fb9efeddcb11d1d",
       "residual_gaps": [],
       "downstream_handoff": [
         "R4-B"
@@ -2314,6 +2322,37 @@
         },
         "git_diff_check": "clean",
         "changed_path_count": 7,
+        "runtime_implementation_path_count": 0,
+        "production_schema_path_count": 0
+      },
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-19_pr2_impl_post_merge_closure",
+      "post_merge_closure_authority_effect": "bounded_implementation_handoff_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "0609657c81193cbc7b5905d38fb9efeddcb11d1d",
+      "post_merge_closure_tree": "a652378b901dce055dde3957d5cea5cb3663ba57",
+      "post_merge_closure_ci_run": 250,
+      "post_merge_closure_ci_run_id": 35469059294,
+      "post_merge_closure_validation": {
+        "focused_pre_certification": {
+          "passed": 43,
+          "result": "pass"
+        },
+        "broader_pr2_regression": {
+          "passed": 397,
+          "result": "pass"
+        },
+        "full_repository_suite": {
+          "passed": 9328,
+          "skipped": 10,
+          "xfailed": 2,
+          "warnings": 1,
+          "result": "pass"
+        },
+        "focused_post_suite_regression": {
+          "passed": 43,
+          "result": "pass"
+        },
+        "git_diff_check": "clean",
+        "changed_path_count": 6,
         "runtime_implementation_path_count": 0,
         "production_schema_path_count": 0
       }
