@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -32,13 +33,28 @@ BASE = "a429b4a65e7118a5b102ef9357a83bf236d4b1cd"
 AUTH = "owner_directive_2026-09-19_pr2_impl_activation"
 EFFECT = "bounded_implementation_handoff_definition_only"
 
+ACCEPTED_MERGE = "0609657c81193cbc7b5905d38fb9efeddcb11d1d"
+
 HANDOFF_IDS = ['PR2-TEST-HANDOFF-TOPOLOGY-001', 'PR2-TEST-HANDOFF-PERSIST-001', 'PR2-TEST-HANDOFF-FIDELITY-001', 'PR2-TEST-HANDOFF-BP-001', 'PR2-TEST-HANDOFF-FAILURE-001']
+
+
+def read_at(ref, path):
+    return subprocess.check_output(
+        [
+            "git",
+            "show",
+            f"{ref}:{path.relative_to(ROOT).as_posix()}",
+        ],
+        cwd=ROOT,
+        text=True,
+    )
 
 
 def load(path):
     return json.loads(
-        path.read_text(
-            encoding="utf-8",
+        read_at(
+            ACCEPTED_MERGE,
+            path,
         )
     )
 
@@ -52,8 +68,9 @@ def rows(data):
 
 def flat_contract():
     return " ".join(
-        CONTRACT.read_text(
-            encoding="utf-8",
+        read_at(
+            ACCEPTED_MERGE,
+            CONTRACT,
         ).split()
     )
 
@@ -180,12 +197,14 @@ def test_contract_is_game_led_and_bounded():
 
 
 def test_program_and_decision_record_activation():
-    program = PROG.read_text(
-        encoding="utf-8",
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
     )
 
-    decisions = DEC.read_text(
-        encoding="utf-8",
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
     )
 
     assert "**Artifact version:** `0.4.63`" in program

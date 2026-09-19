@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.63`
+**Artifact version:** `0.4.64`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -3661,3 +3661,81 @@ R4-B remains not ready pending authorization and remains unauthorized.
 
 Runtime implementation, production-schema implementation, R4
 activation, and runtime promotion remain unauthorized.
+
+### 5.60 PR2-IMPL activation post-merge closure recording
+
+The owner authorized bounded post-merge lifecycle reconciliation for the
+merged PR2-IMPL activation package.
+
+Authorization reference:
+
+`owner_directive_2026-09-19_pr2_impl_post_merge_closure`
+
+Authority effect:
+
+`bounded_implementation_handoff_post_merge_lifecycle_reconciliation_only`
+
+Merged activation package:
+
+- pull request: `#425`;
+- certified branch head: `070daa79b9507c577424d1a9b8c4769db746753e`;
+- merge commit: `0609657c81193cbc7b5905d38fb9efeddcb11d1d`;
+- merge tree: `a652378b901dce055dde3957d5cea5cb3663ba57`;
+- GitHub Actions CI: `#250`;
+- GitHub Actions run ID: `35469059294`;
+- CI result: `success`.
+
+This closure reconciles the merged activation package only.
+
+PR2-IMPL remains `active`.
+
+Its completion state remains:
+
+`active_bounded_implementation_handoff_definition`
+
+The five PR2-TEST future-implementation handoffs remain preserved.
+
+R4-B remains the first playable implementation candidate:
+
+`persistent_world_entity_location_representation_implementation`
+
+R4-B remains not ready pending authorization and remains unauthorized.
+
+This closure does not authorize runtime implementation, production-schema
+implementation, content implementation, live play, canon promotion,
+R4-B, R4 activation, or runtime promotion.
+
+PR2-IMPL must still satisfy its bounded completion condition before any
+separate R4-B authorization decision.
+
+#### PR2-IMPL activation post-merge closure validation evidence
+
+The bounded PR2-IMPL activation post-merge lifecycle reconciliation
+passed local regression certification.
+
+Observed evidence:
+
+- focused pre-certification regression: `43 passed`;
+- broader PR2 regression: `397 passed`;
+- full local repository suite:
+  `9328 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused post-suite regression: `43 passed`;
+- `git diff --check`: clean;
+- exact closure footprint: six paths;
+- runtime implementation paths changed: zero;
+- production schema paths changed: zero.
+
+The single full-suite warning remains nonblocking and no runtime or
+production-schema implementation path was changed by this closure.
+
+Certification does not expand authority.
+
+PR2-IMPL remains `active` with completion state
+`active_bounded_implementation_handoff_definition`.
+
+The five carried future-implementation handoffs remain preserved.
+
+R4-B remains not ready pending authorization and remains unauthorized.
+
+Runtime implementation, production-schema implementation, R4 activation,
+and runtime promotion remain unauthorized.
