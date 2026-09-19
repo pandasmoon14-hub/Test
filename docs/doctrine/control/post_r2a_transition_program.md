@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.59`
+**Artifact version:** `0.4.60`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -3302,3 +3302,98 @@ evaluation families.
 
 No PR2-IMPL, R4-B implementation, R4 activation, or runtime-promotion
 authority follows from these results.
+
+### 5.56 PR2-TEST initial activation post-merge closure recording
+
+The owner separately authorized bounded post-merge lifecycle
+reconciliation for the merged initial PR2-TEST activation.
+
+Authorization reference:
+
+`owner_directive_2026-09-19_pr2_test_post_merge_closure`
+
+Authority effect:
+
+`post_r2_acceptance_evaluation_post_merge_lifecycle_reconciliation_only`
+
+Accepted activation pull request:
+
+`#421`
+
+Accepted activation branch head:
+
+`0f88e8d62e76610b52010cfa293ca20c82ba1b15`
+
+Accepted activation merge:
+
+`0b3720ffdabd68744cec31e9b0da3aae50913972`
+
+Accepted activation merge tree:
+
+`2a9b783ce64110c89197702c5d4e08bd069fdb72`
+
+Accepted GitHub Actions result:
+
+`CI #242` / run ID `35445117897` / `success`
+
+This closure reconciles the accepted initial activation with the
+post-merge repository lifecycle. It does not close the PR2-TEST
+workstream.
+
+PR2-TEST remains `active` with completion state
+`active_evaluation_expansion`.
+
+The seven authorized evaluation families remain unchanged.
+
+The Myravant post-R2 acceptance and evaluation contract is unchanged by
+this closure.
+
+The immediate next lawful PR2-TEST activity remains the bounded
+executable gap assessment across the seven evaluation families.
+
+This closure creates no new evaluation family, semantic owner, runtime
+subsystem, implementation authority, gameplay rule, world fact, or
+canon authority.
+
+PR2-IMPL remains `blocked` and unauthorized.
+
+R4-B remains unauthorized.
+
+R4-R6 remain blocked.
+
+Runtime promotion remains uncleared.
+
+No runtime implementation or production schema implementation is
+authorized or modified by this closure.
+
+#### PR2-TEST initial activation post-merge closure validation evidence
+
+The bounded lifecycle reconciliation for the merged initial PR2-TEST
+activation has passed local validation.
+
+Observed evidence:
+
+- focused pre-certification: `176 passed`;
+- broader PR2 regression: `361 passed`;
+- full local repository suite:
+  `9292 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused post-suite regression: `176 passed`;
+- `git diff --check`: clean;
+- exact closure footprint: six paths;
+- runtime implementation paths changed: zero;
+- production schema paths changed: zero.
+
+The full-suite warning is the existing pytest deprecation warning in the
+runtime-domain source-scan test and does not constitute a PR2-TEST closure
+failure.
+
+This evidence validates only the post-merge lifecycle reconciliation of
+the initial activation.
+
+PR2-TEST remains `active` in `active_evaluation_expansion`.
+
+The next lawful activity remains bounded executable gap assessment across
+the seven authorized evaluation families.
+
+PR2-IMPL, R4-B implementation, R4 activation, and runtime promotion remain
+separately unauthorized.

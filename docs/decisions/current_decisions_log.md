@@ -6861,3 +6861,72 @@ does not represent a failure of this activation package.
 No runtime implementation, production schema implementation, PR2-IMPL
 activation, R4-B activation, or runtime promotion is authorized by this
 validation.
+
+## 2026-09-19 decision — PR2-TEST initial activation post-merge closure
+
+- **Decision ID:** `PR2-TEST-INITIAL-ACTIVATION-POST-MERGE-CLOSURE-001`
+- **Authorization reference:** `owner_directive_2026-09-19_pr2_test_post_merge_closure`
+- **Authority effect:** `post_r2_acceptance_evaluation_post_merge_lifecycle_reconciliation_only`
+- **Accepted pull request:** `#421`
+- **Accepted branch head:** `0f88e8d62e76610b52010cfa293ca20c82ba1b15`
+- **Accepted merge commit:** `0b3720ffdabd68744cec31e9b0da3aae50913972`
+- **Accepted merge tree:** `2a9b783ce64110c89197702c5d4e08bd069fdb72`
+- **GitHub Actions CI:** `#242`
+- **GitHub Actions run ID:** `35445117897`
+- **GitHub Actions result:** `success`
+- **PR2-TEST state:** `active`
+- **PR2-TEST completion state:** `active_evaluation_expansion`
+- **PR2-IMPL authorized:** `false`
+- **R4-B authorized:** `false`
+- **Runtime implementation authorized:** `false`
+- **Production schema implementation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The merged initial PR2-TEST activation is accepted and its lifecycle
+metadata is reconciled.
+
+This closure does not complete PR2-TEST and does not activate a
+successor workstream.
+
+The next lawful activity remains the bounded executable gap assessment
+across the seven authorized evaluation families.
+
+The evaluation contract, evaluation-family set, semantic ownership
+boundaries, and implementation prohibitions are unchanged.
+
+No runtime implementation, production schema implementation, PR2-IMPL
+activation, R4-B activation, R4 activation, or runtime promotion is
+authorized by this closure.
+
+## 2026-09-19 decision — PR2-TEST initial activation post-merge closure validation
+
+- **Decision ID:** `PR2-TEST-INITIAL-ACTIVATION-POST-MERGE-CLOSURE-VALIDATION-002`
+- **Validation state:** `validated_post_merge_lifecycle_reconciliation`
+- **Focused pre-certification:** `176 passed`
+- **Broader PR2 regression:** `361 passed`
+- **Full suite:** `9292 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite regression:** `176 passed`
+- **Changed paths:** `6`
+- **Runtime implementation paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **PR2-TEST state:** `active`
+- **PR2-TEST completion state:** `active_evaluation_expansion`
+- **PR2-IMPL authorized:** `false`
+- **R4-B authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The post-merge lifecycle reconciliation for the initial PR2-TEST activation
+is locally validated.
+
+This validation does not complete PR2-TEST and does not activate a successor
+workstream.
+
+The next lawful PR2-TEST activity remains bounded executable gap assessment
+across the seven authorized evaluation families.
+
+The existing full-suite pytest deprecation warning is non-blocking and is
+not introduced by this closure package.
+
+No runtime implementation, production schema implementation, PR2-IMPL
+activation, R4-B activation, R4 activation, or runtime promotion is
+authorized by this validation.

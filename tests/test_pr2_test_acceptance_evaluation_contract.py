@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +26,7 @@ BASE = "02d63b38e83000099e2654d74db0d0454bf97346"
 TREE = "031d38ec2ec973cb5812dde11824b4e838cf752e"
 AUTH = "owner_directive_2026-09-18_pr2_test_activation"
 EFFECT = "post_r2_acceptance_evaluation_only"
+ACCEPTED_MERGE = "0b3720ffdabd68744cec31e9b0da3aae50913972"
 
 FAMILIES = [
     "source_governance",
@@ -48,12 +50,24 @@ OWNED = {
 }
 
 
-def load_manifest():
-    return json.loads(
-        MAN.read_text(
-            encoding="utf-8",
-        )
+def read_at(ref, path):
+    return subprocess.check_output(
+        [
+            "git",
+            "show",
+            f"{ref}:{path.relative_to(ROOT).as_posix()}",
+        ],
+        cwd=ROOT,
+        text=True,
     )
+
+
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
+
+
+def load_manifest():
+    return load_at(ACCEPTED_MERGE, MAN)
 
 
 def rows(data):
@@ -65,8 +79,9 @@ def rows(data):
 
 def flat_contract():
     return " ".join(
-        CONTRACT.read_text(
-            encoding="utf-8",
+        read_at(
+            ACCEPTED_MERGE,
+            CONTRACT,
         ).split()
     )
 
@@ -238,11 +253,13 @@ def test_player_freedom_and_persistent_world_pressure_are_preserved():
 
 
 def test_program_and_decisions_record_bounded_activation():
-    program = PROG.read_text(
-        encoding="utf-8",
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
     )
-    decisions = DEC.read_text(
-        encoding="utf-8",
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
     )
 
     assert (
@@ -284,8 +301,9 @@ def test_program_and_decisions_record_bounded_activation():
 
 
 def test_historical_pr2_mig_b_closure_is_snapshot_frozen():
-    text = MIG_CLOSURE_TEST.read_text(
-        encoding="utf-8",
+    text = read_at(
+        ACCEPTED_MERGE,
+        MIG_CLOSURE_TEST,
     )
 
     assert (
