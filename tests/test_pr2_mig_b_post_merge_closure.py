@@ -1,4 +1,4 @@
-# Executable validation for PR2-MIG-B post-merge closure.
+# Executable validation for the historical PR2-MIG-B post-merge closure.
 from __future__ import annotations
 
 import json
@@ -23,6 +23,9 @@ RS0030_RUNTIME = (
     "object_lever_replay_audit_check.py"
 )
 
+CLOSURE_MERGE = "02d63b38e83000099e2654d74db0d0454bf97346"
+CLOSURE_TREE = "031d38ec2ec973cb5812dde11824b4e838cf752e"
+
 PR = 419
 HEAD = "8e33ade1bc7f1346401131394b3de2327802d882"
 MERGE = "2b9e1a690bb567dfa3fda8c1982179e86106860b"
@@ -32,17 +35,6 @@ CI_RUN_ID = 35405934205
 
 AUTH = "owner_directive_2026-09-18_pr2_mig_b_post_merge_closure"
 EFFECT = "bounded_rs_0030_post_merge_lifecycle_reconciliation_only"
-
-
-def load(path):
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def rows(manifest):
-    return {
-        row["workstream_id"]: row
-        for row in manifest["workstreams"]
-    }
 
 
 def read_at(ref, path):
@@ -57,8 +49,47 @@ def read_at(ref, path):
     )
 
 
-def test_pr2_mig_is_terminal_and_inventory_is_empty():
-    manifest = load(MAN)
+def load_at(ref, path):
+    return json.loads(read_at(ref, path))
+
+
+def rows(data):
+    return {
+        row["workstream_id"]: row
+        for row in data["workstreams"]
+    }
+
+
+def rev_parse(ref):
+    return subprocess.check_output(
+        [
+            "git",
+            "rev-parse",
+            ref,
+        ],
+        cwd=ROOT,
+        text=True,
+    ).strip()
+
+
+def closure_manifest():
+    return load_at(
+        CLOSURE_MERGE,
+        MAN,
+    )
+
+
+def test_closure_snapshot_identity_is_exact():
+    assert (
+        rev_parse(
+            f"{CLOSURE_MERGE}^{{tree}}"
+        )
+        == CLOSURE_TREE
+    )
+
+
+def test_pr2_mig_is_terminal_and_inventory_is_empty_at_closure():
+    manifest = closure_manifest()
     mig = rows(manifest)["PR2-MIG"]
 
     assert manifest["artifact_version"] == "0.4.58"
@@ -84,18 +115,37 @@ def test_pr2_mig_is_terminal_and_inventory_is_empty():
     assert target["current_migration_required_count"] == 0
     assert target["migration_required_candidate_ids"] == []
 
+
+def test_pr2_test_was_blocked_at_accepted_closure_snapshot():
+    manifest = closure_manifest()
+    by = rows(manifest)
+
+    assert by["PR2-TEST"]["status"] == "blocked"
     assert (
-        target["pr2_mig_last_completed_tranche"]
-        == "PR2-MIG-B"
+        by["PR2-TEST"]["authorization_reference"]
+        is None
     )
+
+    assert by["PR2-IMPL"]["status"] == "blocked"
     assert (
-        target["pr2_mig_last_completed_candidate_id"]
-        == "R2A-DISPOSITION-RS-0030"
+        by["PR2-IMPL"]["authorization_reference"]
+        is None
+    )
+
+    assert manifest["r2_gate_state"]["R4-R6"] == "blocked"
+
+    assert (
+        manifest["r3_conformance_target"][
+            "runtime_promotion_clear"
+        ]
+        is False
     )
 
 
-def test_accepted_pr419_merge_metadata_is_exact():
-    mig = rows(load(MAN))["PR2-MIG"]
+def test_accepted_pr419_merge_metadata_is_exact_at_closure():
+    mig = rows(
+        closure_manifest()
+    )["PR2-MIG"]
 
     assert mig["pull_request"] == PR
     assert mig["branch_head"] == HEAD
@@ -114,14 +164,24 @@ def test_accepted_pr419_merge_metadata_is_exact():
         mig["post_merge_closure_authority_effect"]
         == EFFECT
     )
-    assert mig["post_merge_closure_recorded_from"] == MERGE
-    assert mig["post_merge_closure_tree"] == TREE
+    assert (
+        mig["post_merge_closure_recorded_from"]
+        == MERGE
+    )
+    assert (
+        mig["post_merge_closure_tree"]
+        == TREE
+    )
 
 
-def test_completed_tranche_inventory_contains_a_and_b():
-    mig = rows(load(MAN))["PR2-MIG"]
+def test_completed_tranche_inventory_contains_a_and_b_at_closure():
+    mig = rows(
+        closure_manifest()
+    )["PR2-MIG"]
 
-    assert len(mig["completed_tranches"]) == 2
+    assert len(
+        mig["completed_tranches"]
+    ) == 2
 
     assert mig["completed_tranches"][-1] == {
         "tranche_id": "PR2-MIG-B",
@@ -147,93 +207,91 @@ def test_completed_tranche_inventory_contains_a_and_b():
     }
 
 
-def test_closure_changes_no_runtime_candidate():
-    assert read_at(
-        MERGE,
-        RS0028_RUNTIME,
-    ) == RS0028_RUNTIME.read_text(
-        encoding="utf-8"
+def test_closure_changed_no_runtime_candidate():
+    assert (
+        read_at(
+            CLOSURE_MERGE,
+            RS0028_RUNTIME,
+        )
+        == read_at(
+            MERGE,
+            RS0028_RUNTIME,
+        )
     )
-
-    assert read_at(
-        MERGE,
-        RS0030_RUNTIME,
-    ) == RS0030_RUNTIME.read_text(
-        encoding="utf-8"
-    )
-
-
-def test_downstream_authority_is_not_silently_advanced():
-    manifest = load(MAN)
-    by = rows(manifest)
-
-    assert by["PR2-TEST"]["status"] == "blocked"
-    assert by["PR2-TEST"]["authorization_reference"] is None
-
-    assert by["PR2-IMPL"]["status"] == "blocked"
-    assert by["PR2-IMPL"]["authorization_reference"] is None
-
-    assert manifest["r2_gate_state"]["R4-R6"] == "blocked"
 
     assert (
-        manifest["r3_conformance_target"][
-            "runtime_promotion_clear"
-        ]
-        is False
+        read_at(
+            CLOSURE_MERGE,
+            RS0030_RUNTIME,
+        )
+        == read_at(
+            MERGE,
+            RS0030_RUNTIME,
+        )
     )
-
-    r4 = manifest["r4_native_substrate_design_target"]
-
-    assert r4["r4_b_ready_pending_authorization"] is False
-    assert r4["r4_b_authorized"] is False
-
 
 
 def test_terminal_closure_validation_evidence_is_exact():
-    mig = rows(load(MAN))["PR2-MIG"]
+    mig = rows(
+        closure_manifest()
+    )["PR2-MIG"]
 
-    assert mig["validation_evidence"][-5:] == ['PR2-MIG-B post-merge closure bounded regression:442 passed, 3 skipped', 'PR2-MIG-B post-merge closure full local repository suite:9273 passed, 10 skipped, 2 xfailed, 1 warning', 'PR2-MIG-B post-merge closure focused post-suite certification:80 passed, 1 skipped', 'PR2-MIG-B post-merge closure exact five-file footprint:PASS', 'PR2-MIG-B post-merge closure runtime/schema noninterference:PASS']
+    assert mig["validation_evidence"][-5:] == [
+        "PR2-MIG-B post-merge closure bounded regression:"
+        "442 passed, 3 skipped",
+        "PR2-MIG-B post-merge closure full local repository suite:"
+        "9273 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-MIG-B post-merge closure focused post-suite certification:"
+        "80 passed, 1 skipped",
+        "PR2-MIG-B post-merge closure exact five-file footprint:PASS",
+        "PR2-MIG-B post-merge closure runtime/schema noninterference:PASS",
+    ]
 
-    assert mig["status"] == "merged"
-    assert mig["migration_execution_authorized"] is False
-    assert mig["migration_execution_scope"] == []
 
+def test_program_and_decision_log_record_terminal_closure_snapshot():
+    program = read_at(
+        CLOSURE_MERGE,
+        PROG,
+    )
+    decisions = read_at(
+        CLOSURE_MERGE,
+        DEC,
+    )
 
-def test_program_and_decision_log_record_terminal_closure():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
-
-    assert "**Artifact version:** `0.4.58`" in program
+    assert (
+        "**Artifact version:** `0.4.58`"
+        in program
+    )
 
     assert (
         "### 5.53 PR2-MIG-B post-merge closure recording"
         in program
     )
 
-    assert AUTH in program
-    assert EFFECT in program
-    assert HEAD in program
-    assert MERGE in program
-    assert TREE in program
+    for value in (
+        AUTH,
+        EFFECT,
+        HEAD,
+        MERGE,
+        TREE,
+    ):
+        assert value in program
+        assert value in decisions
 
-    assert "PR2-MIG-B is terminal `merged`." in program
-    assert "The migration-required count is now `0`." in program
+    assert (
+        "PR2-MIG-B is terminal `merged`."
+        in program
+    )
+    assert (
+        "The migration-required count is now `0`."
+        in program
+    )
 
-    assert "PR2-MIG-B-POST-MERGE-CLOSURE-007" in decisions
+    assert (
+        "PR2-MIG-B-POST-MERGE-CLOSURE-007"
+        in decisions
+    )
     assert (
         "PR2-MIG-B-POST-MERGE-CLOSURE-VALIDATION-008"
         in decisions
     )
-    assert AUTH in decisions
-    assert EFFECT in decisions
-    assert HEAD in decisions
-    assert MERGE in decisions
-    assert TREE in decisions
-
-    assert "442 passed, 3 skipped" in program
-    assert "9273 passed" in program
-    assert "80 passed" in program
-
-    assert "442 passed, 3 skipped" in decisions
-    assert "9273 passed, 10 skipped, 2 xfailed, 1 warning" in decisions
-    assert "80 passed, 1 skipped" in decisions

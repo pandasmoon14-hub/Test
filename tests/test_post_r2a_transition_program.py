@@ -274,6 +274,10 @@ PR2_MIG_B_CI_RUN = 238
 PR2_MIG_B_CI_RUN_ID = 35405934205
 PR2_MIG_B_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-18_pr2_mig_b_post_merge_closure"
 PR2_MIG_B_CLOSURE_EFFECT = "bounded_rs_0030_post_merge_lifecycle_reconciliation_only"
+PR2_TEST_BASELINE = "02d63b38e83000099e2654d74db0d0454bf97346"
+PR2_TEST_AUTHORIZATION = "owner_directive_2026-09-18_pr2_test_activation"
+PR2_TEST_EFFECT = "post_r2_acceptance_evaluation_only"
+PR2_TEST_CONTRACT = "docs/doctrine/control/myravant_post_r2_acceptance_evaluation_contract.md"
 PR2_CONC_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_conc_deterministic_concurrency_contract.py', 'tests/test_pr2_part_post_merge_closure.py'}
 PR2_PART_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_authority_partitioning_migration_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_part_authority_partitioning_contract.py', 'tests/test_pr2_scale_post_merge_closure.py'}
 PR2_SCALE_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_scale_runtime_scalability_contract.py', 'tests/test_pr2_simex_post_merge_closure.py'}
@@ -364,8 +368,11 @@ UNRESOLVED_IDENTITY_CLASSES = [
 
 POST_R2_READY = set()
 
-POST_R2_BLOCKED = {
+POST_R2_ACTIVE = {
     "PR2-TEST",
+}
+
+POST_R2_BLOCKED = {
     "PR2-IMPL",
 }
 
@@ -389,7 +396,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.58"
+    assert manifest["artifact_version"] == "0.4.59"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -572,7 +579,21 @@ def test_r2c_through_pr2_mig_are_merged_and_no_migration_successor_remains():
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == set()
+    assert active == {"PR2-TEST"}
+
+    pr2_test = by_id["PR2-TEST"]
+    assert pr2_test["status"] == "active"
+    assert (
+        pr2_test["authorization_reference"]
+        == PR2_TEST_AUTHORIZATION
+    )
+    assert pr2_test["authority_effect"] == PR2_TEST_EFFECT
+    assert pr2_test["starting_baseline"] == PR2_TEST_BASELINE
+    assert pr2_test["control_artifact"] == PR2_TEST_CONTRACT
+    assert (
+        pr2_test["completion_state"]
+        == "active_evaluation_expansion"
+    )
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -1207,6 +1228,13 @@ def test_post_r2_successor_readiness_does_not_imply_authorization():
         assert by_id[workstream_id]["status"] == "ready_pending_authorization"
         assert by_id[workstream_id]["authorization_reference"] is None
 
+    for workstream_id in POST_R2_ACTIVE:
+        assert by_id[workstream_id]["status"] == "active"
+        assert (
+            by_id[workstream_id]["authorization_reference"]
+            == PR2_TEST_AUTHORIZATION
+        )
+
     for workstream_id in POST_R2_BLOCKED:
         assert by_id[workstream_id]["status"] == "blocked"
         assert by_id[workstream_id]["authorization_reference"] is None
@@ -1250,7 +1278,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.58`" in program
+    assert "**Artifact version:** `0.4.59`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program

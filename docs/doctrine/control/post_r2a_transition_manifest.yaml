@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.58",
+  "artifact_version": "0.4.59",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1917,7 +1917,7 @@
       "title": "Post-R2 acceptance and evaluation expansion",
       "category": "evaluation",
       "purpose": "Expand executable evaluation for source governance, originality boundaries, topology equivalence, replay, fidelity, overload, and failure isolation.",
-      "status": "blocked",
+      "status": "active",
       "dependencies": [
         "PR2-CONC",
         "PR2-FID",
@@ -1926,24 +1926,66 @@
         "PR2-BP"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
-      "authority_effect": "evaluation_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "authorization_reference": "owner_directive_2026-09-18_pr2_test_activation",
+      "authority_effect": "post_r2_acceptance_evaluation_only",
+      "starting_baseline": "02d63b38e83000099e2654d74db0d0454bf97346",
+      "owned_paths": [
+        "docs/decisions/current_decisions_log.md",
+        "docs/doctrine/control/myravant_post_r2_acceptance_evaluation_contract.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_mig_b_post_merge_closure.py",
+        "tests/test_pr2_test_acceptance_evaluation_contract.py"
+      ],
       "prohibited_scope": [
         "tests_invent_missing_doctrine",
-        "benchmark_results_create_authority"
+        "benchmark_results_create_authority",
+        "evaluation_absorbs_semantic_ownership",
+        "runtime_or_production_schema_implementation",
+        "pr2_impl_activation",
+        "r4_b_activation",
+        "r4_activation",
+        "runtime_promotion",
+        "canon_promotion",
+        "source_processing_or_content_promotion",
+        "repository_wide_doctrine_rediscovery",
+        "arbitrary_test_count_quota"
       ],
-      "entry_condition": "Relevant governing contracts are accepted.",
+      "entry_condition": "All five declared dependencies are terminal merged and the owner has separately authorized bounded post-R2 acceptance evaluation.",
       "completion_condition": "Material post-R2 invariants have executable regression or evaluation coverage.",
-      "validation_evidence": [],
+      "validation_evidence": [
+        "PR2-TEST initial bounded activation regression:169 passed",
+        "PR2-TEST broader PR2 regression:354 passed",
+        "PR2-TEST full local repository suite:9285 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-TEST focused post-suite regression:169 passed",
+        "PR2-TEST git diff --check:clean",
+        "PR2-TEST exact seven-file activation footprint:PASS",
+        "PR2-TEST runtime/schema noninterference audit:PASS"
+      ],
       "pull_request": null,
       "branch_head": null,
       "merge_commit": null,
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-IMPL"
-      ]
+      ],
+      "control_artifact": "docs/doctrine/control/myravant_post_r2_acceptance_evaluation_contract.md",
+      "completion_state": "active_evaluation_expansion",
+      "evaluation_families": [
+        "source_governance",
+        "originality_and_information_barrier",
+        "deterministic_topology_equivalence",
+        "persistence_replay_and_recovery",
+        "fidelity_aggregation_and_reconstitution",
+        "overload_backpressure_and_lawful_degradation",
+        "failure_isolation_and_authority_ambiguity"
+      ],
+      "runtime_implementation_authorized": false,
+      "production_schema_authorized": false,
+      "pr2_impl_authorized": false,
+      "r4_b_authorized": false,
+      "runtime_promotion_authorized": false
     },
     {
       "workstream_id": "PR2-IMPL",

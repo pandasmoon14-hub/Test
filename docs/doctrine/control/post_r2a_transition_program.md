@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.58`
+**Artifact version:** `0.4.59`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -2754,6 +2754,64 @@ The closure therefore preserves PR2-MIG as terminal `merged` while
 leaving PR2-TEST, PR2-IMPL, R4 activation, and runtime promotion
 separately blocked or unauthorized.
 
+### 5.55 PR2-TEST post-R2 acceptance and evaluation activation
+
+The owner separately authorized the initial PR2-TEST activation.
+
+Authorization reference:
+
+`owner_directive_2026-09-18_pr2_test_activation`
+
+Authority effect:
+
+`post_r2_acceptance_evaluation_only`
+
+Starting baseline:
+
+`02d63b38e83000099e2654d74db0d0454bf97346`
+
+Control artifact:
+
+`docs/doctrine/control/myravant_post_r2_acceptance_evaluation_contract.md`
+
+PR2-TEST is now `active` and is the only active post-R2 workstream.
+
+The initial activation defines exactly seven evaluation families:
+
+1. `source_governance`;
+2. `originality_and_information_barrier`;
+3. `deterministic_topology_equivalence`;
+4. `persistence_replay_and_recovery`;
+5. `fidelity_aggregation_and_reconstitution`;
+6. `overload_backpressure_and_lawful_degradation`;
+7. `failure_isolation_and_authority_ambiguity`.
+
+These are evaluation families, not new semantic owners or runtime
+subsystems.
+
+The controlling law is:
+
+> Evaluation may demonstrate, falsify, or expose compliance; it may not create the authority, mechanic, world fact, or semantic rule being evaluated.
+
+Tests do not invent missing doctrine. Benchmark results do not create
+authority. Existing executable evidence should be reused before duplicate
+coverage is added. Test-count growth is not an objective.
+
+The immediate next activity inside PR2-TEST is a bounded executable gap
+assessment across the seven families. This activation does not restart
+repository-wide doctrine discovery.
+
+PR2-IMPL remains `blocked` and unauthorized.
+
+R4-B remains not ready pending authorization and unauthorized.
+
+R4-R6 remain blocked.
+
+Runtime promotion remains uncleared.
+
+No runtime implementation or production schema is modified or authorized
+by this activation.
+
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 
 ## 6. Controlled workstream registry
@@ -3218,3 +3276,29 @@ A lawful terminal state includes:
 or a documented handoff to a later accepted control program.
 
 The program must never claim completion while an identified material workstream has disappeared from tracking without disposition.
+
+## PR2-TEST initial activation validation evidence
+
+The initial PR2-TEST activation control surface has passed local
+certification from baseline
+`02d63b38e83000099e2654d74db0d0454bf97346`.
+
+Certification evidence:
+
+- initial bounded activation regression: `169 passed`;
+- broader PR2 regression: `354 passed`;
+- full repository regression: `9285 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused post-suite regression: `169 passed`;
+- exact changed-path footprint: `7`;
+- runtime implementation paths changed: `0`;
+- production schema paths changed: `0`;
+- `git diff --check`: clean.
+
+This certification does not mark PR2-TEST complete.
+
+The workstream remains active in `active_evaluation_expansion`, with the next
+step being bounded executable gap assessment across the seven authorized
+evaluation families.
+
+No PR2-IMPL, R4-B implementation, R4 activation, or runtime-promotion
+authority follows from these results.
