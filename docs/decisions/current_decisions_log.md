@@ -7061,3 +7061,53 @@ The single full-suite warning is the existing nonblocking
 
 This certification does not authorize PR2-IMPL, R4-B, R4 activation, or
 runtime promotion.
+
+## 2026-09-19 decision — PR2-IMPL bounded implementation handoff activation
+
+- **Decision ID:** `PR2-IMPL-ACTIVATION-001`
+- **Authorization reference:** `owner_directive_2026-09-19_pr2_impl_activation`
+- **Authority effect:** `bounded_implementation_handoff_definition_only`
+- **Starting baseline:** `a429b4a65e7118a5b102ef9357a83bf236d4b1cd`
+- **Starting tree:** `956ced445741ebe6e12e48f212eb3085943b97f8`
+- **PR2-TEST status:** `merged`
+- **PR2-IMPL status:** `active`
+- **PR2-IMPL completion state:** `active_bounded_implementation_handoff_definition`
+- **Carried future-implementation handoffs:** `5`
+- **First playable candidate:** `R4-B`
+- **R4-B candidate:** `persistent_world_entity_location_representation_implementation`
+- **R4-B ready pending authorization:** `false`
+- **R4-B authorized:** `false`
+- **Runtime implementation authorized:** `false`
+- **Production schema authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+PR2-IMPL is authorized only to define and validate bounded
+implementation handoffs.
+
+No implementation package is authorized by this activation.
+
+R4-B requires separate owner authorization after PR2-IMPL completion.
+
+## 2026-09-19 decision — PR2-IMPL activation validation evidence
+
+- **Decision ID:** `PR2-IMPL-ACTIVATION-VALIDATION-002`
+- **Focused certification:** `51 passed`
+- **Broader PR2 regression:** `388 passed`
+- **Full repository suite:** `9319 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite regression:** `51 passed`
+- **git diff --check:** `clean`
+- **Changed paths:** `7`
+- **Runtime implementation paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **PR2-IMPL status:** `active`
+- **R4-B ready pending authorization:** `false`
+- **R4-B authorized:** `false`
+- **Runtime implementation authorized:** `false`
+- **Production schema authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The warning is the existing `PytestRemovedIn10Warning` and is not
+introduced by PR2-IMPL activation.
+
+Validation evidence does not authorize an implementation package or
+transfer semantic authority.

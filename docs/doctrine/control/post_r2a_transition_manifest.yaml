@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.62",
+  "artifact_version": "0.4.63",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -2184,30 +2184,56 @@
       "title": "Authorized implementation handoff",
       "category": "implementation_gate",
       "purpose": "Provide an explicit bounded handoff from accepted doctrine and architecture into runtime and content implementation.",
-      "status": "ready_pending_authorization",
+      "status": "active",
       "dependencies": [
         "PR2-R2C",
         "PR2-MIG",
         "PR2-TEST"
       ],
       "authorization_required": true,
-      "authorization_reference": null,
-      "authority_effect": "implementation_handoff_only",
-      "starting_baseline": null,
-      "owned_paths": [],
+      "authorization_reference": "owner_directive_2026-09-19_pr2_impl_activation",
+      "authority_effect": "bounded_implementation_handoff_definition_only",
+      "starting_baseline": "a429b4a65e7118a5b102ef9357a83bf236d4b1cd",
+      "owned_paths": [
+        "docs/decisions/current_decisions_log.md",
+        "docs/doctrine/control/myravant_pr2_implementation_handoff_contract.md",
+        "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+        "docs/doctrine/control/post_r2a_transition_program.md",
+        "tests/test_post_r2a_transition_program.py",
+        "tests/test_pr2_impl_handoff_contract.py",
+        "tests/test_pr2_test_completion_post_merge_closure.py"
+      ],
       "prohibited_scope": [
         "implicit_runtime_authorization",
+        "implicit_production_schema_authorization",
+        "implicit_content_implementation_authorization",
         "implicit_live_play_authorization",
-        "implicit_canon_promotion"
+        "implicit_canon_promotion",
+        "implicit_r4_b_authorization",
+        "implicit_r4_activation",
+        "implicit_runtime_promotion",
+        "model_owned_authoritative_state",
+        "new_semantic_owner_without_playable_need",
+        "implementation_without_bounded_package"
       ],
       "entry_condition": "Applicable doctrine, migration, evaluation, and project gates permit implementation.",
       "completion_condition": "Explicit implementation scope, owners, dependencies, acceptance criteria, and prohibited authority transfers are recorded.",
-      "validation_evidence": [],
+      "validation_evidence": [
+        "PR2-IMPL activation focused certification:51 passed",
+        "PR2-IMPL activation broader PR2 regression:388 passed",
+        "PR2-IMPL activation full local repository suite:9319 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-IMPL activation focused post-suite regression:51 passed",
+        "PR2-IMPL activation git diff --check:clean",
+        "PR2-IMPL activation exact seven-file footprint:PASS",
+        "PR2-IMPL activation runtime/schema noninterference:PASS"
+      ],
       "pull_request": null,
       "branch_head": null,
       "merge_commit": null,
       "residual_gaps": [],
-      "downstream_handoff": [],
+      "downstream_handoff": [
+        "R4-B"
+      ],
       "readiness_source": "PR2-TEST",
       "readiness_recorded_from": "54cb6c459585011dfbee11ad0510c24cb2d0fe3f",
       "readiness_handoff_ids": [
@@ -2217,7 +2243,80 @@
         "PR2-TEST-HANDOFF-BP-001",
         "PR2-TEST-HANDOFF-FAILURE-001"
       ],
-      "implementation_handoff_authorized": false
+      "implementation_handoff_authorized": true,
+      "starting_tree": "956ced445741ebe6e12e48f212eb3085943b97f8",
+      "control_artifact": "docs/doctrine/control/myravant_pr2_implementation_handoff_contract.md",
+      "completion_state": "active_bounded_implementation_handoff_definition",
+      "handoff_definition_authorized": true,
+      "runtime_implementation_authorized": false,
+      "production_schema_authorized": false,
+      "content_implementation_authorized": false,
+      "live_play_authorized": false,
+      "canon_promotion_authorized": false,
+      "r4_b_authorized": false,
+      "r4_activation_authorized": false,
+      "runtime_promotion_authorized": false,
+      "carried_future_implementation_handoffs": [
+        "PR2-TEST-HANDOFF-TOPOLOGY-001",
+        "PR2-TEST-HANDOFF-PERSIST-001",
+        "PR2-TEST-HANDOFF-FIDELITY-001",
+        "PR2-TEST-HANDOFF-BP-001",
+        "PR2-TEST-HANDOFF-FAILURE-001"
+      ],
+      "first_playable_candidate": {
+        "package": "R4-B",
+        "name": "persistent_world_entity_location_representation_implementation",
+        "source": "docs/doctrine/reviews/r4_a_myravant_native_substrate_design.yaml",
+        "selected_capability": "persistent_world_entity_and_location_relation_representation",
+        "ready_pending_authorization": false,
+        "authorized": false
+      },
+      "package_rules": {
+        "bounded_package_required": true,
+        "playable_need_required": true,
+        "exact_runtime_or_schema_paths_required": true,
+        "semantic_owner_mapping_required": true,
+        "deterministic_acceptance_evidence_required": true,
+        "authority_transfer_must_be_explicit": true,
+        "model_may_own_authoritative_state": false,
+        "all_carried_handoffs_are_automatic_prerequisites": false
+      },
+      "completion_requirements": [
+        "bounded_implementation_package_model_recorded",
+        "implementation_owner_boundary_recorded",
+        "dependency_routing_recorded",
+        "acceptance_criteria_recorded",
+        "prohibited_authority_transfers_recorded",
+        "first_playable_candidate_routed",
+        "future_implementation_handoffs_preserved"
+      ],
+      "activation_validation": {
+        "focused_certification": {
+          "passed": 51,
+          "result": "pass"
+        },
+        "broader_pr2_regression": {
+          "passed": 388,
+          "result": "pass"
+        },
+        "full_repository_suite": {
+          "passed": 9319,
+          "skipped": 10,
+          "xfailed": 2,
+          "warnings": 1,
+          "result": "pass",
+          "warning_class": "PytestRemovedIn10Warning",
+          "warning_disposition": "existing_nonblocking_deprecation"
+        },
+        "focused_post_suite_regression": {
+          "passed": 51,
+          "result": "pass"
+        },
+        "git_diff_check": "clean",
+        "changed_path_count": 7,
+        "runtime_implementation_path_count": 0,
+        "production_schema_path_count": 0
+      }
     }
   ],
   "program_completion_rule": {
