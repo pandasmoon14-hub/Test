@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.59",
+  "artifact_version": "0.4.60",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1961,11 +1961,19 @@
         "PR2-TEST focused post-suite regression:169 passed",
         "PR2-TEST git diff --check:clean",
         "PR2-TEST exact seven-file activation footprint:PASS",
-        "PR2-TEST runtime/schema noninterference audit:PASS"
+        "PR2-TEST runtime/schema noninterference audit:PASS",
+        "PR2-TEST GitHub Actions CI #242:success",
+        "PR2-TEST post-merge closure focused pre-certification:176 passed",
+        "PR2-TEST post-merge closure broader PR2 regression:361 passed",
+        "PR2-TEST post-merge closure full local repository suite:9292 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-TEST post-merge closure focused post-suite regression:176 passed",
+        "PR2-TEST post-merge closure git diff --check:clean",
+        "PR2-TEST post-merge closure exact six-file footprint:PASS",
+        "PR2-TEST post-merge closure runtime/schema noninterference:PASS"
       ],
-      "pull_request": null,
-      "branch_head": null,
-      "merge_commit": null,
+      "pull_request": 421,
+      "branch_head": "0f88e8d62e76610b52010cfa293ca20c82ba1b15",
+      "merge_commit": "0b3720ffdabd68744cec31e9b0da3aae50913972",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-IMPL"
@@ -1985,7 +1993,11 @@
       "production_schema_authorized": false,
       "pr2_impl_authorized": false,
       "r4_b_authorized": false,
-      "runtime_promotion_authorized": false
+      "runtime_promotion_authorized": false,
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-19_pr2_test_post_merge_closure",
+      "post_merge_closure_authority_effect": "post_r2_acceptance_evaluation_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "0b3720ffdabd68744cec31e9b0da3aae50913972",
+      "post_merge_closure_tree": "2a9b783ce64110c89197702c5d4e08bd069fdb72"
     },
     {
       "workstream_id": "PR2-IMPL",
