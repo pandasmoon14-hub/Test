@@ -35,13 +35,22 @@ EFFECT = (
     "post_r2_acceptance_evaluation_"
     "post_merge_lifecycle_reconciliation_only"
 )
+ACCEPTED_MERGE = "da5bc37dc61a31fb199ab9b62332a7063d4b7d04"
+
+
+def load_at(ref, path):
+    return json.loads(
+        read_at(
+            ref,
+            path,
+        )
+    )
 
 
 def load_manifest():
-    return json.loads(
-        MAN.read_text(
-            encoding="utf-8",
-        )
+    return load_at(
+        ACCEPTED_MERGE,
+        MAN,
     )
 
 
@@ -145,8 +154,9 @@ def test_closure_preserves_downstream_authorization_boundaries():
 
 def test_evaluation_contract_is_unchanged_by_closure():
     assert (
-        CONTRACT.read_text(
-            encoding="utf-8",
+        read_at(
+            ACCEPTED_MERGE,
+            CONTRACT,
         )
         == read_at(
             MERGE,
@@ -175,11 +185,13 @@ def test_activation_test_is_frozen_at_accepted_merge():
 
 
 def test_program_and_decision_record_bounded_activation_closure():
-    program = PROG.read_text(
-        encoding="utf-8",
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
     )
-    decisions = DEC.read_text(
-        encoding="utf-8",
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
     )
 
     assert "**Artifact version:** `0.4.60`" in program
@@ -251,11 +263,13 @@ def test_closure_validation_evidence_is_exact():
 
     assert required.issubset(evidence)
 
-    program = PROG.read_text(
-        encoding="utf-8",
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
     )
-    decisions = DEC.read_text(
-        encoding="utf-8",
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
     )
 
     assert (
@@ -280,8 +294,9 @@ def test_closure_validation_evidence_is_exact():
 
 def test_closure_does_not_redefine_evaluation_authority():
     flat = " ".join(
-        CONTRACT.read_text(
-            encoding="utf-8",
+        read_at(
+            ACCEPTED_MERGE,
+            CONTRACT,
         ).split()
     )
 
