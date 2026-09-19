@@ -47,6 +47,8 @@ TREE = (
     "c0f40093e399e94efcaa402442cbfae1168d83ec"
 )
 
+ACCEPTED_MERGE = "a429b4a65e7118a5b102ef9357a83bf236d4b1cd"
+
 CI_RUN = 246
 CI_RUN_ID = 35456472681
 
@@ -83,8 +85,9 @@ def read_at(ref, path):
 
 def load(path):
     return json.loads(
-        path.read_text(
-            encoding="utf-8",
+        read_at(
+            ACCEPTED_MERGE,
+            path,
         )
     )
 
@@ -265,12 +268,14 @@ def test_assessment_regression_is_frozen_at_accepted_merge():
 
 
 def test_program_and_decision_record_terminal_closure():
-    program = PROG.read_text(
-        encoding="utf-8",
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
     )
 
-    decisions = DEC.read_text(
-        encoding="utf-8",
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
     )
 
     assert "**Artifact version:** `0.4.62`" in program
@@ -387,12 +392,14 @@ def test_terminal_closure_validation_evidence_is_exact():
     assert certification["runtime_implementation_path_count"] == 0
     assert certification["production_schema_path_count"] == 0
 
-    program = PROG.read_text(
-        encoding="utf-8",
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
     )
 
-    decisions = DEC.read_text(
-        encoding="utf-8",
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
     )
 
     assert (

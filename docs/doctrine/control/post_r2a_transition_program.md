@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.62`
+**Artifact version:** `0.4.63`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -3581,3 +3581,83 @@ PR2-IMPL remains only `ready_pending_authorization`; it is not authorized.
 
 R4-B remains not ready, remains unauthorized, and runtime promotion
 remains uncleared.
+
+
+### 5.59 PR2-IMPL bounded implementation handoff activation
+
+The owner authorized PR2-IMPL as the bounded implementation-handoff
+definition gate.
+
+Authorization reference:
+
+`owner_directive_2026-09-19_pr2_impl_activation`
+
+Authority effect:
+
+`bounded_implementation_handoff_definition_only`
+
+Starting baseline:
+
+`a429b4a65e7118a5b102ef9357a83bf236d4b1cd`
+
+Control artifact:
+
+`docs/doctrine/control/myravant_pr2_implementation_handoff_contract.md`
+
+PR2-TEST is terminal and its five future-implementation handoffs remain
+preserved.
+
+PR2-IMPL is now `active` with completion state
+`active_bounded_implementation_handoff_definition`.
+
+This activation authorizes definition and validation of bounded
+implementation packages only.
+
+It does not authorize runtime implementation, production-schema
+implementation, content implementation, live play, canon promotion,
+R4-B, R4 activation, or runtime promotion.
+
+The first playable implementation candidate remains R4-B:
+
+`persistent_world_entity_location_representation_implementation`
+
+R4-B remains not ready pending authorization and remains unauthorized
+while PR2-IMPL is active.
+
+The five PR2-TEST handoffs remain explicit obligations but are not
+automatic prerequisites for every playable package.
+
+A concrete dependency must be demonstrated before a handoff may block a
+package.
+
+#### PR2-IMPL activation validation evidence
+
+The bounded PR2-IMPL activation package passed local regression
+certification.
+
+Observed evidence:
+
+- focused activation certification: `51 passed`;
+- broader PR2 regression: `388 passed`;
+- full local repository suite:
+  `9319 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused post-suite regression: `51 passed`;
+- `git diff --check`: clean;
+- exact activation footprint: seven paths;
+- runtime implementation paths changed: zero;
+- production schema paths changed: zero.
+
+The full-suite warning remains the existing
+`PytestRemovedIn10Warning` in the runtime-domain source-scan test. It was
+not introduced by PR2-IMPL activation and remains nonblocking under the
+current pytest `<10` development constraint.
+
+Certification does not expand authority.
+
+PR2-IMPL remains `active` only for bounded implementation-handoff
+definition.
+
+R4-B remains not ready pending authorization and remains unauthorized.
+
+Runtime implementation, production-schema implementation, R4
+activation, and runtime promotion remain unauthorized.
