@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,10 +23,28 @@ CLOSURE_TEST = (
 )
 
 BASE = "da5bc37dc61a31fb199ab9b62332a7063d4b7d04"
+ACCEPTED_MERGE = "54cb6c459585011dfbee11ad0510c24cb2d0fe3f"
+
+
+def read_at(ref, path):
+    return subprocess.check_output(
+        [
+            "git",
+            "show",
+            f"{ref}:{path.relative_to(ROOT).as_posix()}",
+        ],
+        cwd=ROOT,
+        text=True,
+    )
 
 
 def load(path):
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(
+        read_at(
+            ACCEPTED_MERGE,
+            path,
+        )
+    )
 
 
 def rows(data):
@@ -177,7 +196,10 @@ def test_downstream_authority_remains_closed():
 
 
 def test_previous_closure_is_snapshot_frozen():
-    text = CLOSURE_TEST.read_text(encoding="utf-8")
+    text = read_at(
+        ACCEPTED_MERGE,
+        CLOSURE_TEST,
+    )
 
     assert (
         f'ACCEPTED_MERGE = "{BASE}"'
@@ -189,8 +211,14 @@ def test_previous_closure_is_snapshot_frozen():
 
 
 def test_program_and_decision_record_assessment():
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
+    )
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
+    )
 
     assert "**Artifact version:** `0.4.61`" in program
 
@@ -292,8 +320,14 @@ def test_recorded_certification_evidence_is_exact():
     assert certification["runtime_implementation_path_count"] == 0
     assert certification["production_schema_path_count"] == 0
 
-    program = PROG.read_text(encoding="utf-8")
-    decisions = DEC.read_text(encoding="utf-8")
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
+    )
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
+    )
 
     assert (
         "#### PR2-TEST seven-family completion "

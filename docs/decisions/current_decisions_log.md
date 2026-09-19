@@ -7001,3 +7001,63 @@ This validation does not terminalize PR2-TEST before merge and post-merge
 lifecycle reconciliation.
 
 It does not activate PR2-IMPL, R4-B, R4, or runtime promotion.
+
+## 2026-09-19 decision — PR2-TEST terminal completion post-merge closure
+
+- **Decision ID:** `PR2-TEST-COMPLETION-POST-MERGE-CLOSURE-001`
+- **Authorization reference:** `owner_directive_2026-09-19_pr2_test_completion_post_merge_closure`
+- **Authority effect:** `post_r2_test_completion_post_merge_lifecycle_reconciliation_only`
+- **Accepted assessment PR:** `#423`
+- **Accepted assessment head:** `6781782bda0405648d658ec07bccce68f68e4ff7`
+- **Accepted merge:** `54cb6c459585011dfbee11ad0510c24cb2d0fe3f`
+- **Accepted merge tree:** `c0f40093e399e94efcaa402442cbfae1168d83ec`
+- **Accepted CI run:** `#246`
+- **Accepted CI run ID:** `35456472681`
+- **Accepted CI result:** `success`
+- **PR2-TEST status:** `merged`
+- **PR2-TEST completion state:** `merged_complete_with_future_implementation_handoffs`
+- **Future implementation handoffs preserved:** `5`
+- **PR2-TEST blocking findings:** `0`
+- **PR2-IMPL status:** `ready_pending_authorization`
+- **PR2-IMPL authorized:** `false`
+- **R4-B ready pending authorization:** `false`
+- **R4-B authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The accepted seven-family assessment is now reconciled into the repository
+lifecycle.
+
+PR2-TEST is terminal.
+
+The five nonblocking future-implementation handoffs remain routed to
+PR2-IMPL.
+
+PR2-IMPL readiness does not constitute implementation authorization.
+
+R4-B, R4 activation, and runtime promotion remain separately closed.
+
+## 2026-09-19 decision — PR2-TEST terminal completion closure validation
+
+- **Decision ID:** `PR2-TEST-COMPLETION-POST-MERGE-CLOSURE-VALIDATION-002`
+- **Focused pre-certification regression:** `58 passed`
+- **Broader PR2 regression:** `379 passed`
+- **Full suite:** `9310 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite regression:** `58 passed`
+- **Changed paths:** `6`
+- **Runtime implementation paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **PR2-TEST status:** `merged`
+- **Future implementation handoffs preserved:** `5`
+- **PR2-IMPL status:** `ready_pending_authorization`
+- **PR2-IMPL authorized:** `false`
+- **R4-B ready pending authorization:** `false`
+- **R4-B authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The terminal PR2-TEST lifecycle closure is locally certified.
+
+The single full-suite warning is the existing nonblocking
+`PytestRemovedIn10Warning` and was not introduced by this package.
+
+This certification does not authorize PR2-IMPL, R4-B, R4 activation, or
+runtime promotion.

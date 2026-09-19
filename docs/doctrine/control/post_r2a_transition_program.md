@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.61`
+**Artifact version:** `0.4.62`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -3487,3 +3487,97 @@ lifecycle reconciliation.
 PR2-IMPL remains `blocked` and unauthorized.
 
 R4-B, R4 activation, and runtime promotion remain separately unauthorized.
+
+### 5.58 PR2-TEST terminal completion post-merge closure
+
+The owner authorized bounded lifecycle reconciliation following the
+accepted PR2-TEST seven-family completion-assessment merge.
+
+Authorization reference:
+
+`owner_directive_2026-09-19_pr2_test_completion_post_merge_closure`
+
+Authority effect:
+
+`post_r2_test_completion_post_merge_lifecycle_reconciliation_only`
+
+Accepted completion-assessment PR:
+
+`#423`
+
+Accepted branch head:
+
+`6781782bda0405648d658ec07bccce68f68e4ff7`
+
+Accepted merge:
+
+`54cb6c459585011dfbee11ad0510c24cb2d0fe3f`
+
+Accepted merge tree:
+
+`c0f40093e399e94efcaa402442cbfae1168d83ec`
+
+Accepted CI:
+
+`#246` / `35456472681` / `success`
+
+The accepted assessment established:
+
+- seven evaluation families assessed;
+- seven passing families;
+- zero PR2-TEST blocking findings;
+- zero evaluation-owned repairs;
+- five explicit future-implementation handoffs;
+- PR2-TEST completion condition satisfied.
+
+This closure terminalizes PR2-TEST as `merged` with completion state
+`merged_complete_with_future_implementation_handoffs`.
+
+PR2-TEST is terminal.
+
+The five handoffs remain preserved as future implementation obligations.
+They are not converted into PR2-TEST failures and they do not create
+implementation authority.
+
+PR2-IMPL now becomes `ready_pending_authorization`.
+
+That readiness is only a sequencing transition. PR2-IMPL has no owner
+authorization reference, no implementation starting baseline, and no
+implementation authority.
+
+R4-B remains not ready pending authorization and remains unauthorized.
+
+R4 activation remains unauthorized.
+
+Runtime promotion remains uncleared.
+
+No runtime implementation or production-schema implementation occurs in
+this closure.
+
+#### PR2-TEST terminal completion post-merge closure validation evidence
+
+The terminal lifecycle-closure package passed local certification.
+
+Observed evidence:
+
+- focused pre-certification regression: `58 passed`;
+- broader PR2 regression: `379 passed`;
+- full local repository suite:
+  `9310 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused post-suite regression: `58 passed`;
+- `git diff --check`: clean;
+- exact closure footprint: six paths;
+- runtime implementation paths changed: zero;
+- production schema paths changed: zero.
+
+The single full-suite warning is the existing
+`PytestRemovedIn10Warning` in the runtime-domain source-scan test and was
+not introduced by this closure.
+
+The certification preserves PR2-TEST as terminal `merged` with five
+future-implementation handoffs.
+
+PR2-IMPL remains only `ready_pending_authorization`; it is not authorized.
+
+R4-B remains not ready, remains unauthorized, and runtime promotion
+remains uncleared.
