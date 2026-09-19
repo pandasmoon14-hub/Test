@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.57",
+  "artifact_version": "0.4.58",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -1704,7 +1704,7 @@
       "title": "Bounded repository remediation",
       "category": "migration",
       "purpose": "Apply accepted audit dispositions through bounded, reviewable migration tranches.",
-      "status": "active",
+      "status": "merged",
       "dependencies": [
         "PR2-AUDIT"
       ],
@@ -1734,7 +1734,8 @@
         "src/astra_runtime/domain/object_lever_replay_audit_check.py",
         "tests/test_runtime_domain_rt_002f_object_lever_replay_audit_check.py",
         "tests/test_pr2_mig_rs_0030_replay_audit_qualification.py",
-        "tests/test_pr2_mig_a_post_merge_closure.py"
+        "tests/test_pr2_mig_a_post_merge_closure.py",
+        "tests/test_pr2_mig_b_post_merge_closure.py"
       ],
       "prohibited_scope": [
         "unreviewed_repo_wide_rewrite",
@@ -1744,16 +1745,21 @@
       "entry_condition": "PR2-AUDIT accepted and individual remediation tranche authorized.",
       "completion_condition": "All audited material receives its accepted disposition or explicit successor handoff.",
       "validation_evidence": [
-        "PR2-MIG-A full local repository suite:9251 passed, 10 skipped, 2 xfailed, 1 warning",
-        "PR2-MIG-A targeted historical guard regression:3 passed",
-        "PR2-MIG-A bounded regression:182 passed, 1 skipped",
-        "PR2-MIG-A terminal focused certification:90 passed, 1 skipped",
-        "PR2-MIG-A GitHub Actions CI #234:success",
-        "PR2-MIG-A merged PR #417 exact 18-file footprint:PASS"
+        "PR2-MIG-B initial focused validation:45 passed, 1 skipped",
+        "PR2-MIG-B bounded regression:518 passed, 4 skipped",
+        "PR2-MIG-B full local repository suite:9267 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-MIG-B terminal certification:436 passed, 3 skipped",
+        "PR2-MIG-B GitHub Actions CI #238:success",
+        "PR2-MIG-B merged PR #419 exact 9-file footprint:PASS",
+        "PR2-MIG-B post-merge closure bounded regression:442 passed, 3 skipped",
+        "PR2-MIG-B post-merge closure full local repository suite:9273 passed, 10 skipped, 2 xfailed, 1 warning",
+        "PR2-MIG-B post-merge closure focused post-suite certification:80 passed, 1 skipped",
+        "PR2-MIG-B post-merge closure exact five-file footprint:PASS",
+        "PR2-MIG-B post-merge closure runtime/schema noninterference:PASS"
       ],
-      "pull_request": 417,
-      "branch_head": "f853830ff8b1f4a8f5fccba030fe66c796e03f21",
-      "merge_commit": "3d2125e91da1d6f687dd5d72805c39cafef9afb6",
+      "pull_request": 419,
+      "branch_head": "8e33ade1bc7f1346401131394b3de2327802d882",
+      "merge_commit": "2b9e1a690bb567dfa3fda8c1982179e86106860b",
       "residual_gaps": [],
       "downstream_handoff": [
         "PR2-TEST",
@@ -1769,10 +1775,10 @@
         "R2A-DISPOSITION-RS-0028",
         "R2A-DISPOSITION-RS-0030"
       ],
-      "migration_execution_authorized": true,
+      "migration_execution_authorized": false,
       "current_tranche": "PR2-MIG-B",
       "current_tranche_candidate_id": "R2A-DISPOSITION-RS-0030",
-      "current_tranche_state": "validated_complete_pending_merge",
+      "current_tranche_state": "merged",
       "current_tranche_authorization_reference": "owner_directive_2026-09-18_pr2_mig_rs_0030",
       "current_tranche_authority_effect": "bounded_rs_0030_replay_audit_qualification_migration_only",
       "current_tranche_starting_baseline": "b4b52cab91916e050e20ad54ff3559153436a944",
@@ -1808,9 +1814,7 @@
         "rt_002f_acquires_commitment_authority": false,
         "rt_002f_acquires_replay_authority": false
       },
-      "migration_execution_scope": [
-        "R2A-DISPOSITION-RS-0030"
-      ],
+      "migration_execution_scope": [],
       "remaining_candidate_ids": [],
       "current_tranche_next_tranche_authorized": false,
       "current_tranche_runtime_promotion_authorized": false,
@@ -1852,7 +1856,7 @@
           "historical_guard_test_file_count": 2
         }
       ],
-      "current_tranche_completion_state": "validated_complete_pending_merge",
+      "current_tranche_completion_state": "merged",
       "current_tranche_validation_state": "validated",
       "current_tranche_candidate_validated": true,
       "next_candidate_id": null,
@@ -1876,16 +1880,37 @@
           "ci_run": 234,
           "ci_run_id": 35396966183,
           "ci_result": "success"
+        },
+        {
+          "tranche_id": "PR2-MIG-B",
+          "candidate_id": "R2A-DISPOSITION-RS-0030",
+          "state": "merged",
+          "authorization_reference": "owner_directive_2026-09-18_pr2_mig_rs_0030",
+          "authority_effect": "bounded_rs_0030_replay_audit_qualification_migration_only",
+          "starting_baseline": "b4b52cab91916e050e20ad54ff3559153436a944",
+          "target_path": "src/astra_runtime/domain/object_lever_replay_audit_check.py",
+          "pull_request": 419,
+          "branch_head": "8e33ade1bc7f1346401131394b3de2327802d882",
+          "merge_commit": "2b9e1a690bb567dfa3fda8c1982179e86106860b",
+          "merge_tree": "cef6740107d345a8ff97c6b06b0eb777aaf158a9",
+          "validation_state": "validated",
+          "ci_run": 238,
+          "ci_run_id": 35405934205,
+          "ci_result": "success"
         }
       ],
       "next_tranche_state": null,
       "next_tranche_candidate_id": null,
       "next_tranche_authorization_reference": null,
       "next_tranche_starting_baseline": null,
-      "post_merge_closure_authorization_reference": "owner_directive_2026-09-18_pr2_mig_a_post_merge_closure",
-      "post_merge_closure_authority_effect": "bounded_rs_0028_post_merge_lifecycle_reconciliation_only",
-      "post_merge_closure_recorded_from": "3d2125e91da1d6f687dd5d72805c39cafef9afb6",
-      "post_merge_closure_tree": "07c2c8f70d220f3b3e382bc2ad67e73d2c342eca"
+      "post_merge_closure_authorization_reference": "owner_directive_2026-09-18_pr2_mig_b_post_merge_closure",
+      "post_merge_closure_authority_effect": "bounded_rs_0030_post_merge_lifecycle_reconciliation_only",
+      "post_merge_closure_recorded_from": "2b9e1a690bb567dfa3fda8c1982179e86106860b",
+      "post_merge_closure_tree": "cef6740107d345a8ff97c6b06b0eb777aaf158a9",
+      "current_tranche_pull_request": 419,
+      "current_tranche_branch_head": "8e33ade1bc7f1346401131394b3de2327802d882",
+      "current_tranche_merge_commit": "2b9e1a690bb567dfa3fda8c1982179e86106860b",
+      "current_tranche_merge_tree": "cef6740107d345a8ff97c6b06b0eb777aaf158a9"
     },
     {
       "workstream_id": "PR2-TEST",
@@ -2028,10 +2053,8 @@
     "dependency_workstream_count": 6,
     "input_inventory_group_count": 5,
     "undispositioned_input_group_count": 0,
-    "current_migration_required_count": 1,
-    "migration_required_candidate_ids": [
-      "R2A-DISPOSITION-RS-0030"
-    ],
+    "current_migration_required_count": 0,
+    "migration_required_candidate_ids": [],
     "repository_wide_audit_completion_recommended": true,
     "repository_wide_audit_complete": true,
     "pr2_mig_ready_after_validation_and_merge": true,
@@ -2059,8 +2082,8 @@
     "post_merge_closure_tree": "04c094a41eda056b58f59bb5553ab718535d1f41",
     "pr2_mig_current_tranche": "PR2-MIG-B",
     "pr2_mig_current_candidate_id": "R2A-DISPOSITION-RS-0030",
-    "pr2_mig_last_completed_tranche": "PR2-MIG-A",
-    "pr2_mig_last_completed_candidate_id": "R2A-DISPOSITION-RS-0028",
+    "pr2_mig_last_completed_tranche": "PR2-MIG-B",
+    "pr2_mig_last_completed_candidate_id": "R2A-DISPOSITION-RS-0030",
     "pr2_mig_next_tranche": null,
     "pr2_mig_next_candidate_id": null,
     "pr2_mig_next_ready_pending_authorization": false

@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.57`
+**Artifact version:** `0.4.58`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -2659,6 +2659,100 @@ PR2-TEST and PR2-IMPL remain blocked and unauthorized.
 R4-B and R4-R6 remain blocked.
 
 Runtime promotion remains uncleared.
+
+### 5.53 PR2-MIG-B post-merge closure recording
+
+Authorization reference:
+
+`owner_directive_2026-09-18_pr2_mig_b_post_merge_closure`
+
+Authority effect:
+
+`bounded_rs_0030_post_merge_lifecycle_reconciliation_only`
+
+PR2-MIG-B / `R2A-DISPOSITION-RS-0030` merged through PR `#419`.
+
+Accepted branch head:
+
+`8e33ade1bc7f1346401131394b3de2327802d882`
+
+Accepted merge commit:
+
+`2b9e1a690bb567dfa3fda8c1982179e86106860b`
+
+Accepted merge tree:
+
+`cef6740107d345a8ff97c6b06b0eb777aaf158a9`
+
+GitHub Actions CI run `#238` succeeded on the certified branch head.
+
+PR2-MIG-B is terminal `merged`.
+
+The accepted migration-required inventory is now empty.
+
+PR2-MIG is terminal `merged` because both accepted migration tranches
+have received their required dispositions:
+
+1. PR2-MIG-A / `R2A-DISPOSITION-RS-0028`;
+2. PR2-MIG-B / `R2A-DISPOSITION-RS-0030`.
+
+Migration execution authority is reset to `false` and the execution
+scope is empty.
+
+The migration-required count is now `0`.
+
+This lifecycle reconciliation does not independently clear runtime
+promotion and does not authorize a downstream implementation or
+evaluation workstream.
+
+PR2-TEST remains blocked and unauthorized.
+
+PR2-IMPL remains blocked and unauthorized.
+
+R4-B and R4-R6 remain blocked.
+
+Runtime promotion remains uncleared.
+
+No successor migration tranche is created by this closure.
+
+### 5.54 PR2-MIG-B post-merge closure validation
+
+The terminal PR2-MIG lifecycle reconciliation completed its bounded
+validation.
+
+Bounded closure regression:
+
+- `442 passed, 3 skipped`.
+
+Full repository certification:
+
+- `9273 passed`;
+- `10 skipped`;
+- `2 xfailed`;
+- `1 warning`.
+
+The warning is the existing pytest `PytestRemovedIn10Warning`
+concerning a class-scoped fixture and is unrelated to PR2-MIG-B
+closure semantics.
+
+Post-suite closure certification:
+
+- `80 passed`;
+- `1 skipped`.
+
+Closure scope certification:
+
+- exact changed-path count: `5`;
+- runtime implementation paths changed: `0`;
+- production schema paths changed: `0`;
+- PR2-MIG migration-required count: `0`;
+- migration execution authority: `false`;
+- migration execution scope: empty;
+- no successor migration tranche created.
+
+The closure therefore preserves PR2-MIG as terminal `merged` while
+leaving PR2-TEST, PR2-IMPL, R4 activation, and runtime promotion
+separately blocked or unauthorized.
 
 The workstream table below records the **initial PR2-CTRL registry state**. Current workstream state is owned by the machine-readable transition manifest and explicit successor decisions.
 

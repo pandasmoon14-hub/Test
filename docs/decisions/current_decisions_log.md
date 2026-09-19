@@ -6721,3 +6721,67 @@ post-merge closure is separately recorded.
 
 PR2-TEST, PR2-IMPL, R4-B, R4 activation, and runtime promotion remain
 blocked or unauthorized.
+
+
+## 2026-09-18 decision — PR2-MIG-B post-merge closure
+
+- **Decision ID:** `PR2-MIG-B-POST-MERGE-CLOSURE-007`
+- **Authorization reference:** `owner_directive_2026-09-18_pr2_mig_b_post_merge_closure`
+- **Authority effect:** `bounded_rs_0030_post_merge_lifecycle_reconciliation_only`
+- **Pull request:** `#419`
+- **Accepted branch head:** `8e33ade1bc7f1346401131394b3de2327802d882`
+- **Merge commit:** `2b9e1a690bb567dfa3fda8c1982179e86106860b`
+- **Merge tree:** `cef6740107d345a8ff97c6b06b0eb777aaf158a9`
+- **CI:** `#238 success`
+- **Completed candidate:** `R2A-DISPOSITION-RS-0030`
+- **Remaining migration candidates:** `0`
+- **PR2-MIG state:** `merged`
+- **Migration execution authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+PR2-MIG-B is terminal merged.
+
+The accepted repository migration inventory is now exhausted:
+RS-0028 and RS-0030 have both received their accepted bounded
+remediations and merged validation evidence.
+
+The migration-required count is reduced from one to zero.
+
+Migration execution authority is reset to false and the execution scope
+is empty.
+
+This closure does not reinterpret migration completion as runtime
+promotion authority.
+
+PR2-TEST and PR2-IMPL remain blocked and unauthorized.
+
+R4-B, R4 activation, and runtime promotion remain blocked or
+unauthorized.
+
+No successor PR2-MIG tranche is created.
+
+
+## 2026-09-18 decision — PR2-MIG-B post-merge closure validation
+
+- **Decision ID:** `PR2-MIG-B-POST-MERGE-CLOSURE-VALIDATION-008`
+- **Validation state:** `validated_complete`
+- **Bounded closure regression:** `442 passed, 3 skipped`
+- **Full suite:** `9273 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Post-suite closure certification:** `80 passed, 1 skipped`
+- **Changed paths:** `5`
+- **Runtime implementation paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **Migration-required count:** `0`
+- **Runtime promotion authorized:** `false`
+
+The terminal PR2-MIG-B post-merge closure is validated.
+
+Both accepted migration candidates are terminal merged and the accepted
+migration-required inventory is empty.
+
+The closure changes no runtime or production schema implementation.
+
+PR2-TEST and PR2-IMPL remain blocked and unauthorized.
+
+R4-B, R4 activation, and runtime promotion remain separately blocked
+or unauthorized.

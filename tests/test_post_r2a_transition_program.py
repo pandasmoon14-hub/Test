@@ -266,6 +266,14 @@ PR2_MIG_B_AUTHORIZATION = "owner_directive_2026-09-18_pr2_mig_rs_0030"
 PR2_MIG_B_EFFECT = "bounded_rs_0030_replay_audit_qualification_migration_only"
 PR2_MIG_B_CANDIDATE = "R2A-DISPOSITION-RS-0030"
 PR2_MIG_B_TARGET = "src/astra_runtime/domain/object_lever_replay_audit_check.py"
+PR2_MIG_B_PR = 419
+PR2_MIG_B_HEAD = "8e33ade1bc7f1346401131394b3de2327802d882"
+PR2_MIG_B_MERGE = "2b9e1a690bb567dfa3fda8c1982179e86106860b"
+PR2_MIG_B_TREE = "cef6740107d345a8ff97c6b06b0eb777aaf158a9"
+PR2_MIG_B_CI_RUN = 238
+PR2_MIG_B_CI_RUN_ID = 35405934205
+PR2_MIG_B_CLOSURE_AUTHORIZATION = "owner_directive_2026-09-18_pr2_mig_b_post_merge_closure"
+PR2_MIG_B_CLOSURE_EFFECT = "bounded_rs_0030_post_merge_lifecycle_reconciliation_only"
 PR2_CONC_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_deterministic_concurrency_scheduling_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_conc_deterministic_concurrency_contract.py', 'tests/test_pr2_part_post_merge_closure.py'}
 PR2_PART_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_authority_partitioning_migration_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_part_authority_partitioning_contract.py', 'tests/test_pr2_scale_post_merge_closure.py'}
 PR2_SCALE_OWNED_PATHS = {'docs/decisions/current_decisions_log.md', 'docs/doctrine/control/myravant_runtime_scalability_execution_topology_contract.md', 'docs/doctrine/control/post_r2a_transition_manifest.yaml', 'docs/doctrine/control/post_r2a_transition_program.md', 'tests/test_post_r2a_transition_program.py', 'tests/test_pr2_scale_runtime_scalability_contract.py', 'tests/test_pr2_simex_post_merge_closure.py'}
@@ -381,7 +389,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.57"
+    assert manifest["artifact_version"] == "0.4.58"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -555,7 +563,7 @@ def test_r2b_merge_chain_is_fully_recorded():
     assert continuity["residual_gaps"] == []
 
 
-def test_r2c_through_pr2_bp_are_merged_and_pr2_mig_a_is_only_active_successor():
+def test_r2c_through_pr2_mig_are_merged_and_no_migration_successor_remains():
     manifest = _load_manifest()
     by_id = _by_id(manifest)
 
@@ -564,7 +572,7 @@ def test_r2c_through_pr2_bp_are_merged_and_pr2_mig_a_is_only_active_successor():
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == {"PR2-MIG"}
+    assert active == set()
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -856,22 +864,23 @@ def test_r2c_through_pr2_bp_are_merged_and_pr2_mig_a_is_only_active_successor():
 
     mig = by_id["PR2-MIG"]
 
-    assert mig["status"] == "active"
+    assert mig["status"] == "merged"
 
-    # Overall workstream provenance remains anchored to PR2-MIG-A.
+    # Overall workstream provenance remains anchored to the
+    # original PR2-MIG activation.
     assert (
         mig["authorization_reference"]
         == PR2_MIG_A_AUTHORIZATION
     )
     assert mig["starting_baseline"] == PR2_MIG_A_BASELINE
 
-    # Current execution authority belongs only to PR2-MIG-B.
     assert mig["current_tranche"] == "PR2-MIG-B"
     assert (
         mig["current_tranche_candidate_id"]
         == PR2_MIG_B_CANDIDATE
     )
-    assert mig["current_tranche_state"] == "validated_complete_pending_merge"
+    assert mig["current_tranche_state"] == "merged"
+
     assert (
         mig["current_tranche_authorization_reference"]
         == PR2_MIG_B_AUTHORIZATION
@@ -889,12 +898,9 @@ def test_r2c_through_pr2_bp_are_merged_and_pr2_mig_a_is_only_active_successor():
         == PR2_MIG_B_TARGET
     )
 
-    assert mig["migration_execution_authorized"] is True
-    assert mig["migration_execution_scope"] == [
-        PR2_MIG_B_CANDIDATE
-    ]
+    assert mig["migration_execution_authorized"] is False
+    assert mig["migration_execution_scope"] == []
 
-    # RS-0030 is current, not a successor behind itself.
     assert mig["remaining_candidate_ids"] == []
     assert mig["next_candidate_id"] is None
     assert mig["next_candidate_authorized"] is False
@@ -903,158 +909,54 @@ def test_r2c_through_pr2_bp_are_merged_and_pr2_mig_a_is_only_active_successor():
     assert mig["next_tranche_state"] is None
     assert mig["next_tranche_candidate_id"] is None
 
-    behavior = mig["current_tranche_required_behavior"]
-
-    assert behavior["ready_source_pair_recognized"] is True
-    assert behavior["ready_source_status"] == "commit_ready"
     assert (
-        behavior["ready_source_decision"]
-        == "awaiting_qualified_transition"
+        mig["current_tranche_completion_state"]
+        == "merged"
     )
-    assert (
-        behavior["ready_source_audit_status"]
-        == "audit_insufficient_commit"
-    )
-    assert (
-        behavior["ready_source_audit_decision"]
-        == "insufficient_commit"
-    )
-    assert (
-        behavior["ready_source_block_reason"]
-        == "commit_not_auditable"
-    )
-    assert (
-        behavior["ready_source_audit_snapshot_created"]
-        is False
-    )
-    assert (
-        behavior["ready_source_replay_check_receipt_created"]
-        is False
-    )
-    assert (
-        behavior["committed_source_positive_path_preserved"]
-        is True
-    )
-    assert (
-        behavior["afqr_01_commitment_owned_by_rt_002f"]
-        is False
-    )
-    assert (
-        behavior["rt_002f_acquires_commitment_authority"]
-        is False
-    )
-    assert (
-        behavior["rt_002f_acquires_replay_authority"]
-        is False
-    )
-
-    scope = mig["current_tranche_scope"]
-
-    assert scope["runtime_file_count"] == 1
-    assert scope["production_schema_file_count"] == 0
-    assert scope["rs_0030_runtime_edit_authorized"] is True
-    assert scope["rt_002e_runtime_edit_authorized"] is False
-    assert (
-        scope["event_commitment_owner_edit_authorized"]
-        is False
-    )
-    assert (
-        scope["afqr_01_commit_owner_implementation_authorized"]
-        is False
-    )
-    assert (
-        scope["historical_guard_test_file_count"]
-        == 2
-    )
-    assert (
-        scope["historical_guard_test_update_kind"]
-        == "accepted_merge_snapshot_only"
-    )
-    assert (
-        scope[
-            "historical_guard_runtime_allowlist_expansion_authorized"
-        ]
-        is False
-    )
-    assert scope["changed_path_ceiling"] == 9
+    assert mig["current_tranche_validation_state"] == "validated"
+    assert mig["current_tranche_candidate_validated"] is True
 
     assert (
         mig["current_tranche_runtime_promotion_authorized"]
         is False
     )
+
+    assert mig["pull_request"] == PR2_MIG_B_PR
+    assert mig["branch_head"] == PR2_MIG_B_HEAD
+    assert mig["merge_commit"] == PR2_MIG_B_MERGE
+
     assert (
-        mig["current_tranche_next_tranche_authorized"]
-        is False
+        mig["current_tranche_pull_request"]
+        == PR2_MIG_B_PR
     )
-
-    assert mig["current_tranche_completion_state"] == "validated_complete_pending_merge"
-    assert mig["current_tranche_validation_state"] == "validated"
-    assert mig["current_tranche_candidate_validated"] is True
-
-    assert mig["current_tranche_validation_evidence"] == [
-        {
-            "evidence_type":
-                "initial_focused_runtime_and_migration_regression",
-            "result": "pass",
-            "passed": 45,
-            "skipped": 1,
-        },
-        {
-            "evidence_type":
-                "bounded_pr2_mig_b_regression",
-            "result": "pass",
-            "passed": 518,
-            "skipped": 4,
-        },
-        {
-            "evidence_type": "full_repository_suite",
-            "result": "pass",
-            "passed": 9267,
-            "skipped": 10,
-            "xfailed": 2,
-            "warnings": 1,
-            "warning_class": "PytestRemovedIn10Warning",
-        },
-        {
-            "evidence_type":
-                "post_suite_focused_certification",
-            "result": "pass",
-            "passed": 96,
-            "skipped": 1,
-        },
-        {
-            "evidence_type":
-                "candidate_scope_certification",
-            "result": "pass",
-            "changed_path_count": 9,
-            "runtime_implementation_path_count": 1,
-            "production_schema_file_count": 0,
-            "runtime_candidate_id":
-                "R2A-DISPOSITION-RS-0030",
-            "historical_guard_test_file_count": 2,
-        },
-    ]
-
-    # PR2-MIG-A remains preserved as the completed predecessor.
-    assert mig["pull_request"] == PR2_MIG_A_PR
-    assert mig["branch_head"] == PR2_MIG_A_HEAD
-    assert mig["merge_commit"] == PR2_MIG_A_MERGE
+    assert (
+        mig["current_tranche_branch_head"]
+        == PR2_MIG_B_HEAD
+    )
+    assert (
+        mig["current_tranche_merge_commit"]
+        == PR2_MIG_B_MERGE
+    )
+    assert (
+        mig["current_tranche_merge_tree"]
+        == PR2_MIG_B_TREE
+    )
 
     assert (
         mig["post_merge_closure_authorization_reference"]
-        == PR2_MIG_A_CLOSURE_AUTHORIZATION
+        == PR2_MIG_B_CLOSURE_AUTHORIZATION
     )
     assert (
         mig["post_merge_closure_authority_effect"]
-        == PR2_MIG_A_CLOSURE_EFFECT
+        == PR2_MIG_B_CLOSURE_EFFECT
     )
     assert (
         mig["post_merge_closure_recorded_from"]
-        == PR2_MIG_A_MERGE
+        == PR2_MIG_B_MERGE
     )
     assert (
         mig["post_merge_closure_tree"]
-        == PR2_MIG_A_TREE
+        == PR2_MIG_B_TREE
     )
 
     assert mig["completed_tranches"] == [
@@ -1075,8 +977,62 @@ def test_r2c_through_pr2_bp_are_merged_and_pr2_mig_a_is_only_active_successor():
             "ci_run": 234,
             "ci_run_id": 35396966183,
             "ci_result": "success",
-        }
+        },
+        {
+            "tranche_id": "PR2-MIG-B",
+            "candidate_id": PR2_MIG_B_CANDIDATE,
+            "state": "merged",
+            "authorization_reference":
+                PR2_MIG_B_AUTHORIZATION,
+            "authority_effect": PR2_MIG_B_EFFECT,
+            "starting_baseline": PR2_MIG_B_BASELINE,
+            "target_path": PR2_MIG_B_TARGET,
+            "pull_request": PR2_MIG_B_PR,
+            "branch_head": PR2_MIG_B_HEAD,
+            "merge_commit": PR2_MIG_B_MERGE,
+            "merge_tree": PR2_MIG_B_TREE,
+            "validation_state": "validated",
+            "ci_run": PR2_MIG_B_CI_RUN,
+            "ci_run_id": PR2_MIG_B_CI_RUN_ID,
+            "ci_result": "success",
+        },
     ]
+
+    audit_target = manifest["pr2_audit_completion_target"]
+
+    assert audit_target["current_migration_required_count"] == 0
+    assert audit_target["migration_required_candidate_ids"] == []
+    assert (
+        audit_target["pr2_mig_last_completed_tranche"]
+        == "PR2-MIG-B"
+    )
+    assert (
+        audit_target["pr2_mig_last_completed_candidate_id"]
+        == PR2_MIG_B_CANDIDATE
+    )
+    assert audit_target["pr2_mig_next_tranche"] is None
+    assert audit_target["pr2_mig_next_candidate_id"] is None
+    assert (
+        audit_target["pr2_mig_next_ready_pending_authorization"]
+        is False
+    )
+
+
+
+def test_pr2_mig_terminal_closure_validation_evidence_is_exact():
+    manifest = _load_manifest()
+    mig = _by_id(manifest)["PR2-MIG"]
+
+    assert mig["validation_evidence"][-5:] == ['PR2-MIG-B post-merge closure bounded regression:442 passed, 3 skipped', 'PR2-MIG-B post-merge closure full local repository suite:9273 passed, 10 skipped, 2 xfailed, 1 warning', 'PR2-MIG-B post-merge closure focused post-suite certification:80 passed, 1 skipped', 'PR2-MIG-B post-merge closure exact five-file footprint:PASS', 'PR2-MIG-B post-merge closure runtime/schema noninterference:PASS']
+
+    assert mig["status"] == "merged"
+    assert mig["migration_execution_authorized"] is False
+    assert mig["migration_execution_scope"] == []
+
+    target = manifest["pr2_audit_completion_target"]
+
+    assert target["current_migration_required_count"] == 0
+    assert target["migration_required_candidate_ids"] == []
 
 
 def test_post_r2_successor_readiness_does_not_imply_authorization():
@@ -1294,7 +1250,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.57`" in program
+    assert "**Artifact version:** `0.4.58`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
