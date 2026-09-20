@@ -7169,3 +7169,62 @@ certified.
 This certification does not complete PR2-IMPL, authorize R4-B, authorize
 runtime or production-schema implementation, or transfer semantic
 authority.
+
+## 2026-09-19 decision — PR2-IMPL R4-B package definition and completion assessment
+
+- **Decision ID:** `PR2-IMPL-COMPLETION-ASSESSMENT-001`
+- **Authorization reference:** `owner_directive_2026-09-19_pr2_impl_completion_assessment`
+- **Authority effect:** `bounded_implementation_handoff_completion_assessment_only`
+- **Starting baseline:** `058beb0577ee5942ab9fb9c526d675b689b3e829`
+- **Starting tree:** `68ccbdd867eaa2506ebdbad4f7e952c7cc90f6d5`
+- **R4-B package definition:** `docs/doctrine/reviews/r4_b_persistent_world_entity_location_implementation_package.yaml`
+- **PR2-IMPL completion requirements assessed:** `7`
+- **PR2-IMPL completion requirements satisfied:** `7`
+- **Blocking findings:** `0`
+- **Carried PR2-TEST handoffs preserved:** `5`
+- **Carried handoffs blocking R4-B:** `0`
+- **PR2-IMPL status:** `validated`
+- **PR2-IMPL completion condition satisfied:** `true`
+- **PR2-IMPL completion recommended:** `true`
+- **R4-B package definition complete:** `true`
+- **R4-B ready pending authorization:** `false`
+- **R4-B ready after completion post-merge closure:** `true`
+- **R4-B authorized:** `false`
+- **Runtime implementation authorized:** `false`
+- **Production schema authorized:** `false`
+- **R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The completion audit initially found one real gap: the selected R4-B
+capability did not yet have a separately authorizable implementation
+package satisfying the PR2-IMPL contract.
+
+That package is now defined without implementing runtime or schema code.
+
+This assessment does not itself complete the post-merge lifecycle and
+does not authorize R4-B implementation.
+
+## 2026-09-19 decision — PR2-IMPL completion assessment validation
+
+- **Decision ID:** `PR2-IMPL-COMPLETION-ASSESSMENT-VALIDATION-002`
+- **Focused pre-certification:** `54 passed`
+- **Broader PR2 regression:** `405 passed`
+- **Full repository suite:** `9343 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite regression:** `54 passed`
+- **git diff --check:** `clean`
+- **Changed paths:** `9`
+- **Runtime implementation paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **PR2-IMPL status:** `validated`
+- **PR2-IMPL completion condition satisfied:** `true`
+- **PR2-IMPL completion recommended:** `true`
+- **R4-B package definition complete:** `true`
+- **R4-B ready pending authorization:** `false`
+- **R4-B authorized:** `false`
+- **Runtime implementation authorized:** `false`
+- **Production schema authorized:** `false`
+- **R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The completion-assessment certification records executable evidence only.
+It does not authorize R4-B implementation or expand runtime authority.

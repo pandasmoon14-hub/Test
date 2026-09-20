@@ -1,0 +1,247 @@
+{
+  "artifact_id": "MYRAVANT-R4-B-PERSISTENT-WORLD-ENTITY-LOCATION-IMPLEMENTATION-PACKAGE-001",
+  "artifact_version": "0.1.0",
+  "status": "defined_pending_separate_authorization",
+  "package_id": "R4-B",
+  "package_name": "persistent_world_entity_location_representation_implementation",
+  "definition_workstream": "PR2-IMPL",
+  "definition_authorization_reference": "owner_directive_2026-09-19_pr2_impl_activation",
+  "implementation_authorized": false,
+  "r4_activation_authorized": false,
+  "runtime_promotion_authorized": false,
+  "playable_need": [
+    "people or creatures, places, and objects must retain stable campaign-local identity beyond the hard-coded tiny vertical slice",
+    "characters or creatures and objects must be representable as being at a persistent place without scene-local hard coding",
+    "location-dependent gameplay must route through the accepted spatial owner rather than infer semantic truth from raw state"
+  ],
+  "bounded_capability": {
+    "source_design_artifact": "docs/doctrine/reviews/r4_a_myravant_native_substrate_design.yaml",
+    "source_capability_id": "R4-A-CAP-001",
+    "source_capability_name": "persistent_world_entity_and_location_relation_representation",
+    "adds": [
+      "campaign-scoped entity identity representation",
+      "open-ended entity classification representation",
+      "typed located_at relation representation",
+      "referential-integrity validation",
+      "canonical deterministic serialization"
+    ],
+    "does_not_add": [
+      "world-state manager",
+      "durable persistence engine",
+      "social relationship system",
+      "institution or jurisdiction system",
+      "sensing or knowledge system",
+      "embodiment or harm system",
+      "combat system",
+      "general relation registry"
+    ]
+  },
+  "semantic_owners": [
+    {
+      "concern": "entity_record_identity_format_and_validation",
+      "owner_ref": "existing_backend_record_identity_surface",
+      "source_path": "src/astra_runtime/kernel/record_identity.py",
+      "qualification": "record identity represents backend-owned deterministic identity and does not imply control, agency, ownership, knowledge, or authority"
+    },
+    {
+      "concern": "located_at_relation_semantics",
+      "owner_ref": "AFQR-18",
+      "qualification": "the relation representation consumes AFQR-18 spatial semantics and does not become their semantic owner"
+    },
+    {
+      "concern": "state_owner_transport_reference",
+      "owner_ref": "scene_location_owner",
+      "source_path": "src/astra_runtime/domain/state_owner_interface_contract_skeleton.py",
+      "qualification": "transport or storage through the state-owner envelope does not transfer spatial semantic ownership"
+    }
+  ],
+  "implementation_owner": {
+    "module": "astra_runtime.domain.persistent_world_entity_location_representation",
+    "runtime_path": "src/astra_runtime/domain/persistent_world_entity_location_representation.py",
+    "owns": [
+      "bounded representation validation",
+      "referential-integrity validation",
+      "canonical serialization",
+      "package-local failure classification"
+    ],
+    "does_not_own": [
+      "AFQR-18 spatial semantics",
+      "record-identity semantics",
+      "persistence authority",
+      "state mutation authority",
+      "event commitment",
+      "knowledge or visibility",
+      "control or agency",
+      "ownership",
+      "canon"
+    ],
+    "semantic_authority_acquired": false
+  },
+  "dependencies": {
+    "design_dependencies": [
+      {
+        "artifact": "docs/doctrine/reviews/r4_a_myravant_native_substrate_design.yaml",
+        "required_state": "validated_complete"
+      }
+    ],
+    "read_only_runtime_dependencies": [
+      "src/astra_runtime/kernel/record_identity.py",
+      "src/astra_runtime/domain/state_owner_interface_contract_skeleton.py"
+    ],
+    "lifecycle_dependencies": [
+      "PR2-MIG:merged",
+      "PR2-TEST:merged",
+      "PR2-IMPL must be terminally closed before R4-B implementation authorization"
+    ],
+    "carried_handoff_dependency_assessment": [
+      {
+        "handoff_id": "PR2-TEST-HANDOFF-TOPOLOGY-001",
+        "blocks_r4_b": false,
+        "rationale": "representation correctness does not depend on distributed partition or concurrency topology"
+      },
+      {
+        "handoff_id": "PR2-TEST-HANDOFF-PERSIST-001",
+        "blocks_r4_b": false,
+        "rationale": "this package defines persistent-capable representation but does not require a durable persistence engine"
+      },
+      {
+        "handoff_id": "PR2-TEST-HANDOFF-FIDELITY-001",
+        "blocks_r4_b": false,
+        "rationale": "entity/location representation does not require aggregation or fidelity reconstitution"
+      },
+      {
+        "handoff_id": "PR2-TEST-HANDOFF-BP-001",
+        "blocks_r4_b": false,
+        "rationale": "bounded in-memory representation does not depend on runtime overload or backpressure services"
+      },
+      {
+        "handoff_id": "PR2-TEST-HANDOFF-FAILURE-001",
+        "blocks_r4_b": false,
+        "rationale": "package-local fail-closed validation is sufficient; distributed worker failure isolation is not required"
+      }
+    ]
+  },
+  "edit_allowlist": {
+    "runtime_paths": [
+      "src/astra_runtime/domain/persistent_world_entity_location_representation.py"
+    ],
+    "production_schema_paths": [],
+    "test_paths": [
+      "tests/test_r4_b_persistent_world_entity_location_representation.py"
+    ],
+    "existing_dependency_paths_read_only": [
+      "src/astra_runtime/kernel/record_identity.py",
+      "src/astra_runtime/domain/state_owner_interface_contract_skeleton.py",
+      "src/astra_runtime/domain/read_only_vertical_slice_state_owner_facade.py",
+      "src/astra_runtime/domain/tiny_vertical_slice.py"
+    ]
+  },
+  "prohibited_scope": [
+    "modify the tiny vertical slice into the general world ontology",
+    "promote the read-only vertical-slice facade into a world-state manager",
+    "modify record_identity semantics",
+    "modify state-owner authority semantics",
+    "create a universal world-state manager",
+    "create a generalized governed-relation registry",
+    "create a global bitemporal truth or evidence store",
+    "create a second owner-reducer transaction journal",
+    "create a combined spatial sensing embodiment institutional social owner",
+    "create durable persistence or replay implementation",
+    "create model-owned entity or relation authority",
+    "infer control agency ownership knowledge or visibility from classification",
+    "authorize R4-B implementation implicitly",
+    "authorize R4 activation implicitly",
+    "authorize runtime promotion implicitly"
+  ],
+  "deterministic_acceptance_criteria": [
+    {
+      "criterion_id": "R4B-AC-001",
+      "requirement": "entity identity accepts valid existing RecordId values and rejects malformed identity deterministically"
+    },
+    {
+      "criterion_id": "R4B-AC-002",
+      "requirement": "minimum playable coverage includes character_or_creature, place, and object without making entity classification a closed universal enum"
+    },
+    {
+      "criterion_id": "R4B-AC-003",
+      "requirement": "classification alone never implies control, agency, ownership, or authority"
+    },
+    {
+      "criterion_id": "R4B-AC-004",
+      "requirement": "located_at relation records contain relation_id, relation_type, subject_entity_id, object_entity_id, and semantic_owner"
+    },
+    {
+      "criterion_id": "R4B-AC-005",
+      "requirement": "initial relation_type is located_at and its semantic_owner is exactly AFQR-18"
+    },
+    {
+      "criterion_id": "R4B-AC-006",
+      "requirement": "relation subject and object references must resolve within the same campaign-scoped representation"
+    },
+    {
+      "criterion_id": "R4B-AC-007",
+      "requirement": "located_at object_entity_id resolves to a place representation"
+    },
+    {
+      "criterion_id": "R4B-AC-008",
+      "requirement": "duplicate entity IDs and duplicate relation IDs fail closed"
+    },
+    {
+      "criterion_id": "R4B-AC-009",
+      "requirement": "unsupported relation extensions fail closed until a qualified semantic owner is supplied by a separately authorized extension"
+    },
+    {
+      "criterion_id": "R4B-AC-010",
+      "requirement": "canonical serialization is stable across repeated runs and independent of input insertion order"
+    },
+    {
+      "criterion_id": "R4B-AC-011",
+      "requirement": "state-owner transport may reference scene_location_owner but gains no raw-state, mutation, or semantic authority"
+    },
+    {
+      "criterion_id": "R4B-AC-012",
+      "requirement": "implementation contains no model call, RNG execution, event commitment, persistence write, or network dependency"
+    }
+  ],
+  "replay_recovery_equivalence": {
+    "deterministic_equivalence_required": true,
+    "equivalent_logical_input_must_serialize_identically": true,
+    "durable_replay_engine_required": false,
+    "durable_recovery_engine_required": false,
+    "rationale": "R4-B is representation-only; durable replay and recovery remain separately routed future implementation obligations"
+  },
+  "failure_behavior": {
+    "fail_closed": true,
+    "invalid_identity_rejected": true,
+    "missing_reference_rejected": true,
+    "duplicate_identity_rejected": true,
+    "unqualified_relation_extension_rejected": true,
+    "failure_may_mutate_authoritative_state": false,
+    "failure_may_create_semantic_owner": false
+  },
+  "performance_evidence": {
+    "materially_relevant_to_initial_slice": false,
+    "benchmark_gate_required": false,
+    "rationale": "the initial package makes no scale or throughput claim; performance evidence becomes required only when a measured playable workload demonstrates material relevance"
+  },
+  "regression_evidence_before_merge": {
+    "required_tests": [
+      "tests/test_r4_b_persistent_world_entity_location_representation.py",
+      "tests/runtime/test_record_identity_skeleton.py",
+      "tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py",
+      "tests/test_r4_a_myravant_native_substrate_design.py"
+    ],
+    "broader_pr2_regression_required": true,
+    "full_repository_regression_required": true,
+    "git_diff_check_required": true,
+    "exact_allowlist_check_required": true
+  },
+  "downstream_lifecycle_transition": {
+    "implementation_requires_separate_owner_authorization": true,
+    "implementation_authorization_currently_granted": false,
+    "post_merge_closure_required_after_implementation": true,
+    "r4_activation_implied": false,
+    "runtime_promotion_implied": false,
+    "automatic_successor_activation": false
+  }
+}
