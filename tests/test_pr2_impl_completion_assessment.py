@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -39,14 +40,28 @@ CLOSURE_TEST = (
 )
 
 BASE = "058beb0577ee5942ab9fb9c526d675b689b3e829"
+ACCEPTED_MERGE = "98b8bcec284f4a233af76ae7cb2ba88614df8b97"
 
 HANDOFF_IDS = ['PR2-TEST-HANDOFF-TOPOLOGY-001', 'PR2-TEST-HANDOFF-PERSIST-001', 'PR2-TEST-HANDOFF-FIDELITY-001', 'PR2-TEST-HANDOFF-BP-001', 'PR2-TEST-HANDOFF-FAILURE-001']
 
 
+def read_at(ref, path):
+    return subprocess.check_output(
+        [
+            "git",
+            "show",
+            f"{ref}:{path.relative_to(ROOT).as_posix()}",
+        ],
+        cwd=ROOT,
+        text=True,
+    )
+
+
 def load(path):
     return json.loads(
-        path.read_text(
-            encoding="utf-8",
+        read_at(
+            ACCEPTED_MERGE,
+            path,
         )
     )
 
@@ -216,12 +231,14 @@ def test_previous_post_merge_closure_is_snapshot_frozen():
 
 
 def test_program_and_decision_record_completion_assessment():
-    program = PROG.read_text(
-        encoding="utf-8",
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
     )
 
-    decisions = DEC.read_text(
-        encoding="utf-8",
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
     )
 
     normalized_program = " ".join(
@@ -296,12 +313,14 @@ def test_completion_assessment_validation_evidence_is_exact():
 
     assert review["certification"] == expected
 
-    program = PROG.read_text(
-        encoding="utf-8",
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
     )
 
-    decisions = DEC.read_text(
-        encoding="utf-8",
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
     )
 
     assert (

@@ -7228,3 +7228,69 @@ does not authorize R4-B implementation.
 
 The completion-assessment certification records executable evidence only.
 It does not authorize R4-B implementation or expand runtime authority.
+
+## 2026-09-19 decision — PR2-IMPL completion post-merge closure
+
+- **Decision ID:** `PR2-IMPL-COMPLETION-POST-MERGE-CLOSURE-001`
+- **Authorization reference:** `owner_directive_2026-09-19_pr2_impl_completion_post_merge_closure`
+- **Authority effect:** `bounded_implementation_handoff_completion_post_merge_lifecycle_reconciliation_only`
+- **Completion-assessment PR:** `#427`
+- **Completion-assessment branch head:** `6ba3c28b2b7805958e2d01018ff4828f7307be56`
+- **Completion-assessment merge commit:** `98b8bcec284f4a233af76ae7cb2ba88614df8b97`
+- **Completion-assessment merge tree:** `d1953e09d1d0bfa55659e98934bcff8b84946307`
+- **GitHub Actions CI:** `#254`
+- **GitHub Actions run ID:** `35487544104`
+- **GitHub Actions result:** `success`
+- **PR2-IMPL status:** `merged`
+- **PR2-IMPL completion state:** `merged_complete_r4_b_ready_pending_authorization`
+- **PR2-IMPL completion requirements satisfied:** `7 / 7`
+- **PR2-IMPL blocking findings:** `0`
+- **Future implementation handoffs preserved:** `5`
+- **Carried handoffs blocking R4-B:** `0`
+- **R4-B package definition complete:** `true`
+- **R4-B ready pending authorization:** `true`
+- **R4-B authorized:** `false`
+- **Runtime implementation authorized:** `false`
+- **Production schema authorized:** `false`
+- **Content implementation authorized:** `false`
+- **Live play authorized:** `false`
+- **Canon promotion authorized:** `false`
+- **R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+PR2-IMPL is terminal.
+
+R4-B is now eligible only for a separate owner authorization decision.
+Readiness does not authorize its implementation.
+
+The five carried future-implementation handoffs remain preserved and
+remain dependency-relevant only when a concrete implementation package
+actually depends on their missing capability or cannot satisfy its
+acceptance criteria without them.
+
+## 2026-09-20 decision — PR2-IMPL terminal completion closure validation
+
+- **Decision ID:** `PR2-IMPL-COMPLETION-POST-MERGE-CLOSURE-VALIDATION-002`
+- **Focused pre-certification:** `63 passed`
+- **Broader PR2 regression:** `414 passed`
+- **Full repository suite:** `9352 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite regression:** `63 passed`
+- **git diff --check:** `clean`
+- **Changed paths:** `6`
+- **Runtime implementation paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **PR2-IMPL status:** `merged`
+- **PR2-IMPL completion state:** `merged_complete_r4_b_ready_pending_authorization`
+- **PR2-IMPL completion requirements satisfied:** `7 / 7`
+- **Future implementation handoffs preserved:** `5`
+- **R4-B ready pending authorization:** `true`
+- **R4-B authorized:** `false`
+- **Runtime implementation authorized:** `false`
+- **Production schema authorized:** `false`
+- **R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The terminal closure is locally certified.
+
+This certification does not authorize R4-B implementation, runtime or
+schema implementation, R4 activation, or runtime promotion.
