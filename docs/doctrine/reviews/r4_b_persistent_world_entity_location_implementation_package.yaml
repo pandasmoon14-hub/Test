@@ -1,12 +1,12 @@
 {
   "artifact_id": "MYRAVANT-R4-B-PERSISTENT-WORLD-ENTITY-LOCATION-IMPLEMENTATION-PACKAGE-001",
-  "artifact_version": "0.1.0",
-  "status": "defined_pending_separate_authorization",
+  "artifact_version": "0.1.1",
+  "status": "implemented_regression_certified_pending_commit",
   "package_id": "R4-B",
   "package_name": "persistent_world_entity_location_representation_implementation",
   "definition_workstream": "PR2-IMPL",
   "definition_authorization_reference": "owner_directive_2026-09-19_pr2_impl_activation",
-  "implementation_authorized": false,
+  "implementation_authorized": true,
   "r4_activation_authorized": false,
   "runtime_promotion_authorized": false,
   "playable_need": [
@@ -238,10 +238,82 @@
   },
   "downstream_lifecycle_transition": {
     "implementation_requires_separate_owner_authorization": true,
-    "implementation_authorization_currently_granted": false,
+    "implementation_authorization_currently_granted": true,
     "post_merge_closure_required_after_implementation": true,
     "r4_activation_implied": false,
     "runtime_promotion_implied": false,
     "automatic_successor_activation": false
+  },
+  "implementation_authorization_reference": "owner_directive_2026-09-20_r4_b_implementation_authorization",
+  "implementation_authority_effect": "bounded_persistent_world_entity_location_representation_implementation_only",
+  "implementation_starting_baseline": "a7d7f912254abeab5716d23d3dc2f7fc5d6c4e59",
+  "implementation_starting_tree": "4b49a8c0f7c2e6fafd1da975cec4ce083284ba8a",
+  "implementation_runtime_path": "src/astra_runtime/domain/persistent_world_entity_location_representation.py",
+  "implementation_test_path": "tests/test_r4_b_persistent_world_entity_location_representation.py",
+  "implementation_state": "implemented_regression_certified_pending_commit",
+  "regression_certified": true,
+  "regression_certification": {
+    "focused_pre_regression": {
+      "passed": 241,
+      "result": "pass"
+    },
+    "broader_pr2_regression": {
+      "passed": 415,
+      "result": "pass"
+    },
+    "full_repository_regression": {
+      "passed": 9378,
+      "skipped": 10,
+      "xfailed": 2,
+      "warnings": 1,
+      "warning_class": "PytestRemovedIn10Warning",
+      "warning_disposition": "existing_nonblocking_deprecation",
+      "result": "pass"
+    },
+    "focused_post_suite_regression": {
+      "passed": 316,
+      "result": "pass"
+    },
+    "git_diff_check": "clean",
+    "changed_path_count": 13,
+    "production_runtime_path_count": 1,
+    "production_schema_path_count": 0
+  },
+  "failure_recovery_evidence": {
+    "failed_full_repository_regression": {
+      "failed": 40,
+      "passed": 9338,
+      "skipped": 10,
+      "xfailed": 2,
+      "warnings": 1,
+      "result": "fail"
+    },
+    "classification": "stale_runtime_domain_authorization_guardrails",
+    "r4_b_behavioral_defect_detected": false,
+    "repair_scope": "test_infrastructure_and_historical_compatibility_only",
+    "repair_checkpoints": {
+      "shared_domain_package_guardrail": {
+        "passed": 3,
+        "result": "pass"
+      },
+      "historical_guardrail_compatibility": {
+        "passed": 72,
+        "result": "pass"
+      },
+      "representative_legacy_domain_guardrails": {
+        "passed": 342,
+        "result": "pass"
+      },
+      "pr9_rt002_pass_through_seam": {
+        "passed": 511,
+        "result": "pass"
+      },
+      "focused_r4_b_after_repair": {
+        "passed": 241,
+        "result": "pass"
+      }
+    },
+    "production_runtime_scope_expanded_by_repair": false,
+    "production_schema_scope_expanded_by_repair": false
   }
 }

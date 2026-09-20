@@ -80,7 +80,7 @@ def test_package_records_exact_thirteen_part_shape():
     )
 
 
-def test_package_is_r4_a_derived_and_unauthorized():
+def test_package_is_r4_a_derived_and_explicitly_authorized_for_bounded_implementation():
     package = load(PACKAGE)
     r4a = load(R4A)
 
@@ -88,10 +88,10 @@ def test_package_is_r4_a_derived_and_unauthorized():
 
     assert (
         package["status"]
-        == "defined_pending_separate_authorization"
+        == "implemented_regression_certified_pending_commit"
     )
 
-    assert package["implementation_authorized"] is False
+    assert package["implementation_authorized"] is True
     assert package["r4_activation_authorized"] is False
     assert package["runtime_promotion_authorized"] is False
 
@@ -266,8 +266,179 @@ def test_no_generalized_world_manager_or_authority_transfer():
         transition[
             "implementation_authorization_currently_granted"
         ]
-        is False
+        is True
     )
 
     assert transition["r4_activation_implied"] is False
     assert transition["runtime_promotion_implied"] is False
+
+
+
+def test_r4_b_explicit_implementation_authorization_is_exact():
+    package = load(PACKAGE)
+
+    assert package["implementation_authorized"] is True
+
+    assert (
+        package["implementation_authorization_reference"]
+        == "owner_directive_2026-09-20_r4_b_implementation_authorization"
+    )
+
+    assert (
+        package["implementation_authority_effect"]
+        == "bounded_persistent_world_entity_location_representation_implementation_only"
+    )
+
+    assert (
+        package["implementation_starting_baseline"]
+        == "a7d7f912254abeab5716d23d3dc2f7fc5d6c4e59"
+    )
+
+    assert (
+        package["implementation_starting_tree"]
+        == "4b49a8c0f7c2e6fafd1da975cec4ce083284ba8a"
+    )
+
+    assert package["implementation_runtime_path"] == (
+        "src/astra_runtime/domain/"
+        "persistent_world_entity_location_representation.py"
+    )
+
+    assert package["implementation_test_path"] == (
+        "tests/"
+        "test_r4_b_persistent_world_entity_location_representation.py"
+    )
+
+    assert (
+        package["implementation_state"]
+        == "implemented_regression_certified_pending_commit"
+    )
+
+    assert package["r4_activation_authorized"] is False
+    assert package["runtime_promotion_authorized"] is False
+
+
+
+def test_r4_b_regression_certification_evidence_is_exact():
+    package = load(PACKAGE)
+
+    assert package["artifact_version"] == "0.1.1"
+
+    assert (
+        package["status"]
+        == "implemented_regression_certified_pending_commit"
+    )
+
+    assert (
+        package["implementation_state"]
+        == "implemented_regression_certified_pending_commit"
+    )
+
+    assert package["regression_certified"] is True
+
+    expected = {
+        "focused_pre_regression": {
+            "passed": 241,
+            "result": "pass",
+        },
+        "broader_pr2_regression": {
+            "passed": 415,
+            "result": "pass",
+        },
+        "full_repository_regression": {
+            "passed": 9378,
+            "skipped": 10,
+            "xfailed": 2,
+            "warnings": 1,
+            "warning_class": "PytestRemovedIn10Warning",
+            "warning_disposition": (
+                "existing_nonblocking_deprecation"
+            ),
+            "result": "pass",
+        },
+        "focused_post_suite_regression": {
+            "passed": 316,
+            "result": "pass",
+        },
+        "git_diff_check": "clean",
+        "changed_path_count": 13,
+        "production_runtime_path_count": 1,
+        "production_schema_path_count": 0,
+    }
+
+    assert package["regression_certification"] == expected
+
+    recovery = package["failure_recovery_evidence"]
+
+    assert recovery[
+        "failed_full_repository_regression"
+    ] == {
+        "failed": 40,
+        "passed": 9338,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "result": "fail",
+    }
+
+    assert (
+        recovery["classification"]
+        == "stale_runtime_domain_authorization_guardrails"
+    )
+
+    assert recovery["r4_b_behavioral_defect_detected"] is False
+
+    assert (
+        recovery["repair_scope"]
+        == "test_infrastructure_and_historical_compatibility_only"
+    )
+
+    checkpoints = recovery["repair_checkpoints"]
+
+    assert checkpoints[
+        "shared_domain_package_guardrail"
+    ] == {
+        "passed": 3,
+        "result": "pass",
+    }
+
+    assert checkpoints[
+        "historical_guardrail_compatibility"
+    ] == {
+        "passed": 72,
+        "result": "pass",
+    }
+
+    assert checkpoints[
+        "representative_legacy_domain_guardrails"
+    ] == {
+        "passed": 342,
+        "result": "pass",
+    }
+
+    assert checkpoints[
+        "pr9_rt002_pass_through_seam"
+    ] == {
+        "passed": 511,
+        "result": "pass",
+    }
+
+    assert checkpoints[
+        "focused_r4_b_after_repair"
+    ] == {
+        "passed": 241,
+        "result": "pass",
+    }
+
+    assert (
+        recovery["production_runtime_scope_expanded_by_repair"]
+        is False
+    )
+
+    assert (
+        recovery["production_schema_scope_expanded_by_repair"]
+        is False
+    )
+
+    assert package["r4_activation_authorized"] is False
+    assert package["runtime_promotion_authorized"] is False
