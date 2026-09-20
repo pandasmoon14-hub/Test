@@ -14,6 +14,8 @@ from pathlib import Path
 
 import pytest
 
+from tests.runtime_domain_package_manifest import AUTHORIZED_RUNTIME_DOMAIN_FILES
+
 from astra_runtime.domain.scene_command_execution_skeleton import (
     SceneCommandExecutionAssemblyAuthorityFlags,
     SceneCommandExecutionAssemblyResult,
@@ -148,38 +150,14 @@ class TestPR9BReviewHardeningOnly:
         assert "PR-9A" in text
         assert "PR-9B" in text
 
-    def test_no_new_domain_module_added(self):
+    def test_current_domain_package_matches_authorized_manifest(self):
         domain_dir = REPO_ROOT / "src" / "astra_runtime" / "domain"
-        expected_modules = {
-            "__init__.py",
-            "action_legality.py",
-            "command_lifecycle.py",
-            "command_kind_routing_skeleton.py",
-            "context_packet_compiler.py",
-            "event_commitment.py",
-            "model_boundary_evaluation.py",
-            "resource_consequence_math.py",
-            "scene_command_execution_skeleton.py",
-            "state_projection.py",
-            "state_store.py",
-            "tiny_vertical_slice.py",
-            "transaction_lifecycle.py",
-            "validation_integration.py",
-            "validation_integration_bridge_skeleton.py",
-            "transaction_preview_packet_bridge_skeleton.py",
-            "action_legality_skeleton.py",
-            "action_legality_gate_integration_skeleton.py",
-            "action_legality_service_interface_contract_skeleton.py",
-            "state_owner_interface_contract_skeleton.py",
-            "read_only_vertical_slice_state_owner_facade.py",
-            "projection_visibility_adapter_v0_1.py",
-            "object_lever_interaction_legality_reader.py",
-            "object_lever_transaction_preview_bridge.py",
-            "object_lever_event_commit_state_delta_path.py",
-            "object_lever_replay_audit_check.py",
+        actual = {
+            p.name
+            for p in domain_dir.iterdir()
+            if p.is_file()
         }
-        actual = {p.name for p in domain_dir.iterdir() if p.is_file()}
-        assert actual == expected_modules
+        assert actual == set(AUTHORIZED_RUNTIME_DOMAIN_FILES)
 
 
 # ---------------------------------------------------------------------------
@@ -417,35 +395,29 @@ class TestGuardrailAllowlistNarrow:
                 "src/astra_runtime/domain/command_kind_routing_skeleton.py",
             }, f"unexpected domain path in PR-5c allowlist: {p}"
 
-    def test_pr5g_domain_dir_allowlist_does_not_include_unexpected_files(self):
-        path = REPO_ROOT / "tests" / "test_runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.py"
+    def test_pr5g_guardrail_tracks_shared_current_manifest(self):
+        path = (
+            REPO_ROOT
+            / "tests"
+            / "test_runtime_domain_pr_5g_resource_consequence_math_"
+            "residual_planning_hardening_review.py"
+        )
+
         source = path.read_text(encoding="utf-8")
-        expected_domain_files = {
-            "__init__.py", "action_legality.py", "command_lifecycle.py",
-            "command_kind_routing_skeleton.py",
-            "context_packet_compiler.py", "event_commitment.py",
-            "model_boundary_evaluation.py",
-            "resource_consequence_math.py",
-            "scene_command_execution_skeleton.py",
-            "state_projection.py", "state_store.py",
-            "tiny_vertical_slice.py", "transaction_lifecycle.py",
-            "validation_integration.py",
-            "validation_integration_bridge_skeleton.py",
-            "transaction_preview_packet_bridge_skeleton.py",
-            "action_legality_skeleton.py",
-            "action_legality_gate_integration_skeleton.py",
-            "action_legality_service_interface_contract_skeleton.py",
-            "state_owner_interface_contract_skeleton.py",
-            "read_only_vertical_slice_state_owner_facade.py",
-            "projection_visibility_adapter_v0_1.py",
-            "object_lever_interaction_legality_reader.py",
-            "object_lever_transaction_preview_bridge.py",
-            "object_lever_event_commit_state_delta_path.py",
-            "object_lever_replay_audit_check.py",
-        }
+
+        assert "AUTHORIZED_RUNTIME_DOMAIN_FILES" in source
+
         domain_dir = REPO_ROOT / "src" / "astra_runtime" / "domain"
-        actual_files = {p.name for p in domain_dir.iterdir() if p.is_file()}
-        assert actual_files == expected_domain_files
+
+        actual_files = {
+            p.name
+            for p in domain_dir.iterdir()
+            if p.is_file()
+        }
+
+        assert actual_files == set(
+            AUTHORIZED_RUNTIME_DOMAIN_FILES
+        )
 
 
 # ---------------------------------------------------------------------------

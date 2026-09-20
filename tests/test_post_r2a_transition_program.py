@@ -393,7 +393,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.66"
+    assert manifest["artifact_version"] == "0.4.68"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -608,15 +608,27 @@ def test_r2c_through_pr2_mig_are_merged_and_no_migration_successor_remains():
     assert pr2_impl["completion_recommended"] is True
     assert pr2_impl["r4_b_package_definition_complete"] is True
     candidate = pr2_impl["first_playable_candidate"]
-    assert candidate["ready_pending_authorization"] is True
-    assert candidate["authorized"] is False
+    assert candidate["ready_pending_authorization"] is False
+    assert candidate["authorized"] is True
+    assert candidate["authorization_reference"] == "owner_directive_2026-09-20_r4_b_implementation_authorization"
+    assert candidate["runtime_path"] == (
+        "src/astra_runtime/domain/"
+        "persistent_world_entity_location_representation.py"
+    )
 
     r4_target = manifest["r4_native_substrate_design_target"]
-    assert r4_target["r4_b_ready_pending_authorization"] is True
-    assert r4_target["r4_b_authorized"] is False
-    assert r4_target["implementation_authorized"] is False
+    assert r4_target["r4_b_ready_pending_authorization"] is False
+    assert r4_target["r4_b_authorized"] is True
+    assert r4_target["implementation_authorized"] is True
+    assert r4_target["runtime_edits_authorized"] is True
+    assert r4_target["schema_edits_authorized"] is False
+    assert r4_target["r4_activation_authorized"] is False
+    assert r4_target["runtime_promotion_clear"] is False
 
-    assert pr2_impl["r4_b_authorized"] is False
+    assert pr2_impl["r4_b_authorized"] is True
+
+    # PR2-IMPL remains terminal and does not itself become a generalized
+    # runtime-implementation authority source.
     assert pr2_impl["runtime_implementation_authorized"] is False
     assert pr2_impl["production_schema_authorized"] is False
     assert pr2_impl["r4_activation_authorized"] is False
@@ -1305,7 +1317,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.66`" in program
+    assert "**Artifact version:** `0.4.68`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -1517,3 +1529,72 @@ def test_program_completion_rule_forbids_untracked_disappearance():
     assert rule["untracked_disappearance_allowed"] is False
     assert "terminal state" in rule["required"]
     assert "successor handoff" in rule["required"]
+
+
+
+def test_r4_b_current_regression_certified_lifecycle():
+    manifest = _load_manifest()
+
+    pr2_impl = next(
+        row
+        for row in manifest["workstreams"]
+        if row["workstream_id"] == "PR2-IMPL"
+    )
+
+    candidate = pr2_impl["first_playable_candidate"]
+    target = manifest["r4_native_substrate_design_target"]
+
+    state = "implemented_regression_certified_pending_commit"
+
+    # PR2-IMPL remains terminal.
+    assert pr2_impl["status"] == "merged"
+
+    # R4-B is separately authorized and regression-certified.
+    assert candidate["authorized"] is True
+    assert candidate["implementation_state"] == state
+    assert candidate["regression_certified"] is True
+
+    assert pr2_impl["r4_b_authorized"] is True
+
+    assert target["r4_b_authorized"] is True
+    assert target["r4_b_implementation_state"] == state
+    assert target["r4_b_regression_certified"] is True
+
+    certification = target["r4_b_regression_certification"]
+
+    assert certification[
+        "focused_pre_regression"
+    ]["passed"] == 241
+
+    assert certification[
+        "broader_pr2_regression"
+    ]["passed"] == 415
+
+    assert certification[
+        "full_repository_regression"
+    ]["passed"] == 9378
+
+    assert certification[
+        "focused_post_suite_regression"
+    ]["passed"] == 316
+
+    recovery = target["r4_b_failure_recovery_evidence"]
+
+    assert recovery[
+        "failed_full_repository_regression"
+    ]["failed"] == 40
+
+    assert (
+        recovery["classification"]
+        == "stale_runtime_domain_authorization_guardrails"
+    )
+
+    assert recovery["r4_b_behavioral_defect_detected"] is False
+
+    # R4-B certification does not activate downstream authority.
+    assert target["schema_edits_authorized"] is False
+    assert target["r4_activation_authorized"] is False
+    assert target["runtime_promotion_clear"] is False
+
+    assert pr2_impl["r4_activation_authorized"] is False
+    assert pr2_impl["runtime_promotion_authorized"] is False

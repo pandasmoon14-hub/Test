@@ -1,6 +1,8 @@
 from pathlib import Path
 import re
 
+from tests.runtime_domain_package_manifest import AUTHORIZED_RUNTIME_DOMAIN_FILES
+
 ROOT = Path(__file__).resolve().parents[1]
 ARTIFACT = ROOT / "docs/doctrine/reviews/runtime_domain_pr_5c_resource_consequence_math_planning_hardening_review.md"
 REGISTRY = ROOT / "docs/doctrine/astra_doctrine_registry_v0_1.yaml"
@@ -244,8 +246,18 @@ def test_resource_consequence_math_module_and_runtime_domain_file_state() -> Non
         "src/astra_runtime/domain/scene_command_execution_skeleton.py",
         "src/astra_runtime/domain/command_kind_routing_skeleton.py",
     }
+
+    currently_authorized_domain_paths = {
+        f"src/astra_runtime/domain/{name}"
+        for name in AUTHORIZED_RUNTIME_DOMAIN_FILES
+    }
+
     assert not any(
-        path.startswith("src/astra_runtime/domain/") for path in added_files
-        if path not in allowed_domain_additions
+        path.startswith("src/astra_runtime/domain/")
+        for path in added_files
+        if (
+            path not in allowed_domain_additions
+            and path not in currently_authorized_domain_paths
+        )
     )
     assert not any(path.startswith("src/astra_runtime/kernel/") for path in added_files)

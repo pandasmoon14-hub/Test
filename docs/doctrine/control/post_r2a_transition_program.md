@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.66`
+**Artifact version:** `0.4.68`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -3915,3 +3915,135 @@ R4-B remains `ready_pending_authorization` and remains unauthorized.
 
 Runtime implementation, production-schema implementation, R4 activation,
 and runtime promotion remain unauthorized.
+
+### 5.63 R4-B persistent-world entity/location representation implementation
+
+The owner separately authorized the bounded R4-B implementation package.
+
+Authorization reference:
+
+`owner_directive_2026-09-20_r4_b_implementation_authorization`
+
+Authority effect:
+
+`bounded_persistent_world_entity_location_representation_implementation_only`
+
+Starting baseline:
+
+`a7d7f912254abeab5716d23d3dc2f7fc5d6c4e59`
+
+Starting tree:
+
+`4b49a8c0f7c2e6fafd1da975cec4ce083284ba8a`
+
+The implementation package remains:
+
+`persistent_world_entity_location_representation_implementation`
+
+The concrete playable capability is the minimum deterministic representation
+needed for campaign-stable people or creatures, places, and objects, together
+with a lawful `located_at` relationship.
+
+The implementation adds exactly one production runtime module:
+
+`src/astra_runtime/domain/persistent_world_entity_location_representation.py`
+
+and one package-specific runtime test:
+
+`tests/test_r4_b_persistent_world_entity_location_representation.py`
+
+The runtime representation:
+
+- reuses the existing historical `RecordId` surface unchanged;
+- supports `character_or_creature`, `place`, and `object` while leaving
+  classification open-ended;
+- assigns no control, agency, ownership, knowledge, visibility, or authority
+  semantics to classification;
+- supports only the initial `located_at` relation;
+- requires its semantic owner to remain exactly `AFQR-18`;
+- validates relation references inside one campaign-scoped representation;
+- requires the object of `located_at` to resolve to a `place`;
+- fails closed on duplicate identities, unresolved references, malformed
+  identities, and unqualified relation extensions;
+- serializes deterministically independent of input insertion order; and
+- may produce a reference-only `scene_location_owner` transport reference
+  without granting raw-state, mutation, or semantic authority.
+
+Existing runtime dependencies remain read-only:
+
+- `src/astra_runtime/kernel/record_identity.py`;
+- `src/astra_runtime/domain/state_owner_interface_contract_skeleton.py`;
+- `src/astra_runtime/domain/read_only_vertical_slice_state_owner_facade.py`;
+- `src/astra_runtime/domain/tiny_vertical_slice.py`.
+
+No production-schema path is authorized.
+
+The tiny vertical slice is not generalized into the persistent world.
+
+The read-only state-owner facade is not promoted into a world-state manager.
+
+No durable persistence engine, generalized relation registry, global
+bitemporal store, second transaction journal, social system, institution
+system, sensing/knowledge system, embodiment/harm system, or combat system is
+introduced.
+
+R4-B is now explicitly authorized and implemented locally pending regression
+certification.
+
+This does not activate R4 generally.
+
+Runtime promotion remains uncleared.
+
+### 5.64 R4-B regression certification and guardrail-recovery evidence
+
+The bounded R4-B persistent-world entity/location representation completed
+repository-wide regression certification.
+
+Successful certification evidence:
+
+- focused R4-B pre-regression: `241 passed`;
+- broader PR2 regression: `415 passed`;
+- full repository regression:
+  `9378 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused R4-B post-suite regression: `316 passed`;
+- `git diff --check`: clean;
+- changed paths: `13`;
+- production runtime paths: `1`;
+- production schema paths: `0`.
+
+The single warning is the pre-existing `PytestRemovedIn10Warning` concerning
+a class-scoped fixture defined as an instance method. It is nonblocking for
+R4-B.
+
+Failure evidence was preserved rather than discarded.
+
+Before the repository-wide guardrail compatibility repair, the full suite
+reported:
+
+`40 failed, 9338 passed, 10 skipped, 2 xfailed, 1 warning`.
+
+Those failures were classified as:
+
+`stale_runtime_domain_authorization_guardrails`
+
+rather than R4-B behavioral defects.
+
+The lawful compatibility repair changed only test infrastructure and
+historical guardrail compatibility surfaces. It did not expand production
+runtime scope or production-schema scope.
+
+Repair checkpoints passed as follows:
+
+- shared runtime-domain package guardrail: `3 passed`;
+- historical guardrail compatibility: `72 passed`;
+- representative legacy domain guardrails: `342 passed`;
+- PR-9 / RT-002 pass-through seam: `511 passed`;
+- focused R4-B after repair: `241 passed`.
+
+R4-B implementation state is now:
+
+`implemented_regression_certified_pending_commit`
+
+This certification does not activate R4 generally.
+
+Runtime promotion remains unauthorized.

@@ -43,6 +43,7 @@ PR = 427
 HEAD = "6ba3c28b2b7805958e2d01018ff4828f7307be56"
 MERGE = "98b8bcec284f4a233af76ae7cb2ba88614df8b97"
 TREE = "d1953e09d1d0bfa55659e98934bcff8b84946307"
+ACCEPTED_MERGE = "a7d7f912254abeab5716d23d3dc2f7fc5d6c4e59"
 
 CI_RUN = 254
 CI_RUN_ID = 35487544104
@@ -67,8 +68,9 @@ def read_at(ref, path):
 
 def load(path):
     return json.loads(
-        path.read_text(
-            encoding="utf-8",
+        read_at(
+            ACCEPTED_MERGE,
+            path,
         )
     )
 
@@ -196,20 +198,22 @@ def test_runtime_r4_and_promotion_authority_remain_closed():
 
 
 def test_assessment_and_package_are_unchanged_by_closure():
-    current_assessment = ASSESSMENT.read_text(
-        encoding="utf-8",
+    accepted_assessment = read_at(
+        ACCEPTED_MERGE,
+        ASSESSMENT,
     )
 
-    current_package = PACKAGE.read_text(
-        encoding="utf-8",
+    accepted_package = read_at(
+        ACCEPTED_MERGE,
+        PACKAGE,
     )
 
-    assert current_assessment == read_at(
+    assert accepted_assessment == read_at(
         MERGE,
         ASSESSMENT,
     )
 
-    assert current_package == read_at(
+    assert accepted_package == read_at(
         MERGE,
         PACKAGE,
     )
@@ -236,12 +240,14 @@ def test_completion_assessment_regression_is_snapshot_frozen():
 
 
 def test_program_and_decision_record_terminal_closure():
-    program = PROG.read_text(
-        encoding="utf-8",
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
     )
 
-    decisions = DEC.read_text(
-        encoding="utf-8",
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
     )
 
     assert "**Artifact version:** `0.4.66`" in program
@@ -322,12 +328,14 @@ def test_terminal_closure_validation_evidence_is_exact():
         == expected
     )
 
-    program = PROG.read_text(
-        encoding="utf-8",
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
     )
 
-    decisions = DEC.read_text(
-        encoding="utf-8",
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
     )
 
     assert (

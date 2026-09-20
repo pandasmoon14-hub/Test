@@ -924,6 +924,7 @@ class TestGuardrailAllowlists:
             "object_lever_transaction_preview_bridge.py",
             "object_lever_event_commit_state_delta_path.py",
             "object_lever_replay_audit_check.py",
+            "persistent_world_entity_location_representation.py",
         }
         domain_dir = REPO_ROOT / "src" / "astra_runtime" / "domain"
         actual = {p.name for p in domain_dir.iterdir() if p.is_file()}

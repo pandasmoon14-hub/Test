@@ -7294,3 +7294,70 @@ The terminal closure is locally certified.
 
 This certification does not authorize R4-B implementation, runtime or
 schema implementation, R4 activation, or runtime promotion.
+
+## 2026-09-20 decision — R4-B persistent-world entity/location implementation
+
+- **Decision ID:** `R4-B-PERSISTENT-WORLD-ENTITY-LOCATION-IMPLEMENTATION-001`
+- **Authorization reference:** `owner_directive_2026-09-20_r4_b_implementation_authorization`
+- **Authority effect:** `bounded_persistent_world_entity_location_representation_implementation_only`
+- **Starting baseline:** `a7d7f912254abeab5716d23d3dc2f7fc5d6c4e59`
+- **Starting tree:** `4b49a8c0f7c2e6fafd1da975cec4ce083284ba8a`
+- **Package:** `R4-B`
+- **Package name:** `persistent_world_entity_location_representation_implementation`
+- **Runtime implementation path:** `src/astra_runtime/domain/persistent_world_entity_location_representation.py`
+- **Package-specific runtime test:** `tests/test_r4_b_persistent_world_entity_location_representation.py`
+- **Production schema paths authorized:** `0`
+- **R4-B implementation authorized:** `true`
+- **R4-B implementation state:** `implemented_pending_regression_certification`
+- **PR2-IMPL status:** `merged`
+- **R4-B ready pending authorization:** `false`
+- **R4-B authorized:** `true`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The owner authorization is restricted to the already-defined R4-B package.
+
+The implementation reuses existing backend identity and state-owner contracts
+without modifying their semantics or transferring semantic ownership.
+
+No generalized world-state owner, durable persistence implementation,
+generalized relation registry, production schema, model-owned authority,
+R4 activation, or runtime promotion is authorized.
+
+## 2026-09-20 decision — R4-B regression certification
+
+- **Decision ID:** `R4-B-REGRESSION-CERTIFICATION-002`
+- **Starting baseline:** `a7d7f912254abeab5716d23d3dc2f7fc5d6c4e59`
+- **R4-B regression certified:** `true`
+- **R4-B implementation state:** `implemented_regression_certified_pending_commit`
+- **Focused R4-B pre-regression:** `241 passed`
+- **Broader PR2 regression:** `415 passed`
+- **Full repository regression:** `9378 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused R4-B post-suite regression:** `316 passed`
+- **Changed paths:** `13`
+- **Production runtime paths:** `1`
+- **Production schema paths:** `0`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+Failure evidence retained:
+
+- initial full-suite result:
+  `40 failed, 9338 passed, 10 skipped, 2 xfailed, 1 warning`;
+- classification:
+  `stale_runtime_domain_authorization_guardrails`;
+- R4-B behavioral defect identified: `false`;
+- repair scope:
+  `test_infrastructure_and_historical_compatibility_only`.
+
+Repair checkpoints:
+
+- shared package guardrail: `3 passed`;
+- historical compatibility: `72 passed`;
+- representative legacy guardrails: `342 passed`;
+- PR-9 / RT-002 pass-through seam: `511 passed`;
+- focused R4-B after repair: `241 passed`.
+
+The certification validates the bounded R4-B implementation only. It does
+not authorize general R4 activation, runtime promotion, persistence
+implementation, or production-schema implementation.
