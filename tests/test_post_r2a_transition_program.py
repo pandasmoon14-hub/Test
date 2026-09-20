@@ -393,7 +393,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.68"
+    assert manifest["artifact_version"] == "0.4.70"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -1317,7 +1317,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.68`" in program
+    assert "**Artifact version:** `0.4.70`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -1544,7 +1544,7 @@ def test_r4_b_current_regression_certified_lifecycle():
     candidate = pr2_impl["first_playable_candidate"]
     target = manifest["r4_native_substrate_design_target"]
 
-    state = "implemented_regression_certified_pending_commit"
+    state = "merged_complete"
 
     # PR2-IMPL remains terminal.
     assert pr2_impl["status"] == "merged"
@@ -1598,3 +1598,161 @@ def test_r4_b_current_regression_certified_lifecycle():
 
     assert pr2_impl["r4_activation_authorized"] is False
     assert pr2_impl["runtime_promotion_authorized"] is False
+
+
+
+def test_r4_b_post_merge_closure_is_terminal_and_bounded():
+    manifest = _load_manifest()
+
+    impl = next(
+        row
+        for row in manifest["workstreams"]
+        if row["workstream_id"] == "PR2-IMPL"
+    )
+
+    candidate = impl["first_playable_candidate"]
+    target = manifest["r4_native_substrate_design_target"]
+
+    state = "merged_complete"
+
+    assert manifest["artifact_version"] == "0.4.70"
+
+    assert candidate["implementation_state"] == state
+    assert candidate["post_merge_closure_complete"] is True
+
+    assert target["r4_b_implementation_state"] == state
+    assert target["r4_b_post_merge_closure_complete"] is True
+
+    assert (
+        target[
+            "r4_b_post_merge_closure_authorization_reference"
+        ]
+        == "owner_directive_2026-09-20_r4_b_post_merge_closure"
+    )
+
+    assert (
+        target[
+            "r4_b_post_merge_closure_authority_effect"
+        ]
+        == "bounded_r4_b_post_merge_lifecycle_reconciliation_only"
+    )
+
+    assert target["r4_b_pull_request"] == 429
+
+    assert (
+        target["r4_b_branch_head"]
+        == "67837933eaab8cd8089e3f37100c6abfdc21115f"
+    )
+
+    assert (
+        target["r4_b_merge_commit"]
+        == "e49b2997d4c965065975f77b885b1db2a2ebf4db"
+    )
+
+    assert (
+        target["r4_b_merge_tree"]
+        == "51fae436b0dbc9f56c656697a9ba2e4dadcbaf95"
+    )
+
+    assert target["r4_b_ci_run"] == 258
+    assert target["r4_b_ci_run_id"] == 35531310888
+
+    # PR2-IMPL itself remains terminal.
+    assert impl["status"] == "merged"
+    assert impl["r4_b_authorized"] is True
+
+    # Closure does not activate downstream authority.
+    assert impl["r4_activation_authorized"] is False
+    assert impl["runtime_promotion_authorized"] is False
+
+    assert target["schema_edits_authorized"] is False
+    assert target["r4_activation_authorized"] is False
+    assert target["runtime_promotion_clear"] is False
+
+    assert manifest["r2_gate_state"]["R4-R6"] == "blocked"
+
+
+
+def test_r4_b_post_merge_closure_regression_certification_is_exact():
+    manifest = _load_manifest()
+
+    impl = next(
+        row
+        for row in manifest["workstreams"]
+        if row["workstream_id"] == "PR2-IMPL"
+    )
+
+    candidate = impl["first_playable_candidate"]
+    target = manifest["r4_native_substrate_design_target"]
+
+    assert manifest["artifact_version"] == "0.4.70"
+
+    # R4-B stays terminal; evidence recording is separate.
+    assert candidate["implementation_state"] == "merged_complete"
+    assert target["r4_b_implementation_state"] == "merged_complete"
+
+    assert (
+        candidate["post_merge_closure_regression_certified"]
+        is True
+    )
+
+    assert (
+        candidate["post_merge_closure_recording_state"]
+        == "regression_certified_pending_commit"
+    )
+
+    assert (
+        target["r4_b_post_merge_closure_regression_certified"]
+        is True
+    )
+
+    assert (
+        target["r4_b_post_merge_closure_recording_state"]
+        == "regression_certified_pending_commit"
+    )
+
+    cert = target[
+        "r4_b_post_merge_closure_regression_certification"
+    ]
+
+    assert cert["focused_pre_certification"]["passed"] == 84
+    assert cert["broader_pr2_regression"]["passed"] == 417
+
+    assert cert["full_repository_suite"] == {
+        "passed": 9382,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "warning_class": "PytestRemovedIn10Warning",
+        "warning_disposition": "existing_nonblocking_deprecation",
+        "result": "pass",
+    }
+
+    assert (
+        cert["focused_post_suite_regression"]["passed"]
+        == 84
+    )
+
+    assert cert["changed_path_count"] == 6
+    assert cert["runtime_implementation_path_count"] == 0
+    assert cert["production_schema_path_count"] == 0
+
+    assert (
+        impl["r4_b_post_merge_closure_regression_certified"]
+        is True
+    )
+
+    assert (
+        impl["r4_b_post_merge_closure_recording_state"]
+        == "regression_certified_pending_commit"
+    )
+
+    # No downstream authority.
+    assert impl["r4_activation_authorized"] is False
+    assert impl["runtime_promotion_authorized"] is False
+
+    assert target["schema_edits_authorized"] is False
+    assert target["r4_activation_authorized"] is False
+    assert target["runtime_promotion_clear"] is False
+
+    assert manifest["r2_gate_state"]["R4-R6"] == "blocked"

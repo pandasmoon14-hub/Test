@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.68`
+**Artifact version:** `0.4.70`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -4047,3 +4047,105 @@ R4-B implementation state is now:
 This certification does not activate R4 generally.
 
 Runtime promotion remains unauthorized.
+
+### 5.65 R4-B post-merge lifecycle closure
+
+The owner authorized the bounded post-merge lifecycle reconciliation for
+R4-B.
+
+Authorization reference:
+
+`owner_directive_2026-09-20_r4_b_post_merge_closure`
+
+Authority effect:
+
+`bounded_r4_b_post_merge_lifecycle_reconciliation_only`
+
+Accepted R4-B pull request:
+
+`#429`
+
+Accepted implementation branch head:
+
+`67837933eaab8cd8089e3f37100c6abfdc21115f`
+
+Accepted merge commit:
+
+`e49b2997d4c965065975f77b885b1db2a2ebf4db`
+
+Accepted merge tree:
+
+`51fae436b0dbc9f56c656697a9ba2e4dadcbaf95`
+
+Accepted GitHub Actions CI:
+
+`#258`
+
+CI run ID:
+
+`35531310888`
+
+R4-B lifecycle state is now terminal:
+
+`merged_complete`
+
+The implementation and regression evidence recorded before merge remain
+authoritative historical evidence for the bounded package.
+
+This closure performs no runtime implementation change and no production
+schema change.
+
+The existing R4-B runtime representation remains the merged implementation;
+the closure only reconciles lifecycle tracking to that already-merged
+repository truth.
+
+General R4 activation remains unauthorized.
+
+Runtime promotion remains unauthorized.
+
+Durable persistence implementation remains unauthorized.
+
+No generalized world-state manager or generalized relation registry is
+authorized by this closure.
+
+`R4-R6` remains blocked.
+
+### 5.66 R4-B post-merge closure regression certification
+
+The bounded R4-B post-merge lifecycle closure completed repository-wide
+regression certification.
+
+Observed certification evidence:
+
+- focused pre-certification regression: `84 passed`;
+- broader PR2 regression: `417 passed`;
+- full repository suite:
+  `9382 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused post-suite regression: `84 passed`;
+- `git diff --check`: clean;
+- changed paths: `6`;
+- production runtime paths changed: `0`;
+- production schema paths changed: `0`.
+
+The single warning remains the existing nonblocking
+`PytestRemovedIn10Warning` concerning a class-scoped fixture defined as an
+instance method.
+
+R4-B remains terminal:
+
+`merged_complete`
+
+The closure evidence-recording state is:
+
+`regression_certified_pending_commit`
+
+This evidence does not reopen R4-B implementation and does not activate R4
+generally.
+
+Runtime promotion remains unauthorized.
+
+Production-schema implementation remains unauthorized.
+
+Durable persistence implementation remains unauthorized.
+
+`R4-R6` remains blocked.

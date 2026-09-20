@@ -88,7 +88,7 @@ def test_package_is_r4_a_derived_and_explicitly_authorized_for_bounded_implement
 
     assert (
         package["status"]
-        == "implemented_regression_certified_pending_commit"
+        == "merged_complete"
     )
 
     assert package["implementation_authorized"] is True
@@ -311,7 +311,7 @@ def test_r4_b_explicit_implementation_authorization_is_exact():
 
     assert (
         package["implementation_state"]
-        == "implemented_regression_certified_pending_commit"
+        == "merged_complete"
     )
 
     assert package["r4_activation_authorized"] is False
@@ -322,16 +322,16 @@ def test_r4_b_explicit_implementation_authorization_is_exact():
 def test_r4_b_regression_certification_evidence_is_exact():
     package = load(PACKAGE)
 
-    assert package["artifact_version"] == "0.1.1"
+    assert package["artifact_version"] == "0.1.3"
 
     assert (
         package["status"]
-        == "implemented_regression_certified_pending_commit"
+        == "merged_complete"
     )
 
     assert (
         package["implementation_state"]
-        == "implemented_regression_certified_pending_commit"
+        == "merged_complete"
     )
 
     assert package["regression_certified"] is True
@@ -438,6 +438,107 @@ def test_r4_b_regression_certification_evidence_is_exact():
     assert (
         recovery["production_schema_scope_expanded_by_repair"]
         is False
+    )
+
+    assert package["r4_activation_authorized"] is False
+    assert package["runtime_promotion_authorized"] is False
+
+
+
+def test_r4_b_post_merge_closure_metadata_is_exact():
+    package = load(PACKAGE)
+
+    assert package["artifact_version"] == "0.1.3"
+    assert package["status"] == "merged_complete"
+    assert package["implementation_state"] == "merged_complete"
+
+    assert package["post_merge_closure_complete"] is True
+
+    assert (
+        package["post_merge_closure_authorization_reference"]
+        == "owner_directive_2026-09-20_r4_b_post_merge_closure"
+    )
+
+    assert (
+        package["post_merge_closure_authority_effect"]
+        == "bounded_r4_b_post_merge_lifecycle_reconciliation_only"
+    )
+
+    assert (
+        package["post_merge_closure_recorded_from"]
+        == "e49b2997d4c965065975f77b885b1db2a2ebf4db"
+    )
+
+    assert (
+        package["post_merge_closure_tree"]
+        == "51fae436b0dbc9f56c656697a9ba2e4dadcbaf95"
+    )
+
+    assert package["post_merge_closure_pull_request"] == 429
+
+    assert (
+        package["post_merge_closure_branch_head"]
+        == "67837933eaab8cd8089e3f37100c6abfdc21115f"
+    )
+
+    assert package["post_merge_closure_ci_run"] == 258
+    assert package["post_merge_closure_ci_run_id"] == 35531310888
+
+    assert package["regression_certified"] is True
+    assert package["r4_activation_authorized"] is False
+    assert package["runtime_promotion_authorized"] is False
+
+
+
+def test_r4_b_post_merge_closure_regression_certification_is_exact():
+    package = load(PACKAGE)
+
+    assert package["artifact_version"] == "0.1.3"
+
+    assert package["status"] == "merged_complete"
+    assert package["implementation_state"] == "merged_complete"
+
+    assert package["post_merge_closure_complete"] is True
+    assert package["post_merge_closure_regression_certified"] is True
+
+    assert (
+        package["post_merge_closure_recording_state"]
+        == "regression_certified_pending_commit"
+    )
+
+    expected = {
+        "focused_pre_certification": {
+            "passed": 84,
+            "result": "pass",
+        },
+        "broader_pr2_regression": {
+            "passed": 417,
+            "result": "pass",
+        },
+        "full_repository_suite": {
+            "passed": 9382,
+            "skipped": 10,
+            "xfailed": 2,
+            "warnings": 1,
+            "warning_class": "PytestRemovedIn10Warning",
+            "warning_disposition": (
+                "existing_nonblocking_deprecation"
+            ),
+            "result": "pass",
+        },
+        "focused_post_suite_regression": {
+            "passed": 84,
+            "result": "pass",
+        },
+        "git_diff_check": "clean",
+        "changed_path_count": 6,
+        "runtime_implementation_path_count": 0,
+        "production_schema_path_count": 0,
+    }
+
+    assert (
+        package["post_merge_closure_regression_certification"]
+        == expected
     )
 
     assert package["r4_activation_authorized"] is False
