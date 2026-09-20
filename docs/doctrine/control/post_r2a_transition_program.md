@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.64`
+**Artifact version:** `0.4.65`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -3736,6 +3736,97 @@ PR2-IMPL remains `active` with completion state
 The five carried future-implementation handoffs remain preserved.
 
 R4-B remains not ready pending authorization and remains unauthorized.
+
+Runtime implementation, production-schema implementation, R4 activation,
+and runtime promotion remain unauthorized.
+
+### 5.61 PR2-IMPL R4-B package definition and completion assessment
+
+The live-repository completion audit found that PR2-IMPL could not yet be
+completed from the activation records alone.
+
+R4-A had selected and validated the playable capability, but no distinct
+R4-B implementation-package artifact yet recorded the complete
+thirteen-part package shape required by the PR2-IMPL contract.
+
+Under the already-authorized PR2-IMPL handoff-definition authority, the
+missing bounded package has now been defined as:
+
+`docs/doctrine/reviews/r4_b_persistent_world_entity_location_implementation_package.yaml`
+
+The package is:
+
+`persistent_world_entity_location_representation_implementation`
+
+Its future runtime edit allowlist contains exactly one new runtime module:
+
+`src/astra_runtime/domain/persistent_world_entity_location_representation.py`
+
+No production-schema edit is part of R4-B.
+
+Existing record-identity and state-owner surfaces are dependencies, not
+edit targets.
+
+The existing tiny vertical slice and read-only vertical-slice state-owner
+facade remain unchanged and must not be generalized into a universal
+world ontology or world-state manager.
+
+The five PR2-TEST future-implementation handoffs were individually
+assessed against R4-B.
+
+None is a concrete blocker for this representation-only slice.
+
+The completion assessment therefore finds all seven PR2-IMPL completion
+requirements satisfied.
+
+Authorization reference:
+
+`owner_directive_2026-09-19_pr2_impl_completion_assessment`
+
+Authority effect:
+
+`bounded_implementation_handoff_completion_assessment_only`
+
+PR2-IMPL candidate state is now `validated` with completion state:
+
+`validated_complete_r4_b_package_defined_pending_post_merge_closure`
+
+This is not yet terminal closure.
+
+R4-B remains not ready pending authorization until this completion
+assessment is merged and a separate PR2-IMPL completion post-merge
+closure is recorded.
+
+R4-B remains unauthorized.
+
+Runtime implementation, production-schema implementation, R4 activation,
+and runtime promotion remain unauthorized.
+
+#### PR2-IMPL completion assessment validation evidence
+
+The bounded PR2-IMPL completion assessment and R4-B package definition
+passed local regression certification.
+
+Observed evidence:
+
+- focused pre-certification regression: `54 passed`;
+- broader PR2 regression: `405 passed`;
+- full local repository suite: `9343 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused post-suite regression: `54 passed`;
+- `git diff --check`: clean;
+- exact assessment footprint: nine paths;
+- runtime implementation paths changed: zero;
+- production schema paths changed: zero.
+
+Certification preserves the assessed authority boundary.
+
+PR2-IMPL remains `validated` with completion condition satisfied and
+completion recommended, pending its separate post-merge closure.
+
+R4-B remains not ready pending authorization until that closure is
+recorded.
+
+R4-B remains unauthorized.
 
 Runtime implementation, production-schema implementation, R4 activation,
 and runtime promotion remain unauthorized.

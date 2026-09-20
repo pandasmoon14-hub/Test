@@ -369,9 +369,7 @@ UNRESOLVED_IDENTITY_CLASSES = [
 
 POST_R2_READY = set()
 
-POST_R2_ACTIVE = {
-    "PR2-IMPL",
-}
+POST_R2_ACTIVE = set()
 
 POST_R2_BLOCKED = set()
 
@@ -395,7 +393,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.64"
+    assert manifest["artifact_version"] == "0.4.65"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -578,9 +576,7 @@ def test_r2c_through_pr2_mig_are_merged_and_no_migration_successor_remains():
         for workstream in manifest["workstreams"]
         if workstream["status"] == "active"
     }
-    assert active == {
-        "PR2-IMPL",
-    }
+    assert active == set()
 
     pr2_test = by_id["PR2-TEST"]
     assert pr2_test["status"] == "merged"
@@ -595,6 +591,27 @@ def test_r2c_through_pr2_mig_are_merged_and_no_migration_successor_remains():
         pr2_test["completion_state"]
         == "merged_complete_with_future_implementation_handoffs"
     )
+
+    pr2_impl = by_id["PR2-IMPL"]
+
+    assert pr2_impl["status"] == "validated"
+
+    assert (
+        pr2_impl["completion_state"]
+        == (
+            "validated_complete_r4_b_package_defined_"
+            "pending_post_merge_closure"
+        )
+    )
+
+    assert pr2_impl["completion_condition_satisfied"] is True
+    assert pr2_impl["completion_recommended"] is True
+    assert pr2_impl["r4_b_package_definition_complete"] is True
+    assert pr2_impl["r4_b_authorized"] is False
+    assert pr2_impl["runtime_implementation_authorized"] is False
+    assert pr2_impl["production_schema_authorized"] is False
+    assert pr2_impl["r4_activation_authorized"] is False
+    assert pr2_impl["runtime_promotion_authorized"] is False
 
     r2c = by_id["PR2-R2C"]
     assert r2c["status"] == "merged"
@@ -1279,7 +1296,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.64`" in program
+    assert "**Artifact version:** `0.4.65`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program

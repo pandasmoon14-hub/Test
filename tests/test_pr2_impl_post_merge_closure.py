@@ -34,6 +34,8 @@ CI_RUN_ID = 35469059294
 AUTH = "owner_directive_2026-09-19_pr2_impl_post_merge_closure"
 EFFECT = "bounded_implementation_handoff_post_merge_lifecycle_reconciliation_only"
 
+ACCEPTED_MERGE = "058beb0577ee5942ab9fb9c526d675b689b3e829"
+
 HANDOFF_IDS = ['PR2-TEST-HANDOFF-TOPOLOGY-001', 'PR2-TEST-HANDOFF-PERSIST-001', 'PR2-TEST-HANDOFF-FIDELITY-001', 'PR2-TEST-HANDOFF-BP-001', 'PR2-TEST-HANDOFF-FAILURE-001']
 
 
@@ -51,8 +53,9 @@ def read_at(ref, path):
 
 def load(path):
     return json.loads(
-        path.read_text(
-            encoding="utf-8",
+        read_at(
+            ACCEPTED_MERGE,
+            path,
         )
     )
 
@@ -190,12 +193,14 @@ def test_activation_regression_is_frozen_at_accepted_merge():
 
 
 def test_program_and_decision_record_bounded_closure():
-    program = PROG.read_text(
-        encoding="utf-8",
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
     )
 
-    decisions = DEC.read_text(
-        encoding="utf-8",
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
     )
 
     assert "**Artifact version:** `0.4.64`" in program
@@ -335,12 +340,14 @@ def test_closure_validation_evidence_is_exact():
     assert certification["runtime_implementation_path_count"] == 0
     assert certification["production_schema_path_count"] == 0
 
-    program = PROG.read_text(
-        encoding="utf-8",
+    program = read_at(
+        ACCEPTED_MERGE,
+        PROG,
     )
 
-    decisions = DEC.read_text(
-        encoding="utf-8",
+    decisions = read_at(
+        ACCEPTED_MERGE,
+        DEC,
     )
 
     assert (
