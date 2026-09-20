@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.68",
+  "artifact_version": "0.4.70",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -2307,8 +2307,12 @@
         "authorization_starting_baseline": "a7d7f912254abeab5716d23d3dc2f7fc5d6c4e59",
         "runtime_path": "src/astra_runtime/domain/persistent_world_entity_location_representation.py",
         "test_path": "tests/test_r4_b_persistent_world_entity_location_representation.py",
-        "implementation_state": "implemented_regression_certified_pending_commit",
-        "regression_certified": true
+        "implementation_state": "merged_complete",
+        "regression_certified": true,
+        "post_merge_closure_complete": true,
+        "post_merge_closure_recorded_from": "e49b2997d4c965065975f77b885b1db2a2ebf4db",
+        "post_merge_closure_regression_certified": true,
+        "post_merge_closure_recording_state": "regression_certified_pending_commit"
       },
       "package_rules": {
         "bounded_package_required": true,
@@ -2499,7 +2503,12 @@
       },
       "r4_b_authorization_reference": "owner_directive_2026-09-20_r4_b_implementation_authorization",
       "r4_b_authority_effect": "bounded_persistent_world_entity_location_representation_implementation_only",
-      "r4_b_authorization_starting_baseline": "a7d7f912254abeab5716d23d3dc2f7fc5d6c4e59"
+      "r4_b_authorization_starting_baseline": "a7d7f912254abeab5716d23d3dc2f7fc5d6c4e59",
+      "r4_b_post_merge_closure_authorization_reference": "owner_directive_2026-09-20_r4_b_post_merge_closure",
+      "r4_b_post_merge_closure_authority_effect": "bounded_r4_b_post_merge_lifecycle_reconciliation_only",
+      "r4_b_post_merge_closure_recorded_from": "e49b2997d4c965065975f77b885b1db2a2ebf4db",
+      "r4_b_post_merge_closure_regression_certified": true,
+      "r4_b_post_merge_closure_recording_state": "regression_certified_pending_commit"
     }
   ],
   "program_completion_rule": {
@@ -2577,7 +2586,7 @@
     "r4_b_authority_effect": "bounded_persistent_world_entity_location_representation_implementation_only",
     "r4_b_authorization_starting_baseline": "a7d7f912254abeab5716d23d3dc2f7fc5d6c4e59",
     "r4_b_authorization_starting_tree": "4b49a8c0f7c2e6fafd1da975cec4ce083284ba8a",
-    "r4_b_implementation_state": "implemented_regression_certified_pending_commit",
+    "r4_b_implementation_state": "merged_complete",
     "r4_b_runtime_edit_allowlist": [
       "src/astra_runtime/domain/persistent_world_entity_location_representation.py"
     ],
@@ -2649,6 +2658,46 @@
       },
       "production_runtime_scope_expanded_by_repair": false,
       "production_schema_scope_expanded_by_repair": false
+    },
+    "r4_b_post_merge_closure_complete": true,
+    "r4_b_post_merge_closure_authorization_reference": "owner_directive_2026-09-20_r4_b_post_merge_closure",
+    "r4_b_post_merge_closure_authority_effect": "bounded_r4_b_post_merge_lifecycle_reconciliation_only",
+    "r4_b_post_merge_closure_recorded_from": "e49b2997d4c965065975f77b885b1db2a2ebf4db",
+    "r4_b_post_merge_closure_tree": "51fae436b0dbc9f56c656697a9ba2e4dadcbaf95",
+    "r4_b_pull_request": 429,
+    "r4_b_branch_head": "67837933eaab8cd8089e3f37100c6abfdc21115f",
+    "r4_b_merge_commit": "e49b2997d4c965065975f77b885b1db2a2ebf4db",
+    "r4_b_merge_tree": "51fae436b0dbc9f56c656697a9ba2e4dadcbaf95",
+    "r4_b_ci_run": 258,
+    "r4_b_ci_run_id": 35531310888,
+    "r4_b_post_merge_closure_regression_certified": true,
+    "r4_b_post_merge_closure_recording_state": "regression_certified_pending_commit",
+    "r4_b_post_merge_closure_regression_certification": {
+      "focused_pre_certification": {
+        "passed": 84,
+        "result": "pass"
+      },
+      "broader_pr2_regression": {
+        "passed": 417,
+        "result": "pass"
+      },
+      "full_repository_suite": {
+        "passed": 9382,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "warning_class": "PytestRemovedIn10Warning",
+        "warning_disposition": "existing_nonblocking_deprecation",
+        "result": "pass"
+      },
+      "focused_post_suite_regression": {
+        "passed": 84,
+        "result": "pass"
+      },
+      "git_diff_check": "clean",
+      "changed_path_count": 6,
+      "runtime_implementation_path_count": 0,
+      "production_schema_path_count": 0
     }
   },
   "pr2_audit_completion_target": {

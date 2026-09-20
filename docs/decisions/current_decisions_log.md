@@ -7361,3 +7361,51 @@ Repair checkpoints:
 The certification validates the bounded R4-B implementation only. It does
 not authorize general R4 activation, runtime promotion, persistence
 implementation, or production-schema implementation.
+
+## 2026-09-20 decision — R4-B post-merge lifecycle closure
+
+- **Decision ID:** `R4-B-POST-MERGE-CLOSURE-003`
+- **Authorization reference:** `owner_directive_2026-09-20_r4_b_post_merge_closure`
+- **Authority effect:** `bounded_r4_b_post_merge_lifecycle_reconciliation_only`
+- **Accepted PR:** `#429`
+- **Accepted branch head:** `67837933eaab8cd8089e3f37100c6abfdc21115f`
+- **Merge commit:** `e49b2997d4c965065975f77b885b1db2a2ebf4db`
+- **Merge tree:** `51fae436b0dbc9f56c656697a9ba2e4dadcbaf95`
+- **CI run:** `#258`
+- **CI run ID:** `35531310888`
+- **R4-B lifecycle state:** `merged_complete`
+- **R4-B regression certified:** `true`
+- **Production runtime changes by closure:** `0`
+- **Production schema changes by closure:** `0`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+- **Durable persistence implementation authorized:** `false`
+
+The already-merged R4-B runtime implementation remains unchanged by this
+closure. This decision reconciles lifecycle state only.
+
+R4-R6 remains blocked.
+
+## 2026-09-20 decision — R4-B post-merge closure regression certification
+
+- **Decision ID:** `R4-B-POST-MERGE-CLOSURE-REGRESSION-CERTIFICATION-004`
+- **R4-B lifecycle state:** `merged_complete`
+- **Closure regression certified:** `true`
+- **Closure evidence-recording state:** `regression_certified_pending_commit`
+- **Focused pre-certification:** `84 passed`
+- **Broader PR2 regression:** `417 passed`
+- **Full repository regression:** `9382 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite regression:** `84 passed`
+- **Changed paths:** `6`
+- **Production runtime paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+- **R4-R6:** `blocked`
+
+The warning remains the existing nonblocking
+`PytestRemovedIn10Warning`.
+
+This certification validates only the lifecycle closure already recorded for
+the merged R4-B implementation. It grants no additional runtime, schema,
+persistence, canon, or model authority.

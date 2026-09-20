@@ -1,7 +1,7 @@
 {
   "artifact_id": "MYRAVANT-R4-B-PERSISTENT-WORLD-ENTITY-LOCATION-IMPLEMENTATION-PACKAGE-001",
-  "artifact_version": "0.1.1",
-  "status": "implemented_regression_certified_pending_commit",
+  "artifact_version": "0.1.3",
+  "status": "merged_complete",
   "package_id": "R4-B",
   "package_name": "persistent_world_entity_location_representation_implementation",
   "definition_workstream": "PR2-IMPL",
@@ -250,7 +250,7 @@
   "implementation_starting_tree": "4b49a8c0f7c2e6fafd1da975cec4ce083284ba8a",
   "implementation_runtime_path": "src/astra_runtime/domain/persistent_world_entity_location_representation.py",
   "implementation_test_path": "tests/test_r4_b_persistent_world_entity_location_representation.py",
-  "implementation_state": "implemented_regression_certified_pending_commit",
+  "implementation_state": "merged_complete",
   "regression_certified": true,
   "regression_certification": {
     "focused_pre_regression": {
@@ -315,5 +315,43 @@
     },
     "production_runtime_scope_expanded_by_repair": false,
     "production_schema_scope_expanded_by_repair": false
+  },
+  "post_merge_closure_complete": true,
+  "post_merge_closure_authorization_reference": "owner_directive_2026-09-20_r4_b_post_merge_closure",
+  "post_merge_closure_authority_effect": "bounded_r4_b_post_merge_lifecycle_reconciliation_only",
+  "post_merge_closure_recorded_from": "e49b2997d4c965065975f77b885b1db2a2ebf4db",
+  "post_merge_closure_tree": "51fae436b0dbc9f56c656697a9ba2e4dadcbaf95",
+  "post_merge_closure_pull_request": 429,
+  "post_merge_closure_branch_head": "67837933eaab8cd8089e3f37100c6abfdc21115f",
+  "post_merge_closure_ci_run": 258,
+  "post_merge_closure_ci_run_id": 35531310888,
+  "post_merge_closure_regression_certified": true,
+  "post_merge_closure_recording_state": "regression_certified_pending_commit",
+  "post_merge_closure_regression_certification": {
+    "focused_pre_certification": {
+      "passed": 84,
+      "result": "pass"
+    },
+    "broader_pr2_regression": {
+      "passed": 417,
+      "result": "pass"
+    },
+    "full_repository_suite": {
+      "passed": 9382,
+      "skipped": 10,
+      "xfailed": 2,
+      "warnings": 1,
+      "warning_class": "PytestRemovedIn10Warning",
+      "warning_disposition": "existing_nonblocking_deprecation",
+      "result": "pass"
+    },
+    "focused_post_suite_regression": {
+      "passed": 84,
+      "result": "pass"
+    },
+    "git_diff_check": "clean",
+    "changed_path_count": 6,
+    "runtime_implementation_path_count": 0,
+    "production_schema_path_count": 0
   }
 }
