@@ -7620,3 +7620,89 @@ snapshot had advanced to `0.4.77`.
 
 The recovery preserves the existing `0.4.77` / `0.1.6`
 artifact versions and updates only those stale expectations.
+
+
+## 2026-09-20 decision — R4-D local checkpoint/restore package definition
+
+- **Decision ID:** `R4-D-PACKAGE-DEFINITION-001`
+- **Package:** `R4-D`
+- **Name:** `persistent_world_local_checkpoint_restore`
+- **Definition baseline:** `5b623dbe0711f20c6c1446774f98986b6077a21a`
+- **Definition tree:** `39d0246e5895f840ef6a108d9191124e30eaf1e4`
+- **Predecessor:** `R4-C`
+- **Persistence contract:** `PR2-PERSIST`
+- **Implementation handoff:** `PR2-TEST-HANDOFF-PERSIST-001`
+- **Implementation authorized:** `false`
+- **Production schema authorized:** `false`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+R4-D allows an explicitly qualified local checkpoint of the bounded
+R4-B/R4-C campaign state to survive process/session boundaries.
+
+Storage does not acquire semantic ownership.
+
+Checkpoint identity does not define timeline identity, branch identity,
+canonicality, or correction authority.
+
+Uncheckpointed crash recovery is outside this first tranche.
+
+Implementation requires separate owner authorization.
+
+## 2026-09-20 decision — R4-D definition regression certification
+
+- **Decision ID:** `R4-D-DEFINITION-CERTIFICATION-002`
+- **Package:** `R4-D`
+- **Package version:** `0.1.0`
+- **Control version:** `0.4.78`
+- **Focused certification:** `123 passed`
+- **Broader PR2/R4 regression:** `519 passed`
+- **Full repository:** `9444 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite:** `49 passed`
+- **Warning disposition:** existing nonblocking `PytestRemovedIn10Warning`
+- **Changed paths:** `7`
+- **Runtime paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **Definition regression certified:** `true`
+- **Definition recording state:** `regression_certified_pending_commit`
+- **Implementation authorized:** `false`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+This certifies the bounded R4-D package definition only.
+
+It does not authorize runtime implementation, production schema work,
+general R4 activation, runtime promotion, or automatic successor
+activation.
+
+
+## 2026-09-21 decision — R4-D certification-recording stale next-gate recovery
+
+- **Failed validation:** `1 failed, 50 passed`
+- **Failed test:** `test_r4_d_manifest_matches_package_definition`
+- **Classification:** `stale_r4_d_next_gate_expectation_after_certification_recording`
+- **Certified next gate:** `r4_d_definition_commit_push`
+- **Stale expected gate:** `r4_d_definition_regression_certification`
+- **R4-D behavioral defect detected:** `false`
+- **Runtime scope expanded:** `false`
+- **Production schema scope expanded:** `false`
+- **Semantic authority expanded:** `false`
+- **Full repository rerun required:** `false`
+
+The repair preserves the already-certified package and manifest
+state and changes only the stale test expectation plus recovery
+evidence.
+
+
+## 2026-09-21 decision — R4-D stale next-gate authorization recovery
+
+- **Root-seam validation:** `1 failed, 2 passed`
+- **Failed test:** `test_r4_d_manifest_matches_package_definition`
+- **Classification:** `stale_r4_d_next_gate_authorization_expectation_after_certification_recording`
+- **Authoritative value:** `next_gate_authorized = false`
+- **Stale expected value:** `true`
+- **R4-D behavioral defect detected:** `false`
+- **Runtime scope expanded:** `false`
+- **Production schema scope expanded:** `false`
+- **Semantic authority expanded:** `false`
+- **Full repository rerun required:** `false`

@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.77`
+**Artifact version:** `0.4.78`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -4590,3 +4590,183 @@ expectations.
 The previously completed full-repository certification remains
 authoritative evidence and is not rerun for this test-only
 alignment.
+
+
+### 5.74 R4-D local checkpoint/restore package definition
+
+Post-R4-C read-only successor analysis selected:
+
+`R4-D`
+
+`persistent_world_local_checkpoint_restore`
+
+Definition baseline:
+
+`5b623dbe0711f20c6c1446774f98986b6077a21a`
+
+Definition tree:
+
+`39d0246e5895f840ef6a108d9191124e30eaf1e4`
+
+R4-B provides persistent campaign entity/location representation.
+
+R4-C provides deterministic authoritative movement and committed
+transition evidence.
+
+The immediate persistence gap is that this bounded state is still
+in-memory only.
+
+R4-D defines one narrow local/offline checkpoint and restore path over
+the existing R4-B/R4-C state.
+
+It consumes PR2-PERSIST and
+`PR2-TEST-HANDOFF-PERSIST-001`.
+
+It does not create a general persistence engine, database, event store,
+global save layout, timeline identity, branch identity, canonicality,
+generalized replay engine, or uncheckpointed crash-recovery claim.
+
+`state_store.py` remains reference-only.
+
+Proposed implementation module:
+
+`src/astra_runtime/domain/persistent_world_local_checkpoint_restore.py`
+
+Production-schema edits:
+
+`0`
+
+Implementation remains separately unauthorized.
+
+General R4 activation remains unauthorized.
+
+Runtime promotion remains unauthorized.
+
+`R4-R6` remains blocked.
+
+The next bounded gate is R4-D definition regression certification.
+
+### 5.75 R4-D definition regression certification
+
+The bounded R4-D package definition is regression-certified.
+
+Package:
+
+`R4-D`
+
+`persistent_world_local_checkpoint_restore`
+
+Certification evidence:
+
+- focused definition certification: `123 passed`;
+- broader PR2/R4 regression: `519 passed`;
+- full repository suite:
+  `9444 passed, 10 skipped, 2 xfailed, 1 warning`;
+- warning:
+  existing nonblocking `PytestRemovedIn10Warning`;
+- focused post-suite definition confirmation: `49 passed`;
+- `git diff --check`: clean;
+- exact changed-path count: `7`;
+- runtime implementation paths changed: `0`;
+- production schema paths changed: `0`.
+
+Package artifact version remains:
+
+`0.1.0`
+
+Control artifact version remains:
+
+`0.4.78`
+
+No version increment is created merely by recording evidence for the
+same uncommitted definition snapshot.
+
+Definition recording state is:
+
+`regression_certified_pending_commit`
+
+R4-D implementation remains unauthorized.
+
+General R4 activation remains unauthorized.
+
+Runtime promotion remains unauthorized.
+
+`R4-R6` remains blocked.
+
+The next separate bounded gate is R4-D definition commit/push.
+
+
+### 5.76 R4-D definition-certification recording recovery
+
+The first focused validation after R4-D definition-certification
+recording produced:
+
+`1 failed, 50 passed`
+
+The single failure was:
+
+`test_r4_d_manifest_matches_package_definition`
+
+Classification:
+
+`stale_r4_d_next_gate_expectation_after_certification_recording`
+
+The certified manifest correctly advanced the next gate to:
+
+`r4_d_definition_commit_push`
+
+One package test still expected the pre-certification gate:
+
+`r4_d_definition_regression_certification`
+
+No R4-D runtime behavioral defect was detected.
+
+Runtime scope expansion:
+
+`false`
+
+Production-schema scope expansion:
+
+`false`
+
+Semantic-authority expansion:
+
+`false`
+
+Full repository rerun required:
+
+`false`
+
+The existing full-repository certification remains valid because
+this failure is isolated to a stale test-only control expectation.
+
+
+### 5.77 R4-D certification recovery — stale next-gate authorization expectation
+
+Root-seam recovery validation produced:
+
+`1 failed, 2 passed`
+
+The remaining failure was a stale test-only Boolean expectation.
+
+The certified manifest correctly records:
+
+`r4_d_definition_commit_push`
+
+with:
+
+`next_gate_authorized = false`
+
+The package test still expected:
+
+`next_gate_authorized = true`
+
+Classification:
+
+`stale_r4_d_next_gate_authorization_expectation_after_certification_recording`
+
+No R4-D behavioral defect, runtime expansion, schema expansion, or
+semantic-authority expansion was detected.
+
+The existing full-repository certification remains valid and is not
+rerun for this isolated test-only expectation repair.

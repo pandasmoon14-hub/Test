@@ -1,0 +1,387 @@
+{
+  "artifact_id": "MYRAVANT-R4-D-PERSISTENT-WORLD-LOCAL-CHECKPOINT-RESTORE-PACKAGE-001",
+  "artifact_version": "0.1.0",
+  "status": "package_defined",
+  "package_id": "R4-D",
+  "package_name": "persistent_world_local_checkpoint_restore",
+  "definition_authorization_reference": "owner_directive_2026-09-20_r4_d_package_definition",
+  "definition_authority_effect": "bounded_r4_d_package_definition_only",
+  "definition_starting_baseline": "5b623dbe0711f20c6c1446774f98986b6077a21a",
+  "definition_starting_tree": "39d0246e5895f840ef6a108d9191124e30eaf1e4",
+  "implementation_authorized": false,
+  "r4_activation_authorized": false,
+  "runtime_promotion_authorized": false,
+  "production_schema_implementation_authorized": false,
+  "predecessor": {
+    "package_id": "R4-C",
+    "required_status": "merged_complete",
+    "post_merge_closure_required": true,
+    "verified_merge_commit": "5b623dbe0711f20c6c1446774f98986b6077a21a",
+    "verified_tree": "39d0246e5895f840ef6a108d9191124e30eaf1e4"
+  },
+  "playable_need": [
+    "a player must be able to leave a deliberately checkpointed campaign and later resume from the same authoritative persistent-world state",
+    "R4-B entity/location state and R4-C committed movement evidence must survive process termination after a qualified checkpoint is successfully accepted",
+    "restore must reproduce authoritative state deterministically without model or narration reconstruction"
+  ],
+  "bounded_capability": {
+    "adds": [
+      "one deterministic local/offline checkpoint envelope for one R4-C PersistentWorldMovementRuntimeState",
+      "canonical checkpoint serialization",
+      "checkpoint format identity and integrity evidence",
+      "caller-path local durable checkpoint replacement",
+      "deterministic restore into the existing bounded R4-C runtime-state representation",
+      "preservation of committed movement evidence needed for post-restore retry and replay"
+    ],
+    "does_not_add": [
+      "generalized persistence engine",
+      "generalized world-state manager",
+      "general save-game framework",
+      "event store",
+      "event-sourcing mandate",
+      "write-ahead-log mandate",
+      "database selection",
+      "filesystem-layout authority",
+      "cloud save service",
+      "replication",
+      "multi-writer coordination",
+      "automatic checkpoint scheduler",
+      "crash recovery for uncheckpointed state",
+      "generalized replay engine",
+      "timeline identity",
+      "branch identity",
+      "branch canonicality",
+      "correction authority",
+      "version-applicability authority",
+      "new spatial semantics",
+      "model-owned authoritative state"
+    ]
+  },
+  "semantic_owners": [
+    {
+      "concern": "qualified_checkpoint_recovery_replay_and_write",
+      "owner_ref": "AFQR-01"
+    },
+    {
+      "concern": "command_identity_and_technical_retry",
+      "owner_ref": "AFQR-02"
+    },
+    {
+      "concern": "logical_time_and_causal_order",
+      "owner_ref": "AFQR-04"
+    },
+    {
+      "concern": "timeline_identity",
+      "owner_ref": "AFQR-08"
+    },
+    {
+      "concern": "spatial_location_semantics",
+      "owner_ref": "AFQR-18"
+    },
+    {
+      "concern": "version_identity_and_effectivity",
+      "owner_ref": "R2B-CROSS-PHASE"
+    }
+  ],
+  "persistence_contract": {
+    "contract_ref": "PR2-PERSIST",
+    "artifact": "docs/doctrine/control/myravant_persistence_snapshot_replay_recovery_contract.md",
+    "carried_handoff": "PR2-TEST-HANDOFF-PERSIST-001",
+    "storage_acquires_semantic_ownership": false,
+    "checkpoint_materialization_is_commitment": false,
+    "restore_is_new_semantic_execution": false,
+    "local_offline_operation_required": true
+  },
+  "implementation_owner": {
+    "proposed_module": "astra_runtime.domain.persistent_world_local_checkpoint_restore",
+    "proposed_runtime_path": "src/astra_runtime/domain/persistent_world_local_checkpoint_restore.py",
+    "owns": [
+      "package-local checkpoint validation",
+      "canonical checkpoint serialization",
+      "checkpoint integrity verification",
+      "caller-supplied local-path checkpoint writing",
+      "incomplete-or-corrupt checkpoint rejection",
+      "bounded R4-C state reconstruction",
+      "package-local checkpoint and restore failure classification"
+    ],
+    "does_not_own": [
+      "AFQR-01 semantic commitment or recovery meaning",
+      "AFQR-02 command identity",
+      "AFQR-04 logical time",
+      "AFQR-08 timeline identity",
+      "AFQR-18 location semantics",
+      "version applicability",
+      "general persistence infrastructure",
+      "database selection",
+      "backup policy",
+      "replication",
+      "general replay infrastructure",
+      "branching or canonicality",
+      "model interpretation",
+      "narration",
+      "canon"
+    ],
+    "semantic_authority_acquired": false
+  },
+  "dependencies": [
+    {
+      "kind": "runtime",
+      "ref": "astra_runtime.domain.persistent_world_entity_location_representation"
+    },
+    {
+      "kind": "runtime",
+      "ref": "astra_runtime.domain.persistent_world_movement_integration"
+    },
+    {
+      "kind": "contract",
+      "ref": "PR2-PERSIST"
+    },
+    {
+      "kind": "handoff",
+      "ref": "PR2-TEST-HANDOFF-PERSIST-001"
+    },
+    {
+      "kind": "explicit_non_dependency",
+      "ref": "astra_runtime.domain.state_store",
+      "qualification": "state_store.py remains reference-only and is not turned into mutable persistence infrastructure"
+    }
+  ],
+  "proposed_implementation_edit_allowlist": {
+    "runtime": [
+      "src/astra_runtime/domain/persistent_world_local_checkpoint_restore.py"
+    ],
+    "tests": [
+      "tests/test_r4_d_persistent_world_local_checkpoint_restore.py"
+    ],
+    "production_schema": []
+  },
+  "checkpoint_semantics": {
+    "scope": "one campaign-scoped PersistentWorldMovementRuntimeState",
+    "checkpoint_requires_explicit_afqr01_qualification": true,
+    "caller_supplies_storage_path": true,
+    "global_save_directory_defined": false,
+    "canonical_serialization_required": true,
+    "integrity_digest_required": true,
+    "format_identity_required": true,
+    "failed_write_may_replace_prior_valid_checkpoint": false,
+    "incomplete_checkpoint_may_be_accepted": false,
+    "corrupt_checkpoint_may_be_accepted": false,
+    "unknown_format_may_be_silently_upgraded": false,
+    "model_or_narration_may_reconstruct_missing_state": false,
+    "uncheckpointed_state_claimed_crash_recoverable": false
+  },
+  "prohibited_scope": [
+    "modify state_store.py into a mutable persistence service",
+    "create a generalized persistence manager",
+    "create a generalized save-game manager",
+    "create a generalized event journal",
+    "create generalized replay infrastructure",
+    "mandate event sourcing",
+    "mandate a database",
+    "mandate SQLite",
+    "mandate a document store",
+    "mandate a write-ahead log",
+    "mandate cloud storage",
+    "create replication or consensus",
+    "create concurrent multi-writer persistence",
+    "define a global campaign directory layout",
+    "define timeline identity from checkpoint identity",
+    "define branch identity from checkpoint identity",
+    "define canonicality from newest checkpoint",
+    "define correction or retcon through file editing",
+    "silently migrate unknown persisted formats",
+    "refresh historical rules or version bases on restore",
+    "claim recovery of state that was never checkpointed",
+    "allow a model to repair missing authoritative state",
+    "authorize R4 activation",
+    "authorize runtime promotion",
+    "authorize implementation implicitly from package definition"
+  ],
+  "deterministic_acceptance_criteria": [
+    {
+      "criterion_id": "R4D-AC-001",
+      "requirement": "checkpoint input must be a valid R4-C PersistentWorldMovementRuntimeState"
+    },
+    {
+      "criterion_id": "R4D-AC-002",
+      "requirement": "checkpoint creation requires explicit caller-supplied AFQR-01 qualification evidence and fails closed without it"
+    },
+    {
+      "criterion_id": "R4D-AC-003",
+      "requirement": "checkpoint identity is bound to the campaign_id carried by the R4-B representation"
+    },
+    {
+      "criterion_id": "R4D-AC-004",
+      "requirement": "the same valid bounded runtime state produces identical canonical checkpoint payload bytes"
+    },
+    {
+      "criterion_id": "R4D-AC-005",
+      "requirement": "checkpoint integrity evidence is computed from the canonical authoritative payload"
+    },
+    {
+      "criterion_id": "R4D-AC-006",
+      "requirement": "the caller supplies the local checkpoint path and R4-D does not define a global filesystem layout"
+    },
+    {
+      "criterion_id": "R4D-AC-007",
+      "requirement": "the initial slice operates locally and offline without network cloud or external AI dependencies"
+    },
+    {
+      "criterion_id": "R4D-AC-008",
+      "requirement": "an accepted checkpoint preserves the complete R4-B representation required by the bounded state"
+    },
+    {
+      "criterion_id": "R4D-AC-009",
+      "requirement": "an accepted checkpoint preserves committed R4-C transition evidence required for retry and replay"
+    },
+    {
+      "criterion_id": "R4D-AC-010",
+      "requirement": "checkpoint writing does not mutate the supplied R4-C runtime-state object"
+    },
+    {
+      "criterion_id": "R4D-AC-011",
+      "requirement": "an interrupted or failed replacement may not cause a partial checkpoint to replace the prior valid checkpoint"
+    },
+    {
+      "criterion_id": "R4D-AC-012",
+      "requirement": "truncated malformed or integrity-mismatched checkpoint material fails closed"
+    },
+    {
+      "criterion_id": "R4D-AC-013",
+      "requirement": "an unsupported checkpoint-format identity fails closed rather than being silently reinterpreted"
+    },
+    {
+      "criterion_id": "R4D-AC-014",
+      "requirement": "successful restore reconstructs a valid R4-C PersistentWorldMovementRuntimeState"
+    },
+    {
+      "criterion_id": "R4D-AC-015",
+      "requirement": "the restored R4-B representation has the same canonical digest as the accepted checkpoint basis"
+    },
+    {
+      "criterion_id": "R4D-AC-016",
+      "requirement": "the actor current-location relation observed after restore matches the checkpointed authoritative location"
+    },
+    {
+      "criterion_id": "R4D-AC-017",
+      "requirement": "committed movement command identities fingerprints state-delta evidence and receipts remain attributable after restore"
+    },
+    {
+      "criterion_id": "R4D-AC-018",
+      "requirement": "technical retry after restore does not apply an already committed movement command a second time"
+    },
+    {
+      "criterion_id": "R4D-AC-019",
+      "requirement": "restore does not call a model consume narration or invent missing authoritative state"
+    },
+    {
+      "criterion_id": "R4D-AC-020",
+      "requirement": "R4-D makes no crash-recovery claim for state lacking an accepted checkpoint and reports that boundary rather than guessing"
+    }
+  ],
+  "required_failure_scenarios": [
+    "missing AFQR-01 checkpoint qualification",
+    "invalid R4-C runtime state",
+    "campaign identity mismatch",
+    "interrupted checkpoint replacement",
+    "truncated checkpoint",
+    "malformed checkpoint",
+    "integrity digest mismatch",
+    "unsupported checkpoint format",
+    "missing committed transition evidence",
+    "tampered movement receipt",
+    "tampered state-delta evidence",
+    "mismatched expected campaign identity",
+    "uncheckpointed state requested after process loss"
+  ],
+  "replay_retry_recovery": {
+    "r4_c_replay_semantics_reused": true,
+    "generalized_replay_engine_created": false,
+    "technical_retry_identity_preserved_across_restore": true,
+    "restore_is_new_semantic_execution": false,
+    "recovery_is_correction": false,
+    "missing_state_may_be_invented": false
+  },
+  "doctrine_and_contract_blockers": {
+    "known_blocker_count": 0,
+    "pr2_persist_contract_available": true,
+    "r2b_cross_phase_available": true,
+    "afqr01_owner_boundary_available": true,
+    "implementation_still_requires_separate_owner_authorization": true
+  },
+  "regression_evidence_before_merge": {
+    "definition_certification_required": true,
+    "full_repository_suite_required": true,
+    "git_diff_check_required": true,
+    "runtime_path_change_allowed_in_definition": false,
+    "production_schema_path_change_allowed_in_definition": false
+  },
+  "downstream_lifecycle_transition": {
+    "implementation_requires_separate_owner_authorization": true,
+    "implementation_authorization_currently_granted": false,
+    "implementation_gate": "R4-D implementation authorization",
+    "post_merge_closure_required_after_implementation": true,
+    "r4_activation_implied": false,
+    "runtime_promotion_implied": false,
+    "automatic_successor_activation": false
+  },
+  "definition_regression_certified": true,
+  "definition_recording_state": "regression_certified_pending_commit",
+  "definition_regression_certification": {
+    "focused_pre_certification": {
+      "passed": 123,
+      "result": "pass"
+    },
+    "broader_pr2_r4_regression": {
+      "passed": 519,
+      "result": "pass"
+    },
+    "full_repository_suite": {
+      "passed": 9444,
+      "skipped": 10,
+      "xfailed": 2,
+      "warnings": 1,
+      "warning_class": "PytestRemovedIn10Warning",
+      "warning_disposition": "existing_nonblocking_deprecation",
+      "result": "pass"
+    },
+    "focused_post_suite_certification": {
+      "passed": 49,
+      "result": "pass"
+    },
+    "git_diff_check": "clean",
+    "changed_path_count": 7,
+    "production_runtime_path_count": 0,
+    "production_schema_path_count": 0
+  },
+  "definition_recording_failure_recovery_evidence": {
+    "failed_focused_post_recording_validation": {
+      "failed": 1,
+      "passed": 50,
+      "result": "fail"
+    },
+    "classification": "stale_r4_d_next_gate_expectation_after_certification_recording",
+    "r4_d_behavioral_defect_detected": false,
+    "repair_path": "tests/test_r4_d_persistent_world_local_checkpoint_restore_package.py",
+    "repair_effect": "align the remaining R4-D manifest next-gate test expectation from r4_d_definition_regression_certification to r4_d_definition_commit_push",
+    "runtime_scope_expanded": false,
+    "production_schema_scope_expanded": false,
+    "semantic_authority_expanded": false,
+    "full_repository_rerun_required": false,
+    "rationale": "the failure is isolated to one stale test-only expected next-gate value after certification recording; the previously certified full repository evidence remains valid",
+    "secondary_root_seam_failure": {
+      "failed": 1,
+      "passed": 2,
+      "result": "fail",
+      "failed_test": "test_r4_d_manifest_matches_package_definition",
+      "classification": "stale_r4_d_next_gate_authorization_expectation_after_certification_recording",
+      "observed_authoritative_value": false,
+      "stale_expected_value": true,
+      "r4_d_behavioral_defect_detected": false,
+      "runtime_scope_expanded": false,
+      "production_schema_scope_expanded": false,
+      "semantic_authority_expanded": false,
+      "full_repository_rerun_required": false
+    }
+  }
+}
