@@ -7807,3 +7807,90 @@ authority.
 
 The repair is limited to aligning six stale test assertions with
 the already-recorded certified closure state.
+
+
+## 2026-09-21 decision — R4-D bounded implementation authorization
+
+- **Decision ID:** `R4-D-IMPLEMENTATION-AUTHORIZATION-005`
+- **Authorization reference:** `owner_directive_2026-09-21_r4_d_implementation_authorization`
+- **Authority effect:** `bounded_persistent_world_local_checkpoint_restore_implementation_only`
+- **Starting baseline:** `5b251372eac24a741f77706abbf2c30823aca82a`
+- **Starting tree:** `b200bc539bc7d44d20ba3f9504a1d37299d2780f`
+- **Definition closure PR:** `#435`
+- **Definition closure branch head:** `d7155bcb5ca5c24ae632fb8852cbdf1d14f759df`
+- **Definition closure CI:** `#270`
+- **Definition closure CI run ID:** `35619853810`
+- **Package version:** `0.1.2`
+- **Control version:** `0.4.80`
+- **Implementation authorized:** `true`
+- **Implementation state:** `authorized_pending_implementation`
+- **Authorized runtime path count:** `1`
+- **Authorized implementation-test path count:** `1`
+- **Production schema path count:** `0`
+- **Deterministic acceptance criteria:** `21`
+- **Implementation validation requirements:** `13`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The principal added completion proof is that a restored campaign is
+not merely deserializable but playable: after a true checkpoint and
+restore boundary, new lawful movement must commit normally and the
+resulting state must itself survive a second checkpoint/restore.
+
+Implementation must also prove real local-file reconstruction,
+complete R4-C commitment-evidence preservation, strict envelope
+validation, atomic replacement, adversarial corruption rejection,
+retry identity, multiple-transition preservation, deterministic
+checkpoint/restore/checkpoint behavior, storage-order versus causal-
+order separation, bounded replay claims, meaningful local durability,
+and offline/model-independent operation.
+
+This decision does not authorize a generalized Myravant save system
+or any broader persistence architecture.
+
+
+## 2026-09-21 decision — R4-D implementation authorization regression certification
+
+- **Decision ID:** `R4-D-IMPLEMENTATION-AUTHORIZATION-CERTIFICATION-006`
+- **Implementation authorization regression certified:** `true`
+- **Recording state:** `regression_certified_pending_commit`
+- **Focused authorization certification:** `76 passed`
+- **Broader PR2/R4 certification:** `537 passed`
+- **Full repository:** `9462 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite:** `67 passed`
+- **git diff --check:** `clean`
+- **Changed paths:** `7`
+- **Production runtime paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **Deterministic acceptance criteria:** `21`
+- **Implementation validation requirements:** `13`
+- **Package/control versions:** `0.1.2` / `0.4.80`
+- **Next gate:** `r4_d_implementation_authorization_commit_push`
+- **Next gate authorized:** `false`
+- **R4-D implementation authorization:** `true`
+- **R4-D runtime implementation performed:** `false`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+Certification confirms only the bounded implementation authorization.
+
+It does not itself implement local checkpoint/restore and does not
+expand R4-D into a generalized save, persistence, replay, database,
+timeline, branch, cloud, or distributed-recovery subsystem.
+
+
+## 2026-09-21 decision — R4-D implementation-authorization recording recovery
+
+- **Failure:** `AssertionError`
+- **Classification:** `partial_implementation_authorization_certification_recording_before_late_assertion`
+- **Certification state already written:** `true`
+- **Certification evidence remains valid:** `true`
+- **R4-D behavioral defect detected:** `false`
+- **Runtime scope expanded:** `false`
+- **Production schema scope expanded:** `false`
+- **Semantic authority expanded:** `false`
+- **Full repository rerun required:** `false`
+
+Recovery completes only the surrounding narrative and test
+alignment around the certification state already present in the
+package and manifest.

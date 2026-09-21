@@ -1,14 +1,14 @@
 {
   "artifact_id": "MYRAVANT-R4-D-PERSISTENT-WORLD-LOCAL-CHECKPOINT-RESTORE-PACKAGE-001",
-  "artifact_version": "0.1.1",
-  "status": "definition_merged_complete",
+  "artifact_version": "0.1.2",
+  "status": "implementation_authorized",
   "package_id": "R4-D",
   "package_name": "persistent_world_local_checkpoint_restore",
   "definition_authorization_reference": "owner_directive_2026-09-20_r4_d_package_definition",
   "definition_authority_effect": "bounded_r4_d_package_definition_only",
   "definition_starting_baseline": "5b623dbe0711f20c6c1446774f98986b6077a21a",
   "definition_starting_tree": "39d0246e5895f840ef6a108d9191124e30eaf1e4",
-  "implementation_authorized": false,
+  "implementation_authorized": true,
   "r4_activation_authorized": false,
   "runtime_promotion_authorized": false,
   "production_schema_implementation_authorized": false,
@@ -277,6 +277,10 @@
     {
       "criterion_id": "R4D-AC-020",
       "requirement": "R4-D makes no crash-recovery claim for state lacking an accepted checkpoint and reports that boundary rather than guessing"
+    },
+    {
+      "criterion_id": "R4D-AC-021",
+      "requirement": "after restore from an accepted checkpoint with the original in-memory runtime state discarded, the restored campaign can commit a completely new lawful movement transition, checkpoint again, restore again, and preserve the newly committed authoritative position"
     }
   ],
   "required_failure_scenarios": [
@@ -318,7 +322,7 @@
   },
   "downstream_lifecycle_transition": {
     "implementation_requires_separate_owner_authorization": true,
-    "implementation_authorization_currently_granted": false,
+    "implementation_authorization_currently_granted": true,
     "implementation_gate": "R4-D implementation authorization",
     "post_merge_closure_required_after_implementation": true,
     "r4_activation_implied": false,
@@ -394,8 +398,8 @@
   "definition_post_merge_closure_ci_run": 268,
   "definition_post_merge_closure_ci_run_id": 35608929257,
   "definition_post_merge_closure_regression_certified": true,
-  "definition_post_merge_closure_recording_state": "regression_certified_pending_commit",
-  "next_gate": "r4_d_definition_post_merge_closure_commit_push",
+  "definition_post_merge_closure_recording_state": "merged_complete",
+  "next_gate": "r4_d_implementation_authorization_commit_push",
   "next_gate_authorized": false,
   "definition_post_merge_closure_failure_recovery_evidence": {
     "failed_focused_closure_certification": {
@@ -462,5 +466,153 @@
     "changed_path_count": 7,
     "runtime_implementation_path_count": 0,
     "production_schema_path_count": 0
+  },
+  "definition_post_merge_closure_record_pull_request": 435,
+  "definition_post_merge_closure_record_branch_head": "d7155bcb5ca5c24ae632fb8852cbdf1d14f759df",
+  "definition_post_merge_closure_record_merge_commit": "5b251372eac24a741f77706abbf2c30823aca82a",
+  "definition_post_merge_closure_record_merge_tree": "b200bc539bc7d44d20ba3f9504a1d37299d2780f",
+  "definition_post_merge_closure_record_ci_run": 270,
+  "definition_post_merge_closure_record_ci_run_id": 35619853810,
+  "implementation_authorization_reference": "owner_directive_2026-09-21_r4_d_implementation_authorization",
+  "implementation_authority_effect": "bounded_persistent_world_local_checkpoint_restore_implementation_only",
+  "implementation_state": "authorized_pending_implementation",
+  "implementation_starting_baseline": "5b251372eac24a741f77706abbf2c30823aca82a",
+  "implementation_starting_tree": "b200bc539bc7d44d20ba3f9504a1d37299d2780f",
+  "implementation_authorization_regression_certified": true,
+  "implementation_authorization_recording_state": "regression_certified_pending_commit",
+  "implementation_regression_certified": false,
+  "implementation_validation_requirements": [
+    {
+      "requirement_id": "R4D-IV-001",
+      "name": "continue_play_after_restore",
+      "requirement": "after checkpointing a committed P1-to-P2 movement, destroying the original in-memory runtime state, and restoring exclusively from the accepted checkpoint, a completely new lawful P2-to-P3 movement command must commit normally; a second checkpoint and restore must then recover the actor at P3"
+    },
+    {
+      "requirement_id": "R4D-IV-002",
+      "name": "true_process_boundary_round_trip",
+      "requirement": "the implementation test must exercise an actual local file boundary and reconstruct without relying on surviving authoritative Python objects or hidden runtime context"
+    },
+    {
+      "requirement_id": "R4D-IV-003",
+      "name": "complete_r4_c_authoritative_evidence_preservation",
+      "requirement": "restore must preserve the bounded R4-B representation and all R4-C committed-transition evidence required by the existing retry and replay semantics, including command identity, fingerprint, preview, state delta, receipt, pre/post digests, relation identities, and attributable spatial/opportunity evidence"
+    },
+    {
+      "requirement_id": "R4D-IV-004",
+      "name": "strict_checkpoint_envelope_validation",
+      "requirement": "restore must validate bounded format identity, format version, campaign identity, authoritative payload, integrity evidence, and checkpoint qualification/provenance without guessing or silent reinterpretation"
+    },
+    {
+      "requirement_id": "R4D-IV-005",
+      "name": "atomic_checkpoint_replacement",
+      "requirement": "an injected failure during replacement of an existing valid checkpoint must leave the prior accepted checkpoint wholly restorable and must never expose a mixture of old and new authoritative state"
+    },
+    {
+      "requirement_id": "R4D-IV-006",
+      "name": "corruption_fail_closed_matrix",
+      "requirement": "the implementation must exercise distinct structural, integrity, identity, and semantic corruption cases and reject every invalid checkpoint rather than materializing plausible authoritative state"
+    },
+    {
+      "requirement_id": "R4D-IV-007",
+      "name": "post_restore_retry_identity",
+      "requirement": "after restore an identical previously committed command must remain an idempotent technical retry and the same command ID with materially different command content must remain a retry conflict"
+    },
+    {
+      "requirement_id": "R4D-IV-008",
+      "name": "multiple_committed_transition_preservation",
+      "requirement": "a checkpoint containing at least two committed movement transitions must restore both attributable transition records and the final authoritative position"
+    },
+    {
+      "requirement_id": "R4D-IV-009",
+      "name": "restore_then_checkpoint_determinism",
+      "requirement": "checkpoint then restore then checkpoint without intervening semantic change must preserve the same canonical authoritative payload, excluding metadata that is lawfully outside the authoritative payload comparison"
+    },
+    {
+      "requirement_id": "R4D-IV-010",
+      "name": "storage_order_is_not_causal_order",
+      "requirement": "checkpoint tuple position, serialized order, command-ID ordering, file order, and restore order must not be treated as AFQR-04 logical or causal time"
+    },
+    {
+      "requirement_id": "R4D-IV-011",
+      "name": "bounded_replay_claim",
+      "requirement": "R4-D may preserve the evidence consumed by existing R4-C retry/replay behavior but must not claim that one checkpoint is a complete campaign event history or genesis replay log"
+    },
+    {
+      "requirement_id": "R4D-IV-012",
+      "name": "operational_local_durability_boundary",
+      "requirement": "checkpoint success must mean the implementation has completed the local durability operation it claims and may not report an accepted checkpoint while essential bytes exist only in application buffering"
+    },
+    {
+      "requirement_id": "R4D-IV-013",
+      "name": "offline_no_model_dependency",
+      "requirement": "checkpoint and restore must operate locally and offline without model invocation, narration, network access, or reconstruction of authoritative state from prose"
+    }
+  ],
+  "required_checkpoint_envelope_fields": [
+    "format_identity",
+    "format_version",
+    "campaign_identity",
+    "authoritative_payload",
+    "integrity_digest",
+    "qualification_provenance"
+  ],
+  "required_corruption_cases": [
+    "truncated_file",
+    "malformed_serialization",
+    "integrity_digest_mismatch",
+    "unsupported_format_version",
+    "incorrect_campaign_identity",
+    "missing_committed_transition",
+    "altered_command_fingerprint",
+    "altered_movement_receipt",
+    "altered_state_delta",
+    "receipt_state_delta_disagreement",
+    "duplicate_command_identity",
+    "invalid_entity_or_location_reference"
+  ],
+  "implementation_completion_bar": "accepted_checkpoint_survives_process_boundary_restores_same_authoritative_state_preserves_retry_identity_and_supports_new_committed_play",
+  "implementation_authorization_regression_certification": {
+    "focused_authorization_certification": {
+      "passed": 76,
+      "result": "pass"
+    },
+    "broader_pr2_r4_regression": {
+      "passed": 537,
+      "result": "pass"
+    },
+    "full_repository_suite": {
+      "passed": 9462,
+      "skipped": 10,
+      "xfailed": 2,
+      "warnings": 1,
+      "warning_class": "PytestRemovedIn10Warning",
+      "warning_disposition": "existing_nonblocking_deprecation",
+      "result": "pass"
+    },
+    "focused_post_suite_confirmation": {
+      "passed": 67,
+      "result": "pass"
+    },
+    "git_diff_check": "clean",
+    "changed_path_count": 7,
+    "production_runtime_path_count": 0,
+    "production_schema_path_count": 0,
+    "deterministic_acceptance_criteria_count": 21,
+    "implementation_validation_requirement_count": 13
+  },
+  "implementation_authorization_recording_failure_recovery_evidence": {
+    "failed_recording_attempt": {
+      "exception": "AssertionError",
+      "result": "fail"
+    },
+    "classification": "partial_implementation_authorization_certification_recording_before_late_assertion",
+    "certification_state_already_written": true,
+    "certification_evidence_remains_valid": true,
+    "r4_d_behavioral_defect_detected": false,
+    "runtime_scope_expanded": false,
+    "production_schema_scope_expanded": false,
+    "semantic_authority_expanded": false,
+    "full_repository_rerun_required": false,
+    "repair_effect": "complete narrative and test alignment around the already-recorded certified authorization state"
   }
 }

@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.79",
+  "artifact_version": "0.4.80",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -2918,7 +2918,7 @@
     }
   },
   "r4_d_local_checkpoint_restore_target": {
-    "status": "definition_merged_complete",
+    "status": "implementation_authorized",
     "package_id": "R4-D",
     "package_name": "persistent_world_local_checkpoint_restore",
     "definition_authorization_reference": "owner_directive_2026-09-20_r4_d_package_definition",
@@ -2930,8 +2930,8 @@
     "predecessor_post_merge_closure_required": true,
     "package_definition": "docs/doctrine/reviews/r4_d_persistent_world_local_checkpoint_restore_package.yaml",
     "package_defined": true,
-    "implementation_authorized": false,
-    "implementation_state": "not_authorized",
+    "implementation_authorized": true,
+    "implementation_state": "authorized_pending_implementation",
     "r4_activation_authorized": false,
     "runtime_promotion_authorized": false,
     "production_schema_implementation_authorized": false,
@@ -2946,7 +2946,7 @@
     "proposed_production_schema_edit_allowlist": [],
     "definition_regression_certified": true,
     "definition_recording_state": "merged_complete",
-    "next_gate": "r4_d_definition_post_merge_closure_commit_push",
+    "next_gate": "r4_d_implementation_authorization_commit_push",
     "next_gate_authorized": false,
     "definition_regression_certification": {
       "focused_pre_certification": {
@@ -3015,7 +3015,7 @@
     "definition_post_merge_closure_ci_run": 268,
     "definition_post_merge_closure_ci_run_id": 35608929257,
     "definition_post_merge_closure_regression_certified": true,
-    "definition_post_merge_closure_recording_state": "regression_certified_pending_commit",
+    "definition_post_merge_closure_recording_state": "merged_complete",
     "definition_post_merge_closure_failure_recovery_evidence": {
       "failed_focused_closure_certification": {
         "failed": 1,
@@ -3081,6 +3081,84 @@
       "changed_path_count": 7,
       "runtime_implementation_path_count": 0,
       "production_schema_path_count": 0
+    },
+    "definition_post_merge_closure_record_pull_request": 435,
+    "definition_post_merge_closure_record_branch_head": "d7155bcb5ca5c24ae632fb8852cbdf1d14f759df",
+    "definition_post_merge_closure_record_merge_commit": "5b251372eac24a741f77706abbf2c30823aca82a",
+    "definition_post_merge_closure_record_merge_tree": "b200bc539bc7d44d20ba3f9504a1d37299d2780f",
+    "definition_post_merge_closure_record_ci_run": 270,
+    "definition_post_merge_closure_record_ci_run_id": 35619853810,
+    "implementation_authorization_reference": "owner_directive_2026-09-21_r4_d_implementation_authorization",
+    "implementation_authority_effect": "bounded_persistent_world_local_checkpoint_restore_implementation_only",
+    "implementation_starting_baseline": "5b251372eac24a741f77706abbf2c30823aca82a",
+    "implementation_starting_tree": "b200bc539bc7d44d20ba3f9504a1d37299d2780f",
+    "implementation_authorization_regression_certified": true,
+    "implementation_authorization_recording_state": "regression_certified_pending_commit",
+    "implementation_regression_certified": false,
+    "implementation_validation_requirement_count": 13,
+    "implementation_validation_requirement_ids": [
+      "R4D-IV-001",
+      "R4D-IV-002",
+      "R4D-IV-003",
+      "R4D-IV-004",
+      "R4D-IV-005",
+      "R4D-IV-006",
+      "R4D-IV-007",
+      "R4D-IV-008",
+      "R4D-IV-009",
+      "R4D-IV-010",
+      "R4D-IV-011",
+      "R4D-IV-012",
+      "R4D-IV-013"
+    ],
+    "continue_play_after_restore_required": true,
+    "true_process_boundary_round_trip_required": true,
+    "atomic_checkpoint_replacement_required": true,
+    "offline_restore_required": true,
+    "bounded_replay_claim_required": true,
+    "implementation_authorization_regression_certification": {
+      "focused_authorization_certification": {
+        "passed": 76,
+        "result": "pass"
+      },
+      "broader_pr2_r4_regression": {
+        "passed": 537,
+        "result": "pass"
+      },
+      "full_repository_suite": {
+        "passed": 9462,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "warning_class": "PytestRemovedIn10Warning",
+        "warning_disposition": "existing_nonblocking_deprecation",
+        "result": "pass"
+      },
+      "focused_post_suite_confirmation": {
+        "passed": 67,
+        "result": "pass"
+      },
+      "git_diff_check": "clean",
+      "changed_path_count": 7,
+      "production_runtime_path_count": 0,
+      "production_schema_path_count": 0,
+      "deterministic_acceptance_criteria_count": 21,
+      "implementation_validation_requirement_count": 13
+    },
+    "implementation_authorization_recording_failure_recovery_evidence": {
+      "failed_recording_attempt": {
+        "exception": "AssertionError",
+        "result": "fail"
+      },
+      "classification": "partial_implementation_authorization_certification_recording_before_late_assertion",
+      "certification_state_already_written": true,
+      "certification_evidence_remains_valid": true,
+      "r4_d_behavioral_defect_detected": false,
+      "runtime_scope_expanded": false,
+      "production_schema_scope_expanded": false,
+      "semantic_authority_expanded": false,
+      "full_repository_rerun_required": false,
+      "repair_effect": "complete narrative and test alignment around the already-recorded certified authorization state"
     }
   }
 }
