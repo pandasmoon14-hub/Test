@@ -28,6 +28,7 @@ AUTHORIZED_RUNTIME_DOMAIN_FILES = frozenset(
         "object_lever_transaction_preview_bridge.py",
         "projection_visibility_adapter_v0_1.py",
         "persistent_world_entity_location_representation.py",
+        "persistent_world_movement_integration.py",
         "read_only_vertical_slice_state_owner_facade.py",
         "resource_consequence_math.py",
         "scene_command_execution_skeleton.py",

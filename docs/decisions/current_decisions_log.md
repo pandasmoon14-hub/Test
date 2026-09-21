@@ -7470,3 +7470,78 @@ This records evidence only and grants no R4-C runtime authority.
 
 A separate owner authorization remains required before
 `persistent_world_movement_integration.py` may be implemented.
+## 2026-09-20 decision — R4-C playable movement implementation authorization
+
+- **Decision ID:** `R4-C-IMPLEMENTATION-AUTHORIZATION-003`
+- **Authorization reference:** `owner_directive_2026-09-20_r4_c_implementation_authorization`
+- **Authority effect:** `bounded_persistent_world_playable_movement_integration_implementation_only`
+- **Implementation baseline:** `9118ec2af6d4afcbf6d597186200f3fb11243776`
+- **Implementation tree:** `2d380f53245192a95049c607f6a66d3b634df348`
+- **Package-definition PR:** `#431`
+- **Package:** `R4-C`
+- **Package name:** `persistent_world_playable_movement_integration`
+- **Implementation state:** `authorized_in_progress`
+- **Implementation authorized:** `true`
+- **Production runtime allowlist:** `src/astra_runtime/domain/persistent_world_movement_integration.py`
+- **Production schema paths authorized:** `0`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The authorized implementation is restricted to one deterministic,
+in-memory persistent-world movement transition using the existing
+R4-B representation and existing command, preview, and state-delta
+contracts.
+
+AFQR-18 and AFQR-19 evidence remains externally supplied owner evidence.
+R4-C consumes that evidence but does not acquire either semantic owner.
+
+AFQR-01 qualification is implemented only for this bounded transition.
+This decision does not authorize a generalized transition coordinator or
+transaction manager.
+
+AFQR-09 generalized relation lifecycle remains outside R4-C.
+
+Durable persistence and generalized replay remain future work and do not
+block this initial playable proof.
+
+
+## 2026-09-20 decision — R4-C legacy runtime-domain guardrail recovery
+
+- **Decision ID:** `R4-C-IMPLEMENTATION-RECOVERY-004`
+- **Failure class:** `stale_test_infrastructure_exact_allowlist`
+- **Failed full suite:** `16 failed, 9411 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Root test:** `tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py`
+- **Rejected authorized module:** `persistent_world_movement_integration.py`
+- **Runtime-scope expansion:** `false`
+- **Schema-scope expansion:** `false`
+- **Semantic-authority expansion:** `false`
+- **Certification restart required:** `true`
+
+The failure is preserved as implementation evidence. The repair is restricted
+to recognizing the already-authorized R4-C runtime module in the historical
+RT-001E exact-module guardrail.
+## 2026-09-20 decision — R4-C implementation regression certification
+
+- **Decision ID:** `R4-C-IMPLEMENTATION-CERTIFICATION-005`
+- **Package:** `R4-C`
+- **Implementation regression certified:** `true`
+- **Implementation state:** `regression_certified_pending_commit`
+- **Repaired RT-001E root guardrail:** `68 passed`
+- **Broader PR2/R4 regression:** `506 passed`
+- **Full repository regression:** `9428 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite certification:** `445 passed`
+- **Preserved failed full run:** `16 failed, 9411 passed, 10 skipped, 2 xfailed, 1 warning`
+- **git diff --check:** `clean`
+- **Changed paths:** `10`
+- **Production runtime paths changed:** `1`
+- **Production schema paths changed:** `0`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The certification is accepted only for the bounded R4-C movement
+implementation and its required test-infrastructure compatibility repair.
+
+The failed full-suite run remains retained as evidence rather than erased
+or reclassified as a successful run.
+
+No additional semantic authority is granted by this certification.

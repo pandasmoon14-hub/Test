@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.72`
+**Artifact version:** `0.4.75`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -4278,3 +4278,158 @@ Durable persistence remains outside the initial R4-C requirement.
 PR2-IMPL remains terminal.
 
 `R4-R6` remains blocked.
+### 5.69 R4-C playable movement implementation authorization
+
+The owner separately authorized implementation of the bounded R4-C
+persistent-world playable movement package.
+
+Authorization reference:
+
+`owner_directive_2026-09-20_r4_c_implementation_authorization`
+
+Authority effect:
+
+`bounded_persistent_world_playable_movement_integration_implementation_only`
+
+Implementation starting baseline:
+
+`9118ec2af6d4afcbf6d597186200f3fb11243776`
+
+Implementation starting tree:
+
+`2d380f53245192a95049c607f6a66d3b634df348`
+
+The package-definition predecessor was merged by PR `#431`.
+
+Certified package-definition branch head:
+
+`74caf2657106cb4595430b739f8d7e4a6669cdf5`
+
+R4-C implementation may add exactly one production runtime module:
+
+`src/astra_runtime/domain/persistent_world_movement_integration.py`
+
+Its package-specific executable test is:
+
+`tests/test_r4_c_persistent_world_movement_integration.py`
+
+Test infrastructure may be updated only in
+`tests/runtime_domain_package_manifest.py` and, when required by the
+observed regression evidence, the historical RT-001E exact-module
+guardrail, solely to recognize the already-authorized R4-C module.
+
+The implementation proves one bounded deterministic movement transition:
+actor A begins at P1, an existing movement-family command targets P2,
+explicit AFQR-18 spatial evidence and AFQR-19 opportunity/resolution
+evidence are consumed, preparation remains non-mutating, and an
+AFQR-01-qualified in-memory commit produces a new immutable authoritative
+representation with exactly one current `located_at(A,P2)` fact.
+
+Technical retry of the same immutable command returns the prior committed
+result without applying movement again. Reuse of the same command identity
+with materially changed command content fails closed.
+
+Bounded replay consumes committed deterministic evidence and the original
+authoritative pre-state. It performs no fresh natural-language
+interpretation and no model call.
+
+R4-C does not generalize relation lineage, amendment, supersession,
+migration, or termination semantics. AFQR-09 remains the owner of those
+concerns.
+
+This authorization does not add durable persistence, generalized replay,
+a generalized transaction manager, a generalized world-state manager,
+adjacency, pathfinding, movement speed, stamina, travel time, terrain
+costs, encounters, networking, RNG, or model-owned authoritative state.
+
+Production-schema edits remain unauthorized.
+
+General R4 activation remains unauthorized.
+
+Runtime promotion remains unauthorized.
+
+`R4-R6` remains globally blocked.
+
+R4-C implementation state is:
+
+`authorized_in_progress`
+
+
+### 5.70 R4-C implementation guardrail recovery
+
+The first R4-C full-repository implementation regression did not expose a
+movement-runtime defect. It exposed one historical test guardrail that
+duplicated an exact runtime-domain module list.
+
+Observed suite result:
+
+`16 failed, 9411 passed, 10 skipped, 2 xfailed, 1 warning`
+
+The root assertion was in:
+
+`tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py`
+
+It rejected:
+
+`persistent_world_movement_integration.py`
+
+as an extra runtime-domain file.
+
+The other observed failures were recursive pass-through failures that reran
+the same RT-001E guardrail.
+
+The bounded repair adds only that historical test file to the authorized
+test-infrastructure compatibility surface and updates its expected exact
+module set to include the already-authorized R4-C module.
+
+Production runtime scope is unchanged.
+
+Production schema scope is unchanged.
+
+Semantic authority is unchanged.
+
+Implementation regression certification must restart after the repair.
+### 5.71 R4-C implementation regression certification
+
+The bounded R4-C playable movement implementation completed regression
+certification after the recorded historical runtime-domain guardrail
+recovery.
+
+The failed pre-repair full repository run remains preserved as evidence:
+
+`16 failed, 9411 passed, 10 skipped, 2 xfailed, 1 warning`
+
+That failure was classified as stale test-infrastructure compatibility:
+the historical RT-001E exact runtime-domain allowlist rejected the
+separately authorized R4-C runtime module. No movement-runtime defect was
+identified by that failure.
+
+Successful post-repair certification evidence:
+
+- repaired RT-001E root guardrail: `68 passed`;
+- broader PR2/R4 regression: `506 passed`;
+- full repository regression:
+  `9428 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused post-suite certification: `445 passed`;
+- `git diff --check`: clean;
+- exact changed-path footprint: `10`;
+- production runtime paths changed: `1`;
+- production schema paths changed: `0`;
+- test-infrastructure compatibility paths changed: `2`.
+
+The single warning remains the existing nonblocking
+`PytestRemovedIn10Warning` for a class-scoped fixture defined as an
+instance method.
+
+R4-C implementation state is now:
+
+`regression_certified_pending_commit`
+
+This certification does not activate R4 generally.
+
+It does not authorize runtime promotion.
+
+It does not authorize durable persistence.
+
+It does not create generalized transaction, state-management, replay,
+topology, or relation-lifecycle infrastructure.

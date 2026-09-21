@@ -31,8 +31,8 @@ def load(path: Path):
 def test_r4_c_package_identity_and_definition_authority_are_exact():
     package = load(PACKAGE)
 
-    assert package["artifact_version"] == "0.1.1"
-    assert package["status"] == "ready_pending_authorization"
+    assert package["artifact_version"] == "0.1.4"
+    assert package["status"] == "implementation_authorized"
     assert package["package_id"] == "R4-C"
     assert (
         package["package_name"]
@@ -49,7 +49,7 @@ def test_r4_c_package_identity_and_definition_authority_are_exact():
     assert package["definition_starting_baseline"] == EXPECTED_BASELINE
     assert package["definition_starting_tree"] == EXPECTED_TREE
 
-    assert package["implementation_authorized"] is False
+    assert package["implementation_authorized"] is True
     assert package["r4_activation_authorized"] is False
     assert package["runtime_promotion_authorized"] is False
     assert (
@@ -161,7 +161,7 @@ def test_r4_c_durable_persistence_is_not_an_initial_blocker():
     )
 
 
-def test_r4_c_definition_does_not_create_runtime_implementation():
+def test_r4_c_authorized_implementation_uses_exact_runtime_allowlist():
     package = load(PACKAGE)
 
     allowlist = package["proposed_implementation_edit_allowlist"]
@@ -172,21 +172,36 @@ def test_r4_c_definition_does_not_create_runtime_implementation():
     ]
     assert allowlist["production_schema_paths"] == []
 
-    # Package-definition stage only: future runtime path must not exist yet.
-    assert not PROPOSED_RUNTIME.exists()
+    # Authorized implementation stage: exact runtime path now exists.
+    assert PROPOSED_RUNTIME.exists()
 
 
 def test_r4_c_manifest_program_and_decision_log_track_same_gate():
     package = load(PACKAGE)
     manifest = load(MANIFEST)
-    target = manifest["r4_c_playable_movement_integration_target"]
 
-    assert manifest["artifact_version"] == "0.4.72"
+    target = manifest[
+        "r4_c_playable_movement_integration_target"
+    ]
+
+    assert manifest["artifact_version"] == "0.4.75"
     assert target["package_id"] == package["package_id"]
     assert target["package_name"] == package["package_name"]
-    assert target["status"] == "ready_pending_authorization"
-    assert target["implementation_authorized"] is False
+
+    assert target["status"] == "implementation_authorized"
+    assert target["implementation_authorized"] is True
+
+    assert (
+        target["implementation_state"]
+        == "regression_certified_pending_commit"
+    )
+
+    assert target["implementation_regression_certified"] is True
+    assert target["next_gate"] == "r4_c_implementation_commit_push"
     assert target["next_gate_authorized"] is False
+
+    assert target["r4_activation_authorized"] is False
+    assert target["runtime_promotion_authorized"] is False
 
     program = PROGRAM.read_text(encoding="utf-8")
     decisions = DECISIONS.read_text(encoding="utf-8")
@@ -198,26 +213,40 @@ def test_r4_c_manifest_program_and_decision_log_track_same_gate():
     )
 
     assert (
-        "## 2026-09-20 decision — R4-C persistent-world "
-        "playable movement integration package definition"
+        "### 5.69 R4-C playable movement implementation "
+        "authorization"
+        in program
+    )
+
+    assert (
+        "### 5.70 R4-C implementation guardrail recovery"
+        in program
+    )
+
+    assert (
+        "### 5.71 R4-C implementation regression certification"
+        in program
+    )
+
+    assert (
+        "## 2026-09-20 decision — R4-C implementation "
+        "regression certification"
         in decisions
     )
 
-    assert "PR2-IMPL remains terminal" in program
-    assert "R4-C implementation remains separately unauthorized" in program
 def test_r4_c_definition_regression_certification_is_exact():
     package = load(PACKAGE)
 
-    assert package["artifact_version"] == "0.1.1"
-    assert package["status"] == "ready_pending_authorization"
+    assert package["artifact_version"] == "0.1.4"
+    assert package["status"] == "implementation_authorized"
     assert package["definition_regression_certified"] is True
 
     assert (
         package["definition_recording_state"]
-        == "regression_certified_pending_commit"
+        == "merged_complete"
     )
 
-    assert package["implementation_authorized"] is False
+    assert package["implementation_authorized"] is True
     assert package["r4_activation_authorized"] is False
     assert package["runtime_promotion_authorized"] is False
 
@@ -266,5 +295,238 @@ def test_r4_c_definition_regression_certification_is_exact():
         lifecycle[
             "implementation_authorization_currently_granted"
         ]
+        is True
+    )
+def test_r4_c_implementation_authorization_is_exact_and_bounded():
+    package = load(PACKAGE)
+    manifest = load(MANIFEST)
+
+    target = manifest[
+        "r4_c_playable_movement_integration_target"
+    ]
+
+    assert package["artifact_version"] == "0.1.4"
+    assert package["status"] == "implementation_authorized"
+    assert package["implementation_authorized"] is True
+
+    assert (
+        package["implementation_authorization_reference"]
+        == "owner_directive_2026-09-20_r4_c_implementation_authorization"
+    )
+
+    assert (
+        package["implementation_authority_effect"]
+        == "bounded_persistent_world_playable_movement_"
+        "integration_implementation_only"
+    )
+
+    assert (
+        package["implementation_starting_baseline"]
+        == "9118ec2af6d4afcbf6d597186200f3fb11243776"
+    )
+
+    assert (
+        package["implementation_starting_tree"]
+        == "2d380f53245192a95049c607f6a66d3b634df348"
+    )
+
+    assert package["definition_pull_request"] == 431
+    assert (
+        package["definition_recording_state"]
+        == "merged_complete"
+    )
+
+    assert (
+        package["implementation_state"]
+        == "regression_certified_pending_commit"
+    )
+
+    assert package["implementation_regression_certified"] is True
+
+    assert (
+        package["implementation_runtime_path"]
+        == "src/astra_runtime/domain/"
+        "persistent_world_movement_integration.py"
+    )
+
+    assert (
+        package["implementation_test_path"]
+        == "tests/"
+        "test_r4_c_persistent_world_movement_integration.py"
+    )
+
+    assert PROPOSED_RUNTIME.exists()
+
+    assert manifest["artifact_version"] == "0.4.75"
+
+    assert target["implementation_authorized"] is True
+    assert target["implementation_regression_certified"] is True
+
+    assert (
+        target["implementation_state"]
+        == "regression_certified_pending_commit"
+    )
+
+    assert target["next_gate"] == "r4_c_implementation_commit_push"
+    assert target["next_gate_authorized"] is False
+
+    assert package["r4_activation_authorized"] is False
+    assert package["runtime_promotion_authorized"] is False
+    assert (
+        package[
+            "durable_persistence_implementation_authorized"
+        ]
         is False
     )
+
+    lifecycle = package[
+        "downstream_lifecycle_transition"
+    ]
+
+    assert (
+        lifecycle[
+            "implementation_requires_separate_owner_authorization"
+        ]
+        is True
+    )
+
+    assert (
+        lifecycle[
+            "implementation_authorization_currently_granted"
+        ]
+        is True
+    )
+
+def test_r4_c_guardrail_recovery_scope_is_exact():
+    package = load(PACKAGE)
+    manifest = load(MANIFEST)
+
+    assert package["artifact_version"] == "0.1.4"
+    assert manifest["artifact_version"] == "0.4.75"
+
+    assert (
+        package["proposed_implementation_edit_allowlist"]
+        ["test_infrastructure_paths_if_required"]
+        == [
+            "tests/runtime_domain_package_manifest.py",
+            "tests/"
+            "test_runtime_domain_rt_001e_"
+            "action_legality_service_interface_contract_skeleton.py",
+        ]
+    )
+
+    recovery = package[
+        "implementation_guardrail_recovery"
+    ]
+
+    assert recovery["failed_suite_result"] == {
+        "failed": 16,
+        "passed": 9411,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+    }
+
+    assert (
+        recovery["repair_path"]
+        == "tests/"
+        "test_runtime_domain_rt_001e_"
+        "action_legality_service_interface_contract_skeleton.py"
+    )
+
+    assert recovery["runtime_scope_expanded"] is False
+    assert recovery["production_schema_scope_expanded"] is False
+    assert recovery["semantic_authority_expanded"] is False
+
+    target = manifest[
+        "r4_c_playable_movement_integration_target"
+    ]
+
+    assert (
+        target[
+            "implementation_test_infrastructure_allowlist"
+        ]
+        == [
+            "tests/runtime_domain_package_manifest.py",
+            "tests/"
+            "test_runtime_domain_rt_001e_"
+            "action_legality_service_interface_contract_skeleton.py",
+        ]
+    )
+
+    assert target["implementation_regression_certified"] is True
+
+    assert (
+        target["implementation_state"]
+        == "regression_certified_pending_commit"
+    )
+
+    assert target["next_gate"] == "r4_c_implementation_commit_push"
+    assert target["next_gate_authorized"] is False
+
+def test_r4_c_final_implementation_certification_is_exact():
+    package = load(PACKAGE)
+    manifest = load(MANIFEST)
+
+    assert package["artifact_version"] == "0.1.4"
+    assert package["implementation_regression_certified"] is True
+
+    assert (
+        package["implementation_state"]
+        == "regression_certified_pending_commit"
+    )
+
+    cert = package[
+        "implementation_regression_certification"
+    ]
+
+    assert cert["repaired_rt001e_root_guardrail"] == {
+        "passed": 68,
+        "result": "pass",
+    }
+
+    assert cert["broader_pr2_r4_regression"] == {
+        "passed": 506,
+        "result": "pass",
+    }
+
+    assert cert["full_repository_suite"] == {
+        "passed": 9428,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "warning_class": "PytestRemovedIn10Warning",
+        "warning_disposition": "existing_nonblocking_deprecation",
+        "result": "pass",
+    }
+
+    assert cert["focused_post_suite_certification"] == {
+        "passed": 445,
+        "result": "pass",
+    }
+
+    assert cert["git_diff_check"] == "clean"
+    assert cert["changed_path_count"] == 10
+    assert cert["production_runtime_path_count"] == 1
+    assert cert["production_schema_path_count"] == 0
+    assert cert["test_infrastructure_path_count"] == 2
+
+    recovery = package["implementation_guardrail_recovery"]
+
+    assert recovery["failed_suite_result"] == {
+        "failed": 16,
+        "passed": 9411,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+    }
+
+    target = manifest[
+        "r4_c_playable_movement_integration_target"
+    ]
+
+    assert target["implementation_regression_certified"] is True
+    assert target["next_gate_authorized"] is False
+
+    assert package["r4_activation_authorized"] is False
+    assert package["runtime_promotion_authorized"] is False

@@ -1,14 +1,14 @@
 {
   "artifact_id": "MYRAVANT-R4-C-PERSISTENT-WORLD-PLAYABLE-MOVEMENT-INTEGRATION-PACKAGE-001",
-  "artifact_version": "0.1.1",
-  "status": "ready_pending_authorization",
+  "artifact_version": "0.1.4",
+  "status": "implementation_authorized",
   "package_id": "R4-C",
   "package_name": "persistent_world_playable_movement_integration",
   "definition_authorization_reference": "owner_directive_2026-09-20_r4_c_package_definition",
   "definition_authority_effect": "bounded_r4_c_package_definition_only",
   "definition_starting_baseline": "cb3cee39c3aabce8cf0525e0d227618bf13b5d85",
   "definition_starting_tree": "e363b37401e0ff28bdec665a0eb59f72e0b91ce5",
-  "implementation_authorized": false,
+  "implementation_authorized": true,
   "r4_activation_authorized": false,
   "runtime_promotion_authorized": false,
   "durable_persistence_implementation_authorized": false,
@@ -164,7 +164,8 @@
       "tests/test_r4_c_persistent_world_movement_integration.py"
     ],
     "test_infrastructure_paths_if_required": [
-      "tests/runtime_domain_package_manifest.py"
+      "tests/runtime_domain_package_manifest.py",
+      "tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py"
     ],
     "existing_runtime_dependencies_read_only": [
       "src/astra_runtime/domain/persistent_world_entity_location_representation.py",
@@ -322,7 +323,8 @@
     "new_doctrine_required_before_package_authorization": false,
     "missing_reusable_general_afqr01_runtime_owner": true,
     "disposition": "implement only the bounded qualified transition required by R4-C; do not generalize it into a universal transaction manager",
-    "implementation_authorization_still_required": true
+    "implementation_authorization_still_required": false,
+    "bounded_afqr01_transition_authorized": true
   },
   "performance_evidence": {
     "materially_relevant_to_initial_slice": false,
@@ -345,7 +347,7 @@
   },
   "downstream_lifecycle_transition": {
     "implementation_requires_separate_owner_authorization": true,
-    "implementation_authorization_currently_granted": false,
+    "implementation_authorization_currently_granted": true,
     "implementation_gate": "R4-C implementation authorization",
     "post_merge_closure_required_after_implementation": true,
     "r4_activation_implied": false,
@@ -354,7 +356,7 @@
     "automatic_successor_activation": false
   },
   "definition_regression_certified": true,
-  "definition_recording_state": "regression_certified_pending_commit",
+  "definition_recording_state": "merged_complete",
   "definition_regression_certification": {
     "focused_pre_certification": {
       "passed": 63,
@@ -381,5 +383,64 @@
     "changed_path_count": 6,
     "production_runtime_path_count": 0,
     "production_schema_path_count": 0
+  },
+  "definition_pull_request": 431,
+  "definition_branch_head": "74caf2657106cb4595430b739f8d7e4a6669cdf5",
+  "definition_merge_commit": "9118ec2af6d4afcbf6d597186200f3fb11243776",
+  "definition_merge_tree": "2d380f53245192a95049c607f6a66d3b634df348",
+  "implementation_authorization_reference": "owner_directive_2026-09-20_r4_c_implementation_authorization",
+  "implementation_authority_effect": "bounded_persistent_world_playable_movement_integration_implementation_only",
+  "implementation_starting_baseline": "9118ec2af6d4afcbf6d597186200f3fb11243776",
+  "implementation_starting_tree": "2d380f53245192a95049c607f6a66d3b634df348",
+  "implementation_runtime_path": "src/astra_runtime/domain/persistent_world_movement_integration.py",
+  "implementation_test_path": "tests/test_r4_c_persistent_world_movement_integration.py",
+  "implementation_state": "regression_certified_pending_commit",
+  "implementation_regression_certified": true,
+  "implementation_guardrail_recovery": {
+    "trigger": "full_repository_regression_failure",
+    "failed_suite_result": {
+      "failed": 16,
+      "passed": 9411,
+      "skipped": 10,
+      "xfailed": 2,
+      "warnings": 1
+    },
+    "root_failure": "RT-001E historical exact runtime-domain module allowlist rejected the newly authorized persistent_world_movement_integration.py module",
+    "cascade": "RT-001F/G/H/I and RT-002A/B/C pass-through tests recursively reran the same RT-001E failure",
+    "repair_path": "tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py",
+    "repair_effect": "recognize the already-authorized R4-C runtime module only",
+    "runtime_scope_expanded": false,
+    "production_schema_scope_expanded": false,
+    "semantic_authority_expanded": false,
+    "regression_certification_restart_required": true
+  },
+  "implementation_regression_certification": {
+    "certification_restart_after_guardrail_recovery": true,
+    "repaired_rt001e_root_guardrail": {
+      "passed": 68,
+      "result": "pass"
+    },
+    "broader_pr2_r4_regression": {
+      "passed": 506,
+      "result": "pass"
+    },
+    "full_repository_suite": {
+      "passed": 9428,
+      "skipped": 10,
+      "xfailed": 2,
+      "warnings": 1,
+      "warning_class": "PytestRemovedIn10Warning",
+      "warning_disposition": "existing_nonblocking_deprecation",
+      "result": "pass"
+    },
+    "focused_post_suite_certification": {
+      "passed": 445,
+      "result": "pass"
+    },
+    "git_diff_check": "clean",
+    "changed_path_count": 10,
+    "production_runtime_path_count": 1,
+    "production_schema_path_count": 0,
+    "test_infrastructure_path_count": 2
   }
 }
