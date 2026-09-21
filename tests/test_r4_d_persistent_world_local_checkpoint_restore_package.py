@@ -30,7 +30,7 @@ def load(path: Path):
 def test_r4_d_identity_baseline_and_status_are_exact():
     package = load(PACKAGE)
 
-    assert package["artifact_version"] == "0.1.1"
+    assert package["artifact_version"] == "0.1.2"
     assert package["package_id"] == "R4-D"
 
     assert (
@@ -40,14 +40,14 @@ def test_r4_d_identity_baseline_and_status_are_exact():
 
     assert (
         package["status"]
-        == "definition_merged_complete"
+        == "implementation_authorized"
     )
 
 
-def test_r4_d_is_definition_only():
+def test_r4_d_implementation_authorization_does_not_activate_r4():
     package = load(PACKAGE)
 
-    assert package["implementation_authorized"] is False
+    assert package["implementation_authorized"] is True
     assert package["r4_activation_authorized"] is False
     assert package["runtime_promotion_authorized"] is False
 
@@ -167,13 +167,13 @@ def test_r4_d_acceptance_criteria_are_complete_and_unique():
 
     criteria = package["deterministic_acceptance_criteria"]
 
-    assert len(criteria) == 20
+    assert len(criteria) == 21
 
     ids = [row["criterion_id"] for row in criteria]
 
     assert len(ids) == len(set(ids))
     assert ids[0] == "R4D-AC-001"
-    assert ids[-1] == "R4D-AC-020"
+    assert ids[-1] == "R4D-AC-021"
 
 
 def test_r4_d_broader_persistence_authority_is_prohibited():
@@ -203,7 +203,7 @@ def test_r4_d_manifest_matches_package_definition():
     package = load(PACKAGE)
     manifest = load(MANIFEST)
 
-    assert manifest["artifact_version"] == "0.4.79"
+    assert manifest["artifact_version"] == "0.4.80"
 
     target = manifest[
         "r4_d_local_checkpoint_restore_target"
@@ -211,11 +211,11 @@ def test_r4_d_manifest_matches_package_definition():
 
     assert target["package_id"] == package["package_id"]
     assert target["package_name"] == package["package_name"]
-    assert target["implementation_authorized"] is False
+    assert target["implementation_authorized"] is True
 
     assert (
         target["next_gate"]
-        == "r4_d_definition_post_merge_closure_commit_push"
+        == "r4_d_implementation_authorization_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
@@ -223,8 +223,8 @@ def test_r4_d_manifest_matches_package_definition():
 def test_r4_d_definition_regression_certification_is_exact():
     package = load(PACKAGE)
 
-    assert package["artifact_version"] == "0.1.1"
-    assert package["status"] == "definition_merged_complete"
+    assert package["artifact_version"] == "0.1.2"
+    assert package["status"] == "implementation_authorized"
 
     assert package["definition_regression_certified"] is True
 
@@ -272,7 +272,7 @@ def test_r4_d_definition_regression_certification_is_exact():
     assert evidence["production_runtime_path_count"] == 0
     assert evidence["production_schema_path_count"] == 0
 
-    assert package["implementation_authorized"] is False
+    assert package["implementation_authorized"] is True
     assert package["r4_activation_authorized"] is False
     assert package["runtime_promotion_authorized"] is False
 
@@ -322,7 +322,7 @@ def test_r4_d_definition_recording_recovery_evidence_is_exact():
         is False
     )
 
-    assert package["implementation_authorized"] is False
+    assert package["implementation_authorized"] is True
     assert package["r4_activation_authorized"] is False
     assert package["runtime_promotion_authorized"] is False
 
@@ -365,11 +365,11 @@ def test_r4_d_definition_post_merge_closure_is_exact_and_bounded():
         "r4_d_local_checkpoint_restore_target"
     ]
 
-    assert package["artifact_version"] == "0.1.1"
-    assert manifest["artifact_version"] == "0.4.79"
+    assert package["artifact_version"] == "0.1.2"
+    assert manifest["artifact_version"] == "0.4.80"
 
-    assert package["status"] == "definition_merged_complete"
-    assert target["status"] == "definition_merged_complete"
+    assert package["status"] == "implementation_authorized"
+    assert target["status"] == "implementation_authorized"
 
     assert package["definition_recording_state"] == "merged_complete"
     assert target["definition_recording_state"] == "merged_complete"
@@ -419,18 +419,18 @@ def test_r4_d_definition_post_merge_closure_is_exact_and_bounded():
         target[
             "definition_post_merge_closure_recording_state"
         ]
-        == "regression_certified_pending_commit"
+        == "merged_complete"
     )
 
     assert (
         target["next_gate"]
-        == "r4_d_definition_post_merge_closure_commit_push"
+        == "r4_d_implementation_authorization_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
 
-    assert target["implementation_authorized"] is False
-    assert target["implementation_state"] == "not_authorized"
+    assert target["implementation_authorized"] is True
+    assert target["implementation_state"] == "authorized_pending_implementation"
     assert target["r4_activation_authorized"] is False
     assert target["runtime_promotion_authorized"] is False
 
@@ -510,7 +510,7 @@ def test_r4_d_definition_post_merge_closure_certification_is_exact():
         package[
             "definition_post_merge_closure_recording_state"
         ]
-        == "regression_certified_pending_commit"
+        == "merged_complete"
     )
 
     cert = package[
@@ -555,11 +555,11 @@ def test_r4_d_definition_post_merge_closure_certification_is_exact():
 
     assert (
         package["next_gate"]
-        == "r4_d_definition_post_merge_closure_commit_push"
+        == "r4_d_implementation_authorization_commit_push"
     )
 
     assert package["next_gate_authorized"] is False
-    assert package["implementation_authorized"] is False
+    assert package["implementation_authorized"] is True
     assert package["r4_activation_authorized"] is False
     assert package["runtime_promotion_authorized"] is False
 
@@ -609,6 +609,252 @@ def test_r4_d_closure_post_recording_recovery_evidence_is_exact():
         "r4_d_behavioral_defect_detected"
     ] is False
 
+    assert recovery["runtime_scope_expanded"] is False
+    assert recovery["production_schema_scope_expanded"] is False
+    assert recovery["semantic_authority_expanded"] is False
+    assert recovery["full_repository_rerun_required"] is False
+
+
+
+def test_r4_d_implementation_authorization_is_exact():
+    package = load(PACKAGE)
+
+    assert package["artifact_version"] == "0.1.2"
+    assert package["status"] == "implementation_authorized"
+    assert package["implementation_authorized"] is True
+
+    assert (
+        package["implementation_state"]
+        == "authorized_pending_implementation"
+    )
+
+    assert (
+        package[
+            "implementation_authorization_regression_certified"
+        ]
+        is True
+    )
+
+    assert (
+        package[
+            "implementation_authorization_recording_state"
+        ]
+        == "regression_certified_pending_commit"
+    )
+
+    assert package["implementation_regression_certified"] is False
+
+    assert (
+        package["next_gate"]
+        == "r4_d_implementation_authorization_commit_push"
+    )
+
+    assert package["next_gate_authorized"] is False
+    assert package["r4_activation_authorized"] is False
+    assert package["runtime_promotion_authorized"] is False
+
+def test_r4_d_continue_play_after_restore_is_explicit():
+    package = load(PACKAGE)
+
+    criteria = {
+        row["criterion_id"]: row
+        for row in package["deterministic_acceptance_criteria"]
+    }
+
+    assert "R4D-AC-021" in criteria
+
+    requirement = criteria[
+        "R4D-AC-021"
+    ]["requirement"]
+
+    assert "original in-memory runtime state discarded" in requirement
+    assert "completely new lawful movement transition" in requirement
+    assert "checkpoint again" in requirement
+    assert "restore again" in requirement
+
+
+def test_r4_d_implementation_validation_matrix_is_exact():
+    package = load(PACKAGE)
+
+    rows = package["implementation_validation_requirements"]
+
+    ids = [row["requirement_id"] for row in rows]
+
+    assert ids == [
+        "R4D-IV-001",
+        "R4D-IV-002",
+        "R4D-IV-003",
+        "R4D-IV-004",
+        "R4D-IV-005",
+        "R4D-IV-006",
+        "R4D-IV-007",
+        "R4D-IV-008",
+        "R4D-IV-009",
+        "R4D-IV-010",
+        "R4D-IV-011",
+        "R4D-IV-012",
+        "R4D-IV-013",
+    ]
+
+    names = {
+        row["name"]
+        for row in rows
+    }
+
+    assert {
+        "continue_play_after_restore",
+        "true_process_boundary_round_trip",
+        "complete_r4_c_authoritative_evidence_preservation",
+        "strict_checkpoint_envelope_validation",
+        "atomic_checkpoint_replacement",
+        "corruption_fail_closed_matrix",
+        "post_restore_retry_identity",
+        "multiple_committed_transition_preservation",
+        "restore_then_checkpoint_determinism",
+        "storage_order_is_not_causal_order",
+        "bounded_replay_claim",
+        "operational_local_durability_boundary",
+        "offline_no_model_dependency",
+    } == names
+
+
+def test_r4_d_envelope_and_corruption_matrix_are_exact():
+    package = load(PACKAGE)
+
+    assert package["required_checkpoint_envelope_fields"] == [
+        "format_identity",
+        "format_version",
+        "campaign_identity",
+        "authoritative_payload",
+        "integrity_digest",
+        "qualification_provenance",
+    ]
+
+    assert package["required_corruption_cases"] == [
+        "truncated_file",
+        "malformed_serialization",
+        "integrity_digest_mismatch",
+        "unsupported_format_version",
+        "incorrect_campaign_identity",
+        "missing_committed_transition",
+        "altered_command_fingerprint",
+        "altered_movement_receipt",
+        "altered_state_delta",
+        "receipt_state_delta_disagreement",
+        "duplicate_command_identity",
+        "invalid_entity_or_location_reference",
+    ]
+
+
+
+def test_r4_d_implementation_authorization_certification_is_exact():
+    package = load(PACKAGE)
+
+    assert (
+        package[
+            "implementation_authorization_regression_certified"
+        ]
+        is True
+    )
+
+    assert (
+        package[
+            "implementation_authorization_recording_state"
+        ]
+        == "regression_certified_pending_commit"
+    )
+
+    cert = package[
+        "implementation_authorization_regression_certification"
+    ]
+
+    assert cert[
+        "focused_authorization_certification"
+    ] == {
+        "passed": 76,
+        "result": "pass",
+    }
+
+    assert cert["broader_pr2_r4_regression"] == {
+        "passed": 537,
+        "result": "pass",
+    }
+
+    assert cert["full_repository_suite"] == {
+        "passed": 9462,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "warning_class": "PytestRemovedIn10Warning",
+        "warning_disposition": (
+            "existing_nonblocking_deprecation"
+        ),
+        "result": "pass",
+    }
+
+    assert cert[
+        "focused_post_suite_confirmation"
+    ] == {
+        "passed": 67,
+        "result": "pass",
+    }
+
+    assert cert["git_diff_check"] == "clean"
+    assert cert["changed_path_count"] == 7
+    assert cert["production_runtime_path_count"] == 0
+    assert cert["production_schema_path_count"] == 0
+
+    assert (
+        cert["deterministic_acceptance_criteria_count"]
+        == 21
+    )
+
+    assert (
+        cert[
+            "implementation_validation_requirement_count"
+        ]
+        == 13
+    )
+
+    assert (
+        package["next_gate"]
+        == "r4_d_implementation_authorization_commit_push"
+    )
+
+    assert package["next_gate_authorized"] is False
+
+    # Authorization is certified; implementation is not.
+    assert package["implementation_authorized"] is True
+    assert package["implementation_regression_certified"] is False
+
+    assert package["r4_activation_authorized"] is False
+    assert package["runtime_promotion_authorized"] is False
+
+
+
+def test_r4_d_partial_authorization_recording_recovery_is_exact():
+    package = load(PACKAGE)
+
+    recovery = package[
+        "implementation_authorization_recording_failure_recovery_evidence"
+    ]
+
+    assert recovery["failed_recording_attempt"] == {
+        "exception": "AssertionError",
+        "result": "fail",
+    }
+
+    assert (
+        recovery["classification"]
+        == (
+            "partial_implementation_authorization_"
+            "certification_recording_before_late_assertion"
+        )
+    )
+
+    assert recovery["certification_state_already_written"] is True
+    assert recovery["certification_evidence_remains_valid"] is True
+    assert recovery["r4_d_behavioral_defect_detected"] is False
     assert recovery["runtime_scope_expanded"] is False
     assert recovery["production_schema_scope_expanded"] is False
     assert recovery["semantic_authority_expanded"] is False

@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.79`
+**Artifact version:** `0.4.80`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -4996,3 +4996,206 @@ successful full closure-certification run remains:
 Package/control versions remain:
 
 `0.1.1` / `0.4.79`
+
+
+### 5.82 R4-D implementation authorization
+
+The R4-D package definition and its bounded definition post-merge
+closure are merged on `main`.
+
+Authorization starting baseline:
+
+`5b251372eac24a741f77706abbf2c30823aca82a`
+
+Authorization starting tree:
+
+`b200bc539bc7d44d20ba3f9504a1d37299d2780f`
+
+Definition-closure PR:
+
+`#435`
+
+Definition-closure branch head:
+
+`d7155bcb5ca5c24ae632fb8852cbdf1d14f759df`
+
+Definition-closure CI:
+
+- run number: `270`;
+- run ID: `35619853810`.
+
+The owner explicitly authorized implementation of the bounded R4-D
+package:
+
+`persistent_world_local_checkpoint_restore`
+
+Authorization reference:
+
+`owner_directive_2026-09-21_r4_d_implementation_authorization`
+
+Authority effect:
+
+`bounded_persistent_world_local_checkpoint_restore_implementation_only`
+
+The authorized production-runtime surface remains exactly:
+
+`src/astra_runtime/domain/persistent_world_local_checkpoint_restore.py`
+
+The authorized implementation-test surface remains exactly:
+
+`tests/test_r4_d_persistent_world_local_checkpoint_restore.py`
+
+Production-schema implementation remains empty.
+
+`state_store.py` remains an explicit non-dependency and may not be
+converted into mutable persistence infrastructure.
+
+The existing twenty deterministic R4-D acceptance criteria remain
+authoritative.
+
+One explicit gameplay-continuation criterion is added as
+`R4D-AC-021`:
+
+an accepted checkpoint must survive destruction of the original
+in-memory runtime state, restore the authoritative campaign state,
+permit a completely new lawful movement command to commit normally,
+permit another checkpoint, and restore the newly committed position.
+
+Implementation certification must additionally prove thirteen
+package-local validation requirements covering:
+
+- actual file/process-boundary reconstruction;
+- complete preservation of bounded R4-C commitment evidence;
+- strict checkpoint-envelope validation;
+- atomic replacement preserving the prior valid checkpoint;
+- multiple distinct corruption and tamper cases;
+- post-restore technical retry and retry-conflict semantics;
+- preservation of multiple committed transitions;
+- checkpoint/restore/checkpoint deterministic payload stability;
+- preservation of the distinction between storage order and
+  AFQR-04 causal/logical order;
+- no complete-history replay overclaim;
+- an operationally meaningful local durability boundary;
+- fully local/offline restore without models, narration, or network
+  access;
+- continuation of new committed play after restore.
+
+This authorization does not create a generalized save system.
+
+It does not authorize save slots, autosave scheduling, cloud
+synchronization, backup rotation, branches, timeline selection,
+generalized migration infrastructure, database abstraction,
+distributed recovery, generalized snapshots, or a generalized
+replay engine.
+
+R4-D remains responsible only for the bounded path:
+
+authoritative R4-C runtime state -> qualified local checkpoint ->
+process/session boundary -> restore -> same authoritative state ->
+retry identity preserved -> new play continues.
+
+General R4 activation remains unauthorized.
+
+Runtime promotion remains unauthorized.
+
+Production schema implementation remains unauthorized.
+
+`R4-R6` remains blocked.
+
+The currently authorized gate is implementation-authorization
+regression certification. Runtime coding does not begin in this
+control/test-only authorization snapshot.
+
+
+### 5.83 R4-D implementation authorization regression certification
+
+The bounded R4-D implementation-authorization snapshot completed
+regression certification.
+
+Successful authorization-certification evidence:
+
+- focused R4-D authorization certification: `76 passed`;
+- broader PR2/R4 authorization certification: `537 passed`;
+- full repository:
+  `9462 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused post-suite authorization confirmation: `67 passed`;
+- `git diff --check`: clean;
+- exact changed-path footprint: `7`;
+- production runtime paths changed: `0`;
+- production schema paths changed: `0`;
+- deterministic R4-D acceptance criteria: `21`;
+- implementation validation requirements: `13`.
+
+The warning remains the existing nonblocking
+`PytestRemovedIn10Warning` for the class-scoped fixture defined as
+an instance method.
+
+Package/control versions remain:
+
+`0.1.2` / `0.4.80`
+
+No version increment is created merely to record certification
+evidence for the same authorization snapshot.
+
+Implementation-authorization recording state is now:
+
+`regression_certified_pending_commit`
+
+The next separate bounded gate is:
+
+`r4_d_implementation_authorization_commit_push`
+
+That gate is not automatically authorized.
+
+R4-D runtime implementation remains not yet performed.
+
+The implementation authorization itself remains valid and bounded
+to the previously declared R4-D runtime/test allowlist.
+
+General R4 activation remains unauthorized.
+
+Runtime promotion remains unauthorized.
+
+Production schema implementation remains unauthorized.
+
+`R4-R6` remains blocked.
+
+
+### 5.84 R4-D implementation-authorization recording recovery
+
+The first attempt to record the already-successful
+implementation-authorization certification terminated with an
+`AssertionError`.
+
+A subsequent read-only diagnostic proved that the structured
+package and manifest certification state had already been
+written before the abort:
+
+- authorization regression certified: `true`;
+- recording state: `regression_certified_pending_commit`;
+- next gate:
+  `r4_d_implementation_authorization_commit_push`;
+- next-gate authorization: `false`;
+- certification evidence present in both package and manifest.
+
+Classification:
+
+`partial_implementation_authorization_certification_recording_before_late_assertion`
+
+This is a recording/alignment failure, not an R4-D runtime
+behavioral defect.
+
+Runtime scope expansion:
+
+`false`
+
+Production-schema scope expansion:
+
+`false`
+
+Semantic-authority expansion:
+
+`false`
+
+The already-certified full repository run remains valid and is
+not repeated for this control/test-only recovery.

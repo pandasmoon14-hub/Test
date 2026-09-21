@@ -393,7 +393,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.79"
+    assert manifest["artifact_version"] == "0.4.80"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -1317,7 +1317,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.79`" in program
+    assert "**Artifact version:** `0.4.80`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -1615,7 +1615,7 @@ def test_r4_b_post_merge_closure_is_terminal_and_bounded():
 
     state = "merged_complete"
 
-    assert manifest["artifact_version"] == "0.4.79"
+    assert manifest["artifact_version"] == "0.4.80"
 
     assert candidate["implementation_state"] == state
     assert candidate["post_merge_closure_complete"] is True
@@ -1685,7 +1685,7 @@ def test_r4_b_post_merge_closure_regression_certification_is_exact():
     candidate = impl["first_playable_candidate"]
     target = manifest["r4_native_substrate_design_target"]
 
-    assert manifest["artifact_version"] == "0.4.79"
+    assert manifest["artifact_version"] == "0.4.80"
 
     # R4-B stays terminal; evidence recording is separate.
     assert candidate["implementation_state"] == "merged_complete"
@@ -1759,7 +1759,7 @@ def test_r4_b_post_merge_closure_regression_certification_is_exact():
 def test_r4_c_current_state_is_implementation_authorized_and_bounded():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.79"
+    assert manifest["artifact_version"] == "0.4.80"
 
     target = manifest[
         "r4_c_playable_movement_integration_target"
@@ -1894,7 +1894,7 @@ def test_r4_c_implementation_authorization_does_not_activate_general_r4():
 def test_r4_c_implementation_regression_certification_is_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.79"
+    assert manifest["artifact_version"] == "0.4.80"
 
     target = manifest[
         "r4_c_playable_movement_integration_target"
@@ -1956,7 +1956,7 @@ def test_r4_c_implementation_regression_certification_is_exact():
 def test_r4_c_post_merge_closure_is_recorded_without_downstream_activation():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.79"
+    assert manifest["artifact_version"] == "0.4.80"
 
     target = manifest[
         "r4_c_playable_movement_integration_target"
@@ -2023,7 +2023,7 @@ def test_r4_c_post_merge_closure_is_recorded_without_downstream_activation():
 def test_r4_c_post_merge_closure_certification_evidence_is_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.79"
+    assert manifest["artifact_version"] == "0.4.80"
 
     target = manifest[
         "r4_c_playable_movement_integration_target"
@@ -2124,7 +2124,7 @@ def test_r4_c_post_merge_closure_certification_evidence_is_exact():
 def test_r4_d_local_checkpoint_restore_definition_is_bounded():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.79"
+    assert manifest["artifact_version"] == "0.4.80"
 
     target = manifest[
         "r4_d_local_checkpoint_restore_target"
@@ -2136,11 +2136,11 @@ def test_r4_d_local_checkpoint_restore_definition_is_bounded():
         == "persistent_world_local_checkpoint_restore"
     )
 
-    assert target["status"] == "definition_merged_complete"
+    assert target["status"] == "implementation_authorized"
     assert target["package_defined"] is True
 
-    assert target["implementation_authorized"] is False
-    assert target["implementation_state"] == "not_authorized"
+    assert target["implementation_authorized"] is True
+    assert target["implementation_state"] == "authorized_pending_implementation"
 
     assert target["predecessor_package"] == "R4-C"
     assert target["persistence_contract"] == "PR2-PERSIST"
@@ -2154,7 +2154,7 @@ def test_r4_d_local_checkpoint_restore_definition_is_bounded():
 
     assert (
         target["next_gate"]
-        == "r4_d_definition_post_merge_closure_commit_push"
+        == "r4_d_implementation_authorization_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
@@ -2166,13 +2166,13 @@ def test_r4_d_local_checkpoint_restore_definition_is_bounded():
 def test_r4_d_definition_certification_evidence_is_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.79"
+    assert manifest["artifact_version"] == "0.4.80"
 
     target = manifest[
         "r4_d_local_checkpoint_restore_target"
     ]
 
-    assert target["status"] == "definition_merged_complete"
+    assert target["status"] == "implementation_authorized"
     assert target["definition_regression_certified"] is True
     assert target["definition_recording_state"] == "merged_complete"
 
@@ -2211,11 +2211,11 @@ def test_r4_d_definition_certification_evidence_is_exact():
 
     assert (
         target["next_gate"]
-        == "r4_d_definition_post_merge_closure_commit_push"
+        == "r4_d_implementation_authorization_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
-    assert target["implementation_authorized"] is False
+    assert target["implementation_authorized"] is True
     assert target["r4_activation_authorized"] is False
     assert target["runtime_promotion_authorized"] is False
 
@@ -2256,24 +2256,24 @@ def test_r4_d_manifest_definition_recording_recovery_evidence_is_exact():
 
     assert (
         target["next_gate"]
-        == "r4_d_definition_post_merge_closure_commit_push"
+        == "r4_d_implementation_authorization_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
-    assert target["implementation_authorized"] is False
+    assert target["implementation_authorized"] is True
     assert target["r4_activation_authorized"] is False
     assert target["runtime_promotion_authorized"] is False
 
 def test_r4_d_definition_post_merge_closure_control_state_is_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.79"
+    assert manifest["artifact_version"] == "0.4.80"
 
     target = manifest[
         "r4_d_local_checkpoint_restore_target"
     ]
 
-    assert target["status"] == "definition_merged_complete"
+    assert target["status"] == "implementation_authorized"
     assert target["definition_recording_state"] == "merged_complete"
 
     assert target["definition_post_merge_closure_complete"] is True
@@ -2333,18 +2333,18 @@ def test_r4_d_definition_post_merge_closure_control_state_is_exact():
         target[
             "definition_post_merge_closure_recording_state"
         ]
-        == "regression_certified_pending_commit"
+        == "merged_complete"
     )
 
     assert (
         target["next_gate"]
-        == "r4_d_definition_post_merge_closure_commit_push"
+        == "r4_d_implementation_authorization_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
 
-    assert target["implementation_authorized"] is False
-    assert target["implementation_state"] == "not_authorized"
+    assert target["implementation_authorized"] is True
+    assert target["implementation_state"] == "authorized_pending_implementation"
     assert target["r4_activation_authorized"] is False
     assert target["runtime_promotion_authorized"] is False
 
@@ -2361,7 +2361,7 @@ def test_r4_d_definition_closure_manifest_key_recovery_is_exact():
 
     assert (
         target["status"]
-        == "definition_merged_complete"
+        == "implementation_authorized"
     )
 
     assert "definition_merged_complete" not in target
@@ -2396,7 +2396,7 @@ def test_r4_d_definition_closure_manifest_key_recovery_is_exact():
         is False
     )
 
-    assert target["implementation_authorized"] is False
+    assert target["implementation_authorized"] is True
     assert target["r4_activation_authorized"] is False
     assert target["runtime_promotion_authorized"] is False
 
@@ -2420,7 +2420,7 @@ def test_r4_d_definition_post_merge_closure_certification_control_evidence_is_ex
         target[
             "definition_post_merge_closure_recording_state"
         ]
-        == "regression_certified_pending_commit"
+        == "merged_complete"
     )
 
     cert = target[
@@ -2460,11 +2460,11 @@ def test_r4_d_definition_post_merge_closure_certification_control_evidence_is_ex
 
     assert (
         target["next_gate"]
-        == "r4_d_definition_post_merge_closure_commit_push"
+        == "r4_d_implementation_authorization_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
-    assert target["implementation_authorized"] is False
+    assert target["implementation_authorized"] is True
     assert target["r4_activation_authorized"] is False
     assert target["runtime_promotion_authorized"] is False
 
@@ -2517,6 +2517,160 @@ def test_r4_d_closure_post_recording_recovery_control_evidence_is_exact():
     assert recovery["semantic_authority_expanded"] is False
     assert recovery["full_repository_rerun_required"] is False
 
-    assert target["implementation_authorized"] is False
+    assert target["implementation_authorized"] is True
     assert target["r4_activation_authorized"] is False
     assert target["runtime_promotion_authorized"] is False
+
+
+
+def test_r4_d_implementation_authorization_control_state_is_exact():
+    manifest = _load_manifest()
+
+    assert manifest["artifact_version"] == "0.4.80"
+
+    target = manifest[
+        "r4_d_local_checkpoint_restore_target"
+    ]
+
+    assert target["status"] == "implementation_authorized"
+    assert target["implementation_authorized"] is True
+
+    assert (
+        target["implementation_state"]
+        == "authorized_pending_implementation"
+    )
+
+    assert (
+        target[
+            "implementation_authorization_regression_certified"
+        ]
+        is True
+    )
+
+    assert (
+        target[
+            "implementation_authorization_recording_state"
+        ]
+        == "regression_certified_pending_commit"
+    )
+
+    assert target["implementation_regression_certified"] is False
+
+    assert (
+        target["next_gate"]
+        == "r4_d_implementation_authorization_commit_push"
+    )
+
+    assert target["next_gate_authorized"] is False
+
+    assert target["r4_activation_authorized"] is False
+    assert target["runtime_promotion_authorized"] is False
+
+    assert (
+        target["production_schema_implementation_authorized"]
+        is False
+    )
+
+    assert manifest["r2_gate_state"]["R4-R6"] == "blocked"
+
+def test_r4_d_implementation_authorization_certification_control_evidence_is_exact():
+    manifest = _load_manifest()
+
+    target = manifest[
+        "r4_d_local_checkpoint_restore_target"
+    ]
+
+    assert (
+        target[
+            "implementation_authorization_regression_certified"
+        ]
+        is True
+    )
+
+    assert (
+        target[
+            "implementation_authorization_recording_state"
+        ]
+        == "regression_certified_pending_commit"
+    )
+
+    cert = target[
+        "implementation_authorization_regression_certification"
+    ]
+
+    assert cert[
+        "focused_authorization_certification"
+    ] == {
+        "passed": 76,
+        "result": "pass",
+    }
+
+    assert cert["broader_pr2_r4_regression"] == {
+        "passed": 537,
+        "result": "pass",
+    }
+
+    assert cert["full_repository_suite"] == {
+        "passed": 9462,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "warning_class": "PytestRemovedIn10Warning",
+        "warning_disposition": (
+            "existing_nonblocking_deprecation"
+        ),
+        "result": "pass",
+    }
+
+    assert cert[
+        "focused_post_suite_confirmation"
+    ] == {
+        "passed": 67,
+        "result": "pass",
+    }
+
+    assert cert["changed_path_count"] == 7
+    assert cert["production_runtime_path_count"] == 0
+    assert cert["production_schema_path_count"] == 0
+
+    assert (
+        target["next_gate"]
+        == "r4_d_implementation_authorization_commit_push"
+    )
+
+    assert target["next_gate_authorized"] is False
+
+    assert target["implementation_authorized"] is True
+    assert target["implementation_regression_certified"] is False
+    assert target["r4_activation_authorized"] is False
+    assert target["runtime_promotion_authorized"] is False
+
+    assert manifest["r2_gate_state"]["R4-R6"] == "blocked"
+
+
+
+def test_r4_d_partial_authorization_recording_recovery_control_evidence_is_exact():
+    manifest = _load_manifest()
+
+    target = manifest[
+        "r4_d_local_checkpoint_restore_target"
+    ]
+
+    recovery = target[
+        "implementation_authorization_recording_failure_recovery_evidence"
+    ]
+
+    assert (
+        recovery["classification"]
+        == (
+            "partial_implementation_authorization_"
+            "certification_recording_before_late_assertion"
+        )
+    )
+
+    assert recovery["certification_state_already_written"] is True
+    assert recovery["r4_d_behavioral_defect_detected"] is False
+    assert recovery["runtime_scope_expanded"] is False
+    assert recovery["production_schema_scope_expanded"] is False
+    assert recovery["semantic_authority_expanded"] is False
+    assert recovery["full_repository_rerun_required"] is False
