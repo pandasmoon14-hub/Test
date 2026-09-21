@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.75",
+  "artifact_version": "0.4.77",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -2746,7 +2746,7 @@
     "pr2_mig_next_ready_pending_authorization": false
   },
   "r4_c_playable_movement_integration_target": {
-    "status": "implementation_authorized",
+    "status": "merged_complete",
     "package_id": "R4-C",
     "package_name": "persistent_world_playable_movement_integration",
     "definition_authorization_reference": "owner_directive_2026-09-20_r4_c_package_definition",
@@ -2765,7 +2765,7 @@
       "src/astra_runtime/domain/persistent_world_movement_integration.py"
     ],
     "proposed_production_schema_edit_allowlist": [],
-    "next_gate": "r4_c_implementation_commit_push",
+    "next_gate": "r4_c_post_merge_closure_commit_push",
     "next_gate_authorized": false,
     "definition_regression_certified": true,
     "definition_recording_state": "merged_complete",
@@ -2800,7 +2800,7 @@
     "implementation_authority_effect": "bounded_persistent_world_playable_movement_integration_implementation_only",
     "implementation_starting_baseline": "9118ec2af6d4afcbf6d597186200f3fb11243776",
     "implementation_starting_tree": "2d380f53245192a95049c607f6a66d3b634df348",
-    "implementation_state": "regression_certified_pending_commit",
+    "implementation_state": "merged_complete",
     "implementation_regression_certified": true,
     "definition_pull_request": 431,
     "definition_branch_head": "74caf2657106cb4595430b739f8d7e4a6669cdf5",
@@ -2845,6 +2845,76 @@
       "production_runtime_path_count": 1,
       "production_schema_path_count": 0,
       "test_infrastructure_path_count": 2
+    },
+    "post_merge_closure_complete": true,
+    "post_merge_closure_authorization_reference": "owner_directive_2026-09-20_r4_c_post_merge_closure",
+    "post_merge_closure_authority_effect": "bounded_r4_c_post_merge_lifecycle_reconciliation_only",
+    "post_merge_closure_recorded_from": "8cb6da94894d2b8142d72c4a61fb5335135fe97e",
+    "post_merge_closure_tree": "91b486771ba2e0c85a847fe0f71e37b3c551bd32",
+    "post_merge_closure_pull_request": 432,
+    "post_merge_closure_branch_head": "92e4a198b160101a188dee67f85e284ba9bd85c9",
+    "post_merge_closure_ci_run": 264,
+    "post_merge_closure_ci_run_id": 35553516783,
+    "post_merge_closure_regression_certified": true,
+    "post_merge_closure_recording_state": "regression_certified_pending_commit",
+    "post_merge_closure_failure_recovery_evidence": {
+      "failed_focused_closure_certification": {
+        "failed": 4,
+        "passed": 445,
+        "result": "fail"
+      },
+      "classification": "stale_control_artifact_version_expectations",
+      "r4_c_behavioral_defect_detected": false,
+      "repair_path": "tests/test_post_r2a_transition_program.py",
+      "repair_effect": "align current control-artifact version assertions from 0.4.75 to the closure artifact version 0.4.76",
+      "runtime_scope_expanded": false,
+      "production_schema_scope_expanded": false,
+      "semantic_authority_expanded": false,
+      "regression_certification_restart_required": true,
+      "post_recording_validation_recovery": {
+        "failed_focused_post_recording_validation": {
+          "failed": 4,
+          "passed": 65,
+          "result": "fail"
+        },
+        "classification": "stale_control_artifact_version_expectations_after_certification_recording",
+        "r4_c_behavioral_defect_detected": false,
+        "repair_path": "tests/test_post_r2a_transition_program.py",
+        "repair_effect": "align four remaining current control-artifact version expectations from 0.4.76 to 0.4.77",
+        "runtime_scope_expanded": false,
+        "production_schema_scope_expanded": false,
+        "semantic_authority_expanded": false,
+        "full_repository_rerun_required": false,
+        "rationale": "the already-certified full repository evidence remains valid because the failure is isolated to four stale test-only artifact-version expectations"
+      }
+    },
+    "post_merge_closure_regression_certification": {
+      "certification_restart_after_version_alignment_recovery": true,
+      "focused_pre_certification": {
+        "passed": 446,
+        "result": "pass"
+      },
+      "broader_pr2_r4_regression": {
+        "passed": 507,
+        "result": "pass"
+      },
+      "full_repository_suite": {
+        "passed": 9432,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "warning_class": "PytestRemovedIn10Warning",
+        "warning_disposition": "existing_nonblocking_deprecation",
+        "result": "pass"
+      },
+      "focused_post_suite_regression": {
+        "passed": 67,
+        "result": "pass"
+      },
+      "git_diff_check": "clean",
+      "changed_path_count": 6,
+      "runtime_implementation_path_count": 0,
+      "production_schema_path_count": 0
     }
   }
 }

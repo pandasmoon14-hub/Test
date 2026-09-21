@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.75`
+**Artifact version:** `0.4.77`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -4433,3 +4433,160 @@ It does not authorize durable persistence.
 
 It does not create generalized transaction, state-management, replay,
 topology, or relation-lifecycle infrastructure.
+
+
+### 5.72 R4-C post-merge lifecycle closure
+
+PR `#432` merged the certified bounded R4-C playable movement
+implementation into `main`.
+
+Implementation branch head:
+
+`92e4a198b160101a188dee67f85e284ba9bd85c9`
+
+Merge commit:
+
+`8cb6da94894d2b8142d72c4a61fb5335135fe97e`
+
+Merge tree:
+
+`91b486771ba2e0c85a847fe0f71e37b3c551bd32`
+
+Successful pull-request CI:
+
+- run number: `264`;
+- run ID: `35553516783`.
+
+The owner separately authorized the bounded R4-C post-merge lifecycle
+reconciliation.
+
+Authorization reference:
+
+`owner_directive_2026-09-20_r4_c_post_merge_closure`
+
+Authority effect:
+
+`bounded_r4_c_post_merge_lifecycle_reconciliation_only`
+
+The implementation lifecycle is now recorded as `merged_complete`.
+
+This closure reconciles lifecycle/control state only. It changes no
+production runtime file and no production schema.
+
+The implementation's previously certified deterministic behavior and
+preserved guardrail-recovery evidence remain unchanged.
+
+Post-merge closure regression certification remains required before the
+closure record may be committed.
+
+General R4 activation remains unauthorized.
+
+Runtime promotion remains unauthorized.
+
+Durable persistence remains unauthorized.
+
+Generalized transaction management, generalized replay infrastructure,
+generalized relation lifecycle infrastructure, pathfinding, topology,
+movement economy, and automatic successor activation remain unauthorized.
+
+`R4-R6` remains globally blocked.
+
+
+### 5.73 R4-C post-merge closure regression certification
+
+The R4-C post-merge lifecycle closure completed regression
+certification after one bounded control-test version-alignment
+recovery.
+
+The first focused closure certification run produced:
+
+`4 failed, 445 passed`
+
+All four failures were stale current-version assertions in
+`tests/test_post_r2a_transition_program.py` that still expected
+control artifact version `0.4.75` after the closure had lawfully
+advanced the manifest and program to `0.4.76`.
+
+No R4-C behavioral defect was detected.
+
+The repair changed only those control-test expectations.
+
+Runtime scope was not expanded.
+
+Production-schema scope was not expanded.
+
+Semantic authority was not expanded.
+
+Successful restarted closure certification:
+
+- focused closure certification: `446 passed`;
+- broader PR2/R4 regression: `507 passed`;
+- full repository:
+  `9432 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused post-suite closure confirmation: `67 passed`;
+- `git diff --check`: clean;
+- changed paths: `6`;
+- runtime implementation paths changed: `0`;
+- production schema paths changed: `0`.
+
+The single warning remains the existing nonblocking
+`PytestRemovedIn10Warning` concerning a class-scoped fixture
+defined as an instance method.
+
+R4-C remains `merged_complete`.
+
+Post-merge closure regression certification is complete.
+
+Closure recording state is now:
+
+`regression_certified_pending_commit`
+
+The next bounded gate is:
+
+`r4_c_post_merge_closure_commit_push`
+
+That next gate is not implicitly authorized by this evidence record.
+
+General R4 activation remains unauthorized.
+
+Runtime promotion remains unauthorized.
+
+Durable persistence remains unauthorized.
+
+Automatic successor activation remains unauthorized.
+
+`R4-R6` remains globally blocked.
+
+
+#### 5.73.1 R4-C closure post-recording validation recovery
+
+The first focused validation of the recorded closure
+certification produced:
+
+`4 failed, 65 passed`
+
+The four failures were limited to stale current-version
+expectations in
+`tests/test_post_r2a_transition_program.py`.
+
+Those assertions expected control artifact version `0.4.76`
+after the certification record had already established the
+still-uncommitted closure snapshot as `0.4.77`.
+
+This was test-infrastructure drift only.
+
+No R4-C behavioral defect was detected.
+
+Runtime scope was not expanded.
+
+Production-schema scope was not expanded.
+
+Semantic authority was not expanded.
+
+The correction keeps the same uncommitted `0.4.77`
+certification snapshot and aligns only those four test
+expectations.
+
+The previously completed full-repository certification remains
+authoritative evidence and is not rerun for this test-only
+alignment.

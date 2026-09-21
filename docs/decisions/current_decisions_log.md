@@ -7545,3 +7545,78 @@ The failed full-suite run remains retained as evidence rather than erased
 or reclassified as a successful run.
 
 No additional semantic authority is granted by this certification.
+
+
+## 2026-09-20 decision — R4-C post-merge lifecycle closure
+
+- **Decision ID:** `R4-C-POST-MERGE-CLOSURE-006`
+- **Authorization reference:** `owner_directive_2026-09-20_r4_c_post_merge_closure`
+- **Authority effect:** `bounded_r4_c_post_merge_lifecycle_reconciliation_only`
+- **Implementation PR:** `#432`
+- **Implementation branch head:** `92e4a198b160101a188dee67f85e284ba9bd85c9`
+- **Implementation merge commit:** `8cb6da94894d2b8142d72c4a61fb5335135fe97e`
+- **Implementation merge tree:** `91b486771ba2e0c85a847fe0f71e37b3c551bd32`
+- **Implementation CI run:** `#264`
+- **Implementation CI run ID:** `35553516783`
+- **Implementation lifecycle state:** `merged_complete`
+- **Runtime paths changed by closure:** `0`
+- **Production schema paths changed by closure:** `0`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+- **Durable persistence authorized:** `false`
+- **Automatic successor activation:** `false`
+
+The closure records the already-completed merge and reconciles the R4-C
+lifecycle/control state. It grants no additional runtime or semantic
+authority.
+
+Closure regression certification is required before this reconciliation
+is committed.
+
+
+## 2026-09-20 decision — R4-C post-merge closure regression certification
+
+- **Decision ID:** `R4-C-POST-MERGE-CLOSURE-CERTIFICATION-007`
+- **Closure regression certified:** `true`
+- **Closure recording state:** `regression_certified_pending_commit`
+- **Focused certification:** `446 passed`
+- **Broader PR2/R4 certification:** `507 passed`
+- **Full repository:** `9432 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite:** `67 passed`
+- **Preserved failed focused run:** `4 failed, 445 passed`
+- **Failure classification:** `stale_control_artifact_version_expectations`
+- **R4-C behavioral defect detected:** `false`
+- **git diff --check:** `clean`
+- **Changed paths:** `6`
+- **Runtime implementation paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+- **Durable persistence authorized:** `false`
+- **Automatic successor activation:** `false`
+
+The closure evidence certifies lifecycle reconciliation only.
+
+It creates no new runtime capability, semantic owner, schema,
+generalized transaction authority, replay authority, or downstream
+activation.
+
+
+## 2026-09-20 decision — R4-C closure post-recording validation recovery
+
+- **Decision ID:** `R4-C-POST-MERGE-CLOSURE-VALIDATION-RECOVERY-008`
+- **Failed focused validation:** `4 failed, 65 passed`
+- **Classification:** `stale_control_artifact_version_expectations_after_certification_recording`
+- **R4-C behavioral defect detected:** `false`
+- **Repair path:** `tests/test_post_r2a_transition_program.py`
+- **Runtime-scope expansion:** `false`
+- **Production-schema expansion:** `false`
+- **Semantic-authority expansion:** `false`
+- **Full repository rerun required:** `false`
+
+The failure occurred only because four test expectations still
+referenced `0.4.76` after the uncommitted certified closure
+snapshot had advanced to `0.4.77`.
+
+The recovery preserves the existing `0.4.77` / `0.1.6`
+artifact versions and updates only those stale expectations.
