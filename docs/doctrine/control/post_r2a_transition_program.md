@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.78`
+**Artifact version:** `0.4.79`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -4770,3 +4770,229 @@ semantic-authority expansion was detected.
 
 The existing full-repository certification remains valid and is not
 rerun for this isolated test-only expectation repair.
+
+
+### 5.78 R4-D definition post-merge lifecycle closure
+
+PR `#434` merged the certified bounded R4-D package definition into
+`main`.
+
+Definition branch head:
+
+`f453dde3ae2046a88048291f2f9b79c6b3406f52`
+
+Definition merge commit:
+
+`3cf57fb816e51610c98258399ae11267abd2c1f5`
+
+Definition merge tree:
+
+`5674c05bd8d216373925ac5151a965acec6e72ec`
+
+Successful pull-request CI:
+
+- run number: `268`;
+- run ID: `35608929257`.
+
+The owner separately authorized the bounded R4-D definition
+post-merge lifecycle reconciliation.
+
+Authorization reference:
+
+`owner_directive_2026-09-21_r4_d_definition_post_merge_closure`
+
+Authority effect:
+
+`bounded_r4_d_definition_post_merge_lifecycle_reconciliation_only`
+
+The package-definition lifecycle is now recorded as:
+
+`definition_merged_complete`
+
+The definition recording state is:
+
+`merged_complete`
+
+This closure changes no production runtime file and no production
+schema.
+
+It preserves the existing definition certification evidence and the
+recorded stale-test recovery evidence.
+
+It does not authorize the proposed R4-D runtime implementation.
+
+It does not authorize general R4 activation.
+
+It does not authorize runtime promotion.
+
+It does not authorize production schema implementation.
+
+It does not authorize generalized persistence, generalized replay,
+database selection, global save-layout ownership, timeline identity,
+branch identity, or canonicality.
+
+`R4-R6` remains blocked.
+
+Post-merge definition-closure regression certification is required
+before this closure record may be committed.
+
+The currently authorized next bounded gate is:
+
+`r4_d_definition_post_merge_closure_regression_certification`
+
+
+### 5.79 R4-D definition-closure test-key recovery
+
+The first focused R4-D definition post-merge closure
+certification run produced:
+
+`1 failed, 64 passed`
+
+The failed test was:
+
+`test_r4_d_local_checkpoint_restore_definition_is_bounded`
+
+The failure was caused by an accidental test-only dictionary-key
+rewrite during lifecycle alignment.
+
+The persistent Boolean fact remains:
+
+`package_defined = true`
+
+The current lifecycle status is separately:
+
+`definition_merged_complete`
+
+The test incorrectly attempted to read a nonexistent Boolean key:
+
+`definition_merged_complete`
+
+Classification:
+
+`accidental_test_key_rewrite_during_definition_closure_lifecycle_alignment`
+
+No R4-D runtime behavioral defect was detected.
+
+Runtime scope expansion:
+
+`false`
+
+Production-schema scope expansion:
+
+`false`
+
+Semantic-authority expansion:
+
+`false`
+
+Closure regression certification must restart after the bounded
+test-only repair.
+
+Package/control versions remain:
+
+`0.1.1` / `0.4.79`
+
+
+### 5.80 R4-D definition post-merge closure regression certification
+
+The bounded R4-D definition post-merge lifecycle closure
+completed regression certification after the recorded test-key
+recovery.
+
+The failed pre-repair focused run remains preserved as evidence:
+
+`1 failed, 64 passed`
+
+Failure classification:
+
+`accidental_test_key_rewrite_during_definition_closure_lifecycle_alignment`
+
+Successful closure-certification evidence:
+
+- focused closure certification: `67 passed`;
+- broader PR2/R4 certification: `528 passed`;
+- full repository:
+  `9453 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused post-suite confirmation: `58 passed`;
+- `git diff --check`: clean;
+- exact changed-path footprint: `7`;
+- runtime implementation paths changed: `0`;
+- production schema paths changed: `0`.
+
+The warning remains the existing nonblocking
+`PytestRemovedIn10Warning` associated with the class-scoped
+fixture defined as an instance method.
+
+Package/control versions remain:
+
+`0.1.1` / `0.4.79`
+
+No version increment is created merely by recording certification
+evidence for this same uncommitted closure snapshot.
+
+Closure recording state is now:
+
+`regression_certified_pending_commit`
+
+The next separate bounded gate is:
+
+`r4_d_definition_post_merge_closure_commit_push`
+
+That gate is not automatically authorized.
+
+R4-D implementation remains unauthorized.
+
+General R4 activation remains unauthorized.
+
+Runtime promotion remains unauthorized.
+
+Production schema implementation remains unauthorized.
+
+`R4-R6` remains blocked.
+
+
+### 5.81 R4-D closure post-recording state-alignment recovery
+
+After successful closure-certification evidence was recorded, the
+first focused post-recording validation produced:
+
+`6 failed, 54 passed`
+
+All six failures were stale test-only expectations for the
+pre-recording closure state.
+
+The recorded authoritative state is:
+
+- closure regression certified: `true`;
+- closure recording state:
+  `regression_certified_pending_commit`;
+- next gate:
+  `r4_d_definition_post_merge_closure_commit_push`;
+- next-gate authorization: `false`.
+
+Classification:
+
+`stale_closure_certification_state_expectations_after_evidence_recording`
+
+No R4-D behavioral defect was identified.
+
+Runtime scope expansion:
+
+`false`
+
+Production-schema scope expansion:
+
+`false`
+
+Semantic-authority expansion:
+
+`false`
+
+A second full-repository run is not required. The previously
+successful full closure-certification run remains:
+
+`9453 passed, 10 skipped, 2 xfailed, 1 warning`
+
+Package/control versions remain:
+
+`0.1.1` / `0.4.79`

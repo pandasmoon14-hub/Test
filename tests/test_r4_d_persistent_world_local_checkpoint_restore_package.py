@@ -30,7 +30,7 @@ def load(path: Path):
 def test_r4_d_identity_baseline_and_status_are_exact():
     package = load(PACKAGE)
 
-    assert package["artifact_version"] == "0.1.0"
+    assert package["artifact_version"] == "0.1.1"
     assert package["package_id"] == "R4-D"
 
     assert (
@@ -40,7 +40,7 @@ def test_r4_d_identity_baseline_and_status_are_exact():
 
     assert (
         package["status"]
-        == "package_defined"
+        == "definition_merged_complete"
     )
 
 
@@ -203,7 +203,7 @@ def test_r4_d_manifest_matches_package_definition():
     package = load(PACKAGE)
     manifest = load(MANIFEST)
 
-    assert manifest["artifact_version"] == "0.4.78"
+    assert manifest["artifact_version"] == "0.4.79"
 
     target = manifest[
         "r4_d_local_checkpoint_restore_target"
@@ -215,24 +215,22 @@ def test_r4_d_manifest_matches_package_definition():
 
     assert (
         target["next_gate"]
-        == "r4_d_definition_commit_push"
+        == "r4_d_definition_post_merge_closure_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
 
-
-
 def test_r4_d_definition_regression_certification_is_exact():
     package = load(PACKAGE)
 
-    assert package["artifact_version"] == "0.1.0"
-    assert package["status"] == "package_defined"
+    assert package["artifact_version"] == "0.1.1"
+    assert package["status"] == "definition_merged_complete"
 
     assert package["definition_regression_certified"] is True
 
     assert (
         package["definition_recording_state"]
-        == "regression_certified_pending_commit"
+        == "merged_complete"
     )
 
     evidence = package[
@@ -352,6 +350,265 @@ def test_r4_d_secondary_authorization_recovery_evidence_is_exact():
     assert recovery["observed_authoritative_value"] is False
     assert recovery["stale_expected_value"] is True
     assert recovery["r4_d_behavioral_defect_detected"] is False
+    assert recovery["runtime_scope_expanded"] is False
+    assert recovery["production_schema_scope_expanded"] is False
+    assert recovery["semantic_authority_expanded"] is False
+    assert recovery["full_repository_rerun_required"] is False
+
+
+
+def test_r4_d_definition_post_merge_closure_is_exact_and_bounded():
+    package = load(PACKAGE)
+    manifest = load(MANIFEST)
+
+    target = manifest[
+        "r4_d_local_checkpoint_restore_target"
+    ]
+
+    assert package["artifact_version"] == "0.1.1"
+    assert manifest["artifact_version"] == "0.4.79"
+
+    assert package["status"] == "definition_merged_complete"
+    assert target["status"] == "definition_merged_complete"
+
+    assert package["definition_recording_state"] == "merged_complete"
+    assert target["definition_recording_state"] == "merged_complete"
+
+    assert (
+        package["definition_post_merge_closure_complete"]
+        is True
+    )
+
+    assert (
+        target["definition_post_merge_closure_complete"]
+        is True
+    )
+
+    assert (
+        target["definition_post_merge_closure_recorded_from"]
+        == "3cf57fb816e51610c98258399ae11267abd2c1f5"
+    )
+
+    assert (
+        target["definition_post_merge_closure_tree"]
+        == "5674c05bd8d216373925ac5151a965acec6e72ec"
+    )
+
+    assert target["definition_post_merge_closure_pull_request"] == 434
+
+    assert (
+        target["definition_post_merge_closure_branch_head"]
+        == "f453dde3ae2046a88048291f2f9b79c6b3406f52"
+    )
+
+    assert target["definition_post_merge_closure_ci_run"] == 268
+
+    assert (
+        target["definition_post_merge_closure_ci_run_id"]
+        == 35608929257
+    )
+
+    assert (
+        target[
+            "definition_post_merge_closure_regression_certified"
+        ]
+        is True
+    )
+
+    assert (
+        target[
+            "definition_post_merge_closure_recording_state"
+        ]
+        == "regression_certified_pending_commit"
+    )
+
+    assert (
+        target["next_gate"]
+        == "r4_d_definition_post_merge_closure_commit_push"
+    )
+
+    assert target["next_gate_authorized"] is False
+
+    assert target["implementation_authorized"] is False
+    assert target["implementation_state"] == "not_authorized"
+    assert target["r4_activation_authorized"] is False
+    assert target["runtime_promotion_authorized"] is False
+
+def test_r4_d_definition_closure_key_recovery_evidence_is_exact():
+    package = load(PACKAGE)
+
+    recovery = package[
+        "definition_post_merge_closure_failure_recovery_evidence"
+    ]
+
+    assert recovery[
+        "failed_focused_closure_certification"
+    ] == {
+        "failed": 1,
+        "passed": 64,
+        "result": "fail",
+    }
+
+    assert (
+        recovery["classification"]
+        == (
+            "accidental_test_key_rewrite_during_"
+            "definition_closure_lifecycle_alignment"
+        )
+    )
+
+    assert (
+        recovery[
+            "authoritative_persistent_boolean_key"
+        ]
+        == "package_defined"
+    )
+
+    assert (
+        recovery["lifecycle_status"]
+        == "definition_merged_complete"
+    )
+
+    assert recovery[
+        "r4_d_behavioral_defect_detected"
+    ] is False
+
+    assert recovery["runtime_scope_expanded"] is False
+
+    assert (
+        recovery[
+            "production_schema_scope_expanded"
+        ]
+        is False
+    )
+
+    assert (
+        recovery["semantic_authority_expanded"]
+        is False
+    )
+
+    assert (
+        recovery[
+            "closure_certification_restart_required"
+        ]
+        is True
+    )
+
+
+
+def test_r4_d_definition_post_merge_closure_certification_is_exact():
+    package = load(PACKAGE)
+
+    assert (
+        package[
+            "definition_post_merge_closure_regression_certified"
+        ]
+        is True
+    )
+
+    assert (
+        package[
+            "definition_post_merge_closure_recording_state"
+        ]
+        == "regression_certified_pending_commit"
+    )
+
+    cert = package[
+        "definition_post_merge_closure_regression_certification"
+    ]
+
+    assert cert[
+        "certification_restart_after_test_key_recovery"
+    ] is True
+
+    assert cert["focused_pre_certification"] == {
+        "passed": 67,
+        "result": "pass",
+    }
+
+    assert cert["broader_pr2_r4_regression"] == {
+        "passed": 528,
+        "result": "pass",
+    }
+
+    assert cert["full_repository_suite"] == {
+        "passed": 9453,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "warning_class": "PytestRemovedIn10Warning",
+        "warning_disposition": (
+            "existing_nonblocking_deprecation"
+        ),
+        "result": "pass",
+    }
+
+    assert cert["focused_post_suite_regression"] == {
+        "passed": 58,
+        "result": "pass",
+    }
+
+    assert cert["git_diff_check"] == "clean"
+    assert cert["changed_path_count"] == 7
+    assert cert["runtime_implementation_path_count"] == 0
+    assert cert["production_schema_path_count"] == 0
+
+    assert (
+        package["next_gate"]
+        == "r4_d_definition_post_merge_closure_commit_push"
+    )
+
+    assert package["next_gate_authorized"] is False
+    assert package["implementation_authorized"] is False
+    assert package["r4_activation_authorized"] is False
+    assert package["runtime_promotion_authorized"] is False
+
+
+
+def test_r4_d_closure_post_recording_recovery_evidence_is_exact():
+    package = load(PACKAGE)
+
+    recovery = package[
+        "definition_post_merge_closure_failure_recovery_evidence"
+    ]["post_recording_validation_recovery"]
+
+    assert recovery[
+        "failed_focused_post_recording_validation"
+    ] == {
+        "failed": 6,
+        "passed": 54,
+        "result": "fail",
+    }
+
+    assert (
+        recovery["classification"]
+        == (
+            "stale_closure_certification_state_expectations_"
+            "after_evidence_recording"
+        )
+    )
+
+    assert (
+        recovery["authoritative_next_gate"]
+        == "r4_d_definition_post_merge_closure_commit_push"
+    )
+
+    assert (
+        recovery["authoritative_next_gate_authorized"]
+        is False
+    )
+
+    assert (
+        recovery[
+            "authoritative_closure_regression_certified"
+        ]
+        is True
+    )
+
+    assert recovery[
+        "r4_d_behavioral_defect_detected"
+    ] is False
+
     assert recovery["runtime_scope_expanded"] is False
     assert recovery["production_schema_scope_expanded"] is False
     assert recovery["semantic_authority_expanded"] is False
