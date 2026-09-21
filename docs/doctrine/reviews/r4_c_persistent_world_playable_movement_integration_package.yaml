@@ -1,0 +1,385 @@
+{
+  "artifact_id": "MYRAVANT-R4-C-PERSISTENT-WORLD-PLAYABLE-MOVEMENT-INTEGRATION-PACKAGE-001",
+  "artifact_version": "0.1.1",
+  "status": "ready_pending_authorization",
+  "package_id": "R4-C",
+  "package_name": "persistent_world_playable_movement_integration",
+  "definition_authorization_reference": "owner_directive_2026-09-20_r4_c_package_definition",
+  "definition_authority_effect": "bounded_r4_c_package_definition_only",
+  "definition_starting_baseline": "cb3cee39c3aabce8cf0525e0d227618bf13b5d85",
+  "definition_starting_tree": "e363b37401e0ff28bdec665a0eb59f72e0b91ce5",
+  "implementation_authorized": false,
+  "r4_activation_authorized": false,
+  "runtime_promotion_authorized": false,
+  "durable_persistence_implementation_authorized": false,
+  "predecessor": {
+    "package_id": "R4-B",
+    "package_name": "persistent_world_entity_location_representation_implementation",
+    "required_state": "merged_complete",
+    "artifact": "docs/doctrine/reviews/r4_b_persistent_world_entity_location_implementation_package.yaml"
+  },
+  "playable_need": [
+    "ordinary gameplay must be able to change the persistent-world location of a campaign entity through the deterministic backend",
+    "a fictionally coherent player movement attempt must reach the existing command/action path without requiring a closed command menu",
+    "subsequent gameplay must observe the committed destination rather than a location asserted only by narration or a model"
+  ],
+  "bounded_capability": {
+    "adds": [
+      "one bounded deterministic movement integration for an actor from one persistent place to another",
+      "owner-routed movement preparation consuming existing command, location, opportunity, transaction, and state-delta surfaces",
+      "one AFQR-01-qualified in-memory authoritative transition for the persistent-world location representation",
+      "deterministic transition receipt and replay evidence",
+      "subsequent authoritative observation of the committed destination"
+    ],
+    "does_not_add": [
+      "generalized world-state manager",
+      "generalized governed-relation registry",
+      "generalized AFQR-01 transaction journal",
+      "durable database or persistence engine",
+      "general replay engine",
+      "movement speed",
+      "stamina or movement-point economy",
+      "pathfinding",
+      "adjacency graph",
+      "terrain costs",
+      "travel time",
+      "encounters",
+      "encumbrance",
+      "map generation",
+      "social or institutional systems",
+      "sensing or knowledge systems",
+      "combat",
+      "model-owned authoritative state"
+    ]
+  },
+  "semantic_owners": [
+    {
+      "concern": "command_identity_attempts_and_technical_retries",
+      "owner_ref": "AFQR-02",
+      "qualification": "technical retries preserve command meaning and may not duplicate an already committed movement"
+    },
+    {
+      "concern": "action_representation_intent_method_route",
+      "owner_ref": "AFQR-03",
+      "qualification": "interpretation may propose a movement action but does not commit spatial truth"
+    },
+    {
+      "concern": "location_spatial_topology_reachability_and_movement_semantics",
+      "owner_ref": "AFQR-18",
+      "qualification": "R4-C consumes spatial determination and current-location semantics without acquiring AFQR-18 ownership"
+    },
+    {
+      "concern": "opportunity_target_validity_and_action_resolution",
+      "owner_ref": "AFQR-19",
+      "qualification": "R4-C may consume a bounded lawful opportunity/resolution result but may not invent universal reachability or movement legality"
+    },
+    {
+      "concern": "authoritative_state_transition_commit_retry_result_and_replay",
+      "owner_ref": "AFQR-01",
+      "qualification": "all authoritative location change terminates in one bounded qualified transition; failed transitions leave state unchanged"
+    },
+    {
+      "concern": "governed_relation_lifecycle_boundary",
+      "owner_ref": "AFQR-09",
+      "qualification": "R4-C does not implement a generalized governed-relation registry, lineage, amendment, supersession, migration, or termination system"
+    }
+  ],
+  "implementation_owner": {
+    "proposed_module": "astra_runtime.domain.persistent_world_movement_integration",
+    "proposed_runtime_path": "src/astra_runtime/domain/persistent_world_movement_integration.py",
+    "owns": [
+      "bounded movement-integration validation",
+      "package-local movement transition preparation",
+      "bounded in-memory application of one qualified current-location transition",
+      "deterministic package-local transition receipt construction",
+      "bounded deterministic replay/equivalence verification",
+      "package-local failure classification"
+    ],
+    "does_not_own": [
+      "AFQR-18 spatial semantics",
+      "AFQR-19 opportunity or target semantics",
+      "AFQR-02 command identity semantics",
+      "AFQR-09 generalized governed-relation lifecycle semantics",
+      "general AFQR-01 transition coordination",
+      "durable persistence",
+      "general replay infrastructure",
+      "model interpretation authority",
+      "narration authority over world truth",
+      "canon"
+    ],
+    "semantic_authority_acquired": false
+  },
+  "dependencies": {
+    "required_predecessors": [
+      {
+        "package": "R4-B",
+        "required_state": "merged_complete"
+      }
+    ],
+    "read_only_runtime_dependencies": [
+      "src/astra_runtime/domain/persistent_world_entity_location_representation.py",
+      "src/astra_runtime/kernel/command_envelope.py",
+      "src/astra_runtime/domain/command_kind_routing_skeleton.py",
+      "src/astra_runtime/kernel/transaction_preview.py",
+      "src/astra_runtime/kernel/state_delta.py",
+      "src/astra_runtime/kernel/record_identity.py"
+    ],
+    "doctrine_dependencies": [
+      "AFQR-01",
+      "AFQR-02",
+      "AFQR-03",
+      "AFQR-09",
+      "AFQR-18",
+      "AFQR-19"
+    ],
+    "future_handoff_assessment": [
+      {
+        "handoff": "durable_persistence_and_replay",
+        "blocks_r4_c": false,
+        "rationale": "the initial playable proof may use authoritative in-memory campaign state with deterministic replay evidence"
+      },
+      {
+        "handoff": "runtime_partitioning_and_concurrency",
+        "blocks_r4_c": false,
+        "rationale": "one bounded movement transition requires no distributed execution topology"
+      },
+      {
+        "handoff": "fidelity_aggregation_and_reconstitution",
+        "blocks_r4_c": false,
+        "rationale": "the initial movement fixture remains at full bounded detail"
+      },
+      {
+        "handoff": "overload_backpressure",
+        "blocks_r4_c": false,
+        "rationale": "the initial deterministic movement proof makes no throughput or overload claim"
+      }
+    ]
+  },
+  "proposed_implementation_edit_allowlist": {
+    "runtime_paths": [
+      "src/astra_runtime/domain/persistent_world_movement_integration.py"
+    ],
+    "production_schema_paths": [],
+    "package_specific_test_paths": [
+      "tests/test_r4_c_persistent_world_movement_integration.py"
+    ],
+    "test_infrastructure_paths_if_required": [
+      "tests/runtime_domain_package_manifest.py"
+    ],
+    "existing_runtime_dependencies_read_only": [
+      "src/astra_runtime/domain/persistent_world_entity_location_representation.py",
+      "src/astra_runtime/kernel/command_envelope.py",
+      "src/astra_runtime/domain/command_kind_routing_skeleton.py",
+      "src/astra_runtime/domain/state_store.py",
+      "src/astra_runtime/domain/state_projection.py",
+      "src/astra_runtime/domain/transaction_lifecycle.py",
+      "src/astra_runtime/domain/event_commitment.py",
+      "src/astra_runtime/domain/tiny_vertical_slice.py",
+      "src/astra_runtime/domain/object_lever_event_commit_state_delta_path.py"
+    ]
+  },
+  "transition_semantics": {
+    "command_family": "movement",
+    "input_state": "one valid R4-B campaign representation containing actor A, source place P1, destination place P2, and exactly one active located_at(A,P1) current-location fact for the bounded operation",
+    "required_owner_evidence": [
+      "AFQR-18-compatible source/destination spatial determination",
+      "AFQR-19-compatible lawful movement opportunity/resolution evidence"
+    ],
+    "state_basis": "canonical deterministic pre-state serialization or digest is frozen before commit",
+    "state_delta_change_type": "relationship_update",
+    "atomic_postcondition": "the committed post-state contains exactly one authoritative located_at(A,P2) current-location fact for the bounded operation and no simultaneously active located_at(A,P1) current-location fact",
+    "relation_identity_rule": "R4-C does not generalize relation lineage, amendment, supersession, migration, or continuity semantics; implementation must remain compatible with AFQR-09 boundaries while satisfying the bounded single-current-location postcondition",
+    "narration_may_create_or_override_state": false,
+    "model_call_required_for_authoritative_resolution": false
+  },
+  "prohibited_scope": [
+    "modify R4-B into a generalized mutable world-state manager",
+    "modify the tiny vertical slice into the persistent-world runtime",
+    "reuse RT-002E as though it already owns AFQR-01 commitment",
+    "create a universal movement topology",
+    "create universal adjacency",
+    "create universal movement speed or stamina rules",
+    "create a generalized relation registry",
+    "create generalized AFQR-09 relation lifecycle infrastructure",
+    "create a generalized transaction manager",
+    "create a second event journal",
+    "create durable database persistence",
+    "create generalized replay infrastructure",
+    "create offline progression",
+    "create world partitioning or distributed execution",
+    "create model-owned movement resolution",
+    "allow narration to mutate or override authoritative location",
+    "authorize implementation implicitly from package definition",
+    "authorize R4 activation",
+    "authorize runtime promotion"
+  ],
+  "deterministic_acceptance_criteria": [
+    {
+      "criterion_id": "R4C-AC-001",
+      "requirement": "an existing CommandEnvelope movement form deterministically routes through the existing movement command family"
+    },
+    {
+      "criterion_id": "R4C-AC-002",
+      "requirement": "actor, source place, and destination place identities resolve inside the supplied campaign representation"
+    },
+    {
+      "criterion_id": "R4C-AC-003",
+      "requirement": "destination must resolve to an entity classified as place"
+    },
+    {
+      "criterion_id": "R4C-AC-004",
+      "requirement": "the bounded movement operation requires exactly one active source located_at fact for the actor and fails closed on zero or multiple active source locations"
+    },
+    {
+      "criterion_id": "R4C-AC-005",
+      "requirement": "movement requires explicit lawful AFQR-18/AFQR-19 owner evidence and may not infer adjacency, travel cost, or reachability from convenience"
+    },
+    {
+      "criterion_id": "R4C-AC-006",
+      "requirement": "preview and transition preparation are non-mutating"
+    },
+    {
+      "criterion_id": "R4C-AC-007",
+      "requirement": "commit freezes a canonical pre-state basis and rejects a stale or mismatched basis without mutation"
+    },
+    {
+      "criterion_id": "R4C-AC-008",
+      "requirement": "successful movement commits atomically: the complete P1 to P2 current-location change occurs or no authoritative state changes"
+    },
+    {
+      "criterion_id": "R4C-AC-009",
+      "requirement": "successful post-state contains exactly one active located_at(A,P2) fact and no simultaneously active located_at(A,P1) fact for the bounded operation"
+    },
+    {
+      "criterion_id": "R4C-AC-010",
+      "requirement": "the transition produces deterministic relationship_update state-delta evidence and a qualified commit receipt"
+    },
+    {
+      "criterion_id": "R4C-AC-011",
+      "requirement": "the commit receipt binds command identity, source state basis, source location, destination location, and deterministic post-state evidence"
+    },
+    {
+      "criterion_id": "R4C-AC-012",
+      "requirement": "a subsequent authoritative read observes the actor at P2 without consulting narration or a model"
+    },
+    {
+      "criterion_id": "R4C-AC-013",
+      "requirement": "bounded deterministic replay from the committed evidence reproduces the same authoritative post-state result"
+    },
+    {
+      "criterion_id": "R4C-AC-014",
+      "requirement": "replay does not perform fresh natural-language interpretation or a fresh model call"
+    },
+    {
+      "criterion_id": "R4C-AC-015",
+      "requirement": "technical retry of the same committed command returns the prior commit result and does not apply movement twice"
+    },
+    {
+      "criterion_id": "R4C-AC-016",
+      "requirement": "a material change of target, method, timing, risk, or intended effect is not treated as a technical retry"
+    },
+    {
+      "criterion_id": "R4C-AC-017",
+      "requirement": "contradictory narration cannot alter the committed location"
+    },
+    {
+      "criterion_id": "R4C-AC-018",
+      "requirement": "invalid, rejected, stale, interrupted, or unauthorized transitions leave authoritative state unchanged"
+    }
+  ],
+  "required_failure_scenarios": [
+    "actor_does_not_exist",
+    "destination_does_not_exist",
+    "destination_is_not_place",
+    "malformed_identity",
+    "duplicate_entity_identity",
+    "duplicate_relation_identity",
+    "unsupported_relation_type",
+    "zero_active_source_locations",
+    "multiple_active_source_locations",
+    "no_lawful_movement_opportunity",
+    "movement_legality_or_resolution_rejected",
+    "stale_pre_state_basis",
+    "duplicate_or_retried_command",
+    "materially_changed_command_disguised_as_retry",
+    "commit_interruption_or_failure",
+    "replay_with_wrong_pre_state",
+    "replay_must_not_reinterpret_narration",
+    "narration_disagrees_with_authoritative_result",
+    "unauthorized_direct_mutation_attempt"
+  ],
+  "replay_retry_recovery": {
+    "bounded_deterministic_replay_required": true,
+    "durable_replay_engine_required": false,
+    "durable_persistence_required": false,
+    "technical_retry_idempotence_required": true,
+    "fresh_model_interpretation_on_replay_allowed": false,
+    "committed_retry_may_duplicate_state_change": false,
+    "failed_transition_may_partially_mutate_state": false
+  },
+  "doctrine_and_contract_blockers": {
+    "unresolved_semantic_owner_conflict": false,
+    "new_doctrine_required_before_package_authorization": false,
+    "missing_reusable_general_afqr01_runtime_owner": true,
+    "disposition": "implement only the bounded qualified transition required by R4-C; do not generalize it into a universal transaction manager",
+    "implementation_authorization_still_required": true
+  },
+  "performance_evidence": {
+    "materially_relevant_to_initial_slice": false,
+    "benchmark_gate_required": false,
+    "rationale": "the package proves one deterministic playable transition and makes no throughput, scale, or distributed-execution claim"
+  },
+  "regression_evidence_before_merge": {
+    "required_focused_tests": [
+      "tests/test_r4_c_persistent_world_movement_integration.py",
+      "tests/test_r4_b_persistent_world_entity_location_representation.py",
+      "tests/test_runtime_domain_pr_9a_scene_command_execution_skeleton.py",
+      "tests/test_runtime_domain_rt_001b_action_legality_skeleton.py"
+    ],
+    "runtime_domain_package_guard_required": true,
+    "broader_pr2_regression_required": true,
+    "full_repository_regression_required": true,
+    "git_diff_check_required": true,
+    "exact_changed_path_audit_required": true,
+    "new_warning_requires_classification": true
+  },
+  "downstream_lifecycle_transition": {
+    "implementation_requires_separate_owner_authorization": true,
+    "implementation_authorization_currently_granted": false,
+    "implementation_gate": "R4-C implementation authorization",
+    "post_merge_closure_required_after_implementation": true,
+    "r4_activation_implied": false,
+    "runtime_promotion_implied": false,
+    "durable_persistence_implied": false,
+    "automatic_successor_activation": false
+  },
+  "definition_regression_certified": true,
+  "definition_recording_state": "regression_certified_pending_commit",
+  "definition_regression_certification": {
+    "focused_pre_certification": {
+      "passed": 63,
+      "result": "pass"
+    },
+    "broader_pr2_r4_regression": {
+      "passed": 468,
+      "result": "pass"
+    },
+    "full_repository_suite": {
+      "passed": 9393,
+      "skipped": 10,
+      "xfailed": 2,
+      "warnings": 1,
+      "warning_class": "PytestRemovedIn10Warning",
+      "warning_disposition": "existing_nonblocking_deprecation",
+      "result": "pass"
+    },
+    "focused_post_suite_certification": {
+      "passed": 63,
+      "result": "pass"
+    },
+    "git_diff_check": "clean",
+    "changed_path_count": 6,
+    "production_runtime_path_count": 0,
+    "production_schema_path_count": 0
+  }
+}

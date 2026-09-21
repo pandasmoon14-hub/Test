@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.70`
+**Artifact version:** `0.4.72`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -4147,5 +4147,134 @@ Runtime promotion remains unauthorized.
 Production-schema implementation remains unauthorized.
 
 Durable persistence implementation remains unauthorized.
+
+`R4-R6` remains blocked.
+### 5.67 R4-C persistent-world playable movement integration package definition
+
+The owner authorized the bounded definition of the next playable
+persistent-world package.
+
+Authorization reference:
+
+`owner_directive_2026-09-20_r4_c_package_definition`
+
+Authority effect:
+
+`bounded_r4_c_package_definition_only`
+
+Starting baseline:
+
+`cb3cee39c3aabce8cf0525e0d227618bf13b5d85`
+
+Starting tree:
+
+`e363b37401e0ff28bdec665a0eb59f72e0b91ce5`
+
+The selected package identifier is:
+
+`R4-C`
+
+Package name:
+
+`persistent_world_playable_movement_integration`
+
+Package artifact:
+
+`docs/doctrine/reviews/r4_c_persistent_world_playable_movement_integration_package.yaml`
+
+R4-C is defined to prove one ordinary persistent-world movement through
+the deterministic backend:
+
+- actor A begins authoritatively at place P1;
+- a fictionally coherent movement attempt is represented through the
+  existing command/action boundary;
+- AFQR-18 and AFQR-19 supply the applicable spatial and
+  opportunity/resolution evidence;
+- a bounded AFQR-01-qualified transition changes current authoritative
+  location from P1 to P2 atomically;
+- subsequent gameplay observes A at P2;
+- retry and replay do not duplicate movement or perform fresh model
+  interpretation;
+- narration cannot create or override the authoritative location.
+
+R4-C does not define adjacency, pathfinding, movement speed, stamina,
+travel time, terrain cost, encounters, generalized relation lifecycle,
+durable persistence, distributed execution, or a universal world-state
+manager.
+
+The package explicitly preserves AFQR-09 relation-lifecycle boundaries.
+It requires exactly one authoritative post-move `located_at(A,P2)`
+current-location fact and no simultaneously active P1 current-location
+fact, but it does not generalize relation lineage, amendment,
+supersession, migration, or continuity semantics.
+
+The proposed future production runtime path is exactly:
+
+`src/astra_runtime/domain/persistent_world_movement_integration.py`
+
+No production-schema path is proposed.
+
+Durable persistence is not a prerequisite for this initial playable
+proof. Deterministic in-memory authoritative state plus bounded replay
+evidence is sufficient for R4-C acceptance.
+
+This package definition performs no runtime implementation and grants no
+implementation authority.
+
+R4-C state is:
+
+`ready_pending_authorization`
+
+R4-C implementation remains separately unauthorized.
+
+PR2-IMPL remains terminal and is not reopened.
+
+General R4 activation remains unauthorized.
+
+Runtime promotion remains unauthorized.
+
+`R4-R6` remains blocked.
+### 5.68 R4-C package-definition regression certification
+
+The bounded R4-C persistent-world playable movement integration
+package definition completed regression certification.
+
+The package remains:
+
+`persistent_world_playable_movement_integration`
+
+Certification evidence:
+
+- focused pre-certification regression: `63 passed`;
+- broader PR2/R4 regression: `468 passed`;
+- full repository suite:
+  `9393 passed, 10 skipped, 2 xfailed, 1 warning`;
+- focused post-suite certification: `63 passed`;
+- `git diff --check`: clean;
+- exact changed-file footprint: six paths;
+- production runtime paths changed: zero;
+- production schema paths changed: zero.
+
+The single warning is the existing nonblocking
+`PytestRemovedIn10Warning` concerning a class-scoped fixture defined
+as an instance method.
+
+R4-C definition certification state is:
+
+`regression_certified_pending_commit`
+
+This certification validates the package definition only.
+
+It does not authorize the proposed R4-C runtime module.
+
+It does not authorize production-schema implementation.
+
+It does not activate R4 generally.
+
+It does not authorize runtime promotion.
+
+Durable persistence remains outside the initial R4-C requirement.
+
+PR2-IMPL remains terminal.
 
 `R4-R6` remains blocked.

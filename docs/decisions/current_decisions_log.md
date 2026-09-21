@@ -7409,3 +7409,64 @@ The warning remains the existing nonblocking
 This certification validates only the lifecycle closure already recorded for
 the merged R4-B implementation. It grants no additional runtime, schema,
 persistence, canon, or model authority.
+## 2026-09-20 decision — R4-C persistent-world playable movement integration package definition
+
+- **Decision ID:** `R4-C-PACKAGE-DEFINITION-001`
+- **Authorization reference:** `owner_directive_2026-09-20_r4_c_package_definition`
+- **Authority effect:** `bounded_r4_c_package_definition_only`
+- **Starting baseline:** `cb3cee39c3aabce8cf0525e0d227618bf13b5d85`
+- **Starting tree:** `e363b37401e0ff28bdec665a0eb59f72e0b91ce5`
+- **Package:** `R4-C`
+- **Package name:** `persistent_world_playable_movement_integration`
+- **Package state:** `ready_pending_authorization`
+- **Implementation authorized:** `false`
+- **Production runtime paths changed by definition:** `0`
+- **Production schema paths changed by definition:** `0`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+R4-C is selected as the bounded successor to terminal R4-B.
+
+Its playable target is one deterministic player movement from one
+persistent place to another through existing command, spatial,
+opportunity/resolution, state-delta, and AFQR-01 transition boundaries.
+
+The package does not reopen PR2-IMPL and does not generalize the old tiny
+vertical slice or RT-002 object/lever path into a world-state or
+transaction manager.
+
+AFQR-09 governed-relation lifecycle remains a boundary rather than a new
+runtime registry. The package requires a single authoritative current
+location after movement without claiming generalized lineage,
+supersession, migration, or relation-continuity semantics.
+
+Durable persistence is explicitly not a prerequisite for the initial
+R4-C playable proof.
+
+A separate owner decision is required before any R4-C runtime
+implementation begins.
+## 2026-09-20 decision — R4-C package-definition regression certification
+
+- **Decision ID:** `R4-C-PACKAGE-DEFINITION-CERTIFICATION-002`
+- **Package:** `R4-C`
+- **Package state:** `ready_pending_authorization`
+- **Definition regression certified:** `true`
+- **Definition recording state:** `regression_certified_pending_commit`
+- **Focused pre-certification:** `63 passed`
+- **Broader PR2/R4 regression:** `468 passed`
+- **Full repository regression:** `9393 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite certification:** `63 passed`
+- **git diff --check:** `clean`
+- **Changed paths:** `6`
+- **Production runtime paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **Implementation authorized:** `false`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The package-definition certification is complete.
+
+This records evidence only and grants no R4-C runtime authority.
+
+A separate owner authorization remains required before
+`persistent_world_movement_integration.py` may be implemented.
