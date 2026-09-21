@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.70",
+  "artifact_version": "0.4.72",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -2744,5 +2744,57 @@
     "pr2_mig_next_tranche": null,
     "pr2_mig_next_candidate_id": null,
     "pr2_mig_next_ready_pending_authorization": false
+  },
+  "r4_c_playable_movement_integration_target": {
+    "status": "ready_pending_authorization",
+    "package_id": "R4-C",
+    "package_name": "persistent_world_playable_movement_integration",
+    "definition_authorization_reference": "owner_directive_2026-09-20_r4_c_package_definition",
+    "definition_authority_effect": "bounded_r4_c_package_definition_only",
+    "definition_starting_baseline": "cb3cee39c3aabce8cf0525e0d227618bf13b5d85",
+    "definition_starting_tree": "e363b37401e0ff28bdec665a0eb59f72e0b91ce5",
+    "predecessor_package": "R4-B",
+    "predecessor_required_state": "merged_complete",
+    "package_definition": "docs/doctrine/reviews/r4_c_persistent_world_playable_movement_integration_package.yaml",
+    "package_defined": true,
+    "implementation_authorized": false,
+    "r4_activation_authorized": false,
+    "runtime_promotion_authorized": false,
+    "durable_persistence_required_for_initial_slice": false,
+    "proposed_runtime_edit_allowlist": [
+      "src/astra_runtime/domain/persistent_world_movement_integration.py"
+    ],
+    "proposed_production_schema_edit_allowlist": [],
+    "next_gate": "r4_c_implementation_authorization",
+    "next_gate_authorized": false,
+    "definition_regression_certified": true,
+    "definition_recording_state": "regression_certified_pending_commit",
+    "definition_regression_certification": {
+      "focused_pre_certification": {
+        "passed": 63,
+        "result": "pass"
+      },
+      "broader_pr2_r4_regression": {
+        "passed": 468,
+        "result": "pass"
+      },
+      "full_repository_suite": {
+        "passed": 9393,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "warning_class": "PytestRemovedIn10Warning",
+        "warning_disposition": "existing_nonblocking_deprecation",
+        "result": "pass"
+      },
+      "focused_post_suite_certification": {
+        "passed": 63,
+        "result": "pass"
+      },
+      "git_diff_check": "clean",
+      "changed_path_count": 6,
+      "production_runtime_path_count": 0,
+      "production_schema_path_count": 0
+    }
   }
 }
