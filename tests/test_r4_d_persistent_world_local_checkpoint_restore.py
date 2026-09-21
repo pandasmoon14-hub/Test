@@ -670,8 +670,8 @@ def test_atomic_replacement_failure_preserves_prior_valid_checkpoint(
         raise OSError("injected replace failure")
 
     monkeypatch.setattr(
-        checkpoint_module.os,
-        "replace",
+        checkpoint_module,
+        "_replace_checkpoint_durably",
         fail_replace,
     )
 
@@ -692,7 +692,11 @@ def test_atomic_replacement_failure_preserves_prior_valid_checkpoint(
     assert _actor_location(restored).object_entity_id == P2
 
 
-def test_successful_checkpoint_executes_file_and_directory_fsync(
+@pytest.mark.skipif(
+    checkpoint_module.os.name == "nt",
+    reason="POSIX parent-directory fsync contract",
+)
+def test_posix_checkpoint_executes_file_and_parent_directory_fsync(
     tmp_path,
     monkeypatch,
 ):
@@ -707,6 +711,12 @@ def test_successful_checkpoint_executes_file_and_directory_fsync(
         return real_fsync(descriptor)
 
     monkeypatch.setattr(
+        checkpoint_module,
+        "_uses_windows_durability_path",
+        lambda: False,
+    )
+
+    monkeypatch.setattr(
         checkpoint_module.os,
         "fsync",
         observing_fsync,
@@ -718,7 +728,88 @@ def test_successful_checkpoint_executes_file_and_directory_fsync(
         qualification_evidence=_qualification(),
     )
 
+    # One fsync covers the checkpoint bytes and another covers
+    # the parent directory after replacement.
     assert len(calls) >= 2
+
+
+def test_windows_checkpoint_uses_write_through_replace_without_directory_fsync(
+    tmp_path,
+    monkeypatch,
+):
+    _, _, committed = _p2_state()
+
+    fsync_calls = []
+    replacement_calls = []
+
+    real_fsync = checkpoint_module.os.fsync
+
+    def observing_fsync(descriptor):
+        fsync_calls.append(descriptor)
+        return real_fsync(descriptor)
+
+    def simulated_windows_replace(
+        source,
+        destination,
+    ):
+        replacement_calls.append(
+            (source, destination)
+        )
+
+        checkpoint_module.os.replace(
+            source,
+            destination,
+        )
+
+    def forbidden_directory_fsync(path):
+        raise AssertionError(
+            "Windows durability path must not use POSIX directory fsync"
+        )
+
+    monkeypatch.setattr(
+        checkpoint_module,
+        "_uses_windows_durability_path",
+        lambda: True,
+    )
+
+    monkeypatch.setattr(
+        checkpoint_module,
+        "_windows_replace_with_write_through",
+        simulated_windows_replace,
+    )
+
+    monkeypatch.setattr(
+        checkpoint_module,
+        "_fsync_directory",
+        forbidden_directory_fsync,
+    )
+
+    monkeypatch.setattr(
+        checkpoint_module.os,
+        "fsync",
+        observing_fsync,
+    )
+
+    path = tmp_path / "checkpoint.json"
+
+    write_persistent_world_checkpoint(
+        state=committed.state,
+        checkpoint_path=path,
+        qualification_evidence=_qualification(),
+    )
+
+    # The temporary checkpoint itself is still fsynced.
+    assert len(fsync_calls) == 1
+
+    assert len(replacement_calls) == 1
+    assert replacement_calls[0][1] == path
+
+    restored = restore_persistent_world_checkpoint(
+        checkpoint_path=path,
+        expected_campaign_id=CAMPAIGN,
+    )
+
+    assert _actor_location(restored).object_entity_id == P2
 
 
 def test_missing_checkpoint_does_not_claim_crash_recovery(tmp_path):

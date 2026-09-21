@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.81`
+**Artifact version:** `0.4.82`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -5263,3 +5263,83 @@ than hiding them:
 
 None of these recoveries expanded runtime authority, production schema scope,
 semantic ownership, R4 activation, or runtime promotion.
+
+
+### 5.87 R4-D Windows durability portability repair
+
+PR `#437` CI run `#274` (`35650004765`) exposed a real
+cross-platform durability defect at implementation head
+`2c89a58fe4197145bfec44ed927afc28aa0bf9b9`.
+
+- `core-linux`: success
+- `core-windows`: failure
+- Windows: `9384 passed, 27 failed, 18 skipped, 2 xfailed, 1 warning`
+- Root exception: `PermissionError [Errno 13]`
+- Root operation: `os.open(parent_directory, O_RDONLY)`
+- Classification:
+  `r4_d_windows_posix_directory_fsync_portability_defect`
+
+All 27 failures descended from the same final filesystem durability step.
+
+The corrected contract is platform-specific:
+
+- POSIX: file `fsync`, same-directory replacement, parent-directory `fsync`;
+- Windows: file `fsync`, then `MoveFileExW` with
+  `MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH`.
+
+The Windows path therefore does not silently weaken the accepted-checkpoint
+durability boundary.
+
+
+### 5.88 R4-D Windows durability repair local certification
+
+The bounded repair is locally regression certified pending fresh GitHub
+Linux/Windows CI.
+
+- Package version: `0.1.4`
+- Control version: `0.4.82`
+- Focused repaired behavior: `35 passed`
+- RT-001E: `68 passed`
+- R4-C/R4-D integration: `65 passed`
+- R4-D package/implementation: `96 passed`
+- Broader PR2/R4: `580 passed`
+- Full repository: `9505 passed, 10 skipped, 2 xfailed, 1 warning`
+- Local repair regression certified: `true`
+- Cross-platform CI certified: `false`
+- Current state: `ci_repair_regression_certified_pending_ci`
+- Next gate: `r4_d_windows_ci_verification`
+- R4 activation authorized: `false`
+- Runtime promotion authorized: `false`
+
+Two harness count expectations were stale:
+
+1. package/implementation expected `92`, but the current committed certification
+   test surface correctly produced `96`;
+2. full repository expected `9501`, but the historical `9500` run preceded four
+   certification-recording tests already committed to the PR. The committed
+   pre-repair effective total was therefore `9504`, and the repair's one net
+   additional durability test correctly produced `9505`.
+
+Neither harness stop represented a runtime defect.
+
+
+### 5.89 R4-D repair-recording program-header recovery
+
+The first focused post-recording validation produced
+`209 passed, 1 failed`.
+
+The sole failure was
+`test_program_and_manifest_retain_required_current_cross_references`.
+
+The repair-recording mutation had lawfully advanced the program artifact to
+`0.4.82`, while that test retained the rendered Markdown header expectation
+`0.4.81`.
+
+Classification:
+
+`r4_d_windows_repair_post_recording_program_header_version_expectation_stale`
+
+This was a current-version test expectation defect only. It did not implicate
+the Windows durability runtime repair, authoritative checkpoint semantics,
+recorded lifecycle state, production schema, or the previously completed
+`9505`-pass full repository certification.

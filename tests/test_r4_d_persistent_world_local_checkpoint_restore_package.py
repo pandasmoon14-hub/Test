@@ -30,7 +30,7 @@ def load(path: Path):
 def test_r4_d_identity_baseline_and_status_are_exact():
     package = load(PACKAGE)
 
-    assert package["artifact_version"] == "0.1.3"
+    assert package["artifact_version"] == "0.1.4"
     assert package["package_id"] == "R4-D"
 
     assert (
@@ -203,7 +203,7 @@ def test_r4_d_manifest_matches_package_definition():
     package = load(PACKAGE)
     manifest = load(MANIFEST)
 
-    assert manifest["artifact_version"] == "0.4.81"
+    assert manifest["artifact_version"] == "0.4.82"
 
     target = manifest[
         "r4_d_local_checkpoint_restore_target"
@@ -215,7 +215,7 @@ def test_r4_d_manifest_matches_package_definition():
 
     assert (
         target["next_gate"]
-        == "r4_d_implementation_commit_push"
+        == "r4_d_windows_ci_verification"
     )
 
     assert target["next_gate_authorized"] is False
@@ -223,7 +223,7 @@ def test_r4_d_manifest_matches_package_definition():
 def test_r4_d_definition_regression_certification_is_exact():
     package = load(PACKAGE)
 
-    assert package["artifact_version"] == "0.1.3"
+    assert package["artifact_version"] == "0.1.4"
     assert package["status"] == "implementation_authorized"
 
     assert package["definition_regression_certified"] is True
@@ -365,8 +365,8 @@ def test_r4_d_definition_post_merge_closure_is_exact_and_bounded():
         "r4_d_local_checkpoint_restore_target"
     ]
 
-    assert package["artifact_version"] == "0.1.3"
-    assert manifest["artifact_version"] == "0.4.81"
+    assert package["artifact_version"] == "0.1.4"
+    assert manifest["artifact_version"] == "0.4.82"
 
     assert package["status"] == "implementation_authorized"
     assert target["status"] == "implementation_authorized"
@@ -424,13 +424,13 @@ def test_r4_d_definition_post_merge_closure_is_exact_and_bounded():
 
     assert (
         target["next_gate"]
-        == "r4_d_implementation_commit_push"
+        == "r4_d_windows_ci_verification"
     )
 
     assert target["next_gate_authorized"] is False
 
     assert target["implementation_authorized"] is True
-    assert target["implementation_state"] == "regression_certified_pending_commit"
+    assert target["implementation_state"] == "ci_repair_regression_certified_pending_ci"
     assert target["r4_activation_authorized"] is False
     assert target["runtime_promotion_authorized"] is False
 
@@ -555,7 +555,7 @@ def test_r4_d_definition_post_merge_closure_certification_is_exact():
 
     assert (
         package["next_gate"]
-        == "r4_d_implementation_commit_push"
+        == "r4_d_windows_ci_verification"
     )
 
     assert package["next_gate_authorized"] is False
@@ -619,13 +619,13 @@ def test_r4_d_closure_post_recording_recovery_evidence_is_exact():
 def test_r4_d_implementation_authorization_is_exact():
     package = load(PACKAGE)
 
-    assert package["artifact_version"] == "0.1.3"
+    assert package["artifact_version"] == "0.1.4"
     assert package["status"] == "implementation_authorized"
     assert package["implementation_authorized"] is True
 
     assert (
         package["implementation_state"]
-        == "regression_certified_pending_commit"
+        == "ci_repair_regression_certified_pending_ci"
     )
 
     assert (
@@ -642,11 +642,11 @@ def test_r4_d_implementation_authorization_is_exact():
         == "merged_complete"
     )
 
-    assert package["implementation_regression_certified"] is True
+    assert package["implementation_regression_certified"] is False
 
     assert (
         package["next_gate"]
-        == "r4_d_implementation_commit_push"
+        == "r4_d_windows_ci_verification"
     )
 
     assert package["next_gate_authorized"] is False
@@ -818,14 +818,14 @@ def test_r4_d_implementation_authorization_certification_is_exact():
 
     assert (
         package["next_gate"]
-        == "r4_d_implementation_commit_push"
+        == "r4_d_windows_ci_verification"
     )
 
     assert package["next_gate_authorized"] is False
 
     # Authorization is merged; implementation is regression certified pending commit.
     assert package["implementation_authorized"] is True
-    assert package["implementation_regression_certified"] is True
+    assert package["implementation_regression_certified"] is False
 
     assert package["r4_activation_authorized"] is False
     assert package["runtime_promotion_authorized"] is False
@@ -869,8 +869,8 @@ def test_r4_d_implementation_regression_certification_is_exact():
         "r4_d_local_checkpoint_restore_target"
     ]
 
-    assert package["artifact_version"] == "0.1.3"
-    assert manifest["artifact_version"] == "0.4.81"
+    assert package["artifact_version"] == "0.1.4"
+    assert manifest["artifact_version"] == "0.4.82"
 
     assert package["status"] == "implementation_authorized"
     assert target["status"] == "implementation_authorized"
@@ -910,10 +910,10 @@ def test_r4_d_implementation_regression_certification_is_exact():
 
     assert (
         package["implementation_state"]
-        == "regression_certified_pending_commit"
+        == "ci_repair_regression_certified_pending_ci"
     )
 
-    assert package["implementation_regression_certified"] is True
+    assert package["implementation_regression_certified"] is False
 
     cert = package["implementation_regression_certification"]
 
@@ -965,7 +965,7 @@ def test_r4_d_implementation_regression_certification_is_exact():
 
     assert (
         package["next_gate"]
-        == "r4_d_implementation_commit_push"
+        == "r4_d_windows_ci_verification"
     )
 
     assert package["next_gate_authorized"] is False
@@ -1036,3 +1036,111 @@ def test_r4_d_implementation_recovery_evidence_is_exact():
         ]
         is False
     )
+
+
+def test_r4_d_windows_ci_failure_and_portability_repair_are_exact():
+    package = load(PACKAGE)
+    manifest = load(MANIFEST)
+
+    assert package["artifact_version"] == "0.1.4"
+    assert manifest["artifact_version"] == "0.4.82"
+
+    assert (
+        package["implementation_state"]
+        == "ci_repair_regression_certified_pending_ci"
+    )
+
+    assert package["implementation_regression_certified"] is False
+
+    assert (
+        package["implementation_local_repair_regression_certified"]
+        is True
+    )
+
+    assert (
+        package["implementation_cross_platform_ci_certified"]
+        is False
+    )
+
+    failure = package["implementation_ci_failure_evidence"]
+
+    assert failure["pull_request"] == 437
+    assert failure["workflow_run_number"] == 274
+    assert failure["workflow_run_id"] == 35650004765
+
+    assert (
+        failure["classification"]
+        == "r4_d_windows_posix_directory_fsync_portability_defect"
+    )
+
+    assert failure["real_implementation_defect"] is True
+
+    repair = package["windows_durability_portability_repair"]
+
+    header_recovery = repair[
+        "post_recording_program_header_recovery"
+    ]
+
+    assert (
+        header_recovery["classification"]
+        == (
+            "r4_d_windows_repair_post_recording_"
+            "program_header_version_expectation_stale"
+        )
+    )
+
+    assert header_recovery["failed_focused_suite"] == {
+        "passed": 209,
+        "failed": 1,
+        "result": "fail",
+    }
+
+    assert header_recovery["runtime_defect_detected"] is False
+    assert header_recovery["durability_repair_failure_detected"] is False
+
+    assert repair["focused_behavioral"]["passed"] == 35
+    assert repair["rt001e_guardrail"]["passed"] == 68
+    assert repair["r4_c_r4_d_integration"]["passed"] == 65
+    assert repair["r4_d_package_implementation"]["passed"] == 96
+    assert repair["broader_pr2_r4"]["passed"] == 580
+
+    assert repair["full_repository_suite"] == {
+        "passed": 9505,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "warning_class": "PytestRemovedIn10Warning",
+        "warning_disposition": "existing_nonblocking_deprecation",
+        "result": "pass",
+    }
+
+    assert (
+        repair["package_count_harness_recovery"][
+            "observed_correct_passed"
+        ]
+        == 96
+    )
+
+    assert (
+        repair["full_suite_count_harness_recovery"][
+            "observed_correct_repaired_passed"
+        ]
+        == 9505
+    )
+
+    completion = package["implementation_completion_proof"]
+
+    assert "directory_fsync" not in completion
+    assert completion["file_fsync"] is True
+    assert completion["atomic_replacement"] is True
+    assert completion["posix_parent_directory_fsync"] is True
+    assert completion["windows_write_through_replace"] is True
+
+    assert (
+        package["next_gate"]
+        == "r4_d_windows_ci_verification"
+    )
+
+    assert package["next_gate_authorized"] is False
+    assert package["r4_activation_authorized"] is False
+    assert package["runtime_promotion_authorized"] is False

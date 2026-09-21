@@ -52,6 +52,9 @@ CHECKPOINT_FORMAT_IDENTITY = (
 CHECKPOINT_FORMAT_VERSION = 1
 AFQR01_CHECKPOINT_OWNER = "AFQR-01"
 
+_MOVEFILE_REPLACE_EXISTING = 0x00000001
+_MOVEFILE_WRITE_THROUGH = 0x00000008
+
 _SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 
 _ENVELOPE_KEYS = frozenset(
@@ -547,6 +550,91 @@ def _fsync_directory(path: Path) -> None:
         os.close(descriptor)
 
 
+def _uses_windows_durability_path() -> bool:
+    return os.name == "nt"
+
+
+def _windows_replace_with_write_through(
+    source: str | os.PathLike[str],
+    destination: str | os.PathLike[str],
+) -> None:
+    """Replace one checkpoint through the Windows write-through move API."""
+
+    if os.name != "nt":
+        raise OSError(
+            "Windows write-through replacement is unavailable "
+            "on this platform"
+        )
+
+    import ctypes
+    from ctypes import wintypes
+
+    move_file_ex = ctypes.WinDLL(
+        "kernel32",
+        use_last_error=True,
+    ).MoveFileExW
+
+    move_file_ex.argtypes = [
+        wintypes.LPCWSTR,
+        wintypes.LPCWSTR,
+        wintypes.DWORD,
+    ]
+    move_file_ex.restype = wintypes.BOOL
+
+    flags = (
+        _MOVEFILE_REPLACE_EXISTING
+        | _MOVEFILE_WRITE_THROUGH
+    )
+
+    source_path = os.path.abspath(
+        os.fspath(source)
+    )
+
+    destination_path = os.path.abspath(
+        os.fspath(destination)
+    )
+
+    succeeded = move_file_ex(
+        source_path,
+        destination_path,
+        flags,
+    )
+
+    if succeeded:
+        return
+
+    error_code = ctypes.get_last_error()
+
+    raise OSError(
+        error_code,
+        ctypes.FormatError(error_code),
+        destination_path,
+    )
+
+
+def _replace_checkpoint_durably(
+    source: Path,
+    destination: Path,
+) -> None:
+    """Perform the platform-specific bounded durable replacement step."""
+
+    if _uses_windows_durability_path():
+        _windows_replace_with_write_through(
+            source,
+            destination,
+        )
+        return
+
+    os.replace(
+        source,
+        destination,
+    )
+
+    _fsync_directory(
+        destination.parent
+    )
+
+
 def write_persistent_world_checkpoint(
     *,
     state: PersistentWorldMovementRuntimeState,
@@ -555,8 +643,10 @@ def write_persistent_world_checkpoint(
 ) -> str:
     """Durably replace one caller-selected local checkpoint.
 
-    Success means the canonical bytes have been flushed, fsynced, atomically
-    replaced into the requested path, and the containing directory fsynced.
+    Success means the canonical bytes have been flushed and fsynced, then
+    the platform-specific durable replacement operation has completed.
+    POSIX uses same-directory replacement plus parent-directory fsync.
+    Windows uses MoveFileExW with replace-existing and write-through flags.
     """
 
     path = _checkpoint_path(checkpoint_path)
@@ -589,10 +679,12 @@ def write_persistent_world_checkpoint(
             handle.flush()
             os.fsync(handle.fileno())
 
-        os.replace(temporary_path, path)
-        temporary_path = None
+        _replace_checkpoint_durably(
+            Path(temporary_path),
+            path,
+        )
 
-        _fsync_directory(parent)
+        temporary_path = None
 
     except OSError as exc:
         if temporary_path is not None:
