@@ -7706,3 +7706,104 @@ evidence.
 - **Production schema scope expanded:** `false`
 - **Semantic authority expanded:** `false`
 - **Full repository rerun required:** `false`
+
+
+## 2026-09-21 decision — R4-D definition post-merge lifecycle closure
+
+- **Decision ID:** `R4-D-DEFINITION-POST-MERGE-CLOSURE-003`
+- **Authorization reference:** `owner_directive_2026-09-21_r4_d_definition_post_merge_closure`
+- **Authority effect:** `bounded_r4_d_definition_post_merge_lifecycle_reconciliation_only`
+- **Definition PR:** `#434`
+- **Definition branch head:** `f453dde3ae2046a88048291f2f9b79c6b3406f52`
+- **Definition merge commit:** `3cf57fb816e51610c98258399ae11267abd2c1f5`
+- **Definition merge tree:** `5674c05bd8d216373925ac5151a965acec6e72ec`
+- **Definition CI run:** `#268`
+- **Definition CI run ID:** `35608929257`
+- **Package version:** `0.1.1`
+- **Control version:** `0.4.79`
+- **Definition lifecycle state:** `definition_merged_complete`
+- **Definition recording state:** `merged_complete`
+- **Runtime paths changed by closure:** `0`
+- **Production schema paths changed by closure:** `0`
+- **R4-D implementation authorized:** `false`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+- **Automatic successor activation:** `false`
+
+The closure records the already-completed R4-D definition merge and
+reconciles only package/control lifecycle state.
+
+It grants no runtime, schema, persistence-engine, replay-engine,
+timeline, branch, canonicality, or other semantic authority.
+
+Closure regression certification is required before this
+reconciliation is committed.
+
+
+## 2026-09-21 decision — R4-D definition-closure test-key recovery
+
+- **Failed focused certification:** `1 failed, 64 passed`
+- **Failed test:** `test_r4_d_local_checkpoint_restore_definition_is_bounded`
+- **Classification:** `accidental_test_key_rewrite_during_definition_closure_lifecycle_alignment`
+- **Persistent Boolean key:** `package_defined`
+- **Lifecycle status:** `definition_merged_complete`
+- **Incorrect generated test key:** `definition_merged_complete`
+- **R4-D behavioral defect detected:** `false`
+- **Runtime scope expanded:** `false`
+- **Production schema scope expanded:** `false`
+- **Semantic authority expanded:** `false`
+- **Closure certification restart required:** `true`
+- **Package version:** `0.1.1`
+- **Control version:** `0.4.79`
+
+The failed run is preserved as evidence. The repair is restricted
+to restoring the existing `package_defined` Boolean assertion.
+
+
+## 2026-09-21 decision — R4-D definition post-merge closure regression certification
+
+- **Decision ID:** `R4-D-DEFINITION-POST-MERGE-CLOSURE-CERTIFICATION-004`
+- **Closure regression certified:** `true`
+- **Closure recording state:** `regression_certified_pending_commit`
+- **Focused certification:** `67 passed`
+- **Broader PR2/R4 certification:** `528 passed`
+- **Full repository:** `9453 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite:** `58 passed`
+- **Preserved failed focused run:** `1 failed, 64 passed`
+- **Failure classification:** `accidental_test_key_rewrite_during_definition_closure_lifecycle_alignment`
+- **R4-D behavioral defect detected:** `false`
+- **git diff --check:** `clean`
+- **Changed paths:** `7`
+- **Runtime paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **Package version:** `0.1.1`
+- **Control version:** `0.4.79`
+- **R4-D implementation authorized:** `false`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+The closure certification applies only to the R4-D definition
+lifecycle reconciliation.
+
+It does not authorize implementation or expand persistence,
+replay, storage, timeline, branch, canonicality, or schema
+authority.
+
+
+## 2026-09-21 decision — R4-D closure post-recording state-alignment recovery
+
+- **Failed focused post-recording validation:** `6 failed, 54 passed`
+- **Classification:** `stale_closure_certification_state_expectations_after_evidence_recording`
+- **Closure regression certified:** `true`
+- **Closure recording state:** `regression_certified_pending_commit`
+- **Next gate:** `r4_d_definition_post_merge_closure_commit_push`
+- **Next gate authorized:** `false`
+- **R4-D behavioral defect detected:** `false`
+- **Runtime scope expanded:** `false`
+- **Production schema scope expanded:** `false`
+- **Semantic authority expanded:** `false`
+- **Full repository rerun required:** `false`
+- **Package/control versions:** `0.1.1` / `0.4.79`
+
+The repair is limited to aligning six stale test assertions with
+the already-recorded certified closure state.
