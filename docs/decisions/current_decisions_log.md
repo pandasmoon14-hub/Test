@@ -7894,3 +7894,112 @@ timeline, branch, cloud, or distributed-recovery subsystem.
 Recovery completes only the surrounding narrative and test
 alignment around the certification state already present in the
 package and manifest.
+
+
+## 2026-09-21 decision — R4-D implementation regression certification
+
+- **Decision ID:** `R4-D-IMPLEMENTATION-CERTIFICATION-007`
+- **Recording reference:** `owner_directive_2026-09-21_r4_d_implementation_certification_recording`
+- **Authority effect:** `bounded_r4_d_implementation_certification_recording_only`
+- **Implementation baseline:** `df7ce01e53ad69cf19a2b993764e8c38029eee58`
+- **Implementation tree:** `18e7497049fe63b1db06070d80a9da6b4d164ba5`
+- **Package/control versions:** `0.1.3` / `0.4.81`
+- **Implementation regression certified:** `true`
+- **Implementation state:** `regression_certified_pending_commit`
+- **Focused behavioral implementation:** `34 passed`
+- **RT-001E guardrail regression:** `68 passed`
+- **R4-C/R4-D integration regression:** `64 passed`
+- **R4-D package/implementation regression:** `91 passed`
+- **Broader PR2/R4 regression:** `575 passed`
+- **Full repository:** `9500 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite confirmation:** `64 passed`
+- **Final changed-path count after recording:** `11`
+- **Production runtime path count:** `1`
+- **Production schema path count:** `0`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+- **Next gate:** `r4_d_implementation_commit_push`
+- **Next gate authorized:** `false`
+
+The certified implementation establishes a bounded local/offline durability
+primitive for existing R4-B/R4-C state. It does not authorize a generalized
+save subsystem or broader R4 activation.
+
+
+## 2026-09-21 decision — R4-D implementation recovery preservation
+
+- **Decision ID:** `R4-D-IMPLEMENTATION-RECOVERY-008`
+- **Generated test import syntax error:** preserved and recovered
+- **Over-strong tuple-order assertion:** preserved and recovered after canonical-state equivalence proof
+- **Historical RT-001E module guardrail rejection:** preserved and recovered through two existing test-infrastructure owners
+- **Termux `/tmp` logging failure:** preserved after the expected guardrail failure was already reproduced
+- **R4-D behavioral defect caused by recoveries:** `false`
+- **Runtime semantic authority expanded:** `false`
+- **Production schema expanded:** `false`
+- **General R4 activation expanded:** `false`
+- **Runtime promotion expanded:** `false`
+
+
+## 2026-09-21 decision — R4-D Windows durability portability repair
+
+- **Decision ID:** `R4-D-WINDOWS-DURABILITY-PORTABILITY-REPAIR-009`
+- **PR:** `#437`
+- **Failed CI:** `#274`
+- **CI run ID:** `35650004765`
+- **Failed head:** `2c89a58fe4197145bfec44ed927afc28aa0bf9b9`
+- **Linux:** `success`
+- **Windows:** `9384 passed, 27 failed, 18 skipped, 2 xfailed, 1 warning`
+- **Classification:** `r4_d_windows_posix_directory_fsync_portability_defect`
+- **Real implementation defect:** `true`
+- **Authoritative-state semantic defect:** `false`
+- **Production schema expansion:** `false`
+- **Generalized persistence expansion:** `false`
+
+Repair:
+
+- POSIX retains parent-directory `fsync`.
+- Windows uses `MoveFileExW` with replace-existing and write-through flags.
+- No final durability operation is silently skipped.
+
+Local repaired certification:
+
+- focused: `35 passed`
+- RT-001E: `68 passed`
+- R4-C/R4-D: `65 passed`
+- package/implementation: `96 passed`
+- broader PR2/R4: `580 passed`
+- full: `9505 passed, 10 skipped, 2 xfailed, 1 warning`
+
+Overall cross-platform certification remains false pending fresh GitHub CI.
+
+
+## 2026-09-21 decision — R4-D repair harness count recoveries
+
+- **Decision ID:** `R4-D-WINDOWS-REPAIR-HARNESS-RECOVERY-010`
+- **Package classification:** `r4_d_windows_repair_harness_used_pre_recording_package_count`
+- **Package stale expected:** `92`
+- **Package observed correct:** `96`
+- **Full classification:** `r4_d_windows_repair_harness_used_pre_recording_full_suite_count`
+- **Historical full-suite result:** `9500`
+- **Certification-recording tests committed after historical full suite:** `4`
+- **Committed pre-repair effective total:** `9504`
+- **Net repair test increase:** `1`
+- **Full stale expected repaired total:** `9501`
+- **Full observed correct repaired total:** `9505`
+- **Runtime defect caused by either harness stop:** `false`
+- **Repair failure caused by either harness stop:** `false`
+
+
+## 2026-09-21 decision — R4-D repair-recording program-header recovery
+
+- **Decision ID:** `R4-D-WINDOWS-REPAIR-PROGRAM-HEADER-RECOVERY-011`
+- **Failed focused post-recording result:** `209 passed, 1 failed`
+- **Failed test:** `test_program_and_manifest_retain_required_current_cross_references`
+- **Stale expected program version:** `0.4.81`
+- **Authoritative program version:** `0.4.82`
+- **Classification:** `r4_d_windows_repair_post_recording_program_header_version_expectation_stale`
+- **Runtime defect detected:** `false`
+- **Durability-repair failure detected:** `false`
+- **Lifecycle-state defect detected:** `false`
+- **Production schema expansion:** `false`
+- **Disposition:** update the single current-version rendered-program assertion and rerun bounded post-recording regression

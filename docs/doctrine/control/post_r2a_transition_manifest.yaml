@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.80",
+  "artifact_version": "0.4.82",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -2931,7 +2931,7 @@
     "package_definition": "docs/doctrine/reviews/r4_d_persistent_world_local_checkpoint_restore_package.yaml",
     "package_defined": true,
     "implementation_authorized": true,
-    "implementation_state": "authorized_pending_implementation",
+    "implementation_state": "ci_repair_regression_certified_pending_ci",
     "r4_activation_authorized": false,
     "runtime_promotion_authorized": false,
     "production_schema_implementation_authorized": false,
@@ -2946,7 +2946,7 @@
     "proposed_production_schema_edit_allowlist": [],
     "definition_regression_certified": true,
     "definition_recording_state": "merged_complete",
-    "next_gate": "r4_d_implementation_authorization_commit_push",
+    "next_gate": "r4_d_windows_ci_verification",
     "next_gate_authorized": false,
     "definition_regression_certification": {
       "focused_pre_certification": {
@@ -3093,7 +3093,7 @@
     "implementation_starting_baseline": "5b251372eac24a741f77706abbf2c30823aca82a",
     "implementation_starting_tree": "b200bc539bc7d44d20ba3f9504a1d37299d2780f",
     "implementation_authorization_regression_certified": true,
-    "implementation_authorization_recording_state": "regression_certified_pending_commit",
+    "implementation_authorization_recording_state": "merged_complete",
     "implementation_regression_certified": false,
     "implementation_validation_requirement_count": 13,
     "implementation_validation_requirement_ids": [
@@ -3159,6 +3159,272 @@
       "semantic_authority_expanded": false,
       "full_repository_rerun_required": false,
       "repair_effect": "complete narrative and test alignment around the already-recorded certified authorization state"
-    }
+    },
+    "implementation_authorization_pull_request": 436,
+    "implementation_authorization_branch_head": "ead37c63cf2022eda020e836cf3a1df3ac315ccc",
+    "implementation_authorization_merge_commit": "df7ce01e53ad69cf19a2b993764e8c38029eee58",
+    "implementation_authorization_merge_tree": "18e7497049fe63b1db06070d80a9da6b4d164ba5",
+    "implementation_authorization_ci_run": 272,
+    "implementation_authorization_ci_run_id": 35632311730,
+    "implementation_execution_starting_baseline": "df7ce01e53ad69cf19a2b993764e8c38029eee58",
+    "implementation_execution_starting_tree": "18e7497049fe63b1db06070d80a9da6b4d164ba5",
+    "implementation_certification_recording_reference": "owner_directive_2026-09-21_r4_d_implementation_certification_recording",
+    "implementation_certification_recording_authority_effect": "bounded_r4_d_implementation_certification_recording_only",
+    "implementation_certification_recording_state": "ci_repair_regression_certified_pending_ci",
+    "implementation_runtime_path": "src/astra_runtime/domain/persistent_world_local_checkpoint_restore.py",
+    "implementation_test_path": "tests/test_r4_d_persistent_world_local_checkpoint_restore.py",
+    "implementation_test_infrastructure_paths": [
+      "tests/runtime_domain_package_manifest.py",
+      "tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py"
+    ],
+    "implementation_regression_certification": {
+      "focused_behavioral_implementation": {
+        "passed": 34,
+        "result": "pass"
+      },
+      "rt001e_guardrail_regression": {
+        "passed": 68,
+        "result": "pass"
+      },
+      "r4_c_r4_d_integration_regression": {
+        "passed": 64,
+        "result": "pass"
+      },
+      "r4_d_package_implementation_regression": {
+        "passed": 91,
+        "result": "pass"
+      },
+      "broader_pr2_r4_regression": {
+        "passed": 575,
+        "result": "pass"
+      },
+      "full_repository_suite": {
+        "passed": 9500,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "warning_class": "PytestRemovedIn10Warning",
+        "warning_disposition": "existing_nonblocking_deprecation",
+        "result": "pass"
+      },
+      "focused_post_suite_confirmation": {
+        "passed": 64,
+        "result": "pass"
+      },
+      "git_diff_check": "clean",
+      "certified_implementation_changed_path_count": 4,
+      "certification_recording_path_count": 7,
+      "final_working_tree_changed_path_count": 11,
+      "production_runtime_path_count": 1,
+      "production_schema_path_count": 0,
+      "r4_d_behavioral_test_path_count": 1,
+      "test_infrastructure_path_count": 2,
+      "deterministic_acceptance_criteria_count": 21,
+      "implementation_validation_requirement_count": 13,
+      "full_repository_rerun_after_recording_required": false,
+      "full_repository_rerun_disposition": "implementation_behavior_and_full_repository_were_certified_before_recording; recording changes are limited_to lifecycle/control/test expectations and receive focused_and broader post-recording validation",
+      "cross_platform_ci_followup": {
+        "pull_request": 437,
+        "workflow_run_number": 274,
+        "workflow_run_id": 35650004765,
+        "result": "fail",
+        "classification": "r4_d_windows_posix_directory_fsync_portability_defect",
+        "superseded_overall_certification": true
+      }
+    },
+    "implementation_failure_recovery_evidence": {
+      "generated_test_import_syntax_error": {
+        "classification": "r4_d_generated_test_import_syntax_error_before_behavioral_execution",
+        "failure_type": "SyntaxError",
+        "behavioral_execution_reached": false,
+        "r4_d_behavioral_defect_detected": false,
+        "runtime_semantic_defect_detected": false,
+        "runtime_scope_expanded": false,
+        "production_schema_scope_expanded": false,
+        "repair_path": "tests/test_r4_d_persistent_world_local_checkpoint_restore.py",
+        "result": "recovered"
+      },
+      "representation_tuple_order_assertion": {
+        "failed_suite_result": {
+          "passed": 33,
+          "failed": 1,
+          "result": "fail"
+        },
+        "classification": "r4_d_test_overasserted_in_memory_tuple_order_beyond_canonical_representation_contract",
+        "canonical_representation_digest_equivalence_proved": true,
+        "complete_entity_material_equivalence_proved": true,
+        "complete_relation_material_equivalence_proved": true,
+        "authoritative_state_loss_detected": false,
+        "committed_transition_evidence_loss_detected": false,
+        "runtime_semantic_defect_detected": false,
+        "production_scope_expanded": false,
+        "result": "recovered"
+      },
+      "historical_rt001e_exact_module_guardrail": {
+        "observed_failure": {
+          "failed": 1,
+          "result": "fail"
+        },
+        "classification": "historical_exact_runtime_domain_allowlist_rejects_separately_authorized_r4_d_module",
+        "unexpected_runtime_module": "persistent_world_local_checkpoint_restore.py",
+        "r4_d_behavioral_defect_detected": false,
+        "semantic_authority_expanded": false,
+        "production_schema_scope_expanded": false,
+        "repair_paths": [
+          "tests/runtime_domain_package_manifest.py",
+          "tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py"
+        ],
+        "result": "recovered"
+      },
+      "termux_guardrail_log_path": {
+        "classification": "r4_d_termux_guardrail_log_path_unwritable_after_expected_guardrail_reproduction",
+        "failed_log_path": "/tmp/r4d_rt001e_guardrail_failure.log",
+        "failure": "Permission denied",
+        "expected_guardrail_failure_already_observed": true,
+        "r4_d_behavioral_defect_detected": false,
+        "runtime_semantic_defect_detected": false,
+        "production_scope_expanded": false,
+        "result": "recovered"
+      }
+    },
+    "implementation_completion_proof": {
+      "qualified_local_checkpoint": true,
+      "canonical_authoritative_payload": true,
+      "sha256_integrity_verification": true,
+      "caller_supplied_local_path": true,
+      "file_fsync": true,
+      "atomic_replacement": true,
+      "strict_envelope_campaign_format_validation": true,
+      "complete_bounded_r4_c_transition_evidence_preserved": true,
+      "post_restore_technical_retry_preserved": true,
+      "true_process_boundary_reconstruction": true,
+      "continued_new_play_after_restore": true,
+      "second_checkpoint_second_restore": true,
+      "corruption_and_tamper_fail_closed": true,
+      "offline_no_model_dependency": true,
+      "generalized_save_system_created": false,
+      "state_store_mutated": false,
+      "production_schema_changed": false,
+      "posix_parent_directory_fsync": true,
+      "windows_write_through_replace": true,
+      "platform_specific_durability_contract": true
+    },
+    "implementation_pull_request": 437,
+    "implementation_pre_repair_commit": "2c89a58fe4197145bfec44ed927afc28aa0bf9b9",
+    "implementation_pre_repair_tree": "fad71acbf3853edf56dd72657152b59e91c1555a",
+    "implementation_ci_failure_evidence": {
+      "pull_request": 437,
+      "workflow_name": "CI",
+      "workflow_run_number": 274,
+      "workflow_run_id": 35650004765,
+      "implementation_head": "2c89a58fe4197145bfec44ed927afc28aa0bf9b9",
+      "implementation_tree": "fad71acbf3853edf56dd72657152b59e91c1555a",
+      "core_linux": {
+        "conclusion": "success"
+      },
+      "core_windows": {
+        "conclusion": "failure",
+        "passed": 9384,
+        "failed": 27,
+        "skipped": 18,
+        "xfailed": 2,
+        "warnings": 1
+      },
+      "classification": "r4_d_windows_posix_directory_fsync_portability_defect",
+      "root_exception": "PermissionError_[Errno_13]_Permission_denied",
+      "root_operation": "os.open(parent_directory, O_RDONLY)",
+      "root_runtime_owner": "_fsync_directory",
+      "real_implementation_defect": true,
+      "authoritative_state_semantic_defect_detected": false,
+      "checkpoint_envelope_defect_detected": false,
+      "retry_identity_defect_detected": false,
+      "production_schema_scope_expanded": false,
+      "generalized_persistence_scope_expanded": false,
+      "result": "fail"
+    },
+    "windows_durability_portability_repair": {
+      "classification": "platform_specific_local_checkpoint_durability_repair",
+      "posix_contract": "temp_file_fsync_then_same_directory_replace_then_parent_directory_fsync",
+      "windows_contract": "temp_file_fsync_then_MoveFileExW_REPLACE_EXISTING_WRITE_THROUGH",
+      "windows_move_flags": [
+        "MOVEFILE_REPLACE_EXISTING",
+        "MOVEFILE_WRITE_THROUGH"
+      ],
+      "universal_posix_directory_fsync_claim_removed": true,
+      "atomic_prior_checkpoint_failure_test_platform_independent": true,
+      "focused_behavioral": {
+        "passed": 35,
+        "result": "pass"
+      },
+      "rt001e_guardrail": {
+        "passed": 68,
+        "result": "pass"
+      },
+      "r4_c_r4_d_integration": {
+        "passed": 65,
+        "result": "pass"
+      },
+      "r4_d_package_implementation": {
+        "passed": 96,
+        "result": "pass"
+      },
+      "broader_pr2_r4": {
+        "passed": 580,
+        "result": "pass"
+      },
+      "full_repository_suite": {
+        "passed": 9505,
+        "skipped": 10,
+        "xfailed": 2,
+        "warnings": 1,
+        "warning_class": "PytestRemovedIn10Warning",
+        "warning_disposition": "existing_nonblocking_deprecation",
+        "result": "pass"
+      },
+      "package_count_harness_recovery": {
+        "classification": "r4_d_windows_repair_harness_used_pre_recording_package_count",
+        "stale_expected_passed": 92,
+        "observed_correct_passed": 96,
+        "runtime_defect_detected": false,
+        "durability_repair_failure_detected": false,
+        "result": "recovered"
+      },
+      "full_suite_count_harness_recovery": {
+        "classification": "r4_d_windows_repair_harness_used_pre_recording_full_suite_count",
+        "historical_full_suite_passed": 9500,
+        "certification_recording_tests_added_after_historical_full_suite": 4,
+        "committed_pre_repair_effective_test_total": 9504,
+        "net_windows_repair_test_increase": 1,
+        "stale_expected_repaired_passed": 9501,
+        "observed_correct_repaired_passed": 9505,
+        "runtime_defect_detected": false,
+        "durability_repair_failure_detected": false,
+        "result": "recovered"
+      },
+      "production_runtime_path_count": 1,
+      "production_schema_path_count": 0,
+      "state_store_mutated": false,
+      "local_repair_regression_certified": true,
+      "cross_platform_ci_certified": false,
+      "result": "local_pass_pending_ci",
+      "post_recording_program_header_recovery": {
+        "classification": "r4_d_windows_repair_post_recording_program_header_version_expectation_stale",
+        "failed_test": "test_program_and_manifest_retain_required_current_cross_references",
+        "failed_focused_suite": {
+          "passed": 209,
+          "failed": 1,
+          "result": "fail"
+        },
+        "stale_expected_program_version": "0.4.81",
+        "authoritative_program_version": "0.4.82",
+        "runtime_defect_detected": false,
+        "durability_repair_failure_detected": false,
+        "lifecycle_state_defect_detected": false,
+        "repair_scope": "single_current_program_header_test_expectation",
+        "result": "recovered"
+      }
+    },
+    "implementation_local_repair_regression_certified": true,
+    "implementation_cross_platform_ci_certified": false
   }
 }

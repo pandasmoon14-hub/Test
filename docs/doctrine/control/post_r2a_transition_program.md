@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.80`
+**Artifact version:** `0.4.82`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -5199,3 +5199,147 @@ Semantic-authority expansion:
 
 The already-certified full repository run remains valid and is
 not repeated for this control/test-only recovery.
+
+
+### 5.85 R4-D implementation regression certification
+
+R4-D bounded local checkpoint/restore implementation is now regression
+certified pending implementation commit/push.
+
+- Package version: `0.1.3`
+- Control version: `0.4.81`
+- Implementation baseline: `df7ce01e53ad69cf19a2b993764e8c38029eee58`
+- Implementation baseline tree: `18e7497049fe63b1db06070d80a9da6b4d164ba5`
+- Implementation authorization PR: `#436`
+- Implementation authorization head: `ead37c63cf2022eda020e836cf3a1df3ac315ccc`
+- Implementation authorization merge: `df7ce01e53ad69cf19a2b993764e8c38029eee58`
+- Implementation authorization CI: `#272`
+- Implementation authorization CI run ID: `35632311730`
+- Implementation state: `regression_certified_pending_commit`
+- Implementation regression certified: `true`
+- Focused behavioral implementation: `34 passed`
+- RT-001E guardrail regression: `68 passed`
+- R4-C/R4-D integration regression: `64 passed`
+- R4-D package/implementation regression: `91 passed`
+- Broader PR2/R4 regression: `575 passed`
+- Full repository: `9500 passed, 10 skipped, 2 xfailed, 1 warning`
+- Focused post-suite confirmation: `64 passed`
+- Certified implementation paths before recording: `4`
+- Certification-recording paths: `7`
+- Final working-tree paths: `11`
+- Production runtime paths: `1`
+- Production schema paths: `0`
+- General R4 activation authorized: `false`
+- Runtime promotion authorized: `false`
+- Next gate: `r4_d_implementation_commit_push`
+- Next gate authorized: `false`
+
+The implementation proves the first bounded persistent-world durability loop:
+qualified checkpoint, process-boundary reconstruction, preserved authoritative
+movement evidence and retry identity, continued new play, a second checkpoint,
+and a second restore.
+
+The implementation does not create a generalized Myravant save system,
+database owner, event journal, replay engine, timeline owner, branch owner,
+cloud persistence layer, or mutable `state_store.py` service.
+
+
+### 5.86 R4-D implementation certification recovery evidence
+
+The implementation certification preserves four bounded recovery events rather
+than hiding them:
+
+1. a generated test import syntax error stopped execution before behavioral
+   testing and was repaired only in the generated R4-D test;
+2. one behavioral test overasserted Python tuple-order identity even though
+   canonical R4-B state, entity material, relation material, and digests were
+   identical; the test was corrected to the authoritative canonical-state
+   contract;
+3. the historical RT-001E exact runtime-domain allowlist correctly rejected
+   the separately authorized R4-D module until its two existing test-owned
+   allowlists were updated;
+4. Termux rejected the hard-coded `/tmp` tee destination after the expected
+   guardrail failure had already been visibly reproduced.
+
+None of these recoveries expanded runtime authority, production schema scope,
+semantic ownership, R4 activation, or runtime promotion.
+
+
+### 5.87 R4-D Windows durability portability repair
+
+PR `#437` CI run `#274` (`35650004765`) exposed a real
+cross-platform durability defect at implementation head
+`2c89a58fe4197145bfec44ed927afc28aa0bf9b9`.
+
+- `core-linux`: success
+- `core-windows`: failure
+- Windows: `9384 passed, 27 failed, 18 skipped, 2 xfailed, 1 warning`
+- Root exception: `PermissionError [Errno 13]`
+- Root operation: `os.open(parent_directory, O_RDONLY)`
+- Classification:
+  `r4_d_windows_posix_directory_fsync_portability_defect`
+
+All 27 failures descended from the same final filesystem durability step.
+
+The corrected contract is platform-specific:
+
+- POSIX: file `fsync`, same-directory replacement, parent-directory `fsync`;
+- Windows: file `fsync`, then `MoveFileExW` with
+  `MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH`.
+
+The Windows path therefore does not silently weaken the accepted-checkpoint
+durability boundary.
+
+
+### 5.88 R4-D Windows durability repair local certification
+
+The bounded repair is locally regression certified pending fresh GitHub
+Linux/Windows CI.
+
+- Package version: `0.1.4`
+- Control version: `0.4.82`
+- Focused repaired behavior: `35 passed`
+- RT-001E: `68 passed`
+- R4-C/R4-D integration: `65 passed`
+- R4-D package/implementation: `96 passed`
+- Broader PR2/R4: `580 passed`
+- Full repository: `9505 passed, 10 skipped, 2 xfailed, 1 warning`
+- Local repair regression certified: `true`
+- Cross-platform CI certified: `false`
+- Current state: `ci_repair_regression_certified_pending_ci`
+- Next gate: `r4_d_windows_ci_verification`
+- R4 activation authorized: `false`
+- Runtime promotion authorized: `false`
+
+Two harness count expectations were stale:
+
+1. package/implementation expected `92`, but the current committed certification
+   test surface correctly produced `96`;
+2. full repository expected `9501`, but the historical `9500` run preceded four
+   certification-recording tests already committed to the PR. The committed
+   pre-repair effective total was therefore `9504`, and the repair's one net
+   additional durability test correctly produced `9505`.
+
+Neither harness stop represented a runtime defect.
+
+
+### 5.89 R4-D repair-recording program-header recovery
+
+The first focused post-recording validation produced
+`209 passed, 1 failed`.
+
+The sole failure was
+`test_program_and_manifest_retain_required_current_cross_references`.
+
+The repair-recording mutation had lawfully advanced the program artifact to
+`0.4.82`, while that test retained the rendered Markdown header expectation
+`0.4.81`.
+
+Classification:
+
+`r4_d_windows_repair_post_recording_program_header_version_expectation_stale`
+
+This was a current-version test expectation defect only. It did not implicate
+the Windows durability runtime repair, authoritative checkpoint semantics,
+recorded lifecycle state, production schema, or the previously completed
+`9505`-pass full repository certification.
