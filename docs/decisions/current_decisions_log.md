@@ -7894,3 +7894,47 @@ timeline, branch, cloud, or distributed-recovery subsystem.
 Recovery completes only the surrounding narrative and test
 alignment around the certification state already present in the
 package and manifest.
+
+
+## 2026-09-21 decision — R4-D implementation regression certification
+
+- **Decision ID:** `R4-D-IMPLEMENTATION-CERTIFICATION-007`
+- **Recording reference:** `owner_directive_2026-09-21_r4_d_implementation_certification_recording`
+- **Authority effect:** `bounded_r4_d_implementation_certification_recording_only`
+- **Implementation baseline:** `df7ce01e53ad69cf19a2b993764e8c38029eee58`
+- **Implementation tree:** `18e7497049fe63b1db06070d80a9da6b4d164ba5`
+- **Package/control versions:** `0.1.3` / `0.4.81`
+- **Implementation regression certified:** `true`
+- **Implementation state:** `regression_certified_pending_commit`
+- **Focused behavioral implementation:** `34 passed`
+- **RT-001E guardrail regression:** `68 passed`
+- **R4-C/R4-D integration regression:** `64 passed`
+- **R4-D package/implementation regression:** `91 passed`
+- **Broader PR2/R4 regression:** `575 passed`
+- **Full repository:** `9500 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Focused post-suite confirmation:** `64 passed`
+- **Final changed-path count after recording:** `11`
+- **Production runtime path count:** `1`
+- **Production schema path count:** `0`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+- **Next gate:** `r4_d_implementation_commit_push`
+- **Next gate authorized:** `false`
+
+The certified implementation establishes a bounded local/offline durability
+primitive for existing R4-B/R4-C state. It does not authorize a generalized
+save subsystem or broader R4 activation.
+
+
+## 2026-09-21 decision — R4-D implementation recovery preservation
+
+- **Decision ID:** `R4-D-IMPLEMENTATION-RECOVERY-008`
+- **Generated test import syntax error:** preserved and recovered
+- **Over-strong tuple-order assertion:** preserved and recovered after canonical-state equivalence proof
+- **Historical RT-001E module guardrail rejection:** preserved and recovered through two existing test-infrastructure owners
+- **Termux `/tmp` logging failure:** preserved after the expected guardrail failure was already reproduced
+- **R4-D behavioral defect caused by recoveries:** `false`
+- **Runtime semantic authority expanded:** `false`
+- **Production schema expanded:** `false`
+- **General R4 activation expanded:** `false`
+- **Runtime promotion expanded:** `false`
