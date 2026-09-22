@@ -1,7 +1,7 @@
 {
   "artifact_id": "MYRAVANT-R4-D-PERSISTENT-WORLD-LOCAL-CHECKPOINT-RESTORE-PACKAGE-001",
-  "artifact_version": "0.1.4",
-  "status": "implementation_authorized",
+  "artifact_version": "0.1.6",
+  "status": "merged_complete",
   "package_id": "R4-D",
   "package_name": "persistent_world_local_checkpoint_restore",
   "definition_authorization_reference": "owner_directive_2026-09-20_r4_d_package_definition",
@@ -399,7 +399,7 @@
   "definition_post_merge_closure_ci_run_id": 35608929257,
   "definition_post_merge_closure_regression_certified": true,
   "definition_post_merge_closure_recording_state": "merged_complete",
-  "next_gate": "r4_d_windows_ci_verification",
+  "next_gate": "r4_d_post_merge_closure_commit_push",
   "next_gate_authorized": false,
   "definition_post_merge_closure_failure_recovery_evidence": {
     "failed_focused_closure_certification": {
@@ -475,12 +475,12 @@
   "definition_post_merge_closure_record_ci_run_id": 35619853810,
   "implementation_authorization_reference": "owner_directive_2026-09-21_r4_d_implementation_authorization",
   "implementation_authority_effect": "bounded_persistent_world_local_checkpoint_restore_implementation_only",
-  "implementation_state": "ci_repair_regression_certified_pending_ci",
+  "implementation_state": "merged_complete",
   "implementation_starting_baseline": "5b251372eac24a741f77706abbf2c30823aca82a",
   "implementation_starting_tree": "b200bc539bc7d44d20ba3f9504a1d37299d2780f",
   "implementation_authorization_regression_certified": true,
   "implementation_authorization_recording_state": "merged_complete",
-  "implementation_regression_certified": false,
+  "implementation_regression_certified": true,
   "implementation_validation_requirements": [
     {
       "requirement_id": "R4D-IV-001",
@@ -625,7 +625,7 @@
   "implementation_execution_starting_tree": "18e7497049fe63b1db06070d80a9da6b4d164ba5",
   "implementation_certification_recording_reference": "owner_directive_2026-09-21_r4_d_implementation_certification_recording",
   "implementation_certification_recording_authority_effect": "bounded_r4_d_implementation_certification_recording_only",
-  "implementation_certification_recording_state": "ci_repair_regression_certified_pending_ci",
+  "implementation_certification_recording_state": "merged_complete",
   "implementation_runtime_path": "src/astra_runtime/domain/persistent_world_local_checkpoint_restore.py",
   "implementation_test_path": "tests/test_r4_d_persistent_world_local_checkpoint_restore.py",
   "implementation_test_infrastructure_paths": [
@@ -685,6 +685,23 @@
       "result": "fail",
       "classification": "r4_d_windows_posix_directory_fsync_portability_defect",
       "superseded_overall_certification": true
+    },
+    "cross_platform_ci_repair_verification": {
+      "pull_request": 437,
+      "implementation_head": "15f26809706981a13bc4183fa2ace5209b2152a2",
+      "workflow_name": "CI",
+      "workflow_run_number": 275,
+      "workflow_run_id": 35660915481,
+      "core_linux": {
+        "job_id": 106535652502,
+        "conclusion": "success"
+      },
+      "core_windows": {
+        "job_id": 106535652793,
+        "conclusion": "success"
+      },
+      "cross_platform_ci_certified": true,
+      "result": "pass"
     }
   },
   "implementation_failure_recovery_evidence": {
@@ -860,8 +877,8 @@
     "production_schema_path_count": 0,
     "state_store_mutated": false,
     "local_repair_regression_certified": true,
-    "cross_platform_ci_certified": false,
-    "result": "local_pass_pending_ci",
+    "cross_platform_ci_certified": true,
+    "result": "cross_platform_pass",
     "post_recording_program_header_recovery": {
       "classification": "r4_d_windows_repair_post_recording_program_header_version_expectation_stale",
       "failed_test": "test_program_and_manifest_retain_required_current_cross_references",
@@ -877,8 +894,136 @@
       "lifecycle_state_defect_detected": false,
       "repair_scope": "single_current_program_header_test_expectation",
       "result": "recovered"
+    },
+    "cross_platform_ci_verification": {
+      "pull_request": 437,
+      "implementation_head": "15f26809706981a13bc4183fa2ace5209b2152a2",
+      "workflow_name": "CI",
+      "workflow_run_number": 275,
+      "workflow_run_id": 35660915481,
+      "core_linux": {
+        "job_id": 106535652502,
+        "conclusion": "success"
+      },
+      "core_windows": {
+        "job_id": 106535652793,
+        "conclusion": "success"
+      },
+      "cross_platform_ci_certified": true,
+      "result": "pass"
     }
   },
   "implementation_local_repair_regression_certified": true,
-  "implementation_cross_platform_ci_certified": false
+  "implementation_cross_platform_ci_certified": true,
+  "implementation_cross_platform_ci_certification": {
+    "pull_request": 437,
+    "implementation_head": "15f26809706981a13bc4183fa2ace5209b2152a2",
+    "workflow_name": "CI",
+    "workflow_run_number": 275,
+    "workflow_run_id": 35660915481,
+    "core_linux": {
+      "job_id": 106535652502,
+      "conclusion": "success"
+    },
+    "core_windows": {
+      "job_id": 106535652793,
+      "conclusion": "success"
+    },
+    "cross_platform_ci_certified": true,
+    "result": "pass"
+  },
+  "implementation_branch_head": "15f26809706981a13bc4183fa2ace5209b2152a2",
+  "implementation_merge_commit": "2b208838f91ac7b8488ade6287c51ee3ecb175e2",
+  "implementation_merge_tree": "a9d5a22fa558391a037659d00fc6f5325ddb5467",
+  "implementation_ci_run": 275,
+  "implementation_ci_run_id": 35660915481,
+  "post_merge_closure_complete": true,
+  "post_merge_closure_authorization_reference": "owner_directive_2026-09-21_r4_d_implementation_post_merge_closure",
+  "post_merge_closure_authority_effect": "bounded_r4_d_post_merge_lifecycle_reconciliation_only",
+  "post_merge_closure_recorded_from": "2b208838f91ac7b8488ade6287c51ee3ecb175e2",
+  "post_merge_closure_tree": "a9d5a22fa558391a037659d00fc6f5325ddb5467",
+  "post_merge_closure_pull_request": 437,
+  "post_merge_closure_branch_head": "15f26809706981a13bc4183fa2ace5209b2152a2",
+  "post_merge_closure_ci_run": 275,
+  "post_merge_closure_ci_run_id": 35660915481,
+  "post_merge_closure_regression_certified": true,
+  "post_merge_closure_recording_state": "regression_certified_pending_commit",
+  "post_merge_closure_failure_recovery_evidence": {
+    "failed_root_closure_seam": {
+      "passed": 2,
+      "failed": 1,
+      "result": "fail"
+    },
+    "failed_test": "test_r4_d_windows_ci_failure_and_portability_repair_are_exact",
+    "classification": "stale_cross_platform_ci_certification_expectation_after_post_merge_reconciliation",
+    "authoritative_cross_platform_value": true,
+    "stale_expected_cross_platform_value": false,
+    "matching_transition_control_stale_expectation_detected": true,
+    "r4_d_behavioral_defect_detected": false,
+    "runtime_scope_expanded": false,
+    "production_schema_scope_expanded": false,
+    "semantic_authority_expanded": false,
+    "cross_platform_ci_result_invalidated": false,
+    "regression_certification_restart_required": true,
+    "result": "recovered",
+    "focused_restart_current_vs_historical_alignment_failure": {
+      "failed_focused_restarted_certification": {
+        "passed": 201,
+        "failed": 13,
+        "result": "fail"
+      },
+      "classification": "stale_current_state_expectations_plus_historical_version_overwrite",
+      "current_status_stale_assertion_count": 13,
+      "current_program_version_stale_assertion_count": 1,
+      "historical_recovery_version_overwrite_count": 1,
+      "current_status_authoritative_value": "merged_complete",
+      "current_status_stale_value": "implementation_authorized",
+      "current_program_authoritative_version": "0.4.83",
+      "current_program_stale_expected_version": "0.4.82",
+      "historical_recovery_authoritative_version": "0.4.82",
+      "incorrectly_advanced_historical_expected_version": "0.4.83",
+      "r4_d_behavioral_defect_detected": false,
+      "cross_platform_ci_invalidated": false,
+      "runtime_scope_expanded": false,
+      "production_schema_scope_expanded": false,
+      "semantic_authority_expanded": false,
+      "regression_certification_restart_required": true,
+      "result": "recovered",
+      "current_status_stale_assertion_count_initially_recorded": 11,
+      "first_alignment_pass_repaired_status_assertion_count": 11,
+      "residual_paired_target_status_assertion_count": 2,
+      "first_alignment_pass_reproduction": {
+        "passed": 11,
+        "failed": 2,
+        "result": "fail"
+      },
+      "residual_classification": "paired_target_status_assertions_missed_by_package_only_rewrite",
+      "second_alignment_pass_required": true
+    }
+  },
+  "post_merge_closure_regression_certification": {
+    "certification_restart_after_recorded_recoveries": true,
+    "focused_pre_certification": {
+      "passed": 214,
+      "result": "pass"
+    },
+    "broader_pr2_r4_regression": {
+      "passed": 586,
+      "result": "pass"
+    },
+    "full_repository_suite": {
+      "passed": 9511,
+      "skipped": 10,
+      "xfailed": 2,
+      "warnings": 1,
+      "warning_class": "PytestRemovedIn10Warning",
+      "warning_disposition": "existing_nonblocking_deprecation",
+      "result": "pass"
+    },
+    "git_diff_check": "clean",
+    "changed_path_count": 7,
+    "runtime_implementation_path_count": 0,
+    "production_schema_path_count": 0,
+    "full_repository_rerun_after_recording_required": false
+  }
 }

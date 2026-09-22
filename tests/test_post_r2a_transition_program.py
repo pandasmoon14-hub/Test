@@ -393,7 +393,7 @@ def test_control_artifacts_exist():
 def test_frozen_baseline_and_identity_are_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.82"
+    assert manifest["artifact_version"] == "0.4.84"
     assert manifest["frozen_starting_baseline"] == EXPECTED_BASELINE
     assert manifest["starting_event"]["pull_request"] == 374
     assert manifest["starting_event"]["merge_commit"] == EXPECTED_BASELINE
@@ -1317,7 +1317,7 @@ def test_program_and_manifest_retain_required_current_cross_references():
     program = PROGRAM_PATH.read_text(encoding="utf-8")
     manifest = _load_manifest()
 
-    assert "**Artifact version:** `0.4.82`" in program
+    assert "**Artifact version:** `0.4.84`" in program
     assert EXPECTED_BASELINE in program
     assert R2B_CORE_BASELINE in program
     assert R2B_CROSS_PHASE_BASELINE in program
@@ -1615,7 +1615,7 @@ def test_r4_b_post_merge_closure_is_terminal_and_bounded():
 
     state = "merged_complete"
 
-    assert manifest["artifact_version"] == "0.4.82"
+    assert manifest["artifact_version"] == "0.4.84"
 
     assert candidate["implementation_state"] == state
     assert candidate["post_merge_closure_complete"] is True
@@ -1685,7 +1685,7 @@ def test_r4_b_post_merge_closure_regression_certification_is_exact():
     candidate = impl["first_playable_candidate"]
     target = manifest["r4_native_substrate_design_target"]
 
-    assert manifest["artifact_version"] == "0.4.82"
+    assert manifest["artifact_version"] == "0.4.84"
 
     # R4-B stays terminal; evidence recording is separate.
     assert candidate["implementation_state"] == "merged_complete"
@@ -1759,7 +1759,7 @@ def test_r4_b_post_merge_closure_regression_certification_is_exact():
 def test_r4_c_current_state_is_implementation_authorized_and_bounded():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.82"
+    assert manifest["artifact_version"] == "0.4.84"
 
     target = manifest[
         "r4_c_playable_movement_integration_target"
@@ -1894,7 +1894,7 @@ def test_r4_c_implementation_authorization_does_not_activate_general_r4():
 def test_r4_c_implementation_regression_certification_is_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.82"
+    assert manifest["artifact_version"] == "0.4.84"
 
     target = manifest[
         "r4_c_playable_movement_integration_target"
@@ -1956,7 +1956,7 @@ def test_r4_c_implementation_regression_certification_is_exact():
 def test_r4_c_post_merge_closure_is_recorded_without_downstream_activation():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.82"
+    assert manifest["artifact_version"] == "0.4.84"
 
     target = manifest[
         "r4_c_playable_movement_integration_target"
@@ -2023,7 +2023,7 @@ def test_r4_c_post_merge_closure_is_recorded_without_downstream_activation():
 def test_r4_c_post_merge_closure_certification_evidence_is_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.82"
+    assert manifest["artifact_version"] == "0.4.84"
 
     target = manifest[
         "r4_c_playable_movement_integration_target"
@@ -2124,7 +2124,7 @@ def test_r4_c_post_merge_closure_certification_evidence_is_exact():
 def test_r4_d_local_checkpoint_restore_definition_is_bounded():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.82"
+    assert manifest["artifact_version"] == "0.4.84"
 
     target = manifest[
         "r4_d_local_checkpoint_restore_target"
@@ -2136,11 +2136,11 @@ def test_r4_d_local_checkpoint_restore_definition_is_bounded():
         == "persistent_world_local_checkpoint_restore"
     )
 
-    assert target["status"] == "implementation_authorized"
+    assert target["status"] == "merged_complete"
     assert target["package_defined"] is True
 
     assert target["implementation_authorized"] is True
-    assert target["implementation_state"] == "ci_repair_regression_certified_pending_ci"
+    assert target["implementation_state"] == "merged_complete"
 
     assert target["predecessor_package"] == "R4-C"
     assert target["persistence_contract"] == "PR2-PERSIST"
@@ -2154,7 +2154,7 @@ def test_r4_d_local_checkpoint_restore_definition_is_bounded():
 
     assert (
         target["next_gate"]
-        == "r4_d_windows_ci_verification"
+        == "r4_d_post_merge_closure_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
@@ -2166,13 +2166,13 @@ def test_r4_d_local_checkpoint_restore_definition_is_bounded():
 def test_r4_d_definition_certification_evidence_is_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.82"
+    assert manifest["artifact_version"] == "0.4.84"
 
     target = manifest[
         "r4_d_local_checkpoint_restore_target"
     ]
 
-    assert target["status"] == "implementation_authorized"
+    assert target["status"] == "merged_complete"
     assert target["definition_regression_certified"] is True
     assert target["definition_recording_state"] == "merged_complete"
 
@@ -2211,7 +2211,7 @@ def test_r4_d_definition_certification_evidence_is_exact():
 
     assert (
         target["next_gate"]
-        == "r4_d_windows_ci_verification"
+        == "r4_d_post_merge_closure_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
@@ -2256,7 +2256,7 @@ def test_r4_d_manifest_definition_recording_recovery_evidence_is_exact():
 
     assert (
         target["next_gate"]
-        == "r4_d_windows_ci_verification"
+        == "r4_d_post_merge_closure_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
@@ -2267,13 +2267,13 @@ def test_r4_d_manifest_definition_recording_recovery_evidence_is_exact():
 def test_r4_d_definition_post_merge_closure_control_state_is_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.82"
+    assert manifest["artifact_version"] == "0.4.84"
 
     target = manifest[
         "r4_d_local_checkpoint_restore_target"
     ]
 
-    assert target["status"] == "implementation_authorized"
+    assert target["status"] == "merged_complete"
     assert target["definition_recording_state"] == "merged_complete"
 
     assert target["definition_post_merge_closure_complete"] is True
@@ -2338,13 +2338,13 @@ def test_r4_d_definition_post_merge_closure_control_state_is_exact():
 
     assert (
         target["next_gate"]
-        == "r4_d_windows_ci_verification"
+        == "r4_d_post_merge_closure_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
 
     assert target["implementation_authorized"] is True
-    assert target["implementation_state"] == "ci_repair_regression_certified_pending_ci"
+    assert target["implementation_state"] == "merged_complete"
     assert target["r4_activation_authorized"] is False
     assert target["runtime_promotion_authorized"] is False
 
@@ -2361,7 +2361,7 @@ def test_r4_d_definition_closure_manifest_key_recovery_is_exact():
 
     assert (
         target["status"]
-        == "implementation_authorized"
+        == "merged_complete"
     )
 
     assert "definition_merged_complete" not in target
@@ -2460,7 +2460,7 @@ def test_r4_d_definition_post_merge_closure_certification_control_evidence_is_ex
 
     assert (
         target["next_gate"]
-        == "r4_d_windows_ci_verification"
+        == "r4_d_post_merge_closure_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
@@ -2526,18 +2526,18 @@ def test_r4_d_closure_post_recording_recovery_control_evidence_is_exact():
 def test_r4_d_implementation_authorization_control_state_is_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.82"
+    assert manifest["artifact_version"] == "0.4.84"
 
     target = manifest[
         "r4_d_local_checkpoint_restore_target"
     ]
 
-    assert target["status"] == "implementation_authorized"
+    assert target["status"] == "merged_complete"
     assert target["implementation_authorized"] is True
 
     assert (
         target["implementation_state"]
-        == "ci_repair_regression_certified_pending_ci"
+        == "merged_complete"
     )
 
     assert (
@@ -2554,11 +2554,11 @@ def test_r4_d_implementation_authorization_control_state_is_exact():
         == "merged_complete"
     )
 
-    assert target["implementation_regression_certified"] is False
+    assert target["implementation_regression_certified"] is True
 
     assert (
         target["next_gate"]
-        == "r4_d_windows_ci_verification"
+        == "r4_d_post_merge_closure_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
@@ -2635,13 +2635,13 @@ def test_r4_d_implementation_authorization_certification_control_evidence_is_exa
 
     assert (
         target["next_gate"]
-        == "r4_d_windows_ci_verification"
+        == "r4_d_post_merge_closure_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
 
     assert target["implementation_authorized"] is True
-    assert target["implementation_regression_certified"] is False
+    assert target["implementation_regression_certified"] is True
     assert target["r4_activation_authorized"] is False
     assert target["runtime_promotion_authorized"] is False
 
@@ -2679,13 +2679,13 @@ def test_r4_d_partial_authorization_recording_recovery_control_evidence_is_exact
 def test_r4_d_implementation_regression_certification_control_state_is_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.82"
+    assert manifest["artifact_version"] == "0.4.84"
 
     target = manifest[
         "r4_d_local_checkpoint_restore_target"
     ]
 
-    assert target["status"] == "implementation_authorized"
+    assert target["status"] == "merged_complete"
     assert target["implementation_authorized"] is True
 
     assert (
@@ -2707,10 +2707,10 @@ def test_r4_d_implementation_regression_certification_control_state_is_exact():
 
     assert (
         target["implementation_state"]
-        == "ci_repair_regression_certified_pending_ci"
+        == "merged_complete"
     )
 
-    assert target["implementation_regression_certified"] is False
+    assert target["implementation_regression_certified"] is True
 
     cert = target["implementation_regression_certification"]
 
@@ -2735,7 +2735,7 @@ def test_r4_d_implementation_regression_certification_control_state_is_exact():
 
     assert (
         target["next_gate"]
-        == "r4_d_windows_ci_verification"
+        == "r4_d_post_merge_closure_commit_push"
     )
 
     assert target["next_gate_authorized"] is False
@@ -2795,7 +2795,7 @@ def test_r4_d_implementation_recovery_control_evidence_is_exact():
 def test_r4_d_windows_ci_failure_and_repair_control_state_is_exact():
     manifest = _load_manifest()
 
-    assert manifest["artifact_version"] == "0.4.82"
+    assert manifest["artifact_version"] == "0.4.84"
 
     target = manifest[
         "r4_d_local_checkpoint_restore_target"
@@ -2803,10 +2803,10 @@ def test_r4_d_windows_ci_failure_and_repair_control_state_is_exact():
 
     assert (
         target["implementation_state"]
-        == "ci_repair_regression_certified_pending_ci"
+        == "merged_complete"
     )
 
-    assert target["implementation_regression_certified"] is False
+    assert target["implementation_regression_certified"] is True
 
     assert (
         target["implementation_local_repair_regression_certified"]
@@ -2815,7 +2815,7 @@ def test_r4_d_windows_ci_failure_and_repair_control_state_is_exact():
 
     assert (
         target["implementation_cross_platform_ci_certified"]
-        is False
+        is True
     )
 
     failure = target["implementation_ci_failure_evidence"]
@@ -2858,7 +2858,151 @@ def test_r4_d_windows_ci_failure_and_repair_control_state_is_exact():
 
     assert (
         target["next_gate"]
-        == "r4_d_windows_ci_verification"
+        == "r4_d_post_merge_closure_commit_push"
+    )
+
+    assert target["next_gate_authorized"] is False
+    assert target["r4_activation_authorized"] is False
+    assert target["runtime_promotion_authorized"] is False
+
+    assert manifest["r2_gate_state"]["R4-R6"] == "blocked"
+
+
+def test_r4_d_implementation_post_merge_closure_control_state_is_exact():
+    manifest = _load_manifest()
+
+    assert manifest["artifact_version"] == "0.4.84"
+
+    target = manifest[
+        "r4_d_local_checkpoint_restore_target"
+    ]
+
+    assert target["status"] == "merged_complete"
+    assert target["implementation_state"] == "merged_complete"
+
+    assert target["implementation_regression_certified"] is True
+    assert target["implementation_cross_platform_ci_certified"] is True
+
+    assert target["implementation_pull_request"] == 437
+
+    assert (
+        target["implementation_branch_head"]
+        == "15f26809706981a13bc4183fa2ace5209b2152a2"
+    )
+
+    assert (
+        target["implementation_merge_commit"]
+        == "2b208838f91ac7b8488ade6287c51ee3ecb175e2"
+    )
+
+    assert target["implementation_merge_tree"] == "a9d5a22fa558391a037659d00fc6f5325ddb5467"
+
+    assert target["post_merge_closure_complete"] is True
+    assert target["post_merge_closure_regression_certified"] is True
+
+    assert (
+        target["post_merge_closure_recording_state"]
+        == "regression_certified_pending_commit"
+    )
+
+    assert (
+        target["next_gate"]
+        == "r4_d_post_merge_closure_commit_push"
+    )
+
+    assert target["next_gate_authorized"] is False
+    assert target["r4_activation_authorized"] is False
+    assert target["runtime_promotion_authorized"] is False
+
+    assert manifest["r2_gate_state"]["R4-R6"] == "blocked"
+
+
+def test_r4_d_post_merge_closure_root_seam_recovery_control_is_exact():
+    manifest = _load_manifest()
+
+    target = manifest[
+        "r4_d_local_checkpoint_restore_target"
+    ]
+
+    recovery = target[
+        "post_merge_closure_failure_recovery_evidence"
+    ]
+
+    assert (
+        recovery["classification"]
+        == (
+            "stale_cross_platform_ci_certification_"
+            "expectation_after_post_merge_reconciliation"
+        )
+    )
+
+    assert recovery["authoritative_cross_platform_value"] is True
+
+    assert (
+        recovery[
+            "matching_transition_control_stale_expectation_detected"
+        ]
+        is True
+    )
+
+    assert recovery["r4_d_behavioral_defect_detected"] is False
+
+    assert target["implementation_cross_platform_ci_certified"] is True
+
+    alignment = recovery[
+        "focused_restart_current_vs_historical_alignment_failure"
+    ]
+
+    assert alignment["current_status_stale_assertion_count"] == 13
+    assert alignment["current_program_version_stale_assertion_count"] == 1
+    assert alignment["historical_recovery_version_overwrite_count"] == 1
+    assert (
+        alignment["residual_paired_target_status_assertion_count"]
+        == 2
+    )
+    assert alignment["first_alignment_pass_reproduction"] == {
+        "passed": 11,
+        "failed": 2,
+        "result": "fail",
+    }
+
+    assert alignment["r4_d_behavioral_defect_detected"] is False
+    assert alignment["cross_platform_ci_invalidated"] is False
+
+
+def test_r4_d_post_merge_closure_certification_control_state_is_exact():
+    manifest = _load_manifest()
+
+    assert manifest["artifact_version"] == "0.4.84"
+
+    target = manifest[
+        "r4_d_local_checkpoint_restore_target"
+    ]
+
+    assert target["status"] == "merged_complete"
+    assert target["implementation_state"] == "merged_complete"
+
+    assert target["implementation_cross_platform_ci_certified"] is True
+
+    assert target["post_merge_closure_complete"] is True
+    assert target["post_merge_closure_regression_certified"] is True
+
+    assert (
+        target["post_merge_closure_recording_state"]
+        == "regression_certified_pending_commit"
+    )
+
+    cert = target[
+        "post_merge_closure_regression_certification"
+    ]
+
+    assert cert["focused_pre_certification"]["passed"] == 214
+    assert cert["broader_pr2_r4_regression"]["passed"] == 586
+    assert cert["full_repository_suite"]["passed"] == 9511
+
+    assert (
+        target["next_gate"]
+        == "r4_d_post_merge_closure_commit_push"
     )
 
     assert target["next_gate_authorized"] is False

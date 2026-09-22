@@ -8003,3 +8003,101 @@ Overall cross-platform certification remains false pending fresh GitHub CI.
 - **Lifecycle-state defect detected:** `false`
 - **Production schema expansion:** `false`
 - **Disposition:** update the single current-version rendered-program assertion and rerun bounded post-recording regression
+
+
+## 2026-09-21 decision — R4-D implementation post-merge closure
+
+- **Decision ID:** `R4-D-IMPLEMENTATION-POST-MERGE-CLOSURE-012`
+- **Authorization reference:** `owner_directive_2026-09-21_r4_d_implementation_post_merge_closure`
+- **Authority effect:** `bounded_r4_d_post_merge_lifecycle_reconciliation_only`
+- **Implementation PR:** `#437`
+- **Implementation head:** `15f26809706981a13bc4183fa2ace5209b2152a2`
+- **Merge commit:** `2b208838f91ac7b8488ade6287c51ee3ecb175e2`
+- **Merge tree:** `a9d5a22fa558391a037659d00fc6f5325ddb5467`
+- **Successful CI:** `#275`
+- **CI run ID:** `35660915481`
+- **Linux:** `success`
+- **Windows:** `success`
+- **Cross-platform CI certified:** `true`
+- **Implementation state:** `merged_complete`
+- **Production runtime edits in closure:** `0`
+- **Production schema edits in closure:** `0`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+- **Automatic successor activation:** `false`
+
+The failed CI #274 portability evidence remains preserved. CI #275 proves the
+bounded platform-specific durability repair on both Linux and Windows.
+
+
+## 2026-09-21 decision — R4-D post-merge closure root-seam recovery
+
+- **Decision ID:** `R4-D-POST-MERGE-CLOSURE-ROOT-SEAM-RECOVERY-013`
+- **Failed root seam:** `2 passed, 1 failed`
+- **Failed test:** `test_r4_d_windows_ci_failure_and_portability_repair_are_exact`
+- **Classification:** `stale_cross_platform_ci_certification_expectation_after_post_merge_reconciliation`
+- **Authoritative cross-platform value:** `true`
+- **Stale expected value:** `false`
+- **Matching transition-control stale expectation:** `true`
+- **R4-D behavioral defect detected:** `false`
+- **Cross-platform CI invalidated:** `false`
+- **Runtime scope expanded:** `false`
+- **Production schema scope expanded:** `false`
+- **Semantic authority expanded:** `false`
+- **Disposition:** align both stale multiline assertions and restart closure regression certification
+
+
+## 2026-09-21 decision — R4-D closure current/historical alignment recovery
+
+- **Decision ID:** `R4-D-POST-MERGE-CLOSURE-CURRENT-HISTORICAL-ALIGNMENT-014`
+- **Failed focused restart:** `201 passed, 13 failed`
+- **Classification:** `stale_current_state_expectations_plus_historical_version_overwrite`
+- **Stale current lifecycle-status assertions:** `11`
+- **Stale current program-version assertions:** `1`
+- **Historical version assertions incorrectly advanced:** `1`
+- **Current lifecycle status:** `merged_complete`
+- **Current control version:** `0.4.83`
+- **Preserved historical recovery program version:** `0.4.82`
+- **R4-D behavioral defect detected:** `false`
+- **Cross-platform CI invalidated:** `false`
+- **Runtime scope expanded:** `false`
+- **Production schema scope expanded:** `false`
+- **Semantic authority expanded:** `false`
+- **Disposition:** distinguish mutable current-state assertions from immutable historical recovery evidence and restart closure certification
+
+
+## 2026-09-21 decision — R4-D residual paired-target closure recovery
+
+- **Decision ID:** `R4-D-POST-MERGE-CLOSURE-PAIRED-TARGET-RECOVERY-015`
+- **Previous bounded reproduction:** `11 passed, 2 failed`
+- **Residual classification:** `paired_target_status_assertions_missed_by_package_only_rewrite`
+- **Initially recorded status-assertion count:** `11`
+- **Corrected total status-assertion count:** `13`
+- **First-pass corrected:** `11`
+- **Residual paired target assertions:** `2`
+- **R4-D behavioral defect detected:** `false`
+- **Cross-platform CI invalidated:** `false`
+- **Production runtime scope expanded:** `false`
+- **Production schema scope expanded:** `false`
+- **Semantic authority expanded:** `false`
+- **Disposition:** correct the two paired target-status assertions and restart closure certification
+
+
+## 2026-09-21 decision — R4-D implementation post-merge closure certification
+
+- **Decision ID:** `R4-D-IMPLEMENTATION-POST-MERGE-CLOSURE-CERTIFICATION-016`
+- **Certification restarted after recorded recoveries:** `true`
+- **Focused closure:** `214 passed`
+- **Broader PR2/R4:** `586 passed`
+- **Full repository:** `9511 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Package version:** `0.1.6`
+- **Control version:** `0.4.84`
+- **Changed paths:** `7`
+- **Production runtime paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **Closure regression certified:** `true`
+- **Closure recording state:** `regression_certified_pending_commit`
+- **Next gate:** `r4_d_post_merge_closure_commit_push`
+- **Next gate authorized:** `false`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
