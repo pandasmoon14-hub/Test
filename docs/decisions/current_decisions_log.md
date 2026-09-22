@@ -8101,3 +8101,61 @@ bounded platform-specific durability repair on both Linux and Windows.
 - **Next gate authorized:** `false`
 - **General R4 activation authorized:** `false`
 - **Runtime promotion authorized:** `false`
+
+
+## 2026-09-21 decision — R4-E persistent-world object custody transfer definition
+
+- **Decision ID:** `R4-E-DEFINITION-001`
+- **Authorization reference:** `owner_directive_2026-09-21_r4_e_package_definition`
+- **Authority effect:** `bounded_r4_e_package_definition_only`
+- **Definition baseline:** `c9810357d4367a78771e083d3978913799d292d5`
+- **Definition tree:** `8dd94a277af39f40d78623aa532e76fd8533919d`
+- **Package:** `persistent_world_object_custody_transfer`
+- **Predecessor:** `R4-D persistent_world_local_checkpoint_restore`
+- **Predecessor state:** `merged_complete`
+- **Production runtime edits authorized by definition:** `0`
+- **Production schema edits authorized by definition:** `0`
+- **Implementation authorized:** `false`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+`carried_by` is selected as a bounded immediate physical carrying/asset-placement relation qualified through RT-010. It does not imply ownership or legal/social entitlement. Separate social/faction/institutional custody pressure remains an RT-007 handoff.
+
+R4-D format version 1 retains its existing meaning. No generalized inventory, ownership, storage, container, economy, relation registry, world-state manager, save system, timeline, correction, R5, or R6 authority is created.
+
+
+## 2026-09-21 decision — R4-E definition scope-check harness recovery
+
+- **Decision ID:** `R4-E-DEFINITION-SCOPE-HARNESS-RECOVERY-002`
+- **Classification:** `definition_scope_check_omitted_untracked_new_files`
+- **Expected changed paths:** `8`
+- **Observed tracked diff paths:** `6`
+- **Untracked R4-E paths omitted by the failed check:** `2`
+- **Tests started before stop:** `false`
+- **Commit created before stop:** `false`
+- **Push performed before stop:** `false`
+- **Runtime behavioral defect detected:** `false`
+- **Production runtime scope expanded:** `false`
+- **Production schema scope expanded:** `false`
+- **Semantic authority expanded:** `false`
+- **Recovery:** preserve the partial working tree and use `git status --porcelain` including untracked files for exact-scope validation
+
+
+## 2026-09-21 decision — R4-E definition regression certification
+
+- **Decision ID:** `R4-E-DEFINITION-CERTIFICATION-003`
+- **Authority effect:** `bounded_r4_e_definition_certification_recording_only`
+- **Scope-harness recovery preserved:** `true`
+- **Focused definition:** `98 passed in 0.76s`
+- **Broader R4/PR2:** `187 passed in 2.51s`
+- **Full repository:** `9528 passed, 10 skipped, 2 xfailed, 1 warning in 781.86s (0:13:01)`
+- **Changed paths:** `8`
+- **Production runtime paths changed:** `0`
+- **Production schema paths changed:** `0`
+- **Definition regression certified:** `true`
+- **Definition recording state:** `regression_certified_pending_commit`
+- **Next gate:** `r4_e_definition_commit_push`
+- **Next gate authorized:** `false`
+- **Implementation authorized:** `false`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`

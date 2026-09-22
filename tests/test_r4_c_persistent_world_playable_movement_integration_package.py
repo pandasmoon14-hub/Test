@@ -184,7 +184,7 @@ def test_r4_c_manifest_program_and_decision_log_track_same_gate():
         "r4_c_playable_movement_integration_target"
     ]
 
-    assert manifest["artifact_version"] == "0.4.84"
+    assert manifest["artifact_version"] == "0.4.85"
     assert target["package_id"] == package["package_id"]
     assert target["package_name"] == package["package_name"]
 
@@ -357,7 +357,7 @@ def test_r4_c_implementation_authorization_is_exact_and_bounded():
 
     assert PROPOSED_RUNTIME.exists()
 
-    assert manifest["artifact_version"] == "0.4.84"
+    assert manifest["artifact_version"] == "0.4.85"
 
     assert target["implementation_authorized"] is True
     assert target["implementation_regression_certified"] is True
@@ -402,7 +402,7 @@ def test_r4_c_guardrail_recovery_scope_is_exact():
     manifest = load(MANIFEST)
 
     assert package["artifact_version"] == "0.1.6"
-    assert manifest["artifact_version"] == "0.4.84"
+    assert manifest["artifact_version"] == "0.4.85"
 
     assert (
         package["proposed_implementation_edit_allowlist"]
@@ -578,7 +578,7 @@ def test_r4_c_post_merge_closure_metadata_is_exact():
         == "regression_certified_pending_commit"
     )
 
-    assert manifest["artifact_version"] == "0.4.84"
+    assert manifest["artifact_version"] == "0.4.85"
     assert target["status"] == "merged_complete"
     assert target["implementation_state"] == "merged_complete"
     assert target["post_merge_closure_complete"] is True
@@ -701,7 +701,7 @@ def test_r4_c_post_merge_closure_regression_certification_is_exact():
         "r4_c_playable_movement_integration_target"
     ]
 
-    assert manifest["artifact_version"] == "0.4.84"
+    assert manifest["artifact_version"] == "0.4.85"
 
     assert target["post_merge_closure_complete"] is True
     assert (
