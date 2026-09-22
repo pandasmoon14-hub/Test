@@ -8159,3 +8159,43 @@ R4-D format version 1 retains its existing meaning. No generalized inventory, ow
 - **Implementation authorized:** `false`
 - **General R4 activation authorized:** `false`
 - **Runtime promotion authorized:** `false`
+
+
+## 2026-09-21 decision — R4-E definition post-merge closure
+
+- **Decision ID:** `R4-E-DEFINITION-POST-MERGE-CLOSURE-004`
+- **Authorization reference:** `owner_directive_2026-09-21_r4_e_definition_post_merge_closure`
+- **Authority effect:** `bounded_r4_e_definition_post_merge_lifecycle_reconciliation_only`
+- **Definition PR:** `#439`
+- **Definition head:** `b21cc58c16d1146a003b383ff759cfd8495ff5e4`
+- **Definition merge:** `5111b8dd8e60fbbb44d07695e68863bf943320e9`
+- **Definition tree:** `27f43e88eacd8a4626b1746118b46e97d811ae43`
+- **Definition CI:** `#279` / `35687577058`
+- **Linux:** `success`
+- **Windows:** `success`
+- **Package/control:** `0.1.1 / 0.4.86`
+- **Definition lifecycle:** `definition_merged_complete`
+- **Definition recording state:** `merged_complete`
+- **Production runtime edits:** `0`
+- **Production schema edits:** `0`
+- **Implementation authorized:** `false`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+
+## 2026-09-21 decision — R4-E definition post-merge closure certification
+
+- **Decision ID:** `R4-E-DEFINITION-POST-MERGE-CLOSURE-CERTIFICATION-005`
+- **Focused closure:** `101 passed in 0.87s`
+- **Broader R4/PR2:** `190 passed in 1.22s`
+- **Full repository:** `9544 passed, 10 skipped, 2 xfailed, 1 warning in 904.54s (0:15:04)`
+- **Changed paths:** `8`
+- **Production runtime paths:** `0`
+- **Production schema paths:** `0`
+- **Closure regression certified:** `true`
+- **Closure recording state:** `regression_certified_pending_commit`
+- **Next gate:** `r4_e_definition_post_merge_closure_commit_push`
+- **Next gate authorized:** `false`
+- **Implementation authorized:** `false`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`

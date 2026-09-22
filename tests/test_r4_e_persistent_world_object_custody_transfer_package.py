@@ -16,8 +16,8 @@ def load(path: Path):
 
 def test_r4_e_identity_and_authorization_boundary_are_exact():
     package = load(PACKAGE)
-    assert package["artifact_version"] == "0.1.0"
-    assert package["status"] == "package_defined"
+    assert package["artifact_version"] == "0.1.1"
+    assert package["status"] == "definition_merged_complete"
     assert package["package_id"] == "R4-E"
     assert package["package_name"] == "persistent_world_object_custody_transfer"
     assert package["implementation_authorized"] is False
@@ -137,31 +137,35 @@ def test_r4_e_proposed_runtime_scope_is_bounded():
     assert "src/astra_runtime/domain/command_kind_routing_skeleton.py" in allowlist["explicitly_not_required_on_current_evidence"]
 
 
-def test_r4_e_definition_lifecycle_is_consistent_before_or_after_certification():
+def test_r4_e_definition_lifecycle_is_consistent_before_or_after_closure_certification():
     package = load(PACKAGE)
-    if package["definition_regression_certified"] is False:
-        assert package["definition_recording_state"] == "pending_regression_certification"
-        assert package["next_gate"] == "r4_e_definition_regression_certification"
+    assert package["definition_regression_certified"] is True
+    assert package["definition_recording_state"] == "merged_complete"
+    assert package["status"] == "definition_merged_complete"
+    assert package["definition_post_merge_closure_complete"] is True
+    if package["definition_post_merge_closure_regression_certified"] is False:
+        assert package["definition_post_merge_closure_recording_state"] == "pending_regression_certification"
+        assert package["next_gate"] == "r4_e_definition_post_merge_closure_regression_certification"
         assert package["next_gate_authorized"] is True
     else:
-        assert package["definition_regression_certified"] is True
-        assert package["definition_recording_state"] == "regression_certified_pending_commit"
-        assert package["next_gate"] == "r4_e_definition_commit_push"
+        assert package["definition_post_merge_closure_recording_state"] == "regression_certified_pending_commit"
+        assert package["next_gate"] == "r4_e_definition_post_merge_closure_commit_push"
         assert package["next_gate_authorized"] is False
-        cert = package["definition_regression_certification"]
-        assert cert["focused_definition"]["result"] == "pass"
+        cert = package["definition_post_merge_closure_regression_certification"]
+        assert cert["focused_closure"]["result"] == "pass"
         assert cert["broader_pr2_r4"]["result"] == "pass"
         assert cert["full_repository"]["result"] == "pass"
-
 
 def test_r4_e_manifest_target_matches_package_and_control_version():
     package = load(PACKAGE)
     manifest = load(MANIFEST)
-    assert manifest["artifact_version"] == "0.4.85"
+    assert manifest["artifact_version"] == "0.4.86"
     target = manifest["r4_e_object_custody_transfer_target"]
     assert target["package_id"] == package["package_id"]
     assert target["package_name"] == package["package_name"]
-    assert target["status"] == "package_defined"
+    assert target["status"] == "definition_merged_complete"
+    assert target["definition_recording_state"] == "merged_complete"
+    assert target["definition_post_merge_closure_complete"] is True
     assert target["implementation_authorized"] is False
     assert target["implementation_state"] == "not_authorized"
     assert target["r4_activation_authorized"] is False
@@ -179,8 +183,35 @@ def test_r4_e_manifest_target_matches_package_and_control_version():
 def test_r4_e_program_and_decision_log_record_definition_boundary():
     program = PROGRAM.read_text(encoding="utf-8")
     decisions = DECISIONS.read_text(encoding="utf-8")
-    assert "**Artifact version:** `0.4.85`" in program
+    assert "**Artifact version:** `0.4.86`" in program
     assert "### 5.92 R4-E persistent-world object custody transfer package definition" in program
     assert "R4-E-DEFINITION-001" in decisions
-    assert "Implementation remains unauthorized." in program
+    assert "R4-E-DEFINITION-POST-MERGE-CLOSURE-004" in decisions
+    assert "### 5.94 R4-E definition post-merge lifecycle closure" in program
+    assert "R4-E implementation remains unauthorized." in program
     assert "General R4 activation remains unauthorized." in program
+
+
+def test_r4_e_definition_post_merge_evidence_is_exact():
+    package = load(PACKAGE)
+    assert package["definition_post_merge_closure_recorded_from"] == "5111b8dd8e60fbbb44d07695e68863bf943320e9"
+    assert package["definition_post_merge_closure_tree"] == "27f43e88eacd8a4626b1746118b46e97d811ae43"
+    assert package["definition_post_merge_closure_pull_request"] == 439
+    assert package["definition_post_merge_closure_branch_head"] == "b21cc58c16d1146a003b383ff759cfd8495ff5e4"
+    assert package["definition_post_merge_closure_ci_run"] == 279
+    assert package["definition_post_merge_closure_ci_run_id"] == 35687577058
+    ci = package["definition_post_merge_closure_ci_verification"]
+    assert ci["core_linux"]["job_id"] == 106617609047
+    assert ci["core_linux"]["conclusion"] == "success"
+    assert ci["core_windows"]["job_id"] == 106617609189
+    assert ci["core_windows"]["conclusion"] == "success"
+    assert ci["cross_platform_ci_certified"] is True
+
+
+def test_r4_e_definition_closure_nonimplementation_boundary_is_exact():
+    package = load(PACKAGE)
+    assert package["implementation_authorized"] is False
+    assert package["production_schema_implementation_authorized"] is False
+    assert package["r4_activation_authorized"] is False
+    assert package["runtime_promotion_authorized"] is False
+    assert len(package["definition_post_merge_closure_edit_allowlist"]) == 8
