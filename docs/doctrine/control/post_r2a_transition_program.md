@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.82`
+**Artifact version:** `0.4.84`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -5343,3 +5343,206 @@ This was a current-version test expectation defect only. It did not implicate
 the Windows durability runtime repair, authoritative checkpoint semantics,
 recorded lifecycle state, production schema, or the previously completed
 `9505`-pass full repository certification.
+
+
+### 5.90 R4-D implementation post-merge lifecycle closure
+
+PR `#437` merged the bounded R4-D persistent-world local checkpoint/restore
+implementation into `main`.
+
+Implementation branch head:
+
+`15f26809706981a13bc4183fa2ace5209b2152a2`
+
+Merge commit:
+
+`2b208838f91ac7b8488ade6287c51ee3ecb175e2`
+
+Merge tree:
+
+`a9d5a22fa558391a037659d00fc6f5325ddb5467`
+
+Successful repaired cross-platform pull-request CI:
+
+- run number: `275`;
+- run ID: `35660915481`;
+- `core-linux`: success;
+- `core-windows`: success.
+
+The successful CI run supersedes the failed Windows result from CI `#274` as
+the certification state of the repaired implementation while preserving the
+failed run as recovery evidence.
+
+The owner separately authorized this bounded R4-D post-merge lifecycle
+reconciliation.
+
+Authorization reference:
+
+`owner_directive_2026-09-21_r4_d_implementation_post_merge_closure`
+
+Authority effect:
+
+`bounded_r4_d_post_merge_lifecycle_reconciliation_only`
+
+R4-D implementation lifecycle is now `merged_complete`.
+
+The Windows durability repair is now cross-platform CI certified.
+
+This closure changes no production runtime file and no production schema.
+
+General R4 activation remains unauthorized.
+
+Runtime promotion remains unauthorized.
+
+No generalized save subsystem, database, event journal, replay engine,
+timeline owner, branch owner, cloud persistence system, distributed recovery
+system, or automatic successor activation is created or authorized.
+
+`R4-R6` remains blocked.
+
+Post-merge closure regression certification is required before this closure
+record may proceed to commit/push.
+
+
+#### 5.90.1 R4-D closure root-seam cross-platform expectation recovery
+
+The first root closure seam produced:
+
+`2 passed, 1 failed`
+
+The failure was limited to
+`test_r4_d_windows_ci_failure_and_portability_repair_are_exact`.
+
+The closure had correctly recorded successful CI `#275` and changed
+`implementation_cross_platform_ci_certified` to `true`, while one existing
+multiline package-test assertion still expected the pre-CI value `false`.
+
+Inspection also identified the matching stale multiline assertion in the
+transition-control test surface.
+
+Classification:
+
+`stale_cross_platform_ci_certification_expectation_after_post_merge_reconciliation`
+
+No R4-D behavioral defect was detected.
+
+The successful Linux and Windows CI result remains valid.
+
+Runtime scope, production schema scope, and semantic authority are unchanged.
+
+Closure regression certification restarts after aligning those two test
+expectations.
+
+
+#### 5.90.2 R4-D closure current-state versus historical-evidence alignment recovery
+
+The restarted focused closure certification produced:
+
+`201 passed, 13 failed`
+
+The failures collapsed into three test/control-alignment classes:
+
+1. eleven assertions still expected the package/control lifecycle status
+   `implementation_authorized` after the post-merge reconciliation had
+   lawfully established `merged_complete`;
+2. one current rendered program-version assertion still expected `0.4.82`
+   after the current control artifact advanced to `0.4.83`;
+3. one historical recovery assertion had been incorrectly advanced to
+   `0.4.83`, even though the recovery record correctly preserves `0.4.82`
+   as the program version that was authoritative when that historical
+   failure occurred.
+
+Classification:
+
+`stale_current_state_expectations_plus_historical_version_overwrite`
+
+Current lifecycle assertions are updated to the current lifecycle state.
+
+The historical recovery assertion is restored to the historical value rather
+than rewritten to match the current artifact.
+
+No R4-D runtime behavioral defect was detected.
+
+Cross-platform CI `#275` remains valid.
+
+Runtime scope, production schema scope, and semantic authority are unchanged.
+
+Closure regression certification restarts after this alignment recovery.
+
+
+#### 5.90.3 R4-D closure residual paired-target status recovery
+
+The first current/historical alignment pass corrected eleven current
+lifecycle-status assertions.
+
+The bounded reproduction of the original thirteen failing tests then
+produced:
+
+`11 passed, 2 failed`
+
+Both residual failures were paired `target["status"]` assertions inside
+package-level tests whose preceding `package["status"]` assertions had
+already been corrected.
+
+The corrected total is therefore thirteen stale current lifecycle-status
+assertions across eleven originally failing status-oriented test functions:
+
+- first alignment pass corrected: `11`;
+- residual paired target assertions: `2`;
+- corrected total: `13`.
+
+Classification:
+
+`paired_target_status_assertions_missed_by_package_only_rewrite`
+
+No R4-D runtime behavior changed.
+
+Cross-platform CI remains valid.
+
+Production runtime, production schema, and semantic authority remain
+unchanged.
+
+Closure certification restarts after correction of the two residual
+assertions.
+
+
+### 5.91 R4-D implementation post-merge closure regression certification
+
+The bounded R4-D implementation post-merge lifecycle closure completed
+regression certification after its recorded test/control alignment
+recoveries.
+
+Successful closure certification:
+
+- focused: `214 passed`;
+- broader PR2/R4: `586 passed`;
+- full repository:
+  `9511 passed, 10 skipped, 2 xfailed, 1 warning`;
+- `git diff --check`: clean;
+- changed paths: `7`;
+- production runtime paths changed: `0`;
+- production schema paths changed: `0`.
+
+R4-D remains `merged_complete`.
+
+Cross-platform CI `#275` remains certified.
+
+Post-merge closure regression certification is complete.
+
+Closure recording state:
+
+`regression_certified_pending_commit`
+
+Next bounded gate:
+
+`r4_d_post_merge_closure_commit_push`
+
+That gate is not implicitly authorized.
+
+General R4 activation remains unauthorized.
+
+Runtime promotion remains unauthorized.
+
+Automatic successor activation remains unauthorized.
+
+`R4-R6` remains blocked.
