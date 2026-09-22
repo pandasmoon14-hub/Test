@@ -19,7 +19,7 @@ def test_look_reads_authoritative_location_without_mutation():
     assert app.authoritative_digest() == before
 
 
-def test_move_routes_through_r4_c_and_changes_authoritative_location():
+def test_move_routes_through_r4_c_and_exposes_existing_evidence():
     app = MyravantPlayApplication.new()
     before = app.authoritative_digest()
 
@@ -28,12 +28,31 @@ def test_move_routes_through_r4_c_and_changes_authoritative_location():
     assert result.result_type == "movement_committed"
     assert result.authoritative_changed is True
     assert result.command_id == "terminal-move-000001"
+    assert result.command_fingerprint is not None
+    assert result.preview_id is not None
     assert result.receipt_id is not None
     assert result.state_delta_id is not None
+    assert result.spatial_evidence_id is not None
+    assert result.opportunity_evidence_id is not None
+    assert result.technical_retry is False
     assert result.pre_state_digest == before
     assert result.post_state_digest == app.authoritative_digest()
     assert result.post_state_digest != before
     assert app.current_place_id() == YARD_ID
+
+    transition = app.state.committed_transitions[-1]
+    assert result.command_fingerprint == transition.command_fingerprint
+    assert result.preview_id == transition.preview.preview_id
+    assert result.receipt_id == transition.receipt.receipt_id
+    assert result.state_delta_id == transition.state_delta.delta_id
+    assert (
+        result.spatial_evidence_id
+        == transition.receipt.spatial_evidence_id
+    )
+    assert (
+        result.opportunity_evidence_id
+        == transition.receipt.opportunity_evidence_id
+    )
 
 
 def test_undeclared_route_fails_without_authoritative_change():
@@ -47,6 +66,8 @@ def test_undeclared_route_fails_without_authoritative_change():
     assert result.authoritative_changed is False
     assert result.pre_state_digest == before
     assert result.post_state_digest == before
+    assert result.command_id is None
+    assert result.receipt_id is None
     assert app.authoritative_digest() == before
     assert app.current_place_id() == WORKSHOP_ID
 
