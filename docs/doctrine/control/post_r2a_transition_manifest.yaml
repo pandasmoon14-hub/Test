@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.86",
+  "artifact_version": "0.4.87",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -3573,7 +3573,7 @@
     }
   },
   "r4_e_object_custody_transfer_target": {
-    "status": "definition_merged_complete",
+    "status": "implementation_authorized",
     "package_id": "R4-E",
     "package_name": "persistent_world_object_custody_transfer",
     "definition_authorization_reference": "owner_directive_2026-09-21_r4_e_package_definition",
@@ -3585,8 +3585,8 @@
     "predecessor_required_implementation_state": "merged_complete",
     "package_definition": "docs/doctrine/reviews/r4_e_persistent_world_object_custody_transfer_package.yaml",
     "package_defined": true,
-    "implementation_authorized": false,
-    "implementation_state": "not_authorized",
+    "implementation_authorized": true,
+    "implementation_state": "authorized_pending_implementation",
     "r4_activation_authorized": false,
     "runtime_promotion_authorized": false,
     "production_schema_implementation_authorized": false,
@@ -3602,7 +3602,7 @@
     "proposed_production_schema_edit_allowlist": [],
     "definition_regression_certified": true,
     "definition_recording_state": "merged_complete",
-    "next_gate": "r4_e_definition_post_merge_closure_commit_push",
+    "next_gate": "r4_e_implementation_authorization_commit_push",
     "next_gate_authorized": false,
     "r4_d_historical_lifecycle_values_rewritten": false,
     "definition_scope_harness_recovery_evidence": {
@@ -3682,7 +3682,7 @@
       "tests/test_r4_e_persistent_world_object_custody_transfer_package.py"
     ],
     "definition_post_merge_closure_regression_certified": true,
-    "definition_post_merge_closure_recording_state": "regression_certified_pending_commit",
+    "definition_post_merge_closure_recording_state": "merged_complete",
     "definition_post_merge_closure_regression_certification": {
       "focused_closure": {
         "summary": "101 passed in 0.87s",
@@ -3709,6 +3709,172 @@
       "changed_path_count": 8,
       "production_runtime_path_count": 0,
       "production_schema_path_count": 0
+    },
+    "definition_post_merge_closure_record_pull_request": 441,
+    "definition_post_merge_closure_record_branch_head": "b78e9adc6b3e5dc34594d9e9b019859b086e57fa",
+    "definition_post_merge_closure_record_merge_commit": "55461eb5ab9ac373cca9fa7b978ce71d0a11669c",
+    "definition_post_merge_closure_record_merge_tree": "56fb1312b2857900a9864246189837aa68284777",
+    "definition_post_merge_closure_record_ci_run": 284,
+    "definition_post_merge_closure_record_ci_run_id": 35743767382,
+    "definition_post_merge_closure_record_ci_verification": {
+      "core_linux": {
+        "job_id": 106799970704,
+        "conclusion": "success"
+      },
+      "core_windows": {
+        "job_id": 106799970358,
+        "conclusion": "success"
+      },
+      "cross_platform_ci_certified": true
+    },
+    "implementation_authorization_reference": "owner_directive_2026-09-22_r4_e_implementation_authorization",
+    "implementation_authority_effect": "bounded_persistent_world_object_custody_transfer_implementation_only",
+    "implementation_starting_baseline": "55461eb5ab9ac373cca9fa7b978ce71d0a11669c",
+    "implementation_starting_tree": "56fb1312b2857900a9864246189837aa68284777",
+    "authorized_implementation_edit_allowlist": {
+      "runtime_paths": [
+        "src/astra_runtime/domain/persistent_world_entity_location_representation.py",
+        "src/astra_runtime/domain/persistent_world_object_custody_transfer.py",
+        "src/astra_runtime/domain/persistent_world_local_checkpoint_restore.py"
+      ],
+      "production_schema_paths": [],
+      "runtime_test_paths": [
+        "tests/test_r4_b_persistent_world_entity_location_representation.py",
+        "tests/test_r4_e_persistent_world_object_custody_transfer.py",
+        "tests/test_r4_d_persistent_world_local_checkpoint_restore.py"
+      ],
+      "test_infrastructure_paths": [
+        "tests/runtime_domain_package_manifest.py",
+        "tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py"
+      ],
+      "explicitly_not_required_on_current_evidence": [
+        "src/astra_runtime/domain/persistent_world_movement_integration.py",
+        "src/astra_runtime/domain/command_kind_routing_skeleton.py"
+      ]
+    },
+    "implementation_validation_requirements": [
+      {
+        "requirement_id": "R4E-IV-001",
+        "name": "pickup_authoritative_transition",
+        "requirement": "lawful pickup removes the participating object direct located_at relation, adds exactly one carried_by relation to the actor, preserves unrelated relations, and produces attributable committed evidence"
+      },
+      {
+        "requirement_id": "R4E-IV-002",
+        "name": "pickup_preconditions_fail_closed",
+        "requirement": "pickup fails without mutation when classification, co-location, placement, RT-010, AFQR-19, pre-state digest, or command-identity requirements fail"
+      },
+      {
+        "requirement_id": "R4E-IV-003",
+        "name": "pickup_retry_identity",
+        "requirement": "identical committed pickup retry is idempotent; materially changed meaning under the same command ID fails closed"
+      },
+      {
+        "requirement_id": "R4E-IV-004",
+        "name": "movement_preserves_custody",
+        "requirement": "existing R4-C movement carries the actor P1 to P2 while O carried_by A survives, without transferring custody semantic ownership to R4-C"
+      },
+      {
+        "requirement_id": "R4E-IV-005",
+        "name": "drop_authoritative_transition",
+        "requirement": "lawful drop removes O carried_by A and adds exactly one O located_at P where P is the carrier authoritative current place at drop time"
+      },
+      {
+        "requirement_id": "R4E-IV-006",
+        "name": "drop_preconditions_and_retry",
+        "requirement": "invalid drop fails without mutation; identical committed drop retry is idempotent and changed meaning under the same command ID fails closed"
+      },
+      {
+        "requirement_id": "R4E-IV-007",
+        "name": "immediate_placement_invariant",
+        "requirement": "bounded participating objects may not simultaneously have direct located_at and carried_by placement or duplicate carried_by relations"
+      },
+      {
+        "requirement_id": "R4E-IV-008",
+        "name": "custody_transition_evidence",
+        "requirement": "committed pickup/drop preserves command identity/fingerprint, actor/object/operation, relation identities, pre/post digests, preview/state-delta/receipt attribution, RT-010 qualification, and AFQR-19 evidence"
+      },
+      {
+        "requirement_id": "R4E-IV-009",
+        "name": "r4e_checkpoint_format_is_distinct",
+        "requirement": "R4-E uses its own bounded checkpoint identity/version and does not redefine R4-D movement checkpoint version 1"
+      },
+      {
+        "requirement_id": "R4E-IV-010",
+        "name": "r4d_checkpoint_backward_compatibility",
+        "requirement": "existing R4-D movement-only checkpoints remain readable; explicit composition may use empty custody history without silent generalized migration"
+      },
+      {
+        "requirement_id": "R4E-IV-011",
+        "name": "custody_checkpoint_round_trip",
+        "requirement": "after pickup and movement to P2, checkpoint plus destruction of memory plus restore from bytes reproduces A located_at P2, O carried_by A, movement evidence, and custody evidence"
+      },
+      {
+        "requirement_id": "R4E-IV-012",
+        "name": "post_restore_continue_play",
+        "requirement": "restored carried state preserves retry identity and supports a new lawful drop without surviving Python objects, model reconstruction, narration, or hidden process state"
+      },
+      {
+        "requirement_id": "R4E-IV-013",
+        "name": "second_checkpoint_final_state",
+        "requirement": "after drop at P2, second checkpoint and restore deterministically reproduce A located_at P2, O located_at P2, and no carried_by relation"
+      },
+      {
+        "requirement_id": "R4E-IV-014",
+        "name": "checkpoint_corruption_fail_closed",
+        "requirement": "malformed, tampered, integrity-mismatched, campaign-mismatched, or contradictory R4-E checkpoint material fails closed"
+      },
+      {
+        "requirement_id": "R4E-IV-015",
+        "name": "canonical_determinism",
+        "requirement": "equivalent bounded authoritative R4-E state produces canonical serialization and deterministic identities/digests without storage order acquiring semantic authority"
+      },
+      {
+        "requirement_id": "R4E-IV-016",
+        "name": "offline_no_model_dependency",
+        "requirement": "bounded pickup/drop/checkpoint/restore/retry/replay operate locally and offline without model ownership or prose reconstruction of authoritative state"
+      },
+      {
+        "requirement_id": "R4E-IV-017",
+        "name": "semantic_noncollapse",
+        "requirement": "carried_by remains immediate physical carrying/asset placement and does not imply ownership, entitlement, authority, agency, responsibility, knowledge, or visibility"
+      },
+      {
+        "requirement_id": "R4E-IV-018",
+        "name": "no_generalized_inventory_or_world_manager",
+        "requirement": "implementation stays inside the authorized files and adds no generalized inventory/equipment/containers/economy/ownership/relation registry/world-state manager/save system/timeline machinery/schema/R5/R6 capability"
+      }
+    ],
+    "implementation_completion_bar": "pickup_move_checkpoint_restore_drop_checkpoint_restore_reproduces_deterministic_final_authoritative_state_with_retry_identity_and_semantic_noncollapse",
+    "implementation_authorization_regression_certified": true,
+    "implementation_authorization_recording_state": "regression_certified_pending_commit",
+    "implementation_regression_certified": false,
+    "implementation_authorization_regression_certification": {
+      "focused_authorization": {
+        "summary": "104 passed in 0.85s",
+        "result": "pass"
+      },
+      "broader_pr2_r4": {
+        "summary": "193 passed in 1.55s",
+        "result": "pass"
+      },
+      "full_repository": {
+        "summary": "9547 passed, 10 skipped, 2 xfailed, 1 warning in 941.92s (0:15:41)",
+        "result": "pass",
+        "warning_disposition": "existing_nonblocking_deprecation_if_present"
+      },
+      "focused_post_recording": {
+        "summary": "104 passed in 0.46s",
+        "result": "pass"
+      },
+      "broader_post_recording": {
+        "summary": "193 passed in 2.51s",
+        "result": "pass"
+      },
+      "git_diff_check": "clean",
+      "changed_path_count": 8,
+      "production_runtime_path_count": 0,
+      "production_schema_path_count": 0,
+      "implementation_validation_requirement_count": 18
     }
   }
 }

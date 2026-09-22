@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.86`
+**Artifact version:** `0.4.87`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -5687,3 +5687,69 @@ R4-E definition lifecycle remains `definition_merged_complete`. R4-E implementat
 Closure recording state: `regression_certified_pending_commit`.
 
 Next bounded gate: `r4_e_definition_post_merge_closure_commit_push`; that gate is not implicitly authorized. Implementation authorization remains a later separate owner gate.
+
+
+### 5.96 R4-E implementation authorization
+
+The owner separately authorized the bounded R4-E implementation package after
+the definition post-merge closure was merged through PR `#441`.
+
+Closure branch head: `b78e9adc6b3e5dc34594d9e9b019859b086e57fa`.
+
+Closure merge commit: `55461eb5ab9ac373cca9fa7b978ce71d0a11669c`.
+
+Closure merge tree: `56fb1312b2857900a9864246189837aa68284777`.
+
+Closure CI `#284` / run `35743767382` succeeded on both `core-linux` and
+`core-windows`.
+
+Authorization reference:
+`owner_directive_2026-09-22_r4_e_implementation_authorization`.
+
+Authority effect:
+`bounded_persistent_world_object_custody_transfer_implementation_only`.
+
+Authorized runtime paths are exactly the three paths already named by the
+R4-E definition. No production schema path is authorized.
+
+The implementation completion bar remains the playable deterministic loop:
+`pickup -> move -> checkpoint -> destroy memory -> restore -> drop -> checkpoint -> destroy memory -> restore`.
+
+The final authoritative state must be `A located_at P2`, `O located_at P2`,
+with no `O carried_by A` relation.
+
+`carried_by` remains immediate physical carrying/asset placement qualified
+through RT-010 and does not establish ownership, entitlement, authority,
+agency, responsibility, knowledge, or visibility. RT-007 remains the handoff
+for social/faction/institutional or disputed custody pressure.
+
+R4-D checkpoint version 1 retains its existing meaning. R4-E may add its
+distinct bounded checkpoint format while reusing existing durability mechanics.
+
+Generalized inventory, equipment, containers, economy, ownership, generalized
+relation registries, universal world-state managers, generalized save systems,
+timeline/correction machinery, production schema changes, general R4
+activation, runtime promotion, R5, and R6 remain unauthorized.
+
+This authorization record changes no production runtime file and no production
+schema. Passing its regression certification does not implement R4-E and does
+not authorize commit/push.
+
+
+### 5.97 R4-E implementation-authorization regression certification
+
+Focused authorization: `104 passed in 0.85s`.
+
+Broader R4/PR2: `193 passed in 1.55s`.
+
+Full repository: `9547 passed, 10 skipped, 2 xfailed, 1 warning in 941.92s (0:15:41)`.
+
+Changed paths: `8`; production runtime paths: `0`; production schema paths: `0`.
+
+Implementation validation requirements: `18`.
+
+Authorization recording state: `regression_certified_pending_commit`.
+
+Next bounded gate: `r4_e_implementation_authorization_commit_push`; that gate is not implicitly authorized.
+
+R4-E runtime implementation has not begun. General R4 activation, runtime promotion, production schema implementation, and successor activation remain unauthorized.

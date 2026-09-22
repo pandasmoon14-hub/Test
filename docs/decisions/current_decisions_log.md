@@ -8199,3 +8199,39 @@ R4-D format version 1 retains its existing meaning. No generalized inventory, ow
 - **Implementation authorized:** `false`
 - **General R4 activation authorized:** `false`
 - **Runtime promotion authorized:** `false`
+
+
+## 2026-09-22 decision — R4-E implementation authorization
+
+- **Decision ID:** `R4-E-IMPLEMENTATION-AUTHORIZATION-006`
+- **Authorization reference:** `owner_directive_2026-09-22_r4_e_implementation_authorization`
+- **Authority effect:** `bounded_persistent_world_object_custody_transfer_implementation_only`
+- **Closure PR:** `#441`
+- **Closure head:** `b78e9adc6b3e5dc34594d9e9b019859b086e57fa`
+- **Closure merge:** `55461eb5ab9ac373cca9fa7b978ce71d0a11669c`
+- **Closure tree:** `56fb1312b2857900a9864246189837aa68284777`
+- **Closure CI:** `#284` / `35743767382`
+- **Package/control:** `0.1.2 / 0.4.87`
+- **Status:** `implementation_authorized`
+- **Implementation state:** `authorized_pending_implementation`
+- **Authorized production runtime paths:** `3`
+- **Authorized production schema paths:** `0`
+- **Implementation validation requirements:** `18`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+
+## 2026-09-22 decision — R4-E implementation-authorization certification
+
+- **Decision ID:** `R4-E-IMPLEMENTATION-AUTHORIZATION-CERTIFICATION-007`
+- **Focused authorization:** `104 passed in 0.85s`
+- **Broader R4/PR2:** `193 passed in 1.55s`
+- **Full repository:** `9547 passed, 10 skipped, 2 xfailed, 1 warning in 941.92s (0:15:41)`
+- **Changed paths:** `8`
+- **Production runtime paths:** `0`
+- **Production schema paths:** `0`
+- **Implementation validation requirements:** `18`
+- **Implementation authorization regression certified:** `true`
+- **Authorization recording state:** `regression_certified_pending_commit`
+- **Next gate:** `r4_e_implementation_authorization_commit_push`
+- **Next gate authorized:** `false`

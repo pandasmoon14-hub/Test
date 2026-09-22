@@ -203,7 +203,7 @@ def test_r4_d_manifest_matches_package_definition():
     package = load(PACKAGE)
     manifest = load(MANIFEST)
 
-    assert manifest["artifact_version"] == "0.4.86"
+    assert manifest["artifact_version"] == "0.4.87"
 
     target = manifest[
         "r4_d_local_checkpoint_restore_target"
@@ -366,7 +366,7 @@ def test_r4_d_definition_post_merge_closure_is_exact_and_bounded():
     ]
 
     assert package["artifact_version"] == "0.1.6"
-    assert manifest["artifact_version"] == "0.4.86"
+    assert manifest["artifact_version"] == "0.4.87"
 
     assert package["status"] == "merged_complete"
     assert target["status"] == "merged_complete"
@@ -870,7 +870,7 @@ def test_r4_d_implementation_regression_certification_is_exact():
     ]
 
     assert package["artifact_version"] == "0.1.6"
-    assert manifest["artifact_version"] == "0.4.86"
+    assert manifest["artifact_version"] == "0.4.87"
 
     assert package["status"] == "merged_complete"
     assert target["status"] == "merged_complete"
@@ -1043,7 +1043,7 @@ def test_r4_d_windows_ci_failure_and_portability_repair_are_exact():
     manifest = load(MANIFEST)
 
     assert package["artifact_version"] == "0.1.6"
-    assert manifest["artifact_version"] == "0.4.86"
+    assert manifest["artifact_version"] == "0.4.87"
 
     assert (
         package["implementation_state"]
@@ -1155,7 +1155,7 @@ def test_r4_d_implementation_post_merge_closure_is_exact_and_bounded():
     ]
 
     assert package["artifact_version"] == "0.1.6"
-    assert manifest["artifact_version"] == "0.4.86"
+    assert manifest["artifact_version"] == "0.4.87"
 
     assert package["status"] == "merged_complete"
     assert target["status"] == "merged_complete"
