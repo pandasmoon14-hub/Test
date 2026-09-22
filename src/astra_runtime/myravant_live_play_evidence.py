@@ -63,6 +63,21 @@ def _require_digest(value: object, name: str) -> str:
     return value
 
 
+def _require_repository_sha(value: object) -> str:
+    value = _require_non_empty(value, "repository_sha")
+    if value == "unknown":
+        return value
+    if len(value) != 40 or any(
+        char not in "0123456789abcdef"
+        for char in value
+    ):
+        raise InvalidLivePlayEvidenceError(
+            "repository_sha must be a 40-character lowercase Git SHA "
+            "or exactly 'unknown'"
+        )
+    return value
+
+
 def utc_timestamp() -> str:
     return datetime.now(timezone.utc).isoformat()
 
@@ -106,6 +121,7 @@ class LivePlaySessionHeader:
     started_at: str
     initial_state_digest: str
     restore_performed: bool
+    debug_mode: bool = False
     client_id: str = CLIENT_ID
     client_mode: str = CLIENT_MODE
     model_mode: str = MODEL_MODE
@@ -117,7 +133,7 @@ class LivePlaySessionHeader:
     def __post_init__(self) -> None:
         _require_non_empty(self.session_id, "session_id")
         _require_non_empty(self.campaign_id, "campaign_id")
-        _require_non_empty(self.repository_sha, "repository_sha")
+        _require_repository_sha(self.repository_sha)
         _require_non_empty(self.started_at, "started_at")
         _require_digest(
             self.initial_state_digest,
@@ -126,6 +142,10 @@ class LivePlaySessionHeader:
         if type(self.restore_performed) is not bool:
             raise InvalidLivePlayEvidenceError(
                 "restore_performed must be bool"
+            )
+        if type(self.debug_mode) is not bool:
+            raise InvalidLivePlayEvidenceError(
+                "debug_mode must be bool"
             )
         _require_non_empty(self.client_id, "client_id")
         _require_non_empty(self.client_mode, "client_mode")
@@ -146,6 +166,7 @@ class LivePlaySessionHeader:
             "started_at": self.started_at,
             "initial_state_digest": self.initial_state_digest,
             "restore_performed": self.restore_performed,
+            "debug_mode": self.debug_mode,
             "client_id": self.client_id,
             "client_mode": self.client_mode,
             "model_mode": self.model_mode,
@@ -205,7 +226,6 @@ class LivePlayInteractionRecord:
 
         for name in (
             "command_id",
-            "command_fingerprint",
             "preview_id",
             "receipt_id",
             "state_delta_id",
@@ -214,6 +234,12 @@ class LivePlayInteractionRecord:
             "failure_class",
         ):
             _optional_non_empty(getattr(self, name), name)
+
+        if self.command_fingerprint is not None:
+            _require_digest(
+                self.command_fingerprint,
+                "command_fingerprint",
+            )
 
         for name in (
             "pre_state_digest",
@@ -289,6 +315,7 @@ def build_live_play_session_header(
     repository_sha: str | None = None,
     session_id: str | None = None,
     restore_performed: bool = False,
+    debug_mode: bool = False,
     environment_id: str | None = None,
     network_mode: str | None = None,
 ) -> LivePlaySessionHeader:
@@ -299,6 +326,7 @@ def build_live_play_session_header(
         started_at=utc_timestamp(),
         initial_state_digest=initial_state_digest,
         restore_performed=restore_performed,
+        debug_mode=debug_mode,
         environment_id=environment_id,
         network_mode=network_mode,
         operating_system=platform.system(),
@@ -350,6 +378,10 @@ class LivePlayEvidenceRecorder:
     def trace_write_failures(self) -> int:
         return self._trace_write_failures
 
+    def mark_incomplete(self) -> None:
+        """Mark this evaluation trace incomplete without affecting play."""
+        self._evidence_complete = False
+
     def _append_record(self, record: dict[str, object]) -> None:
         parent = self.trace_path.parent
         if not parent.exists() or not parent.is_dir():
@@ -364,8 +396,7 @@ class LivePlayEvidenceRecorder:
         )
 
         with self.trace_path.open("a", encoding="utf-8") as handle:
-            handle.write(material)
-            handle.write("\n")
+            handle.write(material + "\n")
             handle.flush()
 
     def _write_record(self, record: dict[str, object]) -> None:
