@@ -17,6 +17,7 @@ import astra_runtime.domain.persistent_world_local_checkpoint_restore as checkpo
 from astra_runtime.domain.persistent_world_entity_location_representation import (
     LOCATED_AT_RELATION_TYPE,
     create_located_at_relation,
+    create_carried_by_relation,
     create_persistent_world_entity,
     create_persistent_world_entity_location_representation,
 )
@@ -1203,6 +1204,38 @@ def test_true_process_boundary_restore_continues_play_and_persists_again(
         "r4d-move-1",
         "r4d-new-command-after-process-restore",
     }
+
+
+def test_r4d_v1_rejects_carried_by_relation_material(tmp_path):
+    representation = create_persistent_world_entity_location_representation(
+        campaign_id=CAMPAIGN,
+        entities=(
+            _entity("r4d-traveler", "character_or_creature"),
+            _entity("r4d-object", "object"),
+            _entity("r4d-market-square", "place"),
+        ),
+        relations=(
+            create_located_at_relation(
+                relation_id="astra:relation:r4d-traveler-in-market-square",
+                subject_entity_id=ACTOR,
+                object_entity_id=P1,
+            ),
+            create_carried_by_relation(
+                relation_id="astra:relation:r4d-object-carried",
+                subject_entity_id="astra:entity:r4d-object",
+                object_entity_id=ACTOR,
+            ),
+        ),
+    )
+    state = create_persistent_world_movement_runtime_state(
+        representation=representation
+    )
+    with pytest.raises(InvalidPersistentWorldCheckpointRequestError):
+        write_persistent_world_checkpoint(
+            state=state,
+            checkpoint_path=tmp_path / "r4d-cannot-redefine-v1.json",
+            qualification_evidence=_qualification("r4e-compat"),
+        )
 
 
 def test_checkpoint_format_identity_is_explicit(tmp_path):

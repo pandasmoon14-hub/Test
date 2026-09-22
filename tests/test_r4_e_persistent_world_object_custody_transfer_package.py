@@ -16,7 +16,7 @@ def load(path: Path):
 
 def test_r4_e_identity_and_authorization_boundary_are_exact():
     package = load(PACKAGE)
-    assert package["artifact_version"] == "0.1.2"
+    assert package["artifact_version"] == "0.1.3"
     assert package["status"] == "implementation_authorized"
     assert package["package_id"] == "R4-E"
     assert package["package_name"] == "persistent_world_object_custody_transfer"
@@ -148,12 +148,12 @@ def test_r4_e_definition_and_closure_are_merged_before_implementation_authorizat
     assert package["definition_post_merge_closure_record_merge_commit"] == "55461eb5ab9ac373cca9fa7b978ce71d0a11669c"
     assert package["status"] == "implementation_authorized"
     assert package["implementation_authorized"] is True
-    assert package["implementation_state"] == "authorized_pending_implementation"
+    assert package["implementation_state"] == "regression_certified_pending_commit"
 
 def test_r4_e_manifest_target_matches_package_and_control_version():
     package = load(PACKAGE)
     manifest = load(MANIFEST)
-    assert manifest["artifact_version"] == "0.4.87"
+    assert manifest["artifact_version"] == "0.4.88"
     target = manifest["r4_e_object_custody_transfer_target"]
     assert target["package_id"] == package["package_id"]
     assert target["package_name"] == package["package_name"]
@@ -162,7 +162,7 @@ def test_r4_e_manifest_target_matches_package_and_control_version():
     assert target["definition_post_merge_closure_complete"] is True
     assert target["definition_post_merge_closure_recording_state"] == "merged_complete"
     assert target["implementation_authorized"] is True
-    assert target["implementation_state"] == "authorized_pending_implementation"
+    assert target["implementation_state"] == "regression_certified_pending_commit"
     assert target["r4_activation_authorized"] is False
     assert target["runtime_promotion_authorized"] is False
     assert target["custody_relation_type"] == "carried_by"
@@ -178,7 +178,7 @@ def test_r4_e_manifest_target_matches_package_and_control_version():
 def test_r4_e_program_and_decision_log_record_definition_boundary():
     program = PROGRAM.read_text(encoding="utf-8")
     decisions = DECISIONS.read_text(encoding="utf-8")
-    assert "**Artifact version:** `0.4.87`" in program
+    assert "**Artifact version:** `0.4.88`" in program
     assert "### 5.92 R4-E persistent-world object custody transfer package definition" in program
     assert "R4-E-DEFINITION-001" in decisions
     assert "R4-E-DEFINITION-POST-MERGE-CLOSURE-004" in decisions
@@ -206,7 +206,7 @@ def test_r4_e_definition_post_merge_evidence_is_exact():
 def test_r4_e_implementation_authorization_boundary_is_exact():
     package = load(PACKAGE)
     assert package["implementation_authorized"] is True
-    assert package["implementation_state"] == "authorized_pending_implementation"
+    assert package["implementation_state"] == "regression_certified_pending_commit"
     assert package["production_schema_implementation_authorized"] is False
     assert package["r4_activation_authorized"] is False
     assert package["runtime_promotion_authorized"] is False
@@ -230,17 +230,34 @@ def test_r4_e_authorized_implementation_allowlist_and_validation_bar_are_exact()
     assert {"pickup_authoritative_transition","movement_preserves_custody","drop_authoritative_transition","custody_checkpoint_round_trip","post_restore_continue_play","second_checkpoint_final_state","semantic_noncollapse","no_generalized_inventory_or_world_manager"} <= names
 
 
-def test_r4_e_implementation_authorization_lifecycle_tracks_certification_state():
+def test_r4_e_implementation_lifecycle_is_regression_certified_pending_commit():
     package = load(PACKAGE)
-    if package["implementation_authorization_regression_certified"] is False:
-        assert package["implementation_authorization_recording_state"] == "pending_regression_certification"
-        assert package["next_gate"] == "r4_e_implementation_authorization_regression_certification"
-        assert package["next_gate_authorized"] is True
-    else:
-        assert package["implementation_authorization_recording_state"] == "regression_certified_pending_commit"
-        assert package["next_gate"] == "r4_e_implementation_authorization_commit_push"
-        assert package["next_gate_authorized"] is False
-        cert = package["implementation_authorization_regression_certification"]
-        assert cert["focused_authorization"]["result"] == "pass"
-        assert cert["broader_pr2_r4"]["result"] == "pass"
-        assert cert["full_repository"]["result"] == "pass"
+    assert package["implementation_authorization_regression_certified"] is True
+    assert package["implementation_authorization_recording_state"] == "merged_complete"
+    assert package["implementation_authorization_pull_request"] == 444
+    assert package["implementation_authorization_merge_commit"] == "701ea88a32cb251aed579edecfb30998bb449809"
+    assert package["implementation_regression_certified"] is True
+    assert package["implementation_state"] == "regression_certified_pending_commit"
+    assert package["implementation_certification_recording_state"] == "regression_certified_pending_commit"
+    assert package["next_gate"] == "r4_e_implementation_commit_push"
+    assert package["next_gate_authorized"] is False
+    cert = package["implementation_regression_certification"]
+    assert cert["focused_r4e_behavior"]["result"] == "pass"
+    assert cert["broader_pr2_r4"]["result"] == "pass"
+    assert cert["full_repository"]["result"] == "pass"
+    assert cert["production_runtime_path_count"] == 3
+    assert cert["production_schema_path_count"] == 0
+
+
+def test_r4_e_implementation_completion_proof_is_bounded():
+    package = load(PACKAGE)
+    proof = package["implementation_completion_proof"]
+    assert proof["pickup_removes_direct_location_and_adds_carried_by"] is True
+    assert proof["r4_c_movement_preserves_custody_relation"] is True
+    assert proof["true_process_boundary_restore"] is True
+    assert proof["continued_drop_after_restore"] is True
+    assert proof["second_checkpoint_second_restore"] is True
+    assert proof["r4d_v1_meaning_preserved"] is True
+    assert proof["generalized_inventory_created"] is False
+    assert proof["ownership_semantics_created"] is False
+    assert proof["production_schema_changed"] is False
