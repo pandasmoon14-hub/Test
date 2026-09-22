@@ -32,6 +32,8 @@ __all__ = [
     "MINIMUM_PLAYABLE_ENTITY_CLASSIFICATIONS",
     "LOCATED_AT_RELATION_TYPE",
     "LOCATED_AT_SEMANTIC_OWNER",
+    "CARRIED_BY_RELATION_TYPE",
+    "CARRIED_BY_SEMANTIC_OWNER",
     "SCENE_LOCATION_OWNER_FAMILY",
     "PersistentWorldEntityLocationRepresentationError",
     "InvalidPersistentWorldEntityError",
@@ -40,6 +42,7 @@ __all__ = [
     "DuplicatePersistentWorldRelationIdError",
     "UnresolvedPersistentWorldRelationReferenceError",
     "InvalidLocatedAtRelationError",
+    "InvalidCarriedByRelationError",
     "UnsupportedPersistentWorldRelationTypeError",
     "InvalidPersistentWorldRepresentationError",
     "PersistentWorldEntity",
@@ -47,6 +50,7 @@ __all__ = [
     "PersistentWorldEntityLocationRepresentation",
     "create_persistent_world_entity",
     "create_located_at_relation",
+    "create_carried_by_relation",
     "create_persistent_world_entity_location_representation",
     "serialize_persistent_world_entity_location_representation",
     "canonical_serialize_persistent_world_entity_location_representation",
@@ -63,6 +67,8 @@ MINIMUM_PLAYABLE_ENTITY_CLASSIFICATIONS = frozenset(
 
 LOCATED_AT_RELATION_TYPE = "located_at"
 LOCATED_AT_SEMANTIC_OWNER = "AFQR-18"
+CARRIED_BY_RELATION_TYPE = "carried_by"
+CARRIED_BY_SEMANTIC_OWNER = "RT-010"
 SCENE_LOCATION_OWNER_FAMILY = "scene_location_owner"
 
 _CLASSIFICATION_PATTERN = re.compile(
@@ -108,6 +114,12 @@ class InvalidLocatedAtRelationError(
     PersistentWorldEntityLocationRepresentationError,
 ):
     """Raised when a located_at relation violates R4-B semantics."""
+
+
+class InvalidCarriedByRelationError(
+    PersistentWorldEntityLocationRepresentationError,
+):
+    """Raised when a carried_by relation violates RT-010 semantics."""
 
 
 class UnsupportedPersistentWorldRelationTypeError(
@@ -216,15 +228,19 @@ class PersistentWorldRelation:
             InvalidPersistentWorldRelationError,
         )
 
-        if self.relation_type != LOCATED_AT_RELATION_TYPE:
+        if self.relation_type == LOCATED_AT_RELATION_TYPE:
+            if self.semantic_owner != LOCATED_AT_SEMANTIC_OWNER:
+                raise InvalidLocatedAtRelationError(
+                    "located_at semantic_owner must be exactly 'AFQR-18'"
+                )
+        elif self.relation_type == CARRIED_BY_RELATION_TYPE:
+            if self.semantic_owner != CARRIED_BY_SEMANTIC_OWNER:
+                raise InvalidCarriedByRelationError(
+                    "carried_by semantic_owner must be exactly 'RT-010'"
+                )
+        else:
             raise UnsupportedPersistentWorldRelationTypeError(
-                "R4-B supports only 'located_at'; relation extensions require "
-                "a separately qualified semantic owner"
-            )
-
-        if self.semantic_owner != LOCATED_AT_SEMANTIC_OWNER:
-            raise InvalidLocatedAtRelationError(
-                "located_at semantic_owner must be exactly 'AFQR-18'"
+                "relation type lacks separately qualified semantic ownership"
             )
 
     def to_dict(self) -> dict[str, str]:
@@ -326,6 +342,18 @@ class PersistentWorldEntityLocationRepresentation:
                     "classified exactly as 'place'"
                 )
 
+            if relation.relation_type == CARRIED_BY_RELATION_TYPE:
+                subject = entity_by_id[relation.subject_entity_id]
+                if subject.classification != "object":
+                    raise InvalidCarriedByRelationError(
+                        "carried_by subject must be classified exactly as 'object'"
+                    )
+                if location.classification != "character_or_creature":
+                    raise InvalidCarriedByRelationError(
+                        "carried_by carrier must be classified exactly as "
+                        "'character_or_creature'"
+                    )
+
         object.__setattr__(self, "entities", entities)
         object.__setattr__(self, "relations", relations)
 
@@ -353,6 +381,21 @@ def create_located_at_relation(
         subject_entity_id=subject_entity_id,
         object_entity_id=object_entity_id,
         semantic_owner=LOCATED_AT_SEMANTIC_OWNER,
+    )
+
+
+def create_carried_by_relation(
+    *,
+    relation_id: str,
+    subject_entity_id: str,
+    object_entity_id: str,
+) -> PersistentWorldRelation:
+    return PersistentWorldRelation(
+        relation_id=relation_id,
+        relation_type=CARRIED_BY_RELATION_TYPE,
+        subject_entity_id=subject_entity_id,
+        object_entity_id=object_entity_id,
+        semantic_owner=CARRIED_BY_SEMANTIC_OWNER,
     )
 
 

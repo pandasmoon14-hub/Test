@@ -37,6 +37,12 @@ from astra_runtime.domain.persistent_world_movement_integration import (
     digest_persistent_world_entity_location_representation,
     serialize_persistent_world_movement_commit_receipt,
 )
+from astra_runtime.domain.persistent_world_object_custody_transfer import (
+    PersistentWorldObjectCustodyCommitReceipt,
+    PersistentWorldObjectCustodyCommittedTransition,
+    PersistentWorldObjectCustodyRuntimeState,
+    serialize_persistent_world_object_custody_commit_receipt,
+)
 from astra_runtime.kernel.record_identity import is_valid_record_id
 from astra_runtime.kernel.state_delta import (
     StateDeltaEnvelope,
@@ -50,6 +56,10 @@ CHECKPOINT_FORMAT_IDENTITY = (
     "myravant.r4d.persistent_world_movement_checkpoint"
 )
 CHECKPOINT_FORMAT_VERSION = 1
+OBJECT_CUSTODY_CHECKPOINT_FORMAT_IDENTITY = (
+    "myravant.r4e.persistent_world_object_custody_checkpoint"
+)
+OBJECT_CUSTODY_CHECKPOINT_FORMAT_VERSION = 1
 AFQR01_CHECKPOINT_OWNER = "AFQR-01"
 
 _MOVEFILE_REPLACE_EXISTING = 0x00000001
@@ -162,6 +172,47 @@ _TRANSITION_SUMMARY_KEYS = frozenset(
         "terminal_state_digest",
     }
 )
+_R4E_PAYLOAD_KEYS = frozenset(
+    {
+        "representation",
+        "representation_digest",
+        "committed_movement_transitions",
+        "movement_transition_summary",
+        "committed_custody_transitions",
+        "custody_transition_summary",
+    }
+)
+
+_R4E_TRANSITION_SUMMARY_KEYS = frozenset(
+    {
+        "count",
+        "command_ids",
+    }
+)
+
+_CUSTODY_RECEIPT_KEYS = frozenset(
+    {
+        "receipt_id",
+        "command_id",
+        "command_fingerprint",
+        "actor_entity_id",
+        "object_entity_id",
+        "operation",
+        "place_id",
+        "source_relation_id",
+        "source_relation_type",
+        "destination_relation_id",
+        "destination_relation_type",
+        "pre_state_digest",
+        "post_state_digest",
+        "preview_id",
+        "state_delta_id",
+        "rt010_qualification_id",
+        "opportunity_evidence_id",
+        "status",
+    }
+)
+
 
 
 class PersistentWorldCheckpointError(ValueError):
@@ -219,6 +270,8 @@ class PersistentWorldCheckpointWriteError(
 __all__ = [
     "CHECKPOINT_FORMAT_IDENTITY",
     "CHECKPOINT_FORMAT_VERSION",
+    "OBJECT_CUSTODY_CHECKPOINT_FORMAT_IDENTITY",
+    "OBJECT_CUSTODY_CHECKPOINT_FORMAT_VERSION",
     "AFQR01_CHECKPOINT_OWNER",
     "PersistentWorldCheckpointError",
     "InvalidPersistentWorldCheckpointRequestError",
@@ -235,6 +288,12 @@ __all__ = [
     "canonical_serialize_persistent_world_checkpoint_envelope",
     "write_persistent_world_checkpoint",
     "restore_persistent_world_checkpoint",
+    "serialize_persistent_world_object_custody_checkpoint_payload",
+    "canonical_serialize_persistent_world_object_custody_checkpoint_payload",
+    "build_persistent_world_object_custody_checkpoint_envelope",
+    "canonical_serialize_persistent_world_object_custody_checkpoint_envelope",
+    "write_persistent_world_object_custody_checkpoint",
+    "restore_persistent_world_object_custody_checkpoint",
 ]
 
 
@@ -431,6 +490,14 @@ def serialize_persistent_world_checkpoint_payload(
     if not isinstance(state, PersistentWorldMovementRuntimeState):
         raise InvalidPersistentWorldCheckpointRequestError(
             "state must be PersistentWorldMovementRuntimeState"
+        )
+
+    if any(
+        relation.relation_type != LOCATED_AT_RELATION_TYPE
+        for relation in state.representation.relations
+    ):
+        raise InvalidPersistentWorldCheckpointRequestError(
+            "R4-D checkpoint format version 1 remains movement/location-only"
         )
 
     representation_digest = (
@@ -1301,6 +1368,14 @@ def _restore_payload(
         expected_campaign_id=expected_campaign_id,
     )
 
+    if any(
+        relation.relation_type != LOCATED_AT_RELATION_TYPE
+        for relation in representation.relations
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            "R4-D checkpoint format version 1 remains movement/location-only"
+        )
+
     actual_representation_digest = (
         digest_persistent_world_entity_location_representation(
             representation
@@ -1444,6 +1519,655 @@ def restore_persistent_world_checkpoint(
         )
 
     return _restore_payload(
+        payload,
+        expected_campaign_id=expected_campaign_id,
+    )
+
+def _serialize_custody_transition(
+    transition: PersistentWorldObjectCustodyCommittedTransition,
+) -> dict[str, object]:
+    if not isinstance(
+        transition,
+        PersistentWorldObjectCustodyCommittedTransition,
+    ):
+        raise InvalidPersistentWorldCheckpointRequestError(
+            "custody transition has invalid type"
+        )
+    if not isinstance(transition.preview, TransactionPreview):
+        raise InvalidPersistentWorldCheckpointRequestError(
+            "custody transition preview has invalid type"
+        )
+    if not isinstance(transition.state_delta, StateDeltaEnvelope):
+        raise InvalidPersistentWorldCheckpointRequestError(
+            "custody transition state delta has invalid type"
+        )
+    if not isinstance(
+        transition.receipt,
+        PersistentWorldObjectCustodyCommitReceipt,
+    ):
+        raise InvalidPersistentWorldCheckpointRequestError(
+            "custody transition receipt has invalid type"
+        )
+    return {
+        "command_id": transition.command_id,
+        "command_fingerprint": transition.command_fingerprint,
+        "preview": transition.preview.to_dict(),
+        "state_delta": transition.state_delta.to_dict(),
+        "receipt": serialize_persistent_world_object_custody_commit_receipt(
+            transition.receipt
+        ),
+    }
+
+
+def serialize_persistent_world_object_custody_checkpoint_payload(
+    state: PersistentWorldObjectCustodyRuntimeState,
+) -> dict[str, object]:
+    """Serialize one bounded R4-E composed movement/custody state."""
+    if not isinstance(state, PersistentWorldObjectCustodyRuntimeState):
+        raise InvalidPersistentWorldCheckpointRequestError(
+            "state must be PersistentWorldObjectCustodyRuntimeState"
+        )
+    representation = state.movement_state.representation
+    representation_digest = (
+        digest_persistent_world_entity_location_representation(representation)
+    )
+    movement = [
+        _serialize_transition(item)
+        for item in state.movement_state.committed_transitions
+    ]
+    custody = [
+        _serialize_custody_transition(item)
+        for item in state.committed_custody_transitions
+    ]
+    return {
+        "representation": (
+            serialize_persistent_world_entity_location_representation(
+                representation
+            )
+        ),
+        "representation_digest": representation_digest,
+        "committed_movement_transitions": movement,
+        "movement_transition_summary": {
+            "count": len(movement),
+            "command_ids": sorted(item["command_id"] for item in movement),
+        },
+        "committed_custody_transitions": custody,
+        "custody_transition_summary": {
+            "count": len(custody),
+            "command_ids": sorted(item["command_id"] for item in custody),
+        },
+    }
+
+
+def canonical_serialize_persistent_world_object_custody_checkpoint_payload(
+    state: PersistentWorldObjectCustodyRuntimeState,
+) -> bytes:
+    return _canonical_bytes(
+        serialize_persistent_world_object_custody_checkpoint_payload(state)
+    )
+
+
+def build_persistent_world_object_custody_checkpoint_envelope(
+    *,
+    state: PersistentWorldObjectCustodyRuntimeState,
+    qualification_evidence: Mapping[str, Any],
+) -> dict[str, object]:
+    payload = serialize_persistent_world_object_custody_checkpoint_payload(
+        state
+    )
+    qualification = _normalize_qualification(qualification_evidence)
+    return {
+        "format_identity": OBJECT_CUSTODY_CHECKPOINT_FORMAT_IDENTITY,
+        "format_version": OBJECT_CUSTODY_CHECKPOINT_FORMAT_VERSION,
+        "campaign_identity": state.movement_state.representation.campaign_id,
+        "authoritative_payload": payload,
+        "integrity_digest": _sha256_bytes(_canonical_bytes(payload)),
+        "qualification_provenance": qualification,
+    }
+
+
+def canonical_serialize_persistent_world_object_custody_checkpoint_envelope(
+    *,
+    state: PersistentWorldObjectCustodyRuntimeState,
+    qualification_evidence: Mapping[str, Any],
+) -> bytes:
+    return _canonical_bytes(
+        build_persistent_world_object_custody_checkpoint_envelope(
+            state=state,
+            qualification_evidence=qualification_evidence,
+        )
+    )
+
+
+def write_persistent_world_object_custody_checkpoint(
+    *,
+    state: PersistentWorldObjectCustodyRuntimeState,
+    checkpoint_path: str | os.PathLike[str],
+    qualification_evidence: Mapping[str, Any],
+) -> str:
+    """Durably replace one caller-selected bounded R4-E checkpoint."""
+    path = _checkpoint_path(checkpoint_path)
+    parent = path.parent
+    if not parent.exists() or not parent.is_dir():
+        raise PersistentWorldCheckpointWriteError(
+            "caller-supplied checkpoint parent directory does not exist"
+        )
+    envelope = build_persistent_world_object_custody_checkpoint_envelope(
+        state=state,
+        qualification_evidence=qualification_evidence,
+    )
+    material = _canonical_bytes(envelope)
+    temporary_path: str | None = None
+    try:
+        descriptor, temporary_path = tempfile.mkstemp(
+            prefix=f".{path.name}.",
+            suffix=".r4e-tmp",
+            dir=parent,
+        )
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(material)
+            handle.flush()
+            os.fsync(handle.fileno())
+        _replace_checkpoint_durably(Path(temporary_path), path)
+        temporary_path = None
+    except OSError as exc:
+        if temporary_path is not None:
+            try:
+                os.unlink(temporary_path)
+            except (FileNotFoundError, OSError):
+                pass
+        raise PersistentWorldCheckpointWriteError(
+            "local R4-E checkpoint durability operation failed"
+        ) from exc
+    return str(envelope["integrity_digest"])
+
+
+def _restore_custody_preview(material: object) -> TransactionPreview:
+    preview = _require_exact_dict(
+        material,
+        expected_keys=_PREVIEW_KEYS,
+        name="custody preview",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    preview_id = _require_record_id(
+        preview["preview_id"],
+        name="custody preview.preview_id",
+    )
+    command_id = _require_non_empty_str(
+        preview["command_id"],
+        name="custody preview.command_id",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    expected_metadata = {
+        "package": "R4-E",
+        "command_family": "inventory",
+        "mutation_performed": False,
+    }
+    if preview["status"] != "preview_created":
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody preview must remain preview_created"
+        )
+    if preview["messages"] != [
+        "bounded persistent-world object custody prepared"
+    ]:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody preview messages are inconsistent"
+        )
+    if preview["requires_confirmation"] is not False:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody preview unexpectedly requires confirmation"
+        )
+    if preview["metadata"] != expected_metadata:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody preview metadata is inconsistent"
+        )
+    return TransactionPreview(
+        preview_id=preview_id,
+        command_id=command_id,
+        status="preview_created",
+        messages=("bounded persistent-world object custody prepared",),
+        requires_confirmation=False,
+        metadata=MappingProxyType(dict(expected_metadata)),
+    )
+
+
+def _restore_custody_receipt(
+    material: object,
+) -> PersistentWorldObjectCustodyCommitReceipt:
+    receipt = _require_exact_dict(
+        material,
+        expected_keys=_CUSTODY_RECEIPT_KEYS,
+        name="custody receipt",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    command_id = _require_non_empty_str(
+        receipt["command_id"],
+        name="custody receipt.command_id",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    fingerprint = _require_sha256(
+        receipt["command_fingerprint"],
+        name="custody receipt.command_fingerprint",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    pre_digest = _require_sha256(
+        receipt["pre_state_digest"],
+        name="custody receipt.pre_state_digest",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    post_digest = _require_sha256(
+        receipt["post_state_digest"],
+        name="custody receipt.post_state_digest",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    record_fields = (
+        "receipt_id",
+        "actor_entity_id",
+        "object_entity_id",
+        "place_id",
+        "source_relation_id",
+        "destination_relation_id",
+        "preview_id",
+        "state_delta_id",
+        "rt010_qualification_id",
+        "opportunity_evidence_id",
+    )
+    ids = {
+        field: _require_record_id(
+            receipt[field],
+            name=f"custody receipt.{field}",
+        )
+        for field in record_fields
+    }
+    try:
+        return PersistentWorldObjectCustodyCommitReceipt(
+            receipt_id=ids["receipt_id"],
+            command_id=command_id,
+            command_fingerprint=fingerprint,
+            actor_entity_id=ids["actor_entity_id"],
+            object_entity_id=ids["object_entity_id"],
+            operation=receipt["operation"],
+            place_id=ids["place_id"],
+            source_relation_id=ids["source_relation_id"],
+            source_relation_type=receipt["source_relation_type"],
+            destination_relation_id=ids["destination_relation_id"],
+            destination_relation_type=receipt["destination_relation_type"],
+            pre_state_digest=pre_digest,
+            post_state_digest=post_digest,
+            preview_id=ids["preview_id"],
+            state_delta_id=ids["state_delta_id"],
+            rt010_qualification_id=ids["rt010_qualification_id"],
+            opportunity_evidence_id=ids["opportunity_evidence_id"],
+            status=receipt["status"],
+        )
+    except Exception as exc:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody receipt is invalid"
+        ) from exc
+
+
+def _restore_custody_transition(
+    material: object,
+) -> PersistentWorldObjectCustodyCommittedTransition:
+    transition = _require_exact_dict(
+        material,
+        expected_keys=_TRANSITION_KEYS,
+        name="committed custody transition",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    command_id = _require_non_empty_str(
+        transition["command_id"],
+        name="custody transition.command_id",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    fingerprint = _require_sha256(
+        transition["command_fingerprint"],
+        name="custody transition.command_fingerprint",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    preview = _restore_custody_preview(transition["preview"])
+    delta = _restore_state_delta(transition["state_delta"])
+    receipt = _restore_custody_receipt(transition["receipt"])
+    if preview.command_id != command_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody preview command identity disagrees with transition"
+        )
+    if delta.source_command_id != command_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody state delta command identity disagrees with transition"
+        )
+    if receipt.command_id != command_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody receipt command identity disagrees with transition"
+        )
+    if receipt.command_fingerprint != fingerprint:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody receipt fingerprint disagrees with transition"
+        )
+    if delta.source_preview_id != preview.preview_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody state delta preview identity disagrees with preview"
+        )
+    if receipt.preview_id != preview.preview_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody receipt preview identity disagrees with preview"
+        )
+    if receipt.state_delta_id != delta.delta_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody receipt state-delta identity disagrees with delta"
+        )
+    expected_affected = (
+        receipt.actor_entity_id,
+        receipt.object_entity_id,
+        receipt.place_id,
+        receipt.source_relation_id,
+        receipt.destination_relation_id,
+    )
+    if delta.affected_record_ids != expected_affected:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody affected-record evidence disagrees with receipt"
+        )
+    expected_payload = {
+        "operation": receipt.operation,
+        "actor_entity_id": receipt.actor_entity_id,
+        "object_entity_id": receipt.object_entity_id,
+        "place_id": receipt.place_id,
+        "source_relation_id": receipt.source_relation_id,
+        "source_relation_type": receipt.source_relation_type,
+        "destination_relation_id": receipt.destination_relation_id,
+        "destination_relation_type": receipt.destination_relation_type,
+    }
+    if dict(delta.payload) != expected_payload:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody state-delta payload disagrees with receipt"
+        )
+    expected_metadata = {
+        "package": "R4-E",
+        "custody_semantic_owner": "RT-010",
+        "direct_location_semantic_owner": "AFQR-18",
+        "opportunity_semantic_owner": "AFQR-19",
+        "qualified_transition_owner": "AFQR-01",
+    }
+    if dict(delta.metadata) != expected_metadata:
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody state-delta owner metadata is inconsistent"
+        )
+    if delta.change_type != "relationship_update":
+        raise PersistentWorldCheckpointEvidenceError(
+            "custody state delta must remain relationship_update"
+        )
+    return PersistentWorldObjectCustodyCommittedTransition(
+        command_id=command_id,
+        command_fingerprint=fingerprint,
+        preview=preview,
+        state_delta=delta,
+        receipt=receipt,
+    )
+
+
+def _restore_r4e_summary(
+    material: object,
+    *,
+    transitions: tuple[object, ...],
+    name: str,
+) -> None:
+    summary = _require_exact_dict(
+        material,
+        expected_keys=_R4E_TRANSITION_SUMMARY_KEYS,
+        name=name,
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if type(summary["count"]) is not int:
+        raise PersistentWorldCheckpointEvidenceError(
+            f"{name}.count must be integer"
+        )
+    if summary["count"] != len(transitions):
+        raise PersistentWorldCheckpointEvidenceError(
+            f"{name}.count disagrees with evidence"
+        )
+    if summary["command_ids"] != sorted(item.command_id for item in transitions):
+        raise PersistentWorldCheckpointEvidenceError(
+            f"{name}.command_ids disagree with evidence"
+        )
+
+
+def _validate_r4e_restored_attribution(
+    state: PersistentWorldObjectCustodyRuntimeState,
+) -> None:
+    representation = state.movement_state.representation
+    entities = {
+        entity.entity_id: entity
+        for entity in representation.entities
+    }
+    movement = state.movement_state.committed_transitions
+    custody = state.committed_custody_transitions
+    all_ids = [item.command_id for item in movement] + [
+        item.command_id for item in custody
+    ]
+    if len(all_ids) != len(set(all_ids)):
+        raise PersistentWorldCheckpointEvidenceError(
+            "movement/custody command identities collide"
+        )
+    for transition in movement:
+        receipt = transition.receipt
+        for entity_id in (
+            receipt.actor_entity_id,
+            receipt.source_place_id,
+            receipt.destination_place_id,
+        ):
+            if entity_id not in entities:
+                raise PersistentWorldCheckpointEvidenceError(
+                    "movement evidence references an absent entity"
+                )
+        if entities[receipt.source_place_id].classification != "place":
+            raise PersistentWorldCheckpointEvidenceError(
+                "movement source evidence no longer identifies a place"
+            )
+        if entities[receipt.destination_place_id].classification != "place":
+            raise PersistentWorldCheckpointEvidenceError(
+                "movement destination evidence no longer identifies a place"
+            )
+    for transition in custody:
+        receipt = transition.receipt
+        actor = entities.get(receipt.actor_entity_id)
+        target = entities.get(receipt.object_entity_id)
+        place = entities.get(receipt.place_id)
+        if actor is None or actor.classification != "character_or_creature":
+            raise PersistentWorldCheckpointEvidenceError(
+                "custody evidence actor is absent or ineligible"
+            )
+        if target is None or target.classification != "object":
+            raise PersistentWorldCheckpointEvidenceError(
+                "custody evidence object is absent or ineligible"
+            )
+        if place is None or place.classification != "place":
+            raise PersistentWorldCheckpointEvidenceError(
+                "custody evidence place is absent or ineligible"
+            )
+    transitions = [*movement, *custody]
+    if not transitions:
+        return
+    digest = digest_persistent_world_entity_location_representation(
+        representation
+    )
+    terminal = [
+        item
+        for item in transitions
+        if item.receipt.post_state_digest == digest
+    ]
+    if len(terminal) != 1:
+        raise PersistentWorldCheckpointEvidenceError(
+            "current R4-E representation is not attributable to exactly one "
+            "preserved committed transition"
+        )
+    receipt = terminal[0].receipt
+    if isinstance(receipt, PersistentWorldObjectCustodyCommitReceipt):
+        destination = [
+            relation
+            for relation in representation.relations
+            if relation.relation_id == receipt.destination_relation_id
+        ]
+        if len(destination) != 1:
+            raise PersistentWorldCheckpointEvidenceError(
+                "terminal custody destination relation is absent"
+            )
+        relation = destination[0]
+        if (
+            relation.relation_type != receipt.destination_relation_type
+            or relation.subject_entity_id != receipt.object_entity_id
+        ):
+            raise PersistentWorldCheckpointEvidenceError(
+                "terminal custody relation disagrees with receipt"
+            )
+        expected_target = (
+            receipt.actor_entity_id
+            if receipt.operation == "pickup"
+            else receipt.place_id
+        )
+        if relation.object_entity_id != expected_target:
+            raise PersistentWorldCheckpointEvidenceError(
+                "terminal custody destination disagrees with receipt target"
+            )
+    else:
+        actor_locations = [
+            relation
+            for relation in representation.relations
+            if relation.relation_type == LOCATED_AT_RELATION_TYPE
+            and relation.subject_entity_id == receipt.actor_entity_id
+        ]
+        if len(actor_locations) != 1:
+            raise PersistentWorldCheckpointEvidenceError(
+                "terminal movement actor must have one current location"
+            )
+        current = actor_locations[0]
+        if (
+            current.relation_id != receipt.destination_relation_id
+            or current.object_entity_id != receipt.destination_place_id
+        ):
+            raise PersistentWorldCheckpointEvidenceError(
+                "terminal movement relation disagrees with receipt"
+            )
+
+
+def _restore_r4e_payload(
+    material: object,
+    *,
+    expected_campaign_id: str,
+) -> PersistentWorldObjectCustodyRuntimeState:
+    payload = _require_exact_dict(
+        material,
+        expected_keys=_R4E_PAYLOAD_KEYS,
+        name="R4-E authoritative payload",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    expected_digest = _require_sha256(
+        payload["representation_digest"],
+        name="R4-E representation_digest",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    representation = _restore_representation(
+        payload["representation"],
+        expected_campaign_id=expected_campaign_id,
+    )
+    actual_digest = digest_persistent_world_entity_location_representation(
+        representation
+    )
+    if actual_digest != expected_digest:
+        raise PersistentWorldCheckpointEvidenceError(
+            "R4-E representation digest disagrees with restored state"
+        )
+    movement_material = payload["committed_movement_transitions"]
+    custody_material = payload["committed_custody_transitions"]
+    if (
+        type(movement_material) is not list
+        or type(custody_material) is not list
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            "R4-E committed transition collections must be lists"
+        )
+    movement = tuple(
+        _restore_transition(item)
+        for item in movement_material
+    )
+    custody = tuple(
+        _restore_custody_transition(item)
+        for item in custody_material
+    )
+    _restore_r4e_summary(
+        payload["movement_transition_summary"],
+        transitions=movement,
+        name="movement_transition_summary",
+    )
+    _restore_r4e_summary(
+        payload["custody_transition_summary"],
+        transitions=custody,
+        name="custody_transition_summary",
+    )
+    try:
+        movement_state = PersistentWorldMovementRuntimeState(
+            representation=representation,
+            committed_transitions=movement,
+        )
+        state = PersistentWorldObjectCustodyRuntimeState(
+            movement_state=movement_state,
+            committed_custody_transitions=custody,
+        )
+    except Exception as exc:
+        raise PersistentWorldCheckpointEvidenceError(
+            "restored R4-E runtime state is invalid"
+        ) from exc
+    _validate_r4e_restored_attribution(state)
+    return state
+
+
+def restore_persistent_world_object_custody_checkpoint(
+    *,
+    checkpoint_path: str | os.PathLike[str],
+    expected_campaign_id: str,
+) -> PersistentWorldObjectCustodyRuntimeState:
+    """Restore exactly one accepted bounded R4-E local checkpoint."""
+    path = _checkpoint_path(checkpoint_path)
+    expected_campaign_id = _require_record_id(
+        expected_campaign_id,
+        name="expected_campaign_id",
+    )
+    envelope = _read_checkpoint_envelope(path)
+    if (
+        envelope["format_identity"]
+        != OBJECT_CUSTODY_CHECKPOINT_FORMAT_IDENTITY
+    ):
+        raise PersistentWorldCheckpointFormatError(
+            "unsupported R4-E checkpoint format identity"
+        )
+    if (
+        type(envelope["format_version"]) is not int
+        or envelope["format_version"]
+        != OBJECT_CUSTODY_CHECKPOINT_FORMAT_VERSION
+    ):
+        raise PersistentWorldCheckpointFormatError(
+            "unsupported R4-E checkpoint format version"
+        )
+    campaign_identity = _require_record_id(
+        envelope["campaign_identity"],
+        name="checkpoint campaign_identity",
+    )
+    if campaign_identity != expected_campaign_id:
+        raise PersistentWorldCheckpointCampaignMismatchError(
+            "checkpoint campaign identity does not match caller expectation"
+        )
+    _normalize_qualification(envelope["qualification_provenance"])
+    payload = envelope["authoritative_payload"]
+    integrity = _require_sha256(
+        envelope["integrity_digest"],
+        name="integrity_digest",
+        error_cls=PersistentWorldCheckpointIntegrityError,
+    )
+    actual = _sha256_bytes(_canonical_bytes(payload))
+    if actual != integrity:
+        raise PersistentWorldCheckpointIntegrityError(
+            "R4-E checkpoint authoritative payload integrity mismatch"
+        )
+    return _restore_r4e_payload(
         payload,
         expected_campaign_id=expected_campaign_id,
     )
