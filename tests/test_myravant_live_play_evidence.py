@@ -7,6 +7,7 @@ import json
 import pytest
 
 from astra_runtime.myravant_live_play_evidence import (
+    InvalidLivePlayEvidenceError,
     LivePlayEvidenceRecorder,
     LivePlayEvidenceWriteError,
     build_live_play_session_header,
@@ -79,6 +80,7 @@ def test_jsonl_trace_preserves_raw_input_and_runtime_evidence(tmp_path):
     assert start["authority_effect"] == "none"
     assert start["repository_sha"] == "a" * 40
     assert start["model_mode"] == "MODEL-NONE"
+    assert start["debug_mode"] is False
     assert interaction["raw_player_input"] == "move south\n"
     assert interaction["command_id"] == "terminal-move-000001"
     assert interaction["command_fingerprint"] == "3" * 64
@@ -181,3 +183,24 @@ def test_missing_trace_parent_fails_without_creating_storage(tmp_path):
         )
 
     assert not missing_parent.exists()
+
+
+def test_repository_sha_must_be_exact_or_unknown():
+    with pytest.raises(InvalidLivePlayEvidenceError):
+        build_live_play_session_header(
+            session_id="bad-sha-session",
+            campaign_id="astra:campaign:myravant-terminal-g1",
+            repository_sha="not-a-git-sha",
+            initial_state_digest=INITIAL_DIGEST,
+        )
+
+    header = build_live_play_session_header(
+        session_id="unknown-sha-session",
+        campaign_id="astra:campaign:myravant-terminal-g1",
+        repository_sha="unknown",
+        initial_state_digest=INITIAL_DIGEST,
+        debug_mode=True,
+    )
+
+    assert header.repository_sha == "unknown"
+    assert header.debug_mode is True
