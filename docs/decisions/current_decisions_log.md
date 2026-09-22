@@ -8235,3 +8235,38 @@ R4-D format version 1 retains its existing meaning. No generalized inventory, ow
 - **Authorization recording state:** `regression_certified_pending_commit`
 - **Next gate:** `r4_e_implementation_authorization_commit_push`
 - **Next gate authorized:** `false`
+
+
+## 2026-09-22 decision — R4-E bounded implementation
+
+- **Decision ID:** `R4-E-IMPLEMENTATION-008`
+- **Authorization PR:** `#444`
+- **Authorization head:** `c96a4060a40eb5c742a5b4f1381736e96e59f8db`
+- **Authorization merge:** `701ea88a32cb251aed579edecfb30998bb449809`
+- **Authorization tree:** `2a864312224f168e820f386fe14a6608cb0f11cb`
+- **Authorization CI:** `#291` / `35760660181`
+- **Implementation runtime paths:** `3`
+- **Production schema paths:** `0`
+- **R4-D format version 1 meaning changed:** `false`
+- **Generalized inventory created:** `false`
+- **Ownership semantics created:** `false`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+## 2026-09-22 decision — R4-E implementation regression certification
+
+- **Decision ID:** `R4-E-IMPLEMENTATION-CERTIFICATION-009`
+- **Focused R4-E:** `17 passed in 0.99s`
+- **R4-B:** `27 passed in 0.26s`
+- **R4-D:** `36 passed in 1.36s`
+- **RT-001E:** `68 passed in 0.30s`
+- **R4-C/R4-E:** `47 passed in 0.75s`
+- **Broader R4/PR2:** `214 passed in 2.34s`
+- **Full repository:** `9568 passed, 10 skipped, 2 xfailed, 1 warning in 434.56s (0:07:14)`
+- **Final changed paths:** `16`
+- **Production runtime paths:** `3`
+- **Production schema paths:** `0`
+- **Implementation regression certified:** `true`
+- **Implementation state:** `regression_certified_pending_commit`
+- **Next gate:** `r4_e_implementation_commit_push`
+- **Next gate authorized:** `false`

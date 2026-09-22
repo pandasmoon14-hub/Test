@@ -9,6 +9,8 @@ from pathlib import Path
 import pytest
 
 from astra_runtime.domain.persistent_world_entity_location_representation import (
+    CARRIED_BY_RELATION_TYPE,
+    CARRIED_BY_SEMANTIC_OWNER,
     LOCATED_AT_RELATION_TYPE,
     LOCATED_AT_SEMANTIC_OWNER,
     MINIMUM_PLAYABLE_ENTITY_CLASSIFICATIONS,
@@ -16,6 +18,7 @@ from astra_runtime.domain.persistent_world_entity_location_representation import
     DuplicatePersistentWorldEntityIdError,
     DuplicatePersistentWorldRelationIdError,
     InvalidLocatedAtRelationError,
+    InvalidCarriedByRelationError,
     InvalidPersistentWorldEntityError,
     InvalidPersistentWorldRelationError,
     UnresolvedPersistentWorldRelationReferenceError,
@@ -23,6 +26,7 @@ from astra_runtime.domain.persistent_world_entity_location_representation import
     PersistentWorldRelation,
     canonical_serialize_persistent_world_entity_location_representation,
     create_located_at_relation,
+    create_carried_by_relation,
     create_persistent_world_entity,
     create_persistent_world_entity_location_representation,
     create_scene_location_owner_transport_reference,
@@ -189,6 +193,70 @@ def test_unqualified_relation_extension_fails_closed():
             subject_entity_id="astra:entity:traveler",
             object_entity_id="astra:entity:sword",
             semantic_owner="AFQR-18",
+        )
+
+
+def test_carried_by_relation_has_rt010_owner_and_exact_fields():
+    relation = create_carried_by_relation(
+        relation_id="astra:relation:sword-carried-by-traveler",
+        subject_entity_id="astra:entity:sword",
+        object_entity_id="astra:entity:traveler",
+    )
+    assert relation.relation_type == CARRIED_BY_RELATION_TYPE
+    assert relation.semantic_owner == CARRIED_BY_SEMANTIC_OWNER
+    assert CARRIED_BY_RELATION_TYPE == "carried_by"
+    assert CARRIED_BY_SEMANTIC_OWNER == "RT-010"
+
+
+def test_wrong_carried_by_owner_fails_closed():
+    with pytest.raises(InvalidCarriedByRelationError):
+        PersistentWorldRelation(
+            relation_id="astra:relation:wrong-carried-owner",
+            relation_type="carried_by",
+            subject_entity_id="astra:entity:sword",
+            object_entity_id="astra:entity:traveler",
+            semantic_owner="AFQR-18",
+        )
+
+
+def test_carried_by_requires_object_subject_and_character_carrier():
+    sword = _entity("sword", "object")
+    traveler = _entity("traveler", "character_or_creature")
+    place = _entity("place", "place")
+    valid = create_carried_by_relation(
+        relation_id="astra:relation:sword-carried",
+        subject_entity_id=sword.entity_id,
+        object_entity_id=traveler.entity_id,
+    )
+    representation = create_persistent_world_entity_location_representation(
+        campaign_id="astra:campaign:carried-valid",
+        entities=(sword, traveler),
+        relations=(valid,),
+    )
+    assert representation.relations == (valid,)
+
+    bad_subject = create_carried_by_relation(
+        relation_id="astra:relation:place-carried",
+        subject_entity_id=place.entity_id,
+        object_entity_id=traveler.entity_id,
+    )
+    with pytest.raises(InvalidCarriedByRelationError):
+        create_persistent_world_entity_location_representation(
+            campaign_id="astra:campaign:carried-bad-subject",
+            entities=(place, traveler),
+            relations=(bad_subject,),
+        )
+
+    bad_carrier = create_carried_by_relation(
+        relation_id="astra:relation:sword-carried-by-place",
+        subject_entity_id=sword.entity_id,
+        object_entity_id=place.entity_id,
+    )
+    with pytest.raises(InvalidCarriedByRelationError):
+        create_persistent_world_entity_location_representation(
+            campaign_id="astra:campaign:carried-bad-carrier",
+            entities=(sword, place),
+            relations=(bad_carrier,),
         )
 
 

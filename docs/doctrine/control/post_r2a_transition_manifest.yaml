@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.87",
+  "artifact_version": "0.4.88",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -3586,7 +3586,7 @@
     "package_definition": "docs/doctrine/reviews/r4_e_persistent_world_object_custody_transfer_package.yaml",
     "package_defined": true,
     "implementation_authorized": true,
-    "implementation_state": "authorized_pending_implementation",
+    "implementation_state": "regression_certified_pending_commit",
     "r4_activation_authorized": false,
     "runtime_promotion_authorized": false,
     "production_schema_implementation_authorized": false,
@@ -3602,7 +3602,7 @@
     "proposed_production_schema_edit_allowlist": [],
     "definition_regression_certified": true,
     "definition_recording_state": "merged_complete",
-    "next_gate": "r4_e_implementation_authorization_commit_push",
+    "next_gate": "r4_e_implementation_commit_push",
     "next_gate_authorized": false,
     "r4_d_historical_lifecycle_values_rewritten": false,
     "definition_scope_harness_recovery_evidence": {
@@ -3846,8 +3846,8 @@
     ],
     "implementation_completion_bar": "pickup_move_checkpoint_restore_drop_checkpoint_restore_reproduces_deterministic_final_authoritative_state_with_retry_identity_and_semantic_noncollapse",
     "implementation_authorization_regression_certified": true,
-    "implementation_authorization_recording_state": "regression_certified_pending_commit",
-    "implementation_regression_certified": false,
+    "implementation_authorization_recording_state": "merged_complete",
+    "implementation_regression_certified": true,
     "implementation_authorization_regression_certification": {
       "focused_authorization": {
         "summary": "104 passed in 0.85s",
@@ -3875,6 +3875,112 @@
       "production_runtime_path_count": 0,
       "production_schema_path_count": 0,
       "implementation_validation_requirement_count": 18
+    },
+    "implementation_authorization_pull_request": 444,
+    "implementation_authorization_branch_head": "c96a4060a40eb5c742a5b4f1381736e96e59f8db",
+    "implementation_authorization_merge_commit": "701ea88a32cb251aed579edecfb30998bb449809",
+    "implementation_authorization_merge_tree": "2a864312224f168e820f386fe14a6608cb0f11cb",
+    "implementation_authorization_ci_run": 291,
+    "implementation_authorization_ci_run_id": 35760660181,
+    "implementation_authorization_ci_verification": {
+      "core_linux": {
+        "job_id": 106857579931,
+        "conclusion": "success"
+      },
+      "core_windows": {
+        "job_id": 106857579658,
+        "conclusion": "success"
+      },
+      "cross_platform_ci_certified": true
+    },
+    "implementation_execution_starting_baseline": "701ea88a32cb251aed579edecfb30998bb449809",
+    "implementation_execution_starting_tree": "2a864312224f168e820f386fe14a6608cb0f11cb",
+    "implementation_certification_recording_state": "regression_certified_pending_commit",
+    "implementation_regression_certification": {
+      "focused_r4e_behavior": {
+        "summary": "17 passed in 0.99s",
+        "result": "pass"
+      },
+      "r4b_relation_regression": {
+        "summary": "27 passed in 0.26s",
+        "result": "pass"
+      },
+      "r4d_checkpoint_compatibility": {
+        "summary": "36 passed in 1.36s",
+        "result": "pass"
+      },
+      "rt001e_guardrail": {
+        "summary": "68 passed in 0.30s",
+        "result": "pass"
+      },
+      "r4c_r4e_integration": {
+        "summary": "47 passed in 0.75s",
+        "result": "pass"
+      },
+      "broader_pr2_r4": {
+        "summary": "214 passed in 2.34s",
+        "result": "pass"
+      },
+      "full_repository": {
+        "summary": "9568 passed, 10 skipped, 2 xfailed, 1 warning in 434.56s (0:07:14)",
+        "result": "pass",
+        "warning_disposition": "existing_nonblocking_deprecation_if_present"
+      },
+      "post_recording_focused": {
+        "summary": "81 passed in 1.30s",
+        "result": "pass"
+      },
+      "post_recording_broader": {
+        "summary": "216 passed in 2.01s",
+        "result": "pass"
+      },
+      "git_diff_check": "clean",
+      "behavioral_implementation_path_count": 8,
+      "certification_recording_path_count": 8,
+      "final_working_tree_changed_path_count": 16,
+      "production_runtime_path_count": 3,
+      "production_schema_path_count": 0,
+      "implementation_validation_requirement_count": 18
+    },
+    "implementation_completion_proof": {
+      "carried_by_relation_rt010_qualified": true,
+      "pickup_removes_direct_location_and_adds_carried_by": true,
+      "drop_removes_carried_by_and_uses_carrier_current_place": true,
+      "technical_retry_identity_preserved": true,
+      "changed_command_meaning_fails_closed": true,
+      "r4_c_movement_preserves_custody_relation": true,
+      "r4e_distinct_checkpoint_identity": true,
+      "r4d_v1_meaning_preserved": true,
+      "movement_and_custody_evidence_preserved": true,
+      "true_process_boundary_restore": true,
+      "continued_drop_after_restore": true,
+      "second_checkpoint_second_restore": true,
+      "checkpoint_tamper_fails_closed": true,
+      "canonical_determinism": true,
+      "offline_no_model_dependency": true,
+      "generalized_inventory_created": false,
+      "ownership_semantics_created": false,
+      "universal_world_state_manager_created": false,
+      "production_schema_changed": false
+    },
+    "implementation_failure_recovery_evidence": {
+      "generator_guardrail_indentation_mismatch": {
+        "classification": "r4_e_generator_guardrail_indentation_mismatch",
+        "behavioral_execution_reached": false,
+        "runtime_semantic_defect_detected": false,
+        "production_schema_scope_expanded": false,
+        "repair_path": "tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py",
+        "result": "recovered"
+      },
+      "generated_r4d_extension_extra_blank_line_at_eof": {
+        "classification": "r4_e_generated_r4d_extension_extra_blank_line_at_eof",
+        "behavioral_execution_reached": false,
+        "runtime_semantic_defect_detected": false,
+        "production_schema_scope_expanded": false,
+        "repair_path": "src/astra_runtime/domain/persistent_world_local_checkpoint_restore.py",
+        "repair_effect": "normalize generated file ending to exactly one terminating newline",
+        "result": "recovered"
+      }
     }
   }
 }

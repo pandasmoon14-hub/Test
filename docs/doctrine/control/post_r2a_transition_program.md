@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.87`
+**Artifact version:** `0.4.88`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -5753,3 +5753,59 @@ Authorization recording state: `regression_certified_pending_commit`.
 Next bounded gate: `r4_e_implementation_authorization_commit_push`; that gate is not implicitly authorized.
 
 R4-E runtime implementation has not begun. General R4 activation, runtime promotion, production schema implementation, and successor activation remain unauthorized.
+
+
+### 5.98 R4-E object custody-transfer implementation
+
+PR `#444` merged the separately authorized R4-E implementation authorization.
+
+Authorization head: `c96a4060a40eb5c742a5b4f1381736e96e59f8db`.
+
+Authorization merge: `701ea88a32cb251aed579edecfb30998bb449809`.
+
+Authorization merge tree: `2a864312224f168e820f386fe14a6608cb0f11cb`.
+
+Authorization CI `#291` / run `35760660181` succeeded on both Linux and Windows.
+
+The bounded implementation adds the RT-010-qualified `carried_by` relation,
+one immutable custody-transition runtime composed over R4-C movement state, and
+one distinct R4-E checkpoint format reusing the R4-D local durability
+mechanics without changing R4-D format version 1.
+
+The executable capability is:
+
+`pickup -> move -> checkpoint -> process boundary -> restore -> drop -> checkpoint -> restore`
+
+The implementation changes exactly three authorized production runtime paths
+and no production schema.
+
+It does not create generalized inventory, ownership, equipment, containers,
+economy, relation registries, a universal world-state manager, generalized
+persistence, general R4 activation, runtime promotion, R5, or R6.
+
+### 5.99 R4-E implementation regression certification
+
+Focused R4-E behavior: `17 passed in 0.99s`.
+
+R4-B relation regression: `27 passed in 0.26s`.
+
+R4-D checkpoint compatibility: `36 passed in 1.36s`.
+
+RT-001E runtime-domain guardrail: `68 passed in 0.30s`.
+
+R4-C/R4-E integration: `47 passed in 0.75s`.
+
+Broader R4/PR2: `214 passed in 2.34s`.
+
+Full repository: `9568 passed, 10 skipped, 2 xfailed, 1 warning in 434.56s (0:07:14)`.
+
+Behavioral implementation paths: `8`; lifecycle/control recording paths: `8`;
+final changed paths: `16`; production runtime paths: `3`; production schema
+paths: `0`.
+
+Implementation state: `regression_certified_pending_commit`.
+
+Next bounded gate: `r4_e_implementation_commit_push`; that gate is not
+implicitly authorized.
+
+General R4 activation and runtime promotion remain unauthorized.
