@@ -12,8 +12,8 @@ from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     PersistentWorldCheckpointError,
 )
 from astra_runtime.myravant_live_play_evidence import (
+    LivePlayEvidenceError,
     LivePlayEvidenceRecorder,
-    LivePlayEvidenceWriteError,
     build_live_play_session_header,
 )
 from astra_runtime.myravant_play_application import (
@@ -162,7 +162,8 @@ def _record_result(
             checkpoint_digest=result.checkpoint_digest,
             failure_class=result.failure_class,
         )
-    except LivePlayEvidenceWriteError as exc:
+    except LivePlayEvidenceError as exc:
+        recorder.mark_incomplete()
         if error_stream is not None:
             error_stream.write(f"Trace evidence incomplete: {exc}\n")
 
@@ -180,7 +181,8 @@ def _finish_evidence(
         recorder.finish(
             final_state_digest=application.authoritative_digest()
         )
-    except LivePlayEvidenceWriteError as exc:
+    except LivePlayEvidenceError as exc:
+        recorder.mark_incomplete()
         if error_stream is not None:
             error_stream.write(f"Trace evidence incomplete: {exc}\n")
 
@@ -381,20 +383,21 @@ def main(argv: list[str] | None = None) -> int:
     recorder = None
 
     if args.trace is not None:
-        header = build_live_play_session_header(
-            campaign_id=application.fixture.campaign_id,
-            initial_state_digest=application.authoritative_digest(),
-            repository_sha=args.repository_sha,
-            restore_performed=args.load is not None,
-            environment_id=args.environment_id,
-            network_mode=args.network_mode,
-        )
         try:
+            header = build_live_play_session_header(
+                campaign_id=application.fixture.campaign_id,
+                initial_state_digest=application.authoritative_digest(),
+                repository_sha=args.repository_sha,
+                restore_performed=args.load is not None,
+                debug_mode=args.debug,
+                environment_id=args.environment_id,
+                network_mode=args.network_mode,
+            )
             recorder = LivePlayEvidenceRecorder(
                 trace_path=args.trace,
                 header=header,
             )
-        except LivePlayEvidenceWriteError as exc:
+        except LivePlayEvidenceError as exc:
             sys.stderr.write(f"Trace evidence unavailable: {exc}\n")
 
     return run_terminal(
