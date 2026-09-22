@@ -27,9 +27,43 @@ from astra_runtime.domain.persistent_world_movement_integration import (
     create_movement_opportunity_evidence,
     create_movement_spatial_evidence,
     create_persistent_world_movement_runtime_state,
+    digest_persistent_world_entity_location_representation,
 )
 from astra_runtime.kernel.record_identity import build_record_id
 
+
+FIXTURE_ID = "myravant-native-terminal-g1"
+FIXTURE_VERSION = "0.1.0"
+FIXTURE_STATUS = "development_validation_content"
+FIXTURE_CANON = False
+FIXTURE_DEFAULT_WORLD = False
+FIXTURE_ORIGIN_WORKSTREAM = "TERMINAL-PLAY-G1"
+FIXTURE_ORIGIN_MERGE_COMMIT = "5429cdddf9dc71831fbb5ceab302e83e7f6e0f0c"
+FIXTURE_ORIGIN_MERGED_AT = "2026-09-22T05:39:13Z"
+FIXTURE_G1_BASELINE_SHA = "55461eb5ab9ac373cca9fa7b978ce71d0a11669c"
+FIXTURE_INITIAL_STATE_DIGEST = (
+    "124e7b67da79de2e267fe53ba0de51c88ec99070c06fae6ab0bd463d80b146eb"
+)
+FIXTURE_PLAYABLE_NEED_REFS = (
+    "R4-B",
+    "R4-C",
+    "R4-D",
+    "TERMINAL-PLAY-G1",
+    "R4-E-readiness",
+)
+FIXTURE_REQUIREMENT_REFS = (
+    "REQ-PROD-002",
+    "REQ-PROD-003",
+    "REQ-PROD-004",
+    "REQ-PROD-006",
+    "REQ-PROD-012",
+    "REQ-PROD-013",
+    "REQ-PROD-017",
+)
+FIXTURE_DIRECT_EXTERNAL_CONTENT_CONSULTED_DURING_G1 = False
+FIXTURE_ORIGINALITY_REVIEW_STATUS = (
+    "g0_review_complete_no_specific_source_derivation_detected"
+)
 
 CAMPAIGN_ID = "astra:campaign:myravant-terminal-g1"
 PLAYER_ID = "astra:entity:terminal-traveler"
@@ -69,6 +103,24 @@ class FixtureMovementRoute:
 
 
 @dataclass(frozen=True, kw_only=True)
+class FixtureProvenanceReceipt:
+    fixture_id: str
+    fixture_version: str
+    fixture_status: str
+    canon: bool
+    default_world: bool
+    origin_workstream: str
+    origin_merge_commit: str
+    origin_merged_at: str
+    g1_baseline_sha: str
+    playable_need_refs: tuple[str, ...]
+    requirement_refs: tuple[str, ...]
+    direct_external_content_consulted_during_g1: bool
+    originality_review_status: str
+    initial_state_digest: str
+
+
+@dataclass(frozen=True, kw_only=True)
 class MyravantPlayFixture:
     campaign_id: str
     player_entity_id: str
@@ -77,6 +129,7 @@ class MyravantPlayFixture:
     object_presentations: tuple[PublicEntityPresentation, ...]
     movement_routes: tuple[FixtureMovementRoute, ...]
     checkpoint_qualification: Mapping[str, object]
+    provenance: FixtureProvenanceReceipt
 
     def __post_init__(self) -> None:
         object.__setattr__(
@@ -213,6 +266,17 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         ),
     )
 
+    initial_state_digest = (
+        digest_persistent_world_entity_location_representation(
+            representation
+        )
+    )
+    if initial_state_digest != FIXTURE_INITIAL_STATE_DIGEST:
+        raise MyravantPlayFixtureError(
+            "fixture authoritative initial state changed without updating "
+            "FIXTURE_VERSION and FIXTURE_INITIAL_STATE_DIGEST"
+        )
+
     routes = (
         FixtureMovementRoute(
             source_place_id=WORKSHOP_ID,
@@ -309,6 +373,25 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         "fixture_campaign_id": CAMPAIGN_ID,
     }
 
+    provenance = FixtureProvenanceReceipt(
+        fixture_id=FIXTURE_ID,
+        fixture_version=FIXTURE_VERSION,
+        fixture_status=FIXTURE_STATUS,
+        canon=FIXTURE_CANON,
+        default_world=FIXTURE_DEFAULT_WORLD,
+        origin_workstream=FIXTURE_ORIGIN_WORKSTREAM,
+        origin_merge_commit=FIXTURE_ORIGIN_MERGE_COMMIT,
+        origin_merged_at=FIXTURE_ORIGIN_MERGED_AT,
+        g1_baseline_sha=FIXTURE_G1_BASELINE_SHA,
+        playable_need_refs=FIXTURE_PLAYABLE_NEED_REFS,
+        requirement_refs=FIXTURE_REQUIREMENT_REFS,
+        direct_external_content_consulted_during_g1=(
+            FIXTURE_DIRECT_EXTERNAL_CONTENT_CONSULTED_DURING_G1
+        ),
+        originality_review_status=FIXTURE_ORIGINALITY_REVIEW_STATUS,
+        initial_state_digest=initial_state_digest,
+    )
+
     return MyravantPlayFixture(
         campaign_id=CAMPAIGN_ID,
         player_entity_id=PLAYER_ID,
@@ -319,4 +402,5 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         object_presentations=objects,
         movement_routes=routes,
         checkpoint_qualification=checkpoint_qualification,
+        provenance=provenance,
     )

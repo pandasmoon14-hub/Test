@@ -6,12 +6,33 @@ import pytest
 
 from astra_runtime.domain.persistent_world_entity_location_representation import (
     LOCATED_AT_RELATION_TYPE,
+    serialize_persistent_world_entity_location_representation,
+)
+from astra_runtime.domain.persistent_world_movement_integration import (
+    digest_persistent_world_entity_location_representation,
 )
 from astra_runtime.myravant_play_fixture import (
     CAMPAIGN_ID,
+    FIXTURE_CANON,
+    FIXTURE_DEFAULT_WORLD,
+    FIXTURE_DIRECT_EXTERNAL_CONTENT_CONSULTED_DURING_G1,
+    FIXTURE_G1_BASELINE_SHA,
+    FIXTURE_ID,
+    FIXTURE_INITIAL_STATE_DIGEST,
+    FIXTURE_ORIGINALITY_REVIEW_STATUS,
+    FIXTURE_ORIGIN_MERGE_COMMIT,
+    FIXTURE_ORIGIN_MERGED_AT,
+    FIXTURE_ORIGIN_WORKSTREAM,
+    FIXTURE_PLAYABLE_NEED_REFS,
+    FIXTURE_REQUIREMENT_REFS,
+    FIXTURE_STATUS,
+    FIXTURE_VERSION,
     GATEHOUSE_ID,
+    LANTERN_ID,
     ORCHARD_PATH_ID,
     PLAYER_ID,
+    TOOL_CHEST_ID,
+    WAYSTONE_ID,
     WORKSHOP_ID,
     YARD_ID,
     UnavailableFixtureMovementError,
@@ -42,10 +63,15 @@ def test_fixture_has_one_player_four_places_and_persistent_objects():
         for entity_id, classification in classifications.items()
         if classification == "place"
     }
-    assert sum(
-        classification == "object"
-        for classification in classifications.values()
-    ) == 3
+    assert {
+        LANTERN_ID,
+        TOOL_CHEST_ID,
+        WAYSTONE_ID,
+    } == {
+        entity_id
+        for entity_id, classification in classifications.items()
+        if classification == "object"
+    }
 
 
 def test_fixture_player_starts_at_exactly_one_authoritative_location():
@@ -63,6 +89,88 @@ def test_fixture_player_starts_at_exactly_one_authoritative_location():
     assert relations[0].object_entity_id == WORKSHOP_ID
 
 
+def test_fixture_authoritative_starting_structure_is_version_locked():
+    fixture = create_terminal_play_fixture()
+    representation = fixture.initial_state.representation
+
+    placements = {
+        (relation.subject_entity_id, relation.object_entity_id)
+        for relation in representation.relations
+        if relation.relation_type == LOCATED_AT_RELATION_TYPE
+    }
+
+    assert placements == {
+        (PLAYER_ID, WORKSHOP_ID),
+        (LANTERN_ID, WORKSHOP_ID),
+        (TOOL_CHEST_ID, YARD_ID),
+        (WAYSTONE_ID, ORCHARD_PATH_ID),
+    }
+
+    actual_digest = digest_persistent_world_entity_location_representation(
+        representation
+    )
+    assert actual_digest == FIXTURE_INITIAL_STATE_DIGEST
+    assert fixture.provenance.initial_state_digest == actual_digest
+
+
+def test_fixture_construction_is_deterministic_for_same_version():
+    first = create_terminal_play_fixture()
+    second = create_terminal_play_fixture()
+
+    assert first.provenance.fixture_id == second.provenance.fixture_id
+    assert first.provenance.fixture_version == second.provenance.fixture_version
+    assert (
+        digest_persistent_world_entity_location_representation(
+            first.initial_state.representation
+        )
+        == digest_persistent_world_entity_location_representation(
+            second.initial_state.representation
+        )
+        == FIXTURE_INITIAL_STATE_DIGEST
+    )
+
+
+def test_fixture_provenance_marks_development_noncanon_boundary():
+    fixture = create_terminal_play_fixture()
+    provenance = fixture.provenance
+
+    assert provenance.fixture_id == FIXTURE_ID
+    assert provenance.fixture_version == FIXTURE_VERSION
+    assert provenance.fixture_status == FIXTURE_STATUS
+    assert provenance.canon is FIXTURE_CANON is False
+    assert provenance.default_world is FIXTURE_DEFAULT_WORLD is False
+    assert provenance.origin_workstream == FIXTURE_ORIGIN_WORKSTREAM
+    assert provenance.origin_merge_commit == FIXTURE_ORIGIN_MERGE_COMMIT
+    assert provenance.origin_merged_at == FIXTURE_ORIGIN_MERGED_AT
+    assert provenance.g1_baseline_sha == FIXTURE_G1_BASELINE_SHA
+    assert provenance.playable_need_refs == FIXTURE_PLAYABLE_NEED_REFS
+    assert provenance.requirement_refs == FIXTURE_REQUIREMENT_REFS
+    assert (
+        provenance.direct_external_content_consulted_during_g1
+        is FIXTURE_DIRECT_EXTERNAL_CONTENT_CONSULTED_DURING_G1
+        is False
+    )
+    assert (
+        provenance.originality_review_status
+        == FIXTURE_ORIGINALITY_REVIEW_STATUS
+    )
+
+
+def test_fixture_presentation_does_not_enter_authoritative_representation():
+    fixture = create_terminal_play_fixture()
+    serialized = serialize_persistent_world_entity_location_representation(
+        fixture.initial_state.representation
+    )
+
+    assert set(serialized) == {"campaign_id", "entities", "relations"}
+    assert all("name" not in entity for entity in serialized["entities"])
+    assert all("description" not in entity for entity in serialized["entities"])
+    assert all("name" not in relation for relation in serialized["relations"])
+    assert all(
+        "description" not in relation for relation in serialized["relations"]
+    )
+
+
 def test_fixture_routes_are_explicit_not_inferred():
     fixture = create_terminal_play_fixture()
 
@@ -76,6 +184,26 @@ def test_fixture_routes_are_explicit_not_inferred():
             source_place_id=WORKSHOP_ID,
             direction="east",
         )
+
+
+def test_fixture_route_set_remains_the_bounded_terminal_g1_topology():
+    fixture = create_terminal_play_fixture()
+
+    assert {
+        (
+            route.source_place_id,
+            route.direction,
+            route.destination_place_id,
+        )
+        for route in fixture.movement_routes
+    } == {
+        (WORKSHOP_ID, "south", YARD_ID),
+        (YARD_ID, "north", WORKSHOP_ID),
+        (YARD_ID, "east", ORCHARD_PATH_ID),
+        (ORCHARD_PATH_ID, "west", YARD_ID),
+        (YARD_ID, "south", GATEHOUSE_ID),
+        (GATEHOUSE_ID, "north", YARD_ID),
+    }
 
 
 def test_fixture_builds_owner_routed_movement_evidence_only_for_declared_route():
