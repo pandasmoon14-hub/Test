@@ -57,12 +57,17 @@ class PlayApplicationResult:
     view: PublicLocationView | None = None
     authoritative_changed: bool = False
     command_id: str | None = None
+    command_fingerprint: str | None = None
+    preview_id: str | None = None
     receipt_id: str | None = None
     state_delta_id: str | None = None
+    spatial_evidence_id: str | None = None
+    opportunity_evidence_id: str | None = None
     pre_state_digest: str | None = None
     post_state_digest: str | None = None
     checkpoint_digest: str | None = None
     failure_class: str | None = None
+    technical_retry: bool | None = None
 
 
 class MyravantPlayApplication:
@@ -232,10 +237,17 @@ class MyravantPlayApplication:
             message=f"You move to the {destination_name}.",
             authoritative_changed=True,
             command_id=command_id,
+            command_fingerprint=result.receipt.command_fingerprint,
+            preview_id=result.preview.preview_id,
             receipt_id=result.receipt.receipt_id,
             state_delta_id=result.state_delta.delta_id,
+            spatial_evidence_id=result.receipt.spatial_evidence_id,
+            opportunity_evidence_id=(
+                result.receipt.opportunity_evidence_id
+            ),
             pre_state_digest=pre_digest,
             post_state_digest=post_digest,
+            technical_retry=result.technical_retry,
         )
 
     def save(self) -> PlayApplicationResult:
