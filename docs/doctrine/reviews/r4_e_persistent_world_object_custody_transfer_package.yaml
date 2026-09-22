@@ -1,7 +1,7 @@
 {
   "artifact_id": "MYRAVANT-R4-E-PERSISTENT-WORLD-OBJECT-CUSTODY-TRANSFER-PACKAGE-001",
-  "artifact_version": "0.1.0",
-  "status": "package_defined",
+  "artifact_version": "0.1.1",
+  "status": "definition_merged_complete",
   "package_id": "R4-E",
   "package_name": "persistent_world_object_custody_transfer",
   "definition_authorization_reference": "owner_directive_2026-09-21_r4_e_package_definition",
@@ -254,7 +254,7 @@
     "R6 activation"
   ],
   "definition_regression_certified": true,
-  "definition_recording_state": "regression_certified_pending_commit",
+  "definition_recording_state": "merged_complete",
   "definition_regression_certification": {
     "focused_definition": {
       "summary": "98 passed in 0.76s",
@@ -277,7 +277,7 @@
     "production_runtime_path_count": 0,
     "production_schema_path_count": 0
   },
-  "next_gate": "r4_e_definition_commit_push",
+  "next_gate": "r4_e_definition_post_merge_closure_commit_push",
   "next_gate_authorized": false,
   "downstream_authorization_boundary": {
     "definition_commit_push_implicitly_authorized": false,
@@ -305,5 +305,68 @@
     "push_performed_before_stop": false,
     "repair": "derive changed-path footprint from git status --porcelain with untracked files included",
     "result": "recovered"
+  },
+  "definition_post_merge_closure_complete": true,
+  "definition_post_merge_closure_authorization_reference": "owner_directive_2026-09-21_r4_e_definition_post_merge_closure",
+  "definition_post_merge_closure_authority_effect": "bounded_r4_e_definition_post_merge_lifecycle_reconciliation_only",
+  "definition_post_merge_closure_recorded_from": "5111b8dd8e60fbbb44d07695e68863bf943320e9",
+  "definition_post_merge_closure_tree": "27f43e88eacd8a4626b1746118b46e97d811ae43",
+  "definition_post_merge_closure_pull_request": 439,
+  "definition_post_merge_closure_branch_head": "b21cc58c16d1146a003b383ff759cfd8495ff5e4",
+  "definition_post_merge_closure_ci_run": 279,
+  "definition_post_merge_closure_ci_run_id": 35687577058,
+  "definition_post_merge_closure_ci_verification": {
+    "workflow_name": "CI",
+    "workflow_run_number": 279,
+    "workflow_run_id": 35687577058,
+    "core_linux": {
+      "job_id": 106617609047,
+      "conclusion": "success"
+    },
+    "core_windows": {
+      "job_id": 106617609189,
+      "conclusion": "success"
+    },
+    "cross_platform_ci_certified": true,
+    "result": "pass"
+  },
+  "definition_post_merge_closure_edit_allowlist": [
+    "docs/decisions/current_decisions_log.md",
+    "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+    "docs/doctrine/control/post_r2a_transition_program.md",
+    "docs/doctrine/reviews/r4_e_persistent_world_object_custody_transfer_package.yaml",
+    "tests/test_post_r2a_transition_program.py",
+    "tests/test_r4_c_persistent_world_playable_movement_integration_package.py",
+    "tests/test_r4_d_persistent_world_local_checkpoint_restore_package.py",
+    "tests/test_r4_e_persistent_world_object_custody_transfer_package.py"
+  ],
+  "definition_post_merge_closure_regression_certified": true,
+  "definition_post_merge_closure_recording_state": "regression_certified_pending_commit",
+  "definition_post_merge_closure_regression_certification": {
+    "focused_closure": {
+      "summary": "101 passed in 0.87s",
+      "result": "pass"
+    },
+    "broader_pr2_r4": {
+      "summary": "190 passed in 1.22s",
+      "result": "pass"
+    },
+    "full_repository": {
+      "summary": "9544 passed, 10 skipped, 2 xfailed, 1 warning in 904.54s (0:15:04)",
+      "warning_disposition": "existing_nonblocking_deprecation_if_present",
+      "result": "pass"
+    },
+    "focused_post_recording": {
+      "summary": "101 passed in 2.19s",
+      "result": "pass"
+    },
+    "broader_post_recording": {
+      "summary": "190 passed in 6.91s",
+      "result": "pass"
+    },
+    "git_diff_check": "clean",
+    "changed_path_count": 8,
+    "production_runtime_path_count": 0,
+    "production_schema_path_count": 0
   }
 }

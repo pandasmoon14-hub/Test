@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.85`
+**Artifact version:** `0.4.86`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -5643,3 +5643,47 @@ Next bounded gate:
 `r4_e_definition_commit_push`
 
 That gate is not implicitly authorized.
+
+
+### 5.94 R4-E definition post-merge lifecycle closure
+
+PR `#439` merged the bounded R4-E package definition into `main`.
+
+Definition branch head: `b21cc58c16d1146a003b383ff759cfd8495ff5e4`.
+
+Definition merge commit: `5111b8dd8e60fbbb44d07695e68863bf943320e9`.
+
+Definition merge tree: `27f43e88eacd8a4626b1746118b46e97d811ae43`.
+
+Definition CI `#279` / run `35687577058` completed successfully on both `core-linux` and `core-windows`.
+
+The owner separately authorized this bounded definition post-merge lifecycle reconciliation.
+
+Authorization reference: `owner_directive_2026-09-21_r4_e_definition_post_merge_closure`.
+
+Authority effect: `bounded_r4_e_definition_post_merge_lifecycle_reconciliation_only`.
+
+R4-E definition lifecycle is `definition_merged_complete`; definition recording state is `merged_complete`.
+
+The original definition certification and scope-harness recovery remain preserved as historical evidence.
+
+This closure changes no production runtime file and no production schema. R4-E implementation remains unauthorized. General R4 activation, runtime promotion, automatic successor activation, R5, and R6 remain unauthorized.
+
+Definition post-merge closure regression certification is required before commit/push. Passing it does not authorize implementation.
+
+
+### 5.95 R4-E definition post-merge closure regression certification
+
+Focused closure: `101 passed in 0.87s`.
+
+Broader R4/PR2: `190 passed in 1.22s`.
+
+Full repository: `9544 passed, 10 skipped, 2 xfailed, 1 warning in 904.54s (0:15:04)`.
+
+Changed paths: `8`; production runtime paths: `0`; production schema paths: `0`.
+
+R4-E definition lifecycle remains `definition_merged_complete`. R4-E implementation, general R4 activation, and runtime promotion remain unauthorized.
+
+Closure recording state: `regression_certified_pending_commit`.
+
+Next bounded gate: `r4_e_definition_post_merge_closure_commit_push`; that gate is not implicitly authorized. Implementation authorization remains a later separate owner gate.
