@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.84`
+**Artifact version:** `0.4.85`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -5546,3 +5546,100 @@ Runtime promotion remains unauthorized.
 Automatic successor activation remains unauthorized.
 
 `R4-R6` remains blocked.
+
+
+### 5.92 R4-E persistent-world object custody transfer package definition
+
+The owner authorized the bounded R4-E definition gate.
+
+Package: `persistent_world_object_custody_transfer`.
+
+Definition baseline: `c9810357d4367a78771e083d3978913799d292d5`.
+
+Definition tree: `8dd94a277af39f40d78623aa532e76fd8533919d`.
+
+R4-D is the required predecessor and is `merged_complete`.
+
+The playable target is: pickup → move → checkpoint → destroy memory → restore → drop → checkpoint → destroy memory → restore.
+
+The bounded authoritative carrying relation is `carried_by`. For R4-E, `carried_by` means immediate physical asset placement/carrying state qualified through RT-010. It does not establish ownership, legal entitlement, social/faction custody rights, institutional authority, control, agency, responsibility, knowledge, or visibility. Separate social, factional, institutional, disputed, or entitlement-bearing custody pressure remains an RT-007 handoff. AFQR-09 remains the governed-relation lifecycle boundary without acquiring substantive custody or ownership semantics.
+
+For an object participating in the R4-E proof, `O located_at P` and `O carried_by A` are mutually exclusive immediate placement modes. This does not create a universal rule requiring every future object to always occupy one of those modes.
+
+The minimum proposed state composition is `PersistentWorldObjectCustodyRuntimeState`, containing the existing R4-C movement state plus separately preserved committed custody transitions. Movement semantics remain R4-C-owned; storage does not transfer custody semantics.
+
+The existing `inventory` command family and `pickup` / `drop` prefixes are reused as routing classification only. They do not create a closed action menu or transfer custody semantic ownership to the router's generic default owner route.
+
+R4-D checkpoint format version 1 retains its existing meaning. A future separately authorized R4-E implementation may add a distinct bounded R4-E checkpoint format while reusing the existing durability mechanics. Existing R4-D movement-only checkpoints remain readable. No silent migration or generalized migration framework is authorized.
+
+This definition changes no production runtime file and no production schema.
+
+Implementation remains unauthorized. General R4 activation remains unauthorized. Runtime promotion remains unauthorized. Automatic successor activation remains unauthorized.
+
+The authorized next step inside Gate 1 is local definition regression certification. Passing it does not authorize commit/push or implementation.
+
+
+#### 5.92.1 R4-E definition scope-check harness recovery
+
+The first Gate 1 harness stopped safely at its initial exact-scope check.
+
+The expected definition footprint was eight paths. The check used
+`git diff --name-only`, which reported only the six tracked modified paths and
+omitted the two newly created untracked R4-E files.
+
+Classification:
+
+`definition_scope_check_omitted_untracked_new_files`
+
+The omitted files were:
+
+- `docs/doctrine/reviews/r4_e_persistent_world_object_custody_transfer_package.yaml`;
+- `tests/test_r4_e_persistent_world_object_custody_transfer_package.py`.
+
+This was a gate-harness bookkeeping defect, not a repository-content or runtime
+behavior defect. No tests had begun. No commit or push occurred. Runtime,
+production-schema, and semantic-authority scope did not expand.
+
+Recovery preserves the partial working tree and derives the complete changed
+footprint from `git status --porcelain` with untracked files included. No reset,
+clean, or recreation is performed.
+
+
+### 5.93 R4-E definition regression certification
+
+The bounded R4-E definition package passed local regression certification after
+the preserved scope-check harness recovery.
+
+Focused definition:
+
+`98 passed in 0.76s`
+
+Broader R4/PR2:
+
+`187 passed in 2.51s`
+
+Full repository:
+
+`9528 passed, 10 skipped, 2 xfailed, 1 warning in 781.86s (0:13:01)`
+
+Changed paths: `8`.
+
+Production runtime paths changed: `0`.
+
+Production schema paths changed: `0`.
+
+R4-E implementation remains unauthorized.
+
+General R4 activation remains unauthorized.
+
+Runtime promotion remains unauthorized.
+
+Definition recording state:
+
+`regression_certified_pending_commit`
+
+Next bounded gate:
+
+`r4_e_definition_commit_push`
+
+That gate is not implicitly authorized.

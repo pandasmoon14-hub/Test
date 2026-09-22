@@ -1,0 +1,309 @@
+{
+  "artifact_id": "MYRAVANT-R4-E-PERSISTENT-WORLD-OBJECT-CUSTODY-TRANSFER-PACKAGE-001",
+  "artifact_version": "0.1.0",
+  "status": "package_defined",
+  "package_id": "R4-E",
+  "package_name": "persistent_world_object_custody_transfer",
+  "definition_authorization_reference": "owner_directive_2026-09-21_r4_e_package_definition",
+  "definition_authority_effect": "bounded_r4_e_package_definition_only",
+  "definition_starting_baseline": "c9810357d4367a78771e083d3978913799d292d5",
+  "definition_starting_tree": "8dd94a277af39f40d78623aa532e76fd8533919d",
+  "implementation_authorized": false,
+  "r4_activation_authorized": false,
+  "runtime_promotion_authorized": false,
+  "production_schema_implementation_authorized": false,
+  "predecessor": {
+    "package_id": "R4-D",
+    "package_name": "persistent_world_local_checkpoint_restore",
+    "required_status": "merged_complete",
+    "required_implementation_state": "merged_complete",
+    "implementation_merge_commit": "2b208838f91ac7b8488ade6287c51ee3ecb175e2",
+    "post_merge_closure_pr": 438,
+    "post_merge_closure_merge_commit": "c9810357d4367a78771e083d3978913799d292d5",
+    "historical_self_referential_lifecycle_values_rewritten": false
+  },
+  "playable_objective": "A character can lawfully pick up one persistent object, carry it while using existing R4-C movement, checkpoint and restore with custody intact, drop the object at the new place, checkpoint again, restore again, and reproduce the exact final authoritative world state.",
+  "semantic_owner_boundary": {
+    "AFQR-01": "qualified authoritative transition, commitment, recovery, replay, and receipts",
+    "AFQR-02": "command identity, fingerprinting, retries, and changed-meaning conflict",
+    "AFQR-03": "action representation without creating a closed universal verb menu",
+    "AFQR-09": "governed-relation lifecycle boundary only; no ownership, social standing, or legal effect",
+    "AFQR-18": "direct located_at spatial semantics only; does not own carried_by",
+    "AFQR-19": "bounded opportunity, target, and resolution qualification",
+    "RT-010": "bounded asset-state and immediate physical carrying/placement qualification",
+    "RT-007": "separate social, factional, institutional, disputed, or entitlement-bearing custody pressure",
+    "storage_or_serialization_transfers_semantic_ownership": false
+  },
+  "custody_semantics": {
+    "authoritative_relation_type": "carried_by",
+    "semantic_owner": "RT-010",
+    "meaning": "immediate physical carrying/asset placement relation for this package",
+    "subject_required_classification": "object",
+    "carrier_required_classification": "character_or_creature",
+    "does_not_establish": [
+      "ownership",
+      "legal entitlement",
+      "social or faction custody right",
+      "institutional authority",
+      "control over the carrier",
+      "agency",
+      "responsibility",
+      "knowledge",
+      "visibility"
+    ],
+    "generalized_relation_registry_created": false
+  },
+  "immediate_placement_invariant": {
+    "scope": "object participating in the bounded R4-E pickup/drop proof",
+    "direct_mode": "O located_at P",
+    "carried_mode": "O carried_by A",
+    "simultaneous_direct_and_carried_allowed": false,
+    "multiple_active_carried_by_allowed": false,
+    "universal_all_objects_requirement_created": false,
+    "drop_destination": "derive P from carrier A current located_at relation",
+    "generalized_spatial_inference_created": false
+  },
+  "state_composition": {
+    "proposed_state_type": "PersistentWorldObjectCustodyRuntimeState",
+    "fields": [
+      "movement_state: PersistentWorldMovementRuntimeState",
+      "committed_custody_transitions: tuple[PersistentWorldObjectCustodyCommittedTransition,...]"
+    ],
+    "authoritative_representation_location": "movement_state.representation",
+    "movement_semantics_remain_r4_c_owned": true,
+    "custody_evidence_separate_from_movement_evidence": true,
+    "movement_storage_acquires_custody_semantics": false,
+    "persistence_storage_acquires_custody_semantics": false,
+    "universal_world_state_manager_created": false
+  },
+  "command_routing": {
+    "required_existing_family": "inventory",
+    "candidate_command_types": [
+      "pickup_object",
+      "drop_object"
+    ],
+    "existing_prefixes_reused": [
+      "pickup",
+      "drop"
+    ],
+    "generic_inventory_default_owner_route_is_not_custody_semantic_ownership": true,
+    "closed_action_menu_created": false,
+    "freeform_interpretation_preserved": true
+  },
+  "pickup_requirements": [
+    "valid command envelope",
+    "command routes to inventory",
+    "actor exists and is character_or_creature",
+    "target exists and is object",
+    "actor has exactly one current located_at place",
+    "object has exactly one current located_at place before pickup",
+    "actor and object are co-located",
+    "object has no active carried_by relation",
+    "object has no contradictory immediate placement relation",
+    "bounded RT-010 carrying qualification exists",
+    "AFQR-19 opportunity/resolution evidence exists and permits resolution",
+    "expected pre-state digest matches current authoritative representation",
+    "command identity is unused or already committed with identical meaning"
+  ],
+  "drop_requirements": [
+    "valid command envelope",
+    "command routes to inventory",
+    "actor exists and is character_or_creature",
+    "target exists and is object",
+    "object is carried_by the source actor",
+    "actor has exactly one current located_at place",
+    "object has no simultaneous direct located_at relation",
+    "bounded RT-010 carrying qualification exists",
+    "AFQR-19 opportunity/resolution evidence exists and permits resolution",
+    "expected pre-state digest matches current authoritative representation",
+    "command identity is unused or already committed with identical meaning"
+  ],
+  "determinism_retry_replay": {
+    "deterministic_command_fingerprint_required": true,
+    "deterministic_transition_identity_required": true,
+    "deterministic_generated_relation_identity_required": true,
+    "canonical_serialization_required": true,
+    "immutable_committed_receipt_required": true,
+    "pre_state_digest_required": true,
+    "post_state_digest_required": true,
+    "identical_technical_retry_idempotent": true,
+    "same_command_id_changed_meaning_fails_closed": true,
+    "replay_uses_committed_evidence_not_model_reconstruction": true,
+    "malformed_or_contradictory_evidence_fails_closed": true,
+    "rejected_transition_mutates_nothing": true
+  },
+  "checkpoint_compatibility_plan": {
+    "existing_r4_d_format_identity": "myravant.r4d.persistent_world_movement_checkpoint",
+    "existing_r4_d_format_version": 1,
+    "existing_r4_d_format_meaning_changes": false,
+    "existing_r4_d_reader_remains_available": true,
+    "proposed_r4_e_format_identity": "myravant.r4e.persistent_world_object_custody_checkpoint",
+    "proposed_r4_e_format_version": 1,
+    "required_r4_e_payload": [
+      "persistent representation including carried_by",
+      "representation digest",
+      "committed R4-C movement transitions",
+      "committed R4-E custody transitions",
+      "campaign identity",
+      "integrity digest",
+      "AFQR-01 checkpoint qualification provenance"
+    ],
+    "movement_only_r4_d_checkpoint_remains_readable": true,
+    "movement_only_restore_can_be_explicitly_composed_into_r4_e_with_empty_custody_history": true,
+    "silent_unknown_format_upgrade_allowed": false,
+    "generalized_migration_framework_created": false,
+    "reuse_existing_platform_specific_durability_mechanics": true
+  },
+  "acceptance_sequence": [
+    "initial:A located_at P1",
+    "initial:O located_at P1",
+    "pickup validates and commits",
+    "O carried_by A",
+    "identical pickup retry returns committed result",
+    "changed pickup meaning under same command_id fails closed",
+    "A moves P1 to P2 through existing R4-C movement",
+    "O carried_by A survives movement",
+    "qualified checkpoint persists representation movement evidence and custody evidence",
+    "in-memory state is destroyed",
+    "restore solely from checkpoint bytes proves A located_at P2 and O carried_by A",
+    "restored custody evidence preserves retry/replay identity",
+    "drop validates and commits",
+    "O carried_by A is removed",
+    "O located_at P2 is added",
+    "second qualified checkpoint is written",
+    "in-memory state is destroyed again",
+    "second restore succeeds",
+    "final:A located_at P2",
+    "final:O located_at P2 and O not carried_by A"
+  ],
+  "required_final_authoritative_state": {
+    "actor_location": "A located_at P2",
+    "object_location": "O located_at P2",
+    "object_carried_by_actor": false,
+    "deterministic_reproducibility_required": true
+  },
+  "failure_classifications": [
+    "invalid_command_envelope",
+    "invalid_command_route",
+    "actor_missing_or_ineligible",
+    "object_missing_or_wrong_classification",
+    "actor_location_invalid",
+    "object_placement_invalid_or_contradictory",
+    "pickup_not_colocated",
+    "object_already_carried",
+    "drop_not_carried_by_actor",
+    "rt010_qualification_missing_or_invalid",
+    "opportunity_or_resolution_denied",
+    "stale_pre_state",
+    "command_retry_conflict",
+    "relation_identity_collision",
+    "replay_evidence_mismatch",
+    "checkpoint_integrity_failure",
+    "checkpoint_format_failure",
+    "checkpoint_campaign_mismatch",
+    "contradictory_restored_relations",
+    "scope_or_authorization_violation"
+  ],
+  "definition_edit_allowlist": [
+    "docs/decisions/current_decisions_log.md",
+    "docs/doctrine/control/post_r2a_transition_manifest.yaml",
+    "docs/doctrine/control/post_r2a_transition_program.md",
+    "docs/doctrine/reviews/r4_e_persistent_world_object_custody_transfer_package.yaml",
+    "tests/test_post_r2a_transition_program.py",
+    "tests/test_r4_c_persistent_world_playable_movement_integration_package.py",
+    "tests/test_r4_d_persistent_world_local_checkpoint_restore_package.py",
+    "tests/test_r4_e_persistent_world_object_custody_transfer_package.py"
+  ],
+  "proposed_implementation_edit_allowlist": {
+    "runtime_paths": [
+      "src/astra_runtime/domain/persistent_world_entity_location_representation.py",
+      "src/astra_runtime/domain/persistent_world_object_custody_transfer.py",
+      "src/astra_runtime/domain/persistent_world_local_checkpoint_restore.py"
+    ],
+    "production_schema_paths": [],
+    "runtime_test_paths": [
+      "tests/test_r4_b_persistent_world_entity_location_representation.py",
+      "tests/test_r4_e_persistent_world_object_custody_transfer.py",
+      "tests/test_r4_d_persistent_world_local_checkpoint_restore.py"
+    ],
+    "test_infrastructure_paths": [
+      "tests/runtime_domain_package_manifest.py",
+      "tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py"
+    ],
+    "explicitly_not_required_on_current_evidence": [
+      "src/astra_runtime/domain/persistent_world_movement_integration.py",
+      "src/astra_runtime/domain/command_kind_routing_skeleton.py"
+    ]
+  },
+  "prohibited_scope": [
+    "generalized inventory",
+    "inventory slots weight encumbrance equipment stacks or containers",
+    "storage systems",
+    "ownership transfer theft law or legal ownership",
+    "prices currency economy trading merchants or loot generation",
+    "crafting salvage durability item damage weapons armor combat ammunition charges or fuel",
+    "vehicles companions summons item bonuses or item generation",
+    "generalized relation registry",
+    "universal world-state manager",
+    "generalized save system database or cloud persistence",
+    "event sourcing mandate",
+    "timeline branching correction or retcon",
+    "runtime promotion",
+    "general R4 activation",
+    "R5 activation",
+    "R6 activation"
+  ],
+  "definition_regression_certified": true,
+  "definition_recording_state": "regression_certified_pending_commit",
+  "definition_regression_certification": {
+    "focused_definition": {
+      "summary": "98 passed in 0.76s",
+      "result": "pass"
+    },
+    "broader_pr2_r4": {
+      "summary": "187 passed in 2.51s",
+      "result": "pass"
+    },
+    "full_repository": {
+      "summary": "9528 passed, 10 skipped, 2 xfailed, 1 warning in 781.86s (0:13:01)",
+      "result": "pass"
+    },
+    "focused_post_recording": {
+      "summary": "98 passed in 0.44s",
+      "result": "pass"
+    },
+    "git_diff_check": "clean",
+    "changed_path_count": 8,
+    "production_runtime_path_count": 0,
+    "production_schema_path_count": 0
+  },
+  "next_gate": "r4_e_definition_commit_push",
+  "next_gate_authorized": false,
+  "downstream_authorization_boundary": {
+    "definition_commit_push_implicitly_authorized": false,
+    "implementation_implicitly_authorized": false,
+    "r4_activation_implicitly_authorized": false,
+    "runtime_promotion_implicitly_authorized": false,
+    "automatic_successor_activation": false
+  },
+  "definition_scope_harness_recovery_evidence": {
+    "failed_gate_stage": "initial_changed_path_allowlist_check",
+    "classification": "definition_scope_check_omitted_untracked_new_files",
+    "expected_path_count": 8,
+    "observed_git_diff_path_count": 6,
+    "omitted_untracked_paths": [
+      "docs/doctrine/reviews/r4_e_persistent_world_object_custody_transfer_package.yaml",
+      "tests/test_r4_e_persistent_world_object_custody_transfer_package.py"
+    ],
+    "repository_content_defect_detected": false,
+    "runtime_behavioral_defect_detected": false,
+    "production_runtime_scope_expanded": false,
+    "production_schema_scope_expanded": false,
+    "semantic_authority_expanded": false,
+    "tests_started_before_stop": false,
+    "commit_created_before_stop": false,
+    "push_performed_before_stop": false,
+    "repair": "derive changed-path footprint from git status --porcelain with untracked files included",
+    "result": "recovered"
+  }
+}
