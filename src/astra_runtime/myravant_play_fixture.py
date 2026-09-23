@@ -1,7 +1,7 @@
 """Bounded native fixture for the first human-playable Myravant terminal slice.
 
 This module contains only fixture-local world facts and qualification material
-needed to exercise already-implemented R4-B, R4-C, and R4-D behavior. It is not
+needed to exercise already-implemented R4-B, R4-C, R4-D, and R4-E behavior. It is not
 a generalized topology, legality, opportunity, persistence, visibility, or
 content system.
 """
@@ -14,6 +14,7 @@ from types import MappingProxyType
 from typing import Mapping
 
 from astra_runtime.domain.persistent_world_entity_location_representation import (
+    CARRIED_BY_RELATION_TYPE,
     LOCATED_AT_RELATION_TYPE,
     PersistentWorldEntityLocationRepresentation,
     create_located_at_relation,
@@ -28,6 +29,12 @@ from astra_runtime.domain.persistent_world_movement_integration import (
     create_movement_spatial_evidence,
     create_persistent_world_movement_runtime_state,
     digest_persistent_world_entity_location_representation,
+)
+from astra_runtime.domain.persistent_world_object_custody_transfer import (
+    CustodyOpportunityEvidence,
+    CustodyQualificationEvidence,
+    create_custody_opportunity_evidence,
+    create_custody_qualification_evidence,
 )
 from astra_runtime.kernel.record_identity import build_record_id
 
@@ -86,6 +93,10 @@ class UnknownFixturePlaceError(MyravantPlayFixtureError):
 
 class UnavailableFixtureMovementError(MyravantPlayFixtureError):
     """Raised when the bounded fixture has no route for a requested direction."""
+
+
+class UnavailableFixtureCustodyError(MyravantPlayFixtureError):
+    """Raised when bounded fixture custody policy cannot qualify a request."""
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -208,6 +219,112 @@ class MyravantPlayFixture:
             resolution_accepted=True,
         )
         return spatial, opportunity
+
+    def resolve_object_reference(self, reference: str) -> str:
+        """Resolve a bounded player-facing object reference without authority."""
+
+        normalized = " ".join(
+            reference.strip().casefold().replace("-", " ").split()
+        )
+        if not normalized:
+            raise UnavailableFixtureCustodyError(
+                "object reference must be non-empty"
+            )
+
+        matches: list[str] = []
+        for presentation in self.object_presentations:
+            name = " ".join(
+                presentation.name.casefold().replace("-", " ").split()
+            )
+            local_id = " ".join(
+                presentation.entity_id.rsplit(":", 1)[-1]
+                .casefold()
+                .replace("-", " ")
+                .split()
+            )
+            last_word = name.split()[-1]
+            if normalized in {name, local_id, last_word}:
+                matches.append(presentation.entity_id)
+
+        if len(matches) != 1:
+            raise UnavailableFixtureCustodyError(
+                "object reference is unknown or ambiguous in the bounded fixture"
+            )
+        return matches[0]
+
+    def custody_evidence(
+        self,
+        *,
+        command_id: str,
+        object_entity_id: str,
+        operation: str,
+    ) -> tuple[CustodyQualificationEvidence, CustodyOpportunityEvidence]:
+        """Return fixture-qualified R4-E owner evidence for a known object.
+
+        This policy establishes only that this development fixture adds no
+        extra RT-010/AFQR-19 blocker for pickup/drop of its declared objects.
+        R4-E still validates actor/object identity, immediate placement,
+        co-location, current carrier, command identity, and transition state.
+        """
+
+        known_objects = {
+            presentation.entity_id
+            for presentation in self.object_presentations
+        }
+        if object_entity_id not in known_objects:
+            raise UnavailableFixtureCustodyError(
+                "custody target is not a declared fixture object"
+            )
+        if operation not in {"pickup", "drop"}:
+            raise UnavailableFixtureCustodyError(
+                "custody operation must be pickup or drop"
+            )
+
+        token = hashlib.sha256(
+            f"{command_id}|{operation}|{object_entity_id}".encode("utf-8")
+        ).hexdigest()[:20]
+
+        qualification = create_custody_qualification_evidence(
+            evidence_id=build_record_id(
+                "evidence",
+                f"g2-custody-{operation}-{token}-rt010",
+            ),
+            actor_entity_id=self.player_entity_id,
+            object_entity_id=object_entity_id,
+            operation=operation,
+            qualified=True,
+        )
+        opportunity = create_custody_opportunity_evidence(
+            evidence_id=build_record_id(
+                "evidence",
+                f"g2-custody-{operation}-{token}-afqr19",
+            ),
+            actor_entity_id=self.player_entity_id,
+            object_entity_id=object_entity_id,
+            operation=operation,
+            opportunity_available=True,
+            resolution_accepted=True,
+        )
+        return qualification, opportunity
+
+    def public_entities_carried_by(
+        self,
+        representation: PersistentWorldEntityLocationRepresentation,
+        carrier_entity_id: str,
+    ) -> tuple[PublicEntityPresentation, ...]:
+        carried_ids = {
+            relation.subject_entity_id
+            for relation in representation.relations
+            if (
+                relation.relation_type == CARRIED_BY_RELATION_TYPE
+                and relation.object_entity_id == carrier_entity_id
+            )
+        }
+        return tuple(
+            presentation
+            for presentation in self.object_presentations
+            if presentation.entity_id in carried_ids
+        )
 
     def public_entities_at(
         self,
