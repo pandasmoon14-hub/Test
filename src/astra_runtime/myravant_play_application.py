@@ -1,7 +1,8 @@
 """Thin application adapter for the bounded Myravant terminal vertical slice.
 
-The adapter owns session orchestration only. Authoritative movement and durable
-checkpoint behavior remain in the existing R4-C and R4-D runtime modules.
+The adapter owns session orchestration only. Authoritative movement, custody,
+and durable checkpoint behavior remain in the existing R4-C, R4-D, and R4-E
+runtime modules.
 """
 
 from __future__ import annotations
@@ -11,26 +12,38 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from astra_runtime.domain.persistent_world_entity_location_representation import (
+    CARRIED_BY_RELATION_TYPE,
     LOCATED_AT_RELATION_TYPE,
 )
 from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
+    PersistentWorldCheckpointFormatError,
     restore_persistent_world_checkpoint,
-    write_persistent_world_checkpoint,
+    restore_persistent_world_object_custody_checkpoint,
+    write_persistent_world_object_custody_checkpoint,
 )
 from astra_runtime.domain.persistent_world_movement_integration import (
     PersistentWorldMovementRuntimeState,
     digest_persistent_world_entity_location_representation,
     execute_persistent_world_movement,
 )
+from astra_runtime.domain.persistent_world_object_custody_transfer import (
+    PersistentWorldObjectCustodyError,
+    PersistentWorldObjectCustodyRuntimeState,
+    create_persistent_world_object_custody_runtime_state,
+    execute_persistent_world_object_custody,
+    replace_persistent_world_object_custody_movement_state,
+)
 from astra_runtime.kernel.command_envelope import create_command_envelope
 from astra_runtime.myravant_play_fixture import (
     MyravantPlayFixture,
+    UnavailableFixtureCustodyError,
     UnavailableFixtureMovementError,
     create_terminal_play_fixture,
 )
 
 
-_COMMAND_ID_PATTERN = re.compile(r"^terminal-move-(\d{6})$")
+_MOVEMENT_COMMAND_ID_PATTERN = re.compile(r"^terminal-move-(\d{6})$")
+_CUSTODY_COMMAND_ID_PATTERN = re.compile(r"^terminal-custody-(\d{6})$")
 
 
 class MyravantPlayApplicationError(ValueError):
@@ -48,6 +61,7 @@ class PublicLocationView:
     description: str
     exits: tuple[str, ...]
     objects: tuple[str, ...]
+    carrying: tuple[str, ...]
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -77,16 +91,26 @@ class MyravantPlayApplication:
         self,
         *,
         fixture: MyravantPlayFixture,
-        state: PersistentWorldMovementRuntimeState,
+        custody_state: PersistentWorldObjectCustodyRuntimeState,
         checkpoint_path: str | Path | None = None,
     ) -> None:
         self.fixture = fixture
-        self.state = state
+        self._custody_state = custody_state
         self.checkpoint_path = (
             Path(checkpoint_path)
             if checkpoint_path is not None
             else None
         )
+
+    @property
+    def state(self) -> PersistentWorldMovementRuntimeState:
+        """Compatibility view of the composed R4-C movement state."""
+
+        return self._custody_state.movement_state
+
+    @property
+    def custody_state(self) -> PersistentWorldObjectCustodyRuntimeState:
+        return self._custody_state
 
     @classmethod
     def new(
@@ -98,7 +122,9 @@ class MyravantPlayApplication:
         bounded_fixture = fixture or create_terminal_play_fixture()
         return cls(
             fixture=bounded_fixture,
-            state=bounded_fixture.initial_state,
+            custody_state=create_persistent_world_object_custody_runtime_state(
+                movement_state=bounded_fixture.initial_state
+            ),
             checkpoint_path=checkpoint_path,
         )
 
@@ -110,13 +136,26 @@ class MyravantPlayApplication:
         fixture: MyravantPlayFixture | None = None,
     ) -> "MyravantPlayApplication":
         bounded_fixture = fixture or create_terminal_play_fixture()
-        state = restore_persistent_world_checkpoint(
-            checkpoint_path=checkpoint_path,
-            expected_campaign_id=bounded_fixture.campaign_id,
-        )
+
+        try:
+            custody_state = (
+                restore_persistent_world_object_custody_checkpoint(
+                    checkpoint_path=checkpoint_path,
+                    expected_campaign_id=bounded_fixture.campaign_id,
+                )
+            )
+        except PersistentWorldCheckpointFormatError:
+            movement_state = restore_persistent_world_checkpoint(
+                checkpoint_path=checkpoint_path,
+                expected_campaign_id=bounded_fixture.campaign_id,
+            )
+            custody_state = create_persistent_world_object_custody_runtime_state(
+                movement_state=movement_state
+            )
+
         return cls(
             fixture=bounded_fixture,
-            state=state,
+            custody_state=custody_state,
             checkpoint_path=checkpoint_path,
         )
 
@@ -148,12 +187,17 @@ class MyravantPlayApplication:
             self.state.representation,
             place_id,
         )
+        carrying = self.fixture.public_entities_carried_by(
+            self.state.representation,
+            self.fixture.player_entity_id,
+        )
         view = PublicLocationView(
             place_id=place_id,
             name=presentation.name,
             description=presentation.description,
             exits=self.fixture.exits_from(place_id),
             objects=tuple(item.name for item in objects),
+            carrying=tuple(item.name for item in carrying),
         )
         digest = self.authoritative_digest()
         return PlayApplicationResult(
@@ -164,19 +208,36 @@ class MyravantPlayApplication:
             post_state_digest=digest,
         )
 
-    def _next_command_id(self) -> str:
+    def _next_movement_command_id(self) -> str:
         used = {
             transition.command_id
             for transition in self.state.committed_transitions
         }
         highest = 0
         for command_id in used:
-            match = _COMMAND_ID_PATTERN.fullmatch(command_id)
+            match = _MOVEMENT_COMMAND_ID_PATTERN.fullmatch(command_id)
             if match:
                 highest = max(highest, int(match.group(1)))
         sequence = highest + 1
         while True:
             candidate = f"terminal-move-{sequence:06d}"
+            if candidate not in used:
+                return candidate
+            sequence += 1
+
+    def _next_custody_command_id(self) -> str:
+        used = {
+            transition.command_id
+            for transition in self._custody_state.committed_custody_transitions
+        }
+        highest = 0
+        for command_id in used:
+            match = _CUSTODY_COMMAND_ID_PATTERN.fullmatch(command_id)
+            if match:
+                highest = max(highest, int(match.group(1)))
+        sequence = highest + 1
+        while True:
+            candidate = f"terminal-custody-{sequence:06d}"
             if candidate not in used:
                 return candidate
             sequence += 1
@@ -201,7 +262,7 @@ class MyravantPlayApplication:
                 failure_class="unavailable_fixture_route",
             )
 
-        command_id = self._next_command_id()
+        command_id = self._next_movement_command_id()
         command = create_command_envelope(
             command_id=command_id,
             command_type="move",
@@ -226,7 +287,12 @@ class MyravantPlayApplication:
             expected_pre_state_digest=pre_digest,
         )
 
-        self.state = result.state
+        self._custody_state = (
+            replace_persistent_world_object_custody_movement_state(
+                state=self._custody_state,
+                movement_state=result.state,
+            )
+        )
         post_digest = self.authoritative_digest()
         destination_name = self.fixture.place_presentation(
             destination_place_id
@@ -250,6 +316,140 @@ class MyravantPlayApplication:
             technical_retry=result.technical_retry,
         )
 
+    def _object_available_for_operation(
+        self,
+        *,
+        object_entity_id: str,
+        operation: str,
+    ) -> bool:
+        place_id = self.current_place_id()
+        relations = self.state.representation.relations
+
+        if operation == "pickup":
+            return any(
+                relation.relation_type == LOCATED_AT_RELATION_TYPE
+                and relation.subject_entity_id == object_entity_id
+                and relation.object_entity_id == place_id
+                for relation in relations
+            )
+
+        return any(
+            relation.relation_type == CARRIED_BY_RELATION_TYPE
+            and relation.subject_entity_id == object_entity_id
+            and relation.object_entity_id == self.fixture.player_entity_id
+            for relation in relations
+        )
+
+    def _custody(
+        self,
+        *,
+        operation: str,
+        object_reference: str,
+    ) -> PlayApplicationResult:
+        pre_digest = self.authoritative_digest()
+
+        try:
+            object_entity_id = self.fixture.resolve_object_reference(
+                object_reference
+            )
+        except UnavailableFixtureCustodyError:
+            return PlayApplicationResult(
+                result_type="custody_rejected",
+                message="That object is not available in this bounded fixture.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="unknown_or_ambiguous_fixture_object",
+            )
+
+        object_name = self.fixture.entity_name(object_entity_id)
+        if not self._object_available_for_operation(
+            object_entity_id=object_entity_id,
+            operation=operation,
+        ):
+            action = "pick that up" if operation == "pickup" else "drop that"
+            return PlayApplicationResult(
+                result_type="custody_rejected",
+                message=f"You cannot {action} in the current state.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class=f"{operation}_placement_unavailable",
+            )
+
+        command_id = self._next_custody_command_id()
+        command = create_command_envelope(
+            command_id=command_id,
+            command_type=f"{operation}_object",
+            source_actor_id=self.fixture.player_entity_id,
+            payload={"object_entity_id": object_entity_id},
+            metadata={"client": "myravant-terminal-g2"},
+        )
+        qualification_evidence, opportunity_evidence = (
+            self.fixture.custody_evidence(
+                command_id=command_id,
+                object_entity_id=object_entity_id,
+                operation=operation,
+            )
+        )
+
+        try:
+            result = execute_persistent_world_object_custody(
+                state=self._custody_state,
+                command=command,
+                qualification_evidence=qualification_evidence,
+                opportunity_evidence=opportunity_evidence,
+                expected_pre_state_digest=pre_digest,
+            )
+        except PersistentWorldObjectCustodyError as exc:
+            return PlayApplicationResult(
+                result_type="custody_rejected",
+                message=(
+                    "The pickup was rejected by the authoritative runtime."
+                    if operation == "pickup"
+                    else "The drop was rejected by the authoritative runtime."
+                ),
+                authoritative_changed=False,
+                command_id=command_id,
+                opportunity_evidence_id=opportunity_evidence.evidence_id,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class=type(exc).__name__,
+            )
+
+        self._custody_state = result.state
+        post_digest = self.authoritative_digest()
+        verb = "pick up" if operation == "pickup" else "drop"
+
+        return PlayApplicationResult(
+            result_type="custody_committed",
+            message=f"You {verb} the {object_name}.",
+            authoritative_changed=True,
+            command_id=command_id,
+            command_fingerprint=result.receipt.command_fingerprint,
+            preview_id=result.preview.preview_id,
+            receipt_id=result.receipt.receipt_id,
+            state_delta_id=result.state_delta.delta_id,
+            opportunity_evidence_id=(
+                result.receipt.opportunity_evidence_id
+            ),
+            pre_state_digest=pre_digest,
+            post_state_digest=post_digest,
+            technical_retry=result.technical_retry,
+        )
+
+    def pickup(self, object_reference: str) -> PlayApplicationResult:
+        return self._custody(
+            operation="pickup",
+            object_reference=object_reference,
+        )
+
+    def drop(self, object_reference: str) -> PlayApplicationResult:
+        return self._custody(
+            operation="drop",
+            object_reference=object_reference,
+        )
+
     def save(self) -> PlayApplicationResult:
         if self.checkpoint_path is None:
             raise CheckpointPathRequiredError(
@@ -257,10 +457,12 @@ class MyravantPlayApplication:
             )
 
         pre_digest = self.authoritative_digest()
-        checkpoint_digest = write_persistent_world_checkpoint(
-            state=self.state,
-            checkpoint_path=self.checkpoint_path,
-            qualification_evidence=self.fixture.checkpoint_qualification,
+        checkpoint_digest = (
+            write_persistent_world_object_custody_checkpoint(
+                state=self._custody_state,
+                checkpoint_path=self.checkpoint_path,
+                qualification_evidence=self.fixture.checkpoint_qualification,
+            )
         )
         post_digest = self.authoritative_digest()
 

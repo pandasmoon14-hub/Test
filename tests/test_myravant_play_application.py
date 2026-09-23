@@ -2,8 +2,21 @@
 
 from __future__ import annotations
 
+from astra_runtime.domain.persistent_world_entity_location_representation import (
+    CARRIED_BY_RELATION_TYPE,
+    LOCATED_AT_RELATION_TYPE,
+)
+from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
+    write_persistent_world_checkpoint,
+)
 from astra_runtime.myravant_play_application import MyravantPlayApplication
-from astra_runtime.myravant_play_fixture import WORKSHOP_ID, YARD_ID
+from astra_runtime.myravant_play_fixture import (
+    LANTERN_ID,
+    TOOL_CHEST_ID,
+    WORKSHOP_ID,
+    YARD_ID,
+    create_terminal_play_fixture,
+)
 
 
 def test_look_reads_authoritative_location_without_mutation():
@@ -102,3 +115,172 @@ def test_save_restore_and_new_play_cross_process_shape(tmp_path):
     )
     assert restored_again.current_place_id() == WORKSHOP_ID
     assert len(restored_again.state.committed_transitions) == 2
+
+
+def test_pickup_routes_through_r4_e_and_look_reports_carried_object():
+    app = MyravantPlayApplication.new()
+    before = app.authoritative_digest()
+
+    result = app.pickup("lantern")
+
+    assert result.result_type == "custody_committed"
+    assert result.authoritative_changed is True
+    assert result.command_id == "terminal-custody-000001"
+    assert result.receipt_id is not None
+    assert result.state_delta_id is not None
+    assert result.opportunity_evidence_id is not None
+    assert result.pre_state_digest == before
+    assert result.post_state_digest == app.authoritative_digest()
+    assert result.post_state_digest != before
+
+    relations = app.state.representation.relations
+    carried = [
+        relation
+        for relation in relations
+        if (
+            relation.relation_type == CARRIED_BY_RELATION_TYPE
+            and relation.subject_entity_id == LANTERN_ID
+        )
+    ]
+    direct = [
+        relation
+        for relation in relations
+        if (
+            relation.relation_type == LOCATED_AT_RELATION_TYPE
+            and relation.subject_entity_id == LANTERN_ID
+        )
+    ]
+
+    assert len(carried) == 1
+    assert carried[0].object_entity_id == app.fixture.player_entity_id
+    assert direct == []
+
+    view = app.look().view
+    assert view is not None
+    assert "Brass Lantern" in view.carrying
+    assert "Brass Lantern" not in view.objects
+
+
+def test_movement_preserves_r4_e_custody_relation():
+    app = MyravantPlayApplication.new()
+
+    app.pickup("brass lantern")
+    movement = app.move("south")
+
+    assert movement.result_type == "movement_committed"
+    assert app.current_place_id() == YARD_ID
+
+    carried = [
+        relation
+        for relation in app.state.representation.relations
+        if (
+            relation.relation_type == CARRIED_BY_RELATION_TYPE
+            and relation.subject_entity_id == LANTERN_ID
+        )
+    ]
+    assert len(carried) == 1
+    assert carried[0].object_entity_id == app.fixture.player_entity_id
+
+
+def test_remote_pickup_is_rejected_before_command_without_state_change():
+    app = MyravantPlayApplication.new()
+    before = app.authoritative_digest()
+
+    result = app.pickup("tool chest")
+
+    assert result.result_type == "custody_rejected"
+    assert result.failure_class == "pickup_placement_unavailable"
+    assert result.command_id is None
+    assert result.authoritative_changed is False
+    assert result.pre_state_digest == before
+    assert result.post_state_digest == before
+    assert app.authoritative_digest() == before
+
+
+def test_r4e_pickup_move_save_restore_drop_save_restore_sequence(tmp_path):
+    checkpoint = tmp_path / "myravant-g2.json"
+    app = MyravantPlayApplication.new(checkpoint_path=checkpoint)
+
+    pickup = app.pickup("lantern")
+    movement = app.move("south")
+    first_save = app.save()
+
+    assert pickup.command_id == "terminal-custody-000001"
+    assert movement.command_id == "terminal-move-000001"
+    assert first_save.checkpoint_digest is not None
+
+    del app
+
+    restored = MyravantPlayApplication.restore(
+        checkpoint_path=checkpoint
+    )
+    assert restored.current_place_id() == YARD_ID
+    assert restored.look().view is not None
+    assert "Brass Lantern" in restored.look().view.carrying
+
+    dropped = restored.drop("brass lantern")
+    second_save = restored.save()
+
+    assert dropped.result_type == "custody_committed"
+    assert dropped.command_id == "terminal-custody-000002"
+    assert second_save.checkpoint_digest is not None
+
+    del restored
+
+    final = MyravantPlayApplication.restore(
+        checkpoint_path=checkpoint
+    )
+    assert final.current_place_id() == YARD_ID
+    assert len(final.state.committed_transitions) == 1
+    assert len(final.custody_state.committed_custody_transitions) == 2
+
+    lantern_direct = [
+        relation
+        for relation in final.state.representation.relations
+        if (
+            relation.relation_type == LOCATED_AT_RELATION_TYPE
+            and relation.subject_entity_id == LANTERN_ID
+        )
+    ]
+    lantern_carried = [
+        relation
+        for relation in final.state.representation.relations
+        if (
+            relation.relation_type == CARRIED_BY_RELATION_TYPE
+            and relation.subject_entity_id == LANTERN_ID
+        )
+    ]
+    assert len(lantern_direct) == 1
+    assert lantern_direct[0].object_entity_id == YARD_ID
+    assert lantern_carried == []
+
+
+def test_existing_g1_r4d_checkpoint_remains_loadable_and_can_upgrade_on_save(
+    tmp_path,
+):
+    fixture = create_terminal_play_fixture()
+    checkpoint = tmp_path / "g1-r4d.json"
+
+    write_persistent_world_checkpoint(
+        state=fixture.initial_state,
+        checkpoint_path=checkpoint,
+        qualification_evidence=fixture.checkpoint_qualification,
+    )
+
+    restored = MyravantPlayApplication.restore(
+        checkpoint_path=checkpoint,
+        fixture=fixture,
+    )
+
+    assert restored.current_place_id() == WORKSHOP_ID
+    assert restored.custody_state.committed_custody_transitions == ()
+
+    restored.checkpoint_path = checkpoint
+    restored.save()
+
+    upgraded = MyravantPlayApplication.restore(
+        checkpoint_path=checkpoint,
+        fixture=fixture,
+    )
+    assert upgraded.current_place_id() == WORKSHOP_ID
+    assert upgraded.custody_state.committed_custody_transitions == ()

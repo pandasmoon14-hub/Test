@@ -20,7 +20,7 @@ from typing import Any
 
 TRACE_FORMAT_IDENTITY = "myravant.live_play_evidence"
 TRACE_FORMAT_VERSION = 1
-CLIENT_ID = "myravant-terminal-g1"
+CLIENT_ID = "myravant-terminal-g2"
 CLIENT_MODE = "CLIENT-TEXT-V1"
 MODEL_MODE = "MODEL-NONE"
 
@@ -466,10 +466,14 @@ class LivePlayEvidenceRecorder:
         self._next_sequence += 1
         self._meaningful_interactions += 1
 
-        if result_type == "movement_committed":
+        if result_type in {
+            "movement_committed",
+            "custody_committed",
+        }:
             self._committed_transitions += 1
         if failure_class is not None or result_type in {
             "movement_rejected",
+            "custody_rejected",
             "unsupported_input",
             "checkpoint_unavailable",
         }:

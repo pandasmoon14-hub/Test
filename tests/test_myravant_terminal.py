@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from io import StringIO
 
 from astra_runtime.myravant_live_play_evidence import (
@@ -44,6 +46,15 @@ def test_parser_supports_bounded_commands_without_claiming_closed_action_space()
     parsed = parse_terminal_command("move south")
     assert parsed.action == "move"
     assert parsed.argument == "south"
+    pickup = parse_terminal_command("pickup brass lantern")
+    assert pickup.action == "pickup"
+    assert pickup.argument == "brass lantern"
+    pick_up = parse_terminal_command("pick up lantern")
+    assert pick_up.action == "pickup"
+    assert pick_up.argument == "lantern"
+    drop = parse_terminal_command("drop brass lantern")
+    assert drop.action == "drop"
+    assert drop.argument == "brass lantern"
     assert parse_terminal_command("save").action == "save"
     assert parse_terminal_command("exit").action == "exit"
 
@@ -239,3 +250,106 @@ def test_trace_write_failure_cannot_change_authoritative_outcome(
     assert recorder.evidence_complete is False
     assert recorder.trace_write_failures == 1
     assert "Trace evidence incomplete" in error_stream.getvalue()
+
+
+def test_terminal_pickup_move_and_trace_count_both_committed_transitions(
+    tmp_path,
+):
+    checkpoint = tmp_path / "g2.json"
+    trace_path = tmp_path / "g2-trace.jsonl"
+    app = MyravantPlayApplication.new(checkpoint_path=checkpoint)
+    recorder = _recorder(
+        tmp_path,
+        app,
+        name="g2-trace.jsonl",
+        session_id="g2-custody-trace",
+    )
+    output = StringIO()
+
+    exit_code = run_terminal(
+        app,
+        input_stream=StringIO(
+            "pickup brass lantern\nmove south\nlook\nsave\nexit\n"
+        ),
+        output_stream=output,
+        evidence_recorder=recorder,
+        evidence_error_stream=StringIO(),
+    )
+
+    assert exit_code == 0
+    text = output.getvalue()
+    assert "You pick up the Brass Lantern." in text
+    assert "You move to the Yard." in text
+    assert "Carrying: Brass Lantern" in text
+    assert checkpoint.exists()
+
+    records = _trace_records(trace_path)
+    interactions = [
+        record
+        for record in records
+        if record["record_type"] == "interaction"
+    ]
+    assert [record["result_type"] for record in interactions] == [
+        "custody_committed",
+        "movement_committed",
+        "look",
+        "checkpoint_written",
+    ]
+    end = records[-1]
+    assert end["record_type"] == "session_end"
+    assert end["committed_transitions"] == 2
+    assert end["checkpoints_written"] == 1
+
+
+def test_terminal_custody_survives_true_process_boundary(tmp_path):
+    checkpoint = tmp_path / "process-boundary-g2.json"
+
+    first = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "astra_runtime.myravant_terminal",
+            "--checkpoint",
+            str(checkpoint),
+        ],
+        input="pickup lantern\nmove south\nsave\nexit\n",
+        text=True,
+        capture_output=True,
+    )
+
+    assert first.returncode == 0, (first.stdout, first.stderr)
+    assert "You pick up the Brass Lantern." in first.stdout
+    assert "You move to the Yard." in first.stdout
+    assert "Checkpoint written." in first.stdout
+
+    second = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "astra_runtime.myravant_terminal",
+            "--load",
+            str(checkpoint),
+            "--checkpoint",
+            str(checkpoint),
+        ],
+        input="look\ndrop brass lantern\nsave\nexit\n",
+        text=True,
+        capture_output=True,
+    )
+
+    assert second.returncode == 0, (second.stdout, second.stderr)
+    assert "Yard" in second.stdout
+    assert "Carrying: Brass Lantern" in second.stdout
+    assert "You drop the Brass Lantern." in second.stdout
+    assert "Checkpoint written." in second.stdout
+
+    final = MyravantPlayApplication.restore(
+        checkpoint_path=checkpoint
+    )
+    assert final.current_place_id().endswith(":yard")
+    assert len(final.state.committed_transitions) == 1
+    assert len(final.custody_state.committed_custody_transitions) == 2
+    view = final.look().view
+    assert view is not None
+    assert "Brass Lantern" in view.objects
+    assert "Brass Lantern" not in view.carrying
