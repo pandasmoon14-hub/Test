@@ -8270,3 +8270,88 @@ R4-D format version 1 retains its existing meaning. No generalized inventory, ow
 - **Implementation state:** `regression_certified_pending_commit`
 - **Next gate:** `r4_e_implementation_commit_push`
 - **Next gate authorized:** `false`
+
+## 2026-09-22 decision — R4-E implementation post-merge closure
+
+- **Decision ID:** `R4-E-IMPLEMENTATION-POST-MERGE-CLOSURE-010`
+- **Authority:** `owner_directive_2026-09-22_r4_e_implementation_post_merge_closure`
+- **Authority effect:** `bounded_r4_e_post_merge_lifecycle_reconciliation_only`
+- **Implementation PR:** `#445`
+- **Implementation head:** `0b80245b8eb051642bac6fea21950c0dd831e227`
+- **Implementation merge:** `f5a6f94615045649fd29881223512dd88ee9b170`
+- **Implementation tree:** `63daaf63055d947756f51b4402aae96262424886`
+- **Implementation CI:** `#293` / `35777626182`
+- **Cross-platform CI certified:** `true`
+- **Implementation lifecycle:** `merged_complete`
+- **Production runtime paths changed by closure:** `0`
+- **Production schema paths changed by closure:** `0`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+- **Closure regression certification required before commit/push:** `true`
+
+### R4-E post-merge closure initial diff-check recovery
+
+- **Classification:** `r4_e_post_merge_closure_initial_recording_eof_whitespace_defect`
+- **Behavioral execution reached:** `false`
+- **Runtime behavioral defect detected:** `false`
+- **Runtime semantic defect detected:** `false`
+- **Production runtime scope expanded:** `false`
+- **Production schema scope expanded:** `false`
+- **Semantic authority expanded:** `false`
+- **Repair:** normalize the two generated narrative/control files to one terminating newline
+- **Result:** `recovered`
+
+### R4-E post-merge closure focused lifecycle-alignment recovery
+
+- **Failed focused closure result:** `81 passed, 2 failed`
+- **Classification:** `r4_e_post_merge_closure_stale_current_lifecycle_expectations`
+- **Stale current assertions corrected:** `4`
+- **Authoritative status:** `merged_complete`
+- **Stale status:** `implementation_authorized`
+- **Authoritative implementation state:** `merged_complete`
+- **Stale implementation state:** `regression_certified_pending_commit`
+- **Historical lifecycle evidence rewritten:** `false`
+- **Runtime behavioral defect detected:** `false`
+- **Runtime semantic defect detected:** `false`
+- **Implementation CI #293 invalidated:** `false`
+- **Production runtime scope expanded:** `false`
+- **Production schema scope expanded:** `false`
+- **Semantic authority expanded:** `false`
+- **Closure certification restart required:** `true`
+- **Result:** `recovered`
+
+## 2026-09-22 decision — R4-E implementation post-merge closure certification
+
+- **Decision ID:** `R4-E-IMPLEMENTATION-POST-MERGE-CLOSURE-CERTIFICATION-011`
+- **Focused closure:** `84 passed in 1.35s`
+- **Broader R4/PR2:** `219 passed in 2.10s`
+- **Full repository:** `9586 passed, 10 skipped, 2 xfailed, 1 warning in 843.93s (0:14:03)`
+- **Changed paths:** `8`
+- **Production runtime paths changed by closure:** `0`
+- **Production schema paths changed:** `0`
+- **Implementation lifecycle:** `merged_complete`
+- **Post-merge closure regression certified:** `true`
+- **Closure recording state:** `regression_certified_pending_commit`
+- **Next gate:** `r4_e_post_merge_closure_commit_push`
+- **Next gate authorized:** `false`
+- **General R4 activation authorized:** `false`
+- **Runtime promotion authorized:** `false`
+
+### R4-E post-merge closure post-recording diff-check recovery
+
+- **Classification:** `r4_e_post_merge_closure_post_recording_eof_whitespace_defect`
+- **Failure point:** post-certification recording `git diff --check`
+- **Full repository certification:** `9586 passed, 10 skipped, 2 xfailed, 1 warning`
+- **Certification invalidated:** `false`
+- **Full repository rerun required:** `false`
+- **Post-recording validation required:** `true`
+- **Runtime behavioral defect detected:** `false`
+- **Runtime semantic defect detected:** `false`
+- **Implementation CI #293 invalidated:** `false`
+- **Production runtime scope expanded:** `false`
+- **Production schema scope expanded:** `false`
+- **Semantic authority expanded:** `false`
+- **Result:** `recovered`
+
+- **Post-recording focused closure validation:** `68 passed in 0.62s`
+- **Post-recording broader validation:** `220 passed in 2.18s`

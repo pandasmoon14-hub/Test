@@ -1,6 +1,6 @@
 {
   "artifact_id": "POST-R2A-TRANSITION-MANIFEST-001",
-  "artifact_version": "0.4.88",
+  "artifact_version": "0.4.90",
   "status": "active",
   "layer": "0_control",
   "authority_effect": "bounded_project_sequencing_authorization_tracking_migration_tracking_and_completion_evidence_only",
@@ -3573,7 +3573,7 @@
     }
   },
   "r4_e_object_custody_transfer_target": {
-    "status": "implementation_authorized",
+    "status": "merged_complete",
     "package_id": "R4-E",
     "package_name": "persistent_world_object_custody_transfer",
     "definition_authorization_reference": "owner_directive_2026-09-21_r4_e_package_definition",
@@ -3586,7 +3586,7 @@
     "package_definition": "docs/doctrine/reviews/r4_e_persistent_world_object_custody_transfer_package.yaml",
     "package_defined": true,
     "implementation_authorized": true,
-    "implementation_state": "regression_certified_pending_commit",
+    "implementation_state": "merged_complete",
     "r4_activation_authorized": false,
     "runtime_promotion_authorized": false,
     "production_schema_implementation_authorized": false,
@@ -3602,7 +3602,7 @@
     "proposed_production_schema_edit_allowlist": [],
     "definition_regression_certified": true,
     "definition_recording_state": "merged_complete",
-    "next_gate": "r4_e_implementation_commit_push",
+    "next_gate": "r4_e_post_merge_closure_commit_push",
     "next_gate_authorized": false,
     "r4_d_historical_lifecycle_values_rewritten": false,
     "definition_scope_harness_recovery_evidence": {
@@ -3895,7 +3895,7 @@
     },
     "implementation_execution_starting_baseline": "701ea88a32cb251aed579edecfb30998bb449809",
     "implementation_execution_starting_tree": "2a864312224f168e820f386fe14a6608cb0f11cb",
-    "implementation_certification_recording_state": "regression_certified_pending_commit",
+    "implementation_certification_recording_state": "merged_complete",
     "implementation_regression_certification": {
       "focused_r4e_behavior": {
         "summary": "17 passed in 0.99s",
@@ -3980,6 +3980,161 @@
         "repair_path": "src/astra_runtime/domain/persistent_world_local_checkpoint_restore.py",
         "repair_effect": "normalize generated file ending to exactly one terminating newline",
         "result": "recovered"
+      }
+    },
+    "implementation_cross_platform_ci_certified": true,
+    "implementation_cross_platform_ci_certification": {
+      "pull_request": 445,
+      "implementation_head": "0b80245b8eb051642bac6fea21950c0dd831e227",
+      "workflow_name": "CI",
+      "workflow_run_number": 293,
+      "workflow_run_id": 35777626182,
+      "core_linux": {
+        "job_id": 106914739340,
+        "conclusion": "success"
+      },
+      "core_windows": {
+        "job_id": 106914739707,
+        "conclusion": "success"
+      },
+      "cross_platform_ci_certified": true,
+      "result": "pass"
+    },
+    "implementation_branch_head": "0b80245b8eb051642bac6fea21950c0dd831e227",
+    "implementation_merge_commit": "f5a6f94615045649fd29881223512dd88ee9b170",
+    "implementation_merge_tree": "63daaf63055d947756f51b4402aae96262424886",
+    "implementation_ci_run": 293,
+    "implementation_ci_run_id": 35777626182,
+    "post_merge_closure_complete": true,
+    "post_merge_closure_authorization_reference": "owner_directive_2026-09-22_r4_e_implementation_post_merge_closure",
+    "post_merge_closure_authority_effect": "bounded_r4_e_post_merge_lifecycle_reconciliation_only",
+    "post_merge_closure_recorded_from": "f5a6f94615045649fd29881223512dd88ee9b170",
+    "post_merge_closure_tree": "63daaf63055d947756f51b4402aae96262424886",
+    "post_merge_closure_pull_request": 445,
+    "post_merge_closure_branch_head": "0b80245b8eb051642bac6fea21950c0dd831e227",
+    "post_merge_closure_ci_run": 293,
+    "post_merge_closure_ci_run_id": 35777626182,
+    "post_merge_closure_ci_verification": {
+      "pull_request": 445,
+      "implementation_head": "0b80245b8eb051642bac6fea21950c0dd831e227",
+      "workflow_name": "CI",
+      "workflow_run_number": 293,
+      "workflow_run_id": 35777626182,
+      "core_linux": {
+        "job_id": 106914739340,
+        "conclusion": "success"
+      },
+      "core_windows": {
+        "job_id": 106914739707,
+        "conclusion": "success"
+      },
+      "cross_platform_ci_certified": true,
+      "result": "pass"
+    },
+    "post_merge_closure_regression_certified": true,
+    "post_merge_closure_recording_state": "regression_certified_pending_commit",
+    "post_merge_closure_failure_recovery_evidence": {
+      "initial_recording_eof_whitespace": {
+        "classification": "r4_e_post_merge_closure_initial_recording_eof_whitespace_defect",
+        "failed_gate_step": "initial_git_diff_check_before_behavioral_execution",
+        "behavioral_execution_reached": false,
+        "runtime_behavioral_defect_detected": false,
+        "runtime_semantic_defect_detected": false,
+        "runtime_scope_expanded": false,
+        "production_schema_scope_expanded": false,
+        "semantic_authority_expanded": false,
+        "repair_paths": [
+          "docs/decisions/current_decisions_log.md",
+          "docs/doctrine/control/post_r2a_transition_program.md"
+        ],
+        "repair_effect": "normalize generated file endings to exactly one terminating newline",
+        "regression_certification_restart_required": false,
+        "result": "recovered"
+      },
+      "focused_current_lifecycle_expectation_alignment": {
+        "failed_focused_closure_certification": {
+          "passed": 81,
+          "failed": 2,
+          "result": "fail"
+        },
+        "failed_tests": [
+          "tests/test_r4_e_persistent_world_object_custody_transfer_package.py::test_r4_e_identity_and_authorization_boundary_are_exact",
+          "tests/test_post_r2a_transition_program.py::test_r4_e_object_custody_transfer_definition_is_bounded"
+        ],
+        "classification": "r4_e_post_merge_closure_stale_current_lifecycle_expectations",
+        "stale_current_assertion_count": 4,
+        "authoritative_status": "merged_complete",
+        "stale_status": "implementation_authorized",
+        "authoritative_implementation_state": "merged_complete",
+        "stale_implementation_state": "regression_certified_pending_commit",
+        "historical_lifecycle_evidence_rewritten": false,
+        "runtime_behavioral_defect_detected": false,
+        "runtime_semantic_defect_detected": false,
+        "cross_platform_ci_invalidated": false,
+        "runtime_scope_expanded": false,
+        "production_schema_scope_expanded": false,
+        "semantic_authority_expanded": false,
+        "regression_certification_restart_required": true,
+        "repair_paths": [
+          "tests/test_r4_e_persistent_world_object_custody_transfer_package.py",
+          "tests/test_post_r2a_transition_program.py"
+        ],
+        "result": "recovered"
+      },
+      "post_recording_eof_whitespace": {
+        "classification": "r4_e_post_merge_closure_post_recording_eof_whitespace_defect",
+        "failure_point": "git_diff_check_after_successful_full_repository_closure_certification",
+        "full_repository_certification_completed": true,
+        "full_repository_result": {
+          "passed": 9586,
+          "skipped": 10,
+          "xfailed": 2,
+          "warnings": 1,
+          "result": "pass"
+        },
+        "certification_invalidated": false,
+        "full_repository_rerun_required": false,
+        "post_recording_validation_required": true,
+        "runtime_behavioral_defect_detected": false,
+        "runtime_semantic_defect_detected": false,
+        "cross_platform_ci_invalidated": false,
+        "runtime_scope_expanded": false,
+        "production_schema_scope_expanded": false,
+        "semantic_authority_expanded": false,
+        "repair_paths": [
+          "docs/decisions/current_decisions_log.md",
+          "docs/doctrine/control/post_r2a_transition_program.md"
+        ],
+        "repair_effect": "normalize generated post-recording file endings to exactly one terminating newline",
+        "result": "recovered"
+      }
+    },
+    "post_merge_closure_regression_certification": {
+      "focused_closure": {
+        "summary": "84 passed in 1.35s",
+        "result": "pass"
+      },
+      "broader_pr2_r4": {
+        "summary": "219 passed in 2.10s",
+        "result": "pass"
+      },
+      "full_repository": {
+        "summary": "9586 passed, 10 skipped, 2 xfailed, 1 warning in 843.93s (0:14:03)",
+        "warning_disposition": "existing_nonblocking_deprecation_if_present",
+        "result": "pass"
+      },
+      "git_diff_check": "clean",
+      "changed_path_count": 8,
+      "runtime_implementation_path_count": 0,
+      "production_schema_path_count": 0,
+      "full_repository_rerun_after_recording_required": false,
+      "post_recording_focused": {
+        "summary": "68 passed in 0.62s",
+        "result": "pass"
+      },
+      "post_recording_broader": {
+        "summary": "220 passed in 2.18s",
+        "result": "pass"
       }
     }
   }
