@@ -7,6 +7,7 @@ import json
 import pytest
 
 from astra_runtime.myravant_live_play_evidence import (
+    CLIENT_ID,
     InvalidLivePlayEvidenceError,
     LivePlayEvidenceRecorder,
     LivePlayEvidenceWriteError,
@@ -204,3 +205,48 @@ def test_repository_sha_must_be_exact_or_unknown():
 
     assert header.repository_sha == "unknown"
     assert header.debug_mode is True
+
+
+def test_g2_client_identity_and_custody_result_accounting(tmp_path):
+    header = _header()
+    assert CLIENT_ID == "myravant-terminal-g2"
+    assert header.client_id == CLIENT_ID
+
+    recorder = LivePlayEvidenceRecorder(
+        trace_path=tmp_path / "g2-evidence.jsonl",
+        header=header,
+    )
+
+    recorder.record_interaction(
+        raw_player_input="pickup lantern\n",
+        parsed_action="pickup",
+        parsed_argument="lantern",
+        player_visible_output="You pick up the Brass Lantern.\n",
+        result_type="custody_committed",
+        authoritative_changed=True,
+        command_id="terminal-custody-000001",
+        command_fingerprint="4" * 64,
+        preview_id="astra:custody_preview:test",
+        receipt_id="astra:custody_receipt:test",
+        state_delta_id="astra:custody_delta:test",
+        opportunity_evidence_id="astra:evidence:test-custody-opportunity",
+        pre_state_digest=INITIAL_DIGEST,
+        post_state_digest=POST_DIGEST,
+    )
+    recorder.record_interaction(
+        raw_player_input="drop tool chest\n",
+        parsed_action="drop",
+        parsed_argument="tool chest",
+        player_visible_output="You cannot drop that in the current state.\n",
+        result_type="custody_rejected",
+        authoritative_changed=False,
+        pre_state_digest=POST_DIGEST,
+        post_state_digest=POST_DIGEST,
+        failure_class="drop_placement_unavailable",
+    )
+
+    receipt = recorder.finish(final_state_digest=POST_DIGEST)
+
+    assert receipt.committed_transitions == 1
+    assert receipt.unsupported_or_rejected == 1
+    assert receipt.meaningful_interactions == 2
