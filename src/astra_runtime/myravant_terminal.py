@@ -1,4 +1,4 @@
-"""Human-playable terminal client for the bounded Myravant G1 vertical slice."""
+"""Human-playable terminal client for the bounded Myravant vertical slice."""
 
 from __future__ import annotations
 
@@ -49,6 +49,31 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
             raw_text=raw_text,
         )
 
+    if verb in {"pickup", "take"} and len(parts) >= 2:
+        return ParsedTerminalCommand(
+            action="pickup",
+            argument=" ".join(parts[1:]),
+            raw_text=raw_text,
+        )
+
+    if (
+        verb == "pick"
+        and len(parts) >= 3
+        and parts[1].lower() == "up"
+    ):
+        return ParsedTerminalCommand(
+            action="pickup",
+            argument=" ".join(parts[2:]),
+            raw_text=raw_text,
+        )
+
+    if verb == "drop" and len(parts) >= 2:
+        return ParsedTerminalCommand(
+            action="drop",
+            argument=" ".join(parts[1:]),
+            raw_text=raw_text,
+        )
+
     if verb == "save" and len(parts) == 1:
         return ParsedTerminalCommand(action="save", raw_text=raw_text)
 
@@ -71,6 +96,8 @@ def _render_view(view: PublicLocationView) -> str:
         lines.extend(("", f"Exits: {', '.join(view.exits)}"))
     if view.objects:
         lines.extend(("", f"Objects: {', '.join(view.objects)}"))
+    if view.carrying:
+        lines.extend(("", f"Carrying: {', '.join(view.carrying)}"))
     return "\n".join(lines)
 
 
@@ -123,7 +150,8 @@ def _write_result(
 
 def _write_help(output: TextIO) -> str:
     visible = (
-        "Commands: look, move <direction>, save, help, exit\n"
+        "Commands: look, move <direction>, pickup <object>, "
+        "drop <object>, save, help, exit\n"
         "Other fictionally coherent input is preserved as unsupported input; "
         "it does not mutate authoritative state.\n"
     )
@@ -240,6 +268,20 @@ def run_terminal(
             continue
         if parsed.action == "move":
             result = application.move(parsed.argument or "")
+            visible = _write_result(output_stream, result, debug=debug)
+            _record_result(
+                evidence_recorder,
+                parsed=parsed,
+                visible_output=visible,
+                result=result,
+                error_stream=evidence_error_stream,
+            )
+            continue
+        if parsed.action in {"pickup", "drop"}:
+            if parsed.action == "pickup":
+                result = application.pickup(parsed.argument or "")
+            else:
+                result = application.drop(parsed.argument or "")
             visible = _write_result(output_stream, result, debug=debug)
             _record_result(
                 evidence_recorder,
