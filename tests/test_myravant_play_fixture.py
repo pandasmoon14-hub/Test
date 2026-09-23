@@ -35,6 +35,7 @@ from astra_runtime.myravant_play_fixture import (
     WAYSTONE_ID,
     WORKSHOP_ID,
     YARD_ID,
+    UnavailableFixtureCustodyError,
     UnavailableFixtureMovementError,
     create_terminal_play_fixture,
 )
@@ -239,3 +240,52 @@ def test_checkpoint_qualification_is_fixture_policy_not_terminal_assertion():
     assert qualification["qualified"] is True
     assert qualification["fixture_campaign_id"] == CAMPAIGN_ID
     assert "TERMINAL-PLAY-G1" in qualification["provenance"]
+
+
+def test_fixture_object_reference_resolution_is_bounded_and_unambiguous():
+    fixture = create_terminal_play_fixture()
+
+    assert fixture.resolve_object_reference("Brass Lantern") == LANTERN_ID
+    assert fixture.resolve_object_reference("lantern") == LANTERN_ID
+    assert fixture.resolve_object_reference("tool-chest") == TOOL_CHEST_ID
+    assert fixture.resolve_object_reference("waystone") == WAYSTONE_ID
+
+    with pytest.raises(UnavailableFixtureCustodyError):
+        fixture.resolve_object_reference("sword")
+
+
+def test_fixture_custody_policy_emits_only_bounded_owner_evidence():
+    fixture = create_terminal_play_fixture()
+
+    qualification, opportunity = fixture.custody_evidence(
+        command_id="terminal-custody-000001",
+        object_entity_id=LANTERN_ID,
+        operation="pickup",
+    )
+
+    assert qualification.semantic_owner == "RT-010"
+    assert qualification.actor_entity_id == PLAYER_ID
+    assert qualification.object_entity_id == LANTERN_ID
+    assert qualification.operation == "pickup"
+    assert qualification.qualified is True
+
+    assert opportunity.semantic_owner == "AFQR-19"
+    assert opportunity.actor_entity_id == PLAYER_ID
+    assert opportunity.object_entity_id == LANTERN_ID
+    assert opportunity.operation == "pickup"
+    assert opportunity.opportunity_available is True
+    assert opportunity.resolution_accepted is True
+
+    with pytest.raises(UnavailableFixtureCustodyError):
+        fixture.custody_evidence(
+            command_id="terminal-custody-000002",
+            object_entity_id="astra:entity:not-in-fixture",
+            operation="pickup",
+        )
+
+    with pytest.raises(UnavailableFixtureCustodyError):
+        fixture.custody_evidence(
+            command_id="terminal-custody-000003",
+            object_entity_id=LANTERN_ID,
+            operation="transfer",
+        )
