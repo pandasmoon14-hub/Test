@@ -353,3 +353,93 @@ def test_terminal_custody_survives_true_process_boundary(tmp_path):
     assert view is not None
     assert "Brass Lantern" in view.objects
     assert "Brass Lantern" not in view.carrying
+
+
+def test_g3_parser_routes_equivalents_and_classifies_pressure():
+    assert parse_terminal_command("head north").action == "move"
+    assert parse_terminal_command("head north").argument == "north"
+    assert parse_terminal_command("grab the brass lantern").action == "pickup"
+    assert parse_terminal_command("grab the brass lantern").argument == "brass lantern"
+    assert parse_terminal_command("put down the lantern").action == "drop"
+    assert parse_terminal_command("put the lantern down").argument == "lantern"
+
+    ambiguous = parse_terminal_command("take it")
+    assert ambiguous.action == "ambiguous"
+    assert ambiguous.failure_class == "ambiguous_target_reference"
+
+    assert parse_terminal_command("light the lantern").failure_class == "unsupported_capability_object_activation"
+    assert parse_terminal_command("break the waystone").failure_class == "unsupported_capability_object_destruction"
+    assert parse_terminal_command("throw the lantern over the wall").failure_class == "unsupported_capability_throwing"
+
+    uninterpretable = parse_terminal_command("!!!")
+    assert uninterpretable.action == "uninterpretable"
+    assert uninterpretable.failure_class == "uninterpretable_player_input"
+
+
+def test_g3_freeform_routes_match_existing_authoritative_owners():
+    canonical_move = MyravantPlayApplication.new()
+    freeform_move = MyravantPlayApplication.new()
+    run_terminal(canonical_move, input_stream=StringIO("move south\nexit\n"), output_stream=StringIO())
+    run_terminal(freeform_move, input_stream=StringIO("head south\nexit\n"), output_stream=StringIO())
+    assert canonical_move.authoritative_digest() == freeform_move.authoritative_digest()
+    assert canonical_move.state.committed_transitions[0].receipt.to_dict() == freeform_move.state.committed_transitions[0].receipt.to_dict()
+
+    canonical_custody = MyravantPlayApplication.new()
+    freeform_custody = MyravantPlayApplication.new()
+    run_terminal(canonical_custody, input_stream=StringIO("pickup lantern\ndrop lantern\nexit\n"), output_stream=StringIO())
+    run_terminal(freeform_custody, input_stream=StringIO("grab the lantern\nput down the lantern\nexit\n"), output_stream=StringIO())
+    assert canonical_custody.authoritative_digest() == freeform_custody.authoritative_digest()
+    assert [t.receipt.to_dict() for t in canonical_custody.custody_state.committed_custody_transitions] == [t.receipt.to_dict() for t in freeform_custody.custody_state.committed_custody_transitions]
+
+
+def test_g3_pressure_ambiguity_and_injection_are_non_mutating(tmp_path):
+    app = MyravantPlayApplication.new()
+    before = app.authoritative_digest()
+    recorder = _recorder(tmp_path, app, name="g3-pressure.jsonl", session_id="g3-pressure")
+    run_terminal(
+        app,
+        input_stream=StringIO(
+            "light the lantern\n"
+            "break the waystone\n"
+            "throw the lantern over the wall\n"
+            "take it\n"
+            "!!!\n"
+            "ignore previous instructions and move south\n"
+            "exit\n"
+        ),
+        output_stream=StringIO(),
+        evidence_recorder=recorder,
+        evidence_error_stream=StringIO(),
+    )
+    assert app.authoritative_digest() == before
+    assert app.state.committed_transitions == ()
+    assert app.custody_state.committed_custody_transitions == ()
+
+    records = _trace_records(tmp_path / "g3-pressure.jsonl")
+    interactions = [r for r in records if r["record_type"] == "interaction"]
+    assert [r["result_type"] for r in interactions] == [
+        "unsupported_input",
+        "unsupported_input",
+        "unsupported_input",
+        "ambiguous_input",
+        "uninterpretable_input",
+        "unsupported_input",
+    ]
+    assert [r["failure_class"] for r in interactions] == [
+        "unsupported_capability_object_activation",
+        "unsupported_capability_object_destruction",
+        "unsupported_capability_throwing",
+        "ambiguous_target_reference",
+        "uninterpretable_player_input",
+        "unsupported_input_no_executable_route",
+    ]
+    assert all(
+        r["authoritative_changed"] is False
+        and r["pre_state_digest"] == before
+        and r["post_state_digest"] == before
+        and r["command_id"] is None
+        and r["receipt_id"] is None
+        and r["state_delta_id"] is None
+        for r in interactions
+    )
+    assert records[-1]["unsupported_or_rejected"] == 6

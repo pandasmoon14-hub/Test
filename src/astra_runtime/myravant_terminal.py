@@ -29,6 +29,41 @@ class ParsedTerminalCommand:
     action: str
     argument: str | None = None
     raw_text: str = ""
+    failure_class: str | None = None
+
+
+_DEICTIC_TARGETS = frozenset({"it", "that", "this", "them", "these", "those"})
+_TARGET_ARTICLES = frozenset({"a", "an", "the"})
+_UNSUPPORTED_CAPABILITY_BY_VERB = {
+    "light": "unsupported_capability_object_activation",
+    "ignite": "unsupported_capability_object_activation",
+    "activate": "unsupported_capability_object_activation",
+    "break": "unsupported_capability_object_destruction",
+    "smash": "unsupported_capability_object_destruction",
+    "destroy": "unsupported_capability_object_destruction",
+    "throw": "unsupported_capability_throwing",
+    "toss": "unsupported_capability_throwing",
+    "hurl": "unsupported_capability_throwing",
+}
+
+
+def _normalized_target(tokens: list[str]) -> str:
+    normalized = [token.casefold() for token in tokens]
+    if normalized and normalized[0] in _TARGET_ARTICLES:
+        normalized = normalized[1:]
+    return " ".join(normalized).strip()
+
+
+def _object_action(*, action: str, target_tokens: list[str], raw_text: str) -> ParsedTerminalCommand:
+    target = _normalized_target(target_tokens)
+    if not target or target in _DEICTIC_TARGETS:
+        return ParsedTerminalCommand(
+            action="ambiguous",
+            argument=target or None,
+            raw_text=raw_text,
+            failure_class="ambiguous_target_reference",
+        )
+    return ParsedTerminalCommand(action=action, argument=target, raw_text=raw_text)
 
 
 def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
@@ -37,56 +72,62 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
         return ParsedTerminalCommand(action="empty", raw_text=raw_text)
 
     parts = stripped.split()
-    verb = parts[0].lower()
+    lowered = [part.casefold() for part in parts]
+    verb = lowered[0]
 
     if verb in {"look", "l"} and len(parts) == 1:
         return ParsedTerminalCommand(action="look", raw_text=raw_text)
 
-    if verb in {"move", "go", "walk"} and len(parts) == 2:
-        return ParsedTerminalCommand(
-            action="move",
-            argument=parts[1].lower(),
-            raw_text=raw_text,
-        )
+    if verb in {"move", "go", "walk", "head"} and len(parts) == 2:
+        return ParsedTerminalCommand(action="move", argument=lowered[1], raw_text=raw_text)
 
-    if verb in {"pickup", "take"} and len(parts) >= 2:
-        return ParsedTerminalCommand(
-            action="pickup",
-            argument=" ".join(parts[1:]),
-            raw_text=raw_text,
-        )
+    if verb in {"pickup", "take", "grab"}:
+        return _object_action(action="pickup", target_tokens=parts[1:], raw_text=raw_text)
 
-    if (
-        verb == "pick"
-        and len(parts) >= 3
-        and parts[1].lower() == "up"
-    ):
-        return ParsedTerminalCommand(
-            action="pickup",
-            argument=" ".join(parts[2:]),
-            raw_text=raw_text,
-        )
+    if verb == "pick" and len(parts) >= 2 and lowered[1] == "up":
+        return _object_action(action="pickup", target_tokens=parts[2:], raw_text=raw_text)
 
-    if verb == "drop" and len(parts) >= 2:
-        return ParsedTerminalCommand(
-            action="drop",
-            argument=" ".join(parts[1:]),
-            raw_text=raw_text,
-        )
+    if verb == "drop":
+        return _object_action(action="drop", target_tokens=parts[1:], raw_text=raw_text)
+
+    if verb == "put":
+        target_tokens = None
+        if len(parts) >= 2 and lowered[1] == "down":
+            target_tokens = parts[2:]
+        elif len(parts) >= 2 and lowered[-1] == "down":
+            target_tokens = parts[1:-1]
+        if target_tokens is not None:
+            return _object_action(action="drop", target_tokens=target_tokens, raw_text=raw_text)
 
     if verb == "save" and len(parts) == 1:
         return ParsedTerminalCommand(action="save", raw_text=raw_text)
-
     if verb in {"help", "?"} and len(parts) == 1:
         return ParsedTerminalCommand(action="help", raw_text=raw_text)
-
     if verb in {"exit", "quit"} and len(parts) == 1:
         return ParsedTerminalCommand(action="exit", raw_text=raw_text)
+
+    if not any(char.isalnum() for char in stripped):
+        return ParsedTerminalCommand(
+            action="uninterpretable",
+            argument=stripped,
+            raw_text=raw_text,
+            failure_class="uninterpretable_player_input",
+        )
+
+    pressure = _UNSUPPORTED_CAPABILITY_BY_VERB.get(verb)
+    if pressure is not None:
+        return ParsedTerminalCommand(
+            action="unsupported",
+            argument=stripped,
+            raw_text=raw_text,
+            failure_class=pressure,
+        )
 
     return ParsedTerminalCommand(
         action="unsupported",
         argument=stripped,
         raw_text=raw_text,
+        failure_class="unsupported_input_no_executable_route",
     )
 
 
@@ -152,8 +193,10 @@ def _write_help(output: TextIO) -> str:
     visible = (
         "Commands: look, move <direction>, pickup <object>, "
         "drop <object>, save, help, exit\n"
-        "Other fictionally coherent input is preserved as unsupported input; "
-        "it does not mutate authoritative state.\n"
+        "Natural equivalents such as 'head north', 'grab the lantern', and "
+        "'put down the lantern' route to existing mechanics when unambiguous.\n"
+        "Coherent unsupported attempts are preserved as capability pressure; "
+        "they do not mutate authoritative state.\n"
     )
     output.write(visible)
     return visible
@@ -322,19 +365,37 @@ def run_terminal(
             )
             continue
 
-        visible = (
-            "That attempt does not currently have an executable route. "
-            "No authoritative state changed.\n"
-        )
+        if parsed.action == "ambiguous":
+            visible = (
+                "That attempt needs a clearer target before it can be routed. "
+                "No authoritative state changed.\n"
+            )
+            result_type = "ambiguous_input"
+        elif parsed.action == "uninterpretable":
+            visible = (
+                "That input could not be interpreted as a gameplay attempt. "
+                "No authoritative state changed.\n"
+            )
+            result_type = "uninterpretable_input"
+        else:
+            visible = (
+                "That attempt does not currently have an executable route. "
+                "No authoritative state changed.\n"
+            )
+            result_type = "unsupported_input"
+
         output_stream.write(visible)
         digest = application.authoritative_digest()
         result = PlayApplicationResult(
-            result_type="unsupported_input",
+            result_type=result_type,
             message=visible.rstrip("\n"),
             authoritative_changed=False,
             pre_state_digest=digest,
             post_state_digest=digest,
-            failure_class="unsupported_input_no_executable_route",
+            failure_class=(
+                parsed.failure_class
+                or "unsupported_input_no_executable_route"
+            ),
         )
         _record_result(
             evidence_recorder,
