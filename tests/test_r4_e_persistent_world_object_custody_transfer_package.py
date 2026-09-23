@@ -16,8 +16,8 @@ def load(path: Path):
 
 def test_r4_e_identity_and_authorization_boundary_are_exact():
     package = load(PACKAGE)
-    assert package["artifact_version"] == "0.1.3"
-    assert package["status"] == "implementation_authorized"
+    assert package["artifact_version"] == "0.1.5"
+    assert package["status"] == "merged_complete"
     assert package["package_id"] == "R4-E"
     assert package["package_name"] == "persistent_world_object_custody_transfer"
     assert package["implementation_authorized"] is True
@@ -137,7 +137,7 @@ def test_r4_e_proposed_runtime_scope_is_bounded():
     assert "src/astra_runtime/domain/command_kind_routing_skeleton.py" in allowlist["explicitly_not_required_on_current_evidence"]
 
 
-def test_r4_e_definition_and_closure_are_merged_before_implementation_authorization():
+def test_r4_e_definition_authorization_and_implementation_are_merged_before_closure_commit():
     package = load(PACKAGE)
     assert package["definition_regression_certified"] is True
     assert package["definition_recording_state"] == "merged_complete"
@@ -146,23 +146,31 @@ def test_r4_e_definition_and_closure_are_merged_before_implementation_authorizat
     assert package["definition_post_merge_closure_recording_state"] == "merged_complete"
     assert package["definition_post_merge_closure_record_pull_request"] == 441
     assert package["definition_post_merge_closure_record_merge_commit"] == "55461eb5ab9ac373cca9fa7b978ce71d0a11669c"
-    assert package["status"] == "implementation_authorized"
     assert package["implementation_authorized"] is True
-    assert package["implementation_state"] == "regression_certified_pending_commit"
+    assert package["implementation_authorization_recording_state"] == "merged_complete"
+    assert package["implementation_regression_certified"] is True
+    assert package["status"] == "merged_complete"
+    assert package["implementation_state"] == "merged_complete"
+    assert package["implementation_certification_recording_state"] == "merged_complete"
+    assert package["implementation_cross_platform_ci_certified"] is True
+    assert package["post_merge_closure_complete"] is True
 
 def test_r4_e_manifest_target_matches_package_and_control_version():
     package = load(PACKAGE)
     manifest = load(MANIFEST)
-    assert manifest["artifact_version"] == "0.4.88"
+    assert manifest["artifact_version"] == "0.4.90"
     target = manifest["r4_e_object_custody_transfer_target"]
     assert target["package_id"] == package["package_id"]
     assert target["package_name"] == package["package_name"]
-    assert target["status"] == "implementation_authorized"
+    assert target["status"] == "merged_complete"
     assert target["definition_recording_state"] == "merged_complete"
     assert target["definition_post_merge_closure_complete"] is True
     assert target["definition_post_merge_closure_recording_state"] == "merged_complete"
     assert target["implementation_authorized"] is True
-    assert target["implementation_state"] == "regression_certified_pending_commit"
+    assert target["implementation_state"] == "merged_complete"
+    assert target["implementation_certification_recording_state"] == "merged_complete"
+    assert target["implementation_cross_platform_ci_certified"] is True
+    assert target["post_merge_closure_complete"] is True
     assert target["r4_activation_authorized"] is False
     assert target["runtime_promotion_authorized"] is False
     assert target["custody_relation_type"] == "carried_by"
@@ -170,15 +178,13 @@ def test_r4_e_manifest_target_matches_package_and_control_version():
     assert target["social_or_disputed_custody_handoff"] == "RT-007"
     assert target["custody_implies_ownership"] is False
     assert target["definition_regression_certified"] == package["definition_regression_certified"]
-    assert target["definition_recording_state"] == package["definition_recording_state"]
     assert target["next_gate"] == package["next_gate"]
     assert target["next_gate_authorized"] == package["next_gate_authorized"]
-
 
 def test_r4_e_program_and_decision_log_record_definition_boundary():
     program = PROGRAM.read_text(encoding="utf-8")
     decisions = DECISIONS.read_text(encoding="utf-8")
-    assert "**Artifact version:** `0.4.88`" in program
+    assert "**Artifact version:** `0.4.90`" in program
     assert "### 5.92 R4-E persistent-world object custody transfer package definition" in program
     assert "R4-E-DEFINITION-001" in decisions
     assert "R4-E-DEFINITION-POST-MERGE-CLOSURE-004" in decisions
@@ -206,13 +212,14 @@ def test_r4_e_definition_post_merge_evidence_is_exact():
 def test_r4_e_implementation_authorization_boundary_is_exact():
     package = load(PACKAGE)
     assert package["implementation_authorized"] is True
-    assert package["implementation_state"] == "regression_certified_pending_commit"
+    assert package["implementation_state"] == "merged_complete"
+    assert package["implementation_authorization_recording_state"] == "merged_complete"
+    assert package["implementation_certification_recording_state"] == "merged_complete"
     assert package["production_schema_implementation_authorized"] is False
     assert package["r4_activation_authorized"] is False
     assert package["runtime_promotion_authorized"] is False
     assert len(package["definition_post_merge_closure_edit_allowlist"]) == 8
     assert package["implementation_authority_effect"] == "bounded_persistent_world_object_custody_transfer_implementation_only"
-
 
 def test_r4_e_authorized_implementation_allowlist_and_validation_bar_are_exact():
     package = load(PACKAGE)
@@ -230,24 +237,39 @@ def test_r4_e_authorized_implementation_allowlist_and_validation_bar_are_exact()
     assert {"pickup_authoritative_transition","movement_preserves_custody","drop_authoritative_transition","custody_checkpoint_round_trip","post_restore_continue_play","second_checkpoint_final_state","semantic_noncollapse","no_generalized_inventory_or_world_manager"} <= names
 
 
-def test_r4_e_implementation_lifecycle_is_regression_certified_pending_commit():
+def test_r4_e_implementation_post_merge_closure_lifecycle_is_exact():
     package = load(PACKAGE)
     assert package["implementation_authorization_regression_certified"] is True
     assert package["implementation_authorization_recording_state"] == "merged_complete"
     assert package["implementation_authorization_pull_request"] == 444
-    assert package["implementation_authorization_merge_commit"] == "701ea88a32cb251aed579edecfb30998bb449809"
     assert package["implementation_regression_certified"] is True
-    assert package["implementation_state"] == "regression_certified_pending_commit"
-    assert package["implementation_certification_recording_state"] == "regression_certified_pending_commit"
-    assert package["next_gate"] == "r4_e_implementation_commit_push"
-    assert package["next_gate_authorized"] is False
-    cert = package["implementation_regression_certification"]
-    assert cert["focused_r4e_behavior"]["result"] == "pass"
-    assert cert["broader_pr2_r4"]["result"] == "pass"
-    assert cert["full_repository"]["result"] == "pass"
-    assert cert["production_runtime_path_count"] == 3
-    assert cert["production_schema_path_count"] == 0
-
+    assert package["implementation_state"] == "merged_complete"
+    assert package["implementation_certification_recording_state"] == "merged_complete"
+    assert package["implementation_cross_platform_ci_certified"] is True
+    assert package["implementation_branch_head"] == "0b80245b8eb051642bac6fea21950c0dd831e227"
+    assert package["implementation_merge_commit"] == "f5a6f94615045649fd29881223512dd88ee9b170"
+    assert package["implementation_merge_tree"] == "63daaf63055d947756f51b4402aae96262424886"
+    assert package["implementation_ci_run"] == 293
+    assert package["implementation_ci_run_id"] == 35777626182
+    assert package["post_merge_closure_complete"] is True
+    assert package["post_merge_closure_pull_request"] == 445
+    assert package["post_merge_closure_branch_head"] == "0b80245b8eb051642bac6fea21950c0dd831e227"
+    assert package["post_merge_closure_recorded_from"] == "f5a6f94615045649fd29881223512dd88ee9b170"
+    assert package["post_merge_closure_tree"] == "63daaf63055d947756f51b4402aae96262424886"
+    if package["post_merge_closure_regression_certified"] is False:
+        assert package["post_merge_closure_recording_state"] == "pending_regression_certification"
+        assert package["next_gate"] == "r4_e_post_merge_closure_regression_certification"
+        assert package["next_gate_authorized"] is True
+    else:
+        assert package["post_merge_closure_recording_state"] == "regression_certified_pending_commit"
+        assert package["next_gate"] == "r4_e_post_merge_closure_commit_push"
+        assert package["next_gate_authorized"] is False
+        cert = package["post_merge_closure_regression_certification"]
+        assert cert["focused_closure"]["result"] == "pass"
+        assert cert["broader_pr2_r4"]["result"] == "pass"
+        assert cert["full_repository"]["result"] == "pass"
+        assert cert["runtime_implementation_path_count"] == 0
+        assert cert["production_schema_path_count"] == 0
 
 def test_r4_e_implementation_completion_proof_is_bounded():
     package = load(PACKAGE)
@@ -261,3 +283,92 @@ def test_r4_e_implementation_completion_proof_is_bounded():
     assert proof["generalized_inventory_created"] is False
     assert proof["ownership_semantics_created"] is False
     assert proof["production_schema_changed"] is False
+
+
+def test_r4_e_implementation_post_merge_ci_evidence_is_exact():
+    package = load(PACKAGE)
+    ci = package["implementation_cross_platform_ci_certification"]
+    assert ci["pull_request"] == 445
+    assert ci["implementation_head"] == "0b80245b8eb051642bac6fea21950c0dd831e227"
+    assert ci["workflow_run_number"] == 293
+    assert ci["workflow_run_id"] == 35777626182
+    assert ci["core_linux"] == {
+        "job_id": 106914739340,
+        "conclusion": "success",
+    }
+    assert ci["core_windows"] == {
+        "job_id": 106914739707,
+        "conclusion": "success",
+    }
+    assert ci["cross_platform_ci_certified"] is True
+    assert ci["result"] == "pass"
+
+def test_r4_e_post_merge_closure_initial_recording_recovery_is_preserved():
+    package = load(PACKAGE)
+    manifest = load(MANIFEST)
+    target = manifest["r4_e_object_custody_transfer_target"]
+    for obj in (package, target):
+        evidence = obj["post_merge_closure_failure_recovery_evidence"]
+        recovery = evidence["initial_recording_eof_whitespace"]
+        assert recovery["classification"] == "r4_e_post_merge_closure_initial_recording_eof_whitespace_defect"
+        assert recovery["behavioral_execution_reached"] is False
+        assert recovery["runtime_behavioral_defect_detected"] is False
+        assert recovery["runtime_semantic_defect_detected"] is False
+        assert recovery["runtime_scope_expanded"] is False
+        assert recovery["production_schema_scope_expanded"] is False
+        assert recovery["semantic_authority_expanded"] is False
+        assert recovery["result"] == "recovered"
+
+def test_r4_e_post_merge_closure_focused_lifecycle_recovery_is_preserved():
+    package = load(PACKAGE)
+    manifest = load(MANIFEST)
+    target = manifest["r4_e_object_custody_transfer_target"]
+    for obj in (package, target):
+        evidence = obj["post_merge_closure_failure_recovery_evidence"]
+        recovery = evidence["focused_current_lifecycle_expectation_alignment"]
+        assert recovery["failed_focused_closure_certification"] == {
+            "passed": 81,
+            "failed": 2,
+            "result": "fail",
+        }
+        assert recovery["classification"] == "r4_e_post_merge_closure_stale_current_lifecycle_expectations"
+        assert recovery["stale_current_assertion_count"] == 4
+        assert recovery["authoritative_status"] == "merged_complete"
+        assert recovery["stale_status"] == "implementation_authorized"
+        assert recovery["authoritative_implementation_state"] == "merged_complete"
+        assert recovery["stale_implementation_state"] == "regression_certified_pending_commit"
+        assert recovery["historical_lifecycle_evidence_rewritten"] is False
+        assert recovery["runtime_behavioral_defect_detected"] is False
+        assert recovery["runtime_semantic_defect_detected"] is False
+        assert recovery["cross_platform_ci_invalidated"] is False
+        assert recovery["runtime_scope_expanded"] is False
+        assert recovery["production_schema_scope_expanded"] is False
+        assert recovery["semantic_authority_expanded"] is False
+        assert recovery["regression_certification_restart_required"] is True
+        assert recovery["result"] == "recovered"
+
+def test_r4_e_post_merge_closure_post_recording_eof_recovery_is_preserved():
+    package = load(PACKAGE)
+    manifest = load(MANIFEST)
+    target = manifest["r4_e_object_custody_transfer_target"]
+    for obj in (package, target):
+        recovery = obj["post_merge_closure_failure_recovery_evidence"]["post_recording_eof_whitespace"]
+        assert recovery["classification"] == "r4_e_post_merge_closure_post_recording_eof_whitespace_defect"
+        assert recovery["full_repository_certification_completed"] is True
+        assert recovery["full_repository_result"] == {
+            "passed": 9586,
+            "skipped": 10,
+            "xfailed": 2,
+            "warnings": 1,
+            "result": "pass",
+        }
+        assert recovery["certification_invalidated"] is False
+        assert recovery["full_repository_rerun_required"] is False
+        assert recovery["post_recording_validation_required"] is True
+        assert recovery["runtime_behavioral_defect_detected"] is False
+        assert recovery["runtime_semantic_defect_detected"] is False
+        assert recovery["cross_platform_ci_invalidated"] is False
+        assert recovery["runtime_scope_expanded"] is False
+        assert recovery["production_schema_scope_expanded"] is False
+        assert recovery["semantic_authority_expanded"] is False
+        assert recovery["result"] == "recovered"

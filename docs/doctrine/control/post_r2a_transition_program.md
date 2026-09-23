@@ -1,7 +1,7 @@
 # Post-R2A Transition Program
 
 **Artifact ID:** `POST-R2A-TRANSITION-PROGRAM-001`
-**Artifact version:** `0.4.88`
+**Artifact version:** `0.4.90`
 **Layer:** `0_control`
 **Status:** `active`
 **Authority:** bounded project sequencing, authorization tracking, migration tracking, and completion evidence only
@@ -5809,3 +5809,127 @@ Next bounded gate: `r4_e_implementation_commit_push`; that gate is not
 implicitly authorized.
 
 General R4 activation and runtime promotion remain unauthorized.
+
+### 5.100 R4-E implementation post-merge lifecycle closure
+
+PR `#445` merged the bounded R4-E object-custody implementation.
+
+Implementation branch head: `0b80245b8eb051642bac6fea21950c0dd831e227`.
+
+Implementation merge commit: `f5a6f94615045649fd29881223512dd88ee9b170`.
+
+Implementation merge tree: `63daaf63055d947756f51b4402aae96262424886`.
+
+Implementation CI `#293` / run `35777626182` succeeded on both
+`core-linux` job `106914739340` and `core-windows` job `106914739707`.
+
+The closure work is based on current `main`
+`b1578fcf900b57651faedc5fe6ae06efc42ec992`, whose intervening work after the
+R4-E implementation merge changes only the live-play evidence/application/
+terminal surfaces and does not overlap the R4-E lifecycle-control footprint.
+
+Authorization reference:
+`owner_directive_2026-09-22_r4_e_implementation_post_merge_closure`.
+
+Authority effect:
+`bounded_r4_e_post_merge_lifecycle_reconciliation_only`.
+
+R4-E implementation lifecycle is now `merged_complete`; implementation
+authorization recording and implementation certification recording are both
+`merged_complete`. Cross-platform implementation CI is certified.
+
+This closure changes no production runtime file and no production schema.
+The implementation's prior regression evidence and recovered harness evidence
+remain preserved rather than rewritten.
+
+General R4 activation, runtime promotion, generalized inventory/ownership
+semantics, R5, R6, and automatic successor activation remain unauthorized.
+
+Fresh closure regression certification is required before commit/push.
+
+#### 5.100.1 R4-E closure initial diff-check recovery
+
+The first post-merge closure recording attempt stopped before any regression
+test began because the generated decision-log and transition-program edits each
+left one extra blank line at EOF.
+
+Classification:
+
+`r4_e_post_merge_closure_initial_recording_eof_whitespace_defect`
+
+Repair is formatting-only: both files are normalized to exactly one terminating
+newline. No production runtime file or production schema changes. No R4-E
+runtime behavioral or semantic defect was detected, and no semantic authority
+expanded.
+
+#### 5.100.2 R4-E closure focused current-lifecycle alignment recovery
+
+The first focused closure certification reached behavioral/test execution and
+reported `81 passed, 2 failed`.
+
+Both failures were stale current-state lifecycle expectations. The closure
+package and manifest correctly report `merged_complete`, while two test
+functions still expected the pre-merge status `implementation_authorized`;
+the transition-control test also retained the pre-merge implementation state
+`regression_certified_pending_commit`.
+
+Classification:
+
+`r4_e_post_merge_closure_stale_current_lifecycle_expectations`
+
+Four current-state assertions are aligned to the authoritative closure state.
+Historical lifecycle evidence and historical version assertions are not
+rewritten. No R4-E runtime behavioral or semantic defect was detected.
+Successful implementation CI #293 remains valid. Production runtime, production
+schema, and semantic-authority scope do not expand.
+
+Closure regression certification restarts from the focused gate after this
+bounded test-alignment recovery.
+
+### 5.101 R4-E implementation post-merge closure regression certification
+
+Focused closure: `84 passed in 1.35s`.
+
+Broader R4/PR2: `219 passed in 2.10s`.
+
+Full repository: `9586 passed, 10 skipped, 2 xfailed, 1 warning in 843.93s (0:14:03)`.
+
+Changed paths: `8`; production runtime paths changed by closure: `0`;
+production schema paths changed: `0`.
+
+R4-E implementation lifecycle remains `merged_complete`, and successful
+cross-platform implementation CI #293 remains preserved as the implementation
+merge qualification evidence.
+
+Closure recording state: `regression_certified_pending_commit`.
+
+Next bounded gate: `r4_e_post_merge_closure_commit_push`; that gate is not
+implicitly authorized.
+
+General R4 activation, runtime promotion, generalized inventory/ownership,
+R5, R6, and automatic successor activation remain unauthorized.
+
+#### 5.101.1 R4-E closure post-recording diff-check recovery
+
+Closure regression certification completed successfully through the full
+repository suite with `9586 passed, 10 skipped, 2 xfailed, 1 warning`.
+
+The subsequent certification-recording step then stopped at `git diff --check`
+because the generated decision-log and transition-program additions each left
+one extra blank line at EOF.
+
+Classification:
+
+`r4_e_post_merge_closure_post_recording_eof_whitespace_defect`
+
+The already-completed regression certification remains valid. Repair is limited
+to normalizing those two file endings to one terminating newline and preserving
+this failure evidence. No runtime behavior, production schema, semantic
+authority, or implementation CI result changes.
+
+A full-suite rerun is not required; the still-required post-recording focused
+and broader validation will execute after this recovery.
+
+Post-recording focused closure: `68 passed in 0.62s`.
+
+Post-recording broader R4/PR2: `220 passed in 2.18s`.
