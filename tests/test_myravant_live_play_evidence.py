@@ -207,13 +207,13 @@ def test_repository_sha_must_be_exact_or_unknown():
     assert header.debug_mode is True
 
 
-def test_g2_client_identity_and_custody_result_accounting(tmp_path):
+def test_g3_client_identity_and_custody_result_accounting(tmp_path):
     header = _header()
-    assert CLIENT_ID == "myravant-terminal-g2"
+    assert CLIENT_ID == "myravant-terminal-g3"
     assert header.client_id == CLIENT_ID
 
     recorder = LivePlayEvidenceRecorder(
-        trace_path=tmp_path / "g2-evidence.jsonl",
+        trace_path=tmp_path / "g3-evidence.jsonl",
         header=header,
     )
 
