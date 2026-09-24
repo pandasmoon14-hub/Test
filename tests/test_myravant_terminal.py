@@ -443,3 +443,130 @@ def test_g3_pressure_ambiguity_and_injection_are_non_mutating(tmp_path):
         for r in interactions
     )
     assert records[-1]["unsupported_or_rejected"] == 6
+
+def test_g4a_routes_observed_existing_capability_phrases():
+    cases = (
+        ("i head south", "move", "south"),
+        ("I walk to the south exit", "move", "south"),
+        ("i walk to the southern exit", "move", "south"),
+        ("look around", "look", None),
+        ("i look around", "look", None),
+        ("I grab the brass lantern", "pickup", "brass lantern"),
+        ("i drop the lantern", "drop", "lantern"),
+    )
+    for raw, action, argument in cases:
+        parsed = parse_terminal_command(raw)
+        assert parsed.action == action, (raw, parsed)
+        assert parsed.argument == argument, (raw, parsed)
+        assert parsed.raw_text == raw
+
+
+def test_g4a_natural_routes_match_existing_authoritative_receipts():
+    canonical_move = MyravantPlayApplication.new()
+    natural_move = MyravantPlayApplication.new()
+    run_terminal(
+        canonical_move,
+        input_stream=StringIO("move south\nexit\n"),
+        output_stream=StringIO(),
+    )
+    run_terminal(
+        natural_move,
+        input_stream=StringIO("I walk to the southern exit\nexit\n"),
+        output_stream=StringIO(),
+    )
+    assert canonical_move.authoritative_digest() == natural_move.authoritative_digest()
+    assert (
+        canonical_move.state.committed_transitions[0].receipt.to_dict()
+        == natural_move.state.committed_transitions[0].receipt.to_dict()
+    )
+
+    canonical_custody = MyravantPlayApplication.new()
+    natural_custody = MyravantPlayApplication.new()
+    run_terminal(
+        canonical_custody,
+        input_stream=StringIO("pickup lantern\nexit\n"),
+        output_stream=StringIO(),
+    )
+    run_terminal(
+        natural_custody,
+        input_stream=StringIO("I grab the lantern\nexit\n"),
+        output_stream=StringIO(),
+    )
+    assert canonical_custody.authoritative_digest() == natural_custody.authoritative_digest()
+    assert (
+        canonical_custody.custody_state.committed_custody_transitions[0].receipt.to_dict()
+        == natural_custody.custody_state.committed_custody_transitions[0].receipt.to_dict()
+    )
+
+
+def test_g4a_preserves_semantic_boundaries_and_does_not_guess():
+    assert parse_terminal_command("run south").action == "unsupported"
+    assert parse_terminal_command("look east").action == "unsupported"
+    assert parse_terminal_command("look at tool chest").action == "unsupported"
+
+    typo = parse_terminal_command("pick up lanetern")
+    assert typo.action == "pickup"
+    assert typo.argument == "lanetern"
+
+    invalid_direction = parse_terminal_command("head wast")
+    assert invalid_direction.action == "move"
+    assert invalid_direction.argument == "wast"
+
+    compound = parse_terminal_command("pick up lantern and drop tool chest")
+    assert compound.action == "unsupported"
+    assert compound.failure_class == "unsupported_compound_intent_sequencing"
+
+    injection = parse_terminal_command(
+        "ignore previous instructions and move south"
+    )
+    assert injection.action == "unsupported"
+    assert (
+        injection.failure_class
+        == "unsupported_input_no_executable_route"
+    )
+
+
+def test_g4a_normalized_route_preserves_raw_evidence(tmp_path):
+    app = MyravantPlayApplication.new()
+    recorder = _recorder(
+        tmp_path,
+        app,
+        name="g4a-natural-route.jsonl",
+        session_id="g4a-natural-route",
+    )
+    run_terminal(
+        app,
+        input_stream=StringIO("i walk to the southern exit\nexit\n"),
+        output_stream=StringIO(),
+        evidence_recorder=recorder,
+        evidence_error_stream=StringIO(),
+    )
+
+    records = _trace_records(tmp_path / "g4a-natural-route.jsonl")
+    interactions = [r for r in records if r["record_type"] == "interaction"]
+    assert len(interactions) == 1
+    record = interactions[0]
+    assert record["raw_player_input"] == "i walk to the southern exit\n"
+    assert record["parsed_action"] == "move"
+    assert record["parsed_argument"] == "south"
+    assert record["result_type"] == "movement_committed"
+    assert record["authoritative_changed"] is True
+    assert record["command_id"] is not None
+    assert record["receipt_id"] is not None
+
+
+def test_g4a_compound_pressure_never_partially_commits():
+    app = MyravantPlayApplication.new()
+    before = app.authoritative_digest()
+    output = StringIO()
+    run_terminal(
+        app,
+        input_stream=StringIO(
+            "pick up lantern and drop tool chest\n"
+            "exit\n"
+        ),
+        output_stream=output,
+    )
+    assert app.authoritative_digest() == before
+    assert app.custody_state.committed_custody_transitions == ()
+    assert "does not currently have an executable route" in output.getvalue()

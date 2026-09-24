@@ -34,6 +34,39 @@ class ParsedTerminalCommand:
 
 _DEICTIC_TARGETS = frozenset({"it", "that", "this", "them", "these", "those"})
 _TARGET_ARTICLES = frozenset({"a", "an", "the"})
+_DIRECTION_ALIASES = {
+    "north": "north",
+    "northern": "north",
+    "south": "south",
+    "southern": "south",
+    "east": "east",
+    "eastern": "east",
+    "west": "west",
+    "western": "west",
+}
+_COMPOUND_ACTION_STARTERS = frozenset({
+    "look",
+    "move",
+    "go",
+    "walk",
+    "head",
+    "pickup",
+    "pick",
+    "take",
+    "grab",
+    "drop",
+    "put",
+    "save",
+    "light",
+    "ignite",
+    "activate",
+    "break",
+    "smash",
+    "destroy",
+    "throw",
+    "toss",
+    "hurl",
+})
 _UNSUPPORTED_CAPABILITY_BY_VERB = {
     "light": "unsupported_capability_object_activation",
     "ignite": "unsupported_capability_object_activation",
@@ -66,20 +99,83 @@ def _object_action(*, action: str, target_tokens: list[str], raw_text: str) -> P
     return ParsedTerminalCommand(action=action, argument=target, raw_text=raw_text)
 
 
+def _action_tokens(parts: list[str]) -> list[str]:
+    if parts and parts[0].casefold() == "i":
+        return parts[1:]
+    return parts
+
+
+def _movement_direction(tokens: list[str]) -> str | None:
+    lowered = [token.casefold() for token in tokens]
+    if len(lowered) == 1:
+        return _DIRECTION_ALIASES.get(lowered[0], lowered[0])
+
+    if lowered and lowered[0] == "to":
+        remainder = lowered[1:]
+        if remainder and remainder[0] == "the":
+            remainder = remainder[1:]
+        if remainder and remainder[-1] == "exit":
+            remainder = remainder[:-1]
+        if len(remainder) == 1:
+            return _DIRECTION_ALIASES.get(remainder[0])
+
+    return None
+
+
+def _is_compound_action(lowered: list[str]) -> bool:
+    if not lowered or lowered[0] not in _COMPOUND_ACTION_STARTERS:
+        return False
+
+    for index, token in enumerate(lowered[:-1]):
+        if token not in {"and", "then"}:
+            continue
+        next_token = lowered[index + 1]
+        if next_token == "then" and index + 2 < len(lowered):
+            next_token = lowered[index + 2]
+        if next_token in _COMPOUND_ACTION_STARTERS:
+            return True
+    return False
+
+
 def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
     stripped = raw_text.strip()
     if not stripped:
         return ParsedTerminalCommand(action="empty", raw_text=raw_text)
 
-    parts = stripped.split()
+    parts = _action_tokens(stripped.split())
+    if not parts:
+        return ParsedTerminalCommand(
+            action="unsupported",
+            argument=stripped,
+            raw_text=raw_text,
+            failure_class="unsupported_input_no_executable_route",
+        )
+
     lowered = [part.casefold() for part in parts]
     verb = lowered[0]
 
-    if verb in {"look", "l"} and len(parts) == 1:
+    if _is_compound_action(lowered):
+        return ParsedTerminalCommand(
+            action="unsupported",
+            argument=stripped,
+            raw_text=raw_text,
+            failure_class="unsupported_compound_intent_sequencing",
+        )
+
+    if verb in {"look", "l"} and (
+        len(parts) == 1
+        or (verb == "look" and lowered[1:] == ["around"])
+    ):
         return ParsedTerminalCommand(action="look", raw_text=raw_text)
 
-    if verb in {"move", "go", "walk", "head"} and len(parts) == 2:
-        return ParsedTerminalCommand(action="move", argument=lowered[1], raw_text=raw_text)
+    if verb in {"move", "go", "walk", "head"}:
+        direction = _movement_direction(parts[1:])
+        if direction is not None:
+            return ParsedTerminalCommand(
+                action="move",
+                argument=direction,
+                raw_text=raw_text,
+            )
 
     if verb in {"pickup", "take", "grab"}:
         return _object_action(action="pickup", target_tokens=parts[1:], raw_text=raw_text)
@@ -193,10 +289,11 @@ def _write_help(output: TextIO) -> str:
     visible = (
         "Commands: look, move <direction>, pickup <object>, "
         "drop <object>, save, help, exit\n"
-        "Natural equivalents such as 'head north', 'grab the lantern', and "
-        "'put down the lantern' route to existing mechanics when unambiguous.\n"
-        "Coherent unsupported attempts are preserved as capability pressure; "
-        "they do not mutate authoritative state.\n"
+        "Natural equivalents such as 'I head north', 'look around', "
+        "'walk to the south exit', and 'grab the lantern' route to existing "
+        "mechanics when unambiguous.\n"
+        "Compound intentions and genuinely unsupported attempts are preserved "
+        "as capability pressure; they do not mutate authoritative state.\n"
     )
     output.write(visible)
     return visible
