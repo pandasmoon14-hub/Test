@@ -80,3 +80,32 @@ def test_obs1_harness_covers_targeted_inspection_without_directional_collapse(tm
 
     assert cases["inspection-compound"]["observed_class"] == "COMPOUND_PRESSURE"
     assert cases["inspection-injection"]["primary"]["result_type"] == "unsupported_input"
+def test_int1_harness_covers_persistent_object_state_without_frontier_collapse(tmp_path):
+    report = _run(tmp_path / "int1-coverage.json")
+    cases = {row["case"]["case_id"]: row for row in report["cases"]}
+
+    for case_id in ("open-01", "open-02", "close-01", "close-02"):
+        row = cases[case_id]
+        assert row["primary"]["result_type"] == "object_state_committed"
+        assert row["primary"]["authoritative_changed"] is True
+        assert row["primary"]["command_id"] is not None
+        assert row["observed_class"] == "ROUTED_COMMIT"
+
+    remote = cases["object-state-remote"]["primary"]
+    unknown = cases["object-state-unknown"]["primary"]
+    assert remote["result_type"] == unknown["result_type"] == "object_state_rejected"
+    assert remote["failure_class"] == unknown["failure_class"] == "object_state_target_unavailable"
+    assert cases["object-state-remote"]["canonical_equivalence_match"] is True
+    assert cases["object-state-unknown"]["canonical_equivalence_match"] is True
+
+    assert cases["object-state-noop"]["observed_class"] == "NOOP_HANDLED"
+    assert cases["object-state-compound"]["observed_class"] == "COMPOUND_PRESSURE"
+    assert cases["object-state-injection"]["primary"]["result_type"] == "unsupported_input"
+
+    activation = cases["activation"]["primary"]
+    assert activation["result_type"] == "unsupported_input"
+    assert activation["failure_class"] == "unsupported_capability_object_activation"
+
+    directional = cases["directional-look"]["primary"]
+    assert directional["result_type"] == "unsupported_input"
+    assert directional["failure_class"] == "unsupported_input_no_executable_route"

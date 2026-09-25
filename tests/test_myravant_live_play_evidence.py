@@ -209,7 +209,7 @@ def test_repository_sha_must_be_exact_or_unknown():
 
 def test_obs1_client_identity_and_custody_result_accounting(tmp_path):
     header = _header()
-    assert CLIENT_ID == "myravant-terminal-obs1"
+    assert CLIENT_ID == "myravant-terminal-int1"
     assert header.client_id == CLIENT_ID
 
     recorder = LivePlayEvidenceRecorder(
