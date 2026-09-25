@@ -59,6 +59,9 @@ _COMPOUND_ACTION_STARTERS = frozenset({
     "grab",
     "drop",
     "put",
+    "open",
+    "close",
+    "shut",
     "save",
     "light",
     "ignite",
@@ -214,6 +217,12 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
     if verb == "drop":
         return _object_action(action="drop", target_tokens=parts[1:], raw_text=raw_text)
 
+    if verb == "open":
+        return _object_action(action="open", target_tokens=parts[1:], raw_text=raw_text)
+
+    if verb in {"close", "shut"}:
+        return _object_action(action="close", target_tokens=parts[1:], raw_text=raw_text)
+
     if verb == "put":
         target_tokens = None
         if len(parts) >= 2 and lowered[1] == "down":
@@ -322,9 +331,9 @@ def _write_result(
 def _write_help(output: TextIO) -> str:
     visible = (
         "Commands: look, inspect <object>, move <direction>, pickup <object>, "
-        "drop <object>, save, help, exit\n"
+        "drop <object>, open <object>, close <object>, save, help, exit\n"
         "Natural equivalents such as 'I head north', 'look around', "
-        "'examine the lantern', 'look at the lantern', "
+        "'examine the lantern', 'look at the lantern', 'open the chest', "
         "'walk to the south exit', and 'grab the lantern' route to existing "
         "mechanics when unambiguous.\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
@@ -454,6 +463,20 @@ def run_terminal(
             continue
         if parsed.action == "move":
             result = application.move(parsed.argument or "")
+            visible = _write_result(output_stream, result, debug=debug)
+            _record_result(
+                evidence_recorder,
+                parsed=parsed,
+                visible_output=visible,
+                result=result,
+                error_stream=evidence_error_stream,
+            )
+            continue
+        if parsed.action in {"open", "close"}:
+            if parsed.action == "open":
+                result = application.open_object(parsed.argument or "")
+            else:
+                result = application.close_object(parsed.argument or "")
             visible = _write_result(output_stream, result, debug=debug)
             _record_result(
                 evidence_recorder,

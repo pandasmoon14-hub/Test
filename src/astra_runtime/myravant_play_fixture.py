@@ -36,11 +36,20 @@ from astra_runtime.domain.persistent_world_object_custody_transfer import (
     create_custody_opportunity_evidence,
     create_custody_qualification_evidence,
 )
+from astra_runtime.domain.persistent_world_object_open_close import (
+    ObjectOpenCloseOpportunityEvidence,
+    ObjectOpenCloseQualificationEvidence,
+    PersistentWorldObjectOpenState,
+    create_object_open_close_opportunity_evidence,
+    create_object_open_close_qualification_evidence,
+    create_persistent_world_object_open_state,
+    digest_persistent_world_composite_state,
+)
 from astra_runtime.kernel.record_identity import build_record_id
 
 
 FIXTURE_ID = "myravant-native-terminal-g1"
-FIXTURE_VERSION = "0.1.1"
+FIXTURE_VERSION = "0.1.2"
 FIXTURE_STATUS = "development_validation_content"
 FIXTURE_CANON = False
 FIXTURE_DEFAULT_WORLD = False
@@ -51,12 +60,16 @@ FIXTURE_G1_BASELINE_SHA = "55461eb5ab9ac373cca9fa7b978ce71d0a11669c"
 FIXTURE_INITIAL_STATE_DIGEST = (
     "124e7b67da79de2e267fe53ba0de51c88ec99070c06fae6ab0bd463d80b146eb"
 )
+FIXTURE_INITIAL_WORLD_STATE_DIGEST = (
+    "f3065b22adb1ac5df2472ad7208048f6dca871e265fd1da1baceebf366a7a75f"
+)
 FIXTURE_PLAYABLE_NEED_REFS = (
     "R4-B",
     "R4-C",
     "R4-D",
     "TERMINAL-PLAY-G1",
     "TERMINAL-PLAY-OBS-1",
+    "TERMINAL-PLAY-INT-1",
     "R4-E-readiness",
 )
 FIXTURE_REQUIREMENT_REFS = (
@@ -130,6 +143,7 @@ class FixtureProvenanceReceipt:
     direct_external_content_consulted_during_g1: bool
     originality_review_status: str
     initial_state_digest: str
+    initial_world_state_digest: str
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -137,6 +151,7 @@ class MyravantPlayFixture:
     campaign_id: str
     player_entity_id: str
     initial_state: PersistentWorldMovementRuntimeState
+    initial_object_open_states: tuple[PersistentWorldObjectOpenState, ...]
     place_presentations: tuple[PublicEntityPresentation, ...]
     object_presentations: tuple[PublicEntityPresentation, ...]
     movement_routes: tuple[FixtureMovementRoute, ...]
@@ -321,6 +336,65 @@ class MyravantPlayFixture:
         )
         return qualification, opportunity
 
+    def object_open_close_evidence(
+        self,
+        *,
+        command_id: str,
+        object_entity_id: str,
+        operation: str,
+    ) -> tuple[
+        ObjectOpenCloseQualificationEvidence,
+        ObjectOpenCloseOpportunityEvidence,
+    ]:
+        """Return bounded RT-010/AFQR-19 evidence for the INT-1 chest route."""
+
+        if object_entity_id != TOOL_CHEST_ID:
+            raise UnavailableFixtureCustodyError(
+                "target has no bounded fixture open/close state"
+            )
+        if operation not in {"open", "close"}:
+            raise UnavailableFixtureCustodyError(
+                "open/close operation must be open or close"
+            )
+
+        token = hashlib.sha256(
+            f"{command_id}|{operation}|{object_entity_id}".encode("utf-8")
+        ).hexdigest()[:20]
+        qualification = create_object_open_close_qualification_evidence(
+            evidence_id=build_record_id(
+                "evidence",
+                f"int1-{operation}-{token}-rt010",
+            ),
+            actor_entity_id=self.player_entity_id,
+            object_entity_id=object_entity_id,
+            operation=operation,
+            qualified=True,
+        )
+        opportunity = create_object_open_close_opportunity_evidence(
+            evidence_id=build_record_id(
+                "evidence",
+                f"int1-{operation}-{token}-afqr19",
+            ),
+            actor_entity_id=self.player_entity_id,
+            object_entity_id=object_entity_id,
+            operation=operation,
+            opportunity_available=True,
+            resolution_accepted=True,
+        )
+        return qualification, opportunity
+
+    def public_open_state_description(
+        self,
+        *,
+        object_entity_id: str,
+        state: str,
+    ) -> str:
+        if object_entity_id != TOOL_CHEST_ID or state not in {"open", "closed"}:
+            raise UnavailableFixtureCustodyError(
+                "no bounded public open-state presentation exists"
+            )
+        return f"Its heavy lid is {state}."
+
     def public_entities_carried_by(
         self,
         representation: PersistentWorldEntityLocationRepresentation,
@@ -406,6 +480,22 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         raise MyravantPlayFixtureError(
             "fixture authoritative initial state changed without updating "
             "FIXTURE_VERSION and FIXTURE_INITIAL_STATE_DIGEST"
+        )
+
+    initial_object_open_states = (
+        create_persistent_world_object_open_state(
+            object_entity_id=TOOL_CHEST_ID,
+            state="closed",
+        ),
+    )
+    initial_world_state_digest = digest_persistent_world_composite_state(
+        representation,
+        initial_object_open_states,
+    )
+    if initial_world_state_digest != FIXTURE_INITIAL_WORLD_STATE_DIGEST:
+        raise MyravantPlayFixtureError(
+            "fixture composite authoritative initial state changed without "
+            "updating FIXTURE_VERSION and FIXTURE_INITIAL_WORLD_STATE_DIGEST"
         )
 
     routes = (
@@ -521,6 +611,7 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         ),
         originality_review_status=FIXTURE_ORIGINALITY_REVIEW_STATUS,
         initial_state_digest=initial_state_digest,
+        initial_world_state_digest=initial_world_state_digest,
     )
 
     return MyravantPlayFixture(
@@ -529,6 +620,7 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         initial_state=create_persistent_world_movement_runtime_state(
             representation=representation
         ),
+        initial_object_open_states=initial_object_open_states,
         place_presentations=places,
         object_presentations=objects,
         movement_routes=routes,

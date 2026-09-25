@@ -293,8 +293,9 @@ def test_fixture_custody_policy_emits_only_bounded_owner_evidence():
 def test_obs1_fixture_public_descriptions_are_state_independent_and_versioned():
     fixture = create_terminal_play_fixture()
 
-    assert FIXTURE_VERSION == "0.1.1"
+    assert FIXTURE_VERSION == "0.1.2"
     assert "TERMINAL-PLAY-OBS-1" in FIXTURE_PLAYABLE_NEED_REFS
+    assert "TERMINAL-PLAY-INT-1" in FIXTURE_PLAYABLE_NEED_REFS
     assert fixture.provenance.initial_state_digest == FIXTURE_INITIAL_STATE_DIGEST
 
     lantern = fixture.object_presentation(LANTERN_ID)
