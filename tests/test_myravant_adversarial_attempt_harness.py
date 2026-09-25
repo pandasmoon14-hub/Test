@@ -50,3 +50,33 @@ def test_harness_surfaces_actionable_pressure_classes(tmp_path):
     assert cases["compound"]["primary"]["command_id"] is None
     assert cases["injection"]["primary"]["failure_class"] == "unsupported_input_no_executable_route"
     assert cases["throwing"]["observed_class"] == "CAPABILITY_FRONTIER"
+
+def test_obs1_harness_covers_targeted_inspection_without_directional_collapse(tmp_path):
+    report = _run(tmp_path / "obs1-coverage.json")
+    cases = {row["case"]["case_id"]: row for row in report["cases"]}
+
+    for case_id in (
+        "inspect-01",
+        "inspect-02",
+        "inspect-03",
+        "inspect-04",
+        "inspect-05",
+    ):
+        row = cases[case_id]
+        assert row["primary"]["result_type"] == "inspection"
+        assert row["primary"]["authoritative_changed"] is False
+        assert row["primary"]["command_id"] is None
+        assert row["observed_class"] == "NONMUTATING_OBSERVATION"
+
+    remote = cases["object-inspection-remote"]["primary"]
+    unknown = cases["object-inspection-unknown"]["primary"]
+    assert remote["result_type"] == unknown["result_type"] == "inspection_unavailable"
+    assert remote["failure_class"] == unknown["failure_class"] == "inspection_target_unavailable"
+    assert remote["authoritative_changed"] is unknown["authoritative_changed"] is False
+
+    directional = cases["directional-look"]["primary"]
+    assert directional["result_type"] == "unsupported_input"
+    assert directional["failure_class"] == "unsupported_input_no_executable_route"
+
+    assert cases["inspection-compound"]["observed_class"] == "COMPOUND_PRESSURE"
+    assert cases["inspection-injection"]["primary"]["result_type"] == "unsupported_input"

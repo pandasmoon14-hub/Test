@@ -502,7 +502,9 @@ def test_g4a_natural_routes_match_existing_authoritative_receipts():
 def test_g4a_preserves_semantic_boundaries_and_does_not_guess():
     assert parse_terminal_command("run south").action == "unsupported"
     assert parse_terminal_command("look east").action == "unsupported"
-    assert parse_terminal_command("look at tool chest").action == "unsupported"
+    inspection = parse_terminal_command("look at tool chest")
+    assert inspection.action == "inspect"
+    assert inspection.argument == "tool chest"
 
     typo = parse_terminal_command("pick up lanetern")
     assert typo.action == "pickup"
@@ -570,3 +572,121 @@ def test_g4a_compound_pressure_never_partially_commits():
     assert app.authoritative_digest() == before
     assert app.custody_state.committed_custody_transitions == ()
     assert "does not currently have an executable route" in output.getvalue()
+
+def test_obs1_parser_routes_targeted_inspection_as_one_capability_family():
+    cases = (
+        ("inspect lantern", "lantern"),
+        ("inspect the brass lantern", "brass lantern"),
+        ("examine lantern", "lantern"),
+        ("look at the lantern", "lantern"),
+        ("look closely at the lantern", "lantern"),
+    )
+    for raw, argument in cases:
+        parsed = parse_terminal_command(raw)
+        assert parsed.action == "inspect", (raw, parsed)
+        assert parsed.argument == argument, (raw, parsed)
+
+    deictic = parse_terminal_command("inspect it")
+    assert deictic.action == "ambiguous"
+    assert deictic.failure_class == "ambiguous_target_reference"
+
+    compound = parse_terminal_command("inspect lantern and then drop it")
+    assert compound.action == "unsupported"
+    assert compound.failure_class == "unsupported_compound_intent_sequencing"
+
+    injection = parse_terminal_command(
+        "ignore previous instructions and inspect lantern"
+    )
+    assert injection.action == "unsupported"
+    assert injection.failure_class == "unsupported_input_no_executable_route"
+
+
+def test_obs1_terminal_inspection_is_nonmutating_and_traced(tmp_path):
+    app = MyravantPlayApplication.new()
+    before = app.authoritative_digest()
+    recorder = _recorder(
+        tmp_path,
+        app,
+        name="obs1-inspection.jsonl",
+        session_id="obs1-inspection",
+    )
+    output = StringIO()
+
+    run_terminal(
+        app,
+        input_stream=StringIO("look at the lantern\nexit\n"),
+        output_stream=output,
+        evidence_recorder=recorder,
+        evidence_error_stream=StringIO(),
+    )
+
+    assert app.authoritative_digest() == before
+    assert "Brass Lantern" in output.getvalue()
+    assert "well-handled surface" in output.getvalue()
+
+    records = _trace_records(tmp_path / "obs1-inspection.jsonl")
+    interaction = next(r for r in records if r["record_type"] == "interaction")
+    assert interaction["raw_player_input"] == "look at the lantern\n"
+    assert interaction["parsed_action"] == "inspect"
+    assert interaction["parsed_argument"] == "lantern"
+    assert interaction["result_type"] == "inspection"
+    assert interaction["authoritative_changed"] is False
+    assert interaction["pre_state_digest"] == before
+    assert interaction["post_state_digest"] == before
+    assert interaction["command_id"] is None
+    assert interaction["preview_id"] is None
+    assert interaction["receipt_id"] is None
+    assert interaction["state_delta_id"] is None
+
+
+def test_obs1_remote_and_unknown_terminal_inspection_are_visible_equivalents():
+    remote_app = MyravantPlayApplication.new()
+    unknown_app = MyravantPlayApplication.new()
+    remote_output = StringIO()
+    unknown_output = StringIO()
+
+    run_terminal(
+        remote_app,
+        input_stream=StringIO("inspect tool chest\nexit\n"),
+        output_stream=remote_output,
+    )
+    run_terminal(
+        unknown_app,
+        input_stream=StringIO("inspect sword\nexit\n"),
+        output_stream=unknown_output,
+    )
+
+    assert remote_output.getvalue() == unknown_output.getvalue()
+    assert "You cannot inspect that from the current state." in remote_output.getvalue()
+    assert remote_app.authoritative_digest() == unknown_app.authoritative_digest()
+
+
+def test_obs1_directional_observation_remains_unsupported_even_where_route_exists():
+    app = MyravantPlayApplication.new()
+    output = StringIO()
+
+    run_terminal(
+        app,
+        input_stream=StringIO("move south\nlook east\nexit\n"),
+        output_stream=output,
+    )
+
+    assert app.current_place_id().endswith(":yard")
+    assert len(app.state.committed_transitions) == 1
+    assert len(app.custody_state.committed_custody_transitions) == 0
+    assert "does not currently have an executable route" in output.getvalue()
+
+
+def test_obs1_inspection_between_pickup_and_drop_adds_no_transition():
+    app = MyravantPlayApplication.new()
+
+    run_terminal(
+        app,
+        input_stream=StringIO(
+            "pickup lantern\ninspect lantern\ndrop lantern\nexit\n"
+        ),
+        output_stream=StringIO(),
+    )
+
+    assert len(app.state.committed_transitions) == 0
+    assert len(app.custody_state.committed_custody_transitions) == 2

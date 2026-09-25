@@ -284,3 +284,79 @@ def test_existing_g1_r4d_checkpoint_remains_loadable_and_can_upgrade_on_save(
     )
     assert upgraded.current_place_id() == WORKSHOP_ID
     assert upgraded.custody_state.committed_custody_transitions == ()
+
+def test_obs1_targeted_inspection_reads_public_presentation_without_mutation():
+    app = MyravantPlayApplication.new()
+    before = app.authoritative_digest()
+
+    result = app.inspect("lantern")
+
+    assert result.result_type == "inspection"
+    assert result.authoritative_changed is False
+    assert result.view is not None
+    assert result.view.name == "Brass Lantern"
+    assert "workbench" not in result.view.description.casefold()
+    assert result.pre_state_digest == before
+    assert result.post_state_digest == before
+    assert result.command_id is None
+    assert result.command_fingerprint is None
+    assert result.preview_id is None
+    assert result.receipt_id is None
+    assert result.state_delta_id is None
+    assert app.authoritative_digest() == before
+
+
+def test_obs1_carried_and_moved_object_remains_inspectable_without_new_transition():
+    app = MyravantPlayApplication.new()
+    app.pickup("lantern")
+    app.move("south")
+    before = app.authoritative_digest()
+    movement_count = len(app.state.committed_transitions)
+    custody_count = len(app.custody_state.committed_custody_transitions)
+
+    result = app.inspect("brass lantern")
+
+    assert result.result_type == "inspection"
+    assert result.view is not None
+    assert result.view.name == "Brass Lantern"
+    assert "workbench" not in result.view.description.casefold()
+    assert result.pre_state_digest == before == result.post_state_digest
+    assert app.authoritative_digest() == before
+    assert len(app.state.committed_transitions) == movement_count
+    assert len(app.custody_state.committed_custody_transitions) == custody_count
+
+
+def test_obs1_remote_and_unknown_targets_are_player_indistinguishable():
+    app = MyravantPlayApplication.new()
+    before = app.authoritative_digest()
+
+    remote = app.inspect("tool chest")
+    unknown = app.inspect("sword")
+
+    assert remote.result_type == unknown.result_type == "inspection_unavailable"
+    assert remote.failure_class == unknown.failure_class == "inspection_target_unavailable"
+    assert remote.message == unknown.message == "You cannot inspect that from the current state."
+    assert remote.pre_state_digest == remote.post_state_digest == before
+    assert unknown.pre_state_digest == unknown.post_state_digest == before
+    assert remote.command_id is unknown.command_id is None
+    assert remote.receipt_id is unknown.receipt_id is None
+    assert remote.state_delta_id is unknown.state_delta_id is None
+    assert app.authoritative_digest() == before
+
+
+def test_obs1_local_targets_become_inspectable_from_current_authoritative_location():
+    app = MyravantPlayApplication.new()
+
+    app.move("south")
+    chest = app.inspect("tool chest")
+    assert chest.result_type == "inspection"
+    assert chest.view is not None
+    assert chest.view.name == "Tool Chest"
+    assert "yard wall" not in chest.view.description.casefold()
+
+    app.move("east")
+    waystone = app.inspect("weathered waystone")
+    assert waystone.result_type == "inspection"
+    assert waystone.view is not None
+    assert waystone.view.name == "Weathered Waystone"
+    assert "orchard path" not in waystone.view.description.casefold()

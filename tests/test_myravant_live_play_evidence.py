@@ -207,13 +207,13 @@ def test_repository_sha_must_be_exact_or_unknown():
     assert header.debug_mode is True
 
 
-def test_g4a_client_identity_and_custody_result_accounting(tmp_path):
+def test_obs1_client_identity_and_custody_result_accounting(tmp_path):
     header = _header()
-    assert CLIENT_ID == "myravant-terminal-g4a"
+    assert CLIENT_ID == "myravant-terminal-obs1"
     assert header.client_id == CLIENT_ID
 
     recorder = LivePlayEvidenceRecorder(
-        trace_path=tmp_path / "g4a-evidence.jsonl",
+        trace_path=tmp_path / "obs1-evidence.jsonl",
         header=header,
     )
 
@@ -250,3 +250,32 @@ def test_g4a_client_identity_and_custody_result_accounting(tmp_path):
     assert receipt.committed_transitions == 1
     assert receipt.unsupported_or_rejected == 1
     assert receipt.meaningful_interactions == 2
+
+def test_obs1_inspection_evidence_is_observational_only(tmp_path):
+    recorder = LivePlayEvidenceRecorder(
+        trace_path=tmp_path / "obs1-inspection-evidence.jsonl",
+        header=_header(),
+    )
+
+    recorder.record_interaction(
+        raw_player_input="inspect lantern\n",
+        parsed_action="inspect",
+        parsed_argument="lantern",
+        player_visible_output="Brass Lantern\n\nA plain brass lantern.\n",
+        result_type="inspection",
+        authoritative_changed=False,
+        pre_state_digest=INITIAL_DIGEST,
+        post_state_digest=INITIAL_DIGEST,
+    )
+    receipt = recorder.finish(final_state_digest=INITIAL_DIGEST)
+
+    records = _records(tmp_path / "obs1-inspection-evidence.jsonl")
+    interaction = records[1]
+    assert interaction["authority_effect"] == "none"
+    assert interaction["result_type"] == "inspection"
+    assert interaction["authoritative_changed"] is False
+    assert interaction["command_id"] is None
+    assert interaction["preview_id"] is None
+    assert interaction["receipt_id"] is None
+    assert interaction["state_delta_id"] is None
+    assert receipt.committed_transitions == 0
