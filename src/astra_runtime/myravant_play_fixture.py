@@ -40,7 +40,7 @@ from astra_runtime.kernel.record_identity import build_record_id
 
 
 FIXTURE_ID = "myravant-native-terminal-g1"
-FIXTURE_VERSION = "0.1.0"
+FIXTURE_VERSION = "0.1.1"
 FIXTURE_STATUS = "development_validation_content"
 FIXTURE_CANON = False
 FIXTURE_DEFAULT_WORLD = False
@@ -56,6 +56,7 @@ FIXTURE_PLAYABLE_NEED_REFS = (
     "R4-C",
     "R4-D",
     "TERMINAL-PLAY-G1",
+    "TERMINAL-PLAY-OBS-1",
     "R4-E-readiness",
 )
 FIXTURE_REQUIREMENT_REFS = (
@@ -154,6 +155,19 @@ class MyravantPlayFixture:
             if presentation.entity_id == place_id:
                 return presentation
         raise UnknownFixturePlaceError(f"unknown fixture place: {place_id!r}")
+
+    def object_presentation(
+        self,
+        object_entity_id: str,
+    ) -> PublicEntityPresentation:
+        """Return declared public presentation without claiming observation authority."""
+
+        for presentation in self.object_presentations:
+            if presentation.entity_id == object_entity_id:
+                return presentation
+        raise UnavailableFixtureCustodyError(
+            "object presentation is not declared in the bounded fixture"
+        )
 
     def entity_name(self, entity_id: str) -> str:
         for presentation in (
@@ -463,18 +477,18 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         PublicEntityPresentation(
             entity_id=LANTERN_ID,
             name="Brass Lantern",
-            description="A plain brass lantern rests near the workbench.",
+            description="A plain brass lantern with a dulled, well-handled surface.",
         ),
         PublicEntityPresentation(
             entity_id=TOOL_CHEST_ID,
             name="Tool Chest",
-            description="A scarred tool chest sits against the yard wall.",
+            description="A scarred tool chest with worn fittings and a heavy wooden lid.",
         ),
         PublicEntityPresentation(
             entity_id=WAYSTONE_ID,
             name="Weathered Waystone",
             description=(
-                "A small weathered waystone stands beside the orchard path."
+                "A small weathered waystone with a rough, timeworn surface."
             ),
         ),
     )

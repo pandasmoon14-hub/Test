@@ -20,7 +20,7 @@ from typing import Any
 
 TRACE_FORMAT_IDENTITY = "myravant.live_play_evidence"
 TRACE_FORMAT_VERSION = 1
-CLIENT_ID = "myravant-terminal-g4a"
+CLIENT_ID = "myravant-terminal-obs1"
 CLIENT_MODE = "CLIENT-TEXT-V1"
 MODEL_MODE = "MODEL-NONE"
 

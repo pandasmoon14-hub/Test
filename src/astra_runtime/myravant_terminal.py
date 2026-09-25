@@ -20,6 +20,7 @@ from astra_runtime.myravant_play_application import (
     CheckpointPathRequiredError,
     MyravantPlayApplication,
     PlayApplicationResult,
+    PublicInspectionView,
     PublicLocationView,
 )
 
@@ -46,6 +47,8 @@ _DIRECTION_ALIASES = {
 }
 _COMPOUND_ACTION_STARTERS = frozenset({
     "look",
+    "inspect",
+    "examine",
     "move",
     "go",
     "walk",
@@ -168,6 +171,31 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
     ):
         return ParsedTerminalCommand(action="look", raw_text=raw_text)
 
+    if verb in {"inspect", "examine"}:
+        return _object_action(
+            action="inspect",
+            target_tokens=parts[1:],
+            raw_text=raw_text,
+        )
+
+    if verb == "look" and len(parts) >= 3 and lowered[1] == "at":
+        return _object_action(
+            action="inspect",
+            target_tokens=parts[2:],
+            raw_text=raw_text,
+        )
+
+    if (
+        verb == "look"
+        and len(parts) >= 4
+        and lowered[1:3] == ["closely", "at"]
+    ):
+        return _object_action(
+            action="inspect",
+            target_tokens=parts[3:],
+            raw_text=raw_text,
+        )
+
     if verb in {"move", "go", "walk", "head"}:
         direction = _movement_direction(parts[1:])
         if direction is not None:
@@ -238,9 +266,15 @@ def _render_view(view: PublicLocationView) -> str:
     return "\n".join(lines)
 
 
+def _render_inspection_view(view: PublicInspectionView) -> str:
+    return "\n".join((view.name, "", view.description))
+
+
 def _player_visible_result_text(result: PlayApplicationResult) -> str:
-    if result.view is not None:
+    if isinstance(result.view, PublicLocationView):
         return _render_view(result.view)
+    if isinstance(result.view, PublicInspectionView):
+        return _render_inspection_view(result.view)
     return result.message
 
 
@@ -287,9 +321,10 @@ def _write_result(
 
 def _write_help(output: TextIO) -> str:
     visible = (
-        "Commands: look, move <direction>, pickup <object>, "
+        "Commands: look, inspect <object>, move <direction>, pickup <object>, "
         "drop <object>, save, help, exit\n"
         "Natural equivalents such as 'I head north', 'look around', "
+        "'examine the lantern', 'look at the lantern', "
         "'walk to the south exit', and 'grab the lantern' route to existing "
         "mechanics when unambiguous.\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
@@ -397,6 +432,17 @@ def run_terminal(
             continue
         if parsed.action == "look":
             result = application.look()
+            visible = _write_result(output_stream, result, debug=debug)
+            _record_result(
+                evidence_recorder,
+                parsed=parsed,
+                visible_output=visible,
+                result=result,
+                error_stream=evidence_error_stream,
+            )
+            continue
+        if parsed.action == "inspect":
+            result = application.inspect(parsed.argument or "")
             visible = _write_result(output_stream, result, debug=debug)
             _record_result(
                 evidence_recorder,

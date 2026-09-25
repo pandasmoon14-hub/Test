@@ -65,10 +65,16 @@ class PublicLocationView:
 
 
 @dataclass(frozen=True, kw_only=True)
+class PublicInspectionView:
+    name: str
+    description: str
+
+
+@dataclass(frozen=True, kw_only=True)
 class PlayApplicationResult:
     result_type: str
     message: str
-    view: PublicLocationView | None = None
+    view: PublicLocationView | PublicInspectionView | None = None
     authoritative_changed: bool = False
     command_id: str | None = None
     command_fingerprint: str | None = None
@@ -204,6 +210,58 @@ class MyravantPlayApplication:
             result_type="look",
             message=presentation.name,
             view=view,
+            pre_state_digest=digest,
+            post_state_digest=digest,
+        )
+
+    def inspect(self, object_reference: str) -> PlayApplicationResult:
+        """Return bounded public presentation only for a currently observable object."""
+
+        digest = self.authoritative_digest()
+        unavailable = PlayApplicationResult(
+            result_type="inspection_unavailable",
+            message="You cannot inspect that from the current state.",
+            authoritative_changed=False,
+            pre_state_digest=digest,
+            post_state_digest=digest,
+            failure_class="inspection_target_unavailable",
+        )
+
+        try:
+            object_entity_id = self.fixture.resolve_object_reference(
+                object_reference
+            )
+        except UnavailableFixtureCustodyError:
+            return unavailable
+
+        place_id = self.current_place_id()
+        nearby_ids = {
+            item.entity_id
+            for item in self.fixture.public_entities_at(
+                self.state.representation,
+                place_id,
+            )
+        }
+        carried_ids = {
+            item.entity_id
+            for item in self.fixture.public_entities_carried_by(
+                self.state.representation,
+                self.fixture.player_entity_id,
+            )
+        }
+        if object_entity_id not in nearby_ids | carried_ids:
+            return unavailable
+
+        presentation = self.fixture.object_presentation(object_entity_id)
+        view = PublicInspectionView(
+            name=presentation.name,
+            description=presentation.description,
+        )
+        return PlayApplicationResult(
+            result_type="inspection",
+            message=presentation.name,
+            view=view,
+            authoritative_changed=False,
             pre_state_digest=digest,
             post_state_digest=digest,
         )

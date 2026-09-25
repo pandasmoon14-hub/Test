@@ -289,3 +289,24 @@ def test_fixture_custody_policy_emits_only_bounded_owner_evidence():
             object_entity_id=LANTERN_ID,
             operation="transfer",
         )
+
+def test_obs1_fixture_public_descriptions_are_state_independent_and_versioned():
+    fixture = create_terminal_play_fixture()
+
+    assert FIXTURE_VERSION == "0.1.1"
+    assert "TERMINAL-PLAY-OBS-1" in FIXTURE_PLAYABLE_NEED_REFS
+    assert fixture.provenance.initial_state_digest == FIXTURE_INITIAL_STATE_DIGEST
+
+    lantern = fixture.object_presentation(LANTERN_ID)
+    chest = fixture.object_presentation(TOOL_CHEST_ID)
+    waystone = fixture.object_presentation(WAYSTONE_ID)
+
+    assert lantern.name == "Brass Lantern"
+    assert chest.name == "Tool Chest"
+    assert waystone.name == "Weathered Waystone"
+
+    combined = " ".join(
+        (lantern.description, chest.description, waystone.description)
+    ).casefold()
+    for stale_placement_phrase in ("workbench", "yard wall", "orchard path"):
+        assert stale_placement_phrase not in combined
