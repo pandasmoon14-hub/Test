@@ -28,7 +28,7 @@ def test_harness_is_deterministic_and_has_no_invariant_failures(tmp_path):
     assert first["model_mode"] == "MODEL-NONE"
     assert first["authority_effect"] == "none"
     summary = first["summary"]
-    assert summary["cases_total"] >= 50
+    assert summary["cases_total"] == 85
     assert summary["cases_failed"] == 0
     assert summary["deterministic_replay_failures"] == 0
     assert summary["canonical_equivalence_failures"] == 0
@@ -46,6 +46,8 @@ def test_harness_surfaces_actionable_pressure_classes(tmp_path):
         assert classes.get(expected, 0) > 0, expected
 
     cases = {row["case"]["case_id"]: row for row in report["cases"]}
+    assert cases["light-02"]["primary"]["result_type"] == "object_lit_state_committed"
+    assert cases["activation"]["primary"]["failure_class"] == "unsupported_capability_object_activation"
     assert cases["compound"]["primary"]["authoritative_changed"] is False
     assert cases["compound"]["primary"]["command_id"] is None
     assert cases["injection"]["primary"]["failure_class"] == "unsupported_input_no_executable_route"

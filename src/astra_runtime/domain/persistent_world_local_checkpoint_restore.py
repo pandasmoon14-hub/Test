@@ -2546,54 +2546,18 @@ def _restore_int1_transition(
     )
 
 
-def restore_persistent_world_object_open_close_checkpoint(
+def _restore_int1_payload(
+    payload_material: object,
     *,
-    checkpoint_path: str | os.PathLike[str],
     expected_campaign_id: str,
     expected_initial_object_states: tuple[PersistentWorldObjectOpenState, ...],
 ) -> PersistentWorldObjectOpenCloseRuntimeState:
-    path = _checkpoint_path(checkpoint_path)
-    expected_campaign_id = _require_record_id(
-        expected_campaign_id,
-        name="expected_campaign_id",
-    )
-    envelope = _read_checkpoint_envelope(path)
-    if envelope["format_identity"] != OBJECT_OPEN_CLOSE_CHECKPOINT_FORMAT_IDENTITY:
-        raise PersistentWorldCheckpointFormatError(
-            "unsupported INT-1 checkpoint format identity"
-        )
-    if (
-        type(envelope["format_version"]) is not int
-        or envelope["format_version"] != OBJECT_OPEN_CLOSE_CHECKPOINT_FORMAT_VERSION
-    ):
-        raise PersistentWorldCheckpointFormatError(
-            "unsupported INT-1 checkpoint format version"
-        )
-    campaign_identity = _require_record_id(
-        envelope["campaign_identity"],
-        name="checkpoint campaign_identity",
-    )
-    if campaign_identity != expected_campaign_id:
-        raise PersistentWorldCheckpointCampaignMismatchError(
-            "checkpoint campaign identity does not match caller expectation"
-        )
-    _normalize_qualification(envelope["qualification_provenance"])
     payload = _require_exact_dict(
-        envelope["authoritative_payload"],
+        payload_material,
         expected_keys=_INT1_PAYLOAD_KEYS,
         name="INT-1 authoritative payload",
-        error_cls=PersistentWorldCheckpointFormatError,
+        error_cls=PersistentWorldCheckpointEvidenceError,
     )
-    integrity = _require_sha256(
-        envelope["integrity_digest"],
-        name="integrity_digest",
-        error_cls=PersistentWorldCheckpointIntegrityError,
-    )
-    if _sha256_bytes(_canonical_bytes(payload)) != integrity:
-        raise PersistentWorldCheckpointIntegrityError(
-            "INT-1 checkpoint authoritative payload integrity mismatch"
-        )
-
     custody_state = _restore_r4e_payload(
         payload["r4e_state"],
         expected_campaign_id=expected_campaign_id,
@@ -2612,10 +2576,7 @@ def restore_persistent_world_object_open_close_checkpoint(
         name="INT-1 object_state_digest",
         error_cls=PersistentWorldCheckpointEvidenceError,
     )
-    if (
-        digest_persistent_world_object_open_states(object_states)
-        != stored_object_digest
-    ):
+    if digest_persistent_world_object_open_states(object_states) != stored_object_digest:
         raise PersistentWorldCheckpointEvidenceError(
             "INT-1 object-state digest mismatch"
         )
@@ -2680,11 +2641,557 @@ def restore_persistent_world_object_open_close_checkpoint(
         name="INT-1 world_state_digest",
         error_cls=PersistentWorldCheckpointEvidenceError,
     )
-    if (
-        digest_persistent_world_object_open_close_runtime_state(state)
-        != stored_world_digest
-    ):
+    if digest_persistent_world_object_open_close_runtime_state(state) != stored_world_digest:
         raise PersistentWorldCheckpointEvidenceError(
             "INT-1 composite world-state digest mismatch"
+        )
+    return state
+
+
+def restore_persistent_world_object_open_close_checkpoint(
+    *,
+    checkpoint_path: str | os.PathLike[str],
+    expected_campaign_id: str,
+    expected_initial_object_states: tuple[PersistentWorldObjectOpenState, ...],
+) -> PersistentWorldObjectOpenCloseRuntimeState:
+    path = _checkpoint_path(checkpoint_path)
+    expected_campaign_id = _require_record_id(
+        expected_campaign_id,
+        name="expected_campaign_id",
+    )
+    envelope = _read_checkpoint_envelope(path)
+    if envelope["format_identity"] != OBJECT_OPEN_CLOSE_CHECKPOINT_FORMAT_IDENTITY:
+        raise PersistentWorldCheckpointFormatError(
+            "unsupported INT-1 checkpoint format identity"
+        )
+    if (
+        type(envelope["format_version"]) is not int
+        or envelope["format_version"] != OBJECT_OPEN_CLOSE_CHECKPOINT_FORMAT_VERSION
+    ):
+        raise PersistentWorldCheckpointFormatError(
+            "unsupported INT-1 checkpoint format version"
+        )
+    campaign_identity = _require_record_id(
+        envelope["campaign_identity"],
+        name="checkpoint campaign_identity",
+    )
+    if campaign_identity != expected_campaign_id:
+        raise PersistentWorldCheckpointCampaignMismatchError(
+            "checkpoint campaign identity does not match caller expectation"
+        )
+    _normalize_qualification(envelope["qualification_provenance"])
+    payload = envelope["authoritative_payload"]
+    integrity = _require_sha256(
+        envelope["integrity_digest"],
+        name="integrity_digest",
+        error_cls=PersistentWorldCheckpointIntegrityError,
+    )
+    if _sha256_bytes(_canonical_bytes(payload)) != integrity:
+        raise PersistentWorldCheckpointIntegrityError(
+            "INT-1 checkpoint authoritative payload integrity mismatch"
+        )
+    return _restore_int1_payload(
+        payload,
+        expected_campaign_id=expected_campaign_id,
+        expected_initial_object_states=expected_initial_object_states,
+    )
+
+
+# ---------------------------------------------------------------------------
+# TERMINAL-PLAY-INT-2 bounded Brass Lantern lit/unlit checkpoint extension
+# ---------------------------------------------------------------------------
+
+from astra_runtime.domain.persistent_world_object_lit_state import (
+    PersistentWorldObjectLitRuntimeState,
+    PersistentWorldObjectLitState,
+    PersistentWorldObjectLitStateCommitReceipt,
+    PersistentWorldObjectLitStateCommittedTransition,
+    digest_persistent_world_object_lit_runtime_state,
+    digest_persistent_world_object_lit_states,
+    replay_persistent_world_object_lit_states,
+    serialize_persistent_world_object_lit_state,
+    serialize_persistent_world_object_lit_state_commit_receipt,
+)
+
+OBJECT_LIT_STATE_CHECKPOINT_FORMAT_IDENTITY = (
+    "myravant.int2.persistent_world_object_lit_state_checkpoint"
+)
+OBJECT_LIT_STATE_CHECKPOINT_FORMAT_VERSION = 1
+
+_INT2_PAYLOAD_KEYS = frozenset({
+    "int1_state",
+    "object_lit_states",
+    "object_lit_state_digest",
+    "world_state_digest",
+    "committed_object_lit_transitions",
+    "object_lit_transition_summary",
+})
+_INT2_OBJECT_STATE_KEYS = frozenset({
+    "object_entity_id",
+    "state",
+    "semantic_owner",
+})
+_INT2_RECEIPT_KEYS = frozenset({
+    "receipt_id",
+    "command_id",
+    "command_fingerprint",
+    "actor_entity_id",
+    "object_entity_id",
+    "operation",
+    "pre_object_state",
+    "post_object_state",
+    "pre_state_digest",
+    "post_state_digest",
+    "placement_digest",
+    "preview_id",
+    "state_delta_id",
+    "rt010_qualification_id",
+    "opportunity_evidence_id",
+    "status",
+})
+
+
+def _serialize_int2_transition(
+    transition: PersistentWorldObjectLitStateCommittedTransition,
+) -> dict[str, object]:
+    if not isinstance(transition, PersistentWorldObjectLitStateCommittedTransition):
+        raise InvalidPersistentWorldCheckpointRequestError(
+            "INT-2 transition has invalid type"
+        )
+    return {
+        "command_id": transition.command_id,
+        "command_fingerprint": transition.command_fingerprint,
+        "preview": transition.preview.to_dict(),
+        "state_delta": transition.state_delta.to_dict(),
+        "receipt": serialize_persistent_world_object_lit_state_commit_receipt(
+            transition.receipt
+        ),
+    }
+
+
+def serialize_persistent_world_object_lit_state_checkpoint_payload(
+    state: PersistentWorldObjectLitRuntimeState,
+) -> dict[str, object]:
+    if not isinstance(state, PersistentWorldObjectLitRuntimeState):
+        raise InvalidPersistentWorldCheckpointRequestError(
+            "state must be PersistentWorldObjectLitRuntimeState"
+        )
+    transitions = [
+        _serialize_int2_transition(item)
+        for item in state.committed_object_lit_transitions
+    ]
+    return {
+        "int1_state": serialize_persistent_world_object_open_close_checkpoint_payload(
+            state.open_close_state
+        ),
+        "object_lit_states": [
+            serialize_persistent_world_object_lit_state(item)
+            for item in state.object_lit_states
+        ],
+        "object_lit_state_digest": digest_persistent_world_object_lit_states(
+            state.object_lit_states
+        ),
+        "world_state_digest": digest_persistent_world_object_lit_runtime_state(state),
+        "committed_object_lit_transitions": transitions,
+        "object_lit_transition_summary": {
+            "count": len(transitions),
+            "command_ids": sorted(item["command_id"] for item in transitions),
+        },
+    }
+
+
+def build_persistent_world_object_lit_state_checkpoint_envelope(
+    *,
+    state: PersistentWorldObjectLitRuntimeState,
+    qualification_evidence: Mapping[str, Any],
+) -> dict[str, object]:
+    payload = serialize_persistent_world_object_lit_state_checkpoint_payload(state)
+    qualification = _normalize_qualification(qualification_evidence)
+    return {
+        "format_identity": OBJECT_LIT_STATE_CHECKPOINT_FORMAT_IDENTITY,
+        "format_version": OBJECT_LIT_STATE_CHECKPOINT_FORMAT_VERSION,
+        "campaign_identity": (
+            state.open_close_state.custody_state.movement_state.representation.campaign_id
+        ),
+        "authoritative_payload": payload,
+        "integrity_digest": _sha256_bytes(_canonical_bytes(payload)),
+        "qualification_provenance": qualification,
+    }
+
+
+def write_persistent_world_object_lit_state_checkpoint(
+    *,
+    state: PersistentWorldObjectLitRuntimeState,
+    checkpoint_path: str | os.PathLike[str],
+    qualification_evidence: Mapping[str, Any],
+) -> str:
+    path = _checkpoint_path(checkpoint_path)
+    parent = path.parent
+    if not parent.exists() or not parent.is_dir():
+        raise PersistentWorldCheckpointWriteError(
+            "caller-supplied checkpoint parent directory does not exist"
+        )
+    envelope = build_persistent_world_object_lit_state_checkpoint_envelope(
+        state=state,
+        qualification_evidence=qualification_evidence,
+    )
+    material = _canonical_bytes(envelope)
+    temporary_path: str | None = None
+    try:
+        descriptor, temporary_path = tempfile.mkstemp(
+            prefix=f".{path.name}.",
+            suffix=".int2-tmp",
+            dir=parent,
+        )
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(material)
+            handle.flush()
+            os.fsync(handle.fileno())
+        _replace_checkpoint_durably(Path(temporary_path), path)
+        temporary_path = None
+    except OSError as exc:
+        if temporary_path is not None:
+            try:
+                os.unlink(temporary_path)
+            except (FileNotFoundError, OSError):
+                pass
+        raise PersistentWorldCheckpointWriteError(
+            "local INT-2 checkpoint durability operation failed"
+        ) from exc
+    return str(envelope["integrity_digest"])
+
+
+def _restore_int2_object_state(material: object) -> PersistentWorldObjectLitState:
+    item = _require_exact_dict(
+        material,
+        expected_keys=_INT2_OBJECT_STATE_KEYS,
+        name="INT-2 object lit state",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    try:
+        return PersistentWorldObjectLitState(
+            object_entity_id=_require_record_id(
+                item["object_entity_id"],
+                name="INT-2 object_lit_state.object_entity_id",
+            ),
+            state=_require_non_empty_str(
+                item["state"],
+                name="INT-2 object_lit_state.state",
+                error_cls=PersistentWorldCheckpointEvidenceError,
+            ),
+            semantic_owner=_require_non_empty_str(
+                item["semantic_owner"],
+                name="INT-2 object_lit_state.semantic_owner",
+                error_cls=PersistentWorldCheckpointEvidenceError,
+            ),
+        )
+    except Exception as exc:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 object lit state is invalid"
+        ) from exc
+
+
+def _restore_int2_preview(material: object) -> TransactionPreview:
+    preview = _require_exact_dict(
+        material,
+        expected_keys=_PREVIEW_KEYS,
+        name="INT-2 object-lit-state preview",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    expected_metadata = {
+        "package": "TERMINAL-PLAY-INT-2",
+        "command_family": "interaction",
+        "mutation_performed": False,
+    }
+    if preview["status"] != "preview_created":
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 preview must remain preview_created"
+        )
+    if preview["messages"] != [
+        "bounded persistent object lit/unlit state prepared"
+    ]:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 preview messages are inconsistent"
+        )
+    if preview["requires_confirmation"] is not False:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 preview unexpectedly requires confirmation"
+        )
+    if preview["metadata"] != expected_metadata:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 preview metadata is inconsistent"
+        )
+    return TransactionPreview(
+        preview_id=_require_record_id(
+            preview["preview_id"],
+            name="INT-2 preview.preview_id",
+        ),
+        command_id=_require_non_empty_str(
+            preview["command_id"],
+            name="INT-2 preview.command_id",
+            error_cls=PersistentWorldCheckpointEvidenceError,
+        ),
+        status="preview_created",
+        messages=("bounded persistent object lit/unlit state prepared",),
+        requires_confirmation=False,
+        metadata=MappingProxyType(dict(expected_metadata)),
+    )
+
+
+def _restore_int2_receipt(
+    material: object,
+) -> PersistentWorldObjectLitStateCommitReceipt:
+    receipt = _require_exact_dict(
+        material,
+        expected_keys=_INT2_RECEIPT_KEYS,
+        name="INT-2 object-lit-state receipt",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    record_fields = (
+        "receipt_id",
+        "actor_entity_id",
+        "object_entity_id",
+        "preview_id",
+        "state_delta_id",
+        "rt010_qualification_id",
+        "opportunity_evidence_id",
+    )
+    ids = {
+        field: _require_record_id(
+            receipt[field],
+            name=f"INT-2 receipt.{field}",
+        )
+        for field in record_fields
+    }
+    try:
+        return PersistentWorldObjectLitStateCommitReceipt(
+            receipt_id=ids["receipt_id"],
+            command_id=_require_non_empty_str(
+                receipt["command_id"],
+                name="INT-2 receipt.command_id",
+                error_cls=PersistentWorldCheckpointEvidenceError,
+            ),
+            command_fingerprint=_require_sha256(
+                receipt["command_fingerprint"],
+                name="INT-2 receipt.command_fingerprint",
+                error_cls=PersistentWorldCheckpointEvidenceError,
+            ),
+            actor_entity_id=ids["actor_entity_id"],
+            object_entity_id=ids["object_entity_id"],
+            operation=receipt["operation"],
+            pre_object_state=receipt["pre_object_state"],
+            post_object_state=receipt["post_object_state"],
+            pre_state_digest=_require_sha256(
+                receipt["pre_state_digest"],
+                name="INT-2 receipt.pre_state_digest",
+                error_cls=PersistentWorldCheckpointEvidenceError,
+            ),
+            post_state_digest=_require_sha256(
+                receipt["post_state_digest"],
+                name="INT-2 receipt.post_state_digest",
+                error_cls=PersistentWorldCheckpointEvidenceError,
+            ),
+            placement_digest=_require_sha256(
+                receipt["placement_digest"],
+                name="INT-2 receipt.placement_digest",
+                error_cls=PersistentWorldCheckpointEvidenceError,
+            ),
+            preview_id=ids["preview_id"],
+            state_delta_id=ids["state_delta_id"],
+            rt010_qualification_id=ids["rt010_qualification_id"],
+            opportunity_evidence_id=ids["opportunity_evidence_id"],
+            status=receipt["status"],
+        )
+    except Exception as exc:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 object-lit-state receipt is invalid"
+        ) from exc
+
+
+def _restore_int2_transition(
+    material: object,
+) -> PersistentWorldObjectLitStateCommittedTransition:
+    transition = _require_exact_dict(
+        material,
+        expected_keys=_TRANSITION_KEYS,
+        name="INT-2 committed object-lit-state transition",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    preview = _restore_int2_preview(transition["preview"])
+    state_delta = _restore_state_delta(transition["state_delta"])
+    receipt = _restore_int2_receipt(transition["receipt"])
+    command_id = _require_non_empty_str(
+        transition["command_id"],
+        name="INT-2 transition.command_id",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    fingerprint = _require_sha256(
+        transition["command_fingerprint"],
+        name="INT-2 transition.command_fingerprint",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if command_id != receipt.command_id or command_id != preview.command_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 transition command identity is inconsistent"
+        )
+    if fingerprint != receipt.command_fingerprint:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 transition fingerprint is inconsistent"
+        )
+    if state_delta.source_command_id != command_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 state delta command identity is inconsistent"
+        )
+    if state_delta.source_preview_id != preview.preview_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 state delta preview identity is inconsistent"
+        )
+    if receipt.preview_id != preview.preview_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 receipt preview identity is inconsistent"
+        )
+    if receipt.state_delta_id != state_delta.delta_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 receipt state-delta identity is inconsistent"
+        )
+    return PersistentWorldObjectLitStateCommittedTransition(
+        command_id=command_id,
+        command_fingerprint=fingerprint,
+        preview=preview,
+        state_delta=state_delta,
+        receipt=receipt,
+    )
+
+
+def restore_persistent_world_object_lit_state_checkpoint(
+    *,
+    checkpoint_path: str | os.PathLike[str],
+    expected_campaign_id: str,
+    expected_initial_open_states: tuple[PersistentWorldObjectOpenState, ...],
+    expected_initial_lit_states: tuple[PersistentWorldObjectLitState, ...],
+) -> PersistentWorldObjectLitRuntimeState:
+    path = _checkpoint_path(checkpoint_path)
+    expected_campaign_id = _require_record_id(
+        expected_campaign_id,
+        name="expected_campaign_id",
+    )
+    envelope = _read_checkpoint_envelope(path)
+    if envelope["format_identity"] != OBJECT_LIT_STATE_CHECKPOINT_FORMAT_IDENTITY:
+        raise PersistentWorldCheckpointFormatError(
+            "unsupported INT-2 checkpoint format identity"
+        )
+    if (
+        type(envelope["format_version"]) is not int
+        or envelope["format_version"] != OBJECT_LIT_STATE_CHECKPOINT_FORMAT_VERSION
+    ):
+        raise PersistentWorldCheckpointFormatError(
+            "unsupported INT-2 checkpoint format version"
+        )
+    campaign_identity = _require_record_id(
+        envelope["campaign_identity"],
+        name="checkpoint campaign_identity",
+    )
+    if campaign_identity != expected_campaign_id:
+        raise PersistentWorldCheckpointCampaignMismatchError(
+            "checkpoint campaign identity does not match caller expectation"
+        )
+    _normalize_qualification(envelope["qualification_provenance"])
+    payload = _require_exact_dict(
+        envelope["authoritative_payload"],
+        expected_keys=_INT2_PAYLOAD_KEYS,
+        name="INT-2 authoritative payload",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    integrity = _require_sha256(
+        envelope["integrity_digest"],
+        name="integrity_digest",
+        error_cls=PersistentWorldCheckpointIntegrityError,
+    )
+    if _sha256_bytes(_canonical_bytes(payload)) != integrity:
+        raise PersistentWorldCheckpointIntegrityError(
+            "INT-2 checkpoint authoritative payload integrity mismatch"
+        )
+
+    open_close_state = _restore_int1_payload(
+        payload["int1_state"],
+        expected_campaign_id=expected_campaign_id,
+        expected_initial_object_states=expected_initial_open_states,
+    )
+    lit_material = payload["object_lit_states"]
+    if type(lit_material) is not list:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 object_lit_states must be a list"
+        )
+    lit_states = tuple(_restore_int2_object_state(item) for item in lit_material)
+    stored_lit_digest = _require_sha256(
+        payload["object_lit_state_digest"],
+        name="INT-2 object_lit_state_digest",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if digest_persistent_world_object_lit_states(lit_states) != stored_lit_digest:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 object-lit-state digest mismatch"
+        )
+
+    transition_material = payload["committed_object_lit_transitions"]
+    if type(transition_material) is not list:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 committed_object_lit_transitions must be a list"
+        )
+    transitions = tuple(_restore_int2_transition(item) for item in transition_material)
+    summary = _require_exact_dict(
+        payload["object_lit_transition_summary"],
+        expected_keys=_R4E_TRANSITION_SUMMARY_KEYS,
+        name="INT-2 object_lit_transition_summary",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if type(summary["count"]) is not int or summary["count"] != len(transitions):
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 object-lit transition count is inconsistent"
+        )
+    if summary["command_ids"] != sorted(item.command_id for item in transitions):
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 object-lit transition command IDs are inconsistent"
+        )
+
+    replayed = tuple(expected_initial_lit_states)
+    for transition in sorted(
+        transitions,
+        key=lambda item: (item.command_id, item.command_fingerprint),
+    ):
+        try:
+            replayed = replay_persistent_world_object_lit_states(
+                object_lit_states=replayed,
+                receipt=transition.receipt,
+            )
+        except Exception as exc:
+            raise PersistentWorldCheckpointEvidenceError(
+                "INT-2 object-lit transition replay failed"
+            ) from exc
+
+    if tuple(
+        serialize_persistent_world_object_lit_state(item)
+        for item in replayed
+    ) != tuple(
+        serialize_persistent_world_object_lit_state(item)
+        for item in lit_states
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 restored lit state disagrees with replayed transition history"
+        )
+
+    state = PersistentWorldObjectLitRuntimeState(
+        open_close_state=open_close_state,
+        object_lit_states=lit_states,
+        committed_object_lit_transitions=transitions,
+    )
+    stored_world_digest = _require_sha256(
+        payload["world_state_digest"],
+        name="INT-2 world_state_digest",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if digest_persistent_world_object_lit_runtime_state(state) != stored_world_digest:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-2 composite world-state digest mismatch"
         )
     return state

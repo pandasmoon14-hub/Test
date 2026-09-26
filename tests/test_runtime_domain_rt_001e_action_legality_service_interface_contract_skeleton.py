@@ -929,6 +929,7 @@ class TestGuardrailAllowlists:
             "persistent_world_local_checkpoint_restore.py",
             "persistent_world_object_custody_transfer.py",
             "persistent_world_object_open_close.py",
+            "persistent_world_object_lit_state.py",
         }
         domain_dir = REPO_ROOT / "src" / "astra_runtime" / "domain"
         actual = {p.name for p in domain_dir.iterdir() if p.is_file()}

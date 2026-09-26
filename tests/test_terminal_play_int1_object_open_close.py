@@ -9,11 +9,13 @@ from io import StringIO
 import pytest
 
 from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
+    OBJECT_LIT_STATE_CHECKPOINT_FORMAT_IDENTITY,
     OBJECT_OPEN_CLOSE_CHECKPOINT_FORMAT_IDENTITY,
     PersistentWorldCheckpointEvidenceError,
     write_persistent_world_object_custody_checkpoint,
 )
 from astra_runtime.domain.persistent_world_object_open_close import (
+    digest_persistent_world_object_open_close_runtime_state,
     digest_persistent_world_object_open_states,
     replay_persistent_world_object_open_close_states,
 )
@@ -58,14 +60,17 @@ def test_int1_fixture_adds_composite_state_without_redefining_r4b_digest():
     fixture = create_terminal_play_fixture()
     app = MyravantPlayApplication.new(fixture=fixture)
 
-    assert FIXTURE_VERSION == "0.1.2"
+    assert FIXTURE_VERSION == "0.1.3"
     assert fixture.provenance.initial_state_digest == FIXTURE_INITIAL_STATE_DIGEST
     assert (
         fixture.provenance.initial_world_state_digest
         == FIXTURE_INITIAL_WORLD_STATE_DIGEST
     )
     assert app.representation_digest() == FIXTURE_INITIAL_STATE_DIGEST
-    assert app.authoritative_digest() == FIXTURE_INITIAL_WORLD_STATE_DIGEST
+    assert digest_persistent_world_object_open_close_runtime_state(app.object_state) == (
+        FIXTURE_INITIAL_WORLD_STATE_DIGEST
+    )
+    assert app.authoritative_digest() != FIXTURE_INITIAL_WORLD_STATE_DIGEST
     assert app.authoritative_digest() != app.representation_digest()
     assert app.object_open_state(TOOL_CHEST_ID).state == "closed"
 
@@ -181,7 +186,11 @@ def test_int1_legacy_r4e_checkpoint_restores_closed_and_upgrades_on_save(tmp_pat
 
     restored.save()
     upgraded = json.loads(checkpoint.read_text(encoding="utf-8"))
-    assert upgraded["format_identity"] == OBJECT_OPEN_CLOSE_CHECKPOINT_FORMAT_IDENTITY
+    assert upgraded["format_identity"] == OBJECT_LIT_STATE_CHECKPOINT_FORMAT_IDENTITY
+    assert (
+        upgraded["authoritative_payload"]["int1_state"]["object_open_states"][0]["state"]
+        == "closed"
+    )
 
 
 def test_int1_recomputed_outer_integrity_cannot_hide_object_state_tamper(tmp_path):
@@ -192,7 +201,7 @@ def test_int1_recomputed_outer_integrity_cannot_hide_object_state_tamper(tmp_pat
     app.save()
 
     envelope = json.loads(checkpoint.read_text(encoding="utf-8"))
-    envelope["authoritative_payload"]["object_open_states"][0]["state"] = "closed"
+    envelope["authoritative_payload"]["int1_state"]["object_open_states"][0]["state"] = "closed"
     payload = envelope["authoritative_payload"]
     canonical_payload = json.dumps(
         payload,
@@ -248,7 +257,7 @@ def test_int1_parser_routes_open_close_and_preserves_adjacent_frontiers():
 
     assert parse_terminal_command("open it").action == "ambiguous"
     assert parse_terminal_command("look east").action == "unsupported"
-    assert parse_terminal_command("light the lantern").failure_class == (
+    assert parse_terminal_command("activate lantern").failure_class == (
         "unsupported_capability_object_activation"
     )
     compound = parse_terminal_command("open chest and close chest")
