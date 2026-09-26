@@ -209,7 +209,7 @@ def test_repository_sha_must_be_exact_or_unknown():
 
 def test_obs1_client_identity_and_custody_result_accounting(tmp_path):
     header = _header()
-    assert CLIENT_ID == "myravant-terminal-int1"
+    assert CLIENT_ID == "myravant-terminal-int2"
     assert header.client_id == CLIENT_ID
 
     recorder = LivePlayEvidenceRecorder(
@@ -234,6 +234,22 @@ def test_obs1_client_identity_and_custody_result_accounting(tmp_path):
         post_state_digest=POST_DIGEST,
     )
     recorder.record_interaction(
+        raw_player_input="light lantern\n",
+        parsed_action="light",
+        parsed_argument="lantern",
+        player_visible_output="You light the Brass Lantern.\n",
+        result_type="object_lit_state_committed",
+        authoritative_changed=True,
+        command_id="terminal-object-lit-state-000001",
+        command_fingerprint="5" * 64,
+        preview_id="astra:object_lit_state_preview:test",
+        receipt_id="astra:object_lit_state_receipt:test",
+        state_delta_id="astra:object_lit_state_delta:test",
+        opportunity_evidence_id="astra:evidence:test-lit-opportunity",
+        pre_state_digest=POST_DIGEST,
+        post_state_digest=POST_DIGEST,
+    )
+    recorder.record_interaction(
         raw_player_input="drop tool chest\n",
         parsed_action="drop",
         parsed_argument="tool chest",
@@ -247,9 +263,9 @@ def test_obs1_client_identity_and_custody_result_accounting(tmp_path):
 
     receipt = recorder.finish(final_state_digest=POST_DIGEST)
 
-    assert receipt.committed_transitions == 1
+    assert receipt.committed_transitions == 2
     assert receipt.unsupported_or_rejected == 1
-    assert receipt.meaningful_interactions == 2
+    assert receipt.meaningful_interactions == 3
 
 def test_obs1_inspection_evidence_is_observational_only(tmp_path):
     recorder = LivePlayEvidenceRecorder(

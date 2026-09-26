@@ -20,7 +20,8 @@ from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     restore_persistent_world_checkpoint,
     restore_persistent_world_object_custody_checkpoint,
     restore_persistent_world_object_open_close_checkpoint,
-    write_persistent_world_object_open_close_checkpoint,
+    restore_persistent_world_object_lit_state_checkpoint,
+    write_persistent_world_object_lit_state_checkpoint,
 )
 from astra_runtime.domain.persistent_world_movement_integration import (
     PersistentWorldMovementRuntimeState,
@@ -33,6 +34,17 @@ from astra_runtime.domain.persistent_world_object_custody_transfer import (
     create_persistent_world_object_custody_runtime_state,
     execute_persistent_world_object_custody,
     replace_persistent_world_object_custody_movement_state,
+)
+from astra_runtime.domain.persistent_world_object_lit_state import (
+    PersistentWorldObjectLitRuntimeState,
+    PersistentWorldObjectLitState,
+    PersistentWorldObjectLitStateError,
+    create_persistent_world_object_lit_runtime_state,
+    digest_persistent_world_object_lit_runtime_state,
+    digest_persistent_world_object_lit_states,
+    execute_persistent_world_object_lit_state,
+    object_lit_state_for,
+    replace_persistent_world_object_lit_open_close_state,
 )
 from astra_runtime.domain.persistent_world_object_open_close import (
     PersistentWorldObjectOpenCloseError,
@@ -57,6 +69,7 @@ from astra_runtime.myravant_play_fixture import (
 _MOVEMENT_COMMAND_ID_PATTERN = re.compile(r"^terminal-move-(\d{6})$")
 _CUSTODY_COMMAND_ID_PATTERN = re.compile(r"^terminal-custody-(\d{6})$")
 _OBJECT_STATE_COMMAND_ID_PATTERN = re.compile(r"^terminal-object-state-(\d{6})$")
+_OBJECT_LIT_STATE_COMMAND_ID_PATTERN = re.compile(r"^terminal-object-lit-state-(\d{6})$")
 
 
 class MyravantPlayApplicationError(ValueError):
@@ -110,11 +123,11 @@ class MyravantPlayApplication:
         self,
         *,
         fixture: MyravantPlayFixture,
-        object_state: PersistentWorldObjectOpenCloseRuntimeState,
+        lit_state: PersistentWorldObjectLitRuntimeState,
         checkpoint_path: str | Path | None = None,
     ) -> None:
         self.fixture = fixture
-        self._object_state = object_state
+        self._lit_state = lit_state
         self.checkpoint_path = (
             Path(checkpoint_path)
             if checkpoint_path is not None
@@ -125,15 +138,19 @@ class MyravantPlayApplication:
     def state(self) -> PersistentWorldMovementRuntimeState:
         """Compatibility view of the composed R4-C movement state."""
 
-        return self._object_state.custody_state.movement_state
+        return self._lit_state.open_close_state.custody_state.movement_state
 
     @property
     def custody_state(self) -> PersistentWorldObjectCustodyRuntimeState:
-        return self._object_state.custody_state
+        return self._lit_state.open_close_state.custody_state
 
     @property
     def object_state(self) -> PersistentWorldObjectOpenCloseRuntimeState:
-        return self._object_state
+        return self._lit_state.open_close_state
+
+    @property
+    def lit_state(self) -> PersistentWorldObjectLitRuntimeState:
+        return self._lit_state
 
     @classmethod
     def new(
@@ -146,11 +163,15 @@ class MyravantPlayApplication:
         custody_state = create_persistent_world_object_custody_runtime_state(
             movement_state=bounded_fixture.initial_state
         )
+        open_close_state = create_persistent_world_object_open_close_runtime_state(
+            custody_state=custody_state,
+            object_open_states=bounded_fixture.initial_object_open_states,
+        )
         return cls(
             fixture=bounded_fixture,
-            object_state=create_persistent_world_object_open_close_runtime_state(
-                custody_state=custody_state,
-                object_open_states=bounded_fixture.initial_object_open_states,
+            lit_state=create_persistent_world_object_lit_runtime_state(
+                open_close_state=open_close_state,
+                object_lit_states=bounded_fixture.initial_object_lit_states,
             ),
             checkpoint_path=checkpoint_path,
         )
@@ -165,39 +186,47 @@ class MyravantPlayApplication:
         bounded_fixture = fixture or create_terminal_play_fixture()
 
         try:
-            object_state = restore_persistent_world_object_open_close_checkpoint(
+            lit_state = restore_persistent_world_object_lit_state_checkpoint(
                 checkpoint_path=checkpoint_path,
                 expected_campaign_id=bounded_fixture.campaign_id,
-                expected_initial_object_states=(
-                    bounded_fixture.initial_object_open_states
-                ),
+                expected_initial_open_states=bounded_fixture.initial_object_open_states,
+                expected_initial_lit_states=bounded_fixture.initial_object_lit_states,
             )
         except PersistentWorldCheckpointFormatError:
             try:
-                custody_state = (
-                    restore_persistent_world_object_custody_checkpoint(
+                object_state = restore_persistent_world_object_open_close_checkpoint(
+                    checkpoint_path=checkpoint_path,
+                    expected_campaign_id=bounded_fixture.campaign_id,
+                    expected_initial_object_states=(
+                        bounded_fixture.initial_object_open_states
+                    ),
+                )
+            except PersistentWorldCheckpointFormatError:
+                try:
+                    custody_state = restore_persistent_world_object_custody_checkpoint(
                         checkpoint_path=checkpoint_path,
                         expected_campaign_id=bounded_fixture.campaign_id,
                     )
-                )
-            except PersistentWorldCheckpointFormatError:
-                movement_state = restore_persistent_world_checkpoint(
-                    checkpoint_path=checkpoint_path,
-                    expected_campaign_id=bounded_fixture.campaign_id,
-                )
-                custody_state = (
-                    create_persistent_world_object_custody_runtime_state(
+                except PersistentWorldCheckpointFormatError:
+                    movement_state = restore_persistent_world_checkpoint(
+                        checkpoint_path=checkpoint_path,
+                        expected_campaign_id=bounded_fixture.campaign_id,
+                    )
+                    custody_state = create_persistent_world_object_custody_runtime_state(
                         movement_state=movement_state
                     )
+                object_state = create_persistent_world_object_open_close_runtime_state(
+                    custody_state=custody_state,
+                    object_open_states=bounded_fixture.initial_object_open_states,
                 )
-            object_state = create_persistent_world_object_open_close_runtime_state(
-                custody_state=custody_state,
-                object_open_states=bounded_fixture.initial_object_open_states,
+            lit_state = create_persistent_world_object_lit_runtime_state(
+                open_close_state=object_state,
+                object_lit_states=bounded_fixture.initial_object_lit_states,
             )
 
         return cls(
             fixture=bounded_fixture,
-            object_state=object_state,
+            lit_state=lit_state,
             checkpoint_path=checkpoint_path,
         )
 
@@ -208,19 +237,30 @@ class MyravantPlayApplication:
 
     def object_state_digest(self) -> str:
         return digest_persistent_world_object_open_states(
-            self._object_state.object_open_states
+            self.object_state.object_open_states
+        )
+
+    def object_lit_state_digest(self) -> str:
+        return digest_persistent_world_object_lit_states(
+            self._lit_state.object_lit_states
         )
 
     def authoritative_digest(self) -> str:
-        return digest_persistent_world_object_open_close_runtime_state(
-            self._object_state
+        return digest_persistent_world_object_lit_runtime_state(
+            self._lit_state
         )
 
     def object_open_state(
         self,
         object_entity_id: str,
     ) -> PersistentWorldObjectOpenState | None:
-        return object_open_state_for(self._object_state, object_entity_id)
+        return object_open_state_for(self.object_state, object_entity_id)
+
+    def object_lit_state(
+        self,
+        object_entity_id: str,
+    ) -> PersistentWorldObjectLitState | None:
+        return object_lit_state_for(self._lit_state, object_entity_id)
 
     def current_place_id(self) -> str:
         matches = [
@@ -315,6 +355,15 @@ class MyravantPlayApplication:
                     state=open_state.state,
                 ),
             ))
+        lit_state = self.object_lit_state(object_entity_id)
+        if lit_state is not None:
+            description = "\n".join((
+                description,
+                self.fixture.public_lit_state_description(
+                    object_entity_id=object_entity_id,
+                    state=lit_state.state,
+                ),
+            ))
         view = PublicInspectionView(
             name=presentation.name,
             description=description,
@@ -365,7 +414,7 @@ class MyravantPlayApplication:
     def _next_object_state_command_id(self) -> str:
         used = {
             transition.command_id
-            for transition in self._object_state.committed_object_state_transitions
+            for transition in self.object_state.committed_object_state_transitions
         }
         highest = 0
         for command_id in used:
@@ -375,6 +424,23 @@ class MyravantPlayApplication:
         sequence = highest + 1
         while True:
             candidate = f"terminal-object-state-{sequence:06d}"
+            if candidate not in used:
+                return candidate
+            sequence += 1
+
+    def _next_object_lit_state_command_id(self) -> str:
+        used = {
+            transition.command_id
+            for transition in self._lit_state.committed_object_lit_transitions
+        }
+        highest = 0
+        for command_id in used:
+            match = _OBJECT_LIT_STATE_COMMAND_ID_PATTERN.fullmatch(command_id)
+            if match:
+                highest = max(highest, int(match.group(1)))
+        sequence = highest + 1
+        while True:
+            candidate = f"terminal-object-lit-state-{sequence:06d}"
             if candidate not in used:
                 return candidate
             sequence += 1
@@ -431,11 +497,13 @@ class MyravantPlayApplication:
                 movement_state=result.state,
             )
         )
-        self._object_state = (
-            replace_persistent_world_object_open_close_custody_state(
-                state=self._object_state,
-                custody_state=updated_custody,
-            )
+        updated_open_close = replace_persistent_world_object_open_close_custody_state(
+            state=self.object_state,
+            custody_state=updated_custody,
+        )
+        self._lit_state = replace_persistent_world_object_lit_open_close_state(
+            state=self._lit_state,
+            open_close_state=updated_open_close,
         )
         post_digest = self.authoritative_digest()
         destination_name = self.fixture.place_presentation(
@@ -562,11 +630,13 @@ class MyravantPlayApplication:
                 failure_class=type(exc).__name__,
             )
 
-        self._object_state = (
-            replace_persistent_world_object_open_close_custody_state(
-                state=self._object_state,
-                custody_state=result.state,
-            )
+        updated_open_close = replace_persistent_world_object_open_close_custody_state(
+            state=self.object_state,
+            custody_state=result.state,
+        )
+        self._lit_state = replace_persistent_world_object_lit_open_close_state(
+            state=self._lit_state,
+            open_close_state=updated_open_close,
         )
         post_digest = self.authoritative_digest()
         verb = "pick up" if operation == "pickup" else "drop"
@@ -672,7 +742,7 @@ class MyravantPlayApplication:
 
         try:
             result = execute_persistent_world_object_open_close(
-                state=self._object_state,
+                state=self.object_state,
                 command=command,
                 qualification_evidence=qualification_evidence,
                 opportunity_evidence=opportunity_evidence,
@@ -690,7 +760,10 @@ class MyravantPlayApplication:
                 failure_class=type(exc).__name__,
             )
 
-        self._object_state = result.state
+        self._lit_state = replace_persistent_world_object_lit_open_close_state(
+            state=self._lit_state,
+            open_close_state=result.state,
+        )
         post_digest = self.authoritative_digest()
         verb = "open" if operation == "open" else "close"
         return PlayApplicationResult(
@@ -706,6 +779,123 @@ class MyravantPlayApplication:
             pre_state_digest=pre_digest,
             post_state_digest=post_digest,
             technical_retry=result.technical_retry,
+        )
+
+    def _object_lit_state(
+        self,
+        *,
+        operation: str,
+        object_reference: str,
+    ) -> PlayApplicationResult:
+        pre_digest = self.authoritative_digest()
+        unavailable = PlayApplicationResult(
+            result_type="object_lit_state_rejected",
+            message="You cannot do that to the target from the current state.",
+            authoritative_changed=False,
+            pre_state_digest=pre_digest,
+            post_state_digest=pre_digest,
+            failure_class="object_lit_state_target_unavailable",
+        )
+
+        try:
+            object_entity_id = self.fixture.resolve_object_reference(
+                object_reference
+            )
+        except UnavailableFixtureCustodyError:
+            return unavailable
+
+        if not self._object_currently_available(object_entity_id):
+            return unavailable
+
+        current = self.object_lit_state(object_entity_id)
+        if current is None:
+            return PlayApplicationResult(
+                result_type="object_lit_state_rejected",
+                message="That object does not support this bounded interaction.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="object_lit_state_not_supported",
+            )
+
+        desired = "lit" if operation == "light" else "unlit"
+        object_name = self.fixture.entity_name(object_entity_id)
+        if current.state == desired:
+            return PlayApplicationResult(
+                result_type="object_lit_state_unchanged",
+                message=f"The {object_name} is already {desired}.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+            )
+
+        command_id = self._next_object_lit_state_command_id()
+        command = create_command_envelope(
+            command_id=command_id,
+            command_type="activate_object_lit_state",
+            source_actor_id=self.fixture.player_entity_id,
+            payload={
+                "object_entity_id": object_entity_id,
+                "operation": operation,
+            },
+            metadata={"client": "myravant-terminal-int2"},
+        )
+        qualification_evidence, opportunity_evidence = (
+            self.fixture.object_lit_state_evidence(
+                command_id=command_id,
+                object_entity_id=object_entity_id,
+                operation=operation,
+            )
+        )
+
+        try:
+            result = execute_persistent_world_object_lit_state(
+                state=self._lit_state,
+                command=command,
+                qualification_evidence=qualification_evidence,
+                opportunity_evidence=opportunity_evidence,
+                expected_pre_state_digest=self.object_lit_state_digest(),
+            )
+        except PersistentWorldObjectLitStateError as exc:
+            return PlayApplicationResult(
+                result_type="object_lit_state_rejected",
+                message="The object lit-state change was rejected by the authoritative runtime.",
+                authoritative_changed=False,
+                command_id=command_id,
+                opportunity_evidence_id=opportunity_evidence.evidence_id,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class=type(exc).__name__,
+            )
+
+        self._lit_state = result.state
+        post_digest = self.authoritative_digest()
+        verb = "light" if operation == "light" else "extinguish"
+        return PlayApplicationResult(
+            result_type="object_lit_state_committed",
+            message=f"You {verb} the {object_name}.",
+            authoritative_changed=True,
+            command_id=command_id,
+            command_fingerprint=result.receipt.command_fingerprint,
+            preview_id=result.preview.preview_id,
+            receipt_id=result.receipt.receipt_id,
+            state_delta_id=result.state_delta.delta_id,
+            opportunity_evidence_id=result.receipt.opportunity_evidence_id,
+            pre_state_digest=pre_digest,
+            post_state_digest=post_digest,
+            technical_retry=result.technical_retry,
+        )
+
+    def light_object(self, object_reference: str) -> PlayApplicationResult:
+        return self._object_lit_state(
+            operation="light",
+            object_reference=object_reference,
+        )
+
+    def extinguish_object(self, object_reference: str) -> PlayApplicationResult:
+        return self._object_lit_state(
+            operation="extinguish",
+            object_reference=object_reference,
         )
 
     def open_object(self, object_reference: str) -> PlayApplicationResult:
@@ -740,8 +930,8 @@ class MyravantPlayApplication:
 
         pre_digest = self.authoritative_digest()
         checkpoint_digest = (
-            write_persistent_world_object_open_close_checkpoint(
-                state=self._object_state,
+            write_persistent_world_object_lit_state_checkpoint(
+                state=self._lit_state,
                 checkpoint_path=self.checkpoint_path,
                 qualification_evidence=self.fixture.checkpoint_qualification,
             )

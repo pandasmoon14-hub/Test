@@ -367,7 +367,9 @@ def test_g3_parser_routes_equivalents_and_classifies_pressure():
     assert ambiguous.action == "ambiguous"
     assert ambiguous.failure_class == "ambiguous_target_reference"
 
-    assert parse_terminal_command("light the lantern").failure_class == "unsupported_capability_object_activation"
+    assert parse_terminal_command("light the lantern").action == "light"
+    assert parse_terminal_command("light the lantern").argument == "lantern"
+    assert parse_terminal_command("activate lantern").failure_class == "unsupported_capability_object_activation"
     assert parse_terminal_command("break the waystone").failure_class == "unsupported_capability_object_destruction"
     assert parse_terminal_command("throw the lantern over the wall").failure_class == "unsupported_capability_throwing"
 
@@ -399,7 +401,7 @@ def test_g3_pressure_ambiguity_and_injection_are_non_mutating(tmp_path):
     run_terminal(
         app,
         input_stream=StringIO(
-            "light the lantern\n"
+            "activate lantern\n"
             "break the waystone\n"
             "throw the lantern over the wall\n"
             "take it\n"

@@ -65,6 +65,7 @@ _COMPOUND_ACTION_STARTERS = frozenset({
     "save",
     "light",
     "ignite",
+    "extinguish",
     "activate",
     "break",
     "smash",
@@ -74,8 +75,6 @@ _COMPOUND_ACTION_STARTERS = frozenset({
     "hurl",
 })
 _UNSUPPORTED_CAPABILITY_BY_VERB = {
-    "light": "unsupported_capability_object_activation",
-    "ignite": "unsupported_capability_object_activation",
     "activate": "unsupported_capability_object_activation",
     "break": "unsupported_capability_object_destruction",
     "smash": "unsupported_capability_object_destruction",
@@ -217,6 +216,12 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
     if verb == "drop":
         return _object_action(action="drop", target_tokens=parts[1:], raw_text=raw_text)
 
+    if verb in {"light", "ignite"}:
+        return _object_action(action="light", target_tokens=parts[1:], raw_text=raw_text)
+
+    if verb == "extinguish":
+        return _object_action(action="extinguish", target_tokens=parts[1:], raw_text=raw_text)
+
     if verb == "open":
         return _object_action(action="open", target_tokens=parts[1:], raw_text=raw_text)
 
@@ -331,7 +336,8 @@ def _write_result(
 def _write_help(output: TextIO) -> str:
     visible = (
         "Commands: look, inspect <object>, move <direction>, pickup <object>, "
-        "drop <object>, open <object>, close <object>, save, help, exit\n"
+        "drop <object>, open <object>, close <object>, light <object>, "
+        "extinguish <object>, save, help, exit\n"
         "Natural equivalents such as 'I head north', 'look around', "
         "'examine the lantern', 'look at the lantern', 'open the chest', "
         "'walk to the south exit', and 'grab the lantern' route to existing "
@@ -463,6 +469,20 @@ def run_terminal(
             continue
         if parsed.action == "move":
             result = application.move(parsed.argument or "")
+            visible = _write_result(output_stream, result, debug=debug)
+            _record_result(
+                evidence_recorder,
+                parsed=parsed,
+                visible_output=visible,
+                result=result,
+                error_stream=evidence_error_stream,
+            )
+            continue
+        if parsed.action in {"light", "extinguish"}:
+            if parsed.action == "light":
+                result = application.light_object(parsed.argument or "")
+            else:
+                result = application.extinguish_object(parsed.argument or "")
             visible = _write_result(output_stream, result, debug=debug)
             _record_result(
                 evidence_recorder,

@@ -32,6 +32,7 @@ AUTHORIZED_RUNTIME_DOMAIN_FILES = frozenset(
         "persistent_world_local_checkpoint_restore.py",
         "persistent_world_object_custody_transfer.py",
         "persistent_world_object_open_close.py",
+        "persistent_world_object_lit_state.py",
         "read_only_vertical_slice_state_owner_facade.py",
         "resource_consequence_math.py",
         "scene_command_execution_skeleton.py",

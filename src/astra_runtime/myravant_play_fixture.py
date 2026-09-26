@@ -33,6 +33,7 @@ from astra_runtime.domain.persistent_world_movement_integration import (
 from astra_runtime.domain.persistent_world_object_custody_transfer import (
     CustodyOpportunityEvidence,
     CustodyQualificationEvidence,
+    create_persistent_world_object_custody_runtime_state,
     create_custody_opportunity_evidence,
     create_custody_qualification_evidence,
 )
@@ -40,16 +41,27 @@ from astra_runtime.domain.persistent_world_object_open_close import (
     ObjectOpenCloseOpportunityEvidence,
     ObjectOpenCloseQualificationEvidence,
     PersistentWorldObjectOpenState,
+    create_persistent_world_object_open_close_runtime_state,
     create_object_open_close_opportunity_evidence,
     create_object_open_close_qualification_evidence,
     create_persistent_world_object_open_state,
     digest_persistent_world_composite_state,
 )
+from astra_runtime.domain.persistent_world_object_lit_state import (
+    ObjectLitStateOpportunityEvidence,
+    ObjectLitStateQualificationEvidence,
+    PersistentWorldObjectLitState,
+    create_object_lit_state_opportunity_evidence,
+    create_object_lit_state_qualification_evidence,
+    create_persistent_world_object_lit_state,
+    digest_persistent_world_lit_composite_state,
+    digest_persistent_world_object_lit_states,
+)
 from astra_runtime.kernel.record_identity import build_record_id
 
 
 FIXTURE_ID = "myravant-native-terminal-g1"
-FIXTURE_VERSION = "0.1.2"
+FIXTURE_VERSION = "0.1.3"
 FIXTURE_STATUS = "development_validation_content"
 FIXTURE_CANON = False
 FIXTURE_DEFAULT_WORLD = False
@@ -63,6 +75,12 @@ FIXTURE_INITIAL_STATE_DIGEST = (
 FIXTURE_INITIAL_WORLD_STATE_DIGEST = (
     "f3065b22adb1ac5df2472ad7208048f6dca871e265fd1da1baceebf366a7a75f"
 )
+FIXTURE_INITIAL_OBJECT_LIT_STATE_DIGEST = (
+    "db500e8154586baef322759b6c12690326a52beb79762b40019fd4f06f4d8679"
+)
+FIXTURE_INT2_INITIAL_WORLD_STATE_DIGEST = (
+    "a6a130224028dc2ed1841caf604b7d61901c36390a5b1162b8f2da4280bc2628"
+)
 FIXTURE_PLAYABLE_NEED_REFS = (
     "R4-B",
     "R4-C",
@@ -70,6 +88,7 @@ FIXTURE_PLAYABLE_NEED_REFS = (
     "TERMINAL-PLAY-G1",
     "TERMINAL-PLAY-OBS-1",
     "TERMINAL-PLAY-INT-1",
+    "TERMINAL-PLAY-INT-2",
     "R4-E-readiness",
 )
 FIXTURE_REQUIREMENT_REFS = (
@@ -144,6 +163,8 @@ class FixtureProvenanceReceipt:
     originality_review_status: str
     initial_state_digest: str
     initial_world_state_digest: str
+    initial_object_lit_state_digest: str
+    initial_int2_world_state_digest: str
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -152,6 +173,7 @@ class MyravantPlayFixture:
     player_entity_id: str
     initial_state: PersistentWorldMovementRuntimeState
     initial_object_open_states: tuple[PersistentWorldObjectOpenState, ...]
+    initial_object_lit_states: tuple[PersistentWorldObjectLitState, ...]
     place_presentations: tuple[PublicEntityPresentation, ...]
     object_presentations: tuple[PublicEntityPresentation, ...]
     movement_routes: tuple[FixtureMovementRoute, ...]
@@ -395,6 +417,67 @@ class MyravantPlayFixture:
             )
         return f"Its heavy lid is {state}."
 
+    def object_lit_state_evidence(
+        self,
+        *,
+        command_id: str,
+        object_entity_id: str,
+        operation: str,
+    ) -> tuple[
+        ObjectLitStateQualificationEvidence,
+        ObjectLitStateOpportunityEvidence,
+    ]:
+        """Return bounded RT-010/AFQR-19 evidence for the INT-2 lantern route."""
+
+        if object_entity_id != LANTERN_ID:
+            raise UnavailableFixtureCustodyError(
+                "target has no bounded fixture lit/unlit state"
+            )
+        if operation not in {"light", "extinguish"}:
+            raise UnavailableFixtureCustodyError(
+                "lit-state operation must be light or extinguish"
+            )
+
+        token = hashlib.sha256(
+            f"{command_id}|{operation}|{object_entity_id}".encode("utf-8")
+        ).hexdigest()[:20]
+        qualification = create_object_lit_state_qualification_evidence(
+            evidence_id=build_record_id(
+                "evidence",
+                f"int2-{operation}-{token}-rt010",
+            ),
+            actor_entity_id=self.player_entity_id,
+            object_entity_id=object_entity_id,
+            operation=operation,
+            qualified=True,
+        )
+        opportunity = create_object_lit_state_opportunity_evidence(
+            evidence_id=build_record_id(
+                "evidence",
+                f"int2-{operation}-{token}-afqr19",
+            ),
+            actor_entity_id=self.player_entity_id,
+            object_entity_id=object_entity_id,
+            operation=operation,
+            opportunity_available=True,
+            resolution_accepted=True,
+        )
+        return qualification, opportunity
+
+    def public_lit_state_description(
+        self,
+        *,
+        object_entity_id: str,
+        state: str,
+    ) -> str:
+        if object_entity_id != LANTERN_ID or state not in {"unlit", "lit"}:
+            raise UnavailableFixtureCustodyError(
+                "no bounded public lit-state presentation exists"
+            )
+        if state == "unlit":
+            return "Its flame is out."
+        return "A steady flame burns within it."
+
     def public_entities_carried_by(
         self,
         representation: PersistentWorldEntityLocationRepresentation,
@@ -496,6 +579,38 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         raise MyravantPlayFixtureError(
             "fixture composite authoritative initial state changed without "
             "updating FIXTURE_VERSION and FIXTURE_INITIAL_WORLD_STATE_DIGEST"
+        )
+
+    initial_object_lit_states = (
+        create_persistent_world_object_lit_state(
+            object_entity_id=LANTERN_ID,
+            state="unlit",
+        ),
+    )
+    initial_object_lit_state_digest = digest_persistent_world_object_lit_states(
+        initial_object_lit_states
+    )
+    if initial_object_lit_state_digest != FIXTURE_INITIAL_OBJECT_LIT_STATE_DIGEST:
+        raise MyravantPlayFixtureError(
+            "fixture lit-state digest changed without updating FIXTURE_VERSION "
+            "and FIXTURE_INITIAL_OBJECT_LIT_STATE_DIGEST"
+        )
+
+    initial_int2_world_state_digest = digest_persistent_world_lit_composite_state(
+        create_persistent_world_object_open_close_runtime_state(
+            custody_state=create_persistent_world_object_custody_runtime_state(
+                movement_state=create_persistent_world_movement_runtime_state(
+                    representation=representation
+                )
+            ),
+            object_open_states=initial_object_open_states,
+        ),
+        initial_object_lit_states,
+    )
+    if initial_int2_world_state_digest != FIXTURE_INT2_INITIAL_WORLD_STATE_DIGEST:
+        raise MyravantPlayFixtureError(
+            "fixture INT-2 authoritative initial state changed without updating "
+            "FIXTURE_VERSION and FIXTURE_INT2_INITIAL_WORLD_STATE_DIGEST"
         )
 
     routes = (
@@ -612,6 +727,8 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         originality_review_status=FIXTURE_ORIGINALITY_REVIEW_STATUS,
         initial_state_digest=initial_state_digest,
         initial_world_state_digest=initial_world_state_digest,
+        initial_object_lit_state_digest=initial_object_lit_state_digest,
+        initial_int2_world_state_digest=initial_int2_world_state_digest,
     )
 
     return MyravantPlayFixture(
@@ -621,6 +738,7 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             representation=representation
         ),
         initial_object_open_states=initial_object_open_states,
+        initial_object_lit_states=initial_object_lit_states,
         place_presentations=places,
         object_presentations=objects,
         movement_routes=routes,
