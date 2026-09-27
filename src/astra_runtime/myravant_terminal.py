@@ -59,6 +59,10 @@ _COMPOUND_ACTION_STARTERS = frozenset({
     "grab",
     "drop",
     "put",
+    "place",
+    "store",
+    "remove",
+    "retrieve",
     "open",
     "close",
     "shut",
@@ -102,6 +106,48 @@ def _object_action(*, action: str, target_tokens: list[str], raw_text: str) -> P
             failure_class="ambiguous_target_reference",
         )
     return ParsedTerminalCommand(action=action, argument=target, raw_text=raw_text)
+
+
+def _storage_action(
+    *,
+    action: str,
+    object_tokens: list[str],
+    container_tokens: list[str],
+    raw_text: str,
+) -> ParsedTerminalCommand:
+    object_target = _normalized_target(object_tokens)
+    container_target = _normalized_target(container_tokens)
+    if (
+        not object_target
+        or not container_target
+        or object_target in _DEICTIC_TARGETS
+        or container_target in _DEICTIC_TARGETS
+    ):
+        ambiguous = (
+            object_target
+            if object_target in _DEICTIC_TARGETS
+            else container_target
+            if container_target in _DEICTIC_TARGETS
+            else None
+        )
+        return ParsedTerminalCommand(
+            action="ambiguous",
+            argument=ambiguous,
+            raw_text=raw_text,
+            failure_class="ambiguous_target_reference",
+        )
+    return ParsedTerminalCommand(
+        action=action,
+        argument=f"{object_target} -> {container_target}",
+        raw_text=raw_text,
+    )
+
+
+def _split_storage_argument(argument: str) -> tuple[str, str]:
+    parts = argument.split(" -> ", 1)
+    if len(parts) != 2 or not parts[0] or not parts[1]:
+        raise ValueError("invalid bounded storage parser argument")
+    return parts[0], parts[1]
 
 
 def _action_tokens(parts: list[str]) -> list[str]:
@@ -204,6 +250,32 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
             return ParsedTerminalCommand(
                 action="move",
                 argument=direction,
+                raw_text=raw_text,
+            )
+
+    if verb in {"take", "remove", "retrieve"} and "from" in lowered[1:]:
+        index = lowered.index("from", 1)
+        return _storage_action(
+            action="retrieve",
+            object_tokens=parts[1:index],
+            container_tokens=parts[index + 1:],
+            raw_text=raw_text,
+        )
+
+    if verb in {"put", "place", "store"}:
+        separator = next(
+            (
+                index
+                for index, token in enumerate(lowered[1:], 1)
+                if token in {"in", "into"}
+            ),
+            None,
+        )
+        if separator is not None:
+            return _storage_action(
+                action="store",
+                object_tokens=parts[1:separator],
+                container_tokens=parts[separator + 1:],
                 raw_text=raw_text,
             )
 
@@ -337,7 +409,8 @@ def _write_help(output: TextIO) -> str:
     visible = (
         "Commands: look, inspect <object>, move <direction>, pickup <object>, "
         "drop <object>, open <object>, close <object>, light <object>, "
-        "extinguish <object>, save, help, exit\n"
+        "extinguish <object>, put <object> in <container>, "
+        "take <object> from <container>, save, help, exit\n"
         "Natural equivalents such as 'I head north', 'look around', "
         "'examine the lantern', 'look at the lantern', 'open the chest', "
         "'walk to the south exit', and 'grab the lantern' route to existing "
@@ -469,6 +542,41 @@ def run_terminal(
             continue
         if parsed.action == "move":
             result = application.move(parsed.argument or "")
+            visible = _write_result(output_stream, result, debug=debug)
+            _record_result(
+                evidence_recorder,
+                parsed=parsed,
+                visible_output=visible,
+                result=result,
+                error_stream=evidence_error_stream,
+            )
+            continue
+        if parsed.action in {"store", "retrieve"}:
+            try:
+                object_reference, container_reference = _split_storage_argument(
+                    parsed.argument or ""
+                )
+            except ValueError:
+                digest = application.authoritative_digest()
+                result = PlayApplicationResult(
+                    result_type="storage_rejected",
+                    message="That storage attempt could not be routed.",
+                    authoritative_changed=False,
+                    pre_state_digest=digest,
+                    post_state_digest=digest,
+                    failure_class="storage_target_unavailable",
+                )
+            else:
+                if parsed.action == "store":
+                    result = application.store_object(
+                        object_reference,
+                        container_reference,
+                    )
+                else:
+                    result = application.retrieve_object(
+                        object_reference,
+                        container_reference,
+                    )
             visible = _write_result(output_stream, result, debug=debug)
             _record_result(
                 evidence_recorder,

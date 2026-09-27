@@ -28,7 +28,7 @@ def test_harness_is_deterministic_and_has_no_invariant_failures(tmp_path):
     assert first["model_mode"] == "MODEL-NONE"
     assert first["authority_effect"] == "none"
     summary = first["summary"]
-    assert summary["cases_total"] == 85
+    assert summary["cases_total"] == 101
     assert summary["cases_failed"] == 0
     assert summary["deterministic_replay_failures"] == 0
     assert summary["canonical_equivalence_failures"] == 0
@@ -111,3 +111,19 @@ def test_int1_harness_covers_persistent_object_state_without_frontier_collapse(t
     directional = cases["directional-look"]["primary"]
     assert directional["result_type"] == "unsupported_input"
     assert directional["failure_class"] == "unsupported_input_no_executable_route"
+
+def test_int3_harness_covers_bounded_storage_without_generalization(tmp_path):
+    report = _run(tmp_path / "int3-coverage.json")
+    cases = {row["case"]["case_id"]: row for row in report["cases"]}
+    for case_id in (
+        "store-01", "store-02", "store-03", "store-04",
+        "retrieve-01", "retrieve-02", "retrieve-03",
+        "retrieve-transparent-take",
+    ):
+        assert cases[case_id]["primary"]["result_type"] == "storage_committed"
+        assert cases[case_id]["observed_class"] == "ROUTED_COMMIT"
+    assert cases["storage-noop"]["observed_class"] == "NOOP_HANDLED"
+    assert cases["storage-closed-store"]["primary"]["failure_class"] == "storage_container_closed"
+    assert cases["storage-remote"]["primary"]["failure_class"] == "storage_target_unavailable"
+    assert cases["storage-not-supported"]["primary"]["failure_class"] == "storage_not_supported"
+    assert cases["storage-compound"]["observed_class"] == "COMPOUND_PRESSURE"
