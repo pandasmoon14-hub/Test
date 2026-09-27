@@ -25,6 +25,7 @@ from typing import Sequence
 from astra_runtime.domain.command_kind_routing_skeleton import route_command_envelope
 from astra_runtime.domain.persistent_world_entity_location_representation import (
     CARRIED_BY_RELATION_TYPE,
+    CONTAINED_BY_RELATION_TYPE,
     LOCATED_AT_RELATION_TYPE,
     PersistentWorldEntityLocationRepresentation,
 )
@@ -34,6 +35,7 @@ from astra_runtime.domain.persistent_world_movement_integration import (
 from astra_runtime.domain.persistent_world_object_open_close import (
     PersistentWorldObjectOpenCloseRuntimeState,
     digest_persistent_world_object_open_close_runtime_state,
+    object_open_state_for,
 )
 from astra_runtime.kernel.command_envelope import CommandEnvelope, validate_command_envelope
 from astra_runtime.kernel.record_identity import build_record_id, is_valid_record_id
@@ -570,6 +572,7 @@ def _validate_owner_evidence(
 
 def _validate_current_availability(
     *, representation: PersistentWorldEntityLocationRepresentation,
+    open_close_state: PersistentWorldObjectOpenCloseRuntimeState,
     actor_entity_id: str, object_entity_id: str,
 ) -> None:
     entities = {entity.entity_id: entity for entity in representation.entities}
@@ -606,9 +609,39 @@ def _validate_current_availability(
         and relation.object_entity_id == actor_entity_id
         for relation in representation.relations
     )
-    if not (nearby or carried):
+    contained_accessible = False
+    contained = [
+        relation
+        for relation in representation.relations
+        if relation.relation_type == CONTAINED_BY_RELATION_TYPE
+        and relation.subject_entity_id == object_entity_id
+    ]
+    if len(contained) == 1:
+        container_id = contained[0].object_entity_id
+        container_nearby = any(
+            relation.relation_type == LOCATED_AT_RELATION_TYPE
+            and relation.subject_entity_id == container_id
+            and relation.object_entity_id == place_id
+            for relation in representation.relations
+        )
+        container_carried = any(
+            relation.relation_type == CARRIED_BY_RELATION_TYPE
+            and relation.subject_entity_id == container_id
+            and relation.object_entity_id == actor_entity_id
+            for relation in representation.relations
+        )
+        container_open = object_open_state_for(
+            open_close_state,
+            container_id,
+        )
+        contained_accessible = (
+            (container_nearby or container_carried)
+            and container_open is not None
+            and container_open.state == "open"
+        )
+    if not (nearby or carried or contained_accessible):
         raise PersistentWorldObjectLitStatePlacementError(
-            "target must be nearby or carried by the actor"
+            "target must be nearby, carried, or visibly contained in an open accessible container"
         )
 
 
@@ -679,6 +712,7 @@ def prepare_persistent_world_object_lit_state(
     representation = state.open_close_state.custody_state.movement_state.representation
     _validate_current_availability(
         representation=representation,
+        open_close_state=state.open_close_state,
         actor_entity_id=actor_entity_id,
         object_entity_id=object_entity_id,
     )

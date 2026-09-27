@@ -2053,6 +2053,7 @@ def _restore_r4e_payload(
     material: object,
     *,
     expected_campaign_id: str,
+    defer_terminal_attribution: bool = False,
 ) -> PersistentWorldObjectCustodyRuntimeState:
     payload = _require_exact_dict(
         material,
@@ -2116,7 +2117,8 @@ def _restore_r4e_payload(
         raise PersistentWorldCheckpointEvidenceError(
             "restored R4-E runtime state is invalid"
         ) from exc
-    _validate_r4e_restored_attribution(state)
+    if not defer_terminal_attribution:
+        _validate_r4e_restored_attribution(state)
     return state
 
 
@@ -2551,6 +2553,7 @@ def _restore_int1_payload(
     *,
     expected_campaign_id: str,
     expected_initial_object_states: tuple[PersistentWorldObjectOpenState, ...],
+    defer_r4e_terminal_attribution: bool = False,
 ) -> PersistentWorldObjectOpenCloseRuntimeState:
     payload = _require_exact_dict(
         payload_material,
@@ -2561,6 +2564,7 @@ def _restore_int1_payload(
     custody_state = _restore_r4e_payload(
         payload["r4e_state"],
         expected_campaign_id=expected_campaign_id,
+        defer_terminal_attribution=defer_r4e_terminal_attribution,
     )
     object_state_material = payload["object_open_states"]
     if type(object_state_material) is not list:
@@ -3194,4 +3198,747 @@ def restore_persistent_world_object_lit_state_checkpoint(
         raise PersistentWorldCheckpointEvidenceError(
             "INT-2 composite world-state digest mismatch"
         )
+    return state
+
+# ---------------------------------------------------------------------------
+# TERMINAL-PLAY-INT-3 bounded persistent object storage checkpoint extension
+# ---------------------------------------------------------------------------
+
+from astra_runtime.domain.persistent_world_entity_location_representation import (
+    CONTAINED_BY_RELATION_TYPE,
+)
+from astra_runtime.domain.persistent_world_object_storage_transfer import (
+    PersistentWorldObjectStorageCommitReceipt,
+    PersistentWorldObjectStorageCommittedTransition,
+    PersistentWorldObjectStorageRuntimeState,
+    digest_persistent_world_containment,
+    digest_persistent_world_object_storage_runtime_state,
+    serialize_persistent_world_object_storage_commit_receipt,
+)
+
+OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY = (
+    "myravant.int3.persistent_world_object_storage_checkpoint"
+)
+OBJECT_STORAGE_CHECKPOINT_FORMAT_VERSION = 1
+
+_INT3_PAYLOAD_KEYS = frozenset({
+    "int2_state",
+    "containment_digest",
+    "world_state_digest",
+    "committed_storage_transitions",
+    "storage_transition_summary",
+})
+_INT3_RECEIPT_KEYS = frozenset({
+    "receipt_id",
+    "command_id",
+    "command_fingerprint",
+    "actor_entity_id",
+    "object_entity_id",
+    "container_entity_id",
+    "operation",
+    "source_relation_id",
+    "source_relation_type",
+    "destination_relation_id",
+    "destination_relation_type",
+    "pre_state_digest",
+    "post_state_digest",
+    "preview_id",
+    "state_delta_id",
+    "rt010_qualification_id",
+    "opportunity_evidence_id",
+    "status",
+})
+
+
+def _serialize_int3_transition(
+    transition: PersistentWorldObjectStorageCommittedTransition,
+) -> dict[str, object]:
+    if not isinstance(transition, PersistentWorldObjectStorageCommittedTransition):
+        raise InvalidPersistentWorldCheckpointRequestError(
+            "INT-3 transition has invalid type"
+        )
+    return {
+        "command_id": transition.command_id,
+        "command_fingerprint": transition.command_fingerprint,
+        "preview": transition.preview.to_dict(),
+        "state_delta": transition.state_delta.to_dict(),
+        "receipt": serialize_persistent_world_object_storage_commit_receipt(
+            transition.receipt
+        ),
+    }
+
+
+def serialize_persistent_world_object_storage_checkpoint_payload(
+    state: PersistentWorldObjectStorageRuntimeState,
+) -> dict[str, object]:
+    if not isinstance(state, PersistentWorldObjectStorageRuntimeState):
+        raise InvalidPersistentWorldCheckpointRequestError(
+            "state must be PersistentWorldObjectStorageRuntimeState"
+        )
+    transitions = [
+        _serialize_int3_transition(item)
+        for item in state.committed_storage_transitions
+    ]
+    representation = (
+        state.lit_state.open_close_state.custody_state.movement_state.representation
+    )
+    return {
+        "int2_state": serialize_persistent_world_object_lit_state_checkpoint_payload(
+            state.lit_state
+        ),
+        "containment_digest": digest_persistent_world_containment(
+            representation
+        ),
+        "world_state_digest": digest_persistent_world_object_storage_runtime_state(
+            state
+        ),
+        "committed_storage_transitions": transitions,
+        "storage_transition_summary": {
+            "count": len(transitions),
+            "command_ids": sorted(item["command_id"] for item in transitions),
+        },
+    }
+
+
+def build_persistent_world_object_storage_checkpoint_envelope(
+    *,
+    state: PersistentWorldObjectStorageRuntimeState,
+    qualification_evidence: Mapping[str, Any],
+) -> dict[str, object]:
+    payload = serialize_persistent_world_object_storage_checkpoint_payload(state)
+    qualification = _normalize_qualification(qualification_evidence)
+    return {
+        "format_identity": OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY,
+        "format_version": OBJECT_STORAGE_CHECKPOINT_FORMAT_VERSION,
+        "campaign_identity": (
+            state.lit_state.open_close_state.custody_state.movement_state.representation.campaign_id
+        ),
+        "authoritative_payload": payload,
+        "integrity_digest": _sha256_bytes(_canonical_bytes(payload)),
+        "qualification_provenance": qualification,
+    }
+
+
+def write_persistent_world_object_storage_checkpoint(
+    *,
+    state: PersistentWorldObjectStorageRuntimeState,
+    checkpoint_path: str | os.PathLike[str],
+    qualification_evidence: Mapping[str, Any],
+) -> str:
+    path = _checkpoint_path(checkpoint_path)
+    parent = path.parent
+    if not parent.exists() or not parent.is_dir():
+        raise PersistentWorldCheckpointWriteError(
+            "caller-supplied checkpoint parent directory does not exist"
+        )
+    envelope = build_persistent_world_object_storage_checkpoint_envelope(
+        state=state,
+        qualification_evidence=qualification_evidence,
+    )
+    material = _canonical_bytes(envelope)
+    temporary_path: str | None = None
+    try:
+        descriptor, temporary_path = tempfile.mkstemp(
+            prefix=f".{path.name}.",
+            suffix=".int3-tmp",
+            dir=parent,
+        )
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(material)
+            handle.flush()
+            os.fsync(handle.fileno())
+        _replace_checkpoint_durably(Path(temporary_path), path)
+        temporary_path = None
+    except OSError as exc:
+        if temporary_path is not None:
+            try:
+                os.unlink(temporary_path)
+            except (FileNotFoundError, OSError):
+                pass
+        raise PersistentWorldCheckpointWriteError(
+            "local INT-3 checkpoint durability operation failed"
+        ) from exc
+    return str(envelope["integrity_digest"])
+
+
+def _restore_int2_payload_for_int3(
+    payload_material: object,
+    *,
+    expected_campaign_id: str,
+    expected_initial_open_states: tuple[PersistentWorldObjectOpenState, ...],
+    expected_initial_lit_states: tuple[PersistentWorldObjectLitState, ...],
+) -> PersistentWorldObjectLitRuntimeState:
+    payload = _require_exact_dict(
+        payload_material,
+        expected_keys=_INT2_PAYLOAD_KEYS,
+        name="nested INT-2 authoritative payload",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    open_close_state = _restore_int1_payload(
+        payload["int1_state"],
+        expected_campaign_id=expected_campaign_id,
+        expected_initial_object_states=expected_initial_open_states,
+        defer_r4e_terminal_attribution=True,
+    )
+    lit_material = payload["object_lit_states"]
+    if type(lit_material) is not list:
+        raise PersistentWorldCheckpointEvidenceError(
+            "nested INT-2 object_lit_states must be a list"
+        )
+    lit_states = tuple(_restore_int2_object_state(item) for item in lit_material)
+    stored_lit_digest = _require_sha256(
+        payload["object_lit_state_digest"],
+        name="nested INT-2 object_lit_state_digest",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if digest_persistent_world_object_lit_states(lit_states) != stored_lit_digest:
+        raise PersistentWorldCheckpointEvidenceError(
+            "nested INT-2 object-lit-state digest mismatch"
+        )
+
+    transition_material = payload["committed_object_lit_transitions"]
+    if type(transition_material) is not list:
+        raise PersistentWorldCheckpointEvidenceError(
+            "nested INT-2 committed_object_lit_transitions must be a list"
+        )
+    transitions = tuple(
+        _restore_int2_transition(item)
+        for item in transition_material
+    )
+    summary = _require_exact_dict(
+        payload["object_lit_transition_summary"],
+        expected_keys=_R4E_TRANSITION_SUMMARY_KEYS,
+        name="nested INT-2 object_lit_transition_summary",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if type(summary["count"]) is not int or summary["count"] != len(transitions):
+        raise PersistentWorldCheckpointEvidenceError(
+            "nested INT-2 transition count is inconsistent"
+        )
+    if summary["command_ids"] != sorted(item.command_id for item in transitions):
+        raise PersistentWorldCheckpointEvidenceError(
+            "nested INT-2 transition command IDs are inconsistent"
+        )
+
+    replayed = tuple(expected_initial_lit_states)
+    for transition in sorted(
+        transitions,
+        key=lambda item: (item.command_id, item.command_fingerprint),
+    ):
+        try:
+            replayed = replay_persistent_world_object_lit_states(
+                object_lit_states=replayed,
+                receipt=transition.receipt,
+            )
+        except Exception as exc:
+            raise PersistentWorldCheckpointEvidenceError(
+                "nested INT-2 object-lit transition replay failed"
+            ) from exc
+
+    if tuple(
+        serialize_persistent_world_object_lit_state(item)
+        for item in replayed
+    ) != tuple(
+        serialize_persistent_world_object_lit_state(item)
+        for item in lit_states
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            "nested INT-2 lit state disagrees with replayed transition history"
+        )
+
+    state = PersistentWorldObjectLitRuntimeState(
+        open_close_state=open_close_state,
+        object_lit_states=lit_states,
+        committed_object_lit_transitions=transitions,
+    )
+    stored_world_digest = _require_sha256(
+        payload["world_state_digest"],
+        name="nested INT-2 world_state_digest",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if digest_persistent_world_object_lit_runtime_state(state) != stored_world_digest:
+        raise PersistentWorldCheckpointEvidenceError(
+            "nested INT-2 composite world-state digest mismatch"
+        )
+    return state
+
+
+def _restore_int3_preview(material: object) -> TransactionPreview:
+    preview = _require_exact_dict(
+        material,
+        expected_keys=_PREVIEW_KEYS,
+        name="INT-3 storage preview",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    expected_metadata = {
+        "package": "TERMINAL-PLAY-INT-3",
+        "command_family": "inventory",
+        "mutation_performed": False,
+    }
+    if preview["status"] != "preview_created":
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 preview must remain preview_created"
+        )
+    if preview["messages"] != [
+        "bounded persistent object storage transfer prepared"
+    ]:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 preview messages are inconsistent"
+        )
+    if preview["requires_confirmation"] is not False:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 preview unexpectedly requires confirmation"
+        )
+    if preview["metadata"] != expected_metadata:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 preview metadata is inconsistent"
+        )
+    return TransactionPreview(
+        preview_id=_require_record_id(
+            preview["preview_id"],
+            name="INT-3 preview.preview_id",
+        ),
+        command_id=_require_non_empty_str(
+            preview["command_id"],
+            name="INT-3 preview.command_id",
+            error_cls=PersistentWorldCheckpointEvidenceError,
+        ),
+        status="preview_created",
+        messages=("bounded persistent object storage transfer prepared",),
+        requires_confirmation=False,
+        metadata=MappingProxyType(dict(expected_metadata)),
+    )
+
+
+def _restore_int3_receipt(
+    material: object,
+) -> PersistentWorldObjectStorageCommitReceipt:
+    receipt = _require_exact_dict(
+        material,
+        expected_keys=_INT3_RECEIPT_KEYS,
+        name="INT-3 storage receipt",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    record_fields = (
+        "receipt_id",
+        "actor_entity_id",
+        "object_entity_id",
+        "container_entity_id",
+        "source_relation_id",
+        "destination_relation_id",
+        "preview_id",
+        "state_delta_id",
+        "rt010_qualification_id",
+        "opportunity_evidence_id",
+    )
+    ids = {
+        field: _require_record_id(
+            receipt[field],
+            name=f"INT-3 receipt.{field}",
+        )
+        for field in record_fields
+    }
+    try:
+        return PersistentWorldObjectStorageCommitReceipt(
+            receipt_id=ids["receipt_id"],
+            command_id=_require_non_empty_str(
+                receipt["command_id"],
+                name="INT-3 receipt.command_id",
+                error_cls=PersistentWorldCheckpointEvidenceError,
+            ),
+            command_fingerprint=_require_sha256(
+                receipt["command_fingerprint"],
+                name="INT-3 receipt.command_fingerprint",
+                error_cls=PersistentWorldCheckpointEvidenceError,
+            ),
+            actor_entity_id=ids["actor_entity_id"],
+            object_entity_id=ids["object_entity_id"],
+            container_entity_id=ids["container_entity_id"],
+            operation=receipt["operation"],
+            source_relation_id=ids["source_relation_id"],
+            source_relation_type=receipt["source_relation_type"],
+            destination_relation_id=ids["destination_relation_id"],
+            destination_relation_type=receipt["destination_relation_type"],
+            pre_state_digest=_require_sha256(
+                receipt["pre_state_digest"],
+                name="INT-3 receipt.pre_state_digest",
+                error_cls=PersistentWorldCheckpointEvidenceError,
+            ),
+            post_state_digest=_require_sha256(
+                receipt["post_state_digest"],
+                name="INT-3 receipt.post_state_digest",
+                error_cls=PersistentWorldCheckpointEvidenceError,
+            ),
+            preview_id=ids["preview_id"],
+            state_delta_id=ids["state_delta_id"],
+            rt010_qualification_id=ids["rt010_qualification_id"],
+            opportunity_evidence_id=ids["opportunity_evidence_id"],
+            status=receipt["status"],
+        )
+    except Exception as exc:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 storage receipt is invalid"
+        ) from exc
+
+
+def _restore_int3_transition(
+    material: object,
+) -> PersistentWorldObjectStorageCommittedTransition:
+    transition = _require_exact_dict(
+        material,
+        expected_keys=_TRANSITION_KEYS,
+        name="INT-3 committed storage transition",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    preview = _restore_int3_preview(transition["preview"])
+    delta = _restore_state_delta(transition["state_delta"])
+    receipt = _restore_int3_receipt(transition["receipt"])
+    command_id = _require_non_empty_str(
+        transition["command_id"],
+        name="INT-3 transition.command_id",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    fingerprint = _require_sha256(
+        transition["command_fingerprint"],
+        name="INT-3 transition.command_fingerprint",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if command_id != receipt.command_id or command_id != preview.command_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 transition command identity is inconsistent"
+        )
+    if fingerprint != receipt.command_fingerprint:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 transition fingerprint is inconsistent"
+        )
+    if delta.source_command_id != command_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 state delta command identity is inconsistent"
+        )
+    if delta.source_preview_id != preview.preview_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 state delta preview identity is inconsistent"
+        )
+    if receipt.preview_id != preview.preview_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 receipt preview identity is inconsistent"
+        )
+    if receipt.state_delta_id != delta.delta_id:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 receipt state-delta identity is inconsistent"
+        )
+    expected_payload = {
+        "operation": receipt.operation,
+        "actor_entity_id": receipt.actor_entity_id,
+        "object_entity_id": receipt.object_entity_id,
+        "container_entity_id": receipt.container_entity_id,
+        "source_relation_id": receipt.source_relation_id,
+        "source_relation_type": receipt.source_relation_type,
+        "destination_relation_id": receipt.destination_relation_id,
+        "destination_relation_type": receipt.destination_relation_type,
+    }
+    if dict(delta.payload) != expected_payload:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 state-delta payload disagrees with receipt"
+        )
+    return PersistentWorldObjectStorageCommittedTransition(
+        command_id=command_id,
+        command_fingerprint=fingerprint,
+        preview=preview,
+        state_delta=delta,
+        receipt=receipt,
+    )
+
+
+def _validate_int3_terminal_relation(
+    representation: object,
+    receipt: object,
+) -> None:
+    if isinstance(receipt, PersistentWorldMovementCommitReceipt):
+        matches = [
+            relation
+            for relation in representation.relations
+            if relation.relation_id == receipt.destination_relation_id
+        ]
+        if (
+            len(matches) != 1
+            or matches[0].relation_type != LOCATED_AT_RELATION_TYPE
+            or matches[0].subject_entity_id != receipt.actor_entity_id
+            or matches[0].object_entity_id != receipt.destination_place_id
+        ):
+            raise PersistentWorldCheckpointEvidenceError(
+                "INT-3 terminal movement relation disagrees with receipt"
+            )
+        return
+    if isinstance(receipt, PersistentWorldObjectCustodyCommitReceipt):
+        expected_target = (
+            receipt.actor_entity_id
+            if receipt.operation == "pickup"
+            else receipt.place_id
+        )
+        matches = [
+            relation
+            for relation in representation.relations
+            if relation.relation_id == receipt.destination_relation_id
+        ]
+        if (
+            len(matches) != 1
+            or matches[0].relation_type != receipt.destination_relation_type
+            or matches[0].subject_entity_id != receipt.object_entity_id
+            or matches[0].object_entity_id != expected_target
+        ):
+            raise PersistentWorldCheckpointEvidenceError(
+                "INT-3 terminal custody relation disagrees with receipt"
+            )
+        return
+    if isinstance(receipt, PersistentWorldObjectStorageCommitReceipt):
+        expected_target = (
+            receipt.container_entity_id
+            if receipt.operation == "store"
+            else receipt.actor_entity_id
+        )
+        matches = [
+            relation
+            for relation in representation.relations
+            if relation.relation_id == receipt.destination_relation_id
+        ]
+        if (
+            len(matches) != 1
+            or matches[0].relation_type != receipt.destination_relation_type
+            or matches[0].subject_entity_id != receipt.object_entity_id
+            or matches[0].object_entity_id != expected_target
+        ):
+            raise PersistentWorldCheckpointEvidenceError(
+                "INT-3 terminal storage relation disagrees with receipt"
+            )
+        return
+    raise PersistentWorldCheckpointEvidenceError(
+        "INT-3 terminal placement receipt type is unsupported"
+    )
+
+
+def _validate_int3_combined_attribution(
+    state: PersistentWorldObjectStorageRuntimeState,
+    *,
+    expected_initial_representation_digest: str,
+) -> None:
+    expected_initial_representation_digest = _require_sha256(
+        expected_initial_representation_digest,
+        name="expected_initial_representation_digest",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    movement = (
+        state.lit_state.open_close_state.custody_state.movement_state.committed_transitions
+    )
+    custody = state.lit_state.open_close_state.custody_state.committed_custody_transitions
+    storage = state.committed_storage_transitions
+    transitions = [*movement, *custody, *storage]
+    representation = (
+        state.lit_state.open_close_state.custody_state.movement_state.representation
+    )
+    containment_present = any(
+        relation.relation_type == CONTAINED_BY_RELATION_TYPE
+        for relation in representation.relations
+    )
+    if not transitions:
+        current = digest_persistent_world_entity_location_representation(
+            representation
+        )
+        if current != expected_initial_representation_digest:
+            raise PersistentWorldCheckpointEvidenceError(
+                "INT-3 transition-free placement differs from fixture initial representation"
+            )
+        if containment_present:
+            raise PersistentWorldCheckpointEvidenceError(
+                "containment exists without attributable storage history"
+            )
+        return
+
+    ids = [item.command_id for item in transitions]
+    if len(ids) != len(set(ids)):
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 placement command identities collide"
+        )
+
+    edges = [
+        (
+            item.receipt.pre_state_digest,
+            item.receipt.post_state_digest,
+            item,
+        )
+        for item in transitions
+    ]
+    outgoing = {}
+    incoming = {}
+    for pre_digest, post_digest, item in edges:
+        if pre_digest == post_digest:
+            raise PersistentWorldCheckpointEvidenceError(
+                "INT-3 placement transition may not self-loop"
+            )
+        if pre_digest in outgoing:
+            raise PersistentWorldCheckpointEvidenceError(
+                "INT-3 placement history forks from one pre-state"
+            )
+        if post_digest in incoming:
+            raise PersistentWorldCheckpointEvidenceError(
+                "INT-3 placement history converges ambiguously"
+            )
+        outgoing[pre_digest] = (post_digest, item)
+        incoming[post_digest] = (pre_digest, item)
+
+    roots = [digest for digest in outgoing if digest not in incoming]
+    terminals = [digest for digest in incoming if digest not in outgoing]
+    if len(roots) != 1 or len(terminals) != 1:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 placement history must form one deterministic chain"
+        )
+    if roots[0] != expected_initial_representation_digest:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 placement history does not begin at the fixture initial representation"
+        )
+
+    current_digest = digest_persistent_world_entity_location_representation(
+        representation
+    )
+    if terminals[0] != current_digest:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 terminal placement digest disagrees with current representation"
+        )
+
+    visited = set()
+    cursor = roots[0]
+    last_item = None
+    while cursor in outgoing:
+        if cursor in visited:
+            raise PersistentWorldCheckpointEvidenceError(
+                "INT-3 placement history contains a cycle"
+            )
+        visited.add(cursor)
+        next_digest, item = outgoing[cursor]
+        last_item = item
+        cursor = next_digest
+
+    if len(visited) != len(edges) or cursor != current_digest or last_item is None:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 placement history is disconnected or incomplete"
+        )
+    _validate_int3_terminal_relation(representation, last_item.receipt)
+
+
+def restore_persistent_world_object_storage_checkpoint(
+    *,
+    checkpoint_path: str | os.PathLike[str],
+    expected_campaign_id: str,
+    expected_initial_open_states: tuple[PersistentWorldObjectOpenState, ...],
+    expected_initial_lit_states: tuple[PersistentWorldObjectLitState, ...],
+    expected_initial_representation_digest: str,
+) -> PersistentWorldObjectStorageRuntimeState:
+    path = _checkpoint_path(checkpoint_path)
+    expected_campaign_id = _require_record_id(
+        expected_campaign_id,
+        name="expected_campaign_id",
+    )
+    envelope = _read_checkpoint_envelope(path)
+    if envelope["format_identity"] != OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY:
+        raise PersistentWorldCheckpointFormatError(
+            "unsupported INT-3 checkpoint format identity"
+        )
+    if (
+        type(envelope["format_version"]) is not int
+        or envelope["format_version"] != OBJECT_STORAGE_CHECKPOINT_FORMAT_VERSION
+    ):
+        raise PersistentWorldCheckpointFormatError(
+            "unsupported INT-3 checkpoint format version"
+        )
+    campaign_identity = _require_record_id(
+        envelope["campaign_identity"],
+        name="checkpoint campaign_identity",
+    )
+    if campaign_identity != expected_campaign_id:
+        raise PersistentWorldCheckpointCampaignMismatchError(
+            "checkpoint campaign identity does not match caller expectation"
+        )
+    _normalize_qualification(envelope["qualification_provenance"])
+    payload = _require_exact_dict(
+        envelope["authoritative_payload"],
+        expected_keys=_INT3_PAYLOAD_KEYS,
+        name="INT-3 authoritative payload",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    integrity = _require_sha256(
+        envelope["integrity_digest"],
+        name="integrity_digest",
+        error_cls=PersistentWorldCheckpointIntegrityError,
+    )
+    if _sha256_bytes(_canonical_bytes(payload)) != integrity:
+        raise PersistentWorldCheckpointIntegrityError(
+            "INT-3 checkpoint authoritative payload integrity mismatch"
+        )
+
+    lit_state = _restore_int2_payload_for_int3(
+        payload["int2_state"],
+        expected_campaign_id=expected_campaign_id,
+        expected_initial_open_states=expected_initial_open_states,
+        expected_initial_lit_states=expected_initial_lit_states,
+    )
+    representation = (
+        lit_state.open_close_state.custody_state.movement_state.representation
+    )
+    stored_containment_digest = _require_sha256(
+        payload["containment_digest"],
+        name="INT-3 containment_digest",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if digest_persistent_world_containment(representation) != stored_containment_digest:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 containment digest mismatch"
+        )
+
+    transition_material = payload["committed_storage_transitions"]
+    if type(transition_material) is not list:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 committed_storage_transitions must be a list"
+        )
+    transitions = tuple(
+        _restore_int3_transition(item)
+        for item in transition_material
+    )
+    summary = _require_exact_dict(
+        payload["storage_transition_summary"],
+        expected_keys=_R4E_TRANSITION_SUMMARY_KEYS,
+        name="INT-3 storage_transition_summary",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if type(summary["count"]) is not int or summary["count"] != len(transitions):
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 storage transition count is inconsistent"
+        )
+    if summary["command_ids"] != sorted(item.command_id for item in transitions):
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 storage transition command IDs are inconsistent"
+        )
+
+    try:
+        state = PersistentWorldObjectStorageRuntimeState(
+            lit_state=lit_state,
+            committed_storage_transitions=transitions,
+        )
+    except Exception as exc:
+        raise PersistentWorldCheckpointEvidenceError(
+            "restored INT-3 runtime state is invalid"
+        ) from exc
+
+    stored_world_digest = _require_sha256(
+        payload["world_state_digest"],
+        name="INT-3 world_state_digest",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if digest_persistent_world_object_storage_runtime_state(state) != stored_world_digest:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-3 composite world-state digest mismatch"
+        )
+    _validate_int3_combined_attribution(
+        state,
+        expected_initial_representation_digest=expected_initial_representation_digest,
+    )
     return state

@@ -34,6 +34,8 @@ __all__ = [
     "LOCATED_AT_SEMANTIC_OWNER",
     "CARRIED_BY_RELATION_TYPE",
     "CARRIED_BY_SEMANTIC_OWNER",
+    "CONTAINED_BY_RELATION_TYPE",
+    "CONTAINED_BY_SEMANTIC_OWNER",
     "SCENE_LOCATION_OWNER_FAMILY",
     "PersistentWorldEntityLocationRepresentationError",
     "InvalidPersistentWorldEntityError",
@@ -43,6 +45,7 @@ __all__ = [
     "UnresolvedPersistentWorldRelationReferenceError",
     "InvalidLocatedAtRelationError",
     "InvalidCarriedByRelationError",
+    "InvalidContainedByRelationError",
     "UnsupportedPersistentWorldRelationTypeError",
     "InvalidPersistentWorldRepresentationError",
     "PersistentWorldEntity",
@@ -51,6 +54,7 @@ __all__ = [
     "create_persistent_world_entity",
     "create_located_at_relation",
     "create_carried_by_relation",
+    "create_contained_by_relation",
     "create_persistent_world_entity_location_representation",
     "serialize_persistent_world_entity_location_representation",
     "canonical_serialize_persistent_world_entity_location_representation",
@@ -69,6 +73,8 @@ LOCATED_AT_RELATION_TYPE = "located_at"
 LOCATED_AT_SEMANTIC_OWNER = "AFQR-18"
 CARRIED_BY_RELATION_TYPE = "carried_by"
 CARRIED_BY_SEMANTIC_OWNER = "RT-010"
+CONTAINED_BY_RELATION_TYPE = "contained_by"
+CONTAINED_BY_SEMANTIC_OWNER = "RT-010"
 SCENE_LOCATION_OWNER_FAMILY = "scene_location_owner"
 
 _CLASSIFICATION_PATTERN = re.compile(
@@ -120,6 +126,12 @@ class InvalidCarriedByRelationError(
     PersistentWorldEntityLocationRepresentationError,
 ):
     """Raised when a carried_by relation violates RT-010 semantics."""
+
+
+class InvalidContainedByRelationError(
+    PersistentWorldEntityLocationRepresentationError,
+):
+    """Raised when a contained_by relation violates RT-010 semantics."""
 
 
 class UnsupportedPersistentWorldRelationTypeError(
@@ -238,6 +250,15 @@ class PersistentWorldRelation:
                 raise InvalidCarriedByRelationError(
                     "carried_by semantic_owner must be exactly 'RT-010'"
                 )
+        elif self.relation_type == CONTAINED_BY_RELATION_TYPE:
+            if self.semantic_owner != CONTAINED_BY_SEMANTIC_OWNER:
+                raise InvalidContainedByRelationError(
+                    "contained_by semantic_owner must be exactly 'RT-010'"
+                )
+            if self.subject_entity_id == self.object_entity_id:
+                raise InvalidContainedByRelationError(
+                    "contained_by may not self-reference"
+                )
         else:
             raise UnsupportedPersistentWorldRelationTypeError(
                 "relation type lacks separately qualified semantic ownership"
@@ -354,6 +375,17 @@ class PersistentWorldEntityLocationRepresentation:
                         "'character_or_creature'"
                     )
 
+            if relation.relation_type == CONTAINED_BY_RELATION_TYPE:
+                subject = entity_by_id[relation.subject_entity_id]
+                if subject.classification != "object":
+                    raise InvalidContainedByRelationError(
+                        "contained_by subject must be classified exactly as 'object'"
+                    )
+                if location.classification != "object":
+                    raise InvalidContainedByRelationError(
+                        "contained_by container must be classified exactly as 'object'"
+                    )
+
         object.__setattr__(self, "entities", entities)
         object.__setattr__(self, "relations", relations)
 
@@ -396,6 +428,21 @@ def create_carried_by_relation(
         subject_entity_id=subject_entity_id,
         object_entity_id=object_entity_id,
         semantic_owner=CARRIED_BY_SEMANTIC_OWNER,
+    )
+
+
+def create_contained_by_relation(
+    *,
+    relation_id: str,
+    subject_entity_id: str,
+    object_entity_id: str,
+) -> PersistentWorldRelation:
+    return PersistentWorldRelation(
+        relation_id=relation_id,
+        relation_type=CONTAINED_BY_RELATION_TYPE,
+        subject_entity_id=subject_entity_id,
+        object_entity_id=object_entity_id,
+        semantic_owner=CONTAINED_BY_SEMANTIC_OWNER,
     )
 
 

@@ -13,6 +13,7 @@ from pathlib import Path
 
 from astra_runtime.domain.persistent_world_entity_location_representation import (
     CARRIED_BY_RELATION_TYPE,
+    CONTAINED_BY_RELATION_TYPE,
     LOCATED_AT_RELATION_TYPE,
 )
 from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
@@ -21,7 +22,8 @@ from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     restore_persistent_world_object_custody_checkpoint,
     restore_persistent_world_object_open_close_checkpoint,
     restore_persistent_world_object_lit_state_checkpoint,
-    write_persistent_world_object_lit_state_checkpoint,
+    restore_persistent_world_object_storage_checkpoint,
+    write_persistent_world_object_storage_checkpoint,
 )
 from astra_runtime.domain.persistent_world_movement_integration import (
     PersistentWorldMovementRuntimeState,
@@ -45,6 +47,15 @@ from astra_runtime.domain.persistent_world_object_lit_state import (
     execute_persistent_world_object_lit_state,
     object_lit_state_for,
     replace_persistent_world_object_lit_open_close_state,
+)
+from astra_runtime.domain.persistent_world_object_storage_transfer import (
+    PersistentWorldObjectStorageError,
+    PersistentWorldObjectStorageRuntimeState,
+    containment_relation_for,
+    create_persistent_world_object_storage_runtime_state,
+    digest_persistent_world_object_storage_runtime_state,
+    execute_persistent_world_object_storage,
+    replace_persistent_world_object_storage_lit_state,
 )
 from astra_runtime.domain.persistent_world_object_open_close import (
     PersistentWorldObjectOpenCloseError,
@@ -70,6 +81,7 @@ _MOVEMENT_COMMAND_ID_PATTERN = re.compile(r"^terminal-move-(\d{6})$")
 _CUSTODY_COMMAND_ID_PATTERN = re.compile(r"^terminal-custody-(\d{6})$")
 _OBJECT_STATE_COMMAND_ID_PATTERN = re.compile(r"^terminal-object-state-(\d{6})$")
 _OBJECT_LIT_STATE_COMMAND_ID_PATTERN = re.compile(r"^terminal-object-lit-state-(\d{6})$")
+_STORAGE_COMMAND_ID_PATTERN = re.compile(r"^terminal-storage-(\d{6})$")
 
 
 class MyravantPlayApplicationError(ValueError):
@@ -123,16 +135,31 @@ class MyravantPlayApplication:
         self,
         *,
         fixture: MyravantPlayFixture,
-        lit_state: PersistentWorldObjectLitRuntimeState,
+        storage_state: PersistentWorldObjectStorageRuntimeState,
         checkpoint_path: str | Path | None = None,
     ) -> None:
         self.fixture = fixture
-        self._lit_state = lit_state
+        self._storage_state = storage_state
         self.checkpoint_path = (
             Path(checkpoint_path)
             if checkpoint_path is not None
             else None
         )
+
+    @property
+    def _lit_state(self) -> PersistentWorldObjectLitRuntimeState:
+        return self._storage_state.lit_state
+
+    @_lit_state.setter
+    def _lit_state(self, value: PersistentWorldObjectLitRuntimeState) -> None:
+        self._storage_state = replace_persistent_world_object_storage_lit_state(
+            state=self._storage_state,
+            lit_state=value,
+        )
+
+    @property
+    def storage_state(self) -> PersistentWorldObjectStorageRuntimeState:
+        return self._storage_state
 
     @property
     def state(self) -> PersistentWorldMovementRuntimeState:
@@ -167,11 +194,14 @@ class MyravantPlayApplication:
             custody_state=custody_state,
             object_open_states=bounded_fixture.initial_object_open_states,
         )
+        lit_state = create_persistent_world_object_lit_runtime_state(
+            open_close_state=open_close_state,
+            object_lit_states=bounded_fixture.initial_object_lit_states,
+        )
         return cls(
             fixture=bounded_fixture,
-            lit_state=create_persistent_world_object_lit_runtime_state(
-                open_close_state=open_close_state,
-                object_lit_states=bounded_fixture.initial_object_lit_states,
+            storage_state=create_persistent_world_object_storage_runtime_state(
+                lit_state=lit_state,
             ),
             checkpoint_path=checkpoint_path,
         )
@@ -186,47 +216,61 @@ class MyravantPlayApplication:
         bounded_fixture = fixture or create_terminal_play_fixture()
 
         try:
-            lit_state = restore_persistent_world_object_lit_state_checkpoint(
+            storage_state = restore_persistent_world_object_storage_checkpoint(
                 checkpoint_path=checkpoint_path,
                 expected_campaign_id=bounded_fixture.campaign_id,
                 expected_initial_open_states=bounded_fixture.initial_object_open_states,
                 expected_initial_lit_states=bounded_fixture.initial_object_lit_states,
+                expected_initial_representation_digest=(
+                    bounded_fixture.provenance.initial_state_digest
+                ),
             )
         except PersistentWorldCheckpointFormatError:
             try:
-                object_state = restore_persistent_world_object_open_close_checkpoint(
+                lit_state = restore_persistent_world_object_lit_state_checkpoint(
                     checkpoint_path=checkpoint_path,
                     expected_campaign_id=bounded_fixture.campaign_id,
-                    expected_initial_object_states=(
-                        bounded_fixture.initial_object_open_states
-                    ),
+                    expected_initial_open_states=bounded_fixture.initial_object_open_states,
+                    expected_initial_lit_states=bounded_fixture.initial_object_lit_states,
                 )
             except PersistentWorldCheckpointFormatError:
                 try:
-                    custody_state = restore_persistent_world_object_custody_checkpoint(
+                    object_state = restore_persistent_world_object_open_close_checkpoint(
                         checkpoint_path=checkpoint_path,
                         expected_campaign_id=bounded_fixture.campaign_id,
+                        expected_initial_object_states=(
+                            bounded_fixture.initial_object_open_states
+                        ),
                     )
                 except PersistentWorldCheckpointFormatError:
-                    movement_state = restore_persistent_world_checkpoint(
-                        checkpoint_path=checkpoint_path,
-                        expected_campaign_id=bounded_fixture.campaign_id,
+                    try:
+                        custody_state = restore_persistent_world_object_custody_checkpoint(
+                            checkpoint_path=checkpoint_path,
+                            expected_campaign_id=bounded_fixture.campaign_id,
+                        )
+                    except PersistentWorldCheckpointFormatError:
+                        movement_state = restore_persistent_world_checkpoint(
+                            checkpoint_path=checkpoint_path,
+                            expected_campaign_id=bounded_fixture.campaign_id,
+                        )
+                        custody_state = create_persistent_world_object_custody_runtime_state(
+                            movement_state=movement_state
+                        )
+                    object_state = create_persistent_world_object_open_close_runtime_state(
+                        custody_state=custody_state,
+                        object_open_states=bounded_fixture.initial_object_open_states,
                     )
-                    custody_state = create_persistent_world_object_custody_runtime_state(
-                        movement_state=movement_state
-                    )
-                object_state = create_persistent_world_object_open_close_runtime_state(
-                    custody_state=custody_state,
-                    object_open_states=bounded_fixture.initial_object_open_states,
+                lit_state = create_persistent_world_object_lit_runtime_state(
+                    open_close_state=object_state,
+                    object_lit_states=bounded_fixture.initial_object_lit_states,
                 )
-            lit_state = create_persistent_world_object_lit_runtime_state(
-                open_close_state=object_state,
-                object_lit_states=bounded_fixture.initial_object_lit_states,
+            storage_state = create_persistent_world_object_storage_runtime_state(
+                lit_state=lit_state,
             )
 
         return cls(
             fixture=bounded_fixture,
-            lit_state=lit_state,
+            storage_state=storage_state,
             checkpoint_path=checkpoint_path,
         )
 
@@ -246,8 +290,8 @@ class MyravantPlayApplication:
         )
 
     def authoritative_digest(self) -> str:
-        return digest_persistent_world_object_lit_runtime_state(
-            self._lit_state
+        return digest_persistent_world_object_storage_runtime_state(
+            self._storage_state
         )
 
     def object_open_state(
@@ -326,22 +370,7 @@ class MyravantPlayApplication:
         except UnavailableFixtureCustodyError:
             return unavailable
 
-        place_id = self.current_place_id()
-        nearby_ids = {
-            item.entity_id
-            for item in self.fixture.public_entities_at(
-                self.state.representation,
-                place_id,
-            )
-        }
-        carried_ids = {
-            item.entity_id
-            for item in self.fixture.public_entities_carried_by(
-                self.state.representation,
-                self.fixture.player_entity_id,
-            )
-        }
-        if object_entity_id not in nearby_ids | carried_ids:
+        if not self._object_currently_available(object_entity_id):
             return unavailable
 
         presentation = self.fixture.object_presentation(object_entity_id)
@@ -364,6 +393,16 @@ class MyravantPlayApplication:
                     state=lit_state.state,
                 ),
             ))
+        if open_state is not None and open_state.state == "open":
+            contents = self.fixture.public_entities_contained_by(
+                self.state.representation,
+                object_entity_id,
+            )
+            if contents:
+                description = "\n".join((
+                    description,
+                    "Inside: " + ", ".join(item.name for item in contents) + ".",
+                ))
         view = PublicInspectionView(
             name=presentation.name,
             description=description,
@@ -424,6 +463,23 @@ class MyravantPlayApplication:
         sequence = highest + 1
         while True:
             candidate = f"terminal-object-state-{sequence:06d}"
+            if candidate not in used:
+                return candidate
+            sequence += 1
+
+    def _next_storage_command_id(self) -> str:
+        used = {
+            transition.command_id
+            for transition in self._storage_state.committed_storage_transitions
+        }
+        highest = 0
+        for command_id in used:
+            match = _STORAGE_COMMAND_ID_PATTERN.fullmatch(command_id)
+            if match:
+                highest = max(highest, int(match.group(1)))
+        sequence = highest + 1
+        while True:
+            candidate = f"terminal-storage-{sequence:06d}"
             if candidate not in used:
                 return candidate
             sequence += 1
@@ -658,6 +714,38 @@ class MyravantPlayApplication:
             technical_retry=result.technical_retry,
         )
 
+    def _container_accessible(self, container_entity_id: str) -> bool:
+        place_id = self.current_place_id()
+        relations = self.state.representation.relations
+        direct = any(
+            relation.relation_type == LOCATED_AT_RELATION_TYPE
+            and relation.subject_entity_id == container_entity_id
+            and relation.object_entity_id == place_id
+            for relation in relations
+        )
+        carried = any(
+            relation.relation_type == CARRIED_BY_RELATION_TYPE
+            and relation.subject_entity_id == container_entity_id
+            and relation.object_entity_id == self.fixture.player_entity_id
+            for relation in relations
+        )
+        nested = any(
+            relation.relation_type == CONTAINED_BY_RELATION_TYPE
+            and relation.subject_entity_id == container_entity_id
+            for relation in relations
+        )
+        return (direct or carried) and not nested
+
+    def _contained_object_accessible(self, object_entity_id: str) -> bool:
+        relation = containment_relation_for(
+            self._storage_state,
+            object_entity_id,
+        )
+        if relation is None or not self._container_accessible(relation.object_entity_id):
+            return False
+        open_state = self.object_open_state(relation.object_entity_id)
+        return open_state is not None and open_state.state == "open"
+
     def _object_currently_available(self, object_entity_id: str) -> bool:
         place_id = self.current_place_id()
         nearby_ids = {
@@ -674,7 +762,10 @@ class MyravantPlayApplication:
                 self.fixture.player_entity_id,
             )
         }
-        return object_entity_id in nearby_ids | carried_ids
+        return (
+            object_entity_id in nearby_ids | carried_ids
+            or self._contained_object_accessible(object_entity_id)
+        )
 
     def _object_open_close(
         self,
@@ -886,6 +977,190 @@ class MyravantPlayApplication:
             technical_retry=result.technical_retry,
         )
 
+    def _storage(
+        self,
+        *,
+        operation: str,
+        object_reference: str,
+        container_reference: str,
+    ) -> PlayApplicationResult:
+        pre_digest = self.authoritative_digest()
+        unavailable = PlayApplicationResult(
+            result_type="storage_rejected",
+            message="You cannot do that to the target from the current state.",
+            authoritative_changed=False,
+            pre_state_digest=pre_digest,
+            post_state_digest=pre_digest,
+            failure_class="storage_target_unavailable",
+        )
+        try:
+            object_entity_id = self.fixture.resolve_object_reference(
+                object_reference
+            )
+            container_entity_id = self.fixture.resolve_object_reference(
+                container_reference
+            )
+        except UnavailableFixtureCustodyError:
+            return unavailable
+
+        if not self.fixture.storage_pair_supported(
+            object_entity_id=object_entity_id,
+            container_entity_id=container_entity_id,
+        ):
+            if (
+                self._object_currently_available(object_entity_id)
+                and self._object_currently_available(container_entity_id)
+            ):
+                return PlayApplicationResult(
+                    result_type="storage_rejected",
+                    message="Those objects do not support this bounded storage interaction.",
+                    authoritative_changed=False,
+                    pre_state_digest=pre_digest,
+                    post_state_digest=pre_digest,
+                    failure_class="storage_not_supported",
+                )
+            return unavailable
+
+        relation = containment_relation_for(
+            self._storage_state,
+            object_entity_id,
+        )
+        if (
+            operation == "store"
+            and relation is not None
+            and relation.object_entity_id == container_entity_id
+        ):
+            return PlayApplicationResult(
+                result_type="storage_unchanged",
+                message="The object is already stored there.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+            )
+
+        if not self._container_accessible(container_entity_id):
+            return unavailable
+        open_state = self.object_open_state(container_entity_id)
+        if open_state is None:
+            return PlayApplicationResult(
+                result_type="storage_rejected",
+                message="That object does not support this bounded storage interaction.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="storage_not_supported",
+            )
+        if open_state.state != "open":
+            return PlayApplicationResult(
+                result_type="storage_rejected",
+                message="The container must be open first.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="storage_container_closed",
+            )
+
+        if operation == "store":
+            available = any(
+                relation.relation_type == CARRIED_BY_RELATION_TYPE
+                and relation.subject_entity_id == object_entity_id
+                and relation.object_entity_id == self.fixture.player_entity_id
+                for relation in self.state.representation.relations
+            )
+        else:
+            available = (
+                relation is not None
+                and relation.object_entity_id == container_entity_id
+            )
+        if not available:
+            return unavailable
+
+        command_id = self._next_storage_command_id()
+        command = create_command_envelope(
+            command_id=command_id,
+            command_type=(
+                "transfer_to_container"
+                if operation == "store"
+                else "transfer_from_container"
+            ),
+            source_actor_id=self.fixture.player_entity_id,
+            payload={
+                "object_entity_id": object_entity_id,
+                "container_entity_id": container_entity_id,
+            },
+            metadata={"client": "myravant-terminal-int3"},
+        )
+        qualification, opportunity = self.fixture.object_storage_evidence(
+            command_id=command_id,
+            object_entity_id=object_entity_id,
+            container_entity_id=container_entity_id,
+            operation=operation,
+        )
+        try:
+            result = execute_persistent_world_object_storage(
+                state=self._storage_state,
+                command=command,
+                qualification_evidence=qualification,
+                opportunity_evidence=opportunity,
+                expected_pre_state_digest=self.representation_digest(),
+            )
+        except PersistentWorldObjectStorageError as exc:
+            return PlayApplicationResult(
+                result_type="storage_rejected",
+                message="The storage transfer was rejected by the authoritative runtime.",
+                authoritative_changed=False,
+                command_id=command_id,
+                opportunity_evidence_id=opportunity.evidence_id,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class=type(exc).__name__,
+            )
+
+        self._storage_state = result.state
+        object_name = self.fixture.entity_name(object_entity_id)
+        container_name = self.fixture.entity_name(container_entity_id)
+        message = (
+            f"You store the {object_name} in the {container_name}."
+            if operation == "store"
+            else f"You retrieve the {object_name} from the {container_name}."
+        )
+        return PlayApplicationResult(
+            result_type="storage_committed",
+            message=message,
+            authoritative_changed=True,
+            command_id=command_id,
+            command_fingerprint=result.receipt.command_fingerprint,
+            preview_id=result.preview.preview_id,
+            receipt_id=result.receipt.receipt_id,
+            state_delta_id=result.state_delta.delta_id,
+            opportunity_evidence_id=result.receipt.opportunity_evidence_id,
+            pre_state_digest=pre_digest,
+            post_state_digest=self.authoritative_digest(),
+            technical_retry=result.technical_retry,
+        )
+
+    def store_object(
+        self,
+        object_reference: str,
+        container_reference: str,
+    ) -> PlayApplicationResult:
+        return self._storage(
+            operation="store",
+            object_reference=object_reference,
+            container_reference=container_reference,
+        )
+
+    def retrieve_object(
+        self,
+        object_reference: str,
+        container_reference: str,
+    ) -> PlayApplicationResult:
+        return self._storage(
+            operation="retrieve",
+            object_reference=object_reference,
+            container_reference=container_reference,
+        )
+
     def light_object(self, object_reference: str) -> PlayApplicationResult:
         return self._object_lit_state(
             operation="light",
@@ -911,6 +1186,27 @@ class MyravantPlayApplication:
         )
 
     def pickup(self, object_reference: str) -> PlayApplicationResult:
+        try:
+            object_entity_id = self.fixture.resolve_object_reference(
+                object_reference
+            )
+        except UnavailableFixtureCustodyError:
+            return self._custody(
+                operation="pickup",
+                object_reference=object_reference,
+            )
+        relation = containment_relation_for(
+            self._storage_state,
+            object_entity_id,
+        )
+        if relation is not None and self._contained_object_accessible(object_entity_id):
+            return self._storage(
+                operation="retrieve",
+                object_reference=object_reference,
+                container_reference=self.fixture.entity_name(
+                    relation.object_entity_id
+                ),
+            )
         return self._custody(
             operation="pickup",
             object_reference=object_reference,
@@ -930,8 +1226,8 @@ class MyravantPlayApplication:
 
         pre_digest = self.authoritative_digest()
         checkpoint_digest = (
-            write_persistent_world_object_lit_state_checkpoint(
-                state=self._lit_state,
+            write_persistent_world_object_storage_checkpoint(
+                state=self._storage_state,
                 checkpoint_path=self.checkpoint_path,
                 qualification_evidence=self.fixture.checkpoint_qualification,
             )

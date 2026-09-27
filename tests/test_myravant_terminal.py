@@ -692,3 +692,10 @@ def test_obs1_inspection_between_pickup_and_drop_adds_no_transition():
 
     assert len(app.state.committed_transitions) == 0
     assert len(app.custody_state.committed_custody_transitions) == 2
+
+def test_int3_parser_routes_explicit_storage_without_reclassifying_plain_take():
+    assert parse_terminal_command("put lantern in chest").action == "store"
+    assert parse_terminal_command("put lantern in chest").argument == "lantern -> chest"
+    assert parse_terminal_command("take lantern from chest").action == "retrieve"
+    assert parse_terminal_command("take lantern from chest").argument == "lantern -> chest"
+    assert parse_terminal_command("take lantern").action == "pickup"

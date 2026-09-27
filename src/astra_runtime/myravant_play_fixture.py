@@ -15,6 +15,7 @@ from typing import Mapping
 
 from astra_runtime.domain.persistent_world_entity_location_representation import (
     CARRIED_BY_RELATION_TYPE,
+    CONTAINED_BY_RELATION_TYPE,
     LOCATED_AT_RELATION_TYPE,
     PersistentWorldEntityLocationRepresentation,
     create_located_at_relation,
@@ -54,14 +55,22 @@ from astra_runtime.domain.persistent_world_object_lit_state import (
     create_object_lit_state_opportunity_evidence,
     create_object_lit_state_qualification_evidence,
     create_persistent_world_object_lit_state,
+    create_persistent_world_object_lit_runtime_state,
     digest_persistent_world_lit_composite_state,
     digest_persistent_world_object_lit_states,
+)
+from astra_runtime.domain.persistent_world_object_storage_transfer import (
+    ObjectStorageOpportunityEvidence,
+    ObjectStorageQualificationEvidence,
+    create_object_storage_opportunity_evidence,
+    create_object_storage_qualification_evidence,
+    digest_persistent_world_storage_composite_state,
 )
 from astra_runtime.kernel.record_identity import build_record_id
 
 
 FIXTURE_ID = "myravant-native-terminal-g1"
-FIXTURE_VERSION = "0.1.3"
+FIXTURE_VERSION = "0.1.4"
 FIXTURE_STATUS = "development_validation_content"
 FIXTURE_CANON = False
 FIXTURE_DEFAULT_WORLD = False
@@ -81,6 +90,9 @@ FIXTURE_INITIAL_OBJECT_LIT_STATE_DIGEST = (
 FIXTURE_INT2_INITIAL_WORLD_STATE_DIGEST = (
     "a6a130224028dc2ed1841caf604b7d61901c36390a5b1162b8f2da4280bc2628"
 )
+FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST = (
+    "206a30f6c4800306d3e623ed8aea420cc07a4ec08e8f56411b0065fd2cea4586"
+)
 FIXTURE_PLAYABLE_NEED_REFS = (
     "R4-B",
     "R4-C",
@@ -89,6 +101,7 @@ FIXTURE_PLAYABLE_NEED_REFS = (
     "TERMINAL-PLAY-OBS-1",
     "TERMINAL-PLAY-INT-1",
     "TERMINAL-PLAY-INT-2",
+    "TERMINAL-PLAY-INT-3",
     "R4-E-readiness",
 )
 FIXTURE_REQUIREMENT_REFS = (
@@ -165,6 +178,7 @@ class FixtureProvenanceReceipt:
     initial_world_state_digest: str
     initial_object_lit_state_digest: str
     initial_int2_world_state_digest: str
+    initial_int3_world_state_digest: str
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -478,6 +492,88 @@ class MyravantPlayFixture:
             return "Its flame is out."
         return "A steady flame burns within it."
 
+    def storage_pair_supported(
+        self,
+        *,
+        object_entity_id: str,
+        container_entity_id: str,
+    ) -> bool:
+        return (
+            object_entity_id == LANTERN_ID
+            and container_entity_id == TOOL_CHEST_ID
+        )
+
+    def object_storage_evidence(
+        self,
+        *,
+        command_id: str,
+        object_entity_id: str,
+        container_entity_id: str,
+        operation: str,
+    ) -> tuple[
+        ObjectStorageQualificationEvidence,
+        ObjectStorageOpportunityEvidence,
+    ]:
+        if not self.storage_pair_supported(
+            object_entity_id=object_entity_id,
+            container_entity_id=container_entity_id,
+        ):
+            raise UnavailableFixtureCustodyError(
+                "object/container pair has no bounded fixture storage qualification"
+            )
+        if operation not in {"store", "retrieve"}:
+            raise UnavailableFixtureCustodyError(
+                "storage operation must be store or retrieve"
+            )
+        token = hashlib.sha256(
+            f"{command_id}|{operation}|{object_entity_id}|{container_entity_id}".encode(
+                "utf-8"
+            )
+        ).hexdigest()[:20]
+        qualification = create_object_storage_qualification_evidence(
+            evidence_id=build_record_id(
+                "evidence",
+                f"int3-{operation}-{token}-rt010",
+            ),
+            actor_entity_id=self.player_entity_id,
+            object_entity_id=object_entity_id,
+            container_entity_id=container_entity_id,
+            operation=operation,
+            qualified=True,
+        )
+        opportunity = create_object_storage_opportunity_evidence(
+            evidence_id=build_record_id(
+                "evidence",
+                f"int3-{operation}-{token}-afqr19",
+            ),
+            actor_entity_id=self.player_entity_id,
+            object_entity_id=object_entity_id,
+            container_entity_id=container_entity_id,
+            operation=operation,
+            opportunity_available=True,
+            resolution_accepted=True,
+        )
+        return qualification, opportunity
+
+    def public_entities_contained_by(
+        self,
+        representation: PersistentWorldEntityLocationRepresentation,
+        container_entity_id: str,
+    ) -> tuple[PublicEntityPresentation, ...]:
+        contained_ids = {
+            relation.subject_entity_id
+            for relation in representation.relations
+            if (
+                relation.relation_type == CONTAINED_BY_RELATION_TYPE
+                and relation.object_entity_id == container_entity_id
+            )
+        }
+        return tuple(
+            presentation
+            for presentation in self.object_presentations
+            if presentation.entity_id in contained_ids
+        )
+
     def public_entities_carried_by(
         self,
         representation: PersistentWorldEntityLocationRepresentation,
@@ -613,6 +709,25 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             "FIXTURE_VERSION and FIXTURE_INT2_INITIAL_WORLD_STATE_DIGEST"
         )
 
+    initial_int3_world_state_digest = digest_persistent_world_storage_composite_state(
+        create_persistent_world_object_lit_runtime_state(
+            open_close_state=create_persistent_world_object_open_close_runtime_state(
+                custody_state=create_persistent_world_object_custody_runtime_state(
+                    movement_state=create_persistent_world_movement_runtime_state(
+                        representation=representation
+                    )
+                ),
+                object_open_states=initial_object_open_states,
+            ),
+            object_lit_states=initial_object_lit_states,
+        )
+    )
+    if initial_int3_world_state_digest != FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST:
+        raise MyravantPlayFixtureError(
+            "fixture INT-3 authoritative initial state changed without updating "
+            "FIXTURE_VERSION and FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST"
+        )
+
     routes = (
         FixtureMovementRoute(
             source_place_id=WORKSHOP_ID,
@@ -729,6 +844,7 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         initial_world_state_digest=initial_world_state_digest,
         initial_object_lit_state_digest=initial_object_lit_state_digest,
         initial_int2_world_state_digest=initial_int2_world_state_digest,
+        initial_int3_world_state_digest=initial_int3_world_state_digest,
     )
 
     return MyravantPlayFixture(

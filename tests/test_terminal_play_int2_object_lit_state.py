@@ -10,11 +10,13 @@ import pytest
 
 from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     OBJECT_LIT_STATE_CHECKPOINT_FORMAT_IDENTITY,
+    OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY,
     PersistentWorldCheckpointEvidenceError,
     serialize_persistent_world_object_open_close_checkpoint_payload,
     write_persistent_world_object_open_close_checkpoint,
 )
 from astra_runtime.domain.persistent_world_object_lit_state import (
+    digest_persistent_world_object_lit_runtime_state,
     digest_persistent_world_object_lit_states,
     replay_persistent_world_object_lit_states,
 )
@@ -28,6 +30,7 @@ from astra_runtime.myravant_play_fixture import (
     FIXTURE_INITIAL_STATE_DIGEST,
     FIXTURE_INITIAL_WORLD_STATE_DIGEST,
     FIXTURE_INT2_INITIAL_WORLD_STATE_DIGEST,
+    FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST,
     FIXTURE_VERSION,
     LANTERN_ID,
     TOOL_CHEST_ID,
@@ -40,7 +43,7 @@ def test_int2_fixture_adds_independent_lit_state_without_redefining_lower_digest
     fixture = create_terminal_play_fixture()
     app = MyravantPlayApplication.new(fixture=fixture)
 
-    assert FIXTURE_VERSION == "0.1.3"
+    assert FIXTURE_VERSION == "0.1.4"
     assert fixture.provenance.initial_state_digest == FIXTURE_INITIAL_STATE_DIGEST
     assert fixture.provenance.initial_world_state_digest == FIXTURE_INITIAL_WORLD_STATE_DIGEST
     assert fixture.provenance.initial_object_lit_state_digest == FIXTURE_INITIAL_OBJECT_LIT_STATE_DIGEST
@@ -48,7 +51,10 @@ def test_int2_fixture_adds_independent_lit_state_without_redefining_lower_digest
     assert app.representation_digest() == FIXTURE_INITIAL_STATE_DIGEST
     assert digest_persistent_world_object_open_close_runtime_state(app.object_state) == FIXTURE_INITIAL_WORLD_STATE_DIGEST
     assert app.object_lit_state_digest() == FIXTURE_INITIAL_OBJECT_LIT_STATE_DIGEST
-    assert app.authoritative_digest() == FIXTURE_INT2_INITIAL_WORLD_STATE_DIGEST
+    assert digest_persistent_world_object_lit_runtime_state(app.lit_state) == (
+        FIXTURE_INT2_INITIAL_WORLD_STATE_DIGEST
+    )
+    assert app.authoritative_digest() == FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST
     assert app.object_open_state(TOOL_CHEST_ID).state == "closed"
     assert app.object_lit_state(LANTERN_ID).state == "unlit"
 
@@ -188,8 +194,8 @@ def test_int2_checkpoint_embeds_exact_int1_payload(tmp_path):
     app.save()
 
     envelope = json.loads(checkpoint.read_text(encoding="utf-8"))
-    assert envelope["format_identity"] == OBJECT_LIT_STATE_CHECKPOINT_FORMAT_IDENTITY
-    assert envelope["authoritative_payload"]["int1_state"] == (
+    assert envelope["format_identity"] == OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY
+    assert envelope["authoritative_payload"]["int2_state"]["int1_state"] == (
         serialize_persistent_world_object_open_close_checkpoint_payload(app.object_state)
     )
 
@@ -210,7 +216,7 @@ def test_int2_legacy_int1_restore_initializes_lantern_unlit_and_upgrades(tmp_pat
     assert restored.object_lit_state(LANTERN_ID).state == "unlit"
     restored.save()
     upgraded = json.loads(checkpoint.read_text(encoding="utf-8"))
-    assert upgraded["format_identity"] == OBJECT_LIT_STATE_CHECKPOINT_FORMAT_IDENTITY
+    assert upgraded["format_identity"] == OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY
 
 
 def test_int2_recomputed_outer_integrity_cannot_hide_lit_state_tamper(tmp_path):
@@ -220,7 +226,7 @@ def test_int2_recomputed_outer_integrity_cannot_hide_lit_state_tamper(tmp_path):
     app.save()
 
     envelope = json.loads(checkpoint.read_text(encoding="utf-8"))
-    envelope["authoritative_payload"]["object_lit_states"][0]["state"] = "unlit"
+    envelope["authoritative_payload"]["int2_state"]["object_lit_states"][0]["state"] = "unlit"
     payload = envelope["authoritative_payload"]
     canonical_payload = json.dumps(
         payload,

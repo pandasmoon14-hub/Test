@@ -19,6 +19,7 @@ from astra_runtime.myravant_play_fixture import (
     FIXTURE_G1_BASELINE_SHA,
     FIXTURE_ID,
     FIXTURE_INITIAL_STATE_DIGEST,
+    FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST,
     FIXTURE_ORIGINALITY_REVIEW_STATUS,
     FIXTURE_ORIGIN_MERGE_COMMIT,
     FIXTURE_ORIGIN_MERGED_AT,
@@ -293,7 +294,7 @@ def test_fixture_custody_policy_emits_only_bounded_owner_evidence():
 def test_obs1_fixture_public_descriptions_are_state_independent_and_versioned():
     fixture = create_terminal_play_fixture()
 
-    assert FIXTURE_VERSION == "0.1.3"
+    assert FIXTURE_VERSION == "0.1.4"
     assert "TERMINAL-PLAY-OBS-1" in FIXTURE_PLAYABLE_NEED_REFS
     assert "TERMINAL-PLAY-INT-1" in FIXTURE_PLAYABLE_NEED_REFS
     assert "TERMINAL-PLAY-INT-2" in FIXTURE_PLAYABLE_NEED_REFS
@@ -312,3 +313,10 @@ def test_obs1_fixture_public_descriptions_are_state_independent_and_versioned():
     ).casefold()
     for stale_placement_phrase in ("workbench", "yard wall", "orchard path"):
         assert stale_placement_phrase not in combined
+
+def test_int3_fixture_provenance_carries_frozen_outer_digest():
+    fixture = create_terminal_play_fixture()
+    assert "TERMINAL-PLAY-INT-3" in FIXTURE_PLAYABLE_NEED_REFS
+    assert fixture.provenance.initial_int3_world_state_digest == (
+        FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST
+    )
