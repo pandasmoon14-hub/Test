@@ -344,8 +344,16 @@ def test_obs1_remote_and_unknown_targets_are_player_indistinguishable():
     assert app.authoritative_digest() == before
 
 
-def test_obs1_local_targets_become_inspectable_from_current_authoritative_location():
+def test_obs1_local_targets_become_inspectable_when_observation_allows():
     app = MyravantPlayApplication.new()
+
+    # COMP-1 separates authoritative co-location from current observability.
+    # Keep the OBS-1 local-target coverage under a state that lawfully exposes
+    # both targets instead of weakening the sensing gate.
+    pickup = app.pickup("lantern")
+    assert pickup.result_type == "custody_committed"
+    lit = app.light_object("lantern")
+    assert lit.result_type == "object_lit_state_committed"
 
     app.move("south")
     chest = app.inspect("tool chest")
