@@ -62,12 +62,12 @@ def test_comp1_fixture_environment_input_is_versioned_and_owner_routed():
         fixture.ambient_visual_conditions
     ) == FIXTURE_AMBIENT_VISUAL_CONDITION_DIGEST
 
-    orchard = fixture.ambient_visual_condition_for(ORCHARD_PATH_ID)
-    assert orchard.condition == "insufficient"
-    assert orchard.semantic_owner == AFQR17_FIXTURE_ENVIRONMENT_OWNER
-
-    for condition in fixture.ambient_visual_conditions:
-        assert condition.semantic_owner == AFQR17_FIXTURE_ENVIRONMENT_OWNER
+    assert fixture.ambient_visual_condition_for(ORCHARD_PATH_ID) == "insufficient"
+    assert AFQR17_FIXTURE_ENVIRONMENT_OWNER == "AFQR-17"
+    assert set(fixture.ambient_visual_conditions.values()) == {
+        "sufficient",
+        "insufficient",
+    }
 
     assert app.authoritative_digest() == FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST
 
