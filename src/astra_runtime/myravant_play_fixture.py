@@ -9,9 +9,10 @@ content system.
 from __future__ import annotations
 
 import hashlib
+import json
 from dataclasses import dataclass
 from types import MappingProxyType
-from typing import Mapping
+from typing import Mapping, Sequence
 
 from astra_runtime.domain.persistent_world_entity_location_representation import (
     CARRIED_BY_RELATION_TYPE,
@@ -66,11 +67,23 @@ from astra_runtime.domain.persistent_world_object_storage_transfer import (
     create_object_storage_qualification_evidence,
     digest_persistent_world_storage_composite_state,
 )
-from astra_runtime.kernel.record_identity import build_record_id
+from astra_runtime.kernel.record_identity import build_record_id, is_valid_record_id
 
 
 FIXTURE_ID = "myravant-native-terminal-g1"
-FIXTURE_VERSION = "0.1.4"
+FIXTURE_VERSION = "0.1.5"
+FIXTURE_AMBIENT_VISUAL_PROFILE_VERSION = "comp1-v1"
+FIXTURE_AMBIENT_VISUAL_CONDITION_DIGEST = (
+    "5763386be8068a1067697cb58f858c0ed11bed2b2cbef1405f037bd630762317"
+)
+AFQR17_FIXTURE_ENVIRONMENT_OWNER = "AFQR-17"
+AFQR20_FIXTURE_SENSING_OWNER = "AFQR-20"
+AMBIENT_VISUAL_CONDITIONS = frozenset({"sufficient", "insufficient"})
+VISUAL_OBSERVATION_BASES = frozenset({
+    "ambient_sufficient",
+    "local_light_source",
+    "insufficient_visual_signal",
+})
 FIXTURE_STATUS = "development_validation_content"
 FIXTURE_CANON = False
 FIXTURE_DEFAULT_WORLD = False
@@ -102,6 +115,7 @@ FIXTURE_PLAYABLE_NEED_REFS = (
     "TERMINAL-PLAY-INT-1",
     "TERMINAL-PLAY-INT-2",
     "TERMINAL-PLAY-INT-3",
+    "TERMINAL-PLAY-COMP-1",
     "R4-E-readiness",
 )
 FIXTURE_REQUIREMENT_REFS = (
@@ -160,6 +174,120 @@ class FixtureMovementRoute:
 
 
 @dataclass(frozen=True, kw_only=True)
+class FixtureAmbientVisualCondition:
+    """Fixed AFQR-17 fixture input for bounded COMP-1 visual sensing."""
+
+    place_id: str
+    condition: str
+    semantic_owner: str = AFQR17_FIXTURE_ENVIRONMENT_OWNER
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.place_id, str) or not is_valid_record_id(self.place_id):
+            raise MyravantPlayFixtureError(
+                "ambient visual condition place_id must be a valid record ID"
+            )
+        if self.condition not in AMBIENT_VISUAL_CONDITIONS:
+            raise MyravantPlayFixtureError(
+                "ambient visual condition must be sufficient or insufficient"
+            )
+        if self.semantic_owner != AFQR17_FIXTURE_ENVIRONMENT_OWNER:
+            raise MyravantPlayFixtureError(
+                "ambient visual condition semantic_owner must be AFQR-17"
+            )
+
+    def to_dict(self) -> dict[str, str]:
+        return {
+            "place_id": self.place_id,
+            "condition": self.condition,
+            "semantic_owner": self.semantic_owner,
+        }
+
+
+@dataclass(frozen=True, kw_only=True)
+class FixtureVisualObservationEvidence:
+    """Derived AFQR-20 evidence; never authoritative state or actor knowledge."""
+
+    evidence_id: str
+    observer_entity_id: str
+    target_entity_id: str
+    place_id: str
+    ambient_condition: str
+    local_light_available: bool
+    observable: bool
+    basis: str
+    semantic_owner: str = AFQR20_FIXTURE_SENSING_OWNER
+
+    def __post_init__(self) -> None:
+        for name in (
+            "evidence_id",
+            "observer_entity_id",
+            "target_entity_id",
+            "place_id",
+        ):
+            value = getattr(self, name)
+            if not isinstance(value, str) or not is_valid_record_id(value):
+                raise MyravantPlayFixtureError(
+                    f"{name} must be a valid record ID"
+                )
+        if self.ambient_condition not in AMBIENT_VISUAL_CONDITIONS:
+            raise MyravantPlayFixtureError(
+                "ambient_condition must be sufficient or insufficient"
+            )
+        if type(self.local_light_available) is not bool:
+            raise MyravantPlayFixtureError(
+                "local_light_available must be bool"
+            )
+        if type(self.observable) is not bool:
+            raise MyravantPlayFixtureError("observable must be bool")
+        if self.basis not in VISUAL_OBSERVATION_BASES:
+            raise MyravantPlayFixtureError("unknown visual observation basis")
+        if self.semantic_owner != AFQR20_FIXTURE_SENSING_OWNER:
+            raise MyravantPlayFixtureError(
+                "visual observation semantic_owner must be AFQR-20"
+            )
+        expected = (
+            self.ambient_condition == "sufficient"
+            or self.local_light_available
+        )
+        if self.observable is not expected:
+            raise MyravantPlayFixtureError(
+                "visual observation result disagrees with bounded inputs"
+            )
+
+
+def canonical_serialize_fixture_ambient_visual_conditions(
+    conditions: Sequence[FixtureAmbientVisualCondition],
+) -> str:
+    ordered = tuple(sorted(conditions, key=lambda item: item.place_id))
+    place_ids = [item.place_id for item in ordered]
+    if len(place_ids) != len(set(place_ids)):
+        raise MyravantPlayFixtureError(
+            "ambient visual conditions must have unique place_id values"
+        )
+    material = {
+        "state_family": "afqr17_fixture_ambient_visual_condition",
+        "conditions": [item.to_dict() for item in ordered],
+    }
+    return json.dumps(
+        material,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=True,
+        allow_nan=False,
+    )
+
+
+def digest_fixture_ambient_visual_conditions(
+    conditions: Sequence[FixtureAmbientVisualCondition],
+) -> str:
+    return hashlib.sha256(
+        canonical_serialize_fixture_ambient_visual_conditions(
+            conditions
+        ).encode("utf-8")
+    ).hexdigest()
+
+
+@dataclass(frozen=True, kw_only=True)
 class FixtureProvenanceReceipt:
     fixture_id: str
     fixture_version: str
@@ -179,6 +307,8 @@ class FixtureProvenanceReceipt:
     initial_object_lit_state_digest: str
     initial_int2_world_state_digest: str
     initial_int3_world_state_digest: str
+    ambient_visual_profile_version: str
+    ambient_visual_condition_digest: str
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -188,6 +318,8 @@ class MyravantPlayFixture:
     initial_state: PersistentWorldMovementRuntimeState
     initial_object_open_states: tuple[PersistentWorldObjectOpenState, ...]
     initial_object_lit_states: tuple[PersistentWorldObjectLitState, ...]
+    ambient_visual_conditions: tuple[FixtureAmbientVisualCondition, ...]
+    ambient_visual_profile_version: str
     place_presentations: tuple[PublicEntityPresentation, ...]
     object_presentations: tuple[PublicEntityPresentation, ...]
     movement_routes: tuple[FixtureMovementRoute, ...]
@@ -200,12 +332,100 @@ class MyravantPlayFixture:
             "checkpoint_qualification",
             MappingProxyType(dict(self.checkpoint_qualification)),
         )
+        if self.ambient_visual_profile_version != FIXTURE_AMBIENT_VISUAL_PROFILE_VERSION:
+            raise MyravantPlayFixtureError(
+                "ambient visual profile version disagrees with fixture constant"
+            )
+        condition_ids = {
+            condition.place_id
+            for condition in self.ambient_visual_conditions
+        }
+        place_ids = {
+            presentation.entity_id
+            for presentation in self.place_presentations
+        }
+        if (
+            len(condition_ids) != len(self.ambient_visual_conditions)
+            or condition_ids != place_ids
+        ):
+            raise MyravantPlayFixtureError(
+                "ambient visual conditions must cover every bounded fixture place exactly once"
+            )
 
     def place_presentation(self, place_id: str) -> PublicEntityPresentation:
         for presentation in self.place_presentations:
             if presentation.entity_id == place_id:
                 return presentation
         raise UnknownFixturePlaceError(f"unknown fixture place: {place_id!r}")
+
+    def ambient_visual_condition_for(
+        self,
+        place_id: str,
+    ) -> FixtureAmbientVisualCondition:
+        for condition in self.ambient_visual_conditions:
+            if condition.place_id == place_id:
+                return condition
+        raise UnknownFixturePlaceError(
+            f"no bounded ambient visual condition for place: {place_id!r}"
+        )
+
+    def visual_observation_evidence(
+        self,
+        *,
+        observer_entity_id: str,
+        target_entity_id: str,
+        place_id: str,
+        local_light_available: bool,
+    ) -> FixtureVisualObservationEvidence:
+        """Derive bounded AFQR-20 observation without creating knowledge or state."""
+
+        if observer_entity_id != self.player_entity_id:
+            raise MyravantPlayFixtureError(
+                "COMP-1 supports only the bounded fixture player observer"
+            )
+        if target_entity_id not in {
+            presentation.entity_id
+            for presentation in self.object_presentations
+        }:
+            raise UnavailableFixtureCustodyError(
+                "visual observation target is not a declared fixture object"
+            )
+        if type(local_light_available) is not bool:
+            raise MyravantPlayFixtureError(
+                "local_light_available must be bool"
+            )
+
+        ambient = self.ambient_visual_condition_for(place_id)
+        observable = (
+            ambient.condition == "sufficient"
+            or local_light_available
+        )
+        if ambient.condition == "sufficient":
+            basis = "ambient_sufficient"
+        elif local_light_available:
+            basis = "local_light_source"
+        else:
+            basis = "insufficient_visual_signal"
+
+        token = hashlib.sha256(
+            (
+                f"{observer_entity_id}|{target_entity_id}|{place_id}|"
+                f"{ambient.condition}|{int(local_light_available)}"
+            ).encode("utf-8")
+        ).hexdigest()[:20]
+        return FixtureVisualObservationEvidence(
+            evidence_id=build_record_id(
+                "evidence",
+                f"comp1-visual-{token}",
+            ),
+            observer_entity_id=observer_entity_id,
+            target_entity_id=target_entity_id,
+            place_id=place_id,
+            ambient_condition=ambient.condition,
+            local_light_available=local_light_available,
+            observable=observable,
+            basis=basis,
+        )
 
     def object_presentation(
         self,
@@ -728,6 +948,36 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             "FIXTURE_VERSION and FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST"
         )
 
+    ambient_visual_conditions = (
+        FixtureAmbientVisualCondition(
+            place_id=WORKSHOP_ID,
+            condition="sufficient",
+        ),
+        FixtureAmbientVisualCondition(
+            place_id=YARD_ID,
+            condition="sufficient",
+        ),
+        FixtureAmbientVisualCondition(
+            place_id=ORCHARD_PATH_ID,
+            condition="insufficient",
+        ),
+        FixtureAmbientVisualCondition(
+            place_id=GATEHOUSE_ID,
+            condition="sufficient",
+        ),
+    )
+    ambient_visual_condition_digest = digest_fixture_ambient_visual_conditions(
+        ambient_visual_conditions
+    )
+    if (
+        ambient_visual_condition_digest
+        != FIXTURE_AMBIENT_VISUAL_CONDITION_DIGEST
+    ):
+        raise MyravantPlayFixtureError(
+            "fixture ambient visual conditions changed without updating "
+            "FIXTURE_VERSION and FIXTURE_AMBIENT_VISUAL_CONDITION_DIGEST"
+        )
+
     routes = (
         FixtureMovementRoute(
             source_place_id=WORKSHOP_ID,
@@ -845,6 +1095,8 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         initial_object_lit_state_digest=initial_object_lit_state_digest,
         initial_int2_world_state_digest=initial_int2_world_state_digest,
         initial_int3_world_state_digest=initial_int3_world_state_digest,
+        ambient_visual_profile_version=FIXTURE_AMBIENT_VISUAL_PROFILE_VERSION,
+        ambient_visual_condition_digest=ambient_visual_condition_digest,
     )
 
     return MyravantPlayFixture(
@@ -855,6 +1107,8 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         ),
         initial_object_open_states=initial_object_open_states,
         initial_object_lit_states=initial_object_lit_states,
+        ambient_visual_conditions=ambient_visual_conditions,
+        ambient_visual_profile_version=FIXTURE_AMBIENT_VISUAL_PROFILE_VERSION,
         place_presentations=places,
         object_presentations=objects,
         movement_routes=routes,

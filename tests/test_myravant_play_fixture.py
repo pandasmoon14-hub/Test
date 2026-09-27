@@ -294,7 +294,7 @@ def test_fixture_custody_policy_emits_only_bounded_owner_evidence():
 def test_obs1_fixture_public_descriptions_are_state_independent_and_versioned():
     fixture = create_terminal_play_fixture()
 
-    assert FIXTURE_VERSION == "0.1.4"
+    assert FIXTURE_VERSION == "0.1.5"
     assert "TERMINAL-PLAY-OBS-1" in FIXTURE_PLAYABLE_NEED_REFS
     assert "TERMINAL-PLAY-INT-1" in FIXTURE_PLAYABLE_NEED_REFS
     assert "TERMINAL-PLAY-INT-2" in FIXTURE_PLAYABLE_NEED_REFS

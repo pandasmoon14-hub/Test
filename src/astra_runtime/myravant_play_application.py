@@ -70,6 +70,7 @@ from astra_runtime.domain.persistent_world_object_open_close import (
 )
 from astra_runtime.kernel.command_envelope import create_command_envelope
 from astra_runtime.myravant_play_fixture import (
+    LANTERN_ID,
     MyravantPlayFixture,
     UnavailableFixtureCustodyError,
     UnavailableFixtureMovementError,
@@ -325,9 +326,14 @@ class MyravantPlayApplication:
     def look(self) -> PlayApplicationResult:
         place_id = self.current_place_id()
         presentation = self.fixture.place_presentation(place_id)
-        objects = self.fixture.public_entities_at(
+        candidates = self.fixture.public_entities_at(
             self.state.representation,
             place_id,
+        )
+        objects = tuple(
+            item
+            for item in candidates
+            if self._object_currently_observable(item.entity_id)
         )
         carrying = self.fixture.public_entities_carried_by(
             self.state.representation,
@@ -371,6 +377,8 @@ class MyravantPlayApplication:
             return unavailable
 
         if not self._object_currently_available(object_entity_id):
+            return unavailable
+        if not self._object_currently_observable(object_entity_id):
             return unavailable
 
         presentation = self.fixture.object_presentation(object_entity_id)
@@ -766,6 +774,54 @@ class MyravantPlayApplication:
             object_entity_id in nearby_ids | carried_ids
             or self._contained_object_accessible(object_entity_id)
         )
+
+    def _bounded_local_light_available(self) -> bool:
+        """Return whether the existing lit lantern exposes local visual signal."""
+
+        lantern_state = self.object_lit_state(LANTERN_ID)
+        if lantern_state is None or lantern_state.state != "lit":
+            return False
+
+        place_id = self.current_place_id()
+        relations = self.state.representation.relations
+        if any(
+            relation.relation_type == LOCATED_AT_RELATION_TYPE
+            and relation.subject_entity_id == LANTERN_ID
+            and relation.object_entity_id == place_id
+            for relation in relations
+        ):
+            return True
+        if any(
+            relation.relation_type == CARRIED_BY_RELATION_TYPE
+            and relation.subject_entity_id == LANTERN_ID
+            and relation.object_entity_id == self.fixture.player_entity_id
+            for relation in relations
+        ):
+            return True
+
+        containment = containment_relation_for(
+            self._storage_state,
+            LANTERN_ID,
+        )
+        if containment is None:
+            return False
+        if not self._container_accessible(containment.object_entity_id):
+            return False
+        open_state = self.object_open_state(containment.object_entity_id)
+        return open_state is not None and open_state.state == "open"
+
+    def visual_observation_evidence(self, object_entity_id: str):
+        """Expose deterministic derived sensing evidence for evaluation only."""
+
+        return self.fixture.visual_observation_evidence(
+            observer_entity_id=self.fixture.player_entity_id,
+            target_entity_id=object_entity_id,
+            place_id=self.current_place_id(),
+            local_light_available=self._bounded_local_light_available(),
+        )
+
+    def _object_currently_observable(self, object_entity_id: str) -> bool:
+        return self.visual_observation_evidence(object_entity_id).observable
 
     def _object_open_close(
         self,
