@@ -19,6 +19,11 @@ import json
 import re
 from dataclasses import dataclass
 
+from astra_runtime.domain._deterministic_transition_support import (
+    command_fingerprint_matches,
+    find_committed_transition,
+    fingerprint_command_envelope,
+)
 from astra_runtime.domain.command_kind_routing_skeleton import route_command_envelope
 from astra_runtime.domain.persistent_world_entity_location_representation import (
     CARRIED_BY_RELATION_TYPE,
@@ -431,19 +436,14 @@ def fingerprint_persistent_world_object_custody_command(command: CommandEnvelope
             "command failed CommandEnvelope validation"
         )
     try:
-        canonical = json.dumps(
-            command.to_dict(),
-            sort_keys=True,
-            separators=(",", ":"),
-            ensure_ascii=True,
+        return fingerprint_command_envelope(
+            command,
             allow_nan=False,
         )
     except (TypeError, ValueError) as exc:
         raise InvalidPersistentWorldObjectCustodyRequestError(
             "command must be canonical JSON-compatible"
         ) from exc
-    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
-
 
 def _operation_from_command(command: CommandEnvelope) -> str:
     normalized = command.command_type.strip().lower().replace("-", "_")
@@ -497,11 +497,10 @@ def _existing_transition(
     state: PersistentWorldObjectCustodyRuntimeState,
     command_id: str,
 ) -> PersistentWorldObjectCustodyCommittedTransition | None:
-    for transition in state.committed_custody_transitions:
-        if transition.command_id == command_id:
-            return transition
-    return None
-
+    return find_committed_transition(
+        state.committed_custody_transitions,
+        command_id,
+    )
 
 def _apply_custody_change(
     *, representation: PersistentWorldEntityLocationRepresentation,
@@ -713,7 +712,7 @@ def commit_prepared_persistent_world_object_custody(
 
     existing = _existing_transition(state, prepared.command_id)
     if existing is not None:
-        if existing.command_fingerprint != prepared.command_fingerprint:
+        if not command_fingerprint_matches(existing, prepared.command_fingerprint):
             raise PersistentWorldObjectCustodyRetryConflictError(
                 "command ID already committed with different meaning"
             )
@@ -793,7 +792,7 @@ def execute_persistent_world_object_custody(
     fingerprint = fingerprint_persistent_world_object_custody_command(command)
     existing = _existing_transition(state, command.command_id)
     if existing is not None:
-        if existing.command_fingerprint != fingerprint:
+        if not command_fingerprint_matches(existing, fingerprint):
             raise PersistentWorldObjectCustodyRetryConflictError(
                 "command ID already committed with materially different command content"
             )
