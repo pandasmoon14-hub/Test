@@ -209,7 +209,7 @@ def test_repository_sha_must_be_exact_or_unknown():
 
 def test_obs1_client_identity_and_custody_result_accounting(tmp_path):
     header = _header()
-    assert CLIENT_ID == "myravant-terminal-comp1"
+    assert CLIENT_ID == "myravant-terminal-comp2"
     assert header.client_id == CLIENT_ID
 
     recorder = LivePlayEvidenceRecorder(
@@ -295,3 +295,33 @@ def test_obs1_inspection_evidence_is_observational_only(tmp_path):
     assert interaction["receipt_id"] is None
     assert interaction["state_delta_id"] is None
     assert receipt.committed_transitions == 0
+
+def test_comp2_interaction_trace_preserves_observation_evidence_reference(tmp_path):
+    trace_path = tmp_path / "comp2-observation-evidence.jsonl"
+    recorder = LivePlayEvidenceRecorder(
+        trace_path=trace_path,
+        header=_header(),
+    )
+    recorder.record_interaction(
+        raw_player_input="pickup waystone\n",
+        parsed_action="pickup",
+        parsed_argument="waystone",
+        player_visible_output="You cannot pick that up in the current state.\n",
+        result_type="custody_rejected",
+        authoritative_changed=False,
+        command_id="terminal-custody-000002",
+        observation_evidence_id="astra:evidence:comp2-observation",
+        opportunity_evidence_id="astra:evidence:comp2-opportunity",
+        pre_state_digest=INITIAL_DIGEST,
+        post_state_digest=INITIAL_DIGEST,
+        failure_class="PersistentWorldObjectCustodyEvidenceError",
+    )
+    recorder.finish(final_state_digest=INITIAL_DIGEST)
+
+    interaction = next(
+        item for item in _records(trace_path)
+        if item["record_type"] == "interaction"
+    )
+    assert interaction["observation_evidence_id"] == "astra:evidence:comp2-observation"
+    assert interaction["opportunity_evidence_id"] == "astra:evidence:comp2-opportunity"
+    assert interaction["authority_effect"] == "none"

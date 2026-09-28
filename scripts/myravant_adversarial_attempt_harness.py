@@ -26,7 +26,7 @@ from astra_runtime.myravant_play_application import MyravantPlayApplication  # n
 from astra_runtime.myravant_terminal import run_terminal  # noqa: E402
 
 HARNESS_ID = "myravant.adversarial_attempt_harness"
-HARNESS_VERSION = 1
+HARNESS_VERSION = 2
 MODEL_MODE = "MODEL-NONE"
 
 
@@ -84,6 +84,30 @@ def build_cases() -> tuple[Case, ...]:
         cases.append(_case(f"pickup-{i:02d}", raw, "existing_capability_equivalence",
                            "pickup", "lantern", "custody_committed",
                            changed=True, canonical="pickup lantern"))
+
+    dark_waystone_setup = ("pickup lantern", "move south", "move east")
+    for i, raw in enumerate(("pickup waystone", "take waystone", "grab waystone"), 1):
+        cases.append(_case(
+            f"comp2-dark-waystone-{i:02d}",
+            raw,
+            "observation_qualified_pickup_rejection",
+            "pickup",
+            "waystone",
+            "custody_rejected",
+            failure_class="PersistentWorldObjectCustodyEvidenceError",
+            canonical="pickup waystone",
+            setup=dark_waystone_setup,
+        ))
+    cases.append(_case(
+        "comp2-lit-waystone-pickup",
+        "pickup waystone",
+        "observation_qualified_pickup_commit",
+        "pickup",
+        "waystone",
+        "custody_committed",
+        changed=True,
+        setup=("pickup lantern", "light lantern", "move south", "move east"),
+    ))
 
     drops = (
         "drop lantern", "drop the lantern", "put down lantern", "put down the lantern",
@@ -330,6 +354,7 @@ def _run(raw: str, repo_sha: str, trace: Path, session_id: str,
         "parsed_action", "parsed_argument", "result_type", "failure_class",
         "authoritative_changed", "command_id", "command_fingerprint",
         "preview_id", "receipt_id", "state_delta_id",
+        "observation_evidence_id", "opportunity_evidence_id",
         "pre_state_digest", "post_state_digest",
     )
     result = {key: r[key] for key in keys}
@@ -349,6 +374,7 @@ def _equivalent(r):
     keys = (
         "result_type", "failure_class", "authoritative_changed",
         "command_fingerprint", "preview_id", "receipt_id", "state_delta_id",
+        "observation_evidence_id", "opportunity_evidence_id",
         "pre_state_digest", "post_state_digest", "final_state_digest",
     )
     return {k: r[k] for k in keys}

@@ -160,6 +160,7 @@ class CustodyOpportunityEvidence:
     operation: str
     opportunity_available: bool
     resolution_accepted: bool
+    input_evidence_refs: tuple[str, ...] = ()
     semantic_owner: str = AFQR19_CUSTODY_OPPORTUNITY_OWNER
 
     def __post_init__(self) -> None:
@@ -170,6 +171,16 @@ class CustodyOpportunityEvidence:
             raise PersistentWorldObjectCustodyEvidenceError("operation must be pickup or drop")
         if type(self.opportunity_available) is not bool or type(self.resolution_accepted) is not bool:
             raise PersistentWorldObjectCustodyEvidenceError("opportunity/resolution flags must be bool")
+        if not isinstance(self.input_evidence_refs, tuple):
+            raise PersistentWorldObjectCustodyEvidenceError("input_evidence_refs must be a tuple")
+        for index, evidence_ref in enumerate(self.input_evidence_refs):
+            _require_record_id(
+                evidence_ref,
+                f"input_evidence_refs[{index}]",
+                PersistentWorldObjectCustodyEvidenceError,
+            )
+        if len(self.input_evidence_refs) != len(set(self.input_evidence_refs)):
+            raise PersistentWorldObjectCustodyEvidenceError("input_evidence_refs must be unique")
         if self.semantic_owner != AFQR19_CUSTODY_OPPORTUNITY_OWNER:
             raise PersistentWorldObjectCustodyEvidenceError("semantic_owner must be AFQR-19")
 
@@ -383,6 +394,7 @@ def create_custody_qualification_evidence(
 def create_custody_opportunity_evidence(
     *, evidence_id: str, actor_entity_id: str, object_entity_id: str,
     operation: str, opportunity_available: bool, resolution_accepted: bool,
+    input_evidence_refs: tuple[str, ...] = (),
 ) -> CustodyOpportunityEvidence:
     return CustodyOpportunityEvidence(
         evidence_id=evidence_id,
@@ -391,6 +403,7 @@ def create_custody_opportunity_evidence(
         operation=operation,
         opportunity_available=opportunity_available,
         resolution_accepted=resolution_accepted,
+        input_evidence_refs=input_evidence_refs,
     )
 
 
@@ -609,6 +622,12 @@ def prepare_persistent_world_object_custody(
             "destination relation identity already exists"
         )
 
+    opportunity_trace_metadata: dict[str, object] = {}
+    if opportunity_evidence.input_evidence_refs:
+        opportunity_trace_metadata["opportunity_input_evidence_refs"] = list(
+            opportunity_evidence.input_evidence_refs
+        )
+
     preview = create_transaction_preview(
         preview_id=build_record_id("custody_preview", token),
         command=command,
@@ -619,6 +638,7 @@ def prepare_persistent_world_object_custody(
             "package": "R4-E",
             "command_family": "inventory",
             "mutation_performed": False,
+            **opportunity_trace_metadata,
         },
     )
     delta = create_state_delta_envelope(
@@ -649,6 +669,7 @@ def prepare_persistent_world_object_custody(
             "direct_location_semantic_owner": "AFQR-18",
             "opportunity_semantic_owner": "AFQR-19",
             "qualified_transition_owner": "AFQR-01",
+            **opportunity_trace_metadata,
         },
     )
     post = _apply_custody_change(

@@ -257,11 +257,18 @@ def test_fixture_object_reference_resolution_is_bounded_and_unambiguous():
 
 def test_fixture_custody_policy_emits_only_bounded_owner_evidence():
     fixture = create_terminal_play_fixture()
+    observation = fixture.visual_observation_evidence(
+        observer_entity_id=PLAYER_ID,
+        target_entity_id=LANTERN_ID,
+        place_id=WORKSHOP_ID,
+        local_light_available=False,
+    )
 
     qualification, opportunity = fixture.custody_evidence(
         command_id="terminal-custody-000001",
         object_entity_id=LANTERN_ID,
         operation="pickup",
+        pickup_observation_evidence=observation,
     )
 
     assert qualification.semantic_owner == "RT-010"
@@ -276,12 +283,14 @@ def test_fixture_custody_policy_emits_only_bounded_owner_evidence():
     assert opportunity.operation == "pickup"
     assert opportunity.opportunity_available is True
     assert opportunity.resolution_accepted is True
+    assert opportunity.input_evidence_refs == (observation.evidence_id,)
 
     with pytest.raises(UnavailableFixtureCustodyError):
         fixture.custody_evidence(
             command_id="terminal-custody-000002",
             object_entity_id="astra:entity:not-in-fixture",
             operation="pickup",
+            pickup_observation_evidence=observation,
         )
 
     with pytest.raises(UnavailableFixtureCustodyError):
@@ -291,13 +300,22 @@ def test_fixture_custody_policy_emits_only_bounded_owner_evidence():
             operation="transfer",
         )
 
+    with pytest.raises(UnavailableFixtureCustodyError):
+        fixture.custody_evidence(
+            command_id="terminal-custody-000004",
+            object_entity_id=LANTERN_ID,
+            operation="pickup",
+        )
+
 def test_obs1_fixture_public_descriptions_are_state_independent_and_versioned():
     fixture = create_terminal_play_fixture()
 
-    assert FIXTURE_VERSION == "0.1.5"
+    assert FIXTURE_VERSION == "0.1.6"
     assert "TERMINAL-PLAY-OBS-1" in FIXTURE_PLAYABLE_NEED_REFS
     assert "TERMINAL-PLAY-INT-1" in FIXTURE_PLAYABLE_NEED_REFS
     assert "TERMINAL-PLAY-INT-2" in FIXTURE_PLAYABLE_NEED_REFS
+    assert "TERMINAL-PLAY-COMP-1" in FIXTURE_PLAYABLE_NEED_REFS
+    assert "TERMINAL-PLAY-COMP-2" in FIXTURE_PLAYABLE_NEED_REFS
     assert fixture.provenance.initial_state_digest == FIXTURE_INITIAL_STATE_DIGEST
 
     lantern = fixture.object_presentation(LANTERN_ID)
@@ -320,3 +338,42 @@ def test_int3_fixture_provenance_carries_frozen_outer_digest():
     assert fixture.provenance.initial_int3_world_state_digest == (
         FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST
     )
+
+def test_comp2_sensing_changes_only_afqr19_custody_evidence_identity():
+    fixture = create_terminal_play_fixture()
+    dark = fixture.visual_observation_evidence(
+        observer_entity_id=PLAYER_ID,
+        target_entity_id=WAYSTONE_ID,
+        place_id=ORCHARD_PATH_ID,
+        local_light_available=False,
+    )
+    lit = fixture.visual_observation_evidence(
+        observer_entity_id=PLAYER_ID,
+        target_entity_id=WAYSTONE_ID,
+        place_id=ORCHARD_PATH_ID,
+        local_light_available=True,
+    )
+
+    dark_qualification, dark_opportunity = fixture.custody_evidence(
+        command_id="terminal-custody-000010",
+        object_entity_id=WAYSTONE_ID,
+        operation="pickup",
+        pickup_observation_evidence=dark,
+    )
+    lit_qualification, lit_opportunity = fixture.custody_evidence(
+        command_id="terminal-custody-000010",
+        object_entity_id=WAYSTONE_ID,
+        operation="pickup",
+        pickup_observation_evidence=lit,
+    )
+
+    assert dark.observable is False
+    assert lit.observable is True
+    assert dark_qualification.evidence_id == lit_qualification.evidence_id
+    assert dark_qualification.semantic_owner == lit_qualification.semantic_owner == "RT-010"
+    assert dark_opportunity.evidence_id != lit_opportunity.evidence_id
+    assert dark_opportunity.semantic_owner == lit_opportunity.semantic_owner == "AFQR-19"
+    assert dark_opportunity.opportunity_available is False
+    assert lit_opportunity.opportunity_available is True
+    assert dark_opportunity.input_evidence_refs == (dark.evidence_id,)
+    assert lit_opportunity.input_evidence_refs == (lit.evidence_id,)

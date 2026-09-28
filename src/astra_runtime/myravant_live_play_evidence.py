@@ -20,7 +20,7 @@ from typing import Any
 
 TRACE_FORMAT_IDENTITY = "myravant.live_play_evidence"
 TRACE_FORMAT_VERSION = 1
-CLIENT_ID = "myravant-terminal-comp1"
+CLIENT_ID = "myravant-terminal-comp2"
 CLIENT_MODE = "CLIENT-TEXT-V1"
 MODEL_MODE = "MODEL-NONE"
 
@@ -195,6 +195,7 @@ class LivePlayInteractionRecord:
     receipt_id: str | None = None
     state_delta_id: str | None = None
     spatial_evidence_id: str | None = None
+    observation_evidence_id: str | None = None
     opportunity_evidence_id: str | None = None
     pre_state_digest: str | None = None
     post_state_digest: str | None = None
@@ -230,6 +231,7 @@ class LivePlayInteractionRecord:
             "receipt_id",
             "state_delta_id",
             "spatial_evidence_id",
+            "observation_evidence_id",
             "opportunity_evidence_id",
             "failure_class",
         ):
@@ -270,6 +272,7 @@ class LivePlayInteractionRecord:
             "receipt_id": self.receipt_id,
             "state_delta_id": self.state_delta_id,
             "spatial_evidence_id": self.spatial_evidence_id,
+            "observation_evidence_id": self.observation_evidence_id,
             "opportunity_evidence_id": self.opportunity_evidence_id,
             "pre_state_digest": self.pre_state_digest,
             "post_state_digest": self.post_state_digest,
@@ -429,6 +432,7 @@ class LivePlayEvidenceRecorder:
         receipt_id: str | None = None,
         state_delta_id: str | None = None,
         spatial_evidence_id: str | None = None,
+        observation_evidence_id: str | None = None,
         opportunity_evidence_id: str | None = None,
         pre_state_digest: str | None = None,
         post_state_digest: str | None = None,
@@ -456,6 +460,7 @@ class LivePlayEvidenceRecorder:
             receipt_id=receipt_id,
             state_delta_id=state_delta_id,
             spatial_evidence_id=spatial_evidence_id,
+            observation_evidence_id=observation_evidence_id,
             opportunity_evidence_id=opportunity_evidence_id,
             pre_state_digest=pre_state_digest,
             post_state_digest=post_state_digest,
