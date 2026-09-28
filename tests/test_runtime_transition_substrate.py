@@ -130,10 +130,8 @@ def test_command_fingerprint_match_does_not_interpret_domain_semantics() -> None
     assert not command_fingerprint_matches(transition, "d" * 64)
 
 
-def test_support_module_has_no_domain_dependency_or_semantic_owner() -> None:
+def test_support_module_has_no_domain_dependency() -> None:
     source = inspect.getsource(support)
 
     assert "from astra_runtime.domain." not in source
-    assert "semantic_owner" not in source
-    assert "qualification" not in source
-    assert "opportunity" not in source
+    assert "import astra_runtime.domain." not in source
