@@ -902,6 +902,7 @@ class TestGuardrailAllowlists:
             "_deterministic_transition_support.py",
             "action_legality.py",
             "persistent_world_component_checkpoint.py",
+            "persistent_world_runtime_composition.py",
             "command_lifecycle.py",
             "command_kind_routing_skeleton.py",
             "context_packet_compiler.py",
