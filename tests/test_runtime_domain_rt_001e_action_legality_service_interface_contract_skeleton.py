@@ -899,6 +899,7 @@ class TestGuardrailAllowlists:
     def test_pr9b_expected_modules_includes_rt001e(self):
         expected_modules = {
             "__init__.py",
+            "_deterministic_transition_support.py",
             "action_legality.py",
             "command_lifecycle.py",
             "command_kind_routing_skeleton.py",
