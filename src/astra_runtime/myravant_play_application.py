@@ -27,7 +27,6 @@ from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     restore_persistent_world_object_open_close_checkpoint,
     restore_persistent_world_object_lit_state_checkpoint,
     restore_persistent_world_object_storage_checkpoint,
-    write_persistent_world_object_storage_checkpoint,
 )
 from astra_runtime.domain.persistent_world_movement_integration import (
     PersistentWorldMovementRuntimeState,
