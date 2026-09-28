@@ -15,8 +15,11 @@ from astra_runtime.domain.persistent_world_entity_location_representation import
     InvalidContainedByRelationError,
     create_contained_by_relation,
 )
+from astra_runtime.domain.persistent_world_component_checkpoint import (
+    COMPONENT_CHECKPOINT_COMPONENT_KEYS,
+    COMPONENT_CHECKPOINT_FORMAT_IDENTITY,
+)
 from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
-    OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY,
     PersistentWorldCheckpointEvidenceError,
     write_persistent_world_object_lit_state_checkpoint,
 )
@@ -189,8 +192,11 @@ def test_int3_checkpoint_round_trip_preserves_storage_and_lower_state(tmp_path):
     app.save()
 
     envelope = json.loads(checkpoint.read_text(encoding="utf-8"))
-    assert envelope["format_identity"] == OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY
-    assert "int2_state" in envelope["authoritative_payload"]
+    assert envelope["format_identity"] == COMPONENT_CHECKPOINT_FORMAT_IDENTITY
+    assert set(envelope["authoritative_payload"]["components"]) == set(
+        COMPONENT_CHECKPOINT_COMPONENT_KEYS
+    )
+    assert "int2_state" not in envelope["authoritative_payload"]
 
     restored = MyravantPlayApplication.restore(checkpoint_path=checkpoint)
     assert restored.authoritative_digest() == before
@@ -216,7 +222,7 @@ def test_int3_legacy_int2_checkpoint_restores_empty_storage_and_upgrades(tmp_pat
     assert restored.storage_state.committed_storage_transitions == ()
     restored.save()
     upgraded = json.loads(checkpoint.read_text(encoding="utf-8"))
-    assert upgraded["format_identity"] == OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY
+    assert upgraded["format_identity"] == COMPONENT_CHECKPOINT_FORMAT_IDENTITY
 
 
 def test_int3_recomputed_outer_integrity_cannot_hide_storage_evidence_tamper(tmp_path):
@@ -227,7 +233,7 @@ def test_int3_recomputed_outer_integrity_cannot_hide_storage_evidence_tamper(tmp
     app.save()
 
     envelope = json.loads(checkpoint.read_text(encoding="utf-8"))
-    receipt = envelope["authoritative_payload"]["committed_storage_transitions"][0]["receipt"]
+    receipt = envelope["authoritative_payload"]["components"]["storage"]["committed_storage_transitions"][0]["receipt"]
     receipt["container_entity_id"] = LANTERN_ID
     payload = envelope["authoritative_payload"]
     canonical = json.dumps(
