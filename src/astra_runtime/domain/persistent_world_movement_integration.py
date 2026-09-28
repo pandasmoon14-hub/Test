@@ -25,6 +25,11 @@ import json
 from dataclasses import dataclass
 from typing import Any
 
+from astra_runtime.domain._deterministic_transition_support import (
+    command_fingerprint_matches,
+    find_committed_transition,
+    fingerprint_command_envelope,
+)
 from astra_runtime.domain.command_kind_routing_skeleton import (
     route_command_envelope,
 )
@@ -443,22 +448,15 @@ def fingerprint_persistent_world_movement_command(
         )
 
     try:
-        canonical = json.dumps(
-            command.to_dict(),
-            sort_keys=True,
-            separators=(",", ":"),
-            ensure_ascii=True,
+        return fingerprint_command_envelope(
+            command,
+            allow_nan=True,
         )
     except (TypeError, ValueError) as exc:
         raise InvalidPersistentWorldMovementRequestError(
             "command payload and metadata must be deterministically "
             "JSON-serializable"
         ) from exc
-
-    return hashlib.sha256(
-        canonical.encode("utf-8")
-    ).hexdigest()
-
 
 def _entity_by_id(
     representation: PersistentWorldEntityLocationRepresentation,
@@ -622,12 +620,10 @@ def _existing_transition(
     state: PersistentWorldMovementRuntimeState,
     command_id: str,
 ) -> PersistentWorldMovementCommittedTransition | None:
-    for transition in state.committed_transitions:
-        if transition.command_id == command_id:
-            return transition
-
-    return None
-
+    return find_committed_transition(
+        state.committed_transitions,
+        command_id,
+    )
 
 def prepare_persistent_world_movement(
     *,
@@ -880,8 +876,7 @@ def commit_prepared_persistent_world_movement(
 
     if existing is not None:
         if (
-            existing.command_fingerprint
-            != prepared.command_fingerprint
+            not command_fingerprint_matches(existing, prepared.command_fingerprint)
         ):
             raise PersistentWorldMovementRetryConflictError(
                 "command ID already committed with different "
@@ -1008,8 +1003,7 @@ def execute_persistent_world_movement(
 
     if existing is not None:
         if (
-            existing.command_fingerprint
-            != fingerprint
+            not command_fingerprint_matches(existing, fingerprint)
         ):
             raise PersistentWorldMovementRetryConflictError(
                 "command ID already committed with materially "
