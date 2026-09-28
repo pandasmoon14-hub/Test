@@ -512,7 +512,7 @@ class MyravantPlayApplication:
     def _next_storage_command_id(self) -> str:
         used = {
             transition.command_id
-            for transition in self._storage_state.committed_storage_transitions
+            for transition in self._runtime_state.committed_storage_transitions
         }
         highest = 0
         for command_id in used:
@@ -589,19 +589,9 @@ class MyravantPlayApplication:
             expected_pre_state_digest=pre_representation_digest,
         )
 
-        updated_custody = (
-            replace_persistent_world_object_custody_movement_state(
-                state=self.custody_state,
-                movement_state=result.state,
-            )
-        )
-        updated_open_close = replace_persistent_world_object_open_close_custody_state(
-            state=self.object_state,
-            custody_state=updated_custody,
-        )
-        self._lit_state = replace_persistent_world_object_lit_open_close_state(
-            state=self._lit_state,
-            open_close_state=updated_open_close,
+        self._runtime_state = replace_persistent_world_runtime_movement_state(
+            state=self._runtime_state,
+            movement_state=result.state,
         )
         post_digest = self.authoritative_digest()
         destination_name = self.fixture.place_presentation(
@@ -748,13 +738,9 @@ class MyravantPlayApplication:
                 failure_class=type(exc).__name__,
             )
 
-        updated_open_close = replace_persistent_world_object_open_close_custody_state(
-            state=self.object_state,
+        self._runtime_state = replace_persistent_world_runtime_custody_state(
+            state=self._runtime_state,
             custody_state=result.state,
-        )
-        self._lit_state = replace_persistent_world_object_lit_open_close_state(
-            state=self._lit_state,
-            open_close_state=updated_open_close,
         )
         post_digest = self.authoritative_digest()
         verb = "pick up" if operation == "pickup" else "drop"
@@ -805,7 +791,7 @@ class MyravantPlayApplication:
 
     def _contained_object_accessible(self, object_entity_id: str) -> bool:
         relation = containment_relation_for(
-            self._storage_state,
+            self.storage_state,
             object_entity_id,
         )
         if relation is None or not self._container_accessible(relation.object_entity_id):
@@ -859,7 +845,7 @@ class MyravantPlayApplication:
             return True
 
         containment = containment_relation_for(
-            self._storage_state,
+            self.storage_state,
             LANTERN_ID,
         )
         if containment is None:
@@ -966,8 +952,8 @@ class MyravantPlayApplication:
                 failure_class=type(exc).__name__,
             )
 
-        self._lit_state = replace_persistent_world_object_lit_open_close_state(
-            state=self._lit_state,
+        self._runtime_state = replace_persistent_world_runtime_open_close_state(
+            state=self._runtime_state,
             open_close_state=result.state,
         )
         post_digest = self.authoritative_digest()
@@ -1137,7 +1123,7 @@ class MyravantPlayApplication:
             return unavailable
 
         relation = containment_relation_for(
-            self._storage_state,
+            self.storage_state,
             object_entity_id,
         )
         if (
@@ -1213,7 +1199,7 @@ class MyravantPlayApplication:
         )
         try:
             result = execute_persistent_world_object_storage(
-                state=self._storage_state,
+                state=self.storage_state,
                 command=command,
                 qualification_evidence=qualification,
                 opportunity_evidence=opportunity,
@@ -1231,7 +1217,11 @@ class MyravantPlayApplication:
                 failure_class=type(exc).__name__,
             )
 
-        self._storage_state = result.state
+        self._runtime_state = (
+            create_persistent_world_runtime_composition_from_storage_state(
+                result.state
+            )
+        )
         object_name = self.fixture.entity_name(object_entity_id)
         container_name = self.fixture.entity_name(container_entity_id)
         message = (
@@ -1311,7 +1301,7 @@ class MyravantPlayApplication:
                 object_reference=object_reference,
             )
         relation = containment_relation_for(
-            self._storage_state,
+            self.storage_state,
             object_entity_id,
         )
         if relation is not None and self._contained_object_accessible(object_entity_id):
@@ -1342,7 +1332,7 @@ class MyravantPlayApplication:
         pre_digest = self.authoritative_digest()
         checkpoint_digest = (
             write_persistent_world_component_checkpoint(
-                state=self._storage_state,
+                state=self.storage_state,
                 checkpoint_path=self.checkpoint_path,
                 qualification_evidence=self.fixture.checkpoint_qualification,
             )
