@@ -172,7 +172,7 @@ def test_component_checkpoint_round_trip_preserves_authoritative_state(tmp_path)
     assert len(restored.committed_storage_transitions) == 1
 
 
-@pytest.mark.parametrize("mutation", ["missing", "unknown"])
+@pytest.mark.parametrize("mutation", ["missing", "unknown", "malformed"])
 def test_component_set_is_exact_and_fails_closed(tmp_path, mutation):
     path = tmp_path / f"{mutation}.json"
     app = _rich_app(path)
@@ -182,8 +182,10 @@ def test_component_set_is_exact_and_fails_closed(tmp_path, mutation):
 
     if mutation == "missing":
         del components["custody"]
-    else:
+    elif mutation == "unknown":
         components["future_unknown_component"] = {}
+    else:
+        components["custody"]["unexpected_field"] = "not-authorized"
 
     _rewrite_with_valid_outer_integrity(path, envelope)
 
@@ -219,9 +221,11 @@ def test_legacy_int3_loads_and_next_save_upgrades_to_component_format(tmp_path):
     )
     legacy = json.loads(path.read_text(encoding="utf-8"))
     assert legacy["format_identity"] == OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY
+    legacy_bytes = path.read_bytes()
 
     restored = MyravantPlayApplication.restore(checkpoint_path=path)
     assert restored.authoritative_digest() == before
+    assert path.read_bytes() == legacy_bytes
     restored.save()
 
     upgraded = json.loads(path.read_text(encoding="utf-8"))
