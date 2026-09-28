@@ -580,3 +580,92 @@ def test_module_has_no_network_model_database_rng_or_state_store_dependency():
     }
     for module in imported:
         assert not any(fragment in module for fragment in forbidden)
+
+def test_comp2_opportunity_input_evidence_refs_survive_checkpoint_round_trip(tmp_path):
+    source_ref = "astra:evidence:comp2-upstream-observation"
+    state = _initial_state()
+    result = execute_persistent_world_object_custody(
+        state=state,
+        command=_command("pickup", "r4e-comp2-provenance"),
+        qualification_evidence=_qualification("pickup", "comp2-provenance"),
+        opportunity_evidence=create_custody_opportunity_evidence(
+            evidence_id="astra:evidence:r4e-comp2-provenance-afqr19",
+            actor_entity_id=ACTOR,
+            object_entity_id=OBJECT,
+            operation="pickup",
+            opportunity_available=True,
+            resolution_accepted=True,
+            input_evidence_refs=(source_ref,),
+        ),
+        expected_pre_state_digest=_digest(state),
+    )
+
+    assert result.preview.metadata["opportunity_input_evidence_refs"] == [source_ref]
+    assert result.state_delta.metadata["opportunity_input_evidence_refs"] == [source_ref]
+
+    path = tmp_path / "comp2-provenance.json"
+    write_persistent_world_object_custody_checkpoint(
+        state=result.state,
+        checkpoint_path=path,
+        qualification_evidence=_checkpoint_qualification("comp2-provenance"),
+    )
+    restored = restore_persistent_world_object_custody_checkpoint(
+        checkpoint_path=path,
+        expected_campaign_id=CAMPAIGN,
+    )
+    transition = restored.committed_custody_transitions[-1]
+    assert transition.preview.metadata["opportunity_input_evidence_refs"] == [source_ref]
+    assert transition.state_delta.metadata["opportunity_input_evidence_refs"] == [source_ref]
+
+
+def test_comp2_checkpoint_rejects_divergent_opportunity_input_evidence_provenance(
+    tmp_path,
+):
+    source_ref = "astra:evidence:comp2-upstream-observation"
+    state = _initial_state()
+    result = execute_persistent_world_object_custody(
+        state=state,
+        command=_command("pickup", "r4e-comp2-provenance-tamper"),
+        qualification_evidence=_qualification(
+            "pickup",
+            "comp2-provenance-tamper",
+        ),
+        opportunity_evidence=create_custody_opportunity_evidence(
+            evidence_id="astra:evidence:r4e-comp2-provenance-tamper-afqr19",
+            actor_entity_id=ACTOR,
+            object_entity_id=OBJECT,
+            operation="pickup",
+            opportunity_available=True,
+            resolution_accepted=True,
+            input_evidence_refs=(source_ref,),
+        ),
+        expected_pre_state_digest=_digest(state),
+    )
+
+    path = tmp_path / "comp2-provenance-tamper.json"
+    write_persistent_world_object_custody_checkpoint(
+        state=result.state,
+        checkpoint_path=path,
+        qualification_evidence=_checkpoint_qualification(
+            "comp2-provenance-tamper"
+        ),
+    )
+
+    envelope = _read(path)
+    transition = envelope["authoritative_payload"][
+        "committed_custody_transitions"
+    ][-1]
+    transition["state_delta"]["metadata"][
+        "opportunity_input_evidence_refs"
+    ] = ["astra:evidence:comp2-different-observation"]
+    _recompute_integrity(envelope)
+    path.write_text(_canonical(envelope), encoding="utf-8")
+
+    with pytest.raises(
+        PersistentWorldCheckpointEvidenceError,
+        match="provenance disagrees",
+    ):
+        restore_persistent_world_object_custody_checkpoint(
+            checkpoint_path=path,
+            expected_campaign_id=CAMPAIGN,
+        )

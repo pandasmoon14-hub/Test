@@ -71,7 +71,7 @@ from astra_runtime.kernel.record_identity import build_record_id
 
 
 FIXTURE_ID = "myravant-native-terminal-g1"
-FIXTURE_VERSION = "0.1.5"
+FIXTURE_VERSION = "0.1.6"
 FIXTURE_AMBIENT_VISUAL_PROFILE_VERSION = "comp1-v1"
 FIXTURE_AMBIENT_VISUAL_CONDITION_DIGEST = (
     "2cb0800bc31c0e4844b25b82fad5c0ed421898b59c3d13c109ea475f05ddfb34"
@@ -111,6 +111,7 @@ FIXTURE_PLAYABLE_NEED_REFS = (
     "TERMINAL-PLAY-INT-2",
     "TERMINAL-PLAY-INT-3",
     "TERMINAL-PLAY-COMP-1",
+    "TERMINAL-PLAY-COMP-2",
     "R4-E-readiness",
 )
 FIXTURE_REQUIREMENT_REFS = (
@@ -464,13 +465,16 @@ class MyravantPlayFixture:
         command_id: str,
         object_entity_id: str,
         operation: str,
+        pickup_observation_evidence: FixtureVisualObservationEvidence | None = None,
     ) -> tuple[CustodyQualificationEvidence, CustodyOpportunityEvidence]:
-        """Return fixture-qualified R4-E owner evidence for a known object.
+        """Return bounded RT-010 qualification and AFQR-19 custody opportunity.
 
-        This policy establishes only that this development fixture adds no
-        extra RT-010/AFQR-19 blocker for pickup/drop of its declared objects.
-        R4-E still validates actor/object identity, immediate placement,
-        co-location, current carrier, command identity, and transition state.
+        Direct pickup requires the caller to supply the AFQR-20 observation
+        candidate for the target. AFQR-19 consumes that evidence reference and
+        decides whether the bounded pickup opportunity is currently available.
+        Drop remains a custody/control operation and is not visual-gated here.
+        R4-E still validates actor/object identity, placement, co-location,
+        current carrier, command identity, and transition state.
         """
 
         known_objects = {
@@ -486,14 +490,45 @@ class MyravantPlayFixture:
                 "custody operation must be pickup or drop"
             )
 
-        token = hashlib.sha256(
+        input_evidence_refs: tuple[str, ...] = ()
+        opportunity_available = True
+        if operation == "pickup":
+            if pickup_observation_evidence is None:
+                raise UnavailableFixtureCustodyError(
+                    "pickup requires bounded AFQR-20 observation evidence"
+                )
+            if (
+                pickup_observation_evidence.semantic_owner
+                != AFQR20_FIXTURE_SENSING_OWNER
+                or pickup_observation_evidence.observer_entity_id
+                != self.player_entity_id
+                or pickup_observation_evidence.target_entity_id
+                != object_entity_id
+            ):
+                raise UnavailableFixtureCustodyError(
+                    "pickup observation evidence does not match the bounded target"
+                )
+            input_evidence_refs = (pickup_observation_evidence.evidence_id,)
+            opportunity_available = pickup_observation_evidence.observable
+
+        qualification_token = hashlib.sha256(
             f"{command_id}|{operation}|{object_entity_id}".encode("utf-8")
+        ).hexdigest()[:20]
+        opportunity_token_material = "|".join((
+            command_id,
+            operation,
+            object_entity_id,
+            *input_evidence_refs,
+            str(int(opportunity_available)),
+        ))
+        opportunity_token = hashlib.sha256(
+            opportunity_token_material.encode("utf-8")
         ).hexdigest()[:20]
 
         qualification = create_custody_qualification_evidence(
             evidence_id=build_record_id(
                 "evidence",
-                f"g2-custody-{operation}-{token}-rt010",
+                f"g2-custody-{operation}-{qualification_token}-rt010",
             ),
             actor_entity_id=self.player_entity_id,
             object_entity_id=object_entity_id,
@@ -503,13 +538,14 @@ class MyravantPlayFixture:
         opportunity = create_custody_opportunity_evidence(
             evidence_id=build_record_id(
                 "evidence",
-                f"g2-custody-{operation}-{token}-afqr19",
+                f"g2-custody-{operation}-{opportunity_token}-afqr19",
             ),
             actor_entity_id=self.player_entity_id,
             object_entity_id=object_entity_id,
             operation=operation,
-            opportunity_available=True,
+            opportunity_available=opportunity_available,
             resolution_accepted=True,
+            input_evidence_refs=input_evidence_refs,
         )
         return qualification, opportunity
 

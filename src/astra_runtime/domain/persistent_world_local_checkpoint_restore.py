@@ -1682,6 +1682,62 @@ def write_persistent_world_object_custody_checkpoint(
     return str(envelope["integrity_digest"])
 
 
+
+def _normalize_custody_opportunity_trace_metadata(
+    material: object,
+    *,
+    base_metadata: Mapping[str, object],
+    name: str,
+) -> dict[str, object]:
+    # Validate the optional AFQR-19 upstream-evidence provenance extension.
+    if type(material) is not dict:
+        raise PersistentWorldCheckpointEvidenceError(
+            f"{name} must be a JSON object"
+        )
+
+    base_keys = frozenset(base_metadata)
+    allowed_keys = base_keys | {"opportunity_input_evidence_refs"}
+    actual_keys = frozenset(material)
+
+    if not base_keys.issubset(actual_keys) or not actual_keys.issubset(
+        allowed_keys
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            f"{name} keys are inconsistent with bounded R4-E metadata"
+        )
+
+    restored = dict(base_metadata)
+    for key, expected_value in base_metadata.items():
+        if material[key] != expected_value:
+            raise PersistentWorldCheckpointEvidenceError(
+                f"{name}.{key} is inconsistent"
+            )
+
+    if "opportunity_input_evidence_refs" in material:
+        refs = material["opportunity_input_evidence_refs"]
+        if type(refs) is not list or not refs:
+            raise PersistentWorldCheckpointEvidenceError(
+                f"{name}.opportunity_input_evidence_refs "
+                "must be a non-empty list when present"
+            )
+        normalized_refs = [
+            _require_record_id(
+                ref,
+                name=(
+                    f"{name}.opportunity_input_evidence_refs[{index}]"
+                ),
+            )
+            for index, ref in enumerate(refs)
+        ]
+        if len(normalized_refs) != len(set(normalized_refs)):
+            raise PersistentWorldCheckpointEvidenceError(
+                f"{name}.opportunity_input_evidence_refs must be unique"
+            )
+        restored["opportunity_input_evidence_refs"] = normalized_refs
+
+    return restored
+
+
 def _restore_custody_preview(material: object) -> TransactionPreview:
     preview = _require_exact_dict(
         material,
@@ -1698,11 +1754,16 @@ def _restore_custody_preview(material: object) -> TransactionPreview:
         name="custody preview.command_id",
         error_cls=PersistentWorldCheckpointEvidenceError,
     )
-    expected_metadata = {
+    base_metadata = {
         "package": "R4-E",
         "command_family": "inventory",
         "mutation_performed": False,
     }
+    restored_metadata = _normalize_custody_opportunity_trace_metadata(
+        preview["metadata"],
+        base_metadata=base_metadata,
+        name="custody preview.metadata",
+    )
     if preview["status"] != "preview_created":
         raise PersistentWorldCheckpointEvidenceError(
             "custody preview must remain preview_created"
@@ -1717,17 +1778,13 @@ def _restore_custody_preview(material: object) -> TransactionPreview:
         raise PersistentWorldCheckpointEvidenceError(
             "custody preview unexpectedly requires confirmation"
         )
-    if preview["metadata"] != expected_metadata:
-        raise PersistentWorldCheckpointEvidenceError(
-            "custody preview metadata is inconsistent"
-        )
     return TransactionPreview(
         preview_id=preview_id,
         command_id=command_id,
         status="preview_created",
         messages=("bounded persistent-world object custody prepared",),
         requires_confirmation=False,
-        metadata=MappingProxyType(dict(expected_metadata)),
+        metadata=MappingProxyType(dict(restored_metadata)),
     )
 
 
@@ -1881,16 +1938,30 @@ def _restore_custody_transition(
         raise PersistentWorldCheckpointEvidenceError(
             "custody state-delta payload disagrees with receipt"
         )
-    expected_metadata = {
+    base_delta_metadata = {
         "package": "R4-E",
         "custody_semantic_owner": "RT-010",
         "direct_location_semantic_owner": "AFQR-18",
         "opportunity_semantic_owner": "AFQR-19",
         "qualified_transition_owner": "AFQR-01",
     }
-    if dict(delta.metadata) != expected_metadata:
+    restored_delta_metadata = _normalize_custody_opportunity_trace_metadata(
+        dict(delta.metadata),
+        base_metadata=base_delta_metadata,
+        name="custody state_delta.metadata",
+    )
+    preview_refs = preview.metadata.get(
+        "opportunity_input_evidence_refs",
+        [],
+    )
+    delta_refs = restored_delta_metadata.get(
+        "opportunity_input_evidence_refs",
+        [],
+    )
+    if preview_refs != delta_refs:
         raise PersistentWorldCheckpointEvidenceError(
-            "custody state-delta owner metadata is inconsistent"
+            "custody opportunity input-evidence provenance disagrees "
+            "between preview and state delta"
         )
     if delta.change_type != "relationship_update":
         raise PersistentWorldCheckpointEvidenceError(

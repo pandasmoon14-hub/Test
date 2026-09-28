@@ -61,7 +61,7 @@ def test_int1_fixture_adds_composite_state_without_redefining_r4b_digest():
     fixture = create_terminal_play_fixture()
     app = MyravantPlayApplication.new(fixture=fixture)
 
-    assert FIXTURE_VERSION == "0.1.5"
+    assert FIXTURE_VERSION == "0.1.6"
     assert fixture.provenance.initial_state_digest == FIXTURE_INITIAL_STATE_DIGEST
     assert (
         fixture.provenance.initial_world_state_digest

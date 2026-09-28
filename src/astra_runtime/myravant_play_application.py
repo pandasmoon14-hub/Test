@@ -121,6 +121,7 @@ class PlayApplicationResult:
     receipt_id: str | None = None
     state_delta_id: str | None = None
     spatial_evidence_id: str | None = None
+    observation_evidence_id: str | None = None
     opportunity_evidence_id: str | None = None
     pre_state_digest: str | None = None
     post_state_digest: str | None = None
@@ -624,6 +625,7 @@ class MyravantPlayApplication:
     ) -> PlayApplicationResult:
         pre_digest = self.authoritative_digest()
         pre_representation_digest = self.representation_digest()
+        pickup_unavailable_message = "You cannot pick that up in the current state."
 
         try:
             object_entity_id = self.fixture.resolve_object_reference(
@@ -632,7 +634,11 @@ class MyravantPlayApplication:
         except UnavailableFixtureCustodyError:
             return PlayApplicationResult(
                 result_type="custody_rejected",
-                message="That object is not available in this bounded fixture.",
+                message=(
+                    pickup_unavailable_message
+                    if operation == "pickup"
+                    else "That object is not available in this bounded fixture."
+                ),
                 authoritative_changed=False,
                 pre_state_digest=pre_digest,
                 post_state_digest=pre_digest,
@@ -647,13 +653,22 @@ class MyravantPlayApplication:
             action = "pick that up" if operation == "pickup" else "drop that"
             return PlayApplicationResult(
                 result_type="custody_rejected",
-                message=f"You cannot {action} in the current state.",
+                message=(
+                    pickup_unavailable_message
+                    if operation == "pickup"
+                    else f"You cannot {action} in the current state."
+                ),
                 authoritative_changed=False,
                 pre_state_digest=pre_digest,
                 post_state_digest=pre_digest,
                 failure_class=f"{operation}_placement_unavailable",
             )
 
+        pickup_observation_evidence = (
+            self.visual_observation_evidence(object_entity_id)
+            if operation == "pickup"
+            else None
+        )
         command_id = self._next_custody_command_id()
         command = create_command_envelope(
             command_id=command_id,
@@ -667,6 +682,7 @@ class MyravantPlayApplication:
                 command_id=command_id,
                 object_entity_id=object_entity_id,
                 operation=operation,
+                pickup_observation_evidence=pickup_observation_evidence,
             )
         )
 
@@ -682,12 +698,17 @@ class MyravantPlayApplication:
             return PlayApplicationResult(
                 result_type="custody_rejected",
                 message=(
-                    "The pickup was rejected by the authoritative runtime."
+                    pickup_unavailable_message
                     if operation == "pickup"
                     else "The drop was rejected by the authoritative runtime."
                 ),
                 authoritative_changed=False,
                 command_id=command_id,
+                observation_evidence_id=(
+                    pickup_observation_evidence.evidence_id
+                    if pickup_observation_evidence is not None
+                    else None
+                ),
                 opportunity_evidence_id=opportunity_evidence.evidence_id,
                 pre_state_digest=pre_digest,
                 post_state_digest=pre_digest,
@@ -714,6 +735,11 @@ class MyravantPlayApplication:
             preview_id=result.preview.preview_id,
             receipt_id=result.receipt.receipt_id,
             state_delta_id=result.state_delta.delta_id,
+            observation_evidence_id=(
+                pickup_observation_evidence.evidence_id
+                if pickup_observation_evidence is not None
+                else None
+            ),
             opportunity_evidence_id=(
                 result.receipt.opportunity_evidence_id
             ),

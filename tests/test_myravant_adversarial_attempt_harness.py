@@ -28,7 +28,7 @@ def test_harness_is_deterministic_and_has_no_invariant_failures(tmp_path):
     assert first["model_mode"] == "MODEL-NONE"
     assert first["authority_effect"] == "none"
     summary = first["summary"]
-    assert summary["cases_total"] == 101
+    assert summary["cases_total"] == 105
     assert summary["cases_failed"] == 0
     assert summary["deterministic_replay_failures"] == 0
     assert summary["canonical_equivalence_failures"] == 0
@@ -127,3 +127,30 @@ def test_int3_harness_covers_bounded_storage_without_generalization(tmp_path):
     assert cases["storage-remote"]["primary"]["failure_class"] == "storage_target_unavailable"
     assert cases["storage-not-supported"]["primary"]["failure_class"] == "storage_not_supported"
     assert cases["storage-compound"]["observed_class"] == "COMPOUND_PRESSURE"
+
+def test_comp2_harness_covers_observation_qualified_pickup(tmp_path):
+    report = _run(tmp_path / "comp2-coverage.json")
+    cases = {row["case"]["case_id"]: row for row in report["cases"]}
+
+    for case_id in (
+        "comp2-dark-waystone-01",
+        "comp2-dark-waystone-02",
+        "comp2-dark-waystone-03",
+    ):
+        row = cases[case_id]
+        primary = row["primary"]
+        assert primary["result_type"] == "custody_rejected"
+        assert primary["failure_class"] == "PersistentWorldObjectCustodyEvidenceError"
+        assert primary["authoritative_changed"] is False
+        assert primary["receipt_id"] is None
+        assert primary["state_delta_id"] is None
+        assert primary["observation_evidence_id"] is not None
+        assert primary["opportunity_evidence_id"] is not None
+        assert row["deterministic_replay_match"] is True
+        assert row["canonical_equivalence_match"] is True
+
+    lit = cases["comp2-lit-waystone-pickup"]
+    assert lit["primary"]["result_type"] == "custody_committed"
+    assert lit["primary"]["authoritative_changed"] is True
+    assert lit["primary"]["observation_evidence_id"] is not None
+    assert lit["primary"]["opportunity_evidence_id"] is not None
