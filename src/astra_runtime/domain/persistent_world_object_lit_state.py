@@ -22,6 +22,11 @@ import re
 from dataclasses import dataclass
 from typing import Sequence
 
+from astra_runtime.domain._deterministic_transition_support import (
+    command_fingerprint_matches,
+    find_committed_transition,
+    fingerprint_command_envelope,
+)
 from astra_runtime.domain.command_kind_routing_skeleton import route_command_envelope
 from astra_runtime.domain.persistent_world_entity_location_representation import (
     CARRIED_BY_RELATION_TYPE,
@@ -516,15 +521,10 @@ def fingerprint_persistent_world_object_lit_state_command(
         raise InvalidPersistentWorldObjectLitStateRequestError(
             "command failed CommandEnvelope validation"
         )
-    canonical = json.dumps(
-        command.to_dict(),
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=True,
+    return fingerprint_command_envelope(
+        command,
         allow_nan=False,
     )
-    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
-
 
 def _operation_from_command(command: CommandEnvelope) -> str:
     operation = command.payload.get("operation")
@@ -671,11 +671,10 @@ def _existing_transition(
     state: PersistentWorldObjectLitRuntimeState,
     command_id: str,
 ) -> PersistentWorldObjectLitStateCommittedTransition | None:
-    for transition in state.committed_object_lit_transitions:
-        if transition.command_id == command_id:
-            return transition
-    return None
-
+    return find_committed_transition(
+        state.committed_object_lit_transitions,
+        command_id,
+    )
 
 def prepare_persistent_world_object_lit_state(
     *, state: PersistentWorldObjectLitRuntimeState,
@@ -813,7 +812,7 @@ def commit_prepared_persistent_world_object_lit_state(
 ) -> PersistentWorldObjectLitStateExecutionResult:
     existing = _existing_transition(state, prepared.command_id)
     if existing is not None:
-        if existing.command_fingerprint != prepared.command_fingerprint:
+        if not command_fingerprint_matches(existing, prepared.command_fingerprint):
             raise PersistentWorldObjectLitStateRetryConflictError(
                 "command ID already committed with different meaning"
             )
@@ -889,7 +888,7 @@ def execute_persistent_world_object_lit_state(
     fingerprint = fingerprint_persistent_world_object_lit_state_command(command)
     existing = _existing_transition(state, command.command_id)
     if existing is not None:
-        if existing.command_fingerprint != fingerprint:
+        if not command_fingerprint_matches(existing, fingerprint):
             raise PersistentWorldObjectLitStateRetryConflictError(
                 "command ID already committed with materially different command content"
             )
