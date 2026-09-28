@@ -8,9 +8,11 @@ from io import StringIO
 
 import pytest
 
+from astra_runtime.domain.persistent_world_component_checkpoint import (
+    COMPONENT_CHECKPOINT_FORMAT_IDENTITY,
+)
 from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     OBJECT_LIT_STATE_CHECKPOINT_FORMAT_IDENTITY,
-    OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY,
     PersistentWorldCheckpointEvidenceError,
     serialize_persistent_world_object_open_close_checkpoint_payload,
     write_persistent_world_object_open_close_checkpoint,
@@ -184,7 +186,7 @@ def test_int2_composes_lighting_custody_movement_open_close_and_restore(tmp_path
     assert len(final.lit_state.committed_object_lit_transitions) == 2
 
 
-def test_int2_checkpoint_embeds_exact_int1_payload(tmp_path):
+def test_int2_checkpoint_preserves_exact_open_close_component(tmp_path):
     checkpoint = tmp_path / "int2-exact-int1.json"
     app = MyravantPlayApplication.new(checkpoint_path=checkpoint)
     app.light_object("lantern")
@@ -194,10 +196,21 @@ def test_int2_checkpoint_embeds_exact_int1_payload(tmp_path):
     app.save()
 
     envelope = json.loads(checkpoint.read_text(encoding="utf-8"))
-    assert envelope["format_identity"] == OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY
-    assert envelope["authoritative_payload"]["int2_state"]["int1_state"] == (
-        serialize_persistent_world_object_open_close_checkpoint_payload(app.object_state)
+    assert envelope["format_identity"] == COMPONENT_CHECKPOINT_FORMAT_IDENTITY
+    legacy_int1 = serialize_persistent_world_object_open_close_checkpoint_payload(
+        app.object_state
     )
+    assert envelope["authoritative_payload"]["components"]["open_close"] == {
+        "object_open_states": legacy_int1["object_open_states"],
+        "object_state_digest": legacy_int1["object_state_digest"],
+        "world_state_digest": legacy_int1["world_state_digest"],
+        "committed_object_state_transitions": (
+            legacy_int1["committed_object_state_transitions"]
+        ),
+        "object_state_transition_summary": (
+            legacy_int1["object_state_transition_summary"]
+        ),
+    }
 
 
 def test_int2_legacy_int1_restore_initializes_lantern_unlit_and_upgrades(tmp_path):
@@ -216,7 +229,7 @@ def test_int2_legacy_int1_restore_initializes_lantern_unlit_and_upgrades(tmp_pat
     assert restored.object_lit_state(LANTERN_ID).state == "unlit"
     restored.save()
     upgraded = json.loads(checkpoint.read_text(encoding="utf-8"))
-    assert upgraded["format_identity"] == OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY
+    assert upgraded["format_identity"] == COMPONENT_CHECKPOINT_FORMAT_IDENTITY
 
 
 def test_int2_recomputed_outer_integrity_cannot_hide_lit_state_tamper(tmp_path):
@@ -226,7 +239,7 @@ def test_int2_recomputed_outer_integrity_cannot_hide_lit_state_tamper(tmp_path):
     app.save()
 
     envelope = json.loads(checkpoint.read_text(encoding="utf-8"))
-    envelope["authoritative_payload"]["int2_state"]["object_lit_states"][0]["state"] = "unlit"
+    envelope["authoritative_payload"]["components"]["lit_state"]["object_lit_states"][0]["state"] = "unlit"
     payload = envelope["authoritative_payload"]
     canonical_payload = json.dumps(
         payload,
