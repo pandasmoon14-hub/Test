@@ -159,6 +159,7 @@ def test_custody_updates_placement_and_custody_without_rewrapping_owner_state():
 
 def test_open_close_updates_only_open_close_owned_material():
     app = MyravantPlayApplication.new()
+    app.move("south")
     before = _root_snapshot(app.runtime_state)
 
     result = app.open_object("tool chest")
