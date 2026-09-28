@@ -2,6 +2,11 @@
 
 from __future__ import annotations
 
+import json
+
+from astra_runtime.domain.persistent_world_component_checkpoint import (
+    COMPONENT_CHECKPOINT_FORMAT_IDENTITY,
+)
 from astra_runtime.domain.persistent_world_entity_location_representation import (
     CARRIED_BY_RELATION_TYPE,
     LOCATED_AT_RELATION_TYPE,
@@ -277,6 +282,11 @@ def test_existing_g1_r4d_checkpoint_remains_loadable_and_can_upgrade_on_save(
 
     restored.checkpoint_path = checkpoint
     restored.save()
+    upgraded_envelope = json.loads(checkpoint.read_text(encoding="utf-8"))
+    assert (
+        upgraded_envelope["format_identity"]
+        == COMPONENT_CHECKPOINT_FORMAT_IDENTITY
+    )
 
     upgraded = MyravantPlayApplication.restore(
         checkpoint_path=checkpoint,

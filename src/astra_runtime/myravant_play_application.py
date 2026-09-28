@@ -11,6 +11,10 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+from astra_runtime.domain.persistent_world_component_checkpoint import (
+    restore_persistent_world_component_checkpoint,
+    write_persistent_world_component_checkpoint,
+)
 from astra_runtime.domain.persistent_world_entity_location_representation import (
     CARRIED_BY_RELATION_TYPE,
     CONTAINED_BY_RELATION_TYPE,
@@ -23,7 +27,6 @@ from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     restore_persistent_world_object_open_close_checkpoint,
     restore_persistent_world_object_lit_state_checkpoint,
     restore_persistent_world_object_storage_checkpoint,
-    write_persistent_world_object_storage_checkpoint,
 )
 from astra_runtime.domain.persistent_world_movement_integration import (
     PersistentWorldMovementRuntimeState,
@@ -218,7 +221,7 @@ class MyravantPlayApplication:
         bounded_fixture = fixture or create_terminal_play_fixture()
 
         try:
-            storage_state = restore_persistent_world_object_storage_checkpoint(
+            storage_state = restore_persistent_world_component_checkpoint(
                 checkpoint_path=checkpoint_path,
                 expected_campaign_id=bounded_fixture.campaign_id,
                 expected_initial_open_states=bounded_fixture.initial_object_open_states,
@@ -229,46 +232,57 @@ class MyravantPlayApplication:
             )
         except PersistentWorldCheckpointFormatError:
             try:
-                lit_state = restore_persistent_world_object_lit_state_checkpoint(
+                storage_state = restore_persistent_world_object_storage_checkpoint(
                     checkpoint_path=checkpoint_path,
                     expected_campaign_id=bounded_fixture.campaign_id,
                     expected_initial_open_states=bounded_fixture.initial_object_open_states,
                     expected_initial_lit_states=bounded_fixture.initial_object_lit_states,
+                    expected_initial_representation_digest=(
+                        bounded_fixture.provenance.initial_state_digest
+                    ),
                 )
             except PersistentWorldCheckpointFormatError:
                 try:
-                    object_state = restore_persistent_world_object_open_close_checkpoint(
+                    lit_state = restore_persistent_world_object_lit_state_checkpoint(
                         checkpoint_path=checkpoint_path,
                         expected_campaign_id=bounded_fixture.campaign_id,
-                        expected_initial_object_states=(
-                            bounded_fixture.initial_object_open_states
-                        ),
+                        expected_initial_open_states=bounded_fixture.initial_object_open_states,
+                        expected_initial_lit_states=bounded_fixture.initial_object_lit_states,
                     )
                 except PersistentWorldCheckpointFormatError:
                     try:
-                        custody_state = restore_persistent_world_object_custody_checkpoint(
+                        object_state = restore_persistent_world_object_open_close_checkpoint(
                             checkpoint_path=checkpoint_path,
                             expected_campaign_id=bounded_fixture.campaign_id,
+                            expected_initial_object_states=(
+                                bounded_fixture.initial_object_open_states
+                            ),
                         )
                     except PersistentWorldCheckpointFormatError:
-                        movement_state = restore_persistent_world_checkpoint(
-                            checkpoint_path=checkpoint_path,
-                            expected_campaign_id=bounded_fixture.campaign_id,
+                        try:
+                            custody_state = restore_persistent_world_object_custody_checkpoint(
+                                checkpoint_path=checkpoint_path,
+                                expected_campaign_id=bounded_fixture.campaign_id,
+                            )
+                        except PersistentWorldCheckpointFormatError:
+                            movement_state = restore_persistent_world_checkpoint(
+                                checkpoint_path=checkpoint_path,
+                                expected_campaign_id=bounded_fixture.campaign_id,
+                            )
+                            custody_state = create_persistent_world_object_custody_runtime_state(
+                                movement_state=movement_state
+                            )
+                        object_state = create_persistent_world_object_open_close_runtime_state(
+                            custody_state=custody_state,
+                            object_open_states=bounded_fixture.initial_object_open_states,
                         )
-                        custody_state = create_persistent_world_object_custody_runtime_state(
-                            movement_state=movement_state
-                        )
-                    object_state = create_persistent_world_object_open_close_runtime_state(
-                        custody_state=custody_state,
-                        object_open_states=bounded_fixture.initial_object_open_states,
+                    lit_state = create_persistent_world_object_lit_runtime_state(
+                        open_close_state=object_state,
+                        object_lit_states=bounded_fixture.initial_object_lit_states,
                     )
-                lit_state = create_persistent_world_object_lit_runtime_state(
-                    open_close_state=object_state,
-                    object_lit_states=bounded_fixture.initial_object_lit_states,
+                storage_state = create_persistent_world_object_storage_runtime_state(
+                    lit_state=lit_state,
                 )
-            storage_state = create_persistent_world_object_storage_runtime_state(
-                lit_state=lit_state,
-            )
 
         return cls(
             fixture=bounded_fixture,
@@ -1308,7 +1322,7 @@ class MyravantPlayApplication:
 
         pre_digest = self.authoritative_digest()
         checkpoint_digest = (
-            write_persistent_world_object_storage_checkpoint(
+            write_persistent_world_component_checkpoint(
                 state=self._storage_state,
                 checkpoint_path=self.checkpoint_path,
                 qualification_evidence=self.fixture.checkpoint_qualification,

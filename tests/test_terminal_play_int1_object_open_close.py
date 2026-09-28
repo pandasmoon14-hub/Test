@@ -8,9 +8,11 @@ from io import StringIO
 
 import pytest
 
+from astra_runtime.domain.persistent_world_component_checkpoint import (
+    COMPONENT_CHECKPOINT_FORMAT_IDENTITY,
+)
 from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     OBJECT_LIT_STATE_CHECKPOINT_FORMAT_IDENTITY,
-    OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY,
     OBJECT_OPEN_CLOSE_CHECKPOINT_FORMAT_IDENTITY,
     PersistentWorldCheckpointEvidenceError,
     write_persistent_world_object_custody_checkpoint,
@@ -187,9 +189,9 @@ def test_int1_legacy_r4e_checkpoint_restores_closed_and_upgrades_on_save(tmp_pat
 
     restored.save()
     upgraded = json.loads(checkpoint.read_text(encoding="utf-8"))
-    assert upgraded["format_identity"] == OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY
+    assert upgraded["format_identity"] == COMPONENT_CHECKPOINT_FORMAT_IDENTITY
     assert (
-        upgraded["authoritative_payload"]["int2_state"]["int1_state"]["object_open_states"][0]["state"]
+        upgraded["authoritative_payload"]["components"]["open_close"]["object_open_states"][0]["state"]
         == "closed"
     )
 
@@ -202,7 +204,7 @@ def test_int1_recomputed_outer_integrity_cannot_hide_object_state_tamper(tmp_pat
     app.save()
 
     envelope = json.loads(checkpoint.read_text(encoding="utf-8"))
-    envelope["authoritative_payload"]["int2_state"]["int1_state"]["object_open_states"][0]["state"] = "closed"
+    envelope["authoritative_payload"]["components"]["open_close"]["object_open_states"][0]["state"] = "closed"
     payload = envelope["authoritative_payload"]
     canonical_payload = json.dumps(
         payload,

@@ -3896,56 +3896,27 @@ def _validate_int3_combined_attribution(
     _validate_int3_terminal_relation(representation, last_item.receipt)
 
 
-def restore_persistent_world_object_storage_checkpoint(
+def _restore_persistent_world_object_storage_payload(
     *,
-    checkpoint_path: str | os.PathLike[str],
+    payload_material: object,
     expected_campaign_id: str,
     expected_initial_open_states: tuple[PersistentWorldObjectOpenState, ...],
     expected_initial_lit_states: tuple[PersistentWorldObjectLitState, ...],
     expected_initial_representation_digest: str,
 ) -> PersistentWorldObjectStorageRuntimeState:
-    path = _checkpoint_path(checkpoint_path)
-    expected_campaign_id = _require_record_id(
-        expected_campaign_id,
-        name="expected_campaign_id",
-    )
-    envelope = _read_checkpoint_envelope(path)
-    if envelope["format_identity"] != OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY:
-        raise PersistentWorldCheckpointFormatError(
-            "unsupported INT-3 checkpoint format identity"
-        )
-    if (
-        type(envelope["format_version"]) is not int
-        or envelope["format_version"] != OBJECT_STORAGE_CHECKPOINT_FORMAT_VERSION
-    ):
-        raise PersistentWorldCheckpointFormatError(
-            "unsupported INT-3 checkpoint format version"
-        )
-    campaign_identity = _require_record_id(
-        envelope["campaign_identity"],
-        name="checkpoint campaign_identity",
-    )
-    if campaign_identity != expected_campaign_id:
-        raise PersistentWorldCheckpointCampaignMismatchError(
-            "checkpoint campaign identity does not match caller expectation"
-        )
-    _normalize_qualification(envelope["qualification_provenance"])
+    """Restore INT-3 payload material independently of checkpoint envelope.
+
+    This is a compatibility seam for checkpoint format composition only. It
+    preserves the existing INT-3 semantic validation, replay, attribution,
+    digest, and runtime-state reconstruction rules without granting a new
+    persistence semantic owner.
+    """
     payload = _require_exact_dict(
-        envelope["authoritative_payload"],
+        payload_material,
         expected_keys=_INT3_PAYLOAD_KEYS,
         name="INT-3 authoritative payload",
         error_cls=PersistentWorldCheckpointEvidenceError,
     )
-    integrity = _require_sha256(
-        envelope["integrity_digest"],
-        name="integrity_digest",
-        error_cls=PersistentWorldCheckpointIntegrityError,
-    )
-    if _sha256_bytes(_canonical_bytes(payload)) != integrity:
-        raise PersistentWorldCheckpointIntegrityError(
-            "INT-3 checkpoint authoritative payload integrity mismatch"
-        )
-
     lit_state = _restore_int2_payload_for_int3(
         payload["int2_state"],
         expected_campaign_id=expected_campaign_id,
@@ -4013,3 +3984,64 @@ def restore_persistent_world_object_storage_checkpoint(
         expected_initial_representation_digest=expected_initial_representation_digest,
     )
     return state
+
+
+def restore_persistent_world_object_storage_checkpoint(
+    *,
+    checkpoint_path: str | os.PathLike[str],
+    expected_campaign_id: str,
+    expected_initial_open_states: tuple[PersistentWorldObjectOpenState, ...],
+    expected_initial_lit_states: tuple[PersistentWorldObjectLitState, ...],
+    expected_initial_representation_digest: str,
+) -> PersistentWorldObjectStorageRuntimeState:
+    path = _checkpoint_path(checkpoint_path)
+    expected_campaign_id = _require_record_id(
+        expected_campaign_id,
+        name="expected_campaign_id",
+    )
+    envelope = _read_checkpoint_envelope(path)
+    if envelope["format_identity"] != OBJECT_STORAGE_CHECKPOINT_FORMAT_IDENTITY:
+        raise PersistentWorldCheckpointFormatError(
+            "unsupported INT-3 checkpoint format identity"
+        )
+    if (
+        type(envelope["format_version"]) is not int
+        or envelope["format_version"] != OBJECT_STORAGE_CHECKPOINT_FORMAT_VERSION
+    ):
+        raise PersistentWorldCheckpointFormatError(
+            "unsupported INT-3 checkpoint format version"
+        )
+    campaign_identity = _require_record_id(
+        envelope["campaign_identity"],
+        name="checkpoint campaign_identity",
+    )
+    if campaign_identity != expected_campaign_id:
+        raise PersistentWorldCheckpointCampaignMismatchError(
+            "checkpoint campaign identity does not match caller expectation"
+        )
+    _normalize_qualification(envelope["qualification_provenance"])
+    payload = _require_exact_dict(
+        envelope["authoritative_payload"],
+        expected_keys=_INT3_PAYLOAD_KEYS,
+        name="INT-3 authoritative payload",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    integrity = _require_sha256(
+        envelope["integrity_digest"],
+        name="integrity_digest",
+        error_cls=PersistentWorldCheckpointIntegrityError,
+    )
+    if _sha256_bytes(_canonical_bytes(payload)) != integrity:
+        raise PersistentWorldCheckpointIntegrityError(
+            "INT-3 checkpoint authoritative payload integrity mismatch"
+        )
+
+    return _restore_persistent_world_object_storage_payload(
+        payload_material=payload,
+        expected_campaign_id=expected_campaign_id,
+        expected_initial_open_states=expected_initial_open_states,
+        expected_initial_lit_states=expected_initial_lit_states,
+        expected_initial_representation_digest=(
+            expected_initial_representation_digest
+        ),
+    )

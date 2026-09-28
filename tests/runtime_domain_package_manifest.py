@@ -15,6 +15,7 @@ AUTHORIZED_RUNTIME_DOMAIN_FILES = frozenset(
         "__init__.py",
         "_deterministic_transition_support.py",
         "action_legality.py",
+        "persistent_world_component_checkpoint.py",
         "action_legality_gate_integration_skeleton.py",
         "action_legality_service_interface_contract_skeleton.py",
         "action_legality_skeleton.py",
