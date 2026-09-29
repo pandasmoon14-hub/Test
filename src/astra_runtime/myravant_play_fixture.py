@@ -529,6 +529,41 @@ class MyravantPlayFixture:
             )
         return matches[0]
 
+    def resolve_inspection_reference(self, reference: str) -> str:
+        'Resolve a bounded public object-or-actor reference without authority.'
+
+        normalized = " ".join(
+            reference.strip().casefold().replace("-", " ").split()
+        )
+        if not normalized:
+            raise UnavailableFixtureCustodyError(
+                "inspection reference must be non-empty"
+            )
+
+        matches: list[str] = []
+        for presentation in (
+            *self.object_presentations,
+            *self.actor_presentations,
+        ):
+            name = " ".join(
+                presentation.name.casefold().replace("-", " ").split()
+            )
+            local_id = " ".join(
+                presentation.entity_id.rsplit(":", 1)[-1]
+                .casefold()
+                .replace("-", " ")
+                .split()
+            )
+            last_word = name.split()[-1]
+            if normalized in {name, local_id, last_word}:
+                matches.append(presentation.entity_id)
+
+        if len(matches) != 1:
+            raise UnavailableFixtureCustodyError(
+                "inspection reference is unknown or ambiguous in the bounded fixture"
+            )
+        return matches[0]
+
     def custody_evidence(
         self,
         *,

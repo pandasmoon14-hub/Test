@@ -427,7 +427,7 @@ def _write_result(
 
 def _write_help(output: TextIO) -> str:
     visible = (
-        "Commands: look, inspect <object>, move <direction>, pickup <object>, "
+        "Commands: look, inspect <entity>, move <direction>, pickup <object>, "
         "drop <object>, open <object>, close <object>, light <object>, "
         "extinguish <object>, put <object> in <container>, "
         "take <object> from <container>, wait, save, help, exit\n"

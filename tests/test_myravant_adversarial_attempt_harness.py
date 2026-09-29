@@ -28,7 +28,7 @@ def test_harness_is_deterministic_and_has_no_invariant_failures(tmp_path):
     assert first["model_mode"] == "MODEL-NONE"
     assert first["authority_effect"] == "none"
     summary = first["summary"]
-    assert summary["cases_total"] == 105
+    assert summary["cases_total"] == 106
     assert summary["cases_failed"] == 0
     assert summary["deterministic_replay_failures"] == 0
     assert summary["canonical_equivalence_failures"] == 0
@@ -79,6 +79,12 @@ def test_obs1_harness_covers_targeted_inspection_without_directional_collapse(tm
     directional = cases["directional-look"]["primary"]
     assert directional["result_type"] == "unsupported_input"
     assert directional["failure_class"] == "unsupported_input_no_executable_route"
+
+    actor = cases["inspect-actor-01"]
+    assert actor["primary"]["result_type"] == "inspection"
+    assert actor["primary"]["authoritative_changed"] is False
+    assert actor["primary"]["command_id"] is None
+    assert actor["observed_class"] == "NONMUTATING_OBSERVATION"
 
     assert cases["inspection-compound"]["observed_class"] == "COMPOUND_PRESSURE"
     assert cases["inspection-injection"]["primary"]["result_type"] == "unsupported_input"

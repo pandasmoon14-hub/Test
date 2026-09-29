@@ -137,6 +137,16 @@ def build_cases() -> tuple[Case, ...]:
             canonical="inspect lantern",
         ))
 
+    cases.append(_case(
+        "inspect-actor-01",
+        "inspect groundskeeper",
+        "observable_actor_inspection",
+        "inspect",
+        "groundskeeper",
+        "inspection",
+        setup=("move south", "move south"),
+    ))
+
     for i, raw in enumerate(("open chest", "open the tool chest"), 1):
         cases.append(_case(
             f"open-{i:02d}",
