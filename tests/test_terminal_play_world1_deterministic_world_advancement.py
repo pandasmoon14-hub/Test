@@ -21,6 +21,7 @@ from astra_runtime.myravant_play_application import MyravantPlayApplication
 from astra_runtime.myravant_play_fixture import (
     GATEHOUSE_ID,
     GROUNDSKEEPER_ID,
+    TOOL_CHEST_ID,
     YARD_ID,
 )
 from astra_runtime.myravant_terminal import (
@@ -94,14 +95,17 @@ def test_world1_first_actor_and_wait_create_nonplayer_world_change():
     assert app.authoritative_digest() != before
 
 
-def test_world1_second_wait_returns_actor_to_gatehouse():
+def test_world1_second_wait_extends_into_world2_without_erasing_first_movement():
     app = MyravantPlayApplication.new()
     first = app.wait()
     second = app.wait()
 
     assert first.logical_time_after == 1
     assert second.logical_time_after == 2
-    assert _actor_place(app) == GATEHOUSE_ID
+    assert _actor_place(app) == YARD_ID
+    assert app.object_open_state(TOOL_CHEST_ID).state == "open"
+    assert second.world_process_action == "open_object"
+    assert second.world_process_outcome == "committed"
 
 
 def test_world1_object_only_routes_do_not_treat_actor_as_object():
@@ -137,9 +141,11 @@ def test_world1_checkpoint_v2_round_trip_preserves_time_and_actor(tmp_path):
     assert restored.runtime_state.logical_time_state.logical_position == 1
     assert _actor_place(restored) == YARD_ID
 
-    restored.wait()
+    second = restored.wait()
     assert restored.runtime_state.logical_time_state.logical_position == 2
-    assert _actor_place(restored) == GATEHOUSE_ID
+    assert _actor_place(restored) == YARD_ID
+    assert restored.object_open_state(TOOL_CHEST_ID).state == "open"
+    assert second.world_process_action == "open_object"
 
 
 def test_world1_logical_time_semantic_tamper_fails_closed(tmp_path):

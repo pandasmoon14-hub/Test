@@ -76,7 +76,7 @@ def test_int3_contained_by_relation_is_rt010_owned_and_rejects_self_containment(
 
 def test_int3_fixture_version_and_initial_digest_are_frozen():
     app = MyravantPlayApplication.new()
-    assert FIXTURE_VERSION == "0.2.0"
+    assert FIXTURE_VERSION == "0.2.1"
     assert app.lit_state == app.storage_state.lit_state
     assert app.storage_world_digest() == FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST
     assert app.authoritative_digest() != FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST

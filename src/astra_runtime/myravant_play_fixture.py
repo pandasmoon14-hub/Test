@@ -71,7 +71,7 @@ from astra_runtime.kernel.record_identity import build_record_id
 
 
 FIXTURE_ID = "myravant-native-terminal-g1"
-FIXTURE_VERSION = "0.2.0"
+FIXTURE_VERSION = "0.2.1"
 FIXTURE_AMBIENT_VISUAL_PROFILE_VERSION = "comp1-v1"
 FIXTURE_AMBIENT_VISUAL_CONDITION_DIGEST = (
     "2cb0800bc31c0e4844b25b82fad5c0ed421898b59c3d13c109ea475f05ddfb34"
@@ -113,6 +113,7 @@ FIXTURE_PLAYABLE_NEED_REFS = (
     "TERMINAL-PLAY-COMP-1",
     "TERMINAL-PLAY-COMP-2",
     "TERMINAL-PLAY-WORLD-1",
+    "TERMINAL-PLAY-WORLD-2",
     "R4-E-readiness",
 )
 FIXTURE_REQUIREMENT_REFS = (
@@ -624,11 +625,13 @@ class MyravantPlayFixture:
         command_id: str,
         object_entity_id: str,
         operation: str,
+        actor_entity_id: str | None = None,
+        opportunity_available: bool = True,
     ) -> tuple[
         ObjectOpenCloseQualificationEvidence,
         ObjectOpenCloseOpportunityEvidence,
     ]:
-        """Return bounded RT-010/AFQR-19 evidence for the INT-1 chest route."""
+        'Return bounded RT-010/AFQR-19 evidence for INT-1/WORLD-2.'
 
         if object_entity_id != TOOL_CHEST_ID:
             raise UnavailableFixtureCustodyError(
@@ -638,16 +641,35 @@ class MyravantPlayFixture:
             raise UnavailableFixtureCustodyError(
                 "open/close operation must be open or close"
             )
+        bounded_actor_id = (
+            self.player_entity_id
+            if actor_entity_id is None
+            else actor_entity_id
+        )
+        if bounded_actor_id not in {
+            self.player_entity_id,
+            GROUNDSKEEPER_ID,
+        }:
+            raise UnavailableFixtureCustodyError(
+                "open/close actor is outside the bounded fixture"
+            )
+        if type(opportunity_available) is not bool:
+            raise UnavailableFixtureCustodyError(
+                "opportunity_available must be bool"
+            )
 
         token = hashlib.sha256(
-            f"{command_id}|{operation}|{object_entity_id}".encode("utf-8")
+            (
+                f"{command_id}|{bounded_actor_id}|{operation}|"
+                f"{object_entity_id}|{int(opportunity_available)}"
+            ).encode("utf-8")
         ).hexdigest()[:20]
         qualification = create_object_open_close_qualification_evidence(
             evidence_id=build_record_id(
                 "evidence",
                 f"int1-{operation}-{token}-rt010",
             ),
-            actor_entity_id=self.player_entity_id,
+            actor_entity_id=bounded_actor_id,
             object_entity_id=object_entity_id,
             operation=operation,
             qualified=True,
@@ -657,10 +679,10 @@ class MyravantPlayFixture:
                 "evidence",
                 f"int1-{operation}-{token}-afqr19",
             ),
-            actor_entity_id=self.player_entity_id,
+            actor_entity_id=bounded_actor_id,
             object_entity_id=object_entity_id,
             operation=operation,
-            opportunity_available=True,
+            opportunity_available=opportunity_available,
             resolution_accepted=True,
         )
         return qualification, opportunity

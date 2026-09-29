@@ -45,7 +45,7 @@ def test_int2_fixture_adds_independent_lit_state_without_redefining_lower_digest
     fixture = create_terminal_play_fixture()
     app = MyravantPlayApplication.new(fixture=fixture)
 
-    assert FIXTURE_VERSION == "0.2.0"
+    assert FIXTURE_VERSION == "0.2.1"
     assert fixture.provenance.initial_state_digest == FIXTURE_INITIAL_STATE_DIGEST
     assert fixture.provenance.initial_world_state_digest == FIXTURE_INITIAL_WORLD_STATE_DIGEST
     assert fixture.provenance.initial_object_lit_state_digest == FIXTURE_INITIAL_OBJECT_LIT_STATE_DIGEST
