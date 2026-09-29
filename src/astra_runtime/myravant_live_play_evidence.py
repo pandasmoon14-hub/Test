@@ -200,6 +200,12 @@ class LivePlayInteractionRecord:
     due_process_ref: str | None = None
     consequence_receipt_id: str | None = None
     consequence_state_delta_id: str | None = None
+    world_event_class: str | None = None
+    world_process_actor_id: str | None = None
+    world_process_action: str | None = None
+    world_process_target_id: str | None = None
+    world_process_command_id: str | None = None
+    world_process_outcome: str | None = None
     logical_time_before: int | None = None
     logical_time_after: int | None = None
     pre_state_digest: str | None = None
@@ -241,6 +247,12 @@ class LivePlayInteractionRecord:
             "due_process_ref",
             "consequence_receipt_id",
             "consequence_state_delta_id",
+            "world_event_class",
+            "world_process_actor_id",
+            "world_process_action",
+            "world_process_target_id",
+            "world_process_command_id",
+            "world_process_outcome",
             "failure_class",
         ):
             _optional_non_empty(getattr(self, name), name)
@@ -294,6 +306,12 @@ class LivePlayInteractionRecord:
             "due_process_ref": self.due_process_ref,
             "consequence_receipt_id": self.consequence_receipt_id,
             "consequence_state_delta_id": self.consequence_state_delta_id,
+            "world_event_class": self.world_event_class,
+            "world_process_actor_id": self.world_process_actor_id,
+            "world_process_action": self.world_process_action,
+            "world_process_target_id": self.world_process_target_id,
+            "world_process_command_id": self.world_process_command_id,
+            "world_process_outcome": self.world_process_outcome,
             "logical_time_before": self.logical_time_before,
             "logical_time_after": self.logical_time_after,
             "pre_state_digest": self.pre_state_digest,
@@ -459,6 +477,12 @@ class LivePlayEvidenceRecorder:
         due_process_ref: str | None = None,
         consequence_receipt_id: str | None = None,
         consequence_state_delta_id: str | None = None,
+        world_event_class: str | None = None,
+        world_process_actor_id: str | None = None,
+        world_process_action: str | None = None,
+        world_process_target_id: str | None = None,
+        world_process_command_id: str | None = None,
+        world_process_outcome: str | None = None,
         logical_time_before: int | None = None,
         logical_time_after: int | None = None,
         pre_state_digest: str | None = None,
@@ -492,6 +516,12 @@ class LivePlayEvidenceRecorder:
             due_process_ref=due_process_ref,
             consequence_receipt_id=consequence_receipt_id,
             consequence_state_delta_id=consequence_state_delta_id,
+            world_event_class=world_event_class,
+            world_process_actor_id=world_process_actor_id,
+            world_process_action=world_process_action,
+            world_process_target_id=world_process_target_id,
+            world_process_command_id=world_process_command_id,
+            world_process_outcome=world_process_outcome,
             logical_time_before=logical_time_before,
             logical_time_after=logical_time_after,
             pre_state_digest=pre_state_digest,

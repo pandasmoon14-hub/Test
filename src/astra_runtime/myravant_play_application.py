@@ -19,6 +19,7 @@ from astra_runtime.domain.persistent_world_component_checkpoint import (
 from astra_runtime.domain.persistent_world_logical_time import (
     PersistentWorldLogicalTimeError,
     WORLD1_SCHEDULER_PROFILE_ID,
+    commit_prepared_persistent_world_logical_time,
     digest_persistent_world_logical_time_state,
     prepare_persistent_world_logical_time,
 )
@@ -33,6 +34,7 @@ from astra_runtime.domain.persistent_world_runtime_composition import (
     digest_persistent_world_runtime_composition,
     replace_persistent_world_runtime_custody_state,
     replace_persistent_world_runtime_lit_state,
+    replace_persistent_world_runtime_logical_time_state,
     replace_persistent_world_runtime_movement_state,
     replace_persistent_world_runtime_open_close_state,
     replace_persistent_world_runtime_storage_state,
@@ -60,6 +62,7 @@ from astra_runtime.domain.persistent_world_movement_integration import (
 from astra_runtime.domain.persistent_world_world_advancement import (
     PersistentWorldWorldAdvancementError,
     commit_prepared_persistent_world_world_advancement,
+    commit_prepared_persistent_world_world_interaction_advancement,
 )
 from astra_runtime.domain.persistent_world_object_custody_transfer import (
     PersistentWorldObjectCustodyError,
@@ -94,6 +97,8 @@ from astra_runtime.domain.persistent_world_object_open_close import (
     digest_persistent_world_object_open_states,
     execute_persistent_world_object_open_close,
     object_open_state_for,
+    persistent_world_object_open_close_opportunity_available,
+    prepare_persistent_world_object_open_close,
 )
 from astra_runtime.kernel.command_envelope import create_command_envelope
 from astra_runtime.kernel.record_identity import build_record_id
@@ -101,6 +106,7 @@ from astra_runtime.myravant_play_fixture import (
     GATEHOUSE_ID,
     GROUNDSKEEPER_ID,
     LANTERN_ID,
+    TOOL_CHEST_ID,
     YARD_ID,
     MyravantPlayFixture,
     UnavailableFixtureCustodyError,
@@ -115,6 +121,9 @@ _OBJECT_STATE_COMMAND_ID_PATTERN = re.compile(r"^terminal-object-state-(\d{6})$"
 _OBJECT_LIT_STATE_COMMAND_ID_PATTERN = re.compile(r"^terminal-object-lit-state-(\d{6})$")
 _STORAGE_COMMAND_ID_PATTERN = re.compile(r"^terminal-storage-(\d{6})$")
 _TIME_COMMAND_ID_PATTERN = re.compile(r"^terminal-time-(\d{6})$")
+WORLD2_ROUTINE_PROFILE_ID = (
+    "myravant:world2:groundskeeper-yard-chest-routine:v1"
+)
 
 
 class MyravantPlayApplicationError(ValueError):
@@ -159,6 +168,12 @@ class PlayApplicationResult:
     due_process_ref: str | None = None
     consequence_receipt_id: str | None = None
     consequence_state_delta_id: str | None = None
+    world_event_class: str | None = None
+    world_process_actor_id: str | None = None
+    world_process_action: str | None = None
+    world_process_target_id: str | None = None
+    world_process_command_id: str | None = None
+    world_process_outcome: str | None = None
     logical_time_before: int | None = None
     logical_time_after: int | None = None
     pre_state_digest: str | None = None
@@ -1418,7 +1433,7 @@ class MyravantPlayApplication:
                 "advance_steps": 1,
                 "scheduler_profile_id": WORLD1_SCHEDULER_PROFILE_ID,
             },
-            metadata={"client": "myravant-terminal-world1"},
+            metadata={"client": "myravant-terminal-world2"},
         )
         try:
             prepared_time = prepare_persistent_world_logical_time(
@@ -1428,57 +1443,242 @@ class MyravantPlayApplication:
                     digest_persistent_world_logical_time_state(pre_time)
                 ),
             )
-            destination_place_id = (
-                YARD_ID
-                if prepared_time.post_position % 2 == 1
-                else GATEHOUSE_ID
+            phase = prepared_time.post_position % 4
+            due_process_ref = build_record_id(
+                "evidence",
+                "world2-due-" + prepared_time.command_fingerprint[:20],
             )
-            source_place_id = self.entity_place_id(GROUNDSKEEPER_ID)
-            movement_command = create_command_envelope(
-                command_id=(
-                    "world1-npc-move-"
+
+            if phase in {0, 1}:
+                destination_place_id = (
+                    YARD_ID if phase == 1 else GATEHOUSE_ID
+                )
+                source_place_id = self.entity_place_id(GROUNDSKEEPER_ID)
+                world_process_command_id = (
+                    "world2-npc-move-"
                     + prepared_time.command_fingerprint[:24]
-                ),
-                command_type="move",
+                )
+                movement_command = create_command_envelope(
+                    command_id=world_process_command_id,
+                    command_type="move",
+                    source_actor_id=GROUNDSKEEPER_ID,
+                    payload={
+                        "destination_entity_id": destination_place_id
+                    },
+                    metadata={
+                        "client": "myravant-world2-routine",
+                        "routine_profile_id": WORLD2_ROUTINE_PROFILE_ID,
+                        "source_time_command_id": command_id,
+                    },
+                )
+                spatial, opportunity = (
+                    self.fixture.autonomous_movement_evidence(
+                        command_id=movement_command.command_id,
+                        actor_entity_id=GROUNDSKEEPER_ID,
+                        source_place_id=source_place_id,
+                        destination_place_id=destination_place_id,
+                    )
+                )
+                prepared_movement = prepare_persistent_world_movement(
+                    state=self.state,
+                    command=movement_command,
+                    spatial_evidence=spatial,
+                    opportunity_evidence=opportunity,
+                    expected_pre_state_digest=self.representation_digest(),
+                )
+                advancement = (
+                    commit_prepared_persistent_world_world_advancement(
+                        state=self._runtime_state,
+                        time_prepared=prepared_time,
+                        movement_prepared=prepared_movement,
+                        due_process_ref=due_process_ref,
+                    )
+                )
+                self._runtime_state = advancement.state
+                return PlayApplicationResult(
+                    result_type="world_advanced",
+                    message="Time passes.",
+                    authoritative_changed=True,
+                    command_id=command_id,
+                    command_fingerprint=(
+                        advancement.time_receipt.command_fingerprint
+                    ),
+                    preview_id=advancement.time_preview.preview_id,
+                    receipt_id=advancement.time_receipt.receipt_id,
+                    state_delta_id=advancement.time_state_delta.delta_id,
+                    spatial_evidence_id=(
+                        advancement.movement_receipt.spatial_evidence_id
+                    ),
+                    opportunity_evidence_id=(
+                        advancement.movement_receipt.opportunity_evidence_id
+                    ),
+                    due_process_ref=advancement.due_process_ref,
+                    consequence_receipt_id=(
+                        advancement.movement_receipt.receipt_id
+                    ),
+                    consequence_state_delta_id=(
+                        advancement.movement_state_delta.delta_id
+                    ),
+                    world_event_class="world_autonomous_action",
+                    world_process_actor_id=GROUNDSKEEPER_ID,
+                    world_process_action="move",
+                    world_process_target_id=destination_place_id,
+                    world_process_command_id=world_process_command_id,
+                    world_process_outcome="committed",
+                    logical_time_before=(
+                        advancement.time_receipt.pre_position
+                    ),
+                    logical_time_after=(
+                        advancement.time_receipt.post_position
+                    ),
+                    pre_state_digest=pre_digest,
+                    post_state_digest=self.authoritative_digest(),
+                    technical_retry=advancement.technical_retry,
+                )
+
+            operation = "open" if phase == 2 else "close"
+            desired = "open" if operation == "open" else "closed"
+            world_process_command_id = (
+                f"world2-npc-{operation}-"
+                + prepared_time.command_fingerprint[:24]
+            )
+            current = self.object_open_state(TOOL_CHEST_ID)
+            if current is None:
+                raise PersistentWorldObjectOpenCloseError(
+                    "WORLD-2 Tool Chest lacks bounded open/close state"
+                )
+
+            opportunity_available = (
+                persistent_world_object_open_close_opportunity_available(
+                    state=self.object_state,
+                    actor_entity_id=GROUNDSKEEPER_ID,
+                    object_entity_id=TOOL_CHEST_ID,
+                )
+            )
+            qualification, opportunity = (
+                self.fixture.object_open_close_evidence(
+                    command_id=world_process_command_id,
+                    actor_entity_id=GROUNDSKEEPER_ID,
+                    object_entity_id=TOOL_CHEST_ID,
+                    operation=operation,
+                    opportunity_available=opportunity_available,
+                )
+            )
+
+            if current.state == desired or not opportunity_available:
+                time_result = commit_prepared_persistent_world_logical_time(
+                    state=pre_time,
+                    prepared=prepared_time,
+                )
+                self._runtime_state = (
+                    replace_persistent_world_runtime_logical_time_state(
+                        state=self._runtime_state,
+                        logical_time_state=time_result.state,
+                    )
+                )
+                outcome = (
+                    "already_satisfied"
+                    if current.state == desired
+                    else "opportunity_unavailable"
+                )
+                return PlayApplicationResult(
+                    result_type="world_advanced",
+                    message="Time passes.",
+                    authoritative_changed=True,
+                    command_id=command_id,
+                    command_fingerprint=(
+                        time_result.receipt.command_fingerprint
+                    ),
+                    preview_id=time_result.preview.preview_id,
+                    receipt_id=time_result.receipt.receipt_id,
+                    state_delta_id=time_result.state_delta.delta_id,
+                    opportunity_evidence_id=opportunity.evidence_id,
+                    due_process_ref=due_process_ref,
+                    world_event_class="world_autonomous_action",
+                    world_process_actor_id=GROUNDSKEEPER_ID,
+                    world_process_action=f"{operation}_object",
+                    world_process_target_id=TOOL_CHEST_ID,
+                    world_process_command_id=world_process_command_id,
+                    world_process_outcome=outcome,
+                    logical_time_before=time_result.receipt.pre_position,
+                    logical_time_after=time_result.receipt.post_position,
+                    pre_state_digest=pre_digest,
+                    post_state_digest=self.authoritative_digest(),
+                    technical_retry=time_result.technical_retry,
+                )
+
+            object_command = create_command_envelope(
+                command_id=world_process_command_id,
+                command_type=f"{operation}_object",
                 source_actor_id=GROUNDSKEEPER_ID,
-                payload={"destination_entity_id": destination_place_id},
+                payload={"object_entity_id": TOOL_CHEST_ID},
                 metadata={
-                    "client": "myravant-world1-scheduler",
+                    "client": "myravant-world2-routine",
+                    "routine_profile_id": WORLD2_ROUTINE_PROFILE_ID,
                     "source_time_command_id": command_id,
                 },
             )
-            spatial, opportunity = (
-                self.fixture.autonomous_movement_evidence(
-                    command_id=movement_command.command_id,
-                    actor_entity_id=GROUNDSKEEPER_ID,
-                    source_place_id=source_place_id,
-                    destination_place_id=destination_place_id,
+            prepared_interaction = (
+                prepare_persistent_world_object_open_close(
+                    state=self.object_state,
+                    command=object_command,
+                    qualification_evidence=qualification,
+                    opportunity_evidence=opportunity,
+                    expected_pre_state_digest=self.object_state_digest(),
                 )
-            )
-            prepared_movement = prepare_persistent_world_movement(
-                state=self.state,
-                command=movement_command,
-                spatial_evidence=spatial,
-                opportunity_evidence=opportunity,
-                expected_pre_state_digest=self.representation_digest(),
-            )
-            due_process_ref = build_record_id(
-                "evidence",
-                "world1-due-"
-                + prepared_time.command_fingerprint[:20],
             )
             advancement = (
-                commit_prepared_persistent_world_world_advancement(
+                commit_prepared_persistent_world_world_interaction_advancement(
                     state=self._runtime_state,
                     time_prepared=prepared_time,
-                    movement_prepared=prepared_movement,
+                    interaction_prepared=prepared_interaction,
                     due_process_ref=due_process_ref,
                 )
+            )
+            self._runtime_state = advancement.state
+            return PlayApplicationResult(
+                result_type="world_advanced",
+                message="Time passes.",
+                authoritative_changed=True,
+                command_id=command_id,
+                command_fingerprint=(
+                    advancement.time_receipt.command_fingerprint
+                ),
+                preview_id=advancement.time_preview.preview_id,
+                receipt_id=advancement.time_receipt.receipt_id,
+                state_delta_id=advancement.time_state_delta.delta_id,
+                opportunity_evidence_id=(
+                    advancement.interaction_receipt.opportunity_evidence_id
+                ),
+                due_process_ref=advancement.due_process_ref,
+                consequence_receipt_id=(
+                    advancement.interaction_receipt.receipt_id
+                ),
+                consequence_state_delta_id=(
+                    advancement.interaction_state_delta.delta_id
+                ),
+                world_event_class="world_autonomous_action",
+                world_process_actor_id=GROUNDSKEEPER_ID,
+                world_process_action=f"{operation}_object",
+                world_process_target_id=TOOL_CHEST_ID,
+                world_process_command_id=world_process_command_id,
+                world_process_outcome="committed",
+                logical_time_before=(
+                    advancement.time_receipt.pre_position
+                ),
+                logical_time_after=(
+                    advancement.time_receipt.post_position
+                ),
+                pre_state_digest=pre_digest,
+                post_state_digest=self.authoritative_digest(),
+                technical_retry=advancement.technical_retry,
             )
         except (
             PersistentWorldLogicalTimeError,
             PersistentWorldMovementIntegrationError,
+            PersistentWorldObjectOpenCloseError,
             PersistentWorldWorldAdvancementError,
+            UnavailableFixtureCustodyError,
             UnavailableFixtureMovementError,
         ) as exc:
             return PlayApplicationResult(
@@ -1495,37 +1695,6 @@ class MyravantPlayApplication:
                 logical_time_after=pre_time.logical_position,
                 failure_class=type(exc).__name__,
             )
-        self._runtime_state = advancement.state
-        return PlayApplicationResult(
-            result_type="world_advanced",
-            message="Time passes.",
-            authoritative_changed=True,
-            command_id=command_id,
-            command_fingerprint=(
-                advancement.time_receipt.command_fingerprint
-            ),
-            preview_id=advancement.time_preview.preview_id,
-            receipt_id=advancement.time_receipt.receipt_id,
-            state_delta_id=advancement.time_state_delta.delta_id,
-            spatial_evidence_id=(
-                advancement.movement_receipt.spatial_evidence_id
-            ),
-            opportunity_evidence_id=(
-                advancement.movement_receipt.opportunity_evidence_id
-            ),
-            due_process_ref=advancement.due_process_ref,
-            consequence_receipt_id=(
-                advancement.movement_receipt.receipt_id
-            ),
-            consequence_state_delta_id=(
-                advancement.movement_state_delta.delta_id
-            ),
-            logical_time_before=advancement.time_receipt.pre_position,
-            logical_time_after=advancement.time_receipt.post_position,
-            pre_state_digest=pre_digest,
-            post_state_digest=self.authoritative_digest(),
-            technical_retry=advancement.technical_retry,
-        )
 
     def save(self) -> PlayApplicationResult:
         if self.checkpoint_path is None:

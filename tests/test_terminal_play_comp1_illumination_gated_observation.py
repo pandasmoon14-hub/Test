@@ -47,7 +47,7 @@ def test_comp1_fixture_environment_input_is_versioned_and_owner_routed():
     fixture = create_terminal_play_fixture()
     app = MyravantPlayApplication.new(fixture=fixture)
 
-    assert FIXTURE_VERSION == "0.2.0"
+    assert FIXTURE_VERSION == "0.2.1"
     assert "TERMINAL-PLAY-COMP-1" in FIXTURE_PLAYABLE_NEED_REFS
     assert fixture.ambient_visual_profile_version == (
         FIXTURE_AMBIENT_VISUAL_PROFILE_VERSION

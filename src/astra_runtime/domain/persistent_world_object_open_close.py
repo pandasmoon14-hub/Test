@@ -644,6 +644,34 @@ def _validate_current_availability(
         )
 
 
+def persistent_world_object_open_close_opportunity_available(
+    *,
+    state: PersistentWorldObjectOpenCloseRuntimeState,
+    actor_entity_id: str,
+    object_entity_id: str,
+) -> bool:
+    'Return current bounded physical opportunity without mutating state.'
+
+    if not isinstance(state, PersistentWorldObjectOpenCloseRuntimeState):
+        raise InvalidPersistentWorldObjectOpenCloseRequestError(
+            "state must be PersistentWorldObjectOpenCloseRuntimeState"
+        )
+    if object_open_state_for(state, object_entity_id) is None:
+        return False
+    try:
+        _validate_current_availability(
+            representation=state.custody_state.movement_state.representation,
+            actor_entity_id=actor_entity_id,
+            object_entity_id=object_entity_id,
+        )
+    except (
+        PersistentWorldObjectOpenCloseEntityError,
+        PersistentWorldObjectOpenClosePlacementError,
+    ):
+        return False
+    return True
+
+
 def _replace_open_state(
     object_open_states: Sequence[PersistentWorldObjectOpenState],
     *,
