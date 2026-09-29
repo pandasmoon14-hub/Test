@@ -45,7 +45,7 @@ def test_int2_fixture_adds_independent_lit_state_without_redefining_lower_digest
     fixture = create_terminal_play_fixture()
     app = MyravantPlayApplication.new(fixture=fixture)
 
-    assert FIXTURE_VERSION == "0.1.6"
+    assert FIXTURE_VERSION == "0.2.0"
     assert fixture.provenance.initial_state_digest == FIXTURE_INITIAL_STATE_DIGEST
     assert fixture.provenance.initial_world_state_digest == FIXTURE_INITIAL_WORLD_STATE_DIGEST
     assert fixture.provenance.initial_object_lit_state_digest == FIXTURE_INITIAL_OBJECT_LIT_STATE_DIGEST
@@ -56,7 +56,8 @@ def test_int2_fixture_adds_independent_lit_state_without_redefining_lower_digest
     assert digest_persistent_world_object_lit_runtime_state(app.lit_state) == (
         FIXTURE_INT2_INITIAL_WORLD_STATE_DIGEST
     )
-    assert app.authoritative_digest() == FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST
+    assert app.storage_world_digest() == FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST
+    assert app.authoritative_digest() != FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST
     assert app.object_open_state(TOOL_CHEST_ID).state == "closed"
     assert app.object_lit_state(LANTERN_ID).state == "unlit"
 

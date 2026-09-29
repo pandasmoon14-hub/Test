@@ -152,7 +152,9 @@ def test_component_checkpoint_is_deterministic_for_same_state_and_qualification(
 def test_component_checkpoint_round_trip_preserves_authoritative_state(tmp_path):
     path = tmp_path / "component.json"
     app = _rich_app(path)
-    before = app.authoritative_digest()
+    before = digest_persistent_world_object_storage_runtime_state(
+        app.storage_state
+    )
 
     write_persistent_world_component_checkpoint(
         state=app.storage_state,

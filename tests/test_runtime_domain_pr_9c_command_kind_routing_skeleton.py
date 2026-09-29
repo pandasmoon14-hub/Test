@@ -168,7 +168,7 @@ class TestCommandFamilies:
         required = {
             "movement", "inspection", "interaction", "social", "combat",
             "ability", "inventory", "recovery", "crafting", "travel",
-            "research", "mission", "system_meta", "unknown",
+            "research", "mission", "time", "system_meta", "unknown",
         }
         assert required <= COMMAND_KIND_FAMILIES
 
@@ -177,7 +177,7 @@ class TestCommandFamilies:
         expected = {
             "movement", "inspection", "interaction", "social", "combat",
             "ability", "inventory", "recovery", "crafting", "travel",
-            "research", "mission", "system_meta", "unknown",
+            "research", "mission", "time", "system_meta", "unknown",
         }
         assert COMMAND_KIND_FAMILIES == expected
 
@@ -884,3 +884,15 @@ class TestMalformedInput:
                 family="inspection",
                 kind="inspect",
             )
+
+
+def test_world1_wait_routes_to_time_family():
+    from astra_runtime.domain.command_kind_routing_skeleton import (
+        route_command_envelope,
+    )
+    envelope = _make_envelope("wait")
+    result = route_command_envelope(
+        request_ref=build_record_id("req", "world1_wait"),
+        command_envelope=envelope,
+    )
+    assert result.classification.family == "time"

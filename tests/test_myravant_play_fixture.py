@@ -29,6 +29,7 @@ from astra_runtime.myravant_play_fixture import (
     FIXTURE_STATUS,
     FIXTURE_VERSION,
     GATEHOUSE_ID,
+    GROUNDSKEEPER_ID,
     LANTERN_ID,
     ORCHARD_PATH_ID,
     PLAYER_ID,
@@ -106,6 +107,7 @@ def test_fixture_authoritative_starting_structure_is_version_locked():
         (LANTERN_ID, WORKSHOP_ID),
         (TOOL_CHEST_ID, YARD_ID),
         (WAYSTONE_ID, ORCHARD_PATH_ID),
+        (GROUNDSKEEPER_ID, GATEHOUSE_ID),
     }
 
     actual_digest = digest_persistent_world_entity_location_representation(
@@ -310,7 +312,7 @@ def test_fixture_custody_policy_emits_only_bounded_owner_evidence():
 def test_obs1_fixture_public_descriptions_are_state_independent_and_versioned():
     fixture = create_terminal_play_fixture()
 
-    assert FIXTURE_VERSION == "0.1.6"
+    assert FIXTURE_VERSION == "0.2.0"
     assert "TERMINAL-PLAY-OBS-1" in FIXTURE_PLAYABLE_NEED_REFS
     assert "TERMINAL-PLAY-INT-1" in FIXTURE_PLAYABLE_NEED_REFS
     assert "TERMINAL-PLAY-INT-2" in FIXTURE_PLAYABLE_NEED_REFS
@@ -377,3 +379,17 @@ def test_comp2_sensing_changes_only_afqr19_custody_evidence_identity():
     assert lit_opportunity.opportunity_available is True
     assert dark_opportunity.input_evidence_refs == (dark.evidence_id,)
     assert lit_opportunity.input_evidence_refs == (lit.evidence_id,)
+
+
+def test_world1_fixture_declares_first_actor_separately_from_objects():
+    from astra_runtime.myravant_play_fixture import GROUNDSKEEPER_ID
+    fixture = create_terminal_play_fixture()
+    actor = fixture.actor_presentation(GROUNDSKEEPER_ID)
+    assert actor.name == "Groundskeeper"
+    assert GROUNDSKEEPER_ID not in {
+        item.entity_id for item in fixture.object_presentations
+    }
+    assert GROUNDSKEEPER_ID in {
+        item.entity_id for item in fixture.actor_presentations
+    }
+    assert "TERMINAL-PLAY-WORLD-1" in FIXTURE_PLAYABLE_NEED_REFS

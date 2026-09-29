@@ -71,7 +71,7 @@ from astra_runtime.kernel.record_identity import build_record_id
 
 
 FIXTURE_ID = "myravant-native-terminal-g1"
-FIXTURE_VERSION = "0.1.6"
+FIXTURE_VERSION = "0.2.0"
 FIXTURE_AMBIENT_VISUAL_PROFILE_VERSION = "comp1-v1"
 FIXTURE_AMBIENT_VISUAL_CONDITION_DIGEST = (
     "2cb0800bc31c0e4844b25b82fad5c0ed421898b59c3d13c109ea475f05ddfb34"
@@ -87,19 +87,19 @@ FIXTURE_ORIGIN_MERGE_COMMIT = "5429cdddf9dc71831fbb5ceab302e83e7f6e0f0c"
 FIXTURE_ORIGIN_MERGED_AT = "2026-09-22T05:39:13Z"
 FIXTURE_G1_BASELINE_SHA = "55461eb5ab9ac373cca9fa7b978ce71d0a11669c"
 FIXTURE_INITIAL_STATE_DIGEST = (
-    "124e7b67da79de2e267fe53ba0de51c88ec99070c06fae6ab0bd463d80b146eb"
+    "6034a438607cfbe096a8ef7e7c11f7912bf02b4dc92b23c9cecd89ccf26fd35c"
 )
 FIXTURE_INITIAL_WORLD_STATE_DIGEST = (
-    "f3065b22adb1ac5df2472ad7208048f6dca871e265fd1da1baceebf366a7a75f"
+    "46d1a4b67b1045a87efbba4f79429ae2370d35aeff8de2954c78f6580265cfe7"
 )
 FIXTURE_INITIAL_OBJECT_LIT_STATE_DIGEST = (
     "db500e8154586baef322759b6c12690326a52beb79762b40019fd4f06f4d8679"
 )
 FIXTURE_INT2_INITIAL_WORLD_STATE_DIGEST = (
-    "a6a130224028dc2ed1841caf604b7d61901c36390a5b1162b8f2da4280bc2628"
+    "a5e5f5ad8f1295a787219e10f27401e3dbcf6a12e725a97230cb618245353f2f"
 )
 FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST = (
-    "206a30f6c4800306d3e623ed8aea420cc07a4ec08e8f56411b0065fd2cea4586"
+    "15d06c3da065020878792cc774d4cf51998094ddd9b76a68eb5da77b26380094"
 )
 FIXTURE_PLAYABLE_NEED_REFS = (
     "R4-B",
@@ -112,6 +112,7 @@ FIXTURE_PLAYABLE_NEED_REFS = (
     "TERMINAL-PLAY-INT-3",
     "TERMINAL-PLAY-COMP-1",
     "TERMINAL-PLAY-COMP-2",
+    "TERMINAL-PLAY-WORLD-1",
     "R4-E-readiness",
 )
 FIXTURE_REQUIREMENT_REFS = (
@@ -137,6 +138,7 @@ GATEHOUSE_ID = "astra:entity:gatehouse"
 LANTERN_ID = "astra:entity:brass-lantern"
 TOOL_CHEST_ID = "astra:entity:tool-chest"
 WAYSTONE_ID = "astra:entity:weathered-waystone"
+GROUNDSKEEPER_ID = "astra:entity:groundskeeper"
 
 
 class MyravantPlayFixtureError(ValueError):
@@ -242,6 +244,7 @@ class MyravantPlayFixture:
     ambient_visual_profile_version: str
     place_presentations: tuple[PublicEntityPresentation, ...]
     object_presentations: tuple[PublicEntityPresentation, ...]
+    actor_presentations: tuple[PublicEntityPresentation, ...]
     movement_routes: tuple[FixtureMovementRoute, ...]
     checkpoint_qualification: Mapping[str, object]
     provenance: FixtureProvenanceReceipt
@@ -276,6 +279,15 @@ class MyravantPlayFixture:
             raise MyravantPlayFixtureError(
                 "ambient visual conditions must be sufficient or insufficient"
             )
+        declared_ids = [
+            *(item.entity_id for item in self.place_presentations),
+            *(item.entity_id for item in self.object_presentations),
+            *(item.entity_id for item in self.actor_presentations),
+        ]
+        if len(declared_ids) != len(set(declared_ids)):
+            raise MyravantPlayFixtureError(
+                "place/object/actor presentation identities must be disjoint"
+            )
 
     def place_presentation(self, place_id: str) -> PublicEntityPresentation:
         for presentation in self.place_presentations:
@@ -305,12 +317,16 @@ class MyravantPlayFixture:
             raise MyravantPlayFixtureError(
                 "COMP-1 supports only the bounded fixture player observer"
             )
-        if target_entity_id not in {
+        observable_target_ids = {
             presentation.entity_id
-            for presentation in self.object_presentations
-        }:
+            for presentation in (
+                *self.object_presentations,
+                *self.actor_presentations,
+            )
+        }
+        if target_entity_id not in observable_target_ids:
             raise UnavailableFixtureCustodyError(
-                "visual observation target is not a declared fixture object"
+                "visual observation target is not a declared fixture entity"
             )
         if type(local_light_available) is not bool:
             raise MyravantPlayFixtureError(
@@ -362,10 +378,21 @@ class MyravantPlayFixture:
             "object presentation is not declared in the bounded fixture"
         )
 
+    def actor_presentation(
+        self, actor_entity_id: str,
+    ) -> PublicEntityPresentation:
+        for presentation in self.actor_presentations:
+            if presentation.entity_id == actor_entity_id:
+                return presentation
+        raise MyravantPlayFixtureError(
+            "actor presentation is not declared in the bounded fixture"
+        )
+
     def entity_name(self, entity_id: str) -> str:
         for presentation in (
             *self.place_presentations,
             *self.object_presentations,
+            *self.actor_presentations,
         ):
             if presentation.entity_id == entity_id:
                 return presentation.name
@@ -426,6 +453,48 @@ class MyravantPlayFixture:
             resolution_accepted=True,
         )
         return spatial, opportunity
+
+    def autonomous_movement_evidence(
+        self,
+        *,
+        command_id: str,
+        actor_entity_id: str,
+        source_place_id: str,
+        destination_place_id: str,
+    ) -> tuple[MovementSpatialEvidence, MovementOpportunityEvidence]:
+        if actor_entity_id != GROUNDSKEEPER_ID:
+            raise UnavailableFixtureMovementError(
+                "WORLD-1 autonomous movement is bounded to Groundskeeper"
+            )
+        if (source_place_id, destination_place_id) not in {
+            (GATEHOUSE_ID, YARD_ID),
+            (YARD_ID, GATEHOUSE_ID),
+        }:
+            raise UnavailableFixtureMovementError(
+                "WORLD-1 autonomous movement must use the existing "
+                "Yard/Gatehouse route"
+            )
+        token = hashlib.sha256(command_id.encode("utf-8")).hexdigest()[:20]
+        return (
+            create_movement_spatial_evidence(
+                evidence_id=build_record_id(
+                    "evidence", f"world1-spatial-{token}"
+                ),
+                actor_entity_id=actor_entity_id,
+                source_place_id=source_place_id,
+                destination_place_id=destination_place_id,
+                spatially_permitted=True,
+            ),
+            create_movement_opportunity_evidence(
+                evidence_id=build_record_id(
+                    "evidence", f"world1-opportunity-{token}"
+                ),
+                actor_entity_id=actor_entity_id,
+                destination_place_id=destination_place_id,
+                opportunity_available=True,
+                resolution_accepted=True,
+            ),
+        )
 
     def resolve_object_reference(self, reference: str) -> str:
         """Resolve a bounded player-facing object reference without authority."""
@@ -770,6 +839,26 @@ class MyravantPlayFixture:
             if presentation.entity_id in carried_ids
         )
 
+    def public_actors_at(
+        self,
+        representation: PersistentWorldEntityLocationRepresentation,
+        place_id: str,
+    ) -> tuple[PublicEntityPresentation, ...]:
+        actor_ids = {
+            relation.subject_entity_id
+            for relation in representation.relations
+            if (
+                relation.relation_type == LOCATED_AT_RELATION_TYPE
+                and relation.object_entity_id == place_id
+                and relation.subject_entity_id != self.player_entity_id
+            )
+        }
+        return tuple(
+            presentation
+            for presentation in self.actor_presentations
+            if presentation.entity_id in actor_ids
+        )
+
     def public_entities_at(
         self,
         representation: PersistentWorldEntityLocationRepresentation,
@@ -818,12 +907,18 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             _entity(LANTERN_ID, "object"),
             _entity(TOOL_CHEST_ID, "object"),
             _entity(WAYSTONE_ID, "object"),
+            _entity(GROUNDSKEEPER_ID, "character_or_creature"),
         ),
         relations=(
             _located("g1-player-workshop", PLAYER_ID, WORKSHOP_ID),
             _located("g1-lantern-workshop", LANTERN_ID, WORKSHOP_ID),
             _located("g1-tool-chest-yard", TOOL_CHEST_ID, YARD_ID),
             _located("g1-waystone-orchard", WAYSTONE_ID, ORCHARD_PATH_ID),
+            _located(
+                "world1-groundskeeper-gatehouse",
+                GROUNDSKEEPER_ID,
+                GATEHOUSE_ID,
+            ),
         ),
     )
 
@@ -1008,6 +1103,16 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         ),
     )
 
+    actors = (
+        PublicEntityPresentation(
+            entity_id=GROUNDSKEEPER_ID,
+            name="Groundskeeper",
+            description=(
+                "A quiet groundskeeper tends the bounded test grounds."
+            ),
+        ),
+    )
+
     checkpoint_qualification = {
         "qualification_id": build_record_id(
             "evidence",
@@ -1056,6 +1161,7 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         ambient_visual_profile_version=FIXTURE_AMBIENT_VISUAL_PROFILE_VERSION,
         place_presentations=places,
         object_presentations=objects,
+        actor_presentations=actors,
         movement_routes=routes,
         checkpoint_qualification=checkpoint_qualification,
         provenance=provenance,

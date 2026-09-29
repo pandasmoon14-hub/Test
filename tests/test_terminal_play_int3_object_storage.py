@@ -18,6 +18,8 @@ from astra_runtime.domain.persistent_world_entity_location_representation import
 from astra_runtime.domain.persistent_world_component_checkpoint import (
     COMPONENT_CHECKPOINT_COMPONENT_KEYS,
     COMPONENT_CHECKPOINT_FORMAT_IDENTITY,
+    WORLD1_COMPONENT_CHECKPOINT_COMPONENT_KEYS,
+    WORLD1_COMPONENT_CHECKPOINT_FORMAT_VERSION,
 )
 from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     PersistentWorldCheckpointEvidenceError,
@@ -74,9 +76,10 @@ def test_int3_contained_by_relation_is_rt010_owned_and_rejects_self_containment(
 
 def test_int3_fixture_version_and_initial_digest_are_frozen():
     app = MyravantPlayApplication.new()
-    assert FIXTURE_VERSION == "0.1.6"
+    assert FIXTURE_VERSION == "0.2.0"
     assert app.lit_state == app.storage_state.lit_state
-    assert app.authoritative_digest() == FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST
+    assert app.storage_world_digest() == FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST
+    assert app.authoritative_digest() != FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST
     assert digest_persistent_world_object_storage_runtime_state(app.storage_state) == (
         FIXTURE_INT3_INITIAL_WORLD_STATE_DIGEST
     )
@@ -193,8 +196,9 @@ def test_int3_checkpoint_round_trip_preserves_storage_and_lower_state(tmp_path):
 
     envelope = json.loads(checkpoint.read_text(encoding="utf-8"))
     assert envelope["format_identity"] == COMPONENT_CHECKPOINT_FORMAT_IDENTITY
+    assert envelope["format_version"] == WORLD1_COMPONENT_CHECKPOINT_FORMAT_VERSION
     assert set(envelope["authoritative_payload"]["components"]) == set(
-        COMPONENT_CHECKPOINT_COMPONENT_KEYS
+        WORLD1_COMPONENT_CHECKPOINT_COMPONENT_KEYS
     )
     assert "int2_state" not in envelope["authoritative_payload"]
 

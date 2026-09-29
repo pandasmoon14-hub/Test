@@ -13,7 +13,14 @@ from pathlib import Path
 
 from astra_runtime.domain.persistent_world_component_checkpoint import (
     restore_persistent_world_component_checkpoint,
-    write_persistent_world_component_checkpoint,
+    restore_persistent_world_world1_checkpoint,
+    write_persistent_world_world1_checkpoint,
+)
+from astra_runtime.domain.persistent_world_logical_time import (
+    PersistentWorldLogicalTimeError,
+    WORLD1_SCHEDULER_PROFILE_ID,
+    digest_persistent_world_logical_time_state,
+    prepare_persistent_world_logical_time,
 )
 from astra_runtime.domain.persistent_world_runtime_composition import (
     PersistentWorldRuntimeComposition,
@@ -23,10 +30,12 @@ from astra_runtime.domain.persistent_world_runtime_composition import (
     compose_persistent_world_storage_state,
     create_persistent_world_runtime_composition,
     create_persistent_world_runtime_composition_from_storage_state,
+    digest_persistent_world_runtime_composition,
     replace_persistent_world_runtime_custody_state,
     replace_persistent_world_runtime_lit_state,
     replace_persistent_world_runtime_movement_state,
     replace_persistent_world_runtime_open_close_state,
+    replace_persistent_world_runtime_storage_state,
 )
 from astra_runtime.domain.persistent_world_entity_location_representation import (
     CARRIED_BY_RELATION_TYPE,
@@ -42,9 +51,15 @@ from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     restore_persistent_world_object_storage_checkpoint,
 )
 from astra_runtime.domain.persistent_world_movement_integration import (
+    PersistentWorldMovementIntegrationError,
     PersistentWorldMovementRuntimeState,
     digest_persistent_world_entity_location_representation,
     execute_persistent_world_movement,
+    prepare_persistent_world_movement,
+)
+from astra_runtime.domain.persistent_world_world_advancement import (
+    PersistentWorldWorldAdvancementError,
+    commit_prepared_persistent_world_world_advancement,
 )
 from astra_runtime.domain.persistent_world_object_custody_transfer import (
     PersistentWorldObjectCustodyError,
@@ -81,8 +96,12 @@ from astra_runtime.domain.persistent_world_object_open_close import (
     object_open_state_for,
 )
 from astra_runtime.kernel.command_envelope import create_command_envelope
+from astra_runtime.kernel.record_identity import build_record_id
 from astra_runtime.myravant_play_fixture import (
+    GATEHOUSE_ID,
+    GROUNDSKEEPER_ID,
     LANTERN_ID,
+    YARD_ID,
     MyravantPlayFixture,
     UnavailableFixtureCustodyError,
     UnavailableFixtureMovementError,
@@ -95,6 +114,7 @@ _CUSTODY_COMMAND_ID_PATTERN = re.compile(r"^terminal-custody-(\d{6})$")
 _OBJECT_STATE_COMMAND_ID_PATTERN = re.compile(r"^terminal-object-state-(\d{6})$")
 _OBJECT_LIT_STATE_COMMAND_ID_PATTERN = re.compile(r"^terminal-object-lit-state-(\d{6})$")
 _STORAGE_COMMAND_ID_PATTERN = re.compile(r"^terminal-storage-(\d{6})$")
+_TIME_COMMAND_ID_PATTERN = re.compile(r"^terminal-time-(\d{6})$")
 
 
 class MyravantPlayApplicationError(ValueError):
@@ -112,6 +132,7 @@ class PublicLocationView:
     description: str
     exits: tuple[str, ...]
     objects: tuple[str, ...]
+    actors: tuple[str, ...]
     carrying: tuple[str, ...]
 
 
@@ -135,6 +156,11 @@ class PlayApplicationResult:
     spatial_evidence_id: str | None = None
     observation_evidence_id: str | None = None
     opportunity_evidence_id: str | None = None
+    due_process_ref: str | None = None
+    consequence_receipt_id: str | None = None
+    consequence_state_delta_id: str | None = None
+    logical_time_before: int | None = None
+    logical_time_after: int | None = None
     pre_state_digest: str | None = None
     post_state_digest: str | None = None
     checkpoint_digest: str | None = None
@@ -236,6 +262,29 @@ class MyravantPlayApplication:
         bounded_fixture = fixture or create_terminal_play_fixture()
 
         try:
+            runtime_state = restore_persistent_world_world1_checkpoint(
+                checkpoint_path=checkpoint_path,
+                expected_campaign_id=bounded_fixture.campaign_id,
+                expected_initial_open_states=(
+                    bounded_fixture.initial_object_open_states
+                ),
+                expected_initial_lit_states=(
+                    bounded_fixture.initial_object_lit_states
+                ),
+                expected_initial_representation_digest=(
+                    bounded_fixture.provenance.initial_state_digest
+                ),
+            )
+        except PersistentWorldCheckpointFormatError:
+            runtime_state = None
+        if runtime_state is not None:
+            return cls(
+                fixture=bounded_fixture,
+                runtime_state=runtime_state,
+                checkpoint_path=checkpoint_path,
+            )
+
+        try:
             storage_state = restore_persistent_world_component_checkpoint(
                 checkpoint_path=checkpoint_path,
                 expected_campaign_id=bounded_fixture.campaign_id,
@@ -324,9 +373,14 @@ class MyravantPlayApplication:
             self._lit_state.object_lit_states
         )
 
-    def authoritative_digest(self) -> str:
+    def storage_world_digest(self) -> str:
         return digest_persistent_world_object_storage_runtime_state(
             self.storage_state
+        )
+
+    def authoritative_digest(self) -> str:
+        return digest_persistent_world_runtime_composition(
+            self._runtime_state
         )
 
     def object_open_state(
@@ -341,21 +395,24 @@ class MyravantPlayApplication:
     ) -> PersistentWorldObjectLitState | None:
         return object_lit_state_for(self._lit_state, object_entity_id)
 
-    def current_place_id(self) -> str:
+    def entity_place_id(self, entity_id: str) -> str:
         matches = [
             relation
             for relation in self.state.representation.relations
             if (
                 relation.relation_type == LOCATED_AT_RELATION_TYPE
-                and relation.subject_entity_id == self.fixture.player_entity_id
+                and relation.subject_entity_id == entity_id
             )
         ]
         if len(matches) != 1:
             raise MyravantPlayApplicationError(
-                "bounded player must have exactly one authoritative "
-                "current location"
+                "bounded character/creature must have exactly one "
+                "authoritative current location"
             )
         return matches[0].object_entity_id
+
+    def current_place_id(self) -> str:
+        return self.entity_place_id(self.fixture.player_entity_id)
 
     def look(self) -> PlayApplicationResult:
         place_id = self.current_place_id()
@@ -369,6 +426,13 @@ class MyravantPlayApplication:
             for item in candidates
             if self._object_currently_observable(item.entity_id)
         )
+        actors = tuple(
+            item
+            for item in self.fixture.public_actors_at(
+                self.state.representation, place_id
+            )
+            if self.visual_observation_evidence(item.entity_id).observable
+        )
         carrying = self.fixture.public_entities_carried_by(
             self.state.representation,
             self.fixture.player_entity_id,
@@ -379,6 +443,7 @@ class MyravantPlayApplication:
             description=presentation.description,
             exits=self.fixture.exits_from(place_id),
             objects=tuple(item.name for item in objects),
+            actors=tuple(item.name for item in actors),
             carrying=tuple(item.name for item in carrying),
         )
         digest = self.authoritative_digest()
@@ -522,6 +587,25 @@ class MyravantPlayApplication:
         sequence = highest + 1
         while True:
             candidate = f"terminal-storage-{sequence:06d}"
+            if candidate not in used:
+                return candidate
+            sequence += 1
+
+    def _next_time_command_id(self) -> str:
+        used = {
+            transition.command_id
+            for transition in (
+                self._runtime_state.logical_time_state.committed_transitions
+            )
+        }
+        highest = 0
+        for command_id in used:
+            match = _TIME_COMMAND_ID_PATTERN.fullmatch(command_id)
+            if match:
+                highest = max(highest, int(match.group(1)))
+        sequence = highest + 1
+        while True:
+            candidate = f"terminal-time-{sequence:06d}"
             if candidate not in used:
                 return candidate
             sequence += 1
@@ -1217,10 +1301,9 @@ class MyravantPlayApplication:
                 failure_class=type(exc).__name__,
             )
 
-        self._runtime_state = (
-            create_persistent_world_runtime_composition_from_storage_state(
-                result.state
-            )
+        self._runtime_state = replace_persistent_world_runtime_storage_state(
+            state=self._runtime_state,
+            storage_state=result.state,
         )
         object_name = self.fixture.entity_name(object_entity_id)
         container_name = self.fixture.entity_name(container_entity_id)
@@ -1323,6 +1406,127 @@ class MyravantPlayApplication:
             object_reference=object_reference,
         )
 
+    def wait(self) -> PlayApplicationResult:
+        pre_digest = self.authoritative_digest()
+        pre_time = self._runtime_state.logical_time_state
+        command_id = self._next_time_command_id()
+        command = create_command_envelope(
+            command_id=command_id,
+            command_type="wait",
+            source_actor_id=self.fixture.player_entity_id,
+            payload={
+                "advance_steps": 1,
+                "scheduler_profile_id": WORLD1_SCHEDULER_PROFILE_ID,
+            },
+            metadata={"client": "myravant-terminal-world1"},
+        )
+        try:
+            prepared_time = prepare_persistent_world_logical_time(
+                state=pre_time,
+                command=command,
+                expected_pre_state_digest=(
+                    digest_persistent_world_logical_time_state(pre_time)
+                ),
+            )
+            destination_place_id = (
+                YARD_ID
+                if prepared_time.post_position % 2 == 1
+                else GATEHOUSE_ID
+            )
+            source_place_id = self.entity_place_id(GROUNDSKEEPER_ID)
+            movement_command = create_command_envelope(
+                command_id=(
+                    "world1-npc-move-"
+                    + prepared_time.command_fingerprint[:24]
+                ),
+                command_type="move",
+                source_actor_id=GROUNDSKEEPER_ID,
+                payload={"destination_entity_id": destination_place_id},
+                metadata={
+                    "client": "myravant-world1-scheduler",
+                    "source_time_command_id": command_id,
+                },
+            )
+            spatial, opportunity = (
+                self.fixture.autonomous_movement_evidence(
+                    command_id=movement_command.command_id,
+                    actor_entity_id=GROUNDSKEEPER_ID,
+                    source_place_id=source_place_id,
+                    destination_place_id=destination_place_id,
+                )
+            )
+            prepared_movement = prepare_persistent_world_movement(
+                state=self.state,
+                command=movement_command,
+                spatial_evidence=spatial,
+                opportunity_evidence=opportunity,
+                expected_pre_state_digest=self.representation_digest(),
+            )
+            due_process_ref = build_record_id(
+                "evidence",
+                "world1-due-"
+                + prepared_time.command_fingerprint[:20],
+            )
+            advancement = (
+                commit_prepared_persistent_world_world_advancement(
+                    state=self._runtime_state,
+                    time_prepared=prepared_time,
+                    movement_prepared=prepared_movement,
+                    due_process_ref=due_process_ref,
+                )
+            )
+        except (
+            PersistentWorldLogicalTimeError,
+            PersistentWorldMovementIntegrationError,
+            PersistentWorldWorldAdvancementError,
+            UnavailableFixtureMovementError,
+        ) as exc:
+            return PlayApplicationResult(
+                result_type="world_advancement_rejected",
+                message=(
+                    "The bounded world advancement was rejected by "
+                    "the authoritative runtime."
+                ),
+                authoritative_changed=False,
+                command_id=command_id,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                logical_time_before=pre_time.logical_position,
+                logical_time_after=pre_time.logical_position,
+                failure_class=type(exc).__name__,
+            )
+        self._runtime_state = advancement.state
+        return PlayApplicationResult(
+            result_type="world_advanced",
+            message="Time passes.",
+            authoritative_changed=True,
+            command_id=command_id,
+            command_fingerprint=(
+                advancement.time_receipt.command_fingerprint
+            ),
+            preview_id=advancement.time_preview.preview_id,
+            receipt_id=advancement.time_receipt.receipt_id,
+            state_delta_id=advancement.time_state_delta.delta_id,
+            spatial_evidence_id=(
+                advancement.movement_receipt.spatial_evidence_id
+            ),
+            opportunity_evidence_id=(
+                advancement.movement_receipt.opportunity_evidence_id
+            ),
+            due_process_ref=advancement.due_process_ref,
+            consequence_receipt_id=(
+                advancement.movement_receipt.receipt_id
+            ),
+            consequence_state_delta_id=(
+                advancement.movement_state_delta.delta_id
+            ),
+            logical_time_before=advancement.time_receipt.pre_position,
+            logical_time_after=advancement.time_receipt.post_position,
+            pre_state_digest=pre_digest,
+            post_state_digest=self.authoritative_digest(),
+            technical_retry=advancement.technical_retry,
+        )
+
     def save(self) -> PlayApplicationResult:
         if self.checkpoint_path is None:
             raise CheckpointPathRequiredError(
@@ -1331,8 +1535,8 @@ class MyravantPlayApplication:
 
         pre_digest = self.authoritative_digest()
         checkpoint_digest = (
-            write_persistent_world_component_checkpoint(
-                state=self.storage_state,
+            write_persistent_world_world1_checkpoint(
+                state=self._runtime_state,
                 checkpoint_path=self.checkpoint_path,
                 qualification_evidence=self.fixture.checkpoint_qualification,
             )
