@@ -47,6 +47,7 @@ def _root_snapshot(state: PersistentWorldRuntimeComposition) -> dict[str, object
             state.committed_object_lit_transitions
         ),
         "committed_storage_transitions": state.committed_storage_transitions,
+        "logical_time_state": state.logical_time_state,
     }
 
 
@@ -61,6 +62,7 @@ def test_runtime_composition_has_only_flat_current_state_fields():
         "object_lit_states",
         "committed_object_lit_transitions",
         "committed_storage_transitions",
+        "logical_time_state",
     }
     assert "custody_state" not in names
     assert "open_close_state" not in names
@@ -127,6 +129,7 @@ def test_movement_updates_only_movement_component_at_composition_root():
         "object_lit_states",
         "committed_object_lit_transitions",
         "committed_storage_transitions",
+        "logical_time_state",
     ):
         assert after[key] == before[key]
 
@@ -210,16 +213,18 @@ def test_lit_state_updates_only_lit_owned_material():
     )
 
 
-def test_authoritative_digest_remains_existing_storage_composite_digest():
+def test_authoritative_digest_expands_beyond_storage_without_changing_storage_digest():
     app = MyravantPlayApplication.new()
     app.light_object("lantern")
     app.pickup("lantern")
     app.move("south")
     app.open_object("tool chest")
 
-    assert app.authoritative_digest() == (
-        digest_persistent_world_object_storage_runtime_state(app.storage_state)
+    storage_digest = digest_persistent_world_object_storage_runtime_state(
+        app.storage_state
     )
+    assert app.storage_world_digest() == storage_digest
+    assert app.authoritative_digest() != storage_digest
 
 
 def test_component_checkpoint_bytes_are_stable_through_flat_projection():

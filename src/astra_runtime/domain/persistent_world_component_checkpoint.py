@@ -1,12 +1,7 @@
-"""Static componentized checkpoint format for the Myravant playable runtime.
+"""Static componentized checkpoint formats for the Myravant playable runtime.
 
-This module changes checkpoint composition, not semantic ownership. It flattens
-the already-authoritative R4-E / INT-1 / INT-2 / INT-3 checkpoint material into
-five fixed components, then reconstructs the exact INT-3 payload for the
-existing semantic restore validator.
-
-There is intentionally no dynamic component registry, plugin discovery,
-generic property store, reducer dispatch, or new replay authority here.
+Version 1 preserves the five-component RUNTIME-CHECKPOINT-COMPONENTIZATION-1
+format. WORLD-1 adds version 2 with one typed logical-time component.
 """
 
 from __future__ import annotations
@@ -34,6 +29,11 @@ from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     _sha256_bytes,
     serialize_persistent_world_object_storage_checkpoint_payload,
 )
+from astra_runtime.domain.persistent_world_logical_time import (
+    InvalidPersistentWorldLogicalTimeRequestError,
+    restore_persistent_world_logical_time_state,
+    serialize_persistent_world_logical_time_state,
+)
 from astra_runtime.domain.persistent_world_object_lit_state import (
     PersistentWorldObjectLitState,
 )
@@ -43,25 +43,25 @@ from astra_runtime.domain.persistent_world_object_open_close import (
 from astra_runtime.domain.persistent_world_object_storage_transfer import (
     PersistentWorldObjectStorageRuntimeState,
 )
-
+from astra_runtime.domain.persistent_world_runtime_composition import (
+    PersistentWorldRuntimeComposition,
+    compose_persistent_world_storage_state,
+    create_persistent_world_runtime_composition_from_storage_state,
+)
 
 COMPONENT_CHECKPOINT_FORMAT_IDENTITY = (
     "myravant.componentized.persistent_world_checkpoint"
 )
 COMPONENT_CHECKPOINT_FORMAT_VERSION = 1
+WORLD1_COMPONENT_CHECKPOINT_FORMAT_VERSION = 2
 
 COMPONENT_CHECKPOINT_COMPONENT_KEYS = frozenset(
-    {
-        "placement",
-        "custody",
-        "open_close",
-        "lit_state",
-        "storage",
-    }
+    {"placement", "custody", "open_close", "lit_state", "storage"}
 )
-
+WORLD1_COMPONENT_CHECKPOINT_COMPONENT_KEYS = frozenset(
+    {*COMPONENT_CHECKPOINT_COMPONENT_KEYS, "logical_time"}
+)
 _PAYLOAD_KEYS = frozenset({"components"})
-
 _PLACEMENT_COMPONENT_KEYS = frozenset(
     {
         "representation",
@@ -70,14 +70,9 @@ _PLACEMENT_COMPONENT_KEYS = frozenset(
         "movement_transition_summary",
     }
 )
-
 _CUSTODY_COMPONENT_KEYS = frozenset(
-    {
-        "committed_custody_transitions",
-        "custody_transition_summary",
-    }
+    {"committed_custody_transitions", "custody_transition_summary"}
 )
-
 _OPEN_CLOSE_COMPONENT_KEYS = frozenset(
     {
         "object_open_states",
@@ -87,7 +82,6 @@ _OPEN_CLOSE_COMPONENT_KEYS = frozenset(
         "object_state_transition_summary",
     }
 )
-
 _LIT_STATE_COMPONENT_KEYS = frozenset(
     {
         "object_lit_states",
@@ -97,7 +91,6 @@ _LIT_STATE_COMPONENT_KEYS = frozenset(
         "object_lit_transition_summary",
     }
 )
-
 _STORAGE_COMPONENT_KEYS = frozenset(
     {
         "containment_digest",
@@ -108,36 +101,15 @@ _STORAGE_COMPONENT_KEYS = frozenset(
 )
 
 
-__all__ = [
-    "COMPONENT_CHECKPOINT_FORMAT_IDENTITY",
-    "COMPONENT_CHECKPOINT_FORMAT_VERSION",
-    "COMPONENT_CHECKPOINT_COMPONENT_KEYS",
-    "serialize_persistent_world_component_checkpoint_payload",
-    "canonical_serialize_persistent_world_component_checkpoint_payload",
-    "build_persistent_world_component_checkpoint_envelope",
-    "canonical_serialize_persistent_world_component_checkpoint_envelope",
-    "write_persistent_world_component_checkpoint",
-    "restore_persistent_world_component_checkpoint",
-]
-
-
-def _select(
-    source: Mapping[str, Any],
-    keys: frozenset[str],
-) -> dict[str, Any]:
+def _select(source: Mapping[str, Any], keys: frozenset[str]):
     return {key: source[key] for key in keys}
 
 
-def serialize_persistent_world_component_checkpoint_payload(
-    state: PersistentWorldObjectStorageRuntimeState,
-) -> dict[str, object]:
-    """Flatten the existing validated INT-3 serialization into fixed components."""
-
+def serialize_persistent_world_component_checkpoint_payload(state):
     legacy = serialize_persistent_world_object_storage_checkpoint_payload(state)
     int2 = legacy["int2_state"]
     int1 = int2["int1_state"]
     r4e = int1["r4e_state"]
-
     return {
         "components": {
             "placement": _select(r4e, _PLACEMENT_COMPONENT_KEYS),
@@ -149,19 +121,15 @@ def serialize_persistent_world_component_checkpoint_payload(
     }
 
 
-def canonical_serialize_persistent_world_component_checkpoint_payload(
-    state: PersistentWorldObjectStorageRuntimeState,
-) -> bytes:
+def canonical_serialize_persistent_world_component_checkpoint_payload(state):
     return _canonical_bytes(
         serialize_persistent_world_component_checkpoint_payload(state)
     )
 
 
 def build_persistent_world_component_checkpoint_envelope(
-    *,
-    state: PersistentWorldObjectStorageRuntimeState,
-    qualification_evidence: Mapping[str, Any],
-) -> dict[str, object]:
+    *, state, qualification_evidence
+):
     payload = serialize_persistent_world_component_checkpoint_payload(state)
     qualification = _normalize_qualification(qualification_evidence)
     campaign_id = (
@@ -179,10 +147,8 @@ def build_persistent_world_component_checkpoint_envelope(
 
 
 def canonical_serialize_persistent_world_component_checkpoint_envelope(
-    *,
-    state: PersistentWorldObjectStorageRuntimeState,
-    qualification_evidence: Mapping[str, Any],
-) -> bytes:
+    *, state, qualification_evidence
+):
     return _canonical_bytes(
         build_persistent_world_component_checkpoint_envelope(
             state=state,
@@ -191,26 +157,15 @@ def canonical_serialize_persistent_world_component_checkpoint_envelope(
     )
 
 
-def write_persistent_world_component_checkpoint(
-    *,
-    state: PersistentWorldObjectStorageRuntimeState,
-    checkpoint_path: str | os.PathLike[str],
-    qualification_evidence: Mapping[str, Any],
-) -> str:
+def _write_envelope(*, envelope, checkpoint_path):
     path = _checkpoint_path(checkpoint_path)
     parent = path.parent
     if not parent.exists() or not parent.is_dir():
         raise PersistentWorldCheckpointWriteError(
             "caller-supplied checkpoint parent directory does not exist"
         )
-
-    envelope = build_persistent_world_component_checkpoint_envelope(
-        state=state,
-        qualification_evidence=qualification_evidence,
-    )
     material = _canonical_bytes(envelope)
-    temporary_path: str | None = None
-
+    temporary_path = None
     try:
         descriptor, temporary_path = tempfile.mkstemp(
             prefix=f".{path.name}.",
@@ -221,27 +176,33 @@ def write_persistent_world_component_checkpoint(
             handle.write(material)
             handle.flush()
             os.fsync(handle.fileno())
-
         _replace_checkpoint_durably(Path(temporary_path), path)
         temporary_path = None
     except OSError as exc:
         if temporary_path is not None:
             try:
                 os.unlink(temporary_path)
-            except FileNotFoundError:
-                pass
-            except OSError:
+            except (FileNotFoundError, OSError):
                 pass
         raise PersistentWorldCheckpointWriteError(
             "component checkpoint durability operation failed"
         ) from exc
-
     return str(envelope["integrity_digest"])
 
 
-def _reconstruct_int3_payload(
-    payload_material: object,
-) -> dict[str, object]:
+def write_persistent_world_component_checkpoint(
+    *, state, checkpoint_path, qualification_evidence
+):
+    return _write_envelope(
+        envelope=build_persistent_world_component_checkpoint_envelope(
+            state=state,
+            qualification_evidence=qualification_evidence,
+        ),
+        checkpoint_path=checkpoint_path,
+    )
+
+
+def _reconstruct_int3_payload(payload_material):
     payload = _require_exact_dict(
         payload_material,
         expected_keys=_PAYLOAD_KEYS,
@@ -254,7 +215,6 @@ def _reconstruct_int3_payload(
         name="component checkpoint components",
         error_cls=PersistentWorldCheckpointEvidenceError,
     )
-
     placement = _require_exact_dict(
         components["placement"],
         expected_keys=_PLACEMENT_COMPONENT_KEYS,
@@ -285,40 +245,26 @@ def _reconstruct_int3_payload(
         name="storage component",
         error_cls=PersistentWorldCheckpointEvidenceError,
     )
-
     r4e = {**placement, **custody}
     int1 = {"r4e_state": r4e, **open_close}
     int2 = {"int1_state": int1, **lit_state}
     return {"int2_state": int2, **storage}
 
 
-def restore_persistent_world_component_checkpoint(
-    *,
-    checkpoint_path: str | os.PathLike[str],
-    expected_campaign_id: str,
-    expected_initial_open_states: tuple[PersistentWorldObjectOpenState, ...],
-    expected_initial_lit_states: tuple[PersistentWorldObjectLitState, ...],
-    expected_initial_representation_digest: str,
-) -> PersistentWorldObjectStorageRuntimeState:
-    path = _checkpoint_path(checkpoint_path)
-    expected_campaign_id = _require_record_id(
-        expected_campaign_id,
-        name="expected_campaign_id",
-    )
-    envelope = _read_checkpoint_envelope(path)
-
+def _validate_envelope_common(
+    *, envelope, expected_campaign_id, expected_version
+):
     if envelope["format_identity"] != COMPONENT_CHECKPOINT_FORMAT_IDENTITY:
         raise PersistentWorldCheckpointFormatError(
             "unsupported component checkpoint format identity"
         )
     if (
         type(envelope["format_version"]) is not int
-        or envelope["format_version"] != COMPONENT_CHECKPOINT_FORMAT_VERSION
+        or envelope["format_version"] != expected_version
     ):
         raise PersistentWorldCheckpointFormatError(
             "unsupported component checkpoint format version"
         )
-
     campaign_identity = _require_record_id(
         envelope["campaign_identity"],
         name="checkpoint campaign_identity",
@@ -327,9 +273,7 @@ def restore_persistent_world_component_checkpoint(
         raise PersistentWorldCheckpointCampaignMismatchError(
             "checkpoint campaign identity does not match caller expectation"
         )
-
     _normalize_qualification(envelope["qualification_provenance"])
-
     payload = _require_exact_dict(
         envelope["authoritative_payload"],
         expected_keys=_PAYLOAD_KEYS,
@@ -345,7 +289,27 @@ def restore_persistent_world_component_checkpoint(
         raise PersistentWorldCheckpointIntegrityError(
             "component checkpoint authoritative payload integrity mismatch"
         )
+    return payload
 
+
+def restore_persistent_world_component_checkpoint(
+    *,
+    checkpoint_path,
+    expected_campaign_id,
+    expected_initial_open_states,
+    expected_initial_lit_states,
+    expected_initial_representation_digest,
+):
+    path = _checkpoint_path(checkpoint_path)
+    expected_campaign_id = _require_record_id(
+        expected_campaign_id, name="expected_campaign_id"
+    )
+    envelope = _read_checkpoint_envelope(path)
+    payload = _validate_envelope_common(
+        envelope=envelope,
+        expected_campaign_id=expected_campaign_id,
+        expected_version=COMPONENT_CHECKPOINT_FORMAT_VERSION,
+    )
     int3_payload = _reconstruct_int3_payload(payload)
     return _restore_persistent_world_object_storage_payload(
         payload_material=int3_payload,
@@ -355,4 +319,113 @@ def restore_persistent_world_component_checkpoint(
         expected_initial_representation_digest=(
             expected_initial_representation_digest
         ),
+    )
+
+
+def serialize_persistent_world_world1_checkpoint_payload(state):
+    if not isinstance(state, PersistentWorldRuntimeComposition):
+        raise PersistentWorldCheckpointEvidenceError(
+            "WORLD-1 checkpoint state must be PersistentWorldRuntimeComposition"
+        )
+    payload = serialize_persistent_world_component_checkpoint_payload(
+        compose_persistent_world_storage_state(state)
+    )
+    payload["components"]["logical_time"] = (
+        serialize_persistent_world_logical_time_state(
+            state.logical_time_state
+        )
+    )
+    return payload
+
+
+def build_persistent_world_world1_checkpoint_envelope(
+    *, state, qualification_evidence
+):
+    payload = serialize_persistent_world_world1_checkpoint_payload(state)
+    return {
+        "format_identity": COMPONENT_CHECKPOINT_FORMAT_IDENTITY,
+        "format_version": WORLD1_COMPONENT_CHECKPOINT_FORMAT_VERSION,
+        "campaign_identity": state.movement_state.representation.campaign_id,
+        "authoritative_payload": payload,
+        "integrity_digest": _sha256_bytes(_canonical_bytes(payload)),
+        "qualification_provenance": _normalize_qualification(
+            qualification_evidence
+        ),
+    }
+
+
+def canonical_serialize_persistent_world_world1_checkpoint_envelope(
+    *, state, qualification_evidence
+):
+    return _canonical_bytes(
+        build_persistent_world_world1_checkpoint_envelope(
+            state=state,
+            qualification_evidence=qualification_evidence,
+        )
+    )
+
+
+def write_persistent_world_world1_checkpoint(
+    *, state, checkpoint_path, qualification_evidence
+):
+    return _write_envelope(
+        envelope=build_persistent_world_world1_checkpoint_envelope(
+            state=state,
+            qualification_evidence=qualification_evidence,
+        ),
+        checkpoint_path=checkpoint_path,
+    )
+
+
+def restore_persistent_world_world1_checkpoint(
+    *,
+    checkpoint_path,
+    expected_campaign_id,
+    expected_initial_open_states,
+    expected_initial_lit_states,
+    expected_initial_representation_digest,
+):
+    path = _checkpoint_path(checkpoint_path)
+    expected_campaign_id = _require_record_id(
+        expected_campaign_id, name="expected_campaign_id"
+    )
+    envelope = _read_checkpoint_envelope(path)
+    payload = _validate_envelope_common(
+        envelope=envelope,
+        expected_campaign_id=expected_campaign_id,
+        expected_version=WORLD1_COMPONENT_CHECKPOINT_FORMAT_VERSION,
+    )
+    components = _require_exact_dict(
+        payload["components"],
+        expected_keys=WORLD1_COMPONENT_CHECKPOINT_COMPONENT_KEYS,
+        name="WORLD-1 checkpoint components",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    base_payload = {
+        "components": {
+            key: value
+            for key, value in components.items()
+            if key != "logical_time"
+        }
+    }
+    storage_state = _restore_persistent_world_object_storage_payload(
+        payload_material=_reconstruct_int3_payload(base_payload),
+        expected_campaign_id=expected_campaign_id,
+        expected_initial_open_states=expected_initial_open_states,
+        expected_initial_lit_states=expected_initial_lit_states,
+        expected_initial_representation_digest=(
+            expected_initial_representation_digest
+        ),
+    )
+    try:
+        logical_time_state = restore_persistent_world_logical_time_state(
+            components["logical_time"]
+        )
+    except InvalidPersistentWorldLogicalTimeRequestError as exc:
+        raise PersistentWorldCheckpointEvidenceError(
+            "WORLD-1 logical-time checkpoint component is invalid"
+        ) from exc
+    return create_persistent_world_runtime_composition_from_storage_state(
+        storage_state,
+        logical_time_state=logical_time_state,
     )

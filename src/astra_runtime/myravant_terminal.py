@@ -77,6 +77,7 @@ _COMPOUND_ACTION_STARTERS = frozenset({
     "throw",
     "toss",
     "hurl",
+    "wait",
 })
 _UNSUPPORTED_CAPABILITY_BY_VERB = {
     "activate": "unsupported_capability_object_activation",
@@ -309,6 +310,8 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
         if target_tokens is not None:
             return _object_action(action="drop", target_tokens=target_tokens, raw_text=raw_text)
 
+    if verb == "wait" and len(parts) == 1:
+        return ParsedTerminalCommand(action="wait", raw_text=raw_text)
     if verb == "save" and len(parts) == 1:
         return ParsedTerminalCommand(action="save", raw_text=raw_text)
     if verb in {"help", "?"} and len(parts) == 1:
@@ -347,6 +350,8 @@ def _render_view(view: PublicLocationView) -> str:
         lines.extend(("", f"Exits: {', '.join(view.exits)}"))
     if view.objects:
         lines.extend(("", f"Objects: {', '.join(view.objects)}"))
+    if view.actors:
+        lines.extend(("", f"Actors: {', '.join(view.actors)}"))
     if view.carrying:
         lines.extend(("", f"Carrying: {', '.join(view.carrying)}"))
     return "\n".join(lines)
@@ -374,6 +379,14 @@ def _debug_lines(result: PlayApplicationResult) -> tuple[str, ...]:
         ("spatial_evidence_id", result.spatial_evidence_id),
         ("observation_evidence_id", result.observation_evidence_id),
         ("opportunity_evidence_id", result.opportunity_evidence_id),
+        ("due_process_ref", result.due_process_ref),
+        ("consequence_receipt_id", result.consequence_receipt_id),
+        (
+            "consequence_state_delta_id",
+            result.consequence_state_delta_id,
+        ),
+        ("logical_time_before", result.logical_time_before),
+        ("logical_time_after", result.logical_time_after),
         ("pre_state_digest", result.pre_state_digest),
         ("post_state_digest", result.post_state_digest),
         ("checkpoint_digest", result.checkpoint_digest),
@@ -411,7 +424,7 @@ def _write_help(output: TextIO) -> str:
         "Commands: look, inspect <object>, move <direction>, pickup <object>, "
         "drop <object>, open <object>, close <object>, light <object>, "
         "extinguish <object>, put <object> in <container>, "
-        "take <object> from <container>, save, help, exit\n"
+        "take <object> from <container>, wait, save, help, exit\n"
         "Natural equivalents such as 'I head north', 'look around', "
         "'examine the lantern', 'look at the lantern', 'open the chest', "
         "'walk to the south exit', and 'grab the lantern' route to existing "
@@ -450,6 +463,11 @@ def _record_result(
             spatial_evidence_id=result.spatial_evidence_id,
             observation_evidence_id=result.observation_evidence_id,
             opportunity_evidence_id=result.opportunity_evidence_id,
+            due_process_ref=result.due_process_ref,
+            consequence_receipt_id=result.consequence_receipt_id,
+            consequence_state_delta_id=result.consequence_state_delta_id,
+            logical_time_before=result.logical_time_before,
+            logical_time_after=result.logical_time_after,
             pre_state_digest=result.pre_state_digest,
             post_state_digest=result.post_state_digest,
             checkpoint_digest=result.checkpoint_digest,
@@ -622,6 +640,19 @@ def run_terminal(
             else:
                 result = application.drop(parsed.argument or "")
             visible = _write_result(output_stream, result, debug=debug)
+            _record_result(
+                evidence_recorder,
+                parsed=parsed,
+                visible_output=visible,
+                result=result,
+                error_stream=evidence_error_stream,
+            )
+            continue
+        if parsed.action == "wait":
+            result = application.wait()
+            visible = _write_result(
+                output_stream, result, debug=debug
+            )
             _record_result(
                 evidence_recorder,
                 parsed=parsed,

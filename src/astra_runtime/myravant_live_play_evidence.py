@@ -197,6 +197,11 @@ class LivePlayInteractionRecord:
     spatial_evidence_id: str | None = None
     observation_evidence_id: str | None = None
     opportunity_evidence_id: str | None = None
+    due_process_ref: str | None = None
+    consequence_receipt_id: str | None = None
+    consequence_state_delta_id: str | None = None
+    logical_time_before: int | None = None
+    logical_time_after: int | None = None
     pre_state_digest: str | None = None
     post_state_digest: str | None = None
     checkpoint_digest: str | None = None
@@ -233,9 +238,21 @@ class LivePlayInteractionRecord:
             "spatial_evidence_id",
             "observation_evidence_id",
             "opportunity_evidence_id",
+            "due_process_ref",
+            "consequence_receipt_id",
+            "consequence_state_delta_id",
             "failure_class",
         ):
             _optional_non_empty(getattr(self, name), name)
+
+        for name in ("logical_time_before", "logical_time_after"):
+            value = getattr(self, name)
+            if value is not None and (
+                type(value) is not int or value < 0
+            ):
+                raise InvalidLivePlayEvidenceError(
+                    f"{name} must be a non-negative integer when present"
+                )
 
         if self.command_fingerprint is not None:
             _require_digest(
@@ -274,6 +291,11 @@ class LivePlayInteractionRecord:
             "spatial_evidence_id": self.spatial_evidence_id,
             "observation_evidence_id": self.observation_evidence_id,
             "opportunity_evidence_id": self.opportunity_evidence_id,
+            "due_process_ref": self.due_process_ref,
+            "consequence_receipt_id": self.consequence_receipt_id,
+            "consequence_state_delta_id": self.consequence_state_delta_id,
+            "logical_time_before": self.logical_time_before,
+            "logical_time_after": self.logical_time_after,
             "pre_state_digest": self.pre_state_digest,
             "post_state_digest": self.post_state_digest,
             "checkpoint_digest": self.checkpoint_digest,
@@ -434,6 +456,11 @@ class LivePlayEvidenceRecorder:
         spatial_evidence_id: str | None = None,
         observation_evidence_id: str | None = None,
         opportunity_evidence_id: str | None = None,
+        due_process_ref: str | None = None,
+        consequence_receipt_id: str | None = None,
+        consequence_state_delta_id: str | None = None,
+        logical_time_before: int | None = None,
+        logical_time_after: int | None = None,
         pre_state_digest: str | None = None,
         post_state_digest: str | None = None,
         checkpoint_digest: str | None = None,
@@ -462,6 +489,11 @@ class LivePlayEvidenceRecorder:
             spatial_evidence_id=spatial_evidence_id,
             observation_evidence_id=observation_evidence_id,
             opportunity_evidence_id=opportunity_evidence_id,
+            due_process_ref=due_process_ref,
+            consequence_receipt_id=consequence_receipt_id,
+            consequence_state_delta_id=consequence_state_delta_id,
+            logical_time_before=logical_time_before,
+            logical_time_after=logical_time_after,
             pre_state_digest=pre_state_digest,
             post_state_digest=post_state_digest,
             checkpoint_digest=checkpoint_digest,
@@ -477,6 +509,7 @@ class LivePlayEvidenceRecorder:
             "object_state_committed",
             "object_lit_state_committed",
             "storage_committed",
+            "world_advanced",
         }:
             self._committed_transitions += 1
         if failure_class is not None or result_type in {
@@ -485,6 +518,7 @@ class LivePlayEvidenceRecorder:
             "object_state_rejected",
             "object_lit_state_rejected",
             "storage_rejected",
+            "world_advancement_rejected",
             "unsupported_input",
             "checkpoint_unavailable",
         }:

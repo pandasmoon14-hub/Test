@@ -73,6 +73,7 @@ COMMAND_KIND_FAMILIES: frozenset[str] = frozenset({
     "travel",
     "research",
     "mission",
+    "time",
     "system_meta",
     "unknown",
 })
@@ -150,6 +151,7 @@ _FAMILY_PREFIX_MAP: Mapping[str, str] = MappingProxyType({
     "quest": "mission",
     "objective": "mission",
     "report": "mission",
+    "wait": "time",
     "system": "system_meta",
     "meta": "system_meta",
     "config": "system_meta",
@@ -204,6 +206,7 @@ _FAMILY_DEFAULT_OWNER_ROUTES: Mapping[str, str] = MappingProxyType({
     "travel": RT001_COMMAND_LIFECYCLE_ACTION_LEGALITY,
     "research": RT001_COMMAND_LIFECYCLE_ACTION_LEGALITY,
     "mission": RT001_COMMAND_LIFECYCLE_ACTION_LEGALITY,
+    "time": RT001_COMMAND_LIFECYCLE_ACTION_LEGALITY,
     "system_meta": DEFERRED_RUNTIME_OWNER,
     "unknown": QUARANTINE_UNKNOWN_COMMAND_KIND,
 })
