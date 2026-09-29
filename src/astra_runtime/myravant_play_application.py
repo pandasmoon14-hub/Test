@@ -470,8 +470,8 @@ class MyravantPlayApplication:
             post_state_digest=digest,
         )
 
-    def inspect(self, object_reference: str) -> PlayApplicationResult:
-        """Return bounded public presentation only for a currently observable object."""
+    def inspect(self, entity_reference: str) -> PlayApplicationResult:
+        'Return public presentation only for a currently observable entity.'
 
         digest = self.authoritative_digest()
         unavailable = PlayApplicationResult(
@@ -484,47 +484,69 @@ class MyravantPlayApplication:
         )
 
         try:
-            object_entity_id = self.fixture.resolve_object_reference(
-                object_reference
+            entity_id = self.fixture.resolve_inspection_reference(
+                entity_reference
             )
         except UnavailableFixtureCustodyError:
             return unavailable
 
-        if not self._object_currently_available(object_entity_id):
-            return unavailable
-        if not self._object_currently_observable(object_entity_id):
+        object_ids = {
+            item.entity_id
+            for item in self.fixture.object_presentations
+        }
+        actor_ids = {
+            item.entity_id
+            for item in self.fixture.actor_presentations
+        }
+
+        if entity_id in object_ids:
+            if not self._object_currently_available(entity_id):
+                return unavailable
+            if not self._object_currently_observable(entity_id):
+                return unavailable
+            presentation = self.fixture.object_presentation(entity_id)
+        elif entity_id in actor_ids:
+            if self.entity_place_id(entity_id) != self.current_place_id():
+                return unavailable
+            if not self.visual_observation_evidence(entity_id).observable:
+                return unavailable
+            presentation = self.fixture.actor_presentation(entity_id)
+        else:
             return unavailable
 
-        presentation = self.fixture.object_presentation(object_entity_id)
         description = presentation.description
-        open_state = self.object_open_state(object_entity_id)
-        if open_state is not None:
-            description = "\n".join((
-                description,
-                self.fixture.public_open_state_description(
-                    object_entity_id=object_entity_id,
-                    state=open_state.state,
-                ),
-            ))
-        lit_state = self.object_lit_state(object_entity_id)
-        if lit_state is not None:
-            description = "\n".join((
-                description,
-                self.fixture.public_lit_state_description(
-                    object_entity_id=object_entity_id,
-                    state=lit_state.state,
-                ),
-            ))
-        if open_state is not None and open_state.state == "open":
-            contents = self.fixture.public_entities_contained_by(
-                self.state.representation,
-                object_entity_id,
-            )
-            if contents:
+        if entity_id in object_ids:
+            open_state = self.object_open_state(entity_id)
+            if open_state is not None:
                 description = "\n".join((
                     description,
-                    "Inside: " + ", ".join(item.name for item in contents) + ".",
+                    self.fixture.public_open_state_description(
+                        object_entity_id=entity_id,
+                        state=open_state.state,
+                    ),
                 ))
+            lit_state = self.object_lit_state(entity_id)
+            if lit_state is not None:
+                description = "\n".join((
+                    description,
+                    self.fixture.public_lit_state_description(
+                        object_entity_id=entity_id,
+                        state=lit_state.state,
+                    ),
+                ))
+            if open_state is not None and open_state.state == "open":
+                contents = self.fixture.public_entities_contained_by(
+                    self.state.representation,
+                    entity_id,
+                )
+                if contents:
+                    description = "\n".join((
+                        description,
+                        "Inside: " + ", ".join(
+                            item.name for item in contents
+                        ) + ".",
+                    ))
+
         view = PublicInspectionView(
             name=presentation.name,
             description=description,
