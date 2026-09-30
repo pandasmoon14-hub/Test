@@ -2256,6 +2256,7 @@ from astra_runtime.domain.persistent_world_object_open_close import (
     digest_persistent_world_object_open_close_runtime_state,
     digest_persistent_world_object_open_states,
     replay_persistent_world_object_open_close_states,
+    replay_persistent_world_object_open_close_transition_history,
     serialize_persistent_world_object_open_close_commit_receipt,
     serialize_persistent_world_object_open_state,
 )
@@ -2680,20 +2681,15 @@ def _restore_int1_payload(
             "INT-1 object-state transition command IDs are inconsistent"
         )
 
-    replayed = tuple(expected_initial_object_states)
-    for transition in sorted(
-        transitions,
-        key=lambda item: (item.command_id, item.command_fingerprint),
-    ):
-        try:
-            replayed = replay_persistent_world_object_open_close_states(
-                object_open_states=replayed,
-                receipt=transition.receipt,
-            )
-        except Exception as exc:
-            raise PersistentWorldCheckpointEvidenceError(
-                "INT-1 object-state transition replay failed"
-            ) from exc
+    try:
+        replayed = replay_persistent_world_object_open_close_transition_history(
+            object_open_states=expected_initial_object_states,
+            committed_transitions=transitions,
+        )
+    except Exception as exc:
+        raise PersistentWorldCheckpointEvidenceError(
+            "INT-1 object-state transition replay failed"
+        ) from exc
 
     if tuple(
         serialize_persistent_world_object_open_state(item)
