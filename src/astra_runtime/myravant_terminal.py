@@ -22,6 +22,7 @@ from astra_runtime.myravant_play_application import (
     PlayApplicationResult,
     PublicInspectionView,
     PublicLocationView,
+    PublicObservationFact,
 )
 
 
@@ -344,14 +345,61 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
     )
 
 
+def _render_observation_fact(fact: PublicObservationFact) -> str:
+    if fact.entity_kind != "object":
+        return fact.name
+
+    details: list[str] = []
+    if fact.open_state is not None:
+        details.append(fact.open_state)
+    if fact.lit_state is not None:
+        details.append(fact.lit_state)
+    if fact.visible_contents:
+        details.append("contains " + ", ".join(fact.visible_contents))
+
+    if not details:
+        return fact.name
+    return f"{fact.name} [{'; '.join(details)}]"
+
+
 def _render_view(view: PublicLocationView) -> str:
     lines = [view.name, "", view.description]
     if view.exits:
         lines.extend(("", f"Exits: {', '.join(view.exits)}"))
-    if view.objects:
+
+    object_facts = tuple(
+        fact
+        for fact in view.observation_facts
+        if fact.entity_kind == "object"
+    )
+    actor_facts = tuple(
+        fact
+        for fact in view.observation_facts
+        if fact.entity_kind == "actor"
+    )
+
+    if object_facts:
+        lines.extend((
+            "",
+            "Objects: " + ", ".join(
+                _render_observation_fact(fact)
+                for fact in object_facts
+            ),
+        ))
+    elif view.objects:
         lines.extend(("", f"Objects: {', '.join(view.objects)}"))
-    if view.actors:
+
+    if actor_facts:
+        lines.extend((
+            "",
+            "Actors: " + ", ".join(
+                fact.name
+                for fact in actor_facts
+            ),
+        ))
+    elif view.actors:
         lines.extend(("", f"Actors: {', '.join(view.actors)}"))
+
     if view.carrying:
         lines.extend(("", f"Carrying: {', '.join(view.carrying)}"))
     return "\n".join(lines)
