@@ -986,6 +986,93 @@ def replay_persistent_world_object_open_close_states(
     return post
 
 
+def replay_persistent_world_object_open_close_transition_history(
+    *,
+    object_open_states: Sequence[PersistentWorldObjectOpenState],
+    committed_transitions: Sequence[
+        PersistentWorldObjectOpenCloseCommittedTransition
+    ],
+) -> tuple[PersistentWorldObjectOpenState, ...]:
+    """Replay complete INT-1 evidence without treating storage order as causal."""
+
+    current = tuple(object_open_states)
+    transitions = tuple(committed_transitions)
+
+    for transition in transitions:
+        if not isinstance(
+            transition,
+            PersistentWorldObjectOpenCloseCommittedTransition,
+        ):
+            raise PersistentWorldObjectOpenCloseReplayError(
+                "transition history contains an invalid transition"
+            )
+
+    command_ids = [transition.command_id for transition in transitions]
+    if len(command_ids) != len(set(command_ids)):
+        raise PersistentWorldObjectOpenCloseReplayError(
+            "transition history contains duplicate command identity"
+        )
+
+    if not transitions:
+        return current
+
+    adjacency: dict[
+        str,
+        list[PersistentWorldObjectOpenCloseCommittedTransition],
+    ] = {}
+    for transition in transitions:
+        adjacency.setdefault(
+            transition.receipt.pre_state_digest,
+            [],
+        ).append(transition)
+
+    for candidates in adjacency.values():
+        candidates.sort(
+            key=lambda item: (
+                item.command_id,
+                item.command_fingerprint,
+            ),
+            reverse=True,
+        )
+
+    start_digest = digest_persistent_world_object_open_states(current)
+    vertex_stack = [start_digest]
+    edge_stack: list[
+        PersistentWorldObjectOpenCloseCommittedTransition
+    ] = []
+    reverse_path: list[
+        PersistentWorldObjectOpenCloseCommittedTransition
+    ] = []
+
+    while vertex_stack:
+        candidates = adjacency.get(vertex_stack[-1])
+        if candidates:
+            transition = candidates.pop()
+            vertex_stack.append(transition.receipt.post_state_digest)
+            edge_stack.append(transition)
+            continue
+
+        vertex_stack.pop()
+        if edge_stack:
+            reverse_path.append(edge_stack.pop())
+
+    replay_path = tuple(reversed(reverse_path))
+    if len(replay_path) != len(transitions):
+        raise PersistentWorldObjectOpenCloseReplayError(
+            "transition history is disconnected from the accepted initial state"
+        )
+
+    replayed = current
+    for transition in replay_path:
+        replayed = replay_persistent_world_object_open_close_states(
+            object_open_states=replayed,
+            receipt=transition.receipt,
+        )
+
+    return replayed
+
+
+
 def serialize_persistent_world_object_open_close_commit_receipt(
     receipt: PersistentWorldObjectOpenCloseCommitReceipt,
 ) -> dict[str, str]:
