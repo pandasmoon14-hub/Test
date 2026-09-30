@@ -135,6 +135,17 @@ class CheckpointPathRequiredError(MyravantPlayApplicationError):
 
 
 @dataclass(frozen=True, kw_only=True)
+class PublicObservationFact:
+    entity_id: str
+    entity_kind: str
+    name: str
+    description: str
+    open_state: str | None = None
+    lit_state: str | None = None
+    visible_contents: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True, kw_only=True)
 class PublicLocationView:
     place_id: str
     name: str
@@ -143,12 +154,14 @@ class PublicLocationView:
     objects: tuple[str, ...]
     actors: tuple[str, ...]
     carrying: tuple[str, ...]
+    observation_facts: tuple[PublicObservationFact, ...] = ()
 
 
 @dataclass(frozen=True, kw_only=True)
 class PublicInspectionView:
     name: str
     description: str
+    observation_fact: PublicObservationFact | None = None
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -429,24 +442,120 @@ class MyravantPlayApplication:
     def current_place_id(self) -> str:
         return self.entity_place_id(self.fixture.player_entity_id)
 
+    def _public_observation_fact(
+        self,
+        entity_id: str,
+    ) -> PublicObservationFact | None:
+        object_ids = {
+            item.entity_id
+            for item in self.fixture.object_presentations
+        }
+        actor_ids = {
+            item.entity_id
+            for item in self.fixture.actor_presentations
+        }
+
+        if entity_id in object_ids:
+            if not self._object_currently_available(entity_id):
+                return None
+            if not self._object_currently_observable(entity_id):
+                return None
+
+            presentation = self.fixture.object_presentation(entity_id)
+            open_state = self.object_open_state(entity_id)
+            lit_state = self.object_lit_state(entity_id)
+            visible_contents: tuple[str, ...] = ()
+            if open_state is not None and open_state.state == "open":
+                visible_contents = tuple(
+                    item.name
+                    for item in self.fixture.public_entities_contained_by(
+                        self.state.representation,
+                        entity_id,
+                    )
+                )
+            return PublicObservationFact(
+                entity_id=entity_id,
+                entity_kind="object",
+                name=presentation.name,
+                description=presentation.description,
+                open_state=(
+                    open_state.state
+                    if open_state is not None
+                    else None
+                ),
+                lit_state=(
+                    lit_state.state
+                    if lit_state is not None
+                    else None
+                ),
+                visible_contents=visible_contents,
+            )
+
+        if entity_id in actor_ids:
+            if self.entity_place_id(entity_id) != self.current_place_id():
+                return None
+            if not self.visual_observation_evidence(entity_id).observable:
+                return None
+
+            presentation = self.fixture.actor_presentation(entity_id)
+            return PublicObservationFact(
+                entity_id=entity_id,
+                entity_kind="actor",
+                name=presentation.name,
+                description=presentation.description,
+            )
+
+        return None
+
+    def _inspection_description_from_fact(
+        self,
+        fact: PublicObservationFact,
+    ) -> str:
+        lines = [fact.description]
+        if fact.entity_kind == "object":
+            if fact.open_state is not None:
+                lines.append(
+                    self.fixture.public_open_state_description(
+                        object_entity_id=fact.entity_id,
+                        state=fact.open_state,
+                    )
+                )
+            if fact.lit_state is not None:
+                lines.append(
+                    self.fixture.public_lit_state_description(
+                        object_entity_id=fact.entity_id,
+                        state=fact.lit_state,
+                    )
+                )
+            if fact.visible_contents:
+                lines.append(
+                    "Inside: " + ", ".join(fact.visible_contents) + "."
+                )
+        return "\n".join(lines)
+
     def look(self) -> PlayApplicationResult:
         place_id = self.current_place_id()
         presentation = self.fixture.place_presentation(place_id)
-        candidates = self.fixture.public_entities_at(
-            self.state.representation,
-            place_id,
-        )
-        objects = tuple(
-            item
-            for item in candidates
-            if self._object_currently_observable(item.entity_id)
-        )
-        actors = tuple(
-            item
-            for item in self.fixture.public_actors_at(
-                self.state.representation, place_id
+
+        object_facts = tuple(
+            fact
+            for item in self.fixture.public_entities_at(
+                self.state.representation,
+                place_id,
             )
-            if self.visual_observation_evidence(item.entity_id).observable
+            if (
+                fact := self._public_observation_fact(item.entity_id)
+            ) is not None
+        )
+        actor_facts = tuple(
+            fact
+            for item in self.fixture.public_actors_at(
+                self.state.representation,
+                place_id,
+            )
+            if (
+                fact := self._public_observation_fact(item.entity_id)
+            ) is not None
         )
         carrying = self.fixture.public_entities_carried_by(
             self.state.representation,
@@ -457,9 +566,10 @@ class MyravantPlayApplication:
             name=presentation.name,
             description=presentation.description,
             exits=self.fixture.exits_from(place_id),
-            objects=tuple(item.name for item in objects),
-            actors=tuple(item.name for item in actors),
+            objects=tuple(fact.name for fact in object_facts),
+            actors=tuple(fact.name for fact in actor_facts),
             carrying=tuple(item.name for item in carrying),
+            observation_facts=(*object_facts, *actor_facts),
         )
         digest = self.authoritative_digest()
         return PlayApplicationResult(
@@ -471,8 +581,6 @@ class MyravantPlayApplication:
         )
 
     def inspect(self, entity_reference: str) -> PlayApplicationResult:
-        'Return public presentation only for a currently observable entity.'
-
         digest = self.authoritative_digest()
         unavailable = PlayApplicationResult(
             result_type="inspection_unavailable",
@@ -490,70 +598,18 @@ class MyravantPlayApplication:
         except UnavailableFixtureCustodyError:
             return unavailable
 
-        object_ids = {
-            item.entity_id
-            for item in self.fixture.object_presentations
-        }
-        actor_ids = {
-            item.entity_id
-            for item in self.fixture.actor_presentations
-        }
-
-        if entity_id in object_ids:
-            if not self._object_currently_available(entity_id):
-                return unavailable
-            if not self._object_currently_observable(entity_id):
-                return unavailable
-            presentation = self.fixture.object_presentation(entity_id)
-        elif entity_id in actor_ids:
-            if self.entity_place_id(entity_id) != self.current_place_id():
-                return unavailable
-            if not self.visual_observation_evidence(entity_id).observable:
-                return unavailable
-            presentation = self.fixture.actor_presentation(entity_id)
-        else:
+        fact = self._public_observation_fact(entity_id)
+        if fact is None:
             return unavailable
 
-        description = presentation.description
-        if entity_id in object_ids:
-            open_state = self.object_open_state(entity_id)
-            if open_state is not None:
-                description = "\n".join((
-                    description,
-                    self.fixture.public_open_state_description(
-                        object_entity_id=entity_id,
-                        state=open_state.state,
-                    ),
-                ))
-            lit_state = self.object_lit_state(entity_id)
-            if lit_state is not None:
-                description = "\n".join((
-                    description,
-                    self.fixture.public_lit_state_description(
-                        object_entity_id=entity_id,
-                        state=lit_state.state,
-                    ),
-                ))
-            if open_state is not None and open_state.state == "open":
-                contents = self.fixture.public_entities_contained_by(
-                    self.state.representation,
-                    entity_id,
-                )
-                if contents:
-                    description = "\n".join((
-                        description,
-                        "Inside: " + ", ".join(
-                            item.name for item in contents
-                        ) + ".",
-                    ))
-
         view = PublicInspectionView(
-            name=presentation.name,
-            description=description,
+            name=fact.name,
+            description=self._inspection_description_from_fact(fact),
+            observation_fact=fact,
         )
         return PlayApplicationResult(
             result_type="inspection",
-            message=presentation.name,
+            message=fact.name,
             view=view,
             authoritative_changed=False,
             pre_state_digest=digest,
