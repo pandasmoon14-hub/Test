@@ -111,6 +111,7 @@ from astra_runtime.myravant_play_fixture import (
     MyravantPlayFixture,
     UnavailableFixtureCustodyError,
     UnavailableFixtureMovementError,
+    UnavailableFixtureObservationError,
     create_terminal_play_fixture,
 )
 
@@ -158,6 +159,15 @@ class PublicLocationView:
 
 
 @dataclass(frozen=True, kw_only=True)
+class PublicDirectionalObservationView:
+    source_place_id: str
+    direction: str
+    target_place_id: str
+    name: str
+    description: str
+
+
+@dataclass(frozen=True, kw_only=True)
 class PublicInspectionView:
     name: str
     description: str
@@ -168,7 +178,12 @@ class PublicInspectionView:
 class PlayApplicationResult:
     result_type: str
     message: str
-    view: PublicLocationView | PublicInspectionView | None = None
+    view: (
+        PublicLocationView
+        | PublicDirectionalObservationView
+        | PublicInspectionView
+        | None
+    ) = None
     authoritative_changed: bool = False
     command_id: str | None = None
     command_fingerprint: str | None = None
@@ -576,6 +591,61 @@ class MyravantPlayApplication:
             result_type="look",
             message=presentation.name,
             view=view,
+            pre_state_digest=digest,
+            post_state_digest=digest,
+        )
+
+    def look_direction(self, direction: str) -> PlayApplicationResult:
+        """Observe an explicitly licensed direction without moving or advancing time."""
+
+        digest = self.authoritative_digest()
+        source_place_id = self.current_place_id()
+        try:
+            evidence = self.fixture.directional_observation_evidence(
+                observer_entity_id=self.fixture.player_entity_id,
+                source_place_id=source_place_id,
+                direction=direction,
+            )
+        except UnavailableFixtureObservationError:
+            return PlayApplicationResult(
+                result_type="directional_observation_unavailable",
+                message="That is not a valid focused direction here.",
+                authoritative_changed=False,
+                pre_state_digest=digest,
+                post_state_digest=digest,
+                failure_class="directional_observation_invalid_direction",
+            )
+
+        if not evidence.observable or evidence.target_place_id is None:
+            return PlayApplicationResult(
+                result_type="directional_observation_unavailable",
+                message=(
+                    "You cannot make out a distinct place in that direction "
+                    "from here."
+                ),
+                authoritative_changed=False,
+                observation_evidence_id=evidence.evidence_id,
+                pre_state_digest=digest,
+                post_state_digest=digest,
+                failure_class="directional_observation_unlicensed",
+            )
+
+        presentation = self.fixture.place_presentation(
+            evidence.target_place_id
+        )
+        view = PublicDirectionalObservationView(
+            source_place_id=source_place_id,
+            direction=evidence.direction,
+            target_place_id=evidence.target_place_id,
+            name=presentation.name,
+            description=presentation.description,
+        )
+        return PlayApplicationResult(
+            result_type="directional_observation",
+            message=presentation.name,
+            view=view,
+            authoritative_changed=False,
+            observation_evidence_id=evidence.evidence_id,
             pre_state_digest=digest,
             post_state_digest=digest,
         )

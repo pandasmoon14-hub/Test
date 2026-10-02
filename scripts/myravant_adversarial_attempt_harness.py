@@ -184,8 +184,16 @@ def build_cases() -> tuple[Case, ...]:
               "uninterpretable_input", "uninterpretable_player_input"),
         _case("run-boundary", "run south", "semantic_boundary_pressure", "unsupported", "run south",
               "unsupported_input", "unsupported_input_no_executable_route"),
-        _case("directional-look", "look east", "semantic_boundary_pressure", "unsupported", "look east",
-              "unsupported_input", "unsupported_input_no_executable_route"),
+        _case(
+            "directional-look",
+            "look east",
+            "focused_directional_observation",
+            "look_direction",
+            "east",
+            "directional_observation_unavailable",
+            "directional_observation_unlicensed",
+            setup=("move south",),
+        ),
         _case("object-inspection-remote", "look at tool chest", "bounded_inspection_unavailable",
               "inspect", "tool chest", "inspection_unavailable",
               "inspection_target_unavailable"),
@@ -407,7 +415,13 @@ def _observed(r):
         return "GENERIC_UNSUPPORTED"
     if r["result_type"] in {"object_state_unchanged", "object_lit_state_unchanged", "storage_unchanged"}:
         return "NOOP_HANDLED"
-    if r["result_type"] in {"look", "inspection", "inspection_unavailable"}:
+    if r["result_type"] in {
+        "look",
+        "inspection",
+        "inspection_unavailable",
+        "directional_observation",
+        "directional_observation_unavailable",
+    }:
         return "NONMUTATING_OBSERVATION"
     return "OTHER"
 
@@ -436,6 +450,8 @@ def _failures(case: Case, primary, replay, canonical):
         "uninterpretable_input",
         "inspection",
         "inspection_unavailable",
+        "directional_observation",
+        "directional_observation_unavailable",
         "object_state_rejected",
         "object_state_unchanged",
         "object_lit_state_rejected",
