@@ -36,6 +36,7 @@ AUTHORIZED_RUNTIME_DOMAIN_FILES = frozenset(
         "persistent_world_movement_integration.py",
         "persistent_world_local_checkpoint_restore.py",
         "persistent_world_object_custody_transfer.py",
+        "persistent_world_object_displacement.py",
         "persistent_world_object_open_close.py",
         "persistent_world_object_lit_state.py",
         "persistent_world_object_storage_transfer.py",

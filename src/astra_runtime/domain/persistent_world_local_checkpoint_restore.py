@@ -3899,6 +3899,7 @@ def _restore_persistent_world_object_storage_payload(
     expected_initial_open_states: tuple[PersistentWorldObjectOpenState, ...],
     expected_initial_lit_states: tuple[PersistentWorldObjectLitState, ...],
     expected_initial_representation_digest: str,
+    defer_combined_attribution: bool = False,
 ) -> PersistentWorldObjectStorageRuntimeState:
     """Restore INT-3 payload material independently of checkpoint envelope.
 
@@ -3975,10 +3976,17 @@ def _restore_persistent_world_object_storage_payload(
         raise PersistentWorldCheckpointEvidenceError(
             "INT-3 composite world-state digest mismatch"
         )
-    _validate_int3_combined_attribution(
-        state,
-        expected_initial_representation_digest=expected_initial_representation_digest,
-    )
+    if type(defer_combined_attribution) is not bool:
+        raise PersistentWorldCheckpointEvidenceError(
+            "defer_combined_attribution must be bool"
+        )
+    if not defer_combined_attribution:
+        _validate_int3_combined_attribution(
+            state,
+            expected_initial_representation_digest=(
+                expected_initial_representation_digest
+            ),
+        )
     return state
 
 

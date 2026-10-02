@@ -153,6 +153,13 @@ def _split_storage_argument(argument: str) -> tuple[str, str]:
     return parts[0], parts[1]
 
 
+def _split_throw_argument(argument: str) -> tuple[str, str]:
+    parts = argument.rsplit(" -> ", 1)
+    if len(parts) != 2 or not parts[0] or not parts[1]:
+        raise ValueError("invalid bounded throw parser argument")
+    return parts[0], parts[1]
+
+
 def _action_tokens(parts: list[str]) -> list[str]:
     if parts and parts[0].casefold() == "i":
         return parts[1:]
@@ -264,6 +271,24 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
                 argument=direction,
                 raw_text=raw_text,
             )
+
+    if verb in {"throw", "toss", "hurl"} and len(parts) >= 3:
+        direction = _DIRECTION_ALIASES.get(lowered[-1])
+        if direction is not None:
+            object_reference = _normalized_target(parts[1:-1])
+            if object_reference in _DEICTIC_TARGETS:
+                return ParsedTerminalCommand(
+                    action="ambiguous",
+                    argument=object_reference,
+                    raw_text=raw_text,
+                    failure_class="ambiguous_target_reference",
+                )
+            if object_reference:
+                return ParsedTerminalCommand(
+                    action="throw",
+                    argument=f"{object_reference} -> {direction}",
+                    raw_text=raw_text,
+                )
 
     if verb in {"take", "remove", "retrieve"} and "from" in lowered[1:]:
         index = lowered.index("from", 1)
@@ -498,7 +523,8 @@ def _write_result(
 def _write_help(output: TextIO) -> str:
     visible = (
         "Commands: look, look <direction>, inspect <entity>, move <direction>, "
-        "drop <object>, open <object>, close <object>, light <object>, "
+        "drop <object>, throw <object> <direction>, open <object>, "
+        "close <object>, light <object>, "
         "extinguish <object>, put <object> in <container>, "
         "take <object> from <container>, wait, save, help, exit\n"
         "Natural equivalents such as 'I head north', 'look around', "
@@ -655,6 +681,35 @@ def run_terminal(
             continue
         if parsed.action == "move":
             result = application.move(parsed.argument or "")
+            visible = _write_result(output_stream, result, debug=debug)
+            _record_result(
+                evidence_recorder,
+                parsed=parsed,
+                visible_output=visible,
+                result=result,
+                error_stream=evidence_error_stream,
+            )
+            continue
+        if parsed.action == "throw":
+            try:
+                object_reference, direction = _split_throw_argument(
+                    parsed.argument or ""
+                )
+            except ValueError:
+                digest = application.authoritative_digest()
+                result = PlayApplicationResult(
+                    result_type="object_displacement_rejected",
+                    message="That throw could not be routed.",
+                    authoritative_changed=False,
+                    pre_state_digest=digest,
+                    post_state_digest=digest,
+                    failure_class="object_displacement_route_unavailable",
+                )
+            else:
+                result = application.throw_object(
+                    object_reference,
+                    direction,
+                )
             visible = _write_result(output_stream, result, debug=debug)
             _record_result(
                 evidence_recorder,

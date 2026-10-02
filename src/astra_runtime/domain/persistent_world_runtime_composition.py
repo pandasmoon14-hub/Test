@@ -24,6 +24,10 @@ from astra_runtime.domain.persistent_world_object_custody_transfer import (
     PersistentWorldObjectCustodyCommittedTransition,
     PersistentWorldObjectCustodyRuntimeState,
 )
+from astra_runtime.domain.persistent_world_object_displacement import (
+    PersistentWorldObjectDisplacementCommittedTransition,
+    PersistentWorldObjectDisplacementRuntimeState,
+)
 from astra_runtime.domain.persistent_world_object_lit_state import (
     PersistentWorldObjectLitRuntimeState,
     PersistentWorldObjectLitState,
@@ -58,6 +62,9 @@ class PersistentWorldRuntimeComposition:
     committed_storage_transitions: tuple[
         PersistentWorldObjectStorageCommittedTransition, ...
     ] = ()
+    committed_object_displacement_transitions: tuple[
+        PersistentWorldObjectDisplacementCommittedTransition, ...
+    ] = ()
     logical_time_state: PersistentWorldLogicalTimeState = field(
         default_factory=create_persistent_world_logical_time_state
     )
@@ -84,6 +91,11 @@ class PersistentWorldRuntimeComposition:
         object.__setattr__(
             self, "committed_storage_transitions",
             tuple(self.committed_storage_transitions),
+        )
+        object.__setattr__(
+            self,
+            "committed_object_displacement_transitions",
+            tuple(self.committed_object_displacement_transitions),
         )
         if not isinstance(
             self.logical_time_state, PersistentWorldLogicalTimeState
@@ -125,6 +137,17 @@ class PersistentWorldRuntimeComposition:
             "committed_storage_transitions",
             storage_state.committed_storage_transitions,
         )
+        displacement_state = PersistentWorldObjectDisplacementRuntimeState(
+            storage_state=storage_state,
+            committed_object_displacement_transitions=(
+                self.committed_object_displacement_transitions
+            ),
+        )
+        object.__setattr__(
+            self,
+            "committed_object_displacement_transitions",
+            displacement_state.committed_object_displacement_transitions,
+        )
 
         existing_ids = {
             item.command_id
@@ -148,6 +171,10 @@ class PersistentWorldRuntimeComposition:
         existing_ids.update(
             item.command_id
             for item in storage_state.committed_storage_transitions
+        )
+        existing_ids.update(
+            item.command_id
+            for item in self.committed_object_displacement_transitions
         )
         time_ids = {
             item.command_id
@@ -194,6 +221,15 @@ def _compose_storage_state_unchecked(state):
     )
 
 
+def _compose_displacement_state_unchecked(state):
+    return PersistentWorldObjectDisplacementRuntimeState(
+        storage_state=_compose_storage_state_unchecked(state),
+        committed_object_displacement_transitions=(
+            state.committed_object_displacement_transitions
+        ),
+    )
+
+
 def create_persistent_world_runtime_composition(
     *,
     movement_state: PersistentWorldMovementRuntimeState,
@@ -215,6 +251,7 @@ def create_persistent_world_runtime_composition_from_storage_state(
     storage_state: PersistentWorldObjectStorageRuntimeState,
     *,
     logical_time_state: PersistentWorldLogicalTimeState | None = None,
+    committed_object_displacement_transitions=(),
 ) -> PersistentWorldRuntimeComposition:
     if not isinstance(storage_state, PersistentWorldObjectStorageRuntimeState):
         raise TypeError(
@@ -237,6 +274,9 @@ def create_persistent_world_runtime_composition_from_storage_state(
             lit_state.committed_object_lit_transitions
         ),
         committed_storage_transitions=storage_state.committed_storage_transitions,
+        committed_object_displacement_transitions=tuple(
+            committed_object_displacement_transitions
+        ),
         logical_time_state=(
             logical_time_state or create_persistent_world_logical_time_state()
         ),
@@ -265,6 +305,12 @@ def compose_persistent_world_storage_state(state):
     if not isinstance(state, PersistentWorldRuntimeComposition):
         raise TypeError("state must be PersistentWorldRuntimeComposition")
     return _compose_storage_state_unchecked(state)
+
+
+def compose_persistent_world_object_displacement_state(state):
+    if not isinstance(state, PersistentWorldRuntimeComposition):
+        raise TypeError("state must be PersistentWorldRuntimeComposition")
+    return _compose_displacement_state_unchecked(state)
 
 
 def digest_persistent_world_runtime_composition(state) -> str:
@@ -306,6 +352,9 @@ def _copy(state, **changes):
             state.committed_object_lit_transitions
         ),
         "committed_storage_transitions": state.committed_storage_transitions,
+        "committed_object_displacement_transitions": (
+            state.committed_object_displacement_transitions
+        ),
         "logical_time_state": state.logical_time_state,
     }
     values.update(changes)
@@ -383,6 +432,43 @@ def replace_persistent_world_runtime_storage_state(*, state, storage_state):
         ),
         committed_storage_transitions=(
             storage_state.committed_storage_transitions
+        ),
+    )
+
+
+def replace_persistent_world_runtime_displacement_state(
+    *, state, displacement_state
+):
+    if not isinstance(
+        displacement_state,
+        PersistentWorldObjectDisplacementRuntimeState,
+    ):
+        raise TypeError(
+            "displacement_state must be PersistentWorldObjectDisplacementRuntimeState"
+        )
+    storage_state = displacement_state.storage_state
+    lit_state = storage_state.lit_state
+    open_close_state = lit_state.open_close_state
+    custody_state = open_close_state.custody_state
+    return _copy(
+        state,
+        movement_state=custody_state.movement_state,
+        committed_custody_transitions=(
+            custody_state.committed_custody_transitions
+        ),
+        object_open_states=open_close_state.object_open_states,
+        committed_object_state_transitions=(
+            open_close_state.committed_object_state_transitions
+        ),
+        object_lit_states=lit_state.object_lit_states,
+        committed_object_lit_transitions=(
+            lit_state.committed_object_lit_transitions
+        ),
+        committed_storage_transitions=(
+            storage_state.committed_storage_transitions
+        ),
+        committed_object_displacement_transitions=(
+            displacement_state.committed_object_displacement_transitions
         ),
     )
 
