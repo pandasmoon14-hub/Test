@@ -12,8 +12,10 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from astra_runtime.domain.persistent_world_component_checkpoint import (
+    restore_persistent_world_comp3_checkpoint,
     restore_persistent_world_component_checkpoint,
     restore_persistent_world_world1_checkpoint,
+    write_persistent_world_comp3_checkpoint,
     write_persistent_world_world1_checkpoint,
 )
 from astra_runtime.domain.persistent_world_logical_time import (
@@ -27,12 +29,14 @@ from astra_runtime.domain.persistent_world_runtime_composition import (
     PersistentWorldRuntimeComposition,
     compose_persistent_world_custody_state,
     compose_persistent_world_lit_state,
+    compose_persistent_world_object_displacement_state,
     compose_persistent_world_open_close_state,
     compose_persistent_world_storage_state,
     create_persistent_world_runtime_composition,
     create_persistent_world_runtime_composition_from_storage_state,
     digest_persistent_world_runtime_composition,
     replace_persistent_world_runtime_custody_state,
+    replace_persistent_world_runtime_displacement_state,
     replace_persistent_world_runtime_lit_state,
     replace_persistent_world_runtime_logical_time_state,
     replace_persistent_world_runtime_movement_state,
@@ -69,6 +73,11 @@ from astra_runtime.domain.persistent_world_object_custody_transfer import (
     PersistentWorldObjectCustodyRuntimeState,
     create_persistent_world_object_custody_runtime_state,
     execute_persistent_world_object_custody,
+)
+from astra_runtime.domain.persistent_world_object_displacement import (
+    PersistentWorldObjectDisplacementError,
+    PersistentWorldObjectDisplacementRuntimeState,
+    execute_persistent_world_object_displacement,
 )
 from astra_runtime.domain.persistent_world_object_lit_state import (
     PersistentWorldObjectLitRuntimeState,
@@ -110,6 +119,7 @@ from astra_runtime.myravant_play_fixture import (
     YARD_ID,
     MyravantPlayFixture,
     UnavailableFixtureCustodyError,
+    UnavailableFixtureDisplacementError,
     UnavailableFixtureMovementError,
     UnavailableFixtureObservationError,
     create_terminal_play_fixture,
@@ -121,6 +131,9 @@ _CUSTODY_COMMAND_ID_PATTERN = re.compile(r"^terminal-custody-(\d{6})$")
 _OBJECT_STATE_COMMAND_ID_PATTERN = re.compile(r"^terminal-object-state-(\d{6})$")
 _OBJECT_LIT_STATE_COMMAND_ID_PATTERN = re.compile(r"^terminal-object-lit-state-(\d{6})$")
 _STORAGE_COMMAND_ID_PATTERN = re.compile(r"^terminal-storage-(\d{6})$")
+_DISPLACEMENT_COMMAND_ID_PATTERN = re.compile(
+    r"^terminal-object-displacement-(\d{6})$"
+)
 _TIME_COMMAND_ID_PATTERN = re.compile(r"^terminal-time-(\d{6})$")
 WORLD2_ROUTINE_PROFILE_ID = (
     "myravant:world2:groundskeeper-yard-chest-routine:v1"
@@ -260,6 +273,14 @@ class MyravantPlayApplication:
         return compose_persistent_world_storage_state(self._runtime_state)
 
     @property
+    def displacement_state(
+        self,
+    ) -> PersistentWorldObjectDisplacementRuntimeState:
+        return compose_persistent_world_object_displacement_state(
+            self._runtime_state
+        )
+
+    @property
     def state(self) -> PersistentWorldMovementRuntimeState:
         """Compatibility view of the composed R4-C movement state."""
 
@@ -303,6 +324,32 @@ class MyravantPlayApplication:
         fixture: MyravantPlayFixture | None = None,
     ) -> "MyravantPlayApplication":
         bounded_fixture = fixture or create_terminal_play_fixture()
+
+        try:
+            runtime_state = restore_persistent_world_comp3_checkpoint(
+                checkpoint_path=checkpoint_path,
+                expected_campaign_id=bounded_fixture.campaign_id,
+                expected_initial_open_states=(
+                    bounded_fixture.initial_object_open_states
+                ),
+                expected_initial_lit_states=(
+                    bounded_fixture.initial_object_lit_states
+                ),
+                expected_initial_representation=(
+                    bounded_fixture.initial_state.representation
+                ),
+                expected_initial_representation_digest=(
+                    bounded_fixture.provenance.initial_state_digest
+                ),
+            )
+        except PersistentWorldCheckpointFormatError:
+            runtime_state = None
+        if runtime_state is not None:
+            return cls(
+                fixture=bounded_fixture,
+                runtime_state=runtime_state,
+                checkpoint_path=checkpoint_path,
+            )
 
         try:
             runtime_state = restore_persistent_world_world1_checkpoint(
@@ -750,6 +797,26 @@ class MyravantPlayApplication:
         sequence = highest + 1
         while True:
             candidate = f"terminal-storage-{sequence:06d}"
+            if candidate not in used:
+                return candidate
+            sequence += 1
+
+    def _next_displacement_command_id(self) -> str:
+        used = {
+            transition.command_id
+            for transition in (
+                self._runtime_state
+                .committed_object_displacement_transitions
+            )
+        }
+        highest = 0
+        for command_id in used:
+            match = _DISPLACEMENT_COMMAND_ID_PATTERN.fullmatch(command_id)
+            if match:
+                highest = max(highest, int(match.group(1)))
+        sequence = highest + 1
+        while True:
+            candidate = f"terminal-object-displacement-{sequence:06d}"
             if candidate not in used:
                 return candidate
             sequence += 1
@@ -1569,6 +1636,129 @@ class MyravantPlayApplication:
             object_reference=object_reference,
         )
 
+    def throw_object(
+        self,
+        object_reference: str,
+        direction: str,
+    ) -> PlayApplicationResult:
+        pre_digest = self.authoritative_digest()
+        unavailable = PlayApplicationResult(
+            result_type="object_displacement_rejected",
+            message="You cannot throw that from the current state.",
+            authoritative_changed=False,
+            pre_state_digest=pre_digest,
+            post_state_digest=pre_digest,
+            failure_class="object_displacement_target_unavailable",
+        )
+        try:
+            object_entity_id = self.fixture.resolve_object_reference(
+                object_reference
+            )
+        except UnavailableFixtureCustodyError:
+            return unavailable
+
+        carried = any(
+            relation.relation_type == CARRIED_BY_RELATION_TYPE
+            and relation.subject_entity_id == object_entity_id
+            and relation.object_entity_id == self.fixture.player_entity_id
+            for relation in self.state.representation.relations
+        )
+        if not carried:
+            return unavailable
+
+        source_place_id = self.current_place_id()
+        normalized_direction = direction.strip().casefold()
+        try:
+            destination_place_id = (
+                self.fixture.object_displacement_destination_for(
+                    object_entity_id=object_entity_id,
+                    source_place_id=source_place_id,
+                    direction=normalized_direction,
+                    method="throw",
+                )
+            )
+        except UnavailableFixtureDisplacementError:
+            return PlayApplicationResult(
+                result_type="object_displacement_rejected",
+                message="You cannot throw that way from here.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="object_displacement_route_unavailable",
+            )
+
+        command_id = self._next_displacement_command_id()
+        command = create_command_envelope(
+            command_id=command_id,
+            command_type="transfer_object",
+            source_actor_id=self.fixture.player_entity_id,
+            payload={
+                "object_entity_id": object_entity_id,
+                "destination_entity_id": destination_place_id,
+                "method": "throw",
+            },
+            metadata={"client": "myravant-terminal-comp3"},
+        )
+        qualification, spatial, opportunity = (
+            self.fixture.object_displacement_evidence(
+                command_id=command_id,
+                object_entity_id=object_entity_id,
+                source_place_id=source_place_id,
+                direction=normalized_direction,
+                destination_place_id=destination_place_id,
+                method="throw",
+            )
+        )
+        try:
+            result = execute_persistent_world_object_displacement(
+                state=self.displacement_state,
+                command=command,
+                qualification_evidence=qualification,
+                spatial_evidence=spatial,
+                opportunity_evidence=opportunity,
+                expected_pre_state_digest=self.representation_digest(),
+            )
+        except PersistentWorldObjectDisplacementError as exc:
+            return PlayApplicationResult(
+                result_type="object_displacement_rejected",
+                message="The throw was rejected by the authoritative runtime.",
+                authoritative_changed=False,
+                command_id=command_id,
+                spatial_evidence_id=spatial.evidence_id,
+                opportunity_evidence_id=opportunity.evidence_id,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class=type(exc).__name__,
+            )
+
+        self._runtime_state = (
+            replace_persistent_world_runtime_displacement_state(
+                state=self._runtime_state,
+                displacement_state=result.state,
+            )
+        )
+        object_name = self.fixture.entity_name(object_entity_id)
+        return PlayApplicationResult(
+            result_type="object_displacement_committed",
+            message=(
+                f"You throw the {object_name} "
+                f"{normalized_direction}."
+            ),
+            authoritative_changed=True,
+            command_id=command_id,
+            command_fingerprint=result.receipt.command_fingerprint,
+            preview_id=result.preview.preview_id,
+            receipt_id=result.receipt.receipt_id,
+            state_delta_id=result.state_delta.delta_id,
+            spatial_evidence_id=result.receipt.spatial_evidence_id,
+            opportunity_evidence_id=(
+                result.receipt.opportunity_evidence_id
+            ),
+            pre_state_digest=pre_digest,
+            post_state_digest=self.authoritative_digest(),
+            technical_retry=result.technical_retry,
+        )
+
     def wait(self) -> PlayApplicationResult:
         pre_digest = self.authoritative_digest()
         pre_time = self._runtime_state.logical_time_state
@@ -1851,12 +2041,15 @@ class MyravantPlayApplication:
             )
 
         pre_digest = self.authoritative_digest()
-        checkpoint_digest = (
-            write_persistent_world_world1_checkpoint(
-                state=self._runtime_state,
-                checkpoint_path=self.checkpoint_path,
-                qualification_evidence=self.fixture.checkpoint_qualification,
-            )
+        checkpoint_writer = (
+            write_persistent_world_comp3_checkpoint
+            if self._runtime_state.committed_object_displacement_transitions
+            else write_persistent_world_world1_checkpoint
+        )
+        checkpoint_digest = checkpoint_writer(
+            state=self._runtime_state,
+            checkpoint_path=self.checkpoint_path,
+            qualification_evidence=self.fixture.checkpoint_qualification,
         )
         post_digest = self.authoritative_digest()
 

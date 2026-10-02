@@ -62,12 +62,14 @@ def test_runtime_composition_has_only_flat_current_state_fields():
         "object_lit_states",
         "committed_object_lit_transitions",
         "committed_storage_transitions",
+        "committed_object_displacement_transitions",
         "logical_time_state",
     }
     assert "custody_state" not in names
     assert "open_close_state" not in names
     assert "lit_state" not in names
     assert "storage_state" not in names
+    assert "displacement_state" not in names
 
 
 def test_application_stores_flat_root_and_exposes_legacy_execution_views():

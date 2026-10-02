@@ -39,6 +39,14 @@ from astra_runtime.domain.persistent_world_object_custody_transfer import (
     create_custody_opportunity_evidence,
     create_custody_qualification_evidence,
 )
+from astra_runtime.domain.persistent_world_object_displacement import (
+    ObjectDisplacementOpportunityEvidence,
+    ObjectDisplacementQualificationEvidence,
+    ObjectDisplacementSpatialEvidence,
+    create_object_displacement_opportunity_evidence,
+    create_object_displacement_qualification_evidence,
+    create_object_displacement_spatial_evidence,
+)
 from astra_runtime.domain.persistent_world_object_open_close import (
     ObjectOpenCloseOpportunityEvidence,
     ObjectOpenCloseQualificationEvidence,
@@ -160,6 +168,10 @@ class UnavailableFixtureObservationError(MyravantPlayFixtureError):
     """Raised when a directional observation request is structurally invalid."""
 
 
+class UnavailableFixtureDisplacementError(MyravantPlayFixtureError):
+    """Raised when no bounded object-displacement route is qualified."""
+
+
 class UnavailableFixtureCustodyError(MyravantPlayFixtureError):
     """Raised when bounded fixture custody policy cannot qualify a request."""
 
@@ -176,6 +188,15 @@ class FixtureMovementRoute:
     source_place_id: str
     direction: str
     destination_place_id: str
+
+
+@dataclass(frozen=True, kw_only=True)
+class FixtureObjectDisplacementRoute:
+    object_entity_id: str
+    source_place_id: str
+    direction: str
+    destination_place_id: str
+    method: str = "throw"
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -281,6 +302,9 @@ class MyravantPlayFixture:
     directional_observation_licenses: tuple[
         FixtureDirectionalObservationLicense, ...
     ] = ()
+    object_displacement_routes: tuple[
+        FixtureObjectDisplacementRoute, ...
+    ] = ()
 
     def __post_init__(self) -> None:
         object.__setattr__(
@@ -343,6 +367,45 @@ class MyravantPlayFixture:
         if len(directional_keys) != len(set(directional_keys)):
             raise MyravantPlayFixtureError(
                 "directional observation licenses must be unique by source/direction"
+            )
+
+        object_ids = {
+            presentation.entity_id
+            for presentation in self.object_presentations
+        }
+        displacement_keys: list[tuple[str, str, str, str]] = []
+        for route in self.object_displacement_routes:
+            if route.object_entity_id not in object_ids:
+                raise MyravantPlayFixtureError(
+                    "object displacement route target must be a fixture object"
+                )
+            if (
+                route.source_place_id not in place_ids
+                or route.destination_place_id not in place_ids
+            ):
+                raise MyravantPlayFixtureError(
+                    "object displacement route endpoints must be fixture places"
+                )
+            if route.direction not in CARDINAL_DIRECTIONS:
+                raise MyravantPlayFixtureError(
+                    "object displacement route direction must be cardinal"
+                )
+            if route.method != "throw":
+                raise MyravantPlayFixtureError(
+                    "COMP-3 fixture supports only throw displacement"
+                )
+            displacement_keys.append(
+                (
+                    route.object_entity_id,
+                    route.source_place_id,
+                    route.direction,
+                    route.method,
+                )
+            )
+        if len(displacement_keys) != len(set(displacement_keys)):
+            raise MyravantPlayFixtureError(
+                "object displacement routes must be unique by "
+                "object/source/direction/method"
             )
 
     def place_presentation(self, place_id: str) -> PublicEntityPresentation:
@@ -473,6 +536,96 @@ class MyravantPlayFixture:
                 return route.destination_place_id
         raise UnavailableFixtureMovementError(
             f"no bounded fixture route from {source_place_id!r} toward {normalized!r}"
+        )
+
+    def object_displacement_destination_for(
+        self,
+        *,
+        object_entity_id: str,
+        source_place_id: str,
+        direction: str,
+        method: str = "throw",
+    ) -> str:
+        normalized = direction.strip().casefold()
+        for route in self.object_displacement_routes:
+            if (
+                route.object_entity_id == object_entity_id
+                and route.source_place_id == source_place_id
+                and route.direction == normalized
+                and route.method == method
+            ):
+                return route.destination_place_id
+        raise UnavailableFixtureDisplacementError(
+            "no explicit fixture object-displacement route"
+        )
+
+    def object_displacement_evidence(
+        self,
+        *,
+        command_id: str,
+        object_entity_id: str,
+        source_place_id: str,
+        direction: str,
+        destination_place_id: str,
+        method: str = "throw",
+    ) -> tuple[
+        ObjectDisplacementQualificationEvidence,
+        ObjectDisplacementSpatialEvidence,
+        ObjectDisplacementOpportunityEvidence,
+    ]:
+        expected = self.object_displacement_destination_for(
+            object_entity_id=object_entity_id,
+            source_place_id=source_place_id,
+            direction=direction,
+            method=method,
+        )
+        if expected != destination_place_id:
+            raise UnavailableFixtureDisplacementError(
+                "requested displacement destination does not match explicit route"
+            )
+        token = hashlib.sha256(
+            (
+                f"{command_id}|{object_entity_id}|{source_place_id}|"
+                f"{direction}|{destination_place_id}|{method}"
+            ).encode("utf-8")
+        ).hexdigest()[:20]
+        actor_entity_id = self.player_entity_id
+        return (
+            create_object_displacement_qualification_evidence(
+                evidence_id=build_record_id(
+                    "evidence",
+                    f"comp3-displacement-{token}-rt010",
+                ),
+                actor_entity_id=actor_entity_id,
+                object_entity_id=object_entity_id,
+                method=method,
+                qualified=True,
+            ),
+            create_object_displacement_spatial_evidence(
+                evidence_id=build_record_id(
+                    "evidence",
+                    f"comp3-displacement-{token}-afqr18",
+                ),
+                actor_entity_id=actor_entity_id,
+                object_entity_id=object_entity_id,
+                source_place_id=source_place_id,
+                destination_place_id=destination_place_id,
+                method=method,
+                spatially_permitted=True,
+            ),
+            create_object_displacement_opportunity_evidence(
+                evidence_id=build_record_id(
+                    "evidence",
+                    f"comp3-displacement-{token}-afqr19",
+                ),
+                actor_entity_id=actor_entity_id,
+                object_entity_id=object_entity_id,
+                source_place_id=source_place_id,
+                destination_place_id=destination_place_id,
+                method=method,
+                opportunity_available=True,
+                resolution_accepted=True,
+            ),
         )
 
     def directional_observation_evidence(
@@ -1228,6 +1381,16 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         ),
     )
 
+    object_displacement_routes = (
+        FixtureObjectDisplacementRoute(
+            object_entity_id=LANTERN_ID,
+            source_place_id=YARD_ID,
+            direction="east",
+            destination_place_id=ORCHARD_PATH_ID,
+            method="throw",
+        ),
+    )
+
     places = (
         PublicEntityPresentation(
             entity_id=WORKSHOP_ID,
@@ -1343,4 +1506,5 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         checkpoint_qualification=checkpoint_qualification,
         provenance=provenance,
         directional_observation_licenses=directional_observation_licenses,
+        object_displacement_routes=object_displacement_routes,
     )
