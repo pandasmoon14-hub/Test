@@ -20,6 +20,7 @@ from astra_runtime.myravant_play_application import (
     CheckpointPathRequiredError,
     MyravantPlayApplication,
     PlayApplicationResult,
+    PublicDirectionalObservationView,
     PublicInspectionView,
     PublicLocationView,
     PublicObservationFact,
@@ -221,6 +222,15 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
     ):
         return ParsedTerminalCommand(action="look", raw_text=raw_text)
 
+    if verb == "look" and len(parts) == 2:
+        direction = _DIRECTION_ALIASES.get(lowered[1])
+        if direction is not None:
+            return ParsedTerminalCommand(
+                action="look_direction",
+                argument=direction,
+                raw_text=raw_text,
+            )
+
     if verb in {"inspect", "examine"}:
         return _object_action(
             action="inspect",
@@ -405,6 +415,16 @@ def _render_view(view: PublicLocationView) -> str:
     return "\n".join(lines)
 
 
+def _render_directional_observation_view(
+    view: PublicDirectionalObservationView,
+) -> str:
+    return "\n".join((
+        f"To the {view.direction}: {view.name}",
+        "",
+        view.description,
+    ))
+
+
 def _render_inspection_view(view: PublicInspectionView) -> str:
     return "\n".join((view.name, "", view.description))
 
@@ -412,6 +432,8 @@ def _render_inspection_view(view: PublicInspectionView) -> str:
 def _player_visible_result_text(result: PlayApplicationResult) -> str:
     if isinstance(result.view, PublicLocationView):
         return _render_view(result.view)
+    if isinstance(result.view, PublicDirectionalObservationView):
+        return _render_directional_observation_view(result.view)
     if isinstance(result.view, PublicInspectionView):
         return _render_inspection_view(result.view)
     return result.message
@@ -475,7 +497,7 @@ def _write_result(
 
 def _write_help(output: TextIO) -> str:
     visible = (
-        "Commands: look, inspect <entity>, move <direction>, pickup <object>, "
+        "Commands: look, look <direction>, inspect <entity>, move <direction>, "
         "drop <object>, open <object>, close <object>, light <object>, "
         "extinguish <object>, put <object> in <container>, "
         "take <object> from <container>, wait, save, help, exit\n"
@@ -600,6 +622,17 @@ def run_terminal(
             continue
         if parsed.action == "look":
             result = application.look()
+            visible = _write_result(output_stream, result, debug=debug)
+            _record_result(
+                evidence_recorder,
+                parsed=parsed,
+                visible_output=visible,
+                result=result,
+                error_stream=evidence_error_stream,
+            )
+            continue
+        if parsed.action == "look_direction":
+            result = application.look_direction(parsed.argument or "")
             visible = _write_result(output_stream, result, debug=debug)
             _record_result(
                 evidence_recorder,

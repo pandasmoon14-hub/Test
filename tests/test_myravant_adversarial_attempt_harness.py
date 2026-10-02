@@ -76,9 +76,15 @@ def test_obs1_harness_covers_targeted_inspection_without_directional_collapse(tm
     assert remote["failure_class"] == unknown["failure_class"] == "inspection_target_unavailable"
     assert remote["authoritative_changed"] is unknown["authoritative_changed"] is False
 
-    directional = cases["directional-look"]["primary"]
-    assert directional["result_type"] == "unsupported_input"
-    assert directional["failure_class"] == "unsupported_input_no_executable_route"
+    directional_row = cases["directional-look"]
+    directional = directional_row["primary"]
+    assert directional["parsed_action"] == "look_direction"
+    assert directional["parsed_argument"] == "east"
+    assert directional["result_type"] == "directional_observation_unavailable"
+    assert directional["failure_class"] == "directional_observation_unlicensed"
+    assert directional["authoritative_changed"] is False
+    assert directional["observation_evidence_id"] is not None
+    assert directional_row["observed_class"] == "NONMUTATING_OBSERVATION"
 
     actor = cases["inspect-actor-01"]
     assert actor["primary"]["result_type"] == "inspection"
@@ -115,8 +121,9 @@ def test_int1_harness_covers_persistent_object_state_without_frontier_collapse(t
     assert activation["failure_class"] == "unsupported_capability_object_activation"
 
     directional = cases["directional-look"]["primary"]
-    assert directional["result_type"] == "unsupported_input"
-    assert directional["failure_class"] == "unsupported_input_no_executable_route"
+    assert directional["result_type"] == "directional_observation_unavailable"
+    assert directional["failure_class"] == "directional_observation_unlicensed"
+    assert directional["authoritative_changed"] is False
 
 def test_int3_harness_covers_bounded_storage_without_generalization(tmp_path):
     report = _run(tmp_path / "int3-coverage.json")

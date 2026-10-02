@@ -259,7 +259,9 @@ def test_int1_parser_routes_open_close_and_preserves_adjacent_frontiers():
         assert parsed.argument == argument
 
     assert parse_terminal_command("open it").action == "ambiguous"
-    assert parse_terminal_command("look east").action == "unsupported"
+    directional = parse_terminal_command("look east")
+    assert directional.action == "look_direction"
+    assert directional.argument == "east"
     assert parse_terminal_command("activate lantern").failure_class == (
         "unsupported_capability_object_activation"
     )

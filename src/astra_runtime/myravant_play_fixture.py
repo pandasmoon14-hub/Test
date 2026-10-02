@@ -141,6 +141,8 @@ TOOL_CHEST_ID = "astra:entity:tool-chest"
 WAYSTONE_ID = "astra:entity:weathered-waystone"
 GROUNDSKEEPER_ID = "astra:entity:groundskeeper"
 
+CARDINAL_DIRECTIONS = frozenset({"north", "south", "east", "west"})
+
 
 class MyravantPlayFixtureError(ValueError):
     """Base error for bounded terminal-fixture operations."""
@@ -152,6 +154,10 @@ class UnknownFixturePlaceError(MyravantPlayFixtureError):
 
 class UnavailableFixtureMovementError(MyravantPlayFixtureError):
     """Raised when the bounded fixture has no route for a requested direction."""
+
+
+class UnavailableFixtureObservationError(MyravantPlayFixtureError):
+    """Raised when a directional observation request is structurally invalid."""
 
 
 class UnavailableFixtureCustodyError(MyravantPlayFixtureError):
@@ -170,6 +176,29 @@ class FixtureMovementRoute:
     source_place_id: str
     direction: str
     destination_place_id: str
+
+
+@dataclass(frozen=True, kw_only=True)
+class FixtureDirectionalObservationLicense:
+    """Fixture-local sensing fact; it is not movement reachability."""
+
+    source_place_id: str
+    direction: str
+    target_place_id: str
+
+
+@dataclass(frozen=True, kw_only=True)
+class FixtureDirectionalObservationEvidence:
+    """Derived AFQR-20 directional evidence; never authoritative state."""
+
+    evidence_id: str
+    observer_entity_id: str
+    source_place_id: str
+    direction: str
+    target_place_id: str | None
+    observable: bool
+    basis: str
+    semantic_owner: str = AFQR20_FIXTURE_SENSING_OWNER
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -249,6 +278,9 @@ class MyravantPlayFixture:
     movement_routes: tuple[FixtureMovementRoute, ...]
     checkpoint_qualification: Mapping[str, object]
     provenance: FixtureProvenanceReceipt
+    directional_observation_licenses: tuple[
+        FixtureDirectionalObservationLicense, ...
+    ] = ()
 
     def __post_init__(self) -> None:
         object.__setattr__(
@@ -288,6 +320,29 @@ class MyravantPlayFixture:
         if len(declared_ids) != len(set(declared_ids)):
             raise MyravantPlayFixtureError(
                 "place/object/actor presentation identities must be disjoint"
+            )
+
+        directional_keys: list[tuple[str, str]] = []
+        for observation_license in self.directional_observation_licenses:
+            if observation_license.source_place_id not in place_ids:
+                raise MyravantPlayFixtureError(
+                    "directional observation source must be a fixture place"
+                )
+            if observation_license.target_place_id not in place_ids:
+                raise MyravantPlayFixtureError(
+                    "directional observation target must be a fixture place"
+                )
+            if observation_license.direction not in CARDINAL_DIRECTIONS:
+                raise MyravantPlayFixtureError(
+                    "directional observation direction must be cardinal"
+                )
+            directional_keys.append((
+                observation_license.source_place_id,
+                observation_license.direction,
+            ))
+        if len(directional_keys) != len(set(directional_keys)):
+            raise MyravantPlayFixtureError(
+                "directional observation licenses must be unique by source/direction"
             )
 
     def place_presentation(self, place_id: str) -> PublicEntityPresentation:
@@ -418,6 +473,63 @@ class MyravantPlayFixture:
                 return route.destination_place_id
         raise UnavailableFixtureMovementError(
             f"no bounded fixture route from {source_place_id!r} toward {normalized!r}"
+        )
+
+    def directional_observation_evidence(
+        self,
+        *,
+        observer_entity_id: str,
+        source_place_id: str,
+        direction: str,
+    ) -> FixtureDirectionalObservationEvidence:
+        """Derive focused AFQR-20 evidence without movement or knowledge creation."""
+
+        if observer_entity_id != self.player_entity_id:
+            raise UnavailableFixtureObservationError(
+                "VSM-5 supports only the bounded fixture player observer"
+            )
+        self.place_presentation(source_place_id)
+
+        normalized = direction.strip().casefold()
+        if normalized not in CARDINAL_DIRECTIONS:
+            raise UnavailableFixtureObservationError(
+                "directional observation requires a cardinal direction"
+            )
+
+        target_place_id = next(
+            (
+                observation_license.target_place_id
+                for observation_license in self.directional_observation_licenses
+                if (
+                    observation_license.source_place_id == source_place_id
+                    and observation_license.direction == normalized
+                )
+            ),
+            None,
+        )
+        observable = target_place_id is not None
+        basis = (
+            "explicit_fixture_directional_observation"
+            if observable
+            else "no_explicit_fixture_directional_observation"
+        )
+        token = hashlib.sha256(
+            (
+                f"{observer_entity_id}|{source_place_id}|{normalized}|"
+                f"{target_place_id or ''}|{int(observable)}"
+            ).encode("utf-8")
+        ).hexdigest()[:20]
+        return FixtureDirectionalObservationEvidence(
+            evidence_id=build_record_id(
+                "evidence",
+                f"vsm5-directional-{token}",
+            ),
+            observer_entity_id=observer_entity_id,
+            source_place_id=source_place_id,
+            direction=normalized,
+            target_place_id=target_place_id,
+            observable=observable,
+            basis=basis,
         )
 
     def movement_evidence(
@@ -1108,6 +1220,14 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         ),
     )
 
+    directional_observation_licenses = (
+        FixtureDirectionalObservationLicense(
+            source_place_id=YARD_ID,
+            direction="south",
+            target_place_id=GATEHOUSE_ID,
+        ),
+    )
+
     places = (
         PublicEntityPresentation(
             entity_id=WORKSHOP_ID,
@@ -1222,4 +1342,5 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         movement_routes=routes,
         checkpoint_qualification=checkpoint_qualification,
         provenance=provenance,
+        directional_observation_licenses=directional_observation_licenses,
     )

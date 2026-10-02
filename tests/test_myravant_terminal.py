@@ -503,7 +503,9 @@ def test_g4a_natural_routes_match_existing_authoritative_receipts():
 
 def test_g4a_preserves_semantic_boundaries_and_does_not_guess():
     assert parse_terminal_command("run south").action == "unsupported"
-    assert parse_terminal_command("look east").action == "unsupported"
+    directional = parse_terminal_command("look east")
+    assert directional.action == "look_direction"
+    assert directional.argument == "east"
     inspection = parse_terminal_command("look at tool chest")
     assert inspection.action == "inspect"
     assert inspection.argument == "tool chest"
@@ -663,7 +665,7 @@ def test_obs1_remote_and_unknown_terminal_inspection_are_visible_equivalents():
     assert remote_app.authoritative_digest() == unknown_app.authoritative_digest()
 
 
-def test_obs1_directional_observation_remains_unsupported_even_where_route_exists():
+def test_vsm5_directional_observation_remains_distinct_from_movement_route():
     app = MyravantPlayApplication.new()
     output = StringIO()
 
@@ -676,7 +678,11 @@ def test_obs1_directional_observation_remains_unsupported_even_where_route_exist
     assert app.current_place_id().endswith(":yard")
     assert len(app.state.committed_transitions) == 1
     assert len(app.custody_state.committed_custody_transitions) == 0
-    assert "does not currently have an executable route" in output.getvalue()
+    assert (
+        "You cannot make out a distinct place in that direction from here."
+        in output.getvalue()
+    )
+    assert "Orchard Path" not in output.getvalue()
 
 
 def test_obs1_inspection_between_pickup_and_drop_adds_no_transition():
