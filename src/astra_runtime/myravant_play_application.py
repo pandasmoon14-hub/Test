@@ -12,9 +12,11 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from astra_runtime.domain.persistent_world_component_checkpoint import (
+    restore_persistent_world_vsm6_checkpoint,
     restore_persistent_world_comp3_checkpoint,
     restore_persistent_world_component_checkpoint,
     restore_persistent_world_world1_checkpoint,
+    write_persistent_world_vsm6_checkpoint,
     write_persistent_world_comp3_checkpoint,
     write_persistent_world_world1_checkpoint,
 )
@@ -25,8 +27,14 @@ from astra_runtime.domain.persistent_world_logical_time import (
     digest_persistent_world_logical_time_state,
     prepare_persistent_world_logical_time,
 )
+from astra_runtime.domain.persistent_world_actor_object_handoff import (
+    PersistentWorldActorObjectHandoffError,
+    PersistentWorldActorObjectHandoffRuntimeState,
+    execute_persistent_world_actor_object_handoff,
+)
 from astra_runtime.domain.persistent_world_runtime_composition import (
     PersistentWorldRuntimeComposition,
+    compose_persistent_world_actor_object_handoff_state,
     compose_persistent_world_custody_state,
     compose_persistent_world_lit_state,
     compose_persistent_world_object_displacement_state,
@@ -35,6 +43,7 @@ from astra_runtime.domain.persistent_world_runtime_composition import (
     create_persistent_world_runtime_composition,
     create_persistent_world_runtime_composition_from_storage_state,
     digest_persistent_world_runtime_composition,
+    replace_persistent_world_runtime_actor_object_handoff_state,
     replace_persistent_world_runtime_custody_state,
     replace_persistent_world_runtime_displacement_state,
     replace_persistent_world_runtime_lit_state,
@@ -120,6 +129,7 @@ from astra_runtime.myravant_play_fixture import (
     MyravantPlayFixture,
     UnavailableFixtureCustodyError,
     UnavailableFixtureDisplacementError,
+    UnavailableFixtureHandoffError,
     UnavailableFixtureMovementError,
     UnavailableFixtureObservationError,
     create_terminal_play_fixture,
@@ -133,6 +143,9 @@ _OBJECT_LIT_STATE_COMMAND_ID_PATTERN = re.compile(r"^terminal-object-lit-state-(
 _STORAGE_COMMAND_ID_PATTERN = re.compile(r"^terminal-storage-(\d{6})$")
 _DISPLACEMENT_COMMAND_ID_PATTERN = re.compile(
     r"^terminal-object-displacement-(\d{6})$"
+)
+_HANDOFF_COMMAND_ID_PATTERN = re.compile(
+    r"^terminal-actor-object-handoff-(\d{6})$"
 )
 _TIME_COMMAND_ID_PATTERN = re.compile(r"^terminal-time-(\d{6})$")
 WORLD2_ROUTINE_PROFILE_ID = (
@@ -157,6 +170,7 @@ class PublicObservationFact:
     open_state: str | None = None
     lit_state: str | None = None
     visible_contents: tuple[str, ...] = ()
+    carrier_name: str | None = None
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -281,6 +295,14 @@ class MyravantPlayApplication:
         )
 
     @property
+    def handoff_state(
+        self,
+    ) -> PersistentWorldActorObjectHandoffRuntimeState:
+        return compose_persistent_world_actor_object_handoff_state(
+            self._runtime_state
+        )
+
+    @property
     def state(self) -> PersistentWorldMovementRuntimeState:
         """Compatibility view of the composed R4-C movement state."""
 
@@ -324,6 +346,32 @@ class MyravantPlayApplication:
         fixture: MyravantPlayFixture | None = None,
     ) -> "MyravantPlayApplication":
         bounded_fixture = fixture or create_terminal_play_fixture()
+
+        try:
+            runtime_state = restore_persistent_world_vsm6_checkpoint(
+                checkpoint_path=checkpoint_path,
+                expected_campaign_id=bounded_fixture.campaign_id,
+                expected_initial_open_states=(
+                    bounded_fixture.initial_object_open_states
+                ),
+                expected_initial_lit_states=(
+                    bounded_fixture.initial_object_lit_states
+                ),
+                expected_initial_representation=(
+                    bounded_fixture.initial_state.representation
+                ),
+                expected_initial_representation_digest=(
+                    bounded_fixture.provenance.initial_state_digest
+                ),
+            )
+        except PersistentWorldCheckpointFormatError:
+            runtime_state = None
+        if runtime_state is not None:
+            return cls(
+                fixture=bounded_fixture,
+                runtime_state=runtime_state,
+                checkpoint_path=checkpoint_path,
+            )
 
         try:
             runtime_state = restore_persistent_world_comp3_checkpoint(
@@ -518,7 +566,7 @@ class MyravantPlayApplication:
         }
 
         if entity_id in object_ids:
-            if not self._object_currently_available(entity_id):
+            if not self._object_locally_present(entity_id):
                 return None
             if not self._object_currently_observable(entity_id):
                 return None
@@ -535,6 +583,7 @@ class MyravantPlayApplication:
                         entity_id,
                     )
                 )
+            carrier_entity_id = self._object_carrier_entity_id(entity_id)
             return PublicObservationFact(
                 entity_id=entity_id,
                 entity_kind="object",
@@ -551,6 +600,11 @@ class MyravantPlayApplication:
                     else None
                 ),
                 visible_contents=visible_contents,
+                carrier_name=(
+                    self.fixture.entity_name(carrier_entity_id)
+                    if carrier_entity_id is not None
+                    else None
+                ),
             )
 
         if entity_id in actor_ids:
@@ -593,6 +647,8 @@ class MyravantPlayApplication:
                 lines.append(
                     "Inside: " + ", ".join(fact.visible_contents) + "."
                 )
+            if fact.carrier_name is not None:
+                lines.append(f"Carried by {fact.carrier_name}.")
         return "\n".join(lines)
 
     def look(self) -> PlayApplicationResult:
@@ -601,10 +657,7 @@ class MyravantPlayApplication:
 
         object_facts = tuple(
             fact
-            for item in self.fixture.public_entities_at(
-                self.state.representation,
-                place_id,
-            )
+            for item in self._public_location_objects(place_id)
             if (
                 fact := self._public_observation_fact(item.entity_id)
             ) is not None
@@ -817,6 +870,26 @@ class MyravantPlayApplication:
         sequence = highest + 1
         while True:
             candidate = f"terminal-object-displacement-{sequence:06d}"
+            if candidate not in used:
+                return candidate
+            sequence += 1
+
+    def _next_handoff_command_id(self) -> str:
+        used = {
+            transition.command_id
+            for transition in (
+                self._runtime_state
+                .committed_actor_object_handoff_transitions
+            )
+        }
+        highest = 0
+        for command_id in used:
+            match = _HANDOFF_COMMAND_ID_PATTERN.fullmatch(command_id)
+            if match:
+                highest = max(highest, int(match.group(1)))
+        sequence = highest + 1
+        while True:
+            candidate = f"terminal-actor-object-handoff-{sequence:06d}"
             if candidate not in used:
                 return candidate
             sequence += 1
@@ -1113,6 +1186,71 @@ class MyravantPlayApplication:
         open_state = self.object_open_state(relation.object_entity_id)
         return open_state is not None and open_state.state == "open"
 
+    def _object_carrier_entity_id(
+        self,
+        object_entity_id: str,
+    ) -> str | None:
+        matches = [
+            relation.object_entity_id
+            for relation in self.state.representation.relations
+            if relation.relation_type == CARRIED_BY_RELATION_TYPE
+            and relation.subject_entity_id == object_entity_id
+        ]
+        if len(matches) > 1:
+            raise MyravantPlayApplicationError(
+                "bounded object has multiple authoritative carriers"
+            )
+        return matches[0] if matches else None
+
+    def _object_locally_present(self, object_entity_id: str) -> bool:
+        place_id = self.current_place_id()
+        relations = self.state.representation.relations
+        if any(
+            relation.relation_type == LOCATED_AT_RELATION_TYPE
+            and relation.subject_entity_id == object_entity_id
+            and relation.object_entity_id == place_id
+            for relation in relations
+        ):
+            return True
+
+        carrier_entity_id = self._object_carrier_entity_id(
+            object_entity_id
+        )
+        if carrier_entity_id is not None and any(
+            relation.relation_type == LOCATED_AT_RELATION_TYPE
+            and relation.subject_entity_id == carrier_entity_id
+            and relation.object_entity_id == place_id
+            for relation in relations
+        ):
+            return True
+
+        return self._contained_object_accessible(object_entity_id)
+
+    def _public_location_objects(self, place_id: str):
+        candidate_ids = {
+            item.entity_id
+            for item in self.fixture.public_entities_at(
+                self.state.representation,
+                place_id,
+            )
+        }
+        for actor in self.fixture.public_actors_at(
+            self.state.representation,
+            place_id,
+        ):
+            candidate_ids.update(
+                item.entity_id
+                for item in self.fixture.public_entities_carried_by(
+                    self.state.representation,
+                    actor.entity_id,
+                )
+            )
+        return tuple(
+            presentation
+            for presentation in self.fixture.object_presentations
+            if presentation.entity_id in candidate_ids
+        )
+
     def _object_currently_available(self, object_entity_id: str) -> bool:
         place_id = self.current_place_id()
         nearby_ids = {
@@ -1150,10 +1288,16 @@ class MyravantPlayApplication:
             for relation in relations
         ):
             return True
-        if any(
-            relation.relation_type == CARRIED_BY_RELATION_TYPE
+        carrier_ids = {
+            relation.object_entity_id
+            for relation in relations
+            if relation.relation_type == CARRIED_BY_RELATION_TYPE
             and relation.subject_entity_id == LANTERN_ID
-            and relation.object_entity_id == self.fixture.player_entity_id
+        }
+        if carrier_ids and any(
+            relation.relation_type == LOCATED_AT_RELATION_TYPE
+            and relation.subject_entity_id in carrier_ids
+            and relation.object_entity_id == place_id
             for relation in relations
         ):
             return True
@@ -1759,6 +1903,155 @@ class MyravantPlayApplication:
             technical_retry=result.technical_retry,
         )
 
+    def give_object(
+        self,
+        object_reference: str,
+        recipient_reference: str,
+    ) -> PlayApplicationResult:
+        pre_digest = self.authoritative_digest()
+        unavailable = PlayApplicationResult(
+            result_type="actor_object_handoff_rejected",
+            message="You cannot hand that over from the current state.",
+            authoritative_changed=False,
+            pre_state_digest=pre_digest,
+            post_state_digest=pre_digest,
+            failure_class="actor_object_handoff_target_unavailable",
+        )
+        try:
+            object_entity_id = self.fixture.resolve_object_reference(
+                object_reference
+            )
+        except UnavailableFixtureCustodyError:
+            return unavailable
+        try:
+            recipient_actor_entity_id = self.fixture.resolve_actor_reference(
+                recipient_reference
+            )
+        except UnavailableFixtureHandoffError:
+            return PlayApplicationResult(
+                result_type="actor_object_handoff_rejected",
+                message="That recipient is not available in this bounded fixture.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="unknown_or_ambiguous_fixture_actor",
+            )
+
+        source_actor_entity_id = self.fixture.player_entity_id
+        carried = any(
+            relation.relation_type == CARRIED_BY_RELATION_TYPE
+            and relation.subject_entity_id == object_entity_id
+            and relation.object_entity_id == source_actor_entity_id
+            for relation in self.state.representation.relations
+        )
+        if not carried:
+            return unavailable
+
+        place_id = self.current_place_id()
+        try:
+            recipient_place_id = self.entity_place_id(
+                recipient_actor_entity_id
+            )
+        except MyravantPlayApplicationError:
+            recipient_place_id = None
+        if recipient_place_id != place_id:
+            return PlayApplicationResult(
+                result_type="actor_object_handoff_rejected",
+                message="The intended recipient is not here.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="actor_object_handoff_recipient_unavailable",
+            )
+
+        command_id = self._next_handoff_command_id()
+        command = create_command_envelope(
+            command_id=command_id,
+            command_type="transfer_object",
+            source_actor_id=source_actor_entity_id,
+            payload={
+                "object_entity_id": object_entity_id,
+                "recipient_actor_entity_id": recipient_actor_entity_id,
+                "method": "handoff",
+            },
+            metadata={"client": "myravant-terminal-vsm6"},
+        )
+        try:
+            qualification, spatial, opportunity = (
+                self.fixture.actor_object_handoff_evidence(
+                    command_id=command_id,
+                    object_entity_id=object_entity_id,
+                    source_actor_entity_id=source_actor_entity_id,
+                    recipient_actor_entity_id=recipient_actor_entity_id,
+                    place_id=place_id,
+                    method="handoff",
+                )
+            )
+        except UnavailableFixtureHandoffError:
+            return PlayApplicationResult(
+                result_type="actor_object_handoff_rejected",
+                message="That handoff is not qualified in this bounded fixture.",
+                authoritative_changed=False,
+                command_id=command_id,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="actor_object_handoff_route_unavailable",
+            )
+
+        try:
+            result = execute_persistent_world_actor_object_handoff(
+                state=self.handoff_state,
+                command=command,
+                qualification_evidence=qualification,
+                spatial_evidence=spatial,
+                opportunity_evidence=opportunity,
+                expected_pre_state_digest=self.representation_digest(),
+            )
+        except PersistentWorldActorObjectHandoffError as exc:
+            return PlayApplicationResult(
+                result_type="actor_object_handoff_rejected",
+                message=(
+                    "The handoff was rejected by the authoritative runtime."
+                ),
+                authoritative_changed=False,
+                command_id=command_id,
+                spatial_evidence_id=spatial.evidence_id,
+                opportunity_evidence_id=opportunity.evidence_id,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class=type(exc).__name__,
+            )
+
+        self._runtime_state = (
+            replace_persistent_world_runtime_actor_object_handoff_state(
+                state=self._runtime_state,
+                handoff_state=result.state,
+            )
+        )
+        object_name = self.fixture.entity_name(object_entity_id)
+        recipient_name = self.fixture.entity_name(
+            recipient_actor_entity_id
+        )
+        return PlayApplicationResult(
+            result_type="actor_object_handoff_committed",
+            message=(
+                f"You hand the {object_name} to the {recipient_name}."
+            ),
+            authoritative_changed=True,
+            command_id=command_id,
+            command_fingerprint=result.receipt.command_fingerprint,
+            preview_id=result.preview.preview_id,
+            receipt_id=result.receipt.receipt_id,
+            state_delta_id=result.state_delta.delta_id,
+            spatial_evidence_id=result.receipt.spatial_evidence_id,
+            opportunity_evidence_id=(
+                result.receipt.opportunity_evidence_id
+            ),
+            pre_state_digest=pre_digest,
+            post_state_digest=self.authoritative_digest(),
+            technical_retry=result.technical_retry,
+        )
+
     def wait(self) -> PlayApplicationResult:
         pre_digest = self.authoritative_digest()
         pre_time = self._runtime_state.logical_time_state
@@ -2042,7 +2335,9 @@ class MyravantPlayApplication:
 
         pre_digest = self.authoritative_digest()
         checkpoint_writer = (
-            write_persistent_world_comp3_checkpoint
+            write_persistent_world_vsm6_checkpoint
+            if self._runtime_state.committed_actor_object_handoff_transitions
+            else write_persistent_world_comp3_checkpoint
             if self._runtime_state.committed_object_displacement_transitions
             else write_persistent_world_world1_checkpoint
         )

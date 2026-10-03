@@ -60,6 +60,8 @@ _COMPOUND_ACTION_STARTERS = frozenset({
     "take",
     "grab",
     "drop",
+    "give",
+    "hand",
     "put",
     "place",
     "store",
@@ -157,6 +159,13 @@ def _split_throw_argument(argument: str) -> tuple[str, str]:
     parts = argument.rsplit(" -> ", 1)
     if len(parts) != 2 or not parts[0] or not parts[1]:
         raise ValueError("invalid bounded throw parser argument")
+    return parts[0], parts[1]
+
+
+def _split_handoff_argument(argument: str) -> tuple[str, str]:
+    parts = argument.split(" -> ", 1)
+    if len(parts) != 2 or not parts[0] or not parts[1]:
+        raise ValueError("invalid bounded handoff parser argument")
     return parts[0], parts[1]
 
 
@@ -290,6 +299,41 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
                     raw_text=raw_text,
                 )
 
+    if verb in {"give", "hand"} and "to" in lowered[1:]:
+        index = lowered.index("to", 1)
+        object_target = _normalized_target(parts[1:index])
+        recipient_target = _normalized_target(parts[index + 1:])
+        handoff_recipient_pronouns = _DEICTIC_TARGETS | {
+            "him",
+            "her",
+            "me",
+            "you",
+        }
+        if (
+            not object_target
+            or not recipient_target
+            or object_target in _DEICTIC_TARGETS
+            or recipient_target in handoff_recipient_pronouns
+        ):
+            ambiguous = (
+                object_target
+                if object_target in _DEICTIC_TARGETS
+                else recipient_target
+                if recipient_target in handoff_recipient_pronouns
+                else None
+            )
+            return ParsedTerminalCommand(
+                action="ambiguous",
+                argument=ambiguous,
+                raw_text=raw_text,
+                failure_class="ambiguous_target_reference",
+            )
+        return ParsedTerminalCommand(
+            action="handoff",
+            argument=f"{object_target} -> {recipient_target}",
+            raw_text=raw_text,
+        )
+
     if verb in {"take", "remove", "retrieve"} and "from" in lowered[1:]:
         index = lowered.index("from", 1)
         return _storage_action(
@@ -391,6 +435,8 @@ def _render_observation_fact(fact: PublicObservationFact) -> str:
         details.append(fact.lit_state)
     if fact.visible_contents:
         details.append("contains " + ", ".join(fact.visible_contents))
+    if fact.carrier_name is not None:
+        details.append(f"carried by {fact.carrier_name}")
 
     if not details:
         return fact.name
@@ -523,7 +569,8 @@ def _write_result(
 def _write_help(output: TextIO) -> str:
     visible = (
         "Commands: look, look <direction>, inspect <entity>, move <direction>, "
-        "drop <object>, throw <object> <direction>, open <object>, "
+        "drop <object>, give <object> to <actor>, "
+        "throw <object> <direction>, open <object>, "
         "close <object>, light <object>, "
         "extinguish <object>, put <object> in <container>, "
         "take <object> from <container>, wait, save, help, exit\n"
@@ -709,6 +756,35 @@ def run_terminal(
                 result = application.throw_object(
                     object_reference,
                     direction,
+                )
+            visible = _write_result(output_stream, result, debug=debug)
+            _record_result(
+                evidence_recorder,
+                parsed=parsed,
+                visible_output=visible,
+                result=result,
+                error_stream=evidence_error_stream,
+            )
+            continue
+        if parsed.action == "handoff":
+            try:
+                object_reference, recipient_reference = (
+                    _split_handoff_argument(parsed.argument or "")
+                )
+            except ValueError:
+                digest = application.authoritative_digest()
+                result = PlayApplicationResult(
+                    result_type="actor_object_handoff_rejected",
+                    message="That handoff could not be routed.",
+                    authoritative_changed=False,
+                    pre_state_digest=digest,
+                    post_state_digest=digest,
+                    failure_class="actor_object_handoff_route_unavailable",
+                )
+            else:
+                result = application.give_object(
+                    object_reference,
+                    recipient_reference,
                 )
             visible = _write_result(output_stream, result, debug=debug)
             _record_result(

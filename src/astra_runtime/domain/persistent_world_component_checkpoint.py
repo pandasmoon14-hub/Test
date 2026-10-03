@@ -39,6 +39,12 @@ from astra_runtime.domain.persistent_world_movement_integration import (
     digest_persistent_world_entity_location_representation,
     replay_persistent_world_movement,
 )
+from astra_runtime.domain.persistent_world_actor_object_handoff import (
+    PersistentWorldActorObjectHandoffCommitReceipt,
+    PersistentWorldActorObjectHandoffCommittedTransition,
+    replay_persistent_world_actor_object_handoff,
+    serialize_persistent_world_actor_object_handoff_commit_receipt,
+)
 from astra_runtime.domain.persistent_world_object_custody_transfer import (
     PersistentWorldObjectCustodyCommitReceipt,
     replay_persistent_world_object_custody,
@@ -79,6 +85,7 @@ COMPONENT_CHECKPOINT_FORMAT_IDENTITY = (
 COMPONENT_CHECKPOINT_FORMAT_VERSION = 1
 WORLD1_COMPONENT_CHECKPOINT_FORMAT_VERSION = 2
 COMP3_COMPONENT_CHECKPOINT_FORMAT_VERSION = 3
+VSM6_COMPONENT_CHECKPOINT_FORMAT_VERSION = 4
 
 COMPONENT_CHECKPOINT_COMPONENT_KEYS = frozenset(
     {"placement", "custody", "open_close", "lit_state", "storage"}
@@ -88,6 +95,9 @@ WORLD1_COMPONENT_CHECKPOINT_COMPONENT_KEYS = frozenset(
 )
 COMP3_COMPONENT_CHECKPOINT_COMPONENT_KEYS = frozenset(
     {*WORLD1_COMPONENT_CHECKPOINT_COMPONENT_KEYS, "object_displacement"}
+)
+VSM6_COMPONENT_CHECKPOINT_COMPONENT_KEYS = frozenset(
+    {*COMP3_COMPONENT_CHECKPOINT_COMPONENT_KEYS, "actor_object_handoff"}
 )
 _PAYLOAD_KEYS = frozenset({"components"})
 _PLACEMENT_COMPONENT_KEYS = frozenset(
@@ -167,6 +177,41 @@ _DISPLACEMENT_RECEIPT_KEYS = frozenset(
         "method",
         "source_place_id",
         "destination_place_id",
+        "source_relation_id",
+        "source_relation_type",
+        "destination_relation_id",
+        "destination_relation_type",
+        "pre_state_digest",
+        "post_state_digest",
+        "preview_id",
+        "state_delta_id",
+        "rt010_qualification_id",
+        "spatial_evidence_id",
+        "opportunity_evidence_id",
+        "status",
+    }
+)
+_HANDOFF_COMPONENT_KEYS = frozenset(
+    {
+        "committed_actor_object_handoff_transitions",
+        "actor_object_handoff_transition_summary",
+    }
+)
+_HANDOFF_TRANSITION_KEYS = frozenset(
+    {"command_id", "command_fingerprint", "preview", "state_delta", "receipt"}
+)
+_HANDOFF_PREVIEW_KEYS = _DISPLACEMENT_PREVIEW_KEYS
+_HANDOFF_DELTA_KEYS = _DISPLACEMENT_DELTA_KEYS
+_HANDOFF_RECEIPT_KEYS = frozenset(
+    {
+        "receipt_id",
+        "command_id",
+        "command_fingerprint",
+        "source_actor_entity_id",
+        "recipient_actor_entity_id",
+        "object_entity_id",
+        "method",
+        "place_id",
         "source_relation_id",
         "source_relation_type",
         "destination_relation_id",
@@ -974,4 +1019,519 @@ def restore_persistent_world_comp3_checkpoint(
         storage_state,
         logical_time_state=logical_time_state,
         committed_object_displacement_transitions=transitions,
+    )
+# ---------------------------------------------------------------------------
+# TERMINAL-PLAY-VSM-6 bounded voluntary actor-to-actor object handoff
+# checkpoint extension
+# ---------------------------------------------------------------------------
+
+
+def _serialize_actor_object_handoff_transition(transition):
+    if not isinstance(
+        transition,
+        PersistentWorldActorObjectHandoffCommittedTransition,
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            "actor-object handoff transition has invalid type"
+        )
+    return {
+        "command_id": transition.command_id,
+        "command_fingerprint": transition.command_fingerprint,
+        "preview": transition.preview.to_dict(),
+        "state_delta": transition.state_delta.to_dict(),
+        "receipt": serialize_persistent_world_actor_object_handoff_commit_receipt(
+            transition.receipt
+        ),
+    }
+
+
+def serialize_persistent_world_vsm6_checkpoint_payload(state):
+    if not isinstance(state, PersistentWorldRuntimeComposition):
+        raise PersistentWorldCheckpointEvidenceError(
+            "VSM-6 checkpoint state must be PersistentWorldRuntimeComposition"
+        )
+    payload = serialize_persistent_world_comp3_checkpoint_payload(state)
+    transitions = [
+        _serialize_actor_object_handoff_transition(item)
+        for item in state.committed_actor_object_handoff_transitions
+    ]
+    payload["components"]["actor_object_handoff"] = {
+        "committed_actor_object_handoff_transitions": transitions,
+        "actor_object_handoff_transition_summary": {
+            "count": len(transitions),
+            "command_ids": sorted(item["command_id"] for item in transitions),
+        },
+    }
+    return payload
+
+
+def build_persistent_world_vsm6_checkpoint_envelope(
+    *, state, qualification_evidence
+):
+    payload = serialize_persistent_world_vsm6_checkpoint_payload(state)
+    return {
+        "format_identity": COMPONENT_CHECKPOINT_FORMAT_IDENTITY,
+        "format_version": VSM6_COMPONENT_CHECKPOINT_FORMAT_VERSION,
+        "campaign_identity": state.movement_state.representation.campaign_id,
+        "authoritative_payload": payload,
+        "integrity_digest": _sha256_bytes(_canonical_bytes(payload)),
+        "qualification_provenance": _normalize_qualification(
+            qualification_evidence
+        ),
+    }
+
+
+def write_persistent_world_vsm6_checkpoint(
+    *, state, checkpoint_path, qualification_evidence
+):
+    return _write_envelope(
+        envelope=build_persistent_world_vsm6_checkpoint_envelope(
+            state=state,
+            qualification_evidence=qualification_evidence,
+        ),
+        checkpoint_path=checkpoint_path,
+    )
+
+
+def _restore_actor_object_handoff_transition(material):
+    transition = _require_exact_dict(
+        material,
+        expected_keys=_HANDOFF_TRANSITION_KEYS,
+        name="actor-object handoff transition",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    receipt_material = _require_exact_dict(
+        transition["receipt"],
+        expected_keys=_HANDOFF_RECEIPT_KEYS,
+        name="actor-object handoff receipt",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    try:
+        receipt = PersistentWorldActorObjectHandoffCommitReceipt(
+            **receipt_material
+        )
+    except Exception as exc:
+        raise PersistentWorldCheckpointEvidenceError(
+            "actor-object handoff receipt is invalid"
+        ) from exc
+
+    command_id = transition["command_id"]
+    command_fingerprint = transition["command_fingerprint"]
+    if (
+        not isinstance(command_id, str)
+        or not command_id
+        or command_id != receipt.command_id
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            "actor-object handoff command identity is inconsistent"
+        )
+    _require_sha256(
+        command_fingerprint,
+        name="actor-object handoff transition.command_fingerprint",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if command_fingerprint != receipt.command_fingerprint:
+        raise PersistentWorldCheckpointEvidenceError(
+            "actor-object handoff fingerprint is inconsistent"
+        )
+
+    preview_material = _require_exact_dict(
+        transition["preview"],
+        expected_keys=_HANDOFF_PREVIEW_KEYS,
+        name="actor-object handoff preview",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    expected_preview_metadata = {
+        "package": "TERMINAL-PLAY-VSM-6",
+        "command_family": "inventory",
+        "mutation_performed": False,
+    }
+    if (
+        preview_material["command_id"] != command_id
+        or preview_material["preview_id"] != receipt.preview_id
+        or preview_material["status"] != "preview_created"
+        or preview_material["messages"]
+        != ["bounded voluntary actor-object handoff prepared"]
+        or preview_material["requires_confirmation"] is not False
+        or preview_material["metadata"] != expected_preview_metadata
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            "actor-object handoff preview is inconsistent"
+        )
+    preview = TransactionPreview(
+        preview_id=preview_material["preview_id"],
+        command_id=command_id,
+        status="preview_created",
+        messages=("bounded voluntary actor-object handoff prepared",),
+        requires_confirmation=False,
+        metadata=MappingProxyType(dict(expected_preview_metadata)),
+    )
+
+    delta_material = _require_exact_dict(
+        transition["state_delta"],
+        expected_keys=_HANDOFF_DELTA_KEYS,
+        name="actor-object handoff state delta",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    expected_affected = [
+        receipt.source_actor_entity_id,
+        receipt.recipient_actor_entity_id,
+        receipt.object_entity_id,
+        receipt.place_id,
+        receipt.source_relation_id,
+        receipt.destination_relation_id,
+    ]
+    expected_payload = {
+        "method": receipt.method,
+        "source_actor_entity_id": receipt.source_actor_entity_id,
+        "recipient_actor_entity_id": receipt.recipient_actor_entity_id,
+        "object_entity_id": receipt.object_entity_id,
+        "place_id": receipt.place_id,
+        "source_relation_id": receipt.source_relation_id,
+        "source_relation_type": receipt.source_relation_type,
+        "destination_relation_id": receipt.destination_relation_id,
+        "destination_relation_type": receipt.destination_relation_type,
+    }
+    expected_metadata = {
+        "package": "TERMINAL-PLAY-VSM-6",
+        "placement_semantic_owner": "RT-010",
+        "spatial_semantic_owner": "AFQR-18",
+        "opportunity_semantic_owner": "AFQR-19",
+        "qualified_transition_owner": "AFQR-01",
+    }
+    if (
+        delta_material["source_command_id"] != command_id
+        or delta_material["source_preview_id"] != receipt.preview_id
+        or delta_material["delta_id"] != receipt.state_delta_id
+        or delta_material["affected_record_ids"] != expected_affected
+        or delta_material["change_type"] != "relationship_update"
+        or delta_material["payload"] != expected_payload
+        or delta_material["metadata"] != expected_metadata
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            "actor-object handoff state delta is inconsistent"
+        )
+    state_delta = StateDeltaEnvelope(
+        delta_id=delta_material["delta_id"],
+        source_command_id=command_id,
+        source_preview_id=receipt.preview_id,
+        affected_record_ids=tuple(expected_affected),
+        change_type="relationship_update",
+        payload=MappingProxyType(dict(expected_payload)),
+        metadata=MappingProxyType(dict(expected_metadata)),
+    )
+    return PersistentWorldActorObjectHandoffCommittedTransition(
+        command_id=command_id,
+        command_fingerprint=command_fingerprint,
+        preview=preview,
+        state_delta=state_delta,
+        receipt=receipt,
+    )
+
+
+def _validate_vsm6_placement_replay(
+    *,
+    initial_representation,
+    final_representation,
+    storage_state,
+    displacement_transitions,
+    handoff_transitions,
+    expected_initial_representation_digest,
+):
+    if not isinstance(
+        initial_representation,
+        PersistentWorldEntityLocationRepresentation,
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            "VSM-6 initial representation has invalid type"
+        )
+    initial_digest = digest_persistent_world_entity_location_representation(
+        initial_representation
+    )
+    if initial_digest != expected_initial_representation_digest:
+        raise PersistentWorldCheckpointEvidenceError(
+            "VSM-6 initial representation digest disagrees with fixture"
+        )
+
+    movement = (
+        storage_state.lit_state.open_close_state.custody_state
+        .movement_state.committed_transitions
+    )
+    custody = (
+        storage_state.lit_state.open_close_state.custody_state
+        .committed_custody_transitions
+    )
+    storage = storage_state.committed_storage_transitions
+    transitions = [
+        *movement,
+        *custody,
+        *storage,
+        *displacement_transitions,
+        *handoff_transitions,
+    ]
+    if not handoff_transitions:
+        raise PersistentWorldCheckpointEvidenceError(
+            "VSM-6 checkpoint requires actor-object handoff history"
+        )
+
+    ids = [item.command_id for item in transitions]
+    if len(ids) != len(set(ids)):
+        raise PersistentWorldCheckpointEvidenceError(
+            "VSM-6 placement command identities collide"
+        )
+
+    outgoing = {}
+    incoming = {}
+    for item in transitions:
+        pre_digest = item.receipt.pre_state_digest
+        post_digest = item.receipt.post_state_digest
+        if pre_digest == post_digest:
+            raise PersistentWorldCheckpointEvidenceError(
+                "VSM-6 placement transition may not self-loop"
+            )
+        if pre_digest in outgoing or post_digest in incoming:
+            raise PersistentWorldCheckpointEvidenceError(
+                "VSM-6 placement history is ambiguous"
+            )
+        outgoing[pre_digest] = item
+        incoming[post_digest] = item
+
+    roots = [digest for digest in outgoing if digest not in incoming]
+    terminals = [digest for digest in incoming if digest not in outgoing]
+    final_digest = digest_persistent_world_entity_location_representation(
+        final_representation
+    )
+    if (
+        roots != [initial_digest]
+        or len(terminals) != 1
+        or terminals[0] != final_digest
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            "VSM-6 placement history does not form the fixture-to-current chain"
+        )
+
+    representation = initial_representation
+    cursor = initial_digest
+    visited = set()
+    while cursor in outgoing:
+        if cursor in visited:
+            raise PersistentWorldCheckpointEvidenceError(
+                "VSM-6 placement history contains a cycle"
+            )
+        visited.add(cursor)
+        transition = outgoing[cursor]
+        receipt = transition.receipt
+        try:
+            if isinstance(receipt, PersistentWorldMovementCommitReceipt):
+                representation = replay_persistent_world_movement(
+                    pre_state_representation=representation,
+                    receipt=receipt,
+                )
+            elif isinstance(
+                receipt,
+                PersistentWorldObjectCustodyCommitReceipt,
+            ):
+                representation = replay_persistent_world_object_custody(
+                    pre_state_representation=representation,
+                    receipt=receipt,
+                )
+            elif isinstance(
+                receipt,
+                PersistentWorldObjectStorageCommitReceipt,
+            ):
+                representation = replay_persistent_world_object_storage(
+                    representation=representation,
+                    receipt=receipt,
+                )
+            elif isinstance(
+                receipt,
+                PersistentWorldObjectDisplacementCommitReceipt,
+            ):
+                representation = replay_persistent_world_object_displacement(
+                    pre_state_representation=representation,
+                    receipt=receipt,
+                )
+            elif isinstance(
+                receipt,
+                PersistentWorldActorObjectHandoffCommitReceipt,
+            ):
+                representation = replay_persistent_world_actor_object_handoff(
+                    pre_state_representation=representation,
+                    receipt=receipt,
+                )
+            else:
+                raise PersistentWorldCheckpointEvidenceError(
+                    "VSM-6 placement receipt type is unsupported"
+                )
+        except PersistentWorldCheckpointEvidenceError:
+            raise
+        except Exception as exc:
+            raise PersistentWorldCheckpointEvidenceError(
+                "VSM-6 placement transition replay failed"
+            ) from exc
+        cursor = digest_persistent_world_entity_location_representation(
+            representation
+        )
+
+    replay_canonical = (
+        canonical_serialize_persistent_world_entity_location_representation(
+            representation
+        )
+    )
+    final_canonical = (
+        canonical_serialize_persistent_world_entity_location_representation(
+            final_representation
+        )
+    )
+    if (
+        len(visited) != len(transitions)
+        or cursor != final_digest
+        or replay_canonical != final_canonical
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            "VSM-6 replayed placement differs from restored representation"
+        )
+
+
+def restore_persistent_world_vsm6_checkpoint(
+    *,
+    checkpoint_path,
+    expected_campaign_id,
+    expected_initial_open_states,
+    expected_initial_lit_states,
+    expected_initial_representation,
+    expected_initial_representation_digest,
+):
+    path = _checkpoint_path(checkpoint_path)
+    expected_campaign_id = _require_record_id(
+        expected_campaign_id,
+        name="expected_campaign_id",
+    )
+    envelope = _read_checkpoint_envelope(path)
+    payload = _validate_envelope_common(
+        envelope=envelope,
+        expected_campaign_id=expected_campaign_id,
+        expected_version=VSM6_COMPONENT_CHECKPOINT_FORMAT_VERSION,
+    )
+    components = _require_exact_dict(
+        payload["components"],
+        expected_keys=VSM6_COMPONENT_CHECKPOINT_COMPONENT_KEYS,
+        name="VSM-6 checkpoint components",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    base_payload = {
+        "components": {
+            key: value
+            for key, value in components.items()
+            if key not in {
+                "logical_time",
+                "object_displacement",
+                "actor_object_handoff",
+            }
+        }
+    }
+    storage_state = _restore_persistent_world_object_storage_payload(
+        payload_material=_reconstruct_int3_payload(base_payload),
+        expected_campaign_id=expected_campaign_id,
+        expected_initial_open_states=expected_initial_open_states,
+        expected_initial_lit_states=expected_initial_lit_states,
+        expected_initial_representation_digest=(
+            expected_initial_representation_digest
+        ),
+        defer_combined_attribution=True,
+    )
+    try:
+        logical_time_state = restore_persistent_world_logical_time_state(
+            components["logical_time"]
+        )
+    except InvalidPersistentWorldLogicalTimeRequestError as exc:
+        raise PersistentWorldCheckpointEvidenceError(
+            "VSM-6 logical-time checkpoint component is invalid"
+        ) from exc
+
+    displacement_component = _require_exact_dict(
+        components["object_displacement"],
+        expected_keys=_DISPLACEMENT_COMPONENT_KEYS,
+        name="VSM-6 object displacement component",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    displacement_material = displacement_component[
+        "committed_object_displacement_transitions"
+    ]
+    if type(displacement_material) is not list:
+        raise PersistentWorldCheckpointEvidenceError(
+            "VSM-6 object displacement transitions must be a list"
+        )
+    displacement_transitions = tuple(
+        _restore_object_displacement_transition(item)
+        for item in displacement_material
+    )
+    displacement_summary = _require_exact_dict(
+        displacement_component["object_displacement_transition_summary"],
+        expected_keys=frozenset({"count", "command_ids"}),
+        name="VSM-6 object displacement transition summary",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if (
+        type(displacement_summary["count"]) is not int
+        or displacement_summary["count"] != len(displacement_transitions)
+        or displacement_summary["command_ids"]
+        != sorted(item.command_id for item in displacement_transitions)
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            "VSM-6 object displacement transition summary is inconsistent"
+        )
+
+    handoff_component = _require_exact_dict(
+        components["actor_object_handoff"],
+        expected_keys=_HANDOFF_COMPONENT_KEYS,
+        name="actor-object handoff component",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    handoff_material = handoff_component[
+        "committed_actor_object_handoff_transitions"
+    ]
+    if type(handoff_material) is not list:
+        raise PersistentWorldCheckpointEvidenceError(
+            "actor-object handoff transitions must be a list"
+        )
+    handoff_transitions = tuple(
+        _restore_actor_object_handoff_transition(item)
+        for item in handoff_material
+    )
+    handoff_summary = _require_exact_dict(
+        handoff_component["actor_object_handoff_transition_summary"],
+        expected_keys=frozenset({"count", "command_ids"}),
+        name="actor-object handoff transition summary",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    if (
+        type(handoff_summary["count"]) is not int
+        or handoff_summary["count"] != len(handoff_transitions)
+        or handoff_summary["command_ids"]
+        != sorted(item.command_id for item in handoff_transitions)
+    ):
+        raise PersistentWorldCheckpointEvidenceError(
+            "actor-object handoff transition summary is inconsistent"
+        )
+
+    final_representation = (
+        storage_state.lit_state.open_close_state.custody_state
+        .movement_state.representation
+    )
+    _validate_vsm6_placement_replay(
+        initial_representation=expected_initial_representation,
+        final_representation=final_representation,
+        storage_state=storage_state,
+        displacement_transitions=displacement_transitions,
+        handoff_transitions=handoff_transitions,
+        expected_initial_representation_digest=(
+            expected_initial_representation_digest
+        ),
+    )
+    return create_persistent_world_runtime_composition_from_storage_state(
+        storage_state,
+        logical_time_state=logical_time_state,
+        committed_object_displacement_transitions=displacement_transitions,
+        committed_actor_object_handoff_transitions=handoff_transitions,
     )

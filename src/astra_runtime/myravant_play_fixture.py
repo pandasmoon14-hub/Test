@@ -32,6 +32,14 @@ from astra_runtime.domain.persistent_world_movement_integration import (
     create_persistent_world_movement_runtime_state,
     digest_persistent_world_entity_location_representation,
 )
+from astra_runtime.domain.persistent_world_actor_object_handoff import (
+    ActorObjectHandoffOpportunityEvidence,
+    ActorObjectHandoffQualificationEvidence,
+    ActorObjectHandoffSpatialEvidence,
+    create_actor_object_handoff_opportunity_evidence,
+    create_actor_object_handoff_qualification_evidence,
+    create_actor_object_handoff_spatial_evidence,
+)
 from astra_runtime.domain.persistent_world_object_custody_transfer import (
     CustodyOpportunityEvidence,
     CustodyQualificationEvidence,
@@ -176,6 +184,10 @@ class UnavailableFixtureCustodyError(MyravantPlayFixtureError):
     """Raised when bounded fixture custody policy cannot qualify a request."""
 
 
+class UnavailableFixtureHandoffError(MyravantPlayFixtureError):
+    """Raised when no bounded voluntary actor-object handoff is qualified."""
+
+
 @dataclass(frozen=True, kw_only=True)
 class PublicEntityPresentation:
     entity_id: str
@@ -197,6 +209,14 @@ class FixtureObjectDisplacementRoute:
     direction: str
     destination_place_id: str
     method: str = "throw"
+
+
+@dataclass(frozen=True, kw_only=True)
+class FixtureActorObjectHandoffRoute:
+    object_entity_id: str
+    source_actor_entity_id: str
+    recipient_actor_entity_id: str
+    method: str = "handoff"
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -305,6 +325,9 @@ class MyravantPlayFixture:
     object_displacement_routes: tuple[
         FixtureObjectDisplacementRoute, ...
     ] = ()
+    actor_object_handoff_routes: tuple[
+        FixtureActorObjectHandoffRoute, ...
+    ] = ()
 
     def __post_init__(self) -> None:
         object.__setattr__(
@@ -406,6 +429,44 @@ class MyravantPlayFixture:
             raise MyravantPlayFixtureError(
                 "object displacement routes must be unique by "
                 "object/source/direction/method"
+            )
+
+        actor_ids = {
+            self.player_entity_id,
+            *(presentation.entity_id for presentation in self.actor_presentations),
+        }
+        handoff_keys: list[tuple[str, str, str, str]] = []
+        for route in self.actor_object_handoff_routes:
+            if route.object_entity_id not in object_ids:
+                raise MyravantPlayFixtureError(
+                    "actor-object handoff target must be a fixture object"
+                )
+            if (
+                route.source_actor_entity_id not in actor_ids
+                or route.recipient_actor_entity_id not in actor_ids
+            ):
+                raise MyravantPlayFixtureError(
+                    "actor-object handoff actors must be fixture actors"
+                )
+            if route.source_actor_entity_id == route.recipient_actor_entity_id:
+                raise MyravantPlayFixtureError(
+                    "actor-object handoff actors must differ"
+                )
+            if route.method != "handoff":
+                raise MyravantPlayFixtureError(
+                    "VSM-6 fixture supports only handoff method"
+                )
+            handoff_keys.append(
+                (
+                    route.object_entity_id,
+                    route.source_actor_entity_id,
+                    route.recipient_actor_entity_id,
+                    route.method,
+                )
+            )
+        if len(handoff_keys) != len(set(handoff_keys)):
+            raise MyravantPlayFixtureError(
+                "actor-object handoff routes must be unique"
             )
 
     def place_presentation(self, place_id: str) -> PublicEntityPresentation:
@@ -828,6 +889,113 @@ class MyravantPlayFixture:
                 "inspection reference is unknown or ambiguous in the bounded fixture"
             )
         return matches[0]
+
+    def resolve_actor_reference(self, reference: str) -> str:
+        """Resolve a bounded public actor reference without granting authority."""
+
+        normalized = " ".join(
+            reference.strip().casefold().replace("-", " ").split()
+        )
+        if not normalized:
+            raise UnavailableFixtureHandoffError(
+                "actor reference must be non-empty"
+            )
+
+        matches: list[str] = []
+        for presentation in self.actor_presentations:
+            name = " ".join(
+                presentation.name.casefold().replace("-", " ").split()
+            )
+            local_id = " ".join(
+                presentation.entity_id.rsplit(":", 1)[-1]
+                .casefold()
+                .replace("-", " ")
+                .split()
+            )
+            last_word = name.split()[-1]
+            if normalized in {name, local_id, last_word}:
+                matches.append(presentation.entity_id)
+
+        if len(matches) != 1:
+            raise UnavailableFixtureHandoffError(
+                "actor reference is unknown or ambiguous in the bounded fixture"
+            )
+        return matches[0]
+
+    def actor_object_handoff_evidence(
+        self,
+        *,
+        command_id: str,
+        object_entity_id: str,
+        source_actor_entity_id: str,
+        recipient_actor_entity_id: str,
+        place_id: str,
+        method: str = "handoff",
+    ) -> tuple[
+        ActorObjectHandoffQualificationEvidence,
+        ActorObjectHandoffSpatialEvidence,
+        ActorObjectHandoffOpportunityEvidence,
+    ]:
+        route = next(
+            (
+                item
+                for item in self.actor_object_handoff_routes
+                if item.object_entity_id == object_entity_id
+                and item.source_actor_entity_id == source_actor_entity_id
+                and item.recipient_actor_entity_id == recipient_actor_entity_id
+                and item.method == method
+            ),
+            None,
+        )
+        if route is None:
+            raise UnavailableFixtureHandoffError(
+                "no explicit fixture actor-object handoff route"
+            )
+        self.place_presentation(place_id)
+        token = hashlib.sha256(
+            (
+                f"{command_id}|{object_entity_id}|{source_actor_entity_id}|"
+                f"{recipient_actor_entity_id}|{place_id}|{method}"
+            ).encode("utf-8")
+        ).hexdigest()[:20]
+        return (
+            create_actor_object_handoff_qualification_evidence(
+                evidence_id=build_record_id(
+                    "evidence",
+                    f"vsm6-handoff-{token}-rt010",
+                ),
+                source_actor_entity_id=source_actor_entity_id,
+                recipient_actor_entity_id=recipient_actor_entity_id,
+                object_entity_id=object_entity_id,
+                method=method,
+                qualified=True,
+            ),
+            create_actor_object_handoff_spatial_evidence(
+                evidence_id=build_record_id(
+                    "evidence",
+                    f"vsm6-handoff-{token}-afqr18",
+                ),
+                source_actor_entity_id=source_actor_entity_id,
+                recipient_actor_entity_id=recipient_actor_entity_id,
+                object_entity_id=object_entity_id,
+                place_id=place_id,
+                method=method,
+                spatially_permitted=True,
+            ),
+            create_actor_object_handoff_opportunity_evidence(
+                evidence_id=build_record_id(
+                    "evidence",
+                    f"vsm6-handoff-{token}-afqr19",
+                ),
+                source_actor_entity_id=source_actor_entity_id,
+                recipient_actor_entity_id=recipient_actor_entity_id,
+                object_entity_id=object_entity_id,
+                place_id=place_id,
+                method=method,
+                opportunity_available=True,
+                resolution_accepted=True,
+            ),
+        )
 
     def custody_evidence(
         self,
@@ -1373,6 +1541,15 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         ),
     )
 
+    actor_object_handoff_routes = (
+        FixtureActorObjectHandoffRoute(
+            object_entity_id=LANTERN_ID,
+            source_actor_entity_id=PLAYER_ID,
+            recipient_actor_entity_id=GROUNDSKEEPER_ID,
+            method="handoff",
+        ),
+    )
+
     directional_observation_licenses = (
         FixtureDirectionalObservationLicense(
             source_place_id=YARD_ID,
@@ -1507,4 +1684,5 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         provenance=provenance,
         directional_observation_licenses=directional_observation_licenses,
         object_displacement_routes=object_displacement_routes,
+        actor_object_handoff_routes=actor_object_handoff_routes,
     )
