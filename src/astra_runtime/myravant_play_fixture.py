@@ -1548,6 +1548,12 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             recipient_actor_entity_id=GROUNDSKEEPER_ID,
             method="handoff",
         ),
+        FixtureActorObjectHandoffRoute(
+            object_entity_id=LANTERN_ID,
+            source_actor_entity_id=GROUNDSKEEPER_ID,
+            recipient_actor_entity_id=PLAYER_ID,
+            method="handoff",
+        ),
     )
 
     directional_observation_licenses = (

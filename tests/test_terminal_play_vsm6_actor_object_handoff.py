@@ -114,7 +114,7 @@ def test_vsm6_requires_player_custody_and_colocated_recipient():
     assert app.authoritative_digest() == before
 
 
-def test_vsm6_only_explicit_lantern_to_groundskeeper_route_is_qualified():
+def test_vsm6_player_to_groundskeeper_route_remains_bounded_and_qualified():
     app = MyravantPlayApplication.new()
     assert app.move("south").authoritative_changed is True
     assert app.move("south").authoritative_changed is True

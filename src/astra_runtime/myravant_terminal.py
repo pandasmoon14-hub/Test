@@ -81,6 +81,7 @@ _COMPOUND_ACTION_STARTERS = frozenset({
     "throw",
     "toss",
     "hurl",
+    "ask",
     "wait",
 })
 _UNSUPPORTED_CAPABILITY_BY_VERB = {
@@ -159,6 +160,13 @@ def _split_throw_argument(argument: str) -> tuple[str, str]:
     parts = argument.rsplit(" -> ", 1)
     if len(parts) != 2 or not parts[0] or not parts[1]:
         raise ValueError("invalid bounded throw parser argument")
+    return parts[0], parts[1]
+
+
+def _split_request_handoff_argument(argument: str) -> tuple[str, str]:
+    parts = argument.split(" -> ", 1)
+    if len(parts) != 2 or not parts[0] or not parts[1]:
+        raise ValueError("invalid bounded return-request parser argument")
     return parts[0], parts[1]
 
 
@@ -298,6 +306,41 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
                     argument=f"{object_reference} -> {direction}",
                     raw_text=raw_text,
                 )
+
+    if verb == "ask" and "for" in lowered[1:]:
+        index = lowered.index("for", 1)
+        source_target = _normalized_target(parts[1:index])
+        object_target = _normalized_target(parts[index + 1:])
+        request_actor_pronouns = _DEICTIC_TARGETS | {
+            "him",
+            "her",
+            "me",
+            "you",
+        }
+        if (
+            not source_target
+            or not object_target
+            or source_target in request_actor_pronouns
+            or object_target in _DEICTIC_TARGETS
+        ):
+            ambiguous = (
+                source_target
+                if source_target in request_actor_pronouns
+                else object_target
+                if object_target in _DEICTIC_TARGETS
+                else None
+            )
+            return ParsedTerminalCommand(
+                action="ambiguous",
+                argument=ambiguous,
+                raw_text=raw_text,
+                failure_class="ambiguous_target_reference",
+            )
+        return ParsedTerminalCommand(
+            action="request_handoff",
+            argument=f"{source_target} -> {object_target}",
+            raw_text=raw_text,
+        )
 
     if verb in {"give", "hand"} and "to" in lowered[1:]:
         index = lowered.index("to", 1)
@@ -570,6 +613,7 @@ def _write_help(output: TextIO) -> str:
     visible = (
         "Commands: look, look <direction>, inspect <entity>, move <direction>, "
         "drop <object>, give <object> to <actor>, "
+        "ask <actor> for <object>, "
         "throw <object> <direction>, open <object>, "
         "close <object>, light <object>, "
         "extinguish <object>, put <object> in <container>, "
@@ -756,6 +800,35 @@ def run_terminal(
                 result = application.throw_object(
                     object_reference,
                     direction,
+                )
+            visible = _write_result(output_stream, result, debug=debug)
+            _record_result(
+                evidence_recorder,
+                parsed=parsed,
+                visible_output=visible,
+                result=result,
+                error_stream=evidence_error_stream,
+            )
+            continue
+        if parsed.action == "request_handoff":
+            try:
+                source_reference, object_reference = (
+                    _split_request_handoff_argument(parsed.argument or "")
+                )
+            except ValueError:
+                digest = application.authoritative_digest()
+                result = PlayApplicationResult(
+                    result_type="actor_object_handoff_rejected",
+                    message="That return request could not be routed.",
+                    authoritative_changed=False,
+                    pre_state_digest=digest,
+                    post_state_digest=digest,
+                    failure_class="actor_object_handoff_route_unavailable",
+                )
+            else:
+                result = application.request_object_from_actor(
+                    source_reference,
+                    object_reference,
                 )
             visible = _write_result(output_stream, result, debug=debug)
             _record_result(

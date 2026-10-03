@@ -2052,6 +2052,157 @@ class MyravantPlayApplication:
             technical_retry=result.technical_retry,
         )
 
+
+    def request_object_from_actor(
+        self,
+        source_reference: str,
+        object_reference: str,
+    ) -> PlayApplicationResult:
+        # The player's request is intent only. It does not directly command
+        # the NPC or mutate authority. The fixture licenses one accepted
+        # Groundskeeper -> Traveler return, then the existing handoff runtime
+        # remains the sole authoritative state-transition path.
+        pre_digest = self.authoritative_digest()
+        unavailable = PlayApplicationResult(
+            result_type="actor_object_handoff_rejected",
+            message="That actor cannot return that object from the current state.",
+            authoritative_changed=False,
+            pre_state_digest=pre_digest,
+            post_state_digest=pre_digest,
+            failure_class="actor_object_handoff_target_unavailable",
+        )
+
+        try:
+            object_entity_id = self.fixture.resolve_object_reference(
+                object_reference
+            )
+        except UnavailableFixtureCustodyError:
+            return unavailable
+
+        try:
+            source_actor_entity_id = self.fixture.resolve_actor_reference(
+                source_reference
+            )
+        except UnavailableFixtureHandoffError:
+            return PlayApplicationResult(
+                result_type="actor_object_handoff_rejected",
+                message="That actor is not available in this bounded fixture.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="unknown_or_ambiguous_fixture_actor",
+            )
+
+        recipient_actor_entity_id = self.fixture.player_entity_id
+        carried = any(
+            relation.relation_type == CARRIED_BY_RELATION_TYPE
+            and relation.subject_entity_id == object_entity_id
+            and relation.object_entity_id == source_actor_entity_id
+            for relation in self.state.representation.relations
+        )
+        if not carried:
+            return unavailable
+
+        place_id = self.current_place_id()
+        try:
+            source_place_id = self.entity_place_id(source_actor_entity_id)
+        except MyravantPlayApplicationError:
+            source_place_id = None
+        if source_place_id != place_id:
+            return PlayApplicationResult(
+                result_type="actor_object_handoff_rejected",
+                message="The actor carrying that object is not here.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="actor_object_handoff_source_unavailable",
+            )
+
+        command_id = self._next_handoff_command_id()
+        command = create_command_envelope(
+            command_id=command_id,
+            command_type="transfer_object",
+            source_actor_id=source_actor_entity_id,
+            payload={
+                "object_entity_id": object_entity_id,
+                "recipient_actor_entity_id": recipient_actor_entity_id,
+                "method": "handoff",
+            },
+            metadata={"client": "myravant-terminal-vsm7"},
+        )
+
+        try:
+            qualification, spatial, opportunity = (
+                self.fixture.actor_object_handoff_evidence(
+                    command_id=command_id,
+                    object_entity_id=object_entity_id,
+                    source_actor_entity_id=source_actor_entity_id,
+                    recipient_actor_entity_id=recipient_actor_entity_id,
+                    place_id=place_id,
+                    method="handoff",
+                )
+            )
+        except UnavailableFixtureHandoffError:
+            return PlayApplicationResult(
+                result_type="actor_object_handoff_rejected",
+                message="That return is not qualified in this bounded fixture.",
+                authoritative_changed=False,
+                command_id=command_id,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="actor_object_handoff_route_unavailable",
+            )
+
+        try:
+            result = execute_persistent_world_actor_object_handoff(
+                state=self.handoff_state,
+                command=command,
+                qualification_evidence=qualification,
+                spatial_evidence=spatial,
+                opportunity_evidence=opportunity,
+                expected_pre_state_digest=self.representation_digest(),
+            )
+        except PersistentWorldActorObjectHandoffError as exc:
+            return PlayApplicationResult(
+                result_type="actor_object_handoff_rejected",
+                message=(
+                    "The return handoff was rejected by the authoritative runtime."
+                ),
+                authoritative_changed=False,
+                command_id=command_id,
+                spatial_evidence_id=spatial.evidence_id,
+                opportunity_evidence_id=opportunity.evidence_id,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class=type(exc).__name__,
+            )
+
+        self._runtime_state = (
+            replace_persistent_world_runtime_actor_object_handoff_state(
+                state=self._runtime_state,
+                handoff_state=result.state,
+            )
+        )
+        object_name = self.fixture.entity_name(object_entity_id)
+        source_name = self.fixture.entity_name(source_actor_entity_id)
+        return PlayApplicationResult(
+            result_type="actor_object_handoff_committed",
+            message=f"The {source_name} hands you the {object_name}.",
+            authoritative_changed=True,
+            command_id=command_id,
+            command_fingerprint=result.receipt.command_fingerprint,
+            preview_id=result.preview.preview_id,
+            receipt_id=result.receipt.receipt_id,
+            state_delta_id=result.state_delta.delta_id,
+            spatial_evidence_id=result.receipt.spatial_evidence_id,
+            opportunity_evidence_id=(
+                result.receipt.opportunity_evidence_id
+            ),
+            pre_state_digest=pre_digest,
+            post_state_digest=self.authoritative_digest(),
+            technical_retry=result.technical_retry,
+        )
+
     def wait(self) -> PlayApplicationResult:
         pre_digest = self.authoritative_digest()
         pre_time = self._runtime_state.logical_time_state
