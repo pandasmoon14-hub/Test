@@ -94,7 +94,11 @@ def test_vsm10_named_destination_commits_existing_r4c_with_groundskeeper_actor()
     assert app.current_place_id() == YARD_ID
     assert app.runtime_state.logical_time_state.logical_position == logical_time_before
 
-    transition = app.state.committed_transitions[-1]
+    transition = next(
+        item
+        for item in app.state.committed_transitions
+        if item.receipt.receipt_id == result.receipt_id
+    )
     assert transition.receipt.actor_entity_id == GROUNDSKEEPER_ID
     assert transition.receipt.source_place_id == YARD_ID
     assert transition.receipt.destination_place_id == GATEHOUSE_ID
