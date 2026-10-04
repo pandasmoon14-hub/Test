@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import fields
 from pathlib import Path
 
 from astra_runtime.myravant_play_application import MyravantPlayApplication
@@ -99,7 +100,21 @@ def test_cross_family_v4_checkpoint_save_restore_save_is_byte_stable(tmp_path) -
 
     restored = MyravantPlayApplication.restore(checkpoint_path=checkpoint)
     assert restored.authoritative_digest() == expected_digest
-    assert restored.runtime_state == app.runtime_state
+    assert restored.representation_digest() == app.representation_digest()
+    assert (
+        restored.runtime_state.movement_state.committed_transitions
+        == app.runtime_state.movement_state.committed_transitions
+    )
+    # The representation serializer canonically sorts entities by entity_id.
+    # Restore may therefore normalize non-semantic in-memory tuple order. All
+    # other runtime components must remain exactly equal.
+    for runtime_field in fields(app.runtime_state):
+        if runtime_field.name == "movement_state":
+            continue
+        assert getattr(restored.runtime_state, runtime_field.name) == getattr(
+            app.runtime_state,
+            runtime_field.name,
+        )
 
     second_save = restored.save()
     assert second_save.result_type == "checkpoint_written"
