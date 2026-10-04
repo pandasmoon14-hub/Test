@@ -1,11 +1,11 @@
 """RUNTIME-SKELETON-EXTRACTION-1C custody lifecycle equivalence adapter.
 
 This module wires the already-authoritative R4-E custody capability into the
-shared deterministic transition lifecycle shell. It is an extraction-time
-adapter only: all custody vocabulary, legality, evidence meaning, state
-mutation, receipt construction, stale-state protection, retry conflict type,
-and replay semantics remain implemented by
-``persistent_world_object_custody_transfer``.
+shared deterministic transition lifecycle shell after the frozen checkpoint
+descriptor tranche. It is an extraction-time adapter only: all custody
+vocabulary, legality, evidence meaning, state mutation, receipt construction,
+stale-state protection, retry conflict type, and replay semantics remain
+implemented by ``persistent_world_object_custody_transfer``.
 
 The adapter does not create a custody super-owner and does not change the
 production application route in this tranche.
