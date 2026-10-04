@@ -2,8 +2,10 @@
 
 VSM-10 gets first refusal only for its exact Groundskeeper movement-request
 grammar. Every other input delegates to the complete VSM-9 terminal lane, which
-in turn preserves the existing Myravant terminal routes. This remains bounded
-vertical-slice evidence rather than a generic command-plugin system.
+in turn preserves the existing Myravant terminal routes. The Orchard Path repair
+then derives one bounded nonauthoritative directional light signal from existing
+COMP-3 placement and INT-2 lit state. This remains vertical-slice evidence rather
+than a generic command-plugin or sensing system.
 """
 
 from __future__ import annotations
@@ -12,10 +14,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import TextIO
 
+from astra_runtime.myravant_orchard_path_signal import (
+    derive_displaced_lantern_directional_signal,
+)
 from astra_runtime.myravant_play_application import (
     MyravantPlayApplication,
     PlayApplicationResult,
 )
+from astra_runtime.myravant_terminal import parse_terminal_command
 from astra_runtime.myravant_vsm9_actor_mediated_object_state import VSM9RequestReceipt
 from astra_runtime.myravant_vsm9_terminal import execute_vsm9_terminal_input
 from astra_runtime.myravant_vsm10_actor_mediated_movement import (
@@ -51,6 +57,20 @@ def execute_vsm10_terminal_input(
         )
 
     prior = execute_vsm9_terminal_input(application, raw_text)
+    existing = parse_terminal_command(raw_text)
+    if existing.action == "look_direction" and existing.argument is not None:
+        repaired = derive_displaced_lantern_directional_signal(
+            application,
+            direction=existing.argument,
+            prior_result=prior.result,
+        )
+        if repaired is not None:
+            return VSM10TerminalInteraction(
+                raw_text=raw_text,
+                route="orchard_path_directional_light_signal",
+                result=repaired,
+            )
+
     return VSM10TerminalInteraction(
         raw_text=raw_text,
         route=prior.route,
