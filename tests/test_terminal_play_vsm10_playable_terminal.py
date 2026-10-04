@@ -123,9 +123,12 @@ def test_vsm10_raw_terminal_sustained_play_composes_vsm9_movement_and_restore(tm
         transition
         for transition in restored.state.committed_transitions
         if transition.receipt.actor_entity_id == GROUNDSKEEPER_ID
-        and transition.receipt.command_id.startswith("terminal-move-")
     ]
     assert len(groundskeeper_movements) >= 3  # WORLD-2 arrival + two VSM-10 moves
+    assert any(
+        transition.receipt.command_id.startswith("world2-npc-move-")
+        for transition in groundskeeper_movements
+    )
     assert any(
         transition.receipt.source_place_id == YARD_ID
         and transition.receipt.destination_place_id == GATEHOUSE_ID
