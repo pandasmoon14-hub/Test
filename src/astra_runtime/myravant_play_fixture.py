@@ -220,6 +220,13 @@ class FixtureActorObjectHandoffRoute:
 
 
 @dataclass(frozen=True, kw_only=True)
+class FixtureRequestedObjectStateRoute:
+    actor_entity_id: str
+    object_entity_id: str
+    operation: str
+
+
+@dataclass(frozen=True, kw_only=True)
 class FixtureDirectionalObservationLicense:
     """Fixture-local sensing fact; it is not movement reachability."""
 
@@ -327,6 +334,9 @@ class MyravantPlayFixture:
     ] = ()
     actor_object_handoff_routes: tuple[
         FixtureActorObjectHandoffRoute, ...
+    ] = ()
+    requested_object_state_routes: tuple[
+        FixtureRequestedObjectStateRoute, ...
     ] = ()
 
     def __post_init__(self) -> None:
@@ -467,6 +477,32 @@ class MyravantPlayFixture:
         if len(handoff_keys) != len(set(handoff_keys)):
             raise MyravantPlayFixtureError(
                 "actor-object handoff routes must be unique"
+            )
+
+        requested_state_keys: list[tuple[str, str, str]] = []
+        for route in self.requested_object_state_routes:
+            if route.actor_entity_id not in actor_ids:
+                raise MyravantPlayFixtureError(
+                    "requested object-state actor must be a fixture actor"
+                )
+            if route.object_entity_id not in object_ids:
+                raise MyravantPlayFixtureError(
+                    "requested object-state target must be a fixture object"
+                )
+            if route.operation not in {"open", "close"}:
+                raise MyravantPlayFixtureError(
+                    "requested object-state operation must be open or close"
+                )
+            requested_state_keys.append(
+                (
+                    route.actor_entity_id,
+                    route.object_entity_id,
+                    route.operation,
+                )
+            )
+        if len(requested_state_keys) != len(set(requested_state_keys)):
+            raise MyravantPlayFixtureError(
+                "requested object-state routes must be unique"
             )
 
     def place_presentation(self, place_id: str) -> PublicEntityPresentation:
@@ -995,6 +1031,22 @@ class MyravantPlayFixture:
                 opportunity_available=True,
                 resolution_accepted=True,
             ),
+        )
+
+    def requested_object_state_route_available(
+        self,
+        *,
+        actor_entity_id: str,
+        object_entity_id: str,
+        operation: str,
+    ) -> bool:
+        'Return fixture-local acceptance without mutating authority.'
+
+        return any(
+            route.actor_entity_id == actor_entity_id
+            and route.object_entity_id == object_entity_id
+            and route.operation == operation
+            for route in self.requested_object_state_routes
         )
 
     def custody_evidence(
@@ -1555,6 +1607,18 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             method="handoff",
         ),
     )
+    requested_object_state_routes = (
+        FixtureRequestedObjectStateRoute(
+            actor_entity_id=GROUNDSKEEPER_ID,
+            object_entity_id=TOOL_CHEST_ID,
+            operation="open",
+        ),
+        FixtureRequestedObjectStateRoute(
+            actor_entity_id=GROUNDSKEEPER_ID,
+            object_entity_id=TOOL_CHEST_ID,
+            operation="close",
+        ),
+    )
 
     directional_observation_licenses = (
         FixtureDirectionalObservationLicense(
@@ -1691,4 +1755,5 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         directional_observation_licenses=directional_observation_licenses,
         object_displacement_routes=object_displacement_routes,
         actor_object_handoff_routes=actor_object_handoff_routes,
+        requested_object_state_routes=requested_object_state_routes,
     )

@@ -163,6 +163,15 @@ def _split_throw_argument(argument: str) -> tuple[str, str]:
     return parts[0], parts[1]
 
 
+def _split_requested_object_state_argument(
+    argument: str,
+) -> tuple[str, str, str]:
+    parts = argument.split(" -> ", 2)
+    if len(parts) != 3 or not all(parts):
+        raise ValueError("invalid bounded requested object-state argument")
+    return parts[0], parts[1], parts[2]
+
+
 def _split_request_handoff_argument(argument: str) -> tuple[str, str]:
     parts = argument.split(" -> ", 1)
     if len(parts) != 2 or not parts[0] or not parts[1]:
@@ -306,6 +315,50 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
                     argument=f"{object_reference} -> {direction}",
                     raw_text=raw_text,
                 )
+
+    if verb == "ask" and "to" in lowered[1:]:
+        index = lowered.index("to", 1)
+        actor_target = _normalized_target(parts[1:index])
+        requested_tokens = parts[index + 1:]
+        requested_lower = [token.casefold() for token in requested_tokens]
+        if requested_lower and requested_lower[0] in {"open", "close", "shut"}:
+            operation = (
+                "close" if requested_lower[0] == "shut"
+                else requested_lower[0]
+            )
+            object_target = _normalized_target(requested_tokens[1:])
+            request_actor_pronouns = _DEICTIC_TARGETS | {
+                "him",
+                "her",
+                "me",
+                "you",
+            }
+            if (
+                not actor_target
+                or not object_target
+                or actor_target in request_actor_pronouns
+                or object_target in _DEICTIC_TARGETS
+            ):
+                ambiguous = (
+                    actor_target
+                    if actor_target in request_actor_pronouns
+                    else object_target
+                    if object_target in _DEICTIC_TARGETS
+                    else None
+                )
+                return ParsedTerminalCommand(
+                    action="ambiguous",
+                    argument=ambiguous,
+                    raw_text=raw_text,
+                    failure_class="ambiguous_target_reference",
+                )
+            return ParsedTerminalCommand(
+                action="request_object_state",
+                argument=(
+                    f"{actor_target} -> {operation} -> {object_target}"
+                ),
+                raw_text=raw_text,
+            )
 
     if verb == "ask" and "for" in lowered[1:]:
         index = lowered.index("for", 1)
@@ -614,6 +667,7 @@ def _write_help(output: TextIO) -> str:
         "Commands: look, look <direction>, inspect <entity>, move <direction>, "
         "drop <object>, give <object> to <actor>, "
         "ask <actor> for <object>, "
+        "ask <actor> to open/close <object>, "
         "throw <object> <direction>, open <object>, "
         "close <object>, light <object>, "
         "extinguish <object>, put <object> in <container>, "
@@ -800,6 +854,38 @@ def run_terminal(
                 result = application.throw_object(
                     object_reference,
                     direction,
+                )
+            visible = _write_result(output_stream, result, debug=debug)
+            _record_result(
+                evidence_recorder,
+                parsed=parsed,
+                visible_output=visible,
+                result=result,
+                error_stream=evidence_error_stream,
+            )
+            continue
+        if parsed.action == "request_object_state":
+            try:
+                actor_reference, operation, object_reference = (
+                    _split_requested_object_state_argument(
+                        parsed.argument or ""
+                    )
+                )
+            except ValueError:
+                digest = application.authoritative_digest()
+                result = PlayApplicationResult(
+                    result_type="object_state_request_rejected",
+                    message="That request could not be routed.",
+                    authoritative_changed=False,
+                    pre_state_digest=digest,
+                    post_state_digest=digest,
+                    failure_class="object_state_request_route_unavailable",
+                )
+            else:
+                result = application.request_object_state_from_actor(
+                    actor_reference,
+                    operation,
+                    object_reference,
                 )
             visible = _write_result(output_stream, result, debug=debug)
             _record_result(

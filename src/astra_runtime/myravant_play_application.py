@@ -2053,6 +2053,187 @@ class MyravantPlayApplication:
         )
 
 
+
+    def request_object_state_from_actor(
+        self,
+        actor_reference: str,
+        operation: str,
+        object_reference: str,
+    ) -> PlayApplicationResult:
+        pre_digest = self.authoritative_digest()
+        normalized_operation = operation.strip().casefold()
+        unavailable = PlayApplicationResult(
+            result_type="object_state_request_rejected",
+            message="That requested world interaction is not available.",
+            authoritative_changed=False,
+            pre_state_digest=pre_digest,
+            post_state_digest=pre_digest,
+            failure_class="object_state_request_target_unavailable",
+        )
+
+        if normalized_operation not in {"open", "close"}:
+            return PlayApplicationResult(
+                result_type="object_state_request_rejected",
+                message="That requested operation is not supported.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="object_state_request_operation_unavailable",
+            )
+
+        try:
+            actor_entity_id = self.fixture.resolve_actor_reference(
+                actor_reference
+            )
+        except UnavailableFixtureHandoffError:
+            return PlayApplicationResult(
+                result_type="object_state_request_rejected",
+                message="That actor is not available in this bounded fixture.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="unknown_or_ambiguous_fixture_actor",
+            )
+
+        try:
+            object_entity_id = self.fixture.resolve_object_reference(
+                object_reference
+            )
+        except UnavailableFixtureCustodyError:
+            return unavailable
+
+        player_place_id = self.current_place_id()
+        try:
+            actor_place_id = self.entity_place_id(actor_entity_id)
+        except MyravantPlayApplicationError:
+            actor_place_id = None
+        if actor_place_id != player_place_id:
+            return PlayApplicationResult(
+                result_type="object_state_request_rejected",
+                message="The requested actor is not here.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="object_state_request_actor_unavailable",
+            )
+
+        if not self.fixture.requested_object_state_route_available(
+            actor_entity_id=actor_entity_id,
+            object_entity_id=object_entity_id,
+            operation=normalized_operation,
+        ):
+            return PlayApplicationResult(
+                result_type="object_state_request_rejected",
+                message="That request is not qualified in this bounded fixture.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="object_state_request_route_unavailable",
+            )
+
+        current = self.object_open_state(object_entity_id)
+        if current is None:
+            return PlayApplicationResult(
+                result_type="object_state_request_rejected",
+                message="That object does not support this bounded interaction.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="object_state_not_supported",
+            )
+
+        command_id = self._next_object_state_command_id()
+        opportunity_available = (
+            persistent_world_object_open_close_opportunity_available(
+                state=self.object_state,
+                actor_entity_id=actor_entity_id,
+                object_entity_id=object_entity_id,
+            )
+        )
+        qualification, opportunity = self.fixture.object_open_close_evidence(
+            command_id=command_id,
+            actor_entity_id=actor_entity_id,
+            object_entity_id=object_entity_id,
+            operation=normalized_operation,
+            opportunity_available=opportunity_available,
+        )
+        if not opportunity_available:
+            return PlayApplicationResult(
+                result_type="object_state_request_rejected",
+                message="The requested actor cannot reach that object.",
+                authoritative_changed=False,
+                command_id=command_id,
+                opportunity_evidence_id=opportunity.evidence_id,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="object_state_request_opportunity_unavailable",
+            )
+
+        desired = "open" if normalized_operation == "open" else "closed"
+        object_name = self.fixture.entity_name(object_entity_id)
+        if current.state == desired:
+            return PlayApplicationResult(
+                result_type="object_state_unchanged",
+                message=f"The {object_name} is already {desired}.",
+                authoritative_changed=False,
+                command_id=command_id,
+                opportunity_evidence_id=opportunity.evidence_id,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+            )
+
+        command = create_command_envelope(
+            command_id=command_id,
+            command_type=f"{normalized_operation}_object",
+            source_actor_id=actor_entity_id,
+            payload={"object_entity_id": object_entity_id},
+            metadata={"client": "myravant-terminal-vsm8"},
+        )
+
+        try:
+            result = execute_persistent_world_object_open_close(
+                state=self.object_state,
+                command=command,
+                qualification_evidence=qualification,
+                opportunity_evidence=opportunity,
+                expected_pre_state_digest=self.object_state_digest(),
+            )
+        except PersistentWorldObjectOpenCloseError as exc:
+            return PlayApplicationResult(
+                result_type="object_state_request_rejected",
+                message=(
+                    "The requested interaction was rejected by the "
+                    "authoritative runtime."
+                ),
+                authoritative_changed=False,
+                command_id=command_id,
+                opportunity_evidence_id=opportunity.evidence_id,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class=type(exc).__name__,
+            )
+
+        self._runtime_state = replace_persistent_world_runtime_open_close_state(
+            state=self._runtime_state,
+            open_close_state=result.state,
+        )
+        actor_name = self.fixture.entity_name(actor_entity_id)
+        verb = "opens" if normalized_operation == "open" else "closes"
+        return PlayApplicationResult(
+            result_type="object_state_committed",
+            message=f"The {actor_name} {verb} the {object_name}.",
+            authoritative_changed=True,
+            command_id=command_id,
+            command_fingerprint=result.receipt.command_fingerprint,
+            preview_id=result.preview.preview_id,
+            receipt_id=result.receipt.receipt_id,
+            state_delta_id=result.state_delta.delta_id,
+            opportunity_evidence_id=result.receipt.opportunity_evidence_id,
+            pre_state_digest=pre_digest,
+            post_state_digest=self.authoritative_digest(),
+            technical_retry=result.technical_retry,
+        )
+
     def request_object_from_actor(
         self,
         source_reference: str,
