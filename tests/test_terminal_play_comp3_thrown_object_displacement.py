@@ -36,6 +36,11 @@ def _setup_throwable(app: MyravantPlayApplication) -> None:
     assert app.move("south").authoritative_changed is True
 
 
+def _setup_unlit_throwable(app: MyravantPlayApplication) -> None:
+    assert app.pickup("lantern").authoritative_changed is True
+    assert app.move("south").authoritative_changed is True
+
+
 def _placement_target(
     app: MyravantPlayApplication,
     object_id: str,
@@ -120,7 +125,7 @@ def test_comp3_throw_requires_carried_object_and_explicit_route():
     assert app2.authoritative_digest() == before2
 
 
-def test_comp3_throw_commits_remote_placement_without_moving_or_advancing_time():
+def test_comp3_lit_throw_exposes_only_bounded_directional_light_signal():
     app = MyravantPlayApplication.new()
     _setup_throwable(app)
     assert app.current_place_id() == YARD_ID
@@ -128,6 +133,7 @@ def test_comp3_throw_commits_remote_placement_without_moving_or_advancing_time()
 
     pre_look = app.look_direction("east")
     assert pre_look.result_type == "directional_observation_unavailable"
+    assert pre_look.failure_class == "directional_observation_unlicensed"
     pre_digest = app.authoritative_digest()
 
     result = app.throw_object("lantern", "east")
@@ -150,9 +156,33 @@ def test_comp3_throw_commits_remote_placement_without_moving_or_advancing_time()
         app.runtime_state.committed_object_displacement_transitions
     ) == 1
 
+    signal_pre_digest = app.authoritative_digest()
+    post_look = app.look_direction("east")
+    assert post_look.result_type == "directional_light_signal"
+    assert post_look.message == "You can see the Brass Lantern's light to the east."
+    assert post_look.view is None
+    assert post_look.observation_evidence_id is not None
+    assert post_look.failure_class is None
+    assert post_look.authoritative_changed is False
+    assert post_look.pre_state_digest == signal_pre_digest
+    assert post_look.post_state_digest == signal_pre_digest
+    assert app.authoritative_digest() == signal_pre_digest
+    assert "Orchard Path" not in post_look.message
+
+
+def test_comp3_unlit_throw_does_not_create_directional_light_signal():
+    app = MyravantPlayApplication.new()
+    _setup_unlit_throwable(app)
+    result = app.throw_object("lantern", "east")
+    assert result.authoritative_changed is True
+    assert app.object_lit_state(LANTERN_ID).state == "unlit"
+
+    before = app.authoritative_digest()
     post_look = app.look_direction("east")
     assert post_look.result_type == "directional_observation_unavailable"
     assert post_look.failure_class == "directional_observation_unlicensed"
+    assert post_look.view is None
+    assert app.authoritative_digest() == before
 
 
 def test_comp3_success_message_does_not_reveal_unobserved_destination_identity():
@@ -183,6 +213,7 @@ def test_comp3_repeated_fresh_runs_are_deterministic():
         app = MyravantPlayApplication.new()
         _setup_throwable(app)
         result = app.throw_object("lantern", "east")
+        signal = app.look_direction("east")
         transition = (
             app.runtime_state.committed_object_displacement_transitions[0]
         )
@@ -194,6 +225,9 @@ def test_comp3_repeated_fresh_runs_are_deterministic():
                 result.state_delta_id,
                 result.post_state_digest,
                 transition.receipt.to_dict(),
+                signal.result_type,
+                signal.observation_evidence_id,
+                signal.message,
             )
         )
     assert results[0] == results[1]
@@ -254,6 +288,12 @@ def test_comp3_save_after_throw_uses_v3_component_and_restores_exactly(
         .receipt.to_dict()
         == expected_receipt
     )
+    restored_signal = restored.look_direction("east")
+    assert restored_signal.result_type == "directional_light_signal"
+    assert restored_signal.message == "You can see the Brass Lantern's light to the east."
+    assert restored_signal.view is None
+    assert restored_signal.observation_evidence_id is not None
+    assert restored.authoritative_digest() == expected_digest
 
 
 def test_comp3_semantically_tampered_v3_fails_even_with_new_outer_integrity(
@@ -303,8 +343,10 @@ def test_comp3_terminal_flow_persists_consequence_without_destination_leak(
     assert "You throw the Brass Lantern east." in visible
     assert visible.count(
         "You cannot make out a distinct place in that direction from here."
-    ) == 2
+    ) == 1
+    assert "You can see the Brass Lantern's light to the east." in visible
     assert "To the east: Orchard Path" not in visible
+    assert "Orchard Path" not in visible
 
     restored = MyravantPlayApplication.restore(
         checkpoint_path=checkpoint
@@ -313,6 +355,8 @@ def test_comp3_terminal_flow_persists_consequence_without_destination_leak(
         LOCATED_AT_RELATION_TYPE,
         ORCHARD_PATH_ID,
     )
+    restored_signal = restored.look_direction("east")
+    assert restored_signal.result_type == "directional_light_signal"
 
 
 def test_comp3_unlicensed_throw_is_side_effect_free():

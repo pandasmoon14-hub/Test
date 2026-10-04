@@ -695,6 +695,82 @@ class MyravantPlayApplication:
             post_state_digest=digest,
         )
 
+    def _directional_displaced_lantern_signal(
+        self,
+        *,
+        source_place_id: str,
+        direction: str,
+        digest: str,
+    ) -> PlayApplicationResult | None:
+        """Derive one bounded AFQR-20 light signal from committed COMP-3 state."""
+
+        normalized = direction.strip().casefold()
+        try:
+            destination_place_id = self.fixture.object_displacement_destination_for(
+                object_entity_id=LANTERN_ID,
+                source_place_id=source_place_id,
+                direction=normalized,
+                method="throw",
+            )
+            movement_destination = self.fixture.destination_for(
+                source_place_id=source_place_id,
+                direction=normalized,
+            )
+        except (
+            UnavailableFixtureDisplacementError,
+            UnavailableFixtureMovementError,
+        ):
+            return None
+        if movement_destination != destination_place_id:
+            return None
+
+        lantern_state = self.object_lit_state(LANTERN_ID)
+        if lantern_state is None or lantern_state.state != "lit":
+            return None
+
+        direct_placements = [
+            relation
+            for relation in self.state.representation.relations
+            if relation.relation_type == LOCATED_AT_RELATION_TYPE
+            and relation.subject_entity_id == LANTERN_ID
+            and relation.object_entity_id == destination_place_id
+        ]
+        if len(direct_placements) != 1:
+            return None
+
+        matching_displacement = any(
+            transition.receipt.object_entity_id == LANTERN_ID
+            and transition.receipt.source_place_id == source_place_id
+            and transition.receipt.destination_place_id == destination_place_id
+            and transition.receipt.method == "throw"
+            for transition in (
+                self.runtime_state.committed_object_displacement_transitions
+            )
+        )
+        if not matching_displacement:
+            return None
+
+        signal_evidence = self.fixture.visual_observation_evidence(
+            observer_entity_id=self.fixture.player_entity_id,
+            target_entity_id=LANTERN_ID,
+            place_id=destination_place_id,
+            local_light_available=True,
+        )
+        if not signal_evidence.observable:
+            return None
+
+        lantern_name = self.fixture.entity_name(LANTERN_ID)
+        return PlayApplicationResult(
+            result_type="directional_light_signal",
+            message=(
+                f"You can see the {lantern_name}'s light to the {normalized}."
+            ),
+            authoritative_changed=False,
+            observation_evidence_id=signal_evidence.evidence_id,
+            pre_state_digest=digest,
+            post_state_digest=digest,
+        )
+
     def look_direction(self, direction: str) -> PlayApplicationResult:
         """Observe an explicitly licensed direction without moving or advancing time."""
 
@@ -717,6 +793,13 @@ class MyravantPlayApplication:
             )
 
         if not evidence.observable or evidence.target_place_id is None:
+            signal = self._directional_displaced_lantern_signal(
+                source_place_id=source_place_id,
+                direction=evidence.direction,
+                digest=digest,
+            )
+            if signal is not None:
+                return signal
             return PlayApplicationResult(
                 result_type="directional_observation_unavailable",
                 message=(
