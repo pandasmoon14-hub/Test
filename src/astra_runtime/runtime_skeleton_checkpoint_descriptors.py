@@ -1,11 +1,10 @@
-"""Static immutable descriptors for existing Myravant checkpoint formats.
+"""Static immutable descriptors for committed Myravant checkpoint formats.
 
-This module records already-committed component membership for componentized
-checkpoint versions 1 through 4. It does not own checkpoint serialization,
-restore semantics, migration, state ownership, or format evolution. It exists
-as an extraction-time compatibility contract so future authoritative state
-families can be assessed against frozen historical membership before changing
-checkpoint structure.
+This module records component membership for componentized checkpoint versions
+1 through 5. It does not own checkpoint serialization, restore semantics,
+migration, state ownership, or format evolution. Versions 1 through 4 remain
+frozen historical contracts; version 5 appends the VSM-14 AFQR-12 follow-intent
+component after explicit owner authorization.
 """
 
 from __future__ import annotations
@@ -97,6 +96,17 @@ _COMPONENTS = (
         introduced_in_version=4,
         semantic_owner_routes=("RT-010", "AFQR-18", "AFQR-19", "AFQR-01"),
     ),
+    CheckpointComponentDescriptor(
+        component_id="follow_intent",
+        introduced_in_version=5,
+        semantic_owner_routes=(
+            "AFQR-12",
+            "AFQR-18",
+            "AFQR-19",
+            "AFQR-01",
+            "AFQR-02",
+        ),
+    ),
 )
 
 COMPONENT_DESCRIPTORS: Mapping[str, CheckpointComponentDescriptor] = MappingProxyType(
@@ -118,7 +128,7 @@ _FORMATS = tuple(
         format_version=version,
         component_ids=_members(version),
     )
-    for version in (1, 2, 3, 4)
+    for version in (1, 2, 3, 4, 5)
 )
 
 CHECKPOINT_FORMAT_DESCRIPTORS: Mapping[int, CheckpointFormatDescriptor] = MappingProxyType(
