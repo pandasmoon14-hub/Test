@@ -318,12 +318,7 @@ class PersistentWorldFollowIntentRuntimeState:
                 "a follower may have at most one active bounded follow intent"
             )
 
-        transitions = tuple(
-            sorted(
-                self.committed_transitions,
-                key=lambda item: (item.command_id, item.command_fingerprint),
-            )
-        )
+        transitions = tuple(self.committed_transitions)
         if any(
             not isinstance(item, PersistentWorldFollowIntentCommittedTransition)
             for item in transitions
