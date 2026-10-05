@@ -672,7 +672,7 @@ def prepare_persistent_world_follow_intent(
         source_command_id=command.command_id,
         source_preview_id=preview.preview_id,
         affected_record_ids=(follower_entity_id, leader_entity_id),
-        change_type="relationship_update",
+        change_type="record_update",
         payload={
             "intent_type": "follow",
             "follower_entity_id": follower_entity_id,
