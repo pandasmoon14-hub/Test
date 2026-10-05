@@ -23,8 +23,9 @@ from dataclasses import dataclass
 from typing import Sequence
 
 from astra_runtime.domain._deterministic_transition_support import (
-    command_fingerprint_matches,
-    find_committed_transition,
+    TransitionCapabilitySpec,
+    commit_prepared_capability_transition,
+    execute_capability_transition,
     fingerprint_command_envelope,
 )
 from astra_runtime.domain.command_kind_routing_skeleton import route_command_envelope
@@ -214,13 +215,8 @@ class PersistentWorldObjectLitStateCommitReceipt:
 
     def __post_init__(self) -> None:
         for name in (
-            "receipt_id",
-            "actor_entity_id",
-            "object_entity_id",
-            "preview_id",
-            "state_delta_id",
-            "rt010_qualification_id",
-            "opportunity_evidence_id",
+            "receipt_id", "actor_entity_id", "object_entity_id", "preview_id",
+            "state_delta_id", "rt010_qualification_id", "opportunity_evidence_id",
         ):
             _require_record_id(getattr(self, name), name)
         if not isinstance(self.command_id, str) or not self.command_id.strip():
@@ -375,11 +371,8 @@ def create_object_lit_state_qualification_evidence(
     operation: str, qualified: bool,
 ) -> ObjectLitStateQualificationEvidence:
     return ObjectLitStateQualificationEvidence(
-        evidence_id=evidence_id,
-        actor_entity_id=actor_entity_id,
-        object_entity_id=object_entity_id,
-        operation=operation,
-        qualified=qualified,
+        evidence_id=evidence_id, actor_entity_id=actor_entity_id,
+        object_entity_id=object_entity_id, operation=operation, qualified=qualified,
     )
 
 
@@ -388,10 +381,8 @@ def create_object_lit_state_opportunity_evidence(
     operation: str, opportunity_available: bool, resolution_accepted: bool,
 ) -> ObjectLitStateOpportunityEvidence:
     return ObjectLitStateOpportunityEvidence(
-        evidence_id=evidence_id,
-        actor_entity_id=actor_entity_id,
-        object_entity_id=object_entity_id,
-        operation=operation,
+        evidence_id=evidence_id, actor_entity_id=actor_entity_id,
+        object_entity_id=object_entity_id, operation=operation,
         opportunity_available=opportunity_available,
         resolution_accepted=resolution_accepted,
     )
@@ -400,10 +391,7 @@ def create_object_lit_state_opportunity_evidence(
 def create_persistent_world_object_lit_state(
     *, object_entity_id: str, state: str,
 ) -> PersistentWorldObjectLitState:
-    return PersistentWorldObjectLitState(
-        object_entity_id=object_entity_id,
-        state=state,
-    )
+    return PersistentWorldObjectLitState(object_entity_id=object_entity_id, state=state)
 
 
 def create_persistent_world_object_lit_runtime_state(
@@ -460,11 +448,8 @@ def canonical_serialize_persistent_world_object_lit_states(
         "object_lit_states": [serialize_persistent_world_object_lit_state(x) for x in states],
     }
     return json.dumps(
-        material,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=True,
-        allow_nan=False,
+        material, sort_keys=True, separators=(",", ":"),
+        ensure_ascii=True, allow_nan=False,
     )
 
 
@@ -484,19 +469,16 @@ def digest_persistent_world_lit_composite_state(
 ) -> str:
     material = {
         "world_state_family": "persistent_world_int1_plus_lit_state",
-        "int1_world_state_digest": (
-            digest_persistent_world_object_open_close_runtime_state(open_close_state)
+        "int1_world_state_digest": digest_persistent_world_object_open_close_runtime_state(
+            open_close_state
         ),
         "object_lit_state_digest": digest_persistent_world_object_lit_states(
             object_lit_states
         ),
     }
     canonical = json.dumps(
-        material,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=True,
-        allow_nan=False,
+        material, sort_keys=True, separators=(",", ":"),
+        ensure_ascii=True, allow_nan=False,
     )
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
@@ -509,8 +491,7 @@ def digest_persistent_world_object_lit_runtime_state(
             "state must be PersistentWorldObjectLitRuntimeState"
         )
     return digest_persistent_world_lit_composite_state(
-        state.open_close_state,
-        state.object_lit_states,
+        state.open_close_state, state.object_lit_states,
     )
 
 
@@ -521,10 +502,8 @@ def fingerprint_persistent_world_object_lit_state_command(
         raise InvalidPersistentWorldObjectLitStateRequestError(
             "command failed CommandEnvelope validation"
         )
-    return fingerprint_command_envelope(
-        command,
-        allow_nan=False,
-    )
+    return fingerprint_command_envelope(command, allow_nan=False)
+
 
 def _operation_from_command(command: CommandEnvelope) -> str:
     operation = command.payload.get("operation")
@@ -587,8 +566,7 @@ def _validate_current_availability(
             "target must exist and be object"
         )
     actor_locations = [
-        relation
-        for relation in representation.relations
+        relation for relation in representation.relations
         if relation.relation_type == LOCATED_AT_RELATION_TYPE
         and relation.subject_entity_id == actor_entity_id
     ]
@@ -611,8 +589,7 @@ def _validate_current_availability(
     )
     contained_accessible = False
     contained = [
-        relation
-        for relation in representation.relations
+        relation for relation in representation.relations
         if relation.relation_type == CONTAINED_BY_RELATION_TYPE
         and relation.subject_entity_id == object_entity_id
     ]
@@ -630,10 +607,7 @@ def _validate_current_availability(
             and relation.object_entity_id == actor_entity_id
             for relation in representation.relations
         )
-        container_open = object_open_state_for(
-            open_close_state,
-            container_id,
-        )
+        container_open = object_open_state_for(open_close_state, container_id)
         contained_accessible = (
             (container_nearby or container_carried)
             and container_open is not None
@@ -655,8 +629,7 @@ def _replace_lit_state(
         if item.object_entity_id == object_entity_id:
             found = True
             updated.append(PersistentWorldObjectLitState(
-                object_entity_id=object_entity_id,
-                state=new_state,
+                object_entity_id=object_entity_id, state=new_state,
             ))
         else:
             updated.append(item)
@@ -666,15 +639,6 @@ def _replace_lit_state(
         )
     return tuple(sorted(updated, key=lambda item: item.object_entity_id))
 
-
-def _existing_transition(
-    state: PersistentWorldObjectLitRuntimeState,
-    command_id: str,
-) -> PersistentWorldObjectLitStateCommittedTransition | None:
-    return find_committed_transition(
-        state.committed_object_lit_transitions,
-        command_id,
-    )
 
 def prepare_persistent_world_object_lit_state(
     *, state: PersistentWorldObjectLitRuntimeState,
@@ -701,7 +665,6 @@ def prepare_persistent_world_object_lit_state(
         raise InvalidPersistentWorldObjectLitStateRequestError(
             "lit-state command must route through interaction family"
         )
-
     operation = _operation_from_command(command)
     actor_entity_id = command.source_actor_id
     object_entity_id = _require_record_id(
@@ -715,13 +678,11 @@ def prepare_persistent_world_object_lit_state(
         actor_entity_id=actor_entity_id,
         object_entity_id=object_entity_id,
     )
-
     current = object_lit_state_for(state, object_entity_id)
     if current is None:
         raise PersistentWorldObjectLitStateUnsupportedError(
             "target has no bounded lit/unlit state"
         )
-
     _validate_owner_evidence(
         qualification_evidence=qualification_evidence,
         opportunity_evidence=opportunity_evidence,
@@ -729,7 +690,6 @@ def prepare_persistent_world_object_lit_state(
         object_entity_id=object_entity_id,
         operation=operation,
     )
-
     actual_state_digest = digest_persistent_world_object_lit_states(
         state.object_lit_states
     )
@@ -737,13 +697,9 @@ def prepare_persistent_world_object_lit_state(
         raise PersistentWorldObjectLitStateStaleStateError(
             "owner-local lit state changed before preparation"
         )
-
     desired = "lit" if operation == "light" else "unlit"
     if current.state == desired:
-        raise PersistentWorldObjectLitStateNoChangeError(
-            f"target is already {desired}"
-        )
-
+        raise PersistentWorldObjectLitStateNoChangeError(f"target is already {desired}")
     post_states = _replace_lit_state(
         state.object_lit_states,
         object_entity_id=object_entity_id,
@@ -753,7 +709,6 @@ def prepare_persistent_world_object_lit_state(
     placement_digest = digest_persistent_world_entity_location_representation(
         representation
     )
-
     token = fingerprint[:24]
     preview = create_transaction_preview(
         preview_id=build_record_id("object_lit_state_preview", token),
@@ -806,38 +761,27 @@ def prepare_persistent_world_object_lit_state(
     )
 
 
-def commit_prepared_persistent_world_object_lit_state(
+def _commit_new_persistent_world_object_lit_state(
     *, state: PersistentWorldObjectLitRuntimeState,
     prepared: PersistentWorldObjectLitStatePreparedTransition,
 ) -> PersistentWorldObjectLitStateExecutionResult:
-    existing = _existing_transition(state, prepared.command_id)
-    if existing is not None:
-        if not command_fingerprint_matches(existing, prepared.command_fingerprint):
-            raise PersistentWorldObjectLitStateRetryConflictError(
-                "command ID already committed with different meaning"
-            )
-        return PersistentWorldObjectLitStateExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
-        )
-
-    if digest_persistent_world_object_lit_states(state.object_lit_states) != prepared.pre_state_digest:
+    if digest_persistent_world_object_lit_states(
+        state.object_lit_states
+    ) != prepared.pre_state_digest:
         raise PersistentWorldObjectLitStateStaleStateError(
             "owner-local lit state changed after preparation"
         )
     representation = state.open_close_state.custody_state.movement_state.representation
-    if digest_persistent_world_entity_location_representation(representation) != prepared.placement_digest:
+    if digest_persistent_world_entity_location_representation(
+        representation
+    ) != prepared.placement_digest:
         raise PersistentWorldObjectLitStateStaleStateError(
             "target placement changed after preparation"
         )
 
     receipt = PersistentWorldObjectLitStateCommitReceipt(
         receipt_id=build_record_id(
-            "object_lit_state_receipt",
-            prepared.command_fingerprint[:24],
+            "object_lit_state_receipt", prepared.command_fingerprint[:24]
         ),
         command_id=prepared.command_id,
         command_fingerprint=prepared.command_fingerprint,
@@ -865,8 +809,7 @@ def commit_prepared_persistent_world_object_lit_state(
         open_close_state=state.open_close_state,
         object_lit_states=prepared.post_object_lit_states,
         committed_object_lit_transitions=(
-            *state.committed_object_lit_transitions,
-            committed,
+            *state.committed_object_lit_transitions, committed,
         ),
     )
     return PersistentWorldObjectLitStateExecutionResult(
@@ -878,6 +821,25 @@ def commit_prepared_persistent_world_object_lit_state(
     )
 
 
+def commit_prepared_persistent_world_object_lit_state(
+    *, state: PersistentWorldObjectLitRuntimeState,
+    prepared: PersistentWorldObjectLitStatePreparedTransition,
+) -> PersistentWorldObjectLitStateExecutionResult:
+    if not isinstance(state, PersistentWorldObjectLitRuntimeState):
+        raise InvalidPersistentWorldObjectLitStateRequestError(
+            "invalid object lit-state runtime state"
+        )
+    if not isinstance(prepared, PersistentWorldObjectLitStatePreparedTransition):
+        raise InvalidPersistentWorldObjectLitStateRequestError(
+            "invalid prepared transition"
+        )
+    return commit_prepared_capability_transition(
+        spec=LIT_TRANSITION_CAPABILITY_SPEC,
+        state=state,
+        prepared=prepared,
+    )
+
+
 def execute_persistent_world_object_lit_state(
     *, state: PersistentWorldObjectLitRuntimeState,
     command: CommandEnvelope,
@@ -885,30 +847,19 @@ def execute_persistent_world_object_lit_state(
     opportunity_evidence: ObjectLitStateOpportunityEvidence,
     expected_pre_state_digest: str,
 ) -> PersistentWorldObjectLitStateExecutionResult:
-    fingerprint = fingerprint_persistent_world_object_lit_state_command(command)
-    existing = _existing_transition(state, command.command_id)
-    if existing is not None:
-        if not command_fingerprint_matches(existing, fingerprint):
-            raise PersistentWorldObjectLitStateRetryConflictError(
-                "command ID already committed with materially different command content"
-            )
-        return PersistentWorldObjectLitStateExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
+    if not isinstance(state, PersistentWorldObjectLitRuntimeState):
+        raise InvalidPersistentWorldObjectLitStateRequestError(
+            "invalid object lit-state runtime state"
         )
-    prepared = prepare_persistent_world_object_lit_state(
+    return execute_capability_transition(
+        spec=LIT_TRANSITION_CAPABILITY_SPEC,
         state=state,
         command=command,
-        qualification_evidence=qualification_evidence,
-        opportunity_evidence=opportunity_evidence,
-        expected_pre_state_digest=expected_pre_state_digest,
-    )
-    return commit_prepared_persistent_world_object_lit_state(
-        state=state,
-        prepared=prepared,
+        context={
+            "qualification_evidence": qualification_evidence,
+            "opportunity_evidence": opportunity_evidence,
+            "expected_pre_state_digest": expected_pre_state_digest,
+        },
     )
 
 
@@ -917,14 +868,10 @@ def replay_persistent_world_object_lit_states(
     receipt: PersistentWorldObjectLitStateCommitReceipt,
 ) -> tuple[PersistentWorldObjectLitState, ...]:
     if not isinstance(receipt, PersistentWorldObjectLitStateCommitReceipt):
-        raise PersistentWorldObjectLitStateReplayError(
-            "receipt has invalid type"
-        )
+        raise PersistentWorldObjectLitStateReplayError("receipt has invalid type")
     current = tuple(object_lit_states)
     if digest_persistent_world_object_lit_states(current) != receipt.pre_state_digest:
-        raise PersistentWorldObjectLitStateReplayError(
-            "replay pre-state digest mismatch"
-        )
+        raise PersistentWorldObjectLitStateReplayError("replay pre-state digest mismatch")
     existing = next(
         (item for item in current if item.object_entity_id == receipt.object_entity_id),
         None,
@@ -939,10 +886,43 @@ def replay_persistent_world_object_lit_states(
         new_state=receipt.post_object_state,
     )
     if digest_persistent_world_object_lit_states(post) != receipt.post_state_digest:
-        raise PersistentWorldObjectLitStateReplayError(
-            "replay post-state digest mismatch"
-        )
+        raise PersistentWorldObjectLitStateReplayError("replay post-state digest mismatch")
     return post
+
+
+LIT_TRANSITION_CAPABILITY_SPEC = TransitionCapabilitySpec(
+    capability_id="persistent_world_object_lit_state",
+    semantic_owners=("RT-010", "AFQR-19", "AFQR-01", "AFQR-02"),
+    state_type=PersistentWorldObjectLitRuntimeState,
+    replay_state_type=tuple,
+    receipt_prefix="object_lit_state_receipt",
+    state_digest=lambda state: digest_persistent_world_object_lit_states(
+        state.object_lit_states
+    ),
+    fingerprint_command=fingerprint_persistent_world_object_lit_state_command,
+    committed_transitions=lambda state: state.committed_object_lit_transitions,
+    prepare_new_transition=lambda state, command, context: prepare_persistent_world_object_lit_state(
+        state=state,
+        command=command,
+        qualification_evidence=context["qualification_evidence"],
+        opportunity_evidence=context["opportunity_evidence"],
+        expected_pre_state_digest=context["expected_pre_state_digest"],
+    ),
+    commit_new_transition=lambda state, prepared: _commit_new_persistent_world_object_lit_state(
+        state=state, prepared=prepared,
+    ),
+    build_retry_result=lambda state, committed: PersistentWorldObjectLitStateExecutionResult(
+        state=state,
+        receipt=committed.receipt,
+        preview=committed.preview,
+        state_delta=committed.state_delta,
+        technical_retry=True,
+    ),
+    retry_conflict_error=lambda message: PersistentWorldObjectLitStateRetryConflictError(message),
+    replay_committed_transition=lambda pre_state, receipt: replay_persistent_world_object_lit_states(
+        object_lit_states=pre_state, receipt=receipt,
+    ),
+)
 
 
 def serialize_persistent_world_object_lit_state_commit_receipt(
