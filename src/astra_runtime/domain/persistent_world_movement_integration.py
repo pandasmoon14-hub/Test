@@ -26,8 +26,9 @@ from dataclasses import dataclass
 from typing import Any
 
 from astra_runtime.domain._deterministic_transition_support import (
-    command_fingerprint_matches,
-    find_committed_transition,
+    TransitionCapabilitySpec,
+    commit_prepared_capability_transition,
+    execute_capability_transition,
     fingerprint_command_envelope,
 )
 from astra_runtime.domain.command_kind_routing_skeleton import (
@@ -92,6 +93,7 @@ __all__ = [
     "replay_persistent_world_movement",
     "serialize_persistent_world_movement_commit_receipt",
     "canonical_serialize_persistent_world_movement_commit_receipt",
+    "MOVEMENT_TRANSITION_CAPABILITY_SPEC",
 ]
 
 
@@ -458,6 +460,7 @@ def fingerprint_persistent_world_movement_command(
             "JSON-serializable"
         ) from exc
 
+
 def _entity_by_id(
     representation: PersistentWorldEntityLocationRepresentation,
 ) -> dict[str, PersistentWorldEntity]:
@@ -615,15 +618,6 @@ def _apply_location_change(
         )
     )
 
-
-def _existing_transition(
-    state: PersistentWorldMovementRuntimeState,
-    command_id: str,
-) -> PersistentWorldMovementCommittedTransition | None:
-    return find_committed_transition(
-        state.committed_transitions,
-        command_id,
-    )
 
 def prepare_persistent_world_movement(
     *,
@@ -845,12 +839,12 @@ def prepare_persistent_world_movement(
     )
 
 
-def commit_prepared_persistent_world_movement(
+def _commit_new_persistent_world_movement(
     *,
     state: PersistentWorldMovementRuntimeState,
     prepared: PersistentWorldMovementPreparedTransition,
 ) -> PersistentWorldMovementExecutionResult:
-    """Atomically commit a previously prepared bounded transition."""
+    """Commit a new movement after shared lifecycle identity handling."""
 
     if not isinstance(
         state,
@@ -867,28 +861,6 @@ def commit_prepared_persistent_world_movement(
         raise InvalidPersistentWorldMovementRequestError(
             "prepared must be "
             "PersistentWorldMovementPreparedTransition"
-        )
-
-    existing = _existing_transition(
-        state,
-        prepared.command_id,
-    )
-
-    if existing is not None:
-        if (
-            not command_fingerprint_matches(existing, prepared.command_fingerprint)
-        ):
-            raise PersistentWorldMovementRetryConflictError(
-                "command ID already committed with different "
-                "immutable command meaning"
-            )
-
-        return PersistentWorldMovementExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
         )
 
     current_digest = (
@@ -972,6 +944,34 @@ def commit_prepared_persistent_world_movement(
     )
 
 
+def commit_prepared_persistent_world_movement(
+    *,
+    state: PersistentWorldMovementRuntimeState,
+    prepared: PersistentWorldMovementPreparedTransition,
+) -> PersistentWorldMovementExecutionResult:
+    """Commit or idempotently return a prepared bounded transition."""
+
+    if not isinstance(
+        state,
+        PersistentWorldMovementRuntimeState,
+    ):
+        raise InvalidPersistentWorldMovementRequestError(
+            "state must be PersistentWorldMovementRuntimeState"
+        )
+    if not isinstance(
+        prepared,
+        PersistentWorldMovementPreparedTransition,
+    ):
+        raise InvalidPersistentWorldMovementRequestError(
+            "prepared must be PersistentWorldMovementPreparedTransition"
+        )
+    return commit_prepared_capability_transition(
+        spec=MOVEMENT_TRANSITION_CAPABILITY_SPEC,
+        state=state,
+        prepared=prepared,
+    )
+
+
 def execute_persistent_world_movement(
     *,
     state: PersistentWorldMovementRuntimeState,
@@ -989,48 +989,15 @@ def execute_persistent_world_movement(
         raise InvalidPersistentWorldMovementRequestError(
             "state must be PersistentWorldMovementRuntimeState"
         )
-
-    fingerprint = (
-        fingerprint_persistent_world_movement_command(
-            command
-        )
-    )
-
-    existing = _existing_transition(
-        state,
-        command.command_id,
-    )
-
-    if existing is not None:
-        if (
-            not command_fingerprint_matches(existing, fingerprint)
-        ):
-            raise PersistentWorldMovementRetryConflictError(
-                "command ID already committed with materially "
-                "different command content"
-            )
-
-        return PersistentWorldMovementExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
-        )
-
-    prepared = prepare_persistent_world_movement(
+    return execute_capability_transition(
+        spec=MOVEMENT_TRANSITION_CAPABILITY_SPEC,
         state=state,
         command=command,
-        spatial_evidence=spatial_evidence,
-        opportunity_evidence=opportunity_evidence,
-        expected_pre_state_digest=(
-            expected_pre_state_digest
-        ),
-    )
-
-    return commit_prepared_persistent_world_movement(
-        state=state,
-        prepared=prepared,
+        context={
+            "spatial_evidence": spatial_evidence,
+            "opportunity_evidence": opportunity_evidence,
+            "expected_pre_state_digest": expected_pre_state_digest,
+        },
     )
 
 
@@ -1139,6 +1106,43 @@ def replay_persistent_world_movement(
         )
 
     return post
+
+
+MOVEMENT_TRANSITION_CAPABILITY_SPEC = TransitionCapabilitySpec(
+    capability_id="persistent_world_movement",
+    semantic_owners=("AFQR-02", "AFQR-03", "AFQR-18", "AFQR-19", "AFQR-01"),
+    state_type=PersistentWorldMovementRuntimeState,
+    replay_state_type=PersistentWorldEntityLocationRepresentation,
+    receipt_prefix="movement_receipt",
+    state_digest=lambda state: digest_persistent_world_entity_location_representation(
+        state.representation
+    ),
+    fingerprint_command=fingerprint_persistent_world_movement_command,
+    committed_transitions=lambda state: state.committed_transitions,
+    prepare_new_transition=lambda state, command, context: prepare_persistent_world_movement(
+        state=state,
+        command=command,
+        spatial_evidence=context["spatial_evidence"],
+        opportunity_evidence=context["opportunity_evidence"],
+        expected_pre_state_digest=context["expected_pre_state_digest"],
+    ),
+    commit_new_transition=lambda state, prepared: _commit_new_persistent_world_movement(
+        state=state,
+        prepared=prepared,
+    ),
+    build_retry_result=lambda state, committed: PersistentWorldMovementExecutionResult(
+        state=state,
+        receipt=committed.receipt,
+        preview=committed.preview,
+        state_delta=committed.state_delta,
+        technical_retry=True,
+    ),
+    retry_conflict_error=lambda message: PersistentWorldMovementRetryConflictError(message),
+    replay_committed_transition=lambda pre_state, receipt: replay_persistent_world_movement(
+        pre_state_representation=pre_state,
+        receipt=receipt,
+    ),
+)
 
 
 def serialize_persistent_world_movement_commit_receipt(

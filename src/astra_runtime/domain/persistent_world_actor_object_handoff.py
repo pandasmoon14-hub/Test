@@ -22,8 +22,9 @@ import re
 from dataclasses import dataclass
 
 from astra_runtime.domain._deterministic_transition_support import (
-    command_fingerprint_matches,
-    find_committed_transition,
+    TransitionCapabilitySpec,
+    commit_prepared_capability_transition,
+    execute_capability_transition,
     fingerprint_command_envelope,
 )
 from astra_runtime.domain.persistent_world_entity_location_representation import (
@@ -71,39 +72,27 @@ class PersistentWorldActorObjectHandoffError(ValueError):
     """Base bounded actor-object handoff failure."""
 
 
-class InvalidPersistentWorldActorObjectHandoffRequestError(
-    PersistentWorldActorObjectHandoffError
-):
+class InvalidPersistentWorldActorObjectHandoffRequestError(PersistentWorldActorObjectHandoffError):
     pass
 
 
-class PersistentWorldActorObjectHandoffEntityError(
-    PersistentWorldActorObjectHandoffError
-):
+class PersistentWorldActorObjectHandoffEntityError(PersistentWorldActorObjectHandoffError):
     pass
 
 
-class PersistentWorldActorObjectHandoffPlacementError(
-    PersistentWorldActorObjectHandoffError
-):
+class PersistentWorldActorObjectHandoffPlacementError(PersistentWorldActorObjectHandoffError):
     pass
 
 
-class PersistentWorldActorObjectHandoffEvidenceError(
-    PersistentWorldActorObjectHandoffError
-):
+class PersistentWorldActorObjectHandoffEvidenceError(PersistentWorldActorObjectHandoffError):
     pass
 
 
-class PersistentWorldActorObjectHandoffStaleStateError(
-    PersistentWorldActorObjectHandoffError
-):
+class PersistentWorldActorObjectHandoffStaleStateError(PersistentWorldActorObjectHandoffError):
     pass
 
 
-class PersistentWorldActorObjectHandoffRetryConflictError(
-    PersistentWorldActorObjectHandoffError
-):
+class PersistentWorldActorObjectHandoffRetryConflictError(PersistentWorldActorObjectHandoffError):
     pass
 
 
@@ -113,9 +102,7 @@ class PersistentWorldActorObjectHandoffRelationIdentityCollisionError(
     pass
 
 
-class PersistentWorldActorObjectHandoffReplayError(
-    PersistentWorldActorObjectHandoffError
-):
+class PersistentWorldActorObjectHandoffReplayError(PersistentWorldActorObjectHandoffError):
     pass
 
 
@@ -147,10 +134,7 @@ class ActorObjectHandoffQualificationEvidence:
 
     def __post_init__(self) -> None:
         for name in (
-            "evidence_id",
-            "source_actor_entity_id",
-            "recipient_actor_entity_id",
-            "object_entity_id",
+            "evidence_id", "source_actor_entity_id", "recipient_actor_entity_id", "object_entity_id",
         ):
             _require_record_id(getattr(self, name), name)
         if self.source_actor_entity_id == self.recipient_actor_entity_id:
@@ -158,13 +142,9 @@ class ActorObjectHandoffQualificationEvidence:
                 "source and recipient actors must differ"
             )
         if self.method not in ACTOR_OBJECT_HANDOFF_METHODS:
-            raise InvalidPersistentWorldActorObjectHandoffRequestError(
-                "method must be handoff"
-            )
+            raise InvalidPersistentWorldActorObjectHandoffRequestError("method must be handoff")
         if type(self.qualified) is not bool:
-            raise InvalidPersistentWorldActorObjectHandoffRequestError(
-                "qualified must be bool"
-            )
+            raise InvalidPersistentWorldActorObjectHandoffRequestError("qualified must be bool")
         if self.semantic_owner != RT010_ACTOR_OBJECT_HANDOFF_OWNER:
             raise InvalidPersistentWorldActorObjectHandoffRequestError(
                 "qualification semantic_owner must be RT-010"
@@ -184,11 +164,8 @@ class ActorObjectHandoffSpatialEvidence:
 
     def __post_init__(self) -> None:
         for name in (
-            "evidence_id",
-            "source_actor_entity_id",
-            "recipient_actor_entity_id",
-            "object_entity_id",
-            "place_id",
+            "evidence_id", "source_actor_entity_id", "recipient_actor_entity_id",
+            "object_entity_id", "place_id",
         ):
             _require_record_id(getattr(self, name), name)
         if self.source_actor_entity_id == self.recipient_actor_entity_id:
@@ -196,9 +173,7 @@ class ActorObjectHandoffSpatialEvidence:
                 "source and recipient actors must differ"
             )
         if self.method not in ACTOR_OBJECT_HANDOFF_METHODS:
-            raise InvalidPersistentWorldActorObjectHandoffRequestError(
-                "method must be handoff"
-            )
+            raise InvalidPersistentWorldActorObjectHandoffRequestError("method must be handoff")
         if type(self.spatially_permitted) is not bool:
             raise InvalidPersistentWorldActorObjectHandoffRequestError(
                 "spatially_permitted must be bool"
@@ -223,11 +198,8 @@ class ActorObjectHandoffOpportunityEvidence:
 
     def __post_init__(self) -> None:
         for name in (
-            "evidence_id",
-            "source_actor_entity_id",
-            "recipient_actor_entity_id",
-            "object_entity_id",
-            "place_id",
+            "evidence_id", "source_actor_entity_id", "recipient_actor_entity_id",
+            "object_entity_id", "place_id",
         ):
             _require_record_id(getattr(self, name), name)
         if self.source_actor_entity_id == self.recipient_actor_entity_id:
@@ -235,13 +207,8 @@ class ActorObjectHandoffOpportunityEvidence:
                 "source and recipient actors must differ"
             )
         if self.method not in ACTOR_OBJECT_HANDOFF_METHODS:
-            raise InvalidPersistentWorldActorObjectHandoffRequestError(
-                "method must be handoff"
-            )
-        if (
-            type(self.opportunity_available) is not bool
-            or type(self.resolution_accepted) is not bool
-        ):
+            raise InvalidPersistentWorldActorObjectHandoffRequestError("method must be handoff")
+        if type(self.opportunity_available) is not bool or type(self.resolution_accepted) is not bool:
             raise InvalidPersistentWorldActorObjectHandoffRequestError(
                 "opportunity/resolution flags must be bool"
             )
@@ -276,24 +243,14 @@ class PersistentWorldActorObjectHandoffCommitReceipt:
 
     def __post_init__(self) -> None:
         for name in (
-            "receipt_id",
-            "source_actor_entity_id",
-            "recipient_actor_entity_id",
-            "object_entity_id",
-            "place_id",
-            "source_relation_id",
-            "destination_relation_id",
-            "preview_id",
-            "state_delta_id",
-            "rt010_qualification_id",
-            "spatial_evidence_id",
-            "opportunity_evidence_id",
+            "receipt_id", "source_actor_entity_id", "recipient_actor_entity_id",
+            "object_entity_id", "place_id", "source_relation_id", "destination_relation_id",
+            "preview_id", "state_delta_id", "rt010_qualification_id",
+            "spatial_evidence_id", "opportunity_evidence_id",
         ):
             _require_record_id(getattr(self, name), name)
         if not isinstance(self.command_id, str) or not self.command_id:
-            raise InvalidPersistentWorldActorObjectHandoffRequestError(
-                "command_id must be non-empty"
-            )
+            raise InvalidPersistentWorldActorObjectHandoffRequestError("command_id must be non-empty")
         _require_sha256(self.command_fingerprint, "command_fingerprint")
         _require_sha256(self.pre_state_digest, "pre_state_digest")
         _require_sha256(self.post_state_digest, "post_state_digest")
@@ -302,9 +259,7 @@ class PersistentWorldActorObjectHandoffCommitReceipt:
                 "source and recipient actors must differ"
             )
         if self.method != "handoff":
-            raise InvalidPersistentWorldActorObjectHandoffRequestError(
-                "receipt method must be handoff"
-            )
+            raise InvalidPersistentWorldActorObjectHandoffRequestError("receipt method must be handoff")
         if (
             self.source_relation_type != CARRIED_BY_RELATION_TYPE
             or self.destination_relation_type != CARRIED_BY_RELATION_TYPE
@@ -359,19 +314,13 @@ class PersistentWorldActorObjectHandoffRuntimeState:
     ] = ()
 
     def __post_init__(self) -> None:
-        if not isinstance(
-            self.displacement_state,
-            PersistentWorldObjectDisplacementRuntimeState,
-        ):
+        if not isinstance(self.displacement_state, PersistentWorldObjectDisplacementRuntimeState):
             raise InvalidPersistentWorldActorObjectHandoffRequestError(
                 "displacement_state must be PersistentWorldObjectDisplacementRuntimeState"
             )
         transitions = tuple(self.committed_actor_object_handoff_transitions)
         for index, transition in enumerate(transitions):
-            if not isinstance(
-                transition,
-                PersistentWorldActorObjectHandoffCommittedTransition,
-            ):
+            if not isinstance(transition, PersistentWorldActorObjectHandoffCommittedTransition):
                 raise InvalidPersistentWorldActorObjectHandoffRequestError(
                     f"committed_actor_object_handoff_transitions[{index}] has invalid type"
                 )
@@ -380,45 +329,25 @@ class PersistentWorldActorObjectHandoffRuntimeState:
             raise InvalidPersistentWorldActorObjectHandoffRequestError(
                 "actor-object handoff command IDs must be unique"
             )
-
         storage = self.displacement_state.storage_state
         lit = storage.lit_state
         open_close = lit.open_close_state
         custody = open_close.custody_state
-        lower_ids = {
-            item.command_id for item in custody.movement_state.committed_transitions
-        }
-        lower_ids.update(
-            item.command_id for item in custody.committed_custody_transitions
-        )
-        lower_ids.update(
-            item.command_id for item in open_close.committed_object_state_transitions
-        )
-        lower_ids.update(
-            item.command_id for item in lit.committed_object_lit_transitions
-        )
-        lower_ids.update(
-            item.command_id for item in storage.committed_storage_transitions
-        )
+        lower_ids = {item.command_id for item in custody.movement_state.committed_transitions}
+        lower_ids.update(item.command_id for item in custody.committed_custody_transitions)
+        lower_ids.update(item.command_id for item in open_close.committed_object_state_transitions)
+        lower_ids.update(item.command_id for item in lit.committed_object_lit_transitions)
+        lower_ids.update(item.command_id for item in storage.committed_storage_transitions)
         lower_ids.update(
             item.command_id
-            for item in (
-                self.displacement_state
-                .committed_object_displacement_transitions
-            )
+            for item in self.displacement_state.committed_object_displacement_transitions
         )
         if set(ids) & lower_ids:
             raise InvalidPersistentWorldActorObjectHandoffRequestError(
                 "actor-object handoff command IDs must not collide with lower transitions"
             )
-        validate_persistent_world_storage_placement(
-            custody.movement_state.representation
-        )
-        object.__setattr__(
-            self,
-            "committed_actor_object_handoff_transitions",
-            transitions,
-        )
+        validate_persistent_world_storage_placement(custody.movement_state.representation)
+        object.__setattr__(self, "committed_actor_object_handoff_transitions", transitions)
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -454,13 +383,9 @@ class PersistentWorldActorObjectHandoffExecutionResult:
 
 
 def create_actor_object_handoff_qualification_evidence(
-    *,
-    evidence_id: str,
-    source_actor_entity_id: str,
-    recipient_actor_entity_id: str,
-    object_entity_id: str,
-    method: str,
-    qualified: bool,
+    *, evidence_id: str, source_actor_entity_id: str,
+    recipient_actor_entity_id: str, object_entity_id: str,
+    method: str, qualified: bool,
 ) -> ActorObjectHandoffQualificationEvidence:
     return ActorObjectHandoffQualificationEvidence(
         evidence_id=evidence_id,
@@ -473,14 +398,9 @@ def create_actor_object_handoff_qualification_evidence(
 
 
 def create_actor_object_handoff_spatial_evidence(
-    *,
-    evidence_id: str,
-    source_actor_entity_id: str,
-    recipient_actor_entity_id: str,
-    object_entity_id: str,
-    place_id: str,
-    method: str,
-    spatially_permitted: bool,
+    *, evidence_id: str, source_actor_entity_id: str,
+    recipient_actor_entity_id: str, object_entity_id: str,
+    place_id: str, method: str, spatially_permitted: bool,
 ) -> ActorObjectHandoffSpatialEvidence:
     return ActorObjectHandoffSpatialEvidence(
         evidence_id=evidence_id,
@@ -494,15 +414,10 @@ def create_actor_object_handoff_spatial_evidence(
 
 
 def create_actor_object_handoff_opportunity_evidence(
-    *,
-    evidence_id: str,
-    source_actor_entity_id: str,
-    recipient_actor_entity_id: str,
-    object_entity_id: str,
-    place_id: str,
-    method: str,
-    opportunity_available: bool,
-    resolution_accepted: bool,
+    *, evidence_id: str, source_actor_entity_id: str,
+    recipient_actor_entity_id: str, object_entity_id: str,
+    place_id: str, method: str,
+    opportunity_available: bool, resolution_accepted: bool,
 ) -> ActorObjectHandoffOpportunityEvidence:
     return ActorObjectHandoffOpportunityEvidence(
         evidence_id=evidence_id,
@@ -558,9 +473,7 @@ def _replace_representation_in_displacement_state(
     )
     return PersistentWorldObjectDisplacementRuntimeState(
         storage_state=storage,
-        committed_object_displacement_transitions=(
-            state.committed_object_displacement_transitions
-        ),
+        committed_object_displacement_transitions=state.committed_object_displacement_transitions,
     )
 
 
@@ -588,19 +501,13 @@ def fingerprint_persistent_world_actor_object_handoff_command(
 
 
 def _validate_owner_evidence(
-    *,
-    qualification_evidence: ActorObjectHandoffQualificationEvidence,
+    *, qualification_evidence: ActorObjectHandoffQualificationEvidence,
     spatial_evidence: ActorObjectHandoffSpatialEvidence,
     opportunity_evidence: ActorObjectHandoffOpportunityEvidence,
-    source_actor_entity_id: str,
-    recipient_actor_entity_id: str,
-    object_entity_id: str,
-    place_id: str,
+    source_actor_entity_id: str, recipient_actor_entity_id: str,
+    object_entity_id: str, place_id: str,
 ) -> None:
-    if not isinstance(
-        qualification_evidence,
-        ActorObjectHandoffQualificationEvidence,
-    ):
+    if not isinstance(qualification_evidence, ActorObjectHandoffQualificationEvidence):
         raise PersistentWorldActorObjectHandoffEvidenceError(
             "invalid RT-010 handoff qualification evidence"
         )
@@ -608,20 +515,13 @@ def _validate_owner_evidence(
         raise PersistentWorldActorObjectHandoffEvidenceError(
             "invalid AFQR-18 handoff spatial evidence"
         )
-    if not isinstance(
-        opportunity_evidence,
-        ActorObjectHandoffOpportunityEvidence,
-    ):
+    if not isinstance(opportunity_evidence, ActorObjectHandoffOpportunityEvidence):
         raise PersistentWorldActorObjectHandoffEvidenceError(
             "invalid AFQR-19 handoff opportunity evidence"
         )
-
     expected = (
-        source_actor_entity_id,
-        recipient_actor_entity_id,
-        object_entity_id,
-        place_id,
-        "handoff",
+        source_actor_entity_id, recipient_actor_entity_id,
+        object_entity_id, place_id, "handoff",
     )
     if (
         spatial_evidence.source_actor_entity_id,
@@ -644,10 +544,8 @@ def _validate_owner_evidence(
             "AFQR-19 evidence does not match handoff transition"
         )
     if (
-        qualification_evidence.source_actor_entity_id
-        != source_actor_entity_id
-        or qualification_evidence.recipient_actor_entity_id
-        != recipient_actor_entity_id
+        qualification_evidence.source_actor_entity_id != source_actor_entity_id
+        or qualification_evidence.recipient_actor_entity_id != recipient_actor_entity_id
         or qualification_evidence.object_entity_id != object_entity_id
         or qualification_evidence.method != "handoff"
     ):
@@ -662,27 +560,20 @@ def _validate_owner_evidence(
         raise PersistentWorldActorObjectHandoffEvidenceError(
             "AFQR-18 rejected handoff co-location"
         )
-    if (
-        not opportunity_evidence.opportunity_available
-        or not opportunity_evidence.resolution_accepted
-    ):
+    if not opportunity_evidence.opportunity_available or not opportunity_evidence.resolution_accepted:
         raise PersistentWorldActorObjectHandoffEvidenceError(
             "AFQR-19 rejected handoff opportunity"
         )
 
 
 def _apply_handoff(
-    *,
-    representation: PersistentWorldEntityLocationRepresentation,
-    object_entity_id: str,
-    source_actor_entity_id: str,
-    recipient_actor_entity_id: str,
-    source_relation_id: str,
+    *, representation: PersistentWorldEntityLocationRepresentation,
+    object_entity_id: str, source_actor_entity_id: str,
+    recipient_actor_entity_id: str, source_relation_id: str,
     destination_relation_id: str,
 ) -> PersistentWorldEntityLocationRepresentation:
     sources = [
-        relation
-        for relation in representation.relations
+        relation for relation in representation.relations
         if relation.relation_id == source_relation_id
     ]
     if len(sources) != 1:
@@ -699,8 +590,7 @@ def _apply_handoff(
             "handoff source must be target object carried by source actor"
         )
     remaining = [
-        relation
-        for relation in representation.relations
+        relation for relation in representation.relations
         if relation.relation_id != source_relation_id
     ]
     if any(r.relation_id == destination_relation_id for r in remaining):
@@ -721,19 +611,8 @@ def _apply_handoff(
     return post
 
 
-def _existing_transition(
-    state: PersistentWorldActorObjectHandoffRuntimeState,
-    command_id: str,
-):
-    return find_committed_transition(
-        state.committed_actor_object_handoff_transitions,
-        command_id,
-    )
-
-
 def prepare_persistent_world_actor_object_handoff(
-    *,
-    state: PersistentWorldActorObjectHandoffRuntimeState,
+    *, state: PersistentWorldActorObjectHandoffRuntimeState,
     command: CommandEnvelope,
     qualification_evidence: ActorObjectHandoffQualificationEvidence,
     spatial_evidence: ActorObjectHandoffSpatialEvidence,
@@ -744,39 +623,29 @@ def prepare_persistent_world_actor_object_handoff(
         raise InvalidPersistentWorldActorObjectHandoffRequestError(
             "invalid actor-object handoff runtime state"
         )
-    fingerprint = fingerprint_persistent_world_actor_object_handoff_command(
-        command
-    )
+    fingerprint = fingerprint_persistent_world_actor_object_handoff_command(command)
     source_actor_entity_id = command.source_actor_id
     recipient_actor_entity_id = _require_record_id(
         command.payload.get("recipient_actor_entity_id"),
         "command.payload.recipient_actor_entity_id",
     )
     object_entity_id = _require_record_id(
-        command.payload.get("object_entity_id"),
-        "command.payload.object_entity_id",
+        command.payload.get("object_entity_id"), "command.payload.object_entity_id"
     )
     if source_actor_entity_id == recipient_actor_entity_id:
         raise PersistentWorldActorObjectHandoffEntityError(
             "source and recipient actors must differ"
         )
-
     representation = _representation(state)
     entities = {entity.entity_id: entity for entity in representation.entities}
     source_actor = entities.get(source_actor_entity_id)
     recipient_actor = entities.get(recipient_actor_entity_id)
     target = entities.get(object_entity_id)
-    if (
-        source_actor is None
-        or source_actor.classification != "character_or_creature"
-    ):
+    if source_actor is None or source_actor.classification != "character_or_creature":
         raise PersistentWorldActorObjectHandoffEntityError(
             "source actor must exist and be character_or_creature"
         )
-    if (
-        recipient_actor is None
-        or recipient_actor.classification != "character_or_creature"
-    ):
+    if recipient_actor is None or recipient_actor.classification != "character_or_creature":
         raise PersistentWorldActorObjectHandoffEntityError(
             "recipient actor must exist and be character_or_creature"
         )
@@ -787,8 +656,7 @@ def prepare_persistent_world_actor_object_handoff(
 
     def actor_place(actor_entity_id: str) -> str:
         locations = [
-            relation
-            for relation in representation.relations
+            relation for relation in representation.relations
             if relation.relation_type == LOCATED_AT_RELATION_TYPE
             and relation.subject_entity_id == actor_entity_id
         ]
@@ -805,16 +673,11 @@ def prepare_persistent_world_actor_object_handoff(
             "handoff requires source and recipient actors to be co-located"
         )
     place_id = source_place_id
-
     placements = [
-        relation
-        for relation in representation.relations
+        relation for relation in representation.relations
         if relation.subject_entity_id == object_entity_id
-        and relation.relation_type
-        in {
-            LOCATED_AT_RELATION_TYPE,
-            CARRIED_BY_RELATION_TYPE,
-            CONTAINED_BY_RELATION_TYPE,
+        and relation.relation_type in {
+            LOCATED_AT_RELATION_TYPE, CARRIED_BY_RELATION_TYPE, CONTAINED_BY_RELATION_TYPE,
         }
     ]
     if (
@@ -826,7 +689,6 @@ def prepare_persistent_world_actor_object_handoff(
             "handoff requires target object carried by source actor"
         )
     source_relation = placements[0]
-
     _validate_owner_evidence(
         qualification_evidence=qualification_evidence,
         spatial_evidence=spatial_evidence,
@@ -836,20 +698,12 @@ def prepare_persistent_world_actor_object_handoff(
         object_entity_id=object_entity_id,
         place_id=place_id,
     )
-
-    actual_digest = digest_persistent_world_entity_location_representation(
-        representation
-    )
+    actual_digest = digest_persistent_world_entity_location_representation(representation)
     if expected_pre_state_digest != actual_digest:
-        raise PersistentWorldActorObjectHandoffStaleStateError(
-            "stale pre-state digest"
-        )
+        raise PersistentWorldActorObjectHandoffStaleStateError("stale pre-state digest")
 
     token = fingerprint[:24]
-    destination_relation_id = build_record_id(
-        "relation",
-        f"actor-object-handoff-{token}",
-    )
+    destination_relation_id = build_record_id("relation", f"actor-object-handoff-{token}")
     if (
         destination_relation_id != source_relation.relation_id
         and any(
@@ -860,7 +714,6 @@ def prepare_persistent_world_actor_object_handoff(
         raise PersistentWorldActorObjectHandoffRelationIdentityCollisionError(
             "destination relation identity already exists"
         )
-
     preview = create_transaction_preview(
         preview_id=build_record_id("actor_object_handoff_preview", token),
         command=command,
@@ -878,12 +731,8 @@ def prepare_persistent_world_actor_object_handoff(
         source_command_id=command.command_id,
         source_preview_id=preview.preview_id,
         affected_record_ids=(
-            source_actor_entity_id,
-            recipient_actor_entity_id,
-            object_entity_id,
-            place_id,
-            source_relation.relation_id,
-            destination_relation_id,
+            source_actor_entity_id, recipient_actor_entity_id, object_entity_id,
+            place_id, source_relation.relation_id, destination_relation_id,
         ),
         change_type="relationship_update",
         payload={
@@ -901,13 +750,10 @@ def prepare_persistent_world_actor_object_handoff(
             "package": "TERMINAL-PLAY-VSM-6",
             "placement_semantic_owner": RT010_ACTOR_OBJECT_HANDOFF_OWNER,
             "spatial_semantic_owner": AFQR18_ACTOR_OBJECT_HANDOFF_SPATIAL_OWNER,
-            "opportunity_semantic_owner": (
-                AFQR19_ACTOR_OBJECT_HANDOFF_OPPORTUNITY_OWNER
-            ),
+            "opportunity_semantic_owner": AFQR19_ACTOR_OBJECT_HANDOFF_OPPORTUNITY_OWNER,
             "qualified_transition_owner": "AFQR-01",
         },
     )
-
     post_representation = _apply_handoff(
         representation=representation,
         object_entity_id=object_entity_id,
@@ -916,9 +762,7 @@ def prepare_persistent_world_actor_object_handoff(
         source_relation_id=source_relation.relation_id,
         destination_relation_id=destination_relation_id,
     )
-    post_digest = digest_persistent_world_entity_location_representation(
-        post_representation
-    )
+    post_digest = digest_persistent_world_entity_location_representation(post_representation)
     return PersistentWorldActorObjectHandoffPreparedTransition(
         command_id=command.command_id,
         command_fingerprint=fingerprint,
@@ -939,46 +783,23 @@ def prepare_persistent_world_actor_object_handoff(
         preview=preview,
         state_delta=delta,
         post_displacement_state=_replace_representation_in_displacement_state(
-            state.displacement_state,
-            post_representation,
+            state.displacement_state, post_representation,
         ),
     )
 
 
-def commit_prepared_persistent_world_actor_object_handoff(
-    *,
-    state: PersistentWorldActorObjectHandoffRuntimeState,
+def _commit_new_persistent_world_actor_object_handoff(
+    *, state: PersistentWorldActorObjectHandoffRuntimeState,
     prepared: PersistentWorldActorObjectHandoffPreparedTransition,
 ) -> PersistentWorldActorObjectHandoffExecutionResult:
-    existing = _existing_transition(state, prepared.command_id)
-    if existing is not None:
-        if not command_fingerprint_matches(
-            existing,
-            prepared.command_fingerprint,
-        ):
-            raise PersistentWorldActorObjectHandoffRetryConflictError(
-                "command ID already committed with different meaning"
-            )
-        return PersistentWorldActorObjectHandoffExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
-        )
-
-    current = digest_persistent_world_entity_location_representation(
-        _representation(state)
-    )
+    current = digest_persistent_world_entity_location_representation(_representation(state))
     if current != prepared.pre_state_digest:
         raise PersistentWorldActorObjectHandoffStaleStateError(
             "object placement changed after preparation"
         )
-
     receipt = PersistentWorldActorObjectHandoffCommitReceipt(
         receipt_id=build_record_id(
-            "actor_object_handoff_receipt",
-            prepared.command_fingerprint[:24],
+            "actor_object_handoff_receipt", prepared.command_fingerprint[:24]
         ),
         command_id=prepared.command_id,
         command_fingerprint=prepared.command_fingerprint,
@@ -1006,12 +827,10 @@ def commit_prepared_persistent_world_actor_object_handoff(
         state_delta=prepared.state_delta,
         receipt=receipt,
     )
-    transitions = tuple(
-        sorted(
-            (*state.committed_actor_object_handoff_transitions, committed),
-            key=lambda item: (item.command_id, item.command_fingerprint),
-        )
-    )
+    transitions = tuple(sorted(
+        (*state.committed_actor_object_handoff_transitions, committed),
+        key=lambda item: (item.command_id, item.command_fingerprint),
+    ))
     post_state = PersistentWorldActorObjectHandoffRuntimeState(
         displacement_state=prepared.post_displacement_state,
         committed_actor_object_handoff_transitions=transitions,
@@ -1025,82 +844,64 @@ def commit_prepared_persistent_world_actor_object_handoff(
     )
 
 
+def commit_prepared_persistent_world_actor_object_handoff(
+    *, state: PersistentWorldActorObjectHandoffRuntimeState,
+    prepared: PersistentWorldActorObjectHandoffPreparedTransition,
+) -> PersistentWorldActorObjectHandoffExecutionResult:
+    if not isinstance(state, PersistentWorldActorObjectHandoffRuntimeState):
+        raise InvalidPersistentWorldActorObjectHandoffRequestError(
+            "invalid actor-object handoff runtime state"
+        )
+    if not isinstance(prepared, PersistentWorldActorObjectHandoffPreparedTransition):
+        raise InvalidPersistentWorldActorObjectHandoffRequestError(
+            "invalid prepared transition"
+        )
+    return commit_prepared_capability_transition(
+        spec=HANDOFF_TRANSITION_CAPABILITY_SPEC,
+        state=state,
+        prepared=prepared,
+    )
+
+
 def execute_persistent_world_actor_object_handoff(
-    *,
-    state: PersistentWorldActorObjectHandoffRuntimeState,
+    *, state: PersistentWorldActorObjectHandoffRuntimeState,
     command: CommandEnvelope,
     qualification_evidence: ActorObjectHandoffQualificationEvidence,
     spatial_evidence: ActorObjectHandoffSpatialEvidence,
     opportunity_evidence: ActorObjectHandoffOpportunityEvidence,
     expected_pre_state_digest: str,
 ) -> PersistentWorldActorObjectHandoffExecutionResult:
-    fingerprint = fingerprint_persistent_world_actor_object_handoff_command(
-        command
-    )
-    existing = _existing_transition(state, command.command_id)
-    if existing is not None:
-        if not command_fingerprint_matches(existing, fingerprint):
-            raise PersistentWorldActorObjectHandoffRetryConflictError(
-                "command ID already committed with materially different content"
-            )
-        return PersistentWorldActorObjectHandoffExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
+    if not isinstance(state, PersistentWorldActorObjectHandoffRuntimeState):
+        raise InvalidPersistentWorldActorObjectHandoffRequestError(
+            "invalid actor-object handoff runtime state"
         )
-    prepared = prepare_persistent_world_actor_object_handoff(
+    return execute_capability_transition(
+        spec=HANDOFF_TRANSITION_CAPABILITY_SPEC,
         state=state,
         command=command,
-        qualification_evidence=qualification_evidence,
-        spatial_evidence=spatial_evidence,
-        opportunity_evidence=opportunity_evidence,
-        expected_pre_state_digest=expected_pre_state_digest,
-    )
-    return commit_prepared_persistent_world_actor_object_handoff(
-        state=state,
-        prepared=prepared,
+        context={
+            "qualification_evidence": qualification_evidence,
+            "spatial_evidence": spatial_evidence,
+            "opportunity_evidence": opportunity_evidence,
+            "expected_pre_state_digest": expected_pre_state_digest,
+        },
     )
 
 
 def replay_persistent_world_actor_object_handoff(
-    *,
-    pre_state_representation: PersistentWorldEntityLocationRepresentation,
+    *, pre_state_representation: PersistentWorldEntityLocationRepresentation,
     receipt: PersistentWorldActorObjectHandoffCommitReceipt,
 ) -> PersistentWorldEntityLocationRepresentation:
-    if not isinstance(
-        pre_state_representation,
-        PersistentWorldEntityLocationRepresentation,
-    ):
-        raise PersistentWorldActorObjectHandoffReplayError(
-            "invalid replay pre-state"
-        )
-    if not isinstance(
-        receipt,
-        PersistentWorldActorObjectHandoffCommitReceipt,
-    ):
-        raise PersistentWorldActorObjectHandoffReplayError(
-            "receipt has invalid type"
-        )
-    if (
-        digest_persistent_world_entity_location_representation(
-            pre_state_representation
-        )
-        != receipt.pre_state_digest
-    ):
-        raise PersistentWorldActorObjectHandoffReplayError(
-            "replay pre-state digest mismatch"
-        )
-
-    entities = {
-        entity.entity_id: entity
-        for entity in pre_state_representation.entities
-    }
-    for actor_id in (
-        receipt.source_actor_entity_id,
-        receipt.recipient_actor_entity_id,
-    ):
+    if not isinstance(pre_state_representation, PersistentWorldEntityLocationRepresentation):
+        raise PersistentWorldActorObjectHandoffReplayError("invalid replay pre-state")
+    if not isinstance(receipt, PersistentWorldActorObjectHandoffCommitReceipt):
+        raise PersistentWorldActorObjectHandoffReplayError("receipt has invalid type")
+    if digest_persistent_world_entity_location_representation(
+        pre_state_representation
+    ) != receipt.pre_state_digest:
+        raise PersistentWorldActorObjectHandoffReplayError("replay pre-state digest mismatch")
+    entities = {entity.entity_id: entity for entity in pre_state_representation.entities}
+    for actor_id in (receipt.source_actor_entity_id, receipt.recipient_actor_entity_id):
         actor = entities.get(actor_id)
         if actor is None or actor.classification != "character_or_creature":
             raise PersistentWorldActorObjectHandoffReplayError(
@@ -1116,7 +917,6 @@ def replay_persistent_world_actor_object_handoff(
             raise PersistentWorldActorObjectHandoffReplayError(
                 "replay actors are not co-located at committed place"
             )
-
     try:
         post = _apply_handoff(
             representation=pre_state_representation,
@@ -1130,23 +930,53 @@ def replay_persistent_world_actor_object_handoff(
         raise PersistentWorldActorObjectHandoffReplayError(
             "committed actor-object handoff could not replay"
         ) from exc
-    if (
-        digest_persistent_world_entity_location_representation(post)
-        != receipt.post_state_digest
-    ):
-        raise PersistentWorldActorObjectHandoffReplayError(
-            "replay post-state digest mismatch"
-        )
+    if digest_persistent_world_entity_location_representation(
+        post
+    ) != receipt.post_state_digest:
+        raise PersistentWorldActorObjectHandoffReplayError("replay post-state digest mismatch")
     return post
+
+
+HANDOFF_TRANSITION_CAPABILITY_SPEC = TransitionCapabilitySpec(
+    capability_id="persistent_world_actor_object_handoff",
+    semantic_owners=("RT-010", "AFQR-18", "AFQR-19", "AFQR-01", "AFQR-02"),
+    state_type=PersistentWorldActorObjectHandoffRuntimeState,
+    replay_state_type=PersistentWorldEntityLocationRepresentation,
+    receipt_prefix="actor_object_handoff_receipt",
+    state_digest=lambda state: digest_persistent_world_entity_location_representation(
+        _representation(state)
+    ),
+    fingerprint_command=fingerprint_persistent_world_actor_object_handoff_command,
+    committed_transitions=lambda state: state.committed_actor_object_handoff_transitions,
+    prepare_new_transition=lambda state, command, context: prepare_persistent_world_actor_object_handoff(
+        state=state,
+        command=command,
+        qualification_evidence=context["qualification_evidence"],
+        spatial_evidence=context["spatial_evidence"],
+        opportunity_evidence=context["opportunity_evidence"],
+        expected_pre_state_digest=context["expected_pre_state_digest"],
+    ),
+    commit_new_transition=lambda state, prepared: _commit_new_persistent_world_actor_object_handoff(
+        state=state, prepared=prepared,
+    ),
+    build_retry_result=lambda state, committed: PersistentWorldActorObjectHandoffExecutionResult(
+        state=state,
+        receipt=committed.receipt,
+        preview=committed.preview,
+        state_delta=committed.state_delta,
+        technical_retry=True,
+    ),
+    retry_conflict_error=lambda message: PersistentWorldActorObjectHandoffRetryConflictError(message),
+    replay_committed_transition=lambda pre_state, receipt: replay_persistent_world_actor_object_handoff(
+        pre_state_representation=pre_state, receipt=receipt,
+    ),
+)
 
 
 def serialize_persistent_world_actor_object_handoff_commit_receipt(
     receipt: PersistentWorldActorObjectHandoffCommitReceipt,
 ) -> dict[str, str]:
-    if not isinstance(
-        receipt,
-        PersistentWorldActorObjectHandoffCommitReceipt,
-    ):
+    if not isinstance(receipt, PersistentWorldActorObjectHandoffCommitReceipt):
         raise InvalidPersistentWorldActorObjectHandoffRequestError(
             "receipt must be PersistentWorldActorObjectHandoffCommitReceipt"
         )
