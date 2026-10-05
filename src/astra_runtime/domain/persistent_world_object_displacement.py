@@ -23,8 +23,9 @@ import re
 from dataclasses import dataclass
 
 from astra_runtime.domain._deterministic_transition_support import (
-    command_fingerprint_matches,
-    find_committed_transition,
+    TransitionCapabilitySpec,
+    commit_prepared_capability_transition,
+    execute_capability_transition,
     fingerprint_command_envelope,
 )
 from astra_runtime.domain.persistent_world_entity_location_representation import (
@@ -69,39 +70,27 @@ class PersistentWorldObjectDisplacementError(ValueError):
     """Base bounded object-displacement failure."""
 
 
-class InvalidPersistentWorldObjectDisplacementRequestError(
-    PersistentWorldObjectDisplacementError
-):
+class InvalidPersistentWorldObjectDisplacementRequestError(PersistentWorldObjectDisplacementError):
     pass
 
 
-class PersistentWorldObjectDisplacementEntityError(
-    PersistentWorldObjectDisplacementError
-):
+class PersistentWorldObjectDisplacementEntityError(PersistentWorldObjectDisplacementError):
     pass
 
 
-class PersistentWorldObjectDisplacementPlacementError(
-    PersistentWorldObjectDisplacementError
-):
+class PersistentWorldObjectDisplacementPlacementError(PersistentWorldObjectDisplacementError):
     pass
 
 
-class PersistentWorldObjectDisplacementEvidenceError(
-    PersistentWorldObjectDisplacementError
-):
+class PersistentWorldObjectDisplacementEvidenceError(PersistentWorldObjectDisplacementError):
     pass
 
 
-class PersistentWorldObjectDisplacementStaleStateError(
-    PersistentWorldObjectDisplacementError
-):
+class PersistentWorldObjectDisplacementStaleStateError(PersistentWorldObjectDisplacementError):
     pass
 
 
-class PersistentWorldObjectDisplacementRetryConflictError(
-    PersistentWorldObjectDisplacementError
-):
+class PersistentWorldObjectDisplacementRetryConflictError(PersistentWorldObjectDisplacementError):
     pass
 
 
@@ -111,9 +100,7 @@ class PersistentWorldObjectDisplacementRelationIdentityCollisionError(
     pass
 
 
-class PersistentWorldObjectDisplacementReplayError(
-    PersistentWorldObjectDisplacementError
-):
+class PersistentWorldObjectDisplacementReplayError(PersistentWorldObjectDisplacementError):
     pass
 
 
@@ -146,13 +133,9 @@ class ObjectDisplacementQualificationEvidence:
         for name in ("evidence_id", "actor_entity_id", "object_entity_id"):
             _require_record_id(getattr(self, name), name)
         if self.method not in OBJECT_DISPLACEMENT_METHODS:
-            raise InvalidPersistentWorldObjectDisplacementRequestError(
-                "method must be throw"
-            )
+            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be throw")
         if type(self.qualified) is not bool:
-            raise InvalidPersistentWorldObjectDisplacementRequestError(
-                "qualified must be bool"
-            )
+            raise InvalidPersistentWorldObjectDisplacementRequestError("qualified must be bool")
         if self.semantic_owner != RT010_OBJECT_DISPLACEMENT_OWNER:
             raise InvalidPersistentWorldObjectDisplacementRequestError(
                 "qualification semantic_owner must be RT-010"
@@ -172,17 +155,12 @@ class ObjectDisplacementSpatialEvidence:
 
     def __post_init__(self) -> None:
         for name in (
-            "evidence_id",
-            "actor_entity_id",
-            "object_entity_id",
-            "source_place_id",
-            "destination_place_id",
+            "evidence_id", "actor_entity_id", "object_entity_id",
+            "source_place_id", "destination_place_id",
         ):
             _require_record_id(getattr(self, name), name)
         if self.method not in OBJECT_DISPLACEMENT_METHODS:
-            raise InvalidPersistentWorldObjectDisplacementRequestError(
-                "method must be throw"
-            )
+            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be throw")
         if type(self.spatially_permitted) is not bool:
             raise InvalidPersistentWorldObjectDisplacementRequestError(
                 "spatially_permitted must be bool"
@@ -207,21 +185,13 @@ class ObjectDisplacementOpportunityEvidence:
 
     def __post_init__(self) -> None:
         for name in (
-            "evidence_id",
-            "actor_entity_id",
-            "object_entity_id",
-            "source_place_id",
-            "destination_place_id",
+            "evidence_id", "actor_entity_id", "object_entity_id",
+            "source_place_id", "destination_place_id",
         ):
             _require_record_id(getattr(self, name), name)
         if self.method not in OBJECT_DISPLACEMENT_METHODS:
-            raise InvalidPersistentWorldObjectDisplacementRequestError(
-                "method must be throw"
-            )
-        if (
-            type(self.opportunity_available) is not bool
-            or type(self.resolution_accepted) is not bool
-        ):
+            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be throw")
+        if type(self.opportunity_available) is not bool or type(self.resolution_accepted) is not bool:
             raise InvalidPersistentWorldObjectDisplacementRequestError(
                 "opportunity/resolution flags must be bool"
             )
@@ -256,31 +226,19 @@ class PersistentWorldObjectDisplacementCommitReceipt:
 
     def __post_init__(self) -> None:
         for name in (
-            "receipt_id",
-            "actor_entity_id",
-            "object_entity_id",
-            "source_place_id",
-            "destination_place_id",
-            "source_relation_id",
-            "destination_relation_id",
-            "preview_id",
-            "state_delta_id",
-            "rt010_qualification_id",
-            "spatial_evidence_id",
-            "opportunity_evidence_id",
+            "receipt_id", "actor_entity_id", "object_entity_id", "source_place_id",
+            "destination_place_id", "source_relation_id", "destination_relation_id",
+            "preview_id", "state_delta_id", "rt010_qualification_id",
+            "spatial_evidence_id", "opportunity_evidence_id",
         ):
             _require_record_id(getattr(self, name), name)
         if not isinstance(self.command_id, str) or not self.command_id:
-            raise InvalidPersistentWorldObjectDisplacementRequestError(
-                "command_id must be non-empty"
-            )
+            raise InvalidPersistentWorldObjectDisplacementRequestError("command_id must be non-empty")
         _require_sha256(self.command_fingerprint, "command_fingerprint")
         _require_sha256(self.pre_state_digest, "pre_state_digest")
         _require_sha256(self.post_state_digest, "post_state_digest")
         if self.method != "throw":
-            raise InvalidPersistentWorldObjectDisplacementRequestError(
-                "receipt method must be throw"
-            )
+            raise InvalidPersistentWorldObjectDisplacementRequestError("receipt method must be throw")
         if self.source_place_id == self.destination_place_id:
             raise InvalidPersistentWorldObjectDisplacementRequestError(
                 "throw destination must differ from source"
@@ -345,10 +303,7 @@ class PersistentWorldObjectDisplacementRuntimeState:
             )
         transitions = tuple(self.committed_object_displacement_transitions)
         for index, transition in enumerate(transitions):
-            if not isinstance(
-                transition,
-                PersistentWorldObjectDisplacementCommittedTransition,
-            ):
+            if not isinstance(transition, PersistentWorldObjectDisplacementCommittedTransition):
                 raise InvalidPersistentWorldObjectDisplacementRequestError(
                     f"committed_object_displacement_transitions[{index}] has invalid type"
                 )
@@ -360,33 +315,17 @@ class PersistentWorldObjectDisplacementRuntimeState:
         lit = self.storage_state.lit_state
         open_close = lit.open_close_state
         custody = open_close.custody_state
-        lower_ids = {
-            item.command_id for item in custody.movement_state.committed_transitions
-        }
-        lower_ids.update(
-            item.command_id for item in custody.committed_custody_transitions
-        )
-        lower_ids.update(
-            item.command_id for item in open_close.committed_object_state_transitions
-        )
-        lower_ids.update(
-            item.command_id for item in lit.committed_object_lit_transitions
-        )
-        lower_ids.update(
-            item.command_id for item in self.storage_state.committed_storage_transitions
-        )
+        lower_ids = {item.command_id for item in custody.movement_state.committed_transitions}
+        lower_ids.update(item.command_id for item in custody.committed_custody_transitions)
+        lower_ids.update(item.command_id for item in open_close.committed_object_state_transitions)
+        lower_ids.update(item.command_id for item in lit.committed_object_lit_transitions)
+        lower_ids.update(item.command_id for item in self.storage_state.committed_storage_transitions)
         if set(ids) & lower_ids:
             raise InvalidPersistentWorldObjectDisplacementRequestError(
                 "object displacement command IDs must not collide with lower transitions"
             )
-        validate_persistent_world_storage_placement(
-            custody.movement_state.representation
-        )
-        object.__setattr__(
-            self,
-            "committed_object_displacement_transitions",
-            transitions,
-        )
+        validate_persistent_world_storage_placement(custody.movement_state.representation)
+        object.__setattr__(self, "committed_object_displacement_transitions", transitions)
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -422,30 +361,18 @@ class PersistentWorldObjectDisplacementExecutionResult:
 
 
 def create_object_displacement_qualification_evidence(
-    *,
-    evidence_id: str,
-    actor_entity_id: str,
-    object_entity_id: str,
-    method: str,
-    qualified: bool,
+    *, evidence_id: str, actor_entity_id: str, object_entity_id: str,
+    method: str, qualified: bool,
 ) -> ObjectDisplacementQualificationEvidence:
     return ObjectDisplacementQualificationEvidence(
-        evidence_id=evidence_id,
-        actor_entity_id=actor_entity_id,
-        object_entity_id=object_entity_id,
-        method=method,
-        qualified=qualified,
+        evidence_id=evidence_id, actor_entity_id=actor_entity_id,
+        object_entity_id=object_entity_id, method=method, qualified=qualified,
     )
 
 
 def create_object_displacement_spatial_evidence(
-    *,
-    evidence_id: str,
-    actor_entity_id: str,
-    object_entity_id: str,
-    source_place_id: str,
-    destination_place_id: str,
-    method: str,
+    *, evidence_id: str, actor_entity_id: str, object_entity_id: str,
+    source_place_id: str, destination_place_id: str, method: str,
     spatially_permitted: bool,
 ) -> ObjectDisplacementSpatialEvidence:
     return ObjectDisplacementSpatialEvidence(
@@ -460,15 +387,9 @@ def create_object_displacement_spatial_evidence(
 
 
 def create_object_displacement_opportunity_evidence(
-    *,
-    evidence_id: str,
-    actor_entity_id: str,
-    object_entity_id: str,
-    source_place_id: str,
-    destination_place_id: str,
-    method: str,
-    opportunity_available: bool,
-    resolution_accepted: bool,
+    *, evidence_id: str, actor_entity_id: str, object_entity_id: str,
+    source_place_id: str, destination_place_id: str, method: str,
+    opportunity_available: bool, resolution_accepted: bool,
 ) -> ObjectDisplacementOpportunityEvidence:
     return ObjectDisplacementOpportunityEvidence(
         evidence_id=evidence_id,
@@ -547,19 +468,13 @@ def fingerprint_persistent_world_object_displacement_command(
 
 
 def _validate_owner_evidence(
-    *,
-    qualification_evidence: ObjectDisplacementQualificationEvidence,
+    *, qualification_evidence: ObjectDisplacementQualificationEvidence,
     spatial_evidence: ObjectDisplacementSpatialEvidence,
     opportunity_evidence: ObjectDisplacementOpportunityEvidence,
-    actor_entity_id: str,
-    object_entity_id: str,
-    source_place_id: str,
-    destination_place_id: str,
+    actor_entity_id: str, object_entity_id: str,
+    source_place_id: str, destination_place_id: str,
 ) -> None:
-    if not isinstance(
-        qualification_evidence,
-        ObjectDisplacementQualificationEvidence,
-    ):
+    if not isinstance(qualification_evidence, ObjectDisplacementQualificationEvidence):
         raise PersistentWorldObjectDisplacementEvidenceError(
             "invalid RT-010 displacement qualification evidence"
         )
@@ -567,20 +482,12 @@ def _validate_owner_evidence(
         raise PersistentWorldObjectDisplacementEvidenceError(
             "invalid AFQR-18 displacement spatial evidence"
         )
-    if not isinstance(
-        opportunity_evidence,
-        ObjectDisplacementOpportunityEvidence,
-    ):
+    if not isinstance(opportunity_evidence, ObjectDisplacementOpportunityEvidence):
         raise PersistentWorldObjectDisplacementEvidenceError(
             "invalid AFQR-19 displacement opportunity evidence"
         )
-
     expected = (
-        actor_entity_id,
-        object_entity_id,
-        source_place_id,
-        destination_place_id,
-        "throw",
+        actor_entity_id, object_entity_id, source_place_id, destination_place_id, "throw",
     )
     if (
         spatial_evidence.actor_entity_id,
@@ -618,27 +525,19 @@ def _validate_owner_evidence(
         raise PersistentWorldObjectDisplacementEvidenceError(
             "AFQR-18 rejected displacement destination"
         )
-    if (
-        not opportunity_evidence.opportunity_available
-        or not opportunity_evidence.resolution_accepted
-    ):
+    if not opportunity_evidence.opportunity_available or not opportunity_evidence.resolution_accepted:
         raise PersistentWorldObjectDisplacementEvidenceError(
             "AFQR-19 rejected displacement opportunity"
         )
 
 
 def _apply_displacement(
-    *,
-    representation: PersistentWorldEntityLocationRepresentation,
-    object_entity_id: str,
-    actor_entity_id: str,
-    destination_place_id: str,
-    source_relation_id: str,
-    destination_relation_id: str,
+    *, representation: PersistentWorldEntityLocationRepresentation,
+    object_entity_id: str, actor_entity_id: str, destination_place_id: str,
+    source_relation_id: str, destination_relation_id: str,
 ) -> PersistentWorldEntityLocationRepresentation:
     sources = [
-        relation
-        for relation in representation.relations
+        relation for relation in representation.relations
         if relation.relation_id == source_relation_id
     ]
     if len(sources) != 1:
@@ -655,8 +554,7 @@ def _apply_displacement(
             "throw source must be target object carried by source actor"
         )
     remaining = [
-        relation
-        for relation in representation.relations
+        relation for relation in representation.relations
         if relation.relation_id != source_relation_id
     ]
     if any(r.relation_id == destination_relation_id for r in remaining):
@@ -677,19 +575,8 @@ def _apply_displacement(
     return post
 
 
-def _existing_transition(
-    state: PersistentWorldObjectDisplacementRuntimeState,
-    command_id: str,
-):
-    return find_committed_transition(
-        state.committed_object_displacement_transitions,
-        command_id,
-    )
-
-
 def prepare_persistent_world_object_displacement(
-    *,
-    state: PersistentWorldObjectDisplacementRuntimeState,
+    *, state: PersistentWorldObjectDisplacementRuntimeState,
     command: CommandEnvelope,
     qualification_evidence: ObjectDisplacementQualificationEvidence,
     spatial_evidence: ObjectDisplacementSpatialEvidence,
@@ -703,14 +590,11 @@ def prepare_persistent_world_object_displacement(
     fingerprint = fingerprint_persistent_world_object_displacement_command(command)
     actor_entity_id = command.source_actor_id
     object_entity_id = _require_record_id(
-        command.payload.get("object_entity_id"),
-        "command.payload.object_entity_id",
+        command.payload.get("object_entity_id"), "command.payload.object_entity_id"
     )
     destination_place_id = _require_record_id(
-        command.payload.get("destination_entity_id"),
-        "command.payload.destination_entity_id",
+        command.payload.get("destination_entity_id"), "command.payload.destination_entity_id"
     )
-
     representation = _representation(state)
     entities = {entity.entity_id: entity for entity in representation.entities}
     actor = entities.get(actor_entity_id)
@@ -728,10 +612,8 @@ def prepare_persistent_world_object_displacement(
         raise PersistentWorldObjectDisplacementEntityError(
             "displacement destination must exist and be place"
         )
-
     actor_locations = [
-        relation
-        for relation in representation.relations
+        relation for relation in representation.relations
         if relation.relation_type == LOCATED_AT_RELATION_TYPE
         and relation.subject_entity_id == actor_entity_id
     ]
@@ -744,16 +626,11 @@ def prepare_persistent_world_object_displacement(
         raise PersistentWorldObjectDisplacementPlacementError(
             "throw destination must differ from actor source place"
         )
-
     placements = [
-        relation
-        for relation in representation.relations
+        relation for relation in representation.relations
         if relation.subject_entity_id == object_entity_id
-        and relation.relation_type
-        in {
-            LOCATED_AT_RELATION_TYPE,
-            CARRIED_BY_RELATION_TYPE,
-            CONTAINED_BY_RELATION_TYPE,
+        and relation.relation_type in {
+            LOCATED_AT_RELATION_TYPE, CARRIED_BY_RELATION_TYPE, CONTAINED_BY_RELATION_TYPE,
         }
     ]
     if (
@@ -765,7 +642,6 @@ def prepare_persistent_world_object_displacement(
             "throw requires target object carried by source actor"
         )
     source_relation = placements[0]
-
     _validate_owner_evidence(
         qualification_evidence=qualification_evidence,
         spatial_evidence=spatial_evidence,
@@ -775,20 +651,12 @@ def prepare_persistent_world_object_displacement(
         source_place_id=source_place_id,
         destination_place_id=destination_place_id,
     )
-
-    actual_digest = digest_persistent_world_entity_location_representation(
-        representation
-    )
+    actual_digest = digest_persistent_world_entity_location_representation(representation)
     if expected_pre_state_digest != actual_digest:
-        raise PersistentWorldObjectDisplacementStaleStateError(
-            "stale pre-state digest"
-        )
+        raise PersistentWorldObjectDisplacementStaleStateError("stale pre-state digest")
 
     token = fingerprint[:24]
-    destination_relation_id = build_record_id(
-        "relation",
-        f"object-displacement-{token}",
-    )
+    destination_relation_id = build_record_id("relation", f"object-displacement-{token}")
     if (
         destination_relation_id != source_relation.relation_id
         and any(
@@ -799,7 +667,6 @@ def prepare_persistent_world_object_displacement(
         raise PersistentWorldObjectDisplacementRelationIdentityCollisionError(
             "destination relation identity already exists"
         )
-
     preview = create_transaction_preview(
         preview_id=build_record_id("object_displacement_preview", token),
         command=command,
@@ -817,12 +684,8 @@ def prepare_persistent_world_object_displacement(
         source_command_id=command.command_id,
         source_preview_id=preview.preview_id,
         affected_record_ids=(
-            actor_entity_id,
-            object_entity_id,
-            source_place_id,
-            destination_place_id,
-            source_relation.relation_id,
-            destination_relation_id,
+            actor_entity_id, object_entity_id, source_place_id, destination_place_id,
+            source_relation.relation_id, destination_relation_id,
         ),
         change_type="relationship_update",
         payload={
@@ -840,13 +703,10 @@ def prepare_persistent_world_object_displacement(
             "package": "TERMINAL-PLAY-COMP-3",
             "placement_semantic_owner": RT010_OBJECT_DISPLACEMENT_OWNER,
             "spatial_semantic_owner": AFQR18_OBJECT_DISPLACEMENT_SPATIAL_OWNER,
-            "opportunity_semantic_owner": (
-                AFQR19_OBJECT_DISPLACEMENT_OPPORTUNITY_OWNER
-            ),
+            "opportunity_semantic_owner": AFQR19_OBJECT_DISPLACEMENT_OPPORTUNITY_OWNER,
             "qualified_transition_owner": "AFQR-01",
         },
     )
-
     post_representation = _apply_displacement(
         representation=representation,
         object_entity_id=object_entity_id,
@@ -855,9 +715,7 @@ def prepare_persistent_world_object_displacement(
         source_relation_id=source_relation.relation_id,
         destination_relation_id=destination_relation_id,
     )
-    post_digest = digest_persistent_world_entity_location_representation(
-        post_representation
-    )
+    post_digest = digest_persistent_world_entity_location_representation(post_representation)
     return PersistentWorldObjectDisplacementPreparedTransition(
         command_id=command.command_id,
         command_fingerprint=fingerprint,
@@ -878,43 +736,23 @@ def prepare_persistent_world_object_displacement(
         preview=preview,
         state_delta=delta,
         post_storage_state=_replace_representation_in_storage_state(
-            state.storage_state,
-            post_representation,
+            state.storage_state, post_representation,
         ),
     )
 
 
-def commit_prepared_persistent_world_object_displacement(
-    *,
-    state: PersistentWorldObjectDisplacementRuntimeState,
+def _commit_new_persistent_world_object_displacement(
+    *, state: PersistentWorldObjectDisplacementRuntimeState,
     prepared: PersistentWorldObjectDisplacementPreparedTransition,
 ) -> PersistentWorldObjectDisplacementExecutionResult:
-    existing = _existing_transition(state, prepared.command_id)
-    if existing is not None:
-        if not command_fingerprint_matches(existing, prepared.command_fingerprint):
-            raise PersistentWorldObjectDisplacementRetryConflictError(
-                "command ID already committed with different meaning"
-            )
-        return PersistentWorldObjectDisplacementExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
-        )
-
-    current = digest_persistent_world_entity_location_representation(
-        _representation(state)
-    )
+    current = digest_persistent_world_entity_location_representation(_representation(state))
     if current != prepared.pre_state_digest:
         raise PersistentWorldObjectDisplacementStaleStateError(
             "object placement changed after preparation"
         )
-
     receipt = PersistentWorldObjectDisplacementCommitReceipt(
         receipt_id=build_record_id(
-            "object_displacement_receipt",
-            prepared.command_fingerprint[:24],
+            "object_displacement_receipt", prepared.command_fingerprint[:24]
         ),
         command_id=prepared.command_id,
         command_fingerprint=prepared.command_fingerprint,
@@ -942,12 +780,10 @@ def commit_prepared_persistent_world_object_displacement(
         state_delta=prepared.state_delta,
         receipt=receipt,
     )
-    transitions = tuple(
-        sorted(
-            (*state.committed_object_displacement_transitions, committed),
-            key=lambda item: (item.command_id, item.command_fingerprint),
-        )
-    )
+    transitions = tuple(sorted(
+        (*state.committed_object_displacement_transitions, committed),
+        key=lambda item: (item.command_id, item.command_fingerprint),
+    ))
     post_state = PersistentWorldObjectDisplacementRuntimeState(
         storage_state=prepared.post_storage_state,
         committed_object_displacement_transitions=transitions,
@@ -961,68 +797,62 @@ def commit_prepared_persistent_world_object_displacement(
     )
 
 
+def commit_prepared_persistent_world_object_displacement(
+    *, state: PersistentWorldObjectDisplacementRuntimeState,
+    prepared: PersistentWorldObjectDisplacementPreparedTransition,
+) -> PersistentWorldObjectDisplacementExecutionResult:
+    if not isinstance(state, PersistentWorldObjectDisplacementRuntimeState):
+        raise InvalidPersistentWorldObjectDisplacementRequestError(
+            "invalid object displacement runtime state"
+        )
+    if not isinstance(prepared, PersistentWorldObjectDisplacementPreparedTransition):
+        raise InvalidPersistentWorldObjectDisplacementRequestError(
+            "invalid prepared transition"
+        )
+    return commit_prepared_capability_transition(
+        spec=DISPLACEMENT_TRANSITION_CAPABILITY_SPEC,
+        state=state,
+        prepared=prepared,
+    )
+
+
 def execute_persistent_world_object_displacement(
-    *,
-    state: PersistentWorldObjectDisplacementRuntimeState,
+    *, state: PersistentWorldObjectDisplacementRuntimeState,
     command: CommandEnvelope,
     qualification_evidence: ObjectDisplacementQualificationEvidence,
     spatial_evidence: ObjectDisplacementSpatialEvidence,
     opportunity_evidence: ObjectDisplacementOpportunityEvidence,
     expected_pre_state_digest: str,
 ) -> PersistentWorldObjectDisplacementExecutionResult:
-    fingerprint = fingerprint_persistent_world_object_displacement_command(command)
-    existing = _existing_transition(state, command.command_id)
-    if existing is not None:
-        if not command_fingerprint_matches(existing, fingerprint):
-            raise PersistentWorldObjectDisplacementRetryConflictError(
-                "command ID already committed with materially different content"
-            )
-        return PersistentWorldObjectDisplacementExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
+    if not isinstance(state, PersistentWorldObjectDisplacementRuntimeState):
+        raise InvalidPersistentWorldObjectDisplacementRequestError(
+            "invalid object displacement runtime state"
         )
-    prepared = prepare_persistent_world_object_displacement(
+    return execute_capability_transition(
+        spec=DISPLACEMENT_TRANSITION_CAPABILITY_SPEC,
         state=state,
         command=command,
-        qualification_evidence=qualification_evidence,
-        spatial_evidence=spatial_evidence,
-        opportunity_evidence=opportunity_evidence,
-        expected_pre_state_digest=expected_pre_state_digest,
-    )
-    return commit_prepared_persistent_world_object_displacement(
-        state=state,
-        prepared=prepared,
+        context={
+            "qualification_evidence": qualification_evidence,
+            "spatial_evidence": spatial_evidence,
+            "opportunity_evidence": opportunity_evidence,
+            "expected_pre_state_digest": expected_pre_state_digest,
+        },
     )
 
 
 def replay_persistent_world_object_displacement(
-    *,
-    pre_state_representation: PersistentWorldEntityLocationRepresentation,
+    *, pre_state_representation: PersistentWorldEntityLocationRepresentation,
     receipt: PersistentWorldObjectDisplacementCommitReceipt,
 ) -> PersistentWorldEntityLocationRepresentation:
-    if not isinstance(
-        pre_state_representation,
-        PersistentWorldEntityLocationRepresentation,
-    ):
-        raise PersistentWorldObjectDisplacementReplayError(
-            "invalid replay pre-state"
-        )
+    if not isinstance(pre_state_representation, PersistentWorldEntityLocationRepresentation):
+        raise PersistentWorldObjectDisplacementReplayError("invalid replay pre-state")
     if not isinstance(receipt, PersistentWorldObjectDisplacementCommitReceipt):
-        raise PersistentWorldObjectDisplacementReplayError(
-            "receipt has invalid type"
-        )
-    if (
-        digest_persistent_world_entity_location_representation(
-            pre_state_representation
-        )
-        != receipt.pre_state_digest
-    ):
-        raise PersistentWorldObjectDisplacementReplayError(
-            "replay pre-state digest mismatch"
-        )
+        raise PersistentWorldObjectDisplacementReplayError("receipt has invalid type")
+    if digest_persistent_world_entity_location_representation(
+        pre_state_representation
+    ) != receipt.pre_state_digest:
+        raise PersistentWorldObjectDisplacementReplayError("replay pre-state digest mismatch")
     try:
         post = _apply_displacement(
             representation=pre_state_representation,
@@ -1036,14 +866,47 @@ def replay_persistent_world_object_displacement(
         raise PersistentWorldObjectDisplacementReplayError(
             "committed displacement could not replay"
         ) from exc
-    if (
-        digest_persistent_world_entity_location_representation(post)
-        != receipt.post_state_digest
-    ):
-        raise PersistentWorldObjectDisplacementReplayError(
-            "replay post-state digest mismatch"
-        )
+    if digest_persistent_world_entity_location_representation(
+        post
+    ) != receipt.post_state_digest:
+        raise PersistentWorldObjectDisplacementReplayError("replay post-state digest mismatch")
     return post
+
+
+DISPLACEMENT_TRANSITION_CAPABILITY_SPEC = TransitionCapabilitySpec(
+    capability_id="persistent_world_object_displacement",
+    semantic_owners=("RT-010", "AFQR-18", "AFQR-19", "AFQR-01", "AFQR-02"),
+    state_type=PersistentWorldObjectDisplacementRuntimeState,
+    replay_state_type=PersistentWorldEntityLocationRepresentation,
+    receipt_prefix="object_displacement_receipt",
+    state_digest=lambda state: digest_persistent_world_entity_location_representation(
+        _representation(state)
+    ),
+    fingerprint_command=fingerprint_persistent_world_object_displacement_command,
+    committed_transitions=lambda state: state.committed_object_displacement_transitions,
+    prepare_new_transition=lambda state, command, context: prepare_persistent_world_object_displacement(
+        state=state,
+        command=command,
+        qualification_evidence=context["qualification_evidence"],
+        spatial_evidence=context["spatial_evidence"],
+        opportunity_evidence=context["opportunity_evidence"],
+        expected_pre_state_digest=context["expected_pre_state_digest"],
+    ),
+    commit_new_transition=lambda state, prepared: _commit_new_persistent_world_object_displacement(
+        state=state, prepared=prepared,
+    ),
+    build_retry_result=lambda state, committed: PersistentWorldObjectDisplacementExecutionResult(
+        state=state,
+        receipt=committed.receipt,
+        preview=committed.preview,
+        state_delta=committed.state_delta,
+        technical_retry=True,
+    ),
+    retry_conflict_error=lambda message: PersistentWorldObjectDisplacementRetryConflictError(message),
+    replay_committed_transition=lambda pre_state, receipt: replay_persistent_world_object_displacement(
+        pre_state_representation=pre_state, receipt=receipt,
+    ),
+)
 
 
 def serialize_persistent_world_object_displacement_commit_receipt(
