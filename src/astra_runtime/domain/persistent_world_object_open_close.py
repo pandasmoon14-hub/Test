@@ -24,8 +24,9 @@ from dataclasses import dataclass
 from typing import Sequence
 
 from astra_runtime.domain._deterministic_transition_support import (
-    command_fingerprint_matches,
-    find_committed_transition,
+    TransitionCapabilitySpec,
+    commit_prepared_capability_transition,
+    execute_capability_transition,
     fingerprint_command_envelope,
 )
 from astra_runtime.domain.command_kind_routing_skeleton import route_command_envelope
@@ -212,13 +213,8 @@ class PersistentWorldObjectOpenCloseCommitReceipt:
 
     def __post_init__(self) -> None:
         for name in (
-            "receipt_id",
-            "actor_entity_id",
-            "object_entity_id",
-            "preview_id",
-            "state_delta_id",
-            "rt010_qualification_id",
-            "opportunity_evidence_id",
+            "receipt_id", "actor_entity_id", "object_entity_id", "preview_id",
+            "state_delta_id", "rt010_qualification_id", "opportunity_evidence_id",
         ):
             _require_record_id(getattr(self, name), name)
         if not isinstance(self.command_id, str) or not self.command_id.strip():
@@ -308,17 +304,12 @@ class PersistentWorldObjectOpenCloseRuntimeState:
                     "open/close state target must exist and be classified as object"
                 )
 
-        transitions = tuple(
-            sorted(
-                self.committed_object_state_transitions,
-                key=lambda item: (item.command_id, item.command_fingerprint),
-            )
-        )
+        transitions = tuple(sorted(
+            self.committed_object_state_transitions,
+            key=lambda item: (item.command_id, item.command_fingerprint),
+        ))
         for transition in transitions:
-            if not isinstance(
-                transition,
-                PersistentWorldObjectOpenCloseCommittedTransition,
-            ):
+            if not isinstance(transition, PersistentWorldObjectOpenCloseCommittedTransition):
                 raise InvalidPersistentWorldObjectOpenCloseRequestError(
                     "committed_object_state_transitions contains an invalid value"
                 )
@@ -328,23 +319,17 @@ class PersistentWorldObjectOpenCloseRuntimeState:
                 "object-state command IDs must be unique"
             )
         movement_ids = {
-            item.command_id
-            for item in self.custody_state.movement_state.committed_transitions
+            item.command_id for item in self.custody_state.movement_state.committed_transitions
         }
         custody_ids = {
-            item.command_id
-            for item in self.custody_state.committed_custody_transitions
+            item.command_id for item in self.custody_state.committed_custody_transitions
         }
         if set(command_ids) & (movement_ids | custody_ids):
             raise InvalidPersistentWorldObjectOpenCloseRequestError(
                 "object-state command IDs must not collide with movement/custody"
             )
         object.__setattr__(self, "object_open_states", states)
-        object.__setattr__(
-            self,
-            "committed_object_state_transitions",
-            transitions,
-        )
+        object.__setattr__(self, "committed_object_state_transitions", transitions)
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -376,66 +361,44 @@ class PersistentWorldObjectOpenCloseExecutionResult:
 
 
 def create_object_open_close_qualification_evidence(
-    *,
-    evidence_id: str,
-    actor_entity_id: str,
-    object_entity_id: str,
-    operation: str,
-    qualified: bool,
+    *, evidence_id: str, actor_entity_id: str, object_entity_id: str,
+    operation: str, qualified: bool,
 ) -> ObjectOpenCloseQualificationEvidence:
     return ObjectOpenCloseQualificationEvidence(
-        evidence_id=evidence_id,
-        actor_entity_id=actor_entity_id,
-        object_entity_id=object_entity_id,
-        operation=operation,
-        qualified=qualified,
+        evidence_id=evidence_id, actor_entity_id=actor_entity_id,
+        object_entity_id=object_entity_id, operation=operation, qualified=qualified,
     )
 
 
 def create_object_open_close_opportunity_evidence(
-    *,
-    evidence_id: str,
-    actor_entity_id: str,
-    object_entity_id: str,
-    operation: str,
-    opportunity_available: bool,
-    resolution_accepted: bool,
+    *, evidence_id: str, actor_entity_id: str, object_entity_id: str,
+    operation: str, opportunity_available: bool, resolution_accepted: bool,
 ) -> ObjectOpenCloseOpportunityEvidence:
     return ObjectOpenCloseOpportunityEvidence(
-        evidence_id=evidence_id,
-        actor_entity_id=actor_entity_id,
-        object_entity_id=object_entity_id,
-        operation=operation,
+        evidence_id=evidence_id, actor_entity_id=actor_entity_id,
+        object_entity_id=object_entity_id, operation=operation,
         opportunity_available=opportunity_available,
         resolution_accepted=resolution_accepted,
     )
 
 
 def create_persistent_world_object_open_state(
-    *,
-    object_entity_id: str,
-    state: str,
+    *, object_entity_id: str, state: str,
 ) -> PersistentWorldObjectOpenState:
-    return PersistentWorldObjectOpenState(
-        object_entity_id=object_entity_id,
-        state=state,
-    )
+    return PersistentWorldObjectOpenState(object_entity_id=object_entity_id, state=state)
 
 
 def create_persistent_world_object_open_close_runtime_state(
-    *,
-    custody_state: PersistentWorldObjectCustodyRuntimeState,
+    *, custody_state: PersistentWorldObjectCustodyRuntimeState,
     object_open_states: Sequence[PersistentWorldObjectOpenState] = (),
 ) -> PersistentWorldObjectOpenCloseRuntimeState:
     return PersistentWorldObjectOpenCloseRuntimeState(
-        custody_state=custody_state,
-        object_open_states=tuple(object_open_states),
+        custody_state=custody_state, object_open_states=tuple(object_open_states),
     )
 
 
 def replace_persistent_world_object_open_close_custody_state(
-    *,
-    state: PersistentWorldObjectOpenCloseRuntimeState,
+    *, state: PersistentWorldObjectOpenCloseRuntimeState,
     custody_state: PersistentWorldObjectCustodyRuntimeState,
 ) -> PersistentWorldObjectOpenCloseRuntimeState:
     if not isinstance(state, PersistentWorldObjectOpenCloseRuntimeState):
@@ -478,11 +441,8 @@ def canonical_serialize_persistent_world_object_open_states(
         "object_open_states": [serialize_persistent_world_object_open_state(x) for x in states],
     }
     return json.dumps(
-        material,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=True,
-        allow_nan=False,
+        material, sort_keys=True, separators=(",", ":"),
+        ensure_ascii=True, allow_nan=False,
     )
 
 
@@ -502,19 +462,16 @@ def digest_persistent_world_composite_state(
 ) -> str:
     material = {
         "world_state_family": "persistent_world_location_custody_plus_open_close",
-        "representation_digest": (
-            digest_persistent_world_entity_location_representation(representation)
+        "representation_digest": digest_persistent_world_entity_location_representation(
+            representation
         ),
         "object_state_digest": digest_persistent_world_object_open_states(
             object_open_states
         ),
     }
     canonical = json.dumps(
-        material,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=True,
-        allow_nan=False,
+        material, sort_keys=True, separators=(",", ":"),
+        ensure_ascii=True, allow_nan=False,
     )
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
@@ -539,10 +496,8 @@ def fingerprint_persistent_world_object_open_close_command(
         raise InvalidPersistentWorldObjectOpenCloseRequestError(
             "command failed CommandEnvelope validation"
         )
-    return fingerprint_command_envelope(
-        command,
-        allow_nan=False,
-    )
+    return fingerprint_command_envelope(command, allow_nan=False)
+
 
 def _operation_from_command(command: CommandEnvelope) -> str:
     normalized = command.command_type.strip().lower().replace("-", "_")
@@ -555,24 +510,15 @@ def _operation_from_command(command: CommandEnvelope) -> str:
 
 
 def _validate_owner_evidence(
-    *,
-    qualification_evidence: ObjectOpenCloseQualificationEvidence,
+    *, qualification_evidence: ObjectOpenCloseQualificationEvidence,
     opportunity_evidence: ObjectOpenCloseOpportunityEvidence,
-    actor_entity_id: str,
-    object_entity_id: str,
-    operation: str,
+    actor_entity_id: str, object_entity_id: str, operation: str,
 ) -> None:
-    if not isinstance(
-        qualification_evidence,
-        ObjectOpenCloseQualificationEvidence,
-    ):
+    if not isinstance(qualification_evidence, ObjectOpenCloseQualificationEvidence):
         raise PersistentWorldObjectOpenCloseEvidenceError(
             "invalid RT-010 qualification evidence"
         )
-    if not isinstance(
-        opportunity_evidence,
-        ObjectOpenCloseOpportunityEvidence,
-    ):
+    if not isinstance(opportunity_evidence, ObjectOpenCloseOpportunityEvidence):
         raise PersistentWorldObjectOpenCloseEvidenceError(
             "invalid AFQR-19 opportunity evidence"
         )
@@ -599,10 +545,8 @@ def _validate_owner_evidence(
 
 
 def _validate_current_availability(
-    *,
-    representation: PersistentWorldEntityLocationRepresentation,
-    actor_entity_id: str,
-    object_entity_id: str,
+    *, representation: PersistentWorldEntityLocationRepresentation,
+    actor_entity_id: str, object_entity_id: str,
 ) -> None:
     entities = {entity.entity_id: entity for entity in representation.entities}
     actor = entities.get(actor_entity_id)
@@ -616,8 +560,7 @@ def _validate_current_availability(
             "target must exist and be object"
         )
     actor_locations = [
-        relation
-        for relation in representation.relations
+        relation for relation in representation.relations
         if relation.relation_type == LOCATED_AT_RELATION_TYPE
         and relation.subject_entity_id == actor_entity_id
     ]
@@ -645,13 +588,10 @@ def _validate_current_availability(
 
 
 def persistent_world_object_open_close_opportunity_available(
-    *,
-    state: PersistentWorldObjectOpenCloseRuntimeState,
-    actor_entity_id: str,
-    object_entity_id: str,
+    *, state: PersistentWorldObjectOpenCloseRuntimeState,
+    actor_entity_id: str, object_entity_id: str,
 ) -> bool:
-    'Return current bounded physical opportunity without mutating state.'
-
+    """Return current bounded physical opportunity without mutating state."""
     if not isinstance(state, PersistentWorldObjectOpenCloseRuntimeState):
         raise InvalidPersistentWorldObjectOpenCloseRequestError(
             "state must be PersistentWorldObjectOpenCloseRuntimeState"
@@ -674,21 +614,16 @@ def persistent_world_object_open_close_opportunity_available(
 
 def _replace_open_state(
     object_open_states: Sequence[PersistentWorldObjectOpenState],
-    *,
-    object_entity_id: str,
-    new_state: str,
+    *, object_entity_id: str, new_state: str,
 ) -> tuple[PersistentWorldObjectOpenState, ...]:
     found = False
     updated = []
     for item in object_open_states:
         if item.object_entity_id == object_entity_id:
             found = True
-            updated.append(
-                PersistentWorldObjectOpenState(
-                    object_entity_id=object_entity_id,
-                    state=new_state,
-                )
-            )
+            updated.append(PersistentWorldObjectOpenState(
+                object_entity_id=object_entity_id, state=new_state,
+            ))
         else:
             updated.append(item)
     if not found:
@@ -698,18 +633,8 @@ def _replace_open_state(
     return tuple(sorted(updated, key=lambda item: item.object_entity_id))
 
 
-def _existing_transition(
-    state: PersistentWorldObjectOpenCloseRuntimeState,
-    command_id: str,
-) -> PersistentWorldObjectOpenCloseCommittedTransition | None:
-    return find_committed_transition(
-        state.committed_object_state_transitions,
-        command_id,
-    )
-
 def prepare_persistent_world_object_open_close(
-    *,
-    state: PersistentWorldObjectOpenCloseRuntimeState,
+    *, state: PersistentWorldObjectOpenCloseRuntimeState,
     command: CommandEnvelope,
     qualification_evidence: ObjectOpenCloseQualificationEvidence,
     opportunity_evidence: ObjectOpenCloseOpportunityEvidence,
@@ -784,7 +709,6 @@ def prepare_persistent_world_object_open_close(
     placement_digest = digest_persistent_world_entity_location_representation(
         representation
     )
-
     token = fingerprint[:24]
     preview = create_transaction_preview(
         preview_id=build_record_id("object_state_preview", token),
@@ -837,25 +761,10 @@ def prepare_persistent_world_object_open_close(
     )
 
 
-def commit_prepared_persistent_world_object_open_close(
-    *,
-    state: PersistentWorldObjectOpenCloseRuntimeState,
+def _commit_new_persistent_world_object_open_close(
+    *, state: PersistentWorldObjectOpenCloseRuntimeState,
     prepared: PersistentWorldObjectOpenClosePreparedTransition,
 ) -> PersistentWorldObjectOpenCloseExecutionResult:
-    existing = _existing_transition(state, prepared.command_id)
-    if existing is not None:
-        if not command_fingerprint_matches(existing, prepared.command_fingerprint):
-            raise PersistentWorldObjectOpenCloseRetryConflictError(
-                "command ID already committed with different meaning"
-            )
-        return PersistentWorldObjectOpenCloseExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
-        )
-
     if (
         digest_persistent_world_object_open_states(state.object_open_states)
         != prepared.pre_state_digest
@@ -874,10 +783,7 @@ def commit_prepared_persistent_world_object_open_close(
         )
 
     receipt = PersistentWorldObjectOpenCloseCommitReceipt(
-        receipt_id=build_record_id(
-            "object_state_receipt",
-            prepared.command_fingerprint[:24],
-        ),
+        receipt_id=build_record_id("object_state_receipt", prepared.command_fingerprint[:24]),
         command_id=prepared.command_id,
         command_fingerprint=prepared.command_fingerprint,
         actor_entity_id=prepared.actor_entity_id,
@@ -904,8 +810,7 @@ def commit_prepared_persistent_world_object_open_close(
         custody_state=state.custody_state,
         object_open_states=prepared.post_object_open_states,
         committed_object_state_transitions=(
-            *state.committed_object_state_transitions,
-            committed,
+            *state.committed_object_state_transitions, committed,
         ),
     )
     return PersistentWorldObjectOpenCloseExecutionResult(
@@ -917,55 +822,57 @@ def commit_prepared_persistent_world_object_open_close(
     )
 
 
-def execute_persistent_world_object_open_close(
-    *,
-    state: PersistentWorldObjectOpenCloseRuntimeState,
-    command: CommandEnvelope,
-    qualification_evidence: ObjectOpenCloseQualificationEvidence,
-    opportunity_evidence: ObjectOpenCloseOpportunityEvidence,
-    expected_pre_state_digest: str,
+def commit_prepared_persistent_world_object_open_close(
+    *, state: PersistentWorldObjectOpenCloseRuntimeState,
+    prepared: PersistentWorldObjectOpenClosePreparedTransition,
 ) -> PersistentWorldObjectOpenCloseExecutionResult:
-    fingerprint = fingerprint_persistent_world_object_open_close_command(command)
-    existing = _existing_transition(state, command.command_id)
-    if existing is not None:
-        if not command_fingerprint_matches(existing, fingerprint):
-            raise PersistentWorldObjectOpenCloseRetryConflictError(
-                "command ID already committed with materially different command content"
-            )
-        return PersistentWorldObjectOpenCloseExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
+    if not isinstance(state, PersistentWorldObjectOpenCloseRuntimeState):
+        raise InvalidPersistentWorldObjectOpenCloseRequestError(
+            "invalid object open/close runtime state"
         )
-    prepared = prepare_persistent_world_object_open_close(
-        state=state,
-        command=command,
-        qualification_evidence=qualification_evidence,
-        opportunity_evidence=opportunity_evidence,
-        expected_pre_state_digest=expected_pre_state_digest,
-    )
-    return commit_prepared_persistent_world_object_open_close(
+    if not isinstance(prepared, PersistentWorldObjectOpenClosePreparedTransition):
+        raise InvalidPersistentWorldObjectOpenCloseRequestError(
+            "invalid prepared transition"
+        )
+    return commit_prepared_capability_transition(
+        spec=OPEN_CLOSE_TRANSITION_CAPABILITY_SPEC,
         state=state,
         prepared=prepared,
     )
 
 
+def execute_persistent_world_object_open_close(
+    *, state: PersistentWorldObjectOpenCloseRuntimeState,
+    command: CommandEnvelope,
+    qualification_evidence: ObjectOpenCloseQualificationEvidence,
+    opportunity_evidence: ObjectOpenCloseOpportunityEvidence,
+    expected_pre_state_digest: str,
+) -> PersistentWorldObjectOpenCloseExecutionResult:
+    if not isinstance(state, PersistentWorldObjectOpenCloseRuntimeState):
+        raise InvalidPersistentWorldObjectOpenCloseRequestError(
+            "invalid object open/close runtime state"
+        )
+    return execute_capability_transition(
+        spec=OPEN_CLOSE_TRANSITION_CAPABILITY_SPEC,
+        state=state,
+        command=command,
+        context={
+            "qualification_evidence": qualification_evidence,
+            "opportunity_evidence": opportunity_evidence,
+            "expected_pre_state_digest": expected_pre_state_digest,
+        },
+    )
+
+
 def replay_persistent_world_object_open_close_states(
-    *,
-    object_open_states: Sequence[PersistentWorldObjectOpenState],
+    *, object_open_states: Sequence[PersistentWorldObjectOpenState],
     receipt: PersistentWorldObjectOpenCloseCommitReceipt,
 ) -> tuple[PersistentWorldObjectOpenState, ...]:
     if not isinstance(receipt, PersistentWorldObjectOpenCloseCommitReceipt):
-        raise PersistentWorldObjectOpenCloseReplayError(
-            "receipt has invalid type"
-        )
+        raise PersistentWorldObjectOpenCloseReplayError("receipt has invalid type")
     current = tuple(object_open_states)
     if digest_persistent_world_object_open_states(current) != receipt.pre_state_digest:
-        raise PersistentWorldObjectOpenCloseReplayError(
-            "replay pre-state digest mismatch"
-        )
+        raise PersistentWorldObjectOpenCloseReplayError("replay pre-state digest mismatch")
     existing = next(
         (item for item in current if item.object_entity_id == receipt.object_entity_id),
         None,
@@ -980,70 +887,78 @@ def replay_persistent_world_object_open_close_states(
         new_state=receipt.post_object_state,
     )
     if digest_persistent_world_object_open_states(post) != receipt.post_state_digest:
-        raise PersistentWorldObjectOpenCloseReplayError(
-            "replay post-state digest mismatch"
-        )
+        raise PersistentWorldObjectOpenCloseReplayError("replay post-state digest mismatch")
     return post
 
 
+OPEN_CLOSE_TRANSITION_CAPABILITY_SPEC = TransitionCapabilitySpec(
+    capability_id="persistent_world_object_open_close",
+    semantic_owners=("RT-010", "AFQR-19", "AFQR-01", "AFQR-02"),
+    state_type=PersistentWorldObjectOpenCloseRuntimeState,
+    replay_state_type=tuple,
+    receipt_prefix="object_state_receipt",
+    state_digest=lambda state: digest_persistent_world_object_open_states(
+        state.object_open_states
+    ),
+    fingerprint_command=fingerprint_persistent_world_object_open_close_command,
+    committed_transitions=lambda state: state.committed_object_state_transitions,
+    prepare_new_transition=lambda state, command, context: prepare_persistent_world_object_open_close(
+        state=state,
+        command=command,
+        qualification_evidence=context["qualification_evidence"],
+        opportunity_evidence=context["opportunity_evidence"],
+        expected_pre_state_digest=context["expected_pre_state_digest"],
+    ),
+    commit_new_transition=lambda state, prepared: _commit_new_persistent_world_object_open_close(
+        state=state, prepared=prepared,
+    ),
+    build_retry_result=lambda state, committed: PersistentWorldObjectOpenCloseExecutionResult(
+        state=state,
+        receipt=committed.receipt,
+        preview=committed.preview,
+        state_delta=committed.state_delta,
+        technical_retry=True,
+    ),
+    retry_conflict_error=lambda message: PersistentWorldObjectOpenCloseRetryConflictError(message),
+    replay_committed_transition=lambda pre_state, receipt: replay_persistent_world_object_open_close_states(
+        object_open_states=pre_state, receipt=receipt,
+    ),
+)
+
+
 def replay_persistent_world_object_open_close_transition_history(
-    *,
-    object_open_states: Sequence[PersistentWorldObjectOpenState],
-    committed_transitions: Sequence[
-        PersistentWorldObjectOpenCloseCommittedTransition
-    ],
+    *, object_open_states: Sequence[PersistentWorldObjectOpenState],
+    committed_transitions: Sequence[PersistentWorldObjectOpenCloseCommittedTransition],
 ) -> tuple[PersistentWorldObjectOpenState, ...]:
     """Replay complete INT-1 evidence without treating storage order as causal."""
-
     current = tuple(object_open_states)
     transitions = tuple(committed_transitions)
-
     for transition in transitions:
-        if not isinstance(
-            transition,
-            PersistentWorldObjectOpenCloseCommittedTransition,
-        ):
+        if not isinstance(transition, PersistentWorldObjectOpenCloseCommittedTransition):
             raise PersistentWorldObjectOpenCloseReplayError(
                 "transition history contains an invalid transition"
             )
-
     command_ids = [transition.command_id for transition in transitions]
     if len(command_ids) != len(set(command_ids)):
         raise PersistentWorldObjectOpenCloseReplayError(
             "transition history contains duplicate command identity"
         )
-
     if not transitions:
         return current
 
-    adjacency: dict[
-        str,
-        list[PersistentWorldObjectOpenCloseCommittedTransition],
-    ] = {}
+    adjacency: dict[str, list[PersistentWorldObjectOpenCloseCommittedTransition]] = {}
     for transition in transitions:
-        adjacency.setdefault(
-            transition.receipt.pre_state_digest,
-            [],
-        ).append(transition)
-
+        adjacency.setdefault(transition.receipt.pre_state_digest, []).append(transition)
     for candidates in adjacency.values():
         candidates.sort(
-            key=lambda item: (
-                item.command_id,
-                item.command_fingerprint,
-            ),
+            key=lambda item: (item.command_id, item.command_fingerprint),
             reverse=True,
         )
 
     start_digest = digest_persistent_world_object_open_states(current)
     vertex_stack = [start_digest]
-    edge_stack: list[
-        PersistentWorldObjectOpenCloseCommittedTransition
-    ] = []
-    reverse_path: list[
-        PersistentWorldObjectOpenCloseCommittedTransition
-    ] = []
-
+    edge_stack: list[PersistentWorldObjectOpenCloseCommittedTransition] = []
+    reverse_path: list[PersistentWorldObjectOpenCloseCommittedTransition] = []
     while vertex_stack:
         candidates = adjacency.get(vertex_stack[-1])
         if candidates:
@@ -1051,7 +966,6 @@ def replay_persistent_world_object_open_close_transition_history(
             vertex_stack.append(transition.receipt.post_state_digest)
             edge_stack.append(transition)
             continue
-
         vertex_stack.pop()
         if edge_stack:
             reverse_path.append(edge_stack.pop())
@@ -1061,16 +975,13 @@ def replay_persistent_world_object_open_close_transition_history(
         raise PersistentWorldObjectOpenCloseReplayError(
             "transition history is disconnected from the accepted initial state"
         )
-
     replayed = current
     for transition in replay_path:
         replayed = replay_persistent_world_object_open_close_states(
             object_open_states=replayed,
             receipt=transition.receipt,
         )
-
     return replayed
-
 
 
 def serialize_persistent_world_object_open_close_commit_receipt(
