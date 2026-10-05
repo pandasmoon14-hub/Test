@@ -346,7 +346,7 @@ def _restore_follow_transition(
         or delta_material["source_preview_id"] != receipt.preview_id
         or delta_material["delta_id"] != receipt.state_delta_id
         or delta_material["affected_record_ids"] != expected_affected
-        or delta_material["change_type"] != "relationship_update"
+        or delta_material["change_type"] != "record_update"
         or delta_material["payload"] != expected_payload
         or delta_material["metadata"] != expected_metadata
     ):
@@ -358,7 +358,7 @@ def _restore_follow_transition(
         source_command_id=command_id,
         source_preview_id=receipt.preview_id,
         affected_record_ids=tuple(expected_affected),
-        change_type="relationship_update",
+        change_type="record_update",
         payload=MappingProxyType(dict(expected_payload)),
         metadata=MappingProxyType(dict(expected_metadata)),
     )
