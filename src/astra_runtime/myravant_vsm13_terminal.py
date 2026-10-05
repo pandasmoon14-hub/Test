@@ -14,6 +14,7 @@ from astra_runtime.myravant_play_application import (
     MyravantPlayApplication,
     PlayApplicationResult,
 )
+from astra_runtime.myravant_terminal import _write_result
 from astra_runtime.myravant_vsm12_terminal import (
     VSM12TerminalInteraction,
     execute_vsm12_terminal_input,
@@ -75,8 +76,7 @@ def run_vsm13_terminal(
             break
         interaction = execute_vsm13_terminal_input(application, raw)
         interactions.append(interaction)
-        if interaction.result.message:
-            output_stream.write(interaction.result.message + "\n")
+        _write_result(output_stream, interaction.result, debug=False)
     return tuple(interactions)
 
 
