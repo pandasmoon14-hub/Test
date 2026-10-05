@@ -18,8 +18,9 @@ from dataclasses import dataclass
 from typing import Sequence
 
 from astra_runtime.domain._deterministic_transition_support import (
-    command_fingerprint_matches,
-    find_committed_transition,
+    TransitionCapabilitySpec,
+    commit_prepared_capability_transition,
+    execute_capability_transition,
     fingerprint_command_envelope,
 )
 from astra_runtime.domain.command_kind_routing_skeleton import route_command_envelope
@@ -132,10 +133,7 @@ class ObjectStorageQualificationEvidence:
 
     def __post_init__(self) -> None:
         for name in (
-            "evidence_id",
-            "actor_entity_id",
-            "object_entity_id",
-            "container_entity_id",
+            "evidence_id", "actor_entity_id", "object_entity_id", "container_entity_id",
         ):
             _require_record_id(getattr(self, name), name)
         if self.operation not in STORAGE_OPERATIONS:
@@ -165,10 +163,7 @@ class ObjectStorageOpportunityEvidence:
 
     def __post_init__(self) -> None:
         for name in (
-            "evidence_id",
-            "actor_entity_id",
-            "object_entity_id",
-            "container_entity_id",
+            "evidence_id", "actor_entity_id", "object_entity_id", "container_entity_id",
         ):
             _require_record_id(getattr(self, name), name)
         if self.operation not in STORAGE_OPERATIONS:
@@ -208,16 +203,9 @@ class PersistentWorldObjectStorageCommitReceipt:
 
     def __post_init__(self) -> None:
         for name in (
-            "receipt_id",
-            "actor_entity_id",
-            "object_entity_id",
-            "container_entity_id",
-            "source_relation_id",
-            "destination_relation_id",
-            "preview_id",
-            "state_delta_id",
-            "rt010_qualification_id",
-            "opportunity_evidence_id",
+            "receipt_id", "actor_entity_id", "object_entity_id", "container_entity_id",
+            "source_relation_id", "destination_relation_id", "preview_id", "state_delta_id",
+            "rt010_qualification_id", "opportunity_evidence_id",
         ):
             _require_record_id(getattr(self, name), name)
         if not isinstance(self.command_id, str) or not self.command_id:
@@ -309,8 +297,7 @@ def validate_persistent_world_storage_placement(
     representation: PersistentWorldEntityLocationRepresentation,
 ) -> None:
     objects = {
-        entity.entity_id
-        for entity in representation.entities
+        entity.entity_id for entity in representation.entities
         if entity.classification == "object"
     }
     contained = [
@@ -318,10 +305,7 @@ def validate_persistent_world_storage_placement(
         if r.relation_type == CONTAINED_BY_RELATION_TYPE
     ]
     for object_entity_id in objects:
-        direct, carried, inside = _immediate_relations(
-            representation,
-            object_entity_id,
-        )
+        direct, carried, inside = _immediate_relations(representation, object_entity_id)
         if len(direct) + len(carried) + len(inside) > 1:
             raise PersistentWorldObjectStoragePlacementError(
                 "object may have only one immediate physical placement"
@@ -337,9 +321,7 @@ def validate_persistent_world_storage_placement(
 @dataclass(frozen=True, kw_only=True)
 class PersistentWorldObjectStorageRuntimeState:
     lit_state: PersistentWorldObjectLitRuntimeState
-    committed_storage_transitions: tuple[
-        PersistentWorldObjectStorageCommittedTransition, ...
-    ] = ()
+    committed_storage_transitions: tuple[PersistentWorldObjectStorageCommittedTransition, ...] = ()
 
     def __post_init__(self) -> None:
         if not isinstance(self.lit_state, PersistentWorldObjectLitRuntimeState):
@@ -370,8 +352,7 @@ class PersistentWorldObjectStorageRuntimeState:
             for item in self.lit_state.open_close_state.committed_object_state_transitions
         )
         lower_ids.update(
-            item.command_id
-            for item in self.lit_state.committed_object_lit_transitions
+            item.command_id for item in self.lit_state.committed_object_lit_transitions
         )
         if set(ids) & lower_ids:
             raise InvalidPersistentWorldObjectStorageRequestError(
@@ -414,13 +395,8 @@ class PersistentWorldObjectStorageExecutionResult:
 
 
 def create_object_storage_qualification_evidence(
-    *,
-    evidence_id: str,
-    actor_entity_id: str,
-    object_entity_id: str,
-    container_entity_id: str,
-    operation: str,
-    qualified: bool,
+    *, evidence_id: str, actor_entity_id: str, object_entity_id: str,
+    container_entity_id: str, operation: str, qualified: bool,
 ) -> ObjectStorageQualificationEvidence:
     return ObjectStorageQualificationEvidence(
         evidence_id=evidence_id,
@@ -433,14 +409,9 @@ def create_object_storage_qualification_evidence(
 
 
 def create_object_storage_opportunity_evidence(
-    *,
-    evidence_id: str,
-    actor_entity_id: str,
-    object_entity_id: str,
-    container_entity_id: str,
-    operation: str,
-    opportunity_available: bool,
-    resolution_accepted: bool,
+    *, evidence_id: str, actor_entity_id: str, object_entity_id: str,
+    container_entity_id: str, operation: str,
+    opportunity_available: bool, resolution_accepted: bool,
 ) -> ObjectStorageOpportunityEvidence:
     return ObjectStorageOpportunityEvidence(
         evidence_id=evidence_id,
@@ -454,15 +425,13 @@ def create_object_storage_opportunity_evidence(
 
 
 def create_persistent_world_object_storage_runtime_state(
-    *,
-    lit_state: PersistentWorldObjectLitRuntimeState,
+    *, lit_state: PersistentWorldObjectLitRuntimeState,
 ) -> PersistentWorldObjectStorageRuntimeState:
     return PersistentWorldObjectStorageRuntimeState(lit_state=lit_state)
 
 
 def replace_persistent_world_object_storage_lit_state(
-    *,
-    state: PersistentWorldObjectStorageRuntimeState,
+    *, state: PersistentWorldObjectStorageRuntimeState,
     lit_state: PersistentWorldObjectLitRuntimeState,
 ) -> PersistentWorldObjectStorageRuntimeState:
     if not isinstance(state, PersistentWorldObjectStorageRuntimeState):
@@ -514,8 +483,7 @@ def canonical_serialize_persistent_world_containment(
             r.to_dict()
             for r in sorted(
                 (
-                    relation
-                    for relation in representation.relations
+                    relation for relation in representation.relations
                     if relation.relation_type == CONTAINED_BY_RELATION_TYPE
                 ),
                 key=lambda item: item.relation_id,
@@ -523,11 +491,8 @@ def canonical_serialize_persistent_world_containment(
         ],
     }
     return json.dumps(
-        material,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=True,
-        allow_nan=False,
+        material, sort_keys=True, separators=(",", ":"),
+        ensure_ascii=True, allow_nan=False,
     )
 
 
@@ -535,9 +500,7 @@ def digest_persistent_world_containment(
     representation: PersistentWorldEntityLocationRepresentation,
 ) -> str:
     return hashlib.sha256(
-        canonical_serialize_persistent_world_containment(
-            representation
-        ).encode("utf-8")
+        canonical_serialize_persistent_world_containment(representation).encode("utf-8")
     ).hexdigest()
 
 
@@ -547,19 +510,12 @@ def digest_persistent_world_storage_composite_state(
     representation = _representation_from_lit_state(lit_state)
     material = {
         "world_state_family": "persistent_world_int2_plus_storage",
-        "int2_world_state_digest": digest_persistent_world_object_lit_runtime_state(
-            lit_state
-        ),
-        "containment_digest": digest_persistent_world_containment(
-            representation
-        ),
+        "int2_world_state_digest": digest_persistent_world_object_lit_runtime_state(lit_state),
+        "containment_digest": digest_persistent_world_containment(representation),
     }
     canonical = json.dumps(
-        material,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=True,
-        allow_nan=False,
+        material, sort_keys=True, separators=(",", ":"),
+        ensure_ascii=True, allow_nan=False,
     )
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
@@ -581,10 +537,8 @@ def fingerprint_persistent_world_object_storage_command(
         raise InvalidPersistentWorldObjectStorageRequestError(
             "command failed CommandEnvelope validation"
         )
-    return fingerprint_command_envelope(
-        command,
-        allow_nan=False,
-    )
+    return fingerprint_command_envelope(command, allow_nan=False)
+
 
 def _operation_from_command(command: CommandEnvelope) -> str:
     normalized = command.command_type.strip().lower().replace("-", "_")
@@ -598,12 +552,9 @@ def _operation_from_command(command: CommandEnvelope) -> str:
 
 
 def _validate_owner_evidence(
-    *,
-    qualification_evidence: ObjectStorageQualificationEvidence,
+    *, qualification_evidence: ObjectStorageQualificationEvidence,
     opportunity_evidence: ObjectStorageOpportunityEvidence,
-    actor_entity_id: str,
-    object_entity_id: str,
-    container_entity_id: str,
+    actor_entity_id: str, object_entity_id: str, container_entity_id: str,
     operation: str,
 ) -> None:
     if not isinstance(qualification_evidence, ObjectStorageQualificationEvidence):
@@ -655,25 +606,16 @@ def _current_actor_place(
 
 def _container_accessible(
     representation: PersistentWorldEntityLocationRepresentation,
-    *,
-    actor_entity_id: str,
-    container_entity_id: str,
+    *, actor_entity_id: str, container_entity_id: str,
 ) -> bool:
     place_id = _current_actor_place(representation, actor_entity_id)
-    direct, carried, contained = _immediate_relations(
-        representation,
-        container_entity_id,
-    )
+    direct, carried, contained = _immediate_relations(representation, container_entity_id)
     if contained:
         return False
     return (
-        len(direct) == 1
-        and not carried
-        and direct[0].object_entity_id == place_id
+        len(direct) == 1 and not carried and direct[0].object_entity_id == place_id
     ) or (
-        len(carried) == 1
-        and not direct
-        and carried[0].object_entity_id == actor_entity_id
+        len(carried) == 1 and not direct and carried[0].object_entity_id == actor_entity_id
     )
 
 
@@ -705,18 +647,12 @@ def _replace_representation_in_lit_state(
 
 
 def _apply_storage_change(
-    *,
-    representation: PersistentWorldEntityLocationRepresentation,
-    actor_entity_id: str,
-    object_entity_id: str,
-    container_entity_id: str,
-    source_relation_id: str,
-    destination_relation_id: str,
-    operation: str,
+    *, representation: PersistentWorldEntityLocationRepresentation,
+    actor_entity_id: str, object_entity_id: str, container_entity_id: str,
+    source_relation_id: str, destination_relation_id: str, operation: str,
 ) -> PersistentWorldEntityLocationRepresentation:
     remaining = [
-        relation
-        for relation in representation.relations
+        relation for relation in representation.relations
         if relation.relation_id != source_relation_id
     ]
     if len(remaining) != len(representation.relations) - 1:
@@ -752,18 +688,8 @@ def _apply_storage_change(
     return post
 
 
-def _existing_transition(
-    state: PersistentWorldObjectStorageRuntimeState,
-    command_id: str,
-) -> PersistentWorldObjectStorageCommittedTransition | None:
-    return find_committed_transition(
-        state.committed_storage_transitions,
-        command_id,
-    )
-
 def prepare_persistent_world_object_storage(
-    *,
-    state: PersistentWorldObjectStorageRuntimeState,
+    *, state: PersistentWorldObjectStorageRuntimeState,
     command: CommandEnvelope,
     qualification_evidence: ObjectStorageQualificationEvidence,
     opportunity_evidence: ObjectStorageOpportunityEvidence,
@@ -790,17 +716,13 @@ def prepare_persistent_world_object_storage(
     operation = _operation_from_command(command)
     actor_entity_id = command.source_actor_id
     object_entity_id = _require_record_id(
-        command.payload.get("object_entity_id"),
-        "command.payload.object_entity_id",
+        command.payload.get("object_entity_id"), "command.payload.object_entity_id"
     )
     container_entity_id = _require_record_id(
-        command.payload.get("container_entity_id"),
-        "command.payload.container_entity_id",
+        command.payload.get("container_entity_id"), "command.payload.container_entity_id"
     )
     if object_entity_id == container_entity_id:
-        raise PersistentWorldObjectStoragePlacementError(
-            "object cannot contain itself"
-        )
+        raise PersistentWorldObjectStoragePlacementError("object cannot contain itself")
 
     representation = _representation_from_lit_state(state.lit_state)
     entities = {entity.entity_id: entity for entity in representation.entities}
@@ -828,40 +750,29 @@ def prepare_persistent_world_object_storage(
             "container must be directly accessible to the actor"
         )
     open_state = object_open_state_for(
-        state.lit_state.open_close_state,
-        container_entity_id,
+        state.lit_state.open_close_state, container_entity_id,
     )
     if open_state is None:
         raise PersistentWorldObjectStorageUnsupportedError(
             "container has no bounded open/close state"
         )
     if open_state.state != "open":
-        raise PersistentWorldObjectStoragePlacementError(
-            "container must be open"
-        )
+        raise PersistentWorldObjectStoragePlacementError("container must be open")
 
-    direct, carried, contained = _immediate_relations(
-        representation,
-        object_entity_id,
-    )
+    direct, carried, contained = _immediate_relations(representation, object_entity_id)
     if len(direct) + len(carried) + len(contained) > 1:
-        raise PersistentWorldObjectStoragePlacementError(
-            "object placement is contradictory"
-        )
+        raise PersistentWorldObjectStoragePlacementError("object placement is contradictory")
     if operation == "store":
         if (
             len(contained) == 1
             and contained[0].object_entity_id == container_entity_id
-            and not direct
-            and not carried
+            and not direct and not carried
         ):
             raise PersistentWorldObjectStorageNoChangeError(
                 "object is already contained by the requested container"
             )
         if (
-            len(carried) != 1
-            or direct
-            or contained
+            len(carried) != 1 or direct or contained
             or carried[0].object_entity_id != actor_entity_id
         ):
             raise PersistentWorldObjectStoragePlacementError(
@@ -871,9 +782,7 @@ def prepare_persistent_world_object_storage(
         destination_type = CONTAINED_BY_RELATION_TYPE
     else:
         if (
-            len(contained) != 1
-            or direct
-            or carried
+            len(contained) != 1 or direct or carried
             or contained[0].object_entity_id != container_entity_id
         ):
             raise PersistentWorldObjectStoragePlacementError(
@@ -890,20 +799,12 @@ def prepare_persistent_world_object_storage(
         container_entity_id=container_entity_id,
         operation=operation,
     )
-
-    actual_digest = digest_persistent_world_entity_location_representation(
-        representation
-    )
+    actual_digest = digest_persistent_world_entity_location_representation(representation)
     if expected_pre_state_digest != actual_digest:
-        raise PersistentWorldObjectStorageStaleStateError(
-            "stale pre-state digest"
-        )
+        raise PersistentWorldObjectStorageStaleStateError("stale pre-state digest")
 
     token = fingerprint[:24]
-    destination_relation_id = build_record_id(
-        "relation",
-        f"storage-{token}",
-    )
+    destination_relation_id = build_record_id("relation", f"storage-{token}")
     if (
         destination_relation_id != source_relation.relation_id
         and any(
@@ -932,11 +833,8 @@ def prepare_persistent_world_object_storage(
         source_command_id=command.command_id,
         source_preview_id=preview.preview_id,
         affected_record_ids=(
-            actor_entity_id,
-            object_entity_id,
-            container_entity_id,
-            source_relation.relation_id,
-            destination_relation_id,
+            actor_entity_id, object_entity_id, container_entity_id,
+            source_relation.relation_id, destination_relation_id,
         ),
         change_type="relationship_update",
         payload={
@@ -965,9 +863,7 @@ def prepare_persistent_world_object_storage(
         destination_relation_id=destination_relation_id,
         operation=operation,
     )
-    post_digest = digest_persistent_world_entity_location_representation(
-        post_representation
-    )
+    post_digest = digest_persistent_world_entity_location_representation(post_representation)
     return PersistentWorldObjectStoragePreparedTransition(
         command_id=command.command_id,
         command_fingerprint=fingerprint,
@@ -986,47 +882,24 @@ def prepare_persistent_world_object_storage(
         preview=preview,
         state_delta=delta,
         post_lit_state=_replace_representation_in_lit_state(
-            state.lit_state,
-            post_representation,
+            state.lit_state, post_representation,
         ),
     )
 
 
-def commit_prepared_persistent_world_object_storage(
-    *,
-    state: PersistentWorldObjectStorageRuntimeState,
+def _commit_new_persistent_world_object_storage(
+    *, state: PersistentWorldObjectStorageRuntimeState,
     prepared: PersistentWorldObjectStoragePreparedTransition,
 ) -> PersistentWorldObjectStorageExecutionResult:
-    existing = _existing_transition(state, prepared.command_id)
-    if existing is not None:
-        if not command_fingerprint_matches(existing, prepared.command_fingerprint):
-            raise PersistentWorldObjectStorageRetryConflictError(
-                "command ID already committed with different meaning"
-            )
-        return PersistentWorldObjectStorageExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
-        )
-
     current_representation = _representation_from_lit_state(state.lit_state)
-    if (
-        digest_persistent_world_entity_location_representation(
-            current_representation
-        )
-        != prepared.pre_state_digest
-    ):
+    if digest_persistent_world_entity_location_representation(
+        current_representation
+    ) != prepared.pre_state_digest:
         raise PersistentWorldObjectStorageStaleStateError(
             "storage placement changed after preparation"
         )
-
     receipt = PersistentWorldObjectStorageCommitReceipt(
-        receipt_id=build_record_id(
-            "storage_receipt",
-            prepared.command_fingerprint[:24],
-        ),
+        receipt_id=build_record_id("storage_receipt", prepared.command_fingerprint[:24]),
         command_id=prepared.command_id,
         command_fingerprint=prepared.command_fingerprint,
         actor_entity_id=prepared.actor_entity_id,
@@ -1053,10 +926,7 @@ def commit_prepared_persistent_world_object_storage(
     )
     post_state = PersistentWorldObjectStorageRuntimeState(
         lit_state=prepared.post_lit_state,
-        committed_storage_transitions=(
-            *state.committed_storage_transitions,
-            committed,
-        ),
+        committed_storage_transitions=(*state.committed_storage_transitions, committed),
     )
     return PersistentWorldObjectStorageExecutionResult(
         state=post_state,
@@ -1067,62 +937,54 @@ def commit_prepared_persistent_world_object_storage(
     )
 
 
-def execute_persistent_world_object_storage(
-    *,
-    state: PersistentWorldObjectStorageRuntimeState,
-    command: CommandEnvelope,
-    qualification_evidence: ObjectStorageQualificationEvidence,
-    opportunity_evidence: ObjectStorageOpportunityEvidence,
-    expected_pre_state_digest: str,
+def commit_prepared_persistent_world_object_storage(
+    *, state: PersistentWorldObjectStorageRuntimeState,
+    prepared: PersistentWorldObjectStoragePreparedTransition,
 ) -> PersistentWorldObjectStorageExecutionResult:
-    fingerprint = fingerprint_persistent_world_object_storage_command(command)
-    existing = _existing_transition(state, command.command_id)
-    if existing is not None:
-        if not command_fingerprint_matches(existing, fingerprint):
-            raise PersistentWorldObjectStorageRetryConflictError(
-                "command ID already committed with materially different content"
-            )
-        return PersistentWorldObjectStorageExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
-        )
-    prepared = prepare_persistent_world_object_storage(
-        state=state,
-        command=command,
-        qualification_evidence=qualification_evidence,
-        opportunity_evidence=opportunity_evidence,
-        expected_pre_state_digest=expected_pre_state_digest,
-    )
-    return commit_prepared_persistent_world_object_storage(
+    if not isinstance(state, PersistentWorldObjectStorageRuntimeState):
+        raise InvalidPersistentWorldObjectStorageRequestError("invalid storage runtime state")
+    if not isinstance(prepared, PersistentWorldObjectStoragePreparedTransition):
+        raise InvalidPersistentWorldObjectStorageRequestError("invalid prepared transition")
+    return commit_prepared_capability_transition(
+        spec=STORAGE_TRANSITION_CAPABILITY_SPEC,
         state=state,
         prepared=prepared,
     )
 
 
+def execute_persistent_world_object_storage(
+    *, state: PersistentWorldObjectStorageRuntimeState,
+    command: CommandEnvelope,
+    qualification_evidence: ObjectStorageQualificationEvidence,
+    opportunity_evidence: ObjectStorageOpportunityEvidence,
+    expected_pre_state_digest: str,
+) -> PersistentWorldObjectStorageExecutionResult:
+    if not isinstance(state, PersistentWorldObjectStorageRuntimeState):
+        raise InvalidPersistentWorldObjectStorageRequestError("invalid storage runtime state")
+    return execute_capability_transition(
+        spec=STORAGE_TRANSITION_CAPABILITY_SPEC,
+        state=state,
+        command=command,
+        context={
+            "qualification_evidence": qualification_evidence,
+            "opportunity_evidence": opportunity_evidence,
+            "expected_pre_state_digest": expected_pre_state_digest,
+        },
+    )
+
+
 def replay_persistent_world_object_storage(
-    *,
-    representation: PersistentWorldEntityLocationRepresentation,
+    *, representation: PersistentWorldEntityLocationRepresentation,
     receipt: PersistentWorldObjectStorageCommitReceipt,
 ) -> PersistentWorldEntityLocationRepresentation:
     if not isinstance(receipt, PersistentWorldObjectStorageCommitReceipt):
-        raise PersistentWorldObjectStorageReplayError(
-            "receipt has invalid type"
-        )
-    if (
-        digest_persistent_world_entity_location_representation(
-            representation
-        )
-        != receipt.pre_state_digest
-    ):
-        raise PersistentWorldObjectStorageReplayError(
-            "replay pre-state digest mismatch"
-        )
+        raise PersistentWorldObjectStorageReplayError("receipt has invalid type")
+    if digest_persistent_world_entity_location_representation(
+        representation
+    ) != receipt.pre_state_digest:
+        raise PersistentWorldObjectStorageReplayError("replay pre-state digest mismatch")
     source = [
-        relation
-        for relation in representation.relations
+        relation for relation in representation.relations
         if relation.relation_id == receipt.source_relation_id
     ]
     if len(source) != 1:
@@ -1138,9 +1000,7 @@ def replay_persistent_world_object_storage(
             "replay source relation disagrees with receipt"
         )
     expected_source_target = (
-        receipt.actor_entity_id
-        if receipt.operation == "store"
-        else receipt.container_entity_id
+        receipt.actor_entity_id if receipt.operation == "store" else receipt.container_entity_id
     )
     if relation.object_entity_id != expected_source_target:
         raise PersistentWorldObjectStorageReplayError(
@@ -1155,14 +1015,46 @@ def replay_persistent_world_object_storage(
         destination_relation_id=receipt.destination_relation_id,
         operation=receipt.operation,
     )
-    if (
-        digest_persistent_world_entity_location_representation(post)
-        != receipt.post_state_digest
-    ):
-        raise PersistentWorldObjectStorageReplayError(
-            "replay post-state digest mismatch"
-        )
+    if digest_persistent_world_entity_location_representation(
+        post
+    ) != receipt.post_state_digest:
+        raise PersistentWorldObjectStorageReplayError("replay post-state digest mismatch")
     return post
+
+
+STORAGE_TRANSITION_CAPABILITY_SPEC = TransitionCapabilitySpec(
+    capability_id="persistent_world_object_storage",
+    semantic_owners=("RT-010", "AFQR-19", "AFQR-01", "AFQR-02"),
+    state_type=PersistentWorldObjectStorageRuntimeState,
+    replay_state_type=PersistentWorldEntityLocationRepresentation,
+    receipt_prefix="storage_receipt",
+    state_digest=lambda state: digest_persistent_world_entity_location_representation(
+        _representation_from_lit_state(state.lit_state)
+    ),
+    fingerprint_command=fingerprint_persistent_world_object_storage_command,
+    committed_transitions=lambda state: state.committed_storage_transitions,
+    prepare_new_transition=lambda state, command, context: prepare_persistent_world_object_storage(
+        state=state,
+        command=command,
+        qualification_evidence=context["qualification_evidence"],
+        opportunity_evidence=context["opportunity_evidence"],
+        expected_pre_state_digest=context["expected_pre_state_digest"],
+    ),
+    commit_new_transition=lambda state, prepared: _commit_new_persistent_world_object_storage(
+        state=state, prepared=prepared,
+    ),
+    build_retry_result=lambda state, committed: PersistentWorldObjectStorageExecutionResult(
+        state=state,
+        receipt=committed.receipt,
+        preview=committed.preview,
+        state_delta=committed.state_delta,
+        technical_retry=True,
+    ),
+    retry_conflict_error=lambda message: PersistentWorldObjectStorageRetryConflictError(message),
+    replay_committed_transition=lambda pre_state, receipt: replay_persistent_world_object_storage(
+        representation=pre_state, receipt=receipt,
+    ),
+)
 
 
 def serialize_persistent_world_object_storage_commit_receipt(
