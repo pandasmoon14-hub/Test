@@ -149,6 +149,10 @@ def test_follow_intent_activate_deactivate_replays_exactly() -> None:
         ),
     )
 
+    assert tuple(
+        transition.command_id for transition in deactivated.state.committed_transitions
+    ) == ("test-vsm14-follow-on", "test-vsm14-follow-off")
+
     replayed = replay_persistent_world_follow_intents(
         active_intents=(), receipt=activated.receipt
     )
