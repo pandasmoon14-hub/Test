@@ -20,8 +20,9 @@ import re
 from dataclasses import dataclass
 
 from astra_runtime.domain._deterministic_transition_support import (
-    command_fingerprint_matches,
-    find_committed_transition,
+    TransitionCapabilitySpec,
+    commit_prepared_capability_transition,
+    execute_capability_transition,
     fingerprint_command_envelope,
 )
 from astra_runtime.domain.command_kind_routing_skeleton import route_command_envelope
@@ -75,6 +76,7 @@ __all__ = [
     "replay_persistent_world_object_custody",
     "serialize_persistent_world_object_custody_commit_receipt",
     "canonical_serialize_persistent_world_object_custody_commit_receipt",
+    "CUSTODY_TRANSITION_CAPABILITY_SPEC",
 ]
 
 RT010_CUSTODY_OWNER = "RT-010"
@@ -445,6 +447,7 @@ def fingerprint_persistent_world_object_custody_command(command: CommandEnvelope
             "command must be canonical JSON-compatible"
         ) from exc
 
+
 def _operation_from_command(command: CommandEnvelope) -> str:
     normalized = command.command_type.strip().lower().replace("-", "_")
     first = normalized.split("_", 1)[0]
@@ -492,15 +495,6 @@ def _validate_owner_evidence(
     ):
         raise PersistentWorldObjectCustodyEvidenceError("AFQR-19 rejected custody transition")
 
-
-def _existing_transition(
-    state: PersistentWorldObjectCustodyRuntimeState,
-    command_id: str,
-) -> PersistentWorldObjectCustodyCommittedTransition | None:
-    return find_committed_transition(
-        state.committed_custody_transitions,
-        command_id,
-    )
 
 def _apply_custody_change(
     *, representation: PersistentWorldEntityLocationRepresentation,
@@ -701,7 +695,7 @@ def prepare_persistent_world_object_custody(
     )
 
 
-def commit_prepared_persistent_world_object_custody(
+def _commit_new_persistent_world_object_custody(
     *, state: PersistentWorldObjectCustodyRuntimeState,
     prepared: PersistentWorldObjectCustodyPreparedTransition,
 ) -> PersistentWorldObjectCustodyExecutionResult:
@@ -709,20 +703,6 @@ def commit_prepared_persistent_world_object_custody(
         raise InvalidPersistentWorldObjectCustodyRequestError("invalid custody state")
     if not isinstance(prepared, PersistentWorldObjectCustodyPreparedTransition):
         raise InvalidPersistentWorldObjectCustodyRequestError("invalid prepared transition")
-
-    existing = _existing_transition(state, prepared.command_id)
-    if existing is not None:
-        if not command_fingerprint_matches(existing, prepared.command_fingerprint):
-            raise PersistentWorldObjectCustodyRetryConflictError(
-                "command ID already committed with different meaning"
-            )
-        return PersistentWorldObjectCustodyExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
-        )
 
     current = digest_persistent_world_entity_location_representation(
         state.movement_state.representation
@@ -781,6 +761,21 @@ def commit_prepared_persistent_world_object_custody(
     )
 
 
+def commit_prepared_persistent_world_object_custody(
+    *, state: PersistentWorldObjectCustodyRuntimeState,
+    prepared: PersistentWorldObjectCustodyPreparedTransition,
+) -> PersistentWorldObjectCustodyExecutionResult:
+    if not isinstance(state, PersistentWorldObjectCustodyRuntimeState):
+        raise InvalidPersistentWorldObjectCustodyRequestError("invalid custody state")
+    if not isinstance(prepared, PersistentWorldObjectCustodyPreparedTransition):
+        raise InvalidPersistentWorldObjectCustodyRequestError("invalid prepared transition")
+    return commit_prepared_capability_transition(
+        spec=CUSTODY_TRANSITION_CAPABILITY_SPEC,
+        state=state,
+        prepared=prepared,
+    )
+
+
 def execute_persistent_world_object_custody(
     *, state: PersistentWorldObjectCustodyRuntimeState, command: CommandEnvelope,
     qualification_evidence: CustodyQualificationEvidence,
@@ -789,30 +784,15 @@ def execute_persistent_world_object_custody(
 ) -> PersistentWorldObjectCustodyExecutionResult:
     if not isinstance(state, PersistentWorldObjectCustodyRuntimeState):
         raise InvalidPersistentWorldObjectCustodyRequestError("invalid custody state")
-    fingerprint = fingerprint_persistent_world_object_custody_command(command)
-    existing = _existing_transition(state, command.command_id)
-    if existing is not None:
-        if not command_fingerprint_matches(existing, fingerprint):
-            raise PersistentWorldObjectCustodyRetryConflictError(
-                "command ID already committed with materially different command content"
-            )
-        return PersistentWorldObjectCustodyExecutionResult(
-            state=state,
-            receipt=existing.receipt,
-            preview=existing.preview,
-            state_delta=existing.state_delta,
-            technical_retry=True,
-        )
-    prepared = prepare_persistent_world_object_custody(
+    return execute_capability_transition(
+        spec=CUSTODY_TRANSITION_CAPABILITY_SPEC,
         state=state,
         command=command,
-        qualification_evidence=qualification_evidence,
-        opportunity_evidence=opportunity_evidence,
-        expected_pre_state_digest=expected_pre_state_digest,
-    )
-    return commit_prepared_persistent_world_object_custody(
-        state=state,
-        prepared=prepared,
+        context={
+            "qualification_evidence": qualification_evidence,
+            "opportunity_evidence": opportunity_evidence,
+            "expected_pre_state_digest": expected_pre_state_digest,
+        },
     )
 
 
@@ -878,6 +858,43 @@ def replay_persistent_world_object_custody(
     if digest_persistent_world_entity_location_representation(post) != receipt.post_state_digest:
         raise PersistentWorldObjectCustodyReplayError("replay post-state digest mismatch")
     return post
+
+
+CUSTODY_TRANSITION_CAPABILITY_SPEC = TransitionCapabilitySpec(
+    capability_id="persistent_world_object_custody",
+    semantic_owners=("RT-010", "AFQR-19", "AFQR-01", "AFQR-18", "AFQR-02"),
+    state_type=PersistentWorldObjectCustodyRuntimeState,
+    replay_state_type=PersistentWorldEntityLocationRepresentation,
+    receipt_prefix="custody_receipt",
+    state_digest=lambda state: digest_persistent_world_entity_location_representation(
+        state.movement_state.representation
+    ),
+    fingerprint_command=fingerprint_persistent_world_object_custody_command,
+    committed_transitions=lambda state: state.committed_custody_transitions,
+    prepare_new_transition=lambda state, command, context: prepare_persistent_world_object_custody(
+        state=state,
+        command=command,
+        qualification_evidence=context["qualification_evidence"],
+        opportunity_evidence=context["opportunity_evidence"],
+        expected_pre_state_digest=context["expected_pre_state_digest"],
+    ),
+    commit_new_transition=lambda state, prepared: _commit_new_persistent_world_object_custody(
+        state=state,
+        prepared=prepared,
+    ),
+    build_retry_result=lambda state, committed: PersistentWorldObjectCustodyExecutionResult(
+        state=state,
+        receipt=committed.receipt,
+        preview=committed.preview,
+        state_delta=committed.state_delta,
+        technical_retry=True,
+    ),
+    retry_conflict_error=lambda message: PersistentWorldObjectCustodyRetryConflictError(message),
+    replay_committed_transition=lambda pre_state, receipt: replay_persistent_world_object_custody(
+        pre_state_representation=pre_state,
+        receipt=receipt,
+    ),
+)
 
 
 def serialize_persistent_world_object_custody_commit_receipt(
