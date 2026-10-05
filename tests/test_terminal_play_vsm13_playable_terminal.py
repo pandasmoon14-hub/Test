@@ -169,3 +169,40 @@ def test_vsm13_direct_player_throw_still_routes_to_existing_terminal():
     assert interaction.route == "existing_terminal"
     assert interaction.result.result_type == "object_displacement_committed"
     assert interaction.result.authoritative_changed is True
+
+
+def test_vsm13_local_look_renders_lit_displaced_lantern_in_orchard():
+    app = MyravantPlayApplication.new()
+    output = StringIO()
+
+    interactions = run_vsm13_terminal(
+        app,
+        input_stream=StringIO(
+            "pickup lantern\n"
+            "light lantern\n"
+            "move south\n"
+            "throw lantern east\n"
+            "move east\n"
+            "look\n"
+            "exit\n"
+        ),
+        output_stream=output,
+    )
+
+    assert app.current_place_id() == ORCHARD_PATH_ID
+    assert _carrier(app) is None
+    assert _direct_place(app) == ORCHARD_PATH_ID
+    assert app.object_lit_state(LANTERN_ID).state == "lit"
+
+    look = next(
+        item
+        for item in reversed(interactions)
+        if item.result.result_type == "look"
+    )
+    assert look.route == "existing_terminal"
+    assert look.result.view is not None
+    assert "Brass Lantern" in look.result.view.objects
+
+    text = output.getvalue()
+    assert "Orchard Path" in text
+    assert "Objects: Brass Lantern [lit]" in text
