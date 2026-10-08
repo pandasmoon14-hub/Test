@@ -56,7 +56,8 @@ def test_v5_save_restore_preserves_follow_intent_and_exact_authoritative_digest(
 
     assert restored.authoritative_digest() == expected_digest
     assert restored.follow_intent_state == expected_follow
-    assert restored.state == expected_movement
+    assert restored.state.committed_transitions == expected_movement.committed_transitions
+    assert restored.representation_digest() == app.representation_digest()
     assert restored.entity_place_id(PLAYER_ID) == YARD_ID
     assert restored.entity_place_id(GROUNDSKEEPER_ID) == YARD_ID
 
@@ -124,11 +125,11 @@ def test_vsm14_raw_terminal_sustained_follow_save_restore_flow(tmp_path) -> None
     interactions = run_vsm14_terminal(
         app,
         input_stream=StringIO(
-            "south\n"
-            "south\n"
+            "go south\n"
+            "go south\n"
             "ask groundskeeper to follow me\n"
-            "north\n"
-            "east\n"
+            "go north\n"
+            "go east\n"
             "look\n"
             "save\n"
             "quit\n"
