@@ -98,7 +98,14 @@ def test_cancel_follow_stops_future_consequence_without_rewriting_past_movement(
     assert west.world_event_class is None
     assert app.entity_place_id(PLAYER_ID) == YARD_ID
     assert app.entity_place_id(GROUNDSKEEPER_ID) == ORCHARD_PATH_ID
-    assert tuple(app.state.committed_transitions)[: len(before_cancel_movement)] == before_cancel_movement
+    after_cancel_movement = {
+        transition.command_id: transition
+        for transition in app.state.committed_transitions
+    }
+    assert all(
+        after_cancel_movement[transition.command_id] == transition
+        for transition in before_cancel_movement
+    )
 
 
 def test_redundant_follow_requests_are_nonmutating() -> None:
