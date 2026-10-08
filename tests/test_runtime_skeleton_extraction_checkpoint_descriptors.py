@@ -15,6 +15,10 @@ from astra_runtime.domain.persistent_world_component_checkpoint import (
     WORLD1_COMPONENT_CHECKPOINT_COMPONENT_KEYS,
     WORLD1_COMPONENT_CHECKPOINT_FORMAT_VERSION,
 )
+from astra_runtime.domain.persistent_world_vsm14_checkpoint import (
+    VSM14_COMPONENT_CHECKPOINT_COMPONENT_KEYS,
+    VSM14_COMPONENT_CHECKPOINT_FORMAT_VERSION,
+)
 from astra_runtime.runtime_skeleton_checkpoint_descriptors import (
     CHECKPOINT_FORMAT_DESCRIPTORS,
     COMPONENT_DESCRIPTORS,
@@ -31,6 +35,7 @@ def test_frozen_descriptors_match_all_existing_checkpoint_versions_exactly() -> 
         WORLD1_COMPONENT_CHECKPOINT_FORMAT_VERSION: WORLD1_COMPONENT_CHECKPOINT_COMPONENT_KEYS,
         COMP3_COMPONENT_CHECKPOINT_FORMAT_VERSION: COMP3_COMPONENT_CHECKPOINT_COMPONENT_KEYS,
         VSM6_COMPONENT_CHECKPOINT_FORMAT_VERSION: VSM6_COMPONENT_CHECKPOINT_COMPONENT_KEYS,
+        VSM14_COMPONENT_CHECKPOINT_FORMAT_VERSION: VSM14_COMPONENT_CHECKPOINT_COMPONENT_KEYS,
     }
     assert set(CHECKPOINT_FORMAT_DESCRIPTORS) == set(expected)
     for version, component_keys in expected.items():
@@ -49,25 +54,27 @@ def test_component_introduction_is_monotonic_and_exact() -> None:
     assert COMPONENT_DESCRIPTORS["logical_time"].introduced_in_version == 2
     assert COMPONENT_DESCRIPTORS["object_displacement"].introduced_in_version == 3
     assert COMPONENT_DESCRIPTORS["actor_object_handoff"].introduced_in_version == 4
+    assert COMPONENT_DESCRIPTORS["follow_intent"].introduced_in_version == 5
 
     assert checkpoint_component_ids_for_version(1) < checkpoint_component_ids_for_version(2)
     assert checkpoint_component_ids_for_version(2) < checkpoint_component_ids_for_version(3)
     assert checkpoint_component_ids_for_version(3) < checkpoint_component_ids_for_version(4)
+    assert checkpoint_component_ids_for_version(4) < checkpoint_component_ids_for_version(5)
 
 
 def test_descriptors_are_immutable_and_not_dynamic_registry_state() -> None:
-    descriptor = checkpoint_descriptor_for_version(4)
+    descriptor = checkpoint_descriptor_for_version(5)
     with pytest.raises(FrozenInstanceError):
-        descriptor.format_version = 5  # type: ignore[misc]
+        descriptor.format_version = 6  # type: ignore[misc]
     with pytest.raises(TypeError):
-        CHECKPOINT_FORMAT_DESCRIPTORS[5] = descriptor  # type: ignore[index]
+        CHECKPOINT_FORMAT_DESCRIPTORS[6] = descriptor  # type: ignore[index]
     with pytest.raises(TypeError):
         COMPONENT_DESCRIPTORS["future"] = COMPONENT_DESCRIPTORS["placement"]  # type: ignore[index]
 
 
 def test_unknown_checkpoint_version_fails_closed() -> None:
     with pytest.raises(ValueError, match="unsupported frozen checkpoint version"):
-        checkpoint_descriptor_for_version(5)
+        checkpoint_descriptor_for_version(6)
 
 
 def test_descriptor_layer_does_not_reassign_semantic_ownership() -> None:
@@ -76,3 +83,8 @@ def test_descriptor_layer_does_not_reassign_semantic_ownership() -> None:
     assert "AFQR-19" in COMPONENT_DESCRIPTORS["custody"].semantic_owner_routes
     assert "AFQR-01" in COMPONENT_DESCRIPTORS["custody"].semantic_owner_routes
     assert "AFQR-02" in COMPONENT_DESCRIPTORS["custody"].semantic_owner_routes
+    assert COMPONENT_DESCRIPTORS["follow_intent"].semantic_owner_routes[0] == "AFQR-12"
+    assert "AFQR-18" in COMPONENT_DESCRIPTORS["follow_intent"].semantic_owner_routes
+    assert "AFQR-19" in COMPONENT_DESCRIPTORS["follow_intent"].semantic_owner_routes
+    assert "AFQR-01" in COMPONENT_DESCRIPTORS["follow_intent"].semantic_owner_routes
+    assert "AFQR-02" in COMPONENT_DESCRIPTORS["follow_intent"].semantic_owner_routes

@@ -45,7 +45,8 @@ def test_all_existing_transition_families_are_explicitly_covered() -> None:
 
 
 def test_all_existing_componentized_checkpoint_versions_remain_frozen() -> None:
-    assert frozenset(CHECKPOINT_FORMAT_DESCRIPTORS) == frozenset({1, 2, 3, 4})
+    assert frozenset({1, 2, 3, 4}) <= frozenset(CHECKPOINT_FORMAT_DESCRIPTORS)
+    assert frozenset(CHECKPOINT_FORMAT_DESCRIPTORS) == frozenset({1, 2, 3, 4, 5})
     assert CHECKPOINT_FORMAT_DESCRIPTORS[1].component_ids == (
         "placement",
         "custody",
