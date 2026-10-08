@@ -6,7 +6,7 @@ import argparse
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import TextIO
+from typing import Callable, TextIO
 
 from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     PersistentWorldCheckpointError,
@@ -676,6 +676,11 @@ def _write_help(output: TextIO) -> str:
         "'examine the lantern', 'look at the lantern', 'open the chest', "
         "'walk to the south exit', and 'grab the lantern' route to existing "
         "mechanics when unambiguous.\n"
+        "Additional fixture-bounded requests: ask groundskeeper to go to yard, "
+        "ask groundskeeper to pick up/drop lantern, ask groundskeeper to "
+        "store/retrieve lantern in/from chest, ask groundskeeper to throw "
+        "lantern east, ask groundskeeper to follow me, and ask groundskeeper "
+        "to stop following me. These are not general NPC controls.\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
         "as capability pressure; they do not mutate authoritative state.\n"
     )
@@ -759,6 +764,10 @@ def run_terminal(
     debug: bool = False,
     evidence_recorder: LivePlayEvidenceRecorder | None = None,
     evidence_error_stream: TextIO | None = None,
+    specialized_router: Callable[
+        [MyravantPlayApplication, str],
+        tuple[str, PlayApplicationResult] | None,
+    ] | None = None,
 ) -> int:
     output_stream.write("Myravant\n\n")
     _write_result(output_stream, application.look(), debug=debug)
@@ -791,6 +800,19 @@ def run_terminal(
         if parsed.action == "help":
             _write_help(output_stream)
             continue
+        if specialized_router is not None:
+            specialized = specialized_router(application, raw)
+            if specialized is not None:
+                route, result = specialized
+                visible = _write_result(output_stream, result, debug=debug)
+                _record_result(
+                    evidence_recorder,
+                    parsed=ParsedTerminalCommand(action=route, raw_text=raw),
+                    visible_output=visible,
+                    result=result,
+                    error_stream=evidence_error_stream,
+                )
+                continue
         if parsed.action == "look":
             result = application.look()
             visible = _write_result(output_stream, result, debug=debug)
@@ -1166,6 +1188,13 @@ def build_argument_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_argument_parser().parse_args(argv)
 
+    # The installed command and `python -m` share the latest playable lane.
+    # Keep imports here to avoid a circular dependency with VSM terminal modules.
+    from astra_runtime.myravant_terminal_capabilities import (
+        execute_bounded_terminal_request,
+    )
+    from astra_runtime.myravant_vsm14_application import MyravantVSM14Application
+
     checkpoint_path = args.checkpoint or args.load
 
     if (
@@ -1180,13 +1209,13 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         if args.load is not None:
-            application = MyravantPlayApplication.restore(
+            application = MyravantVSM14Application.restore(
                 checkpoint_path=args.load
             )
             if checkpoint_path is not None:
                 application.checkpoint_path = checkpoint_path
         else:
-            application = MyravantPlayApplication.new(
+            application = MyravantVSM14Application.new(
                 checkpoint_path=checkpoint_path
             )
     except PersistentWorldCheckpointError as exc:
@@ -1220,6 +1249,7 @@ def main(argv: list[str] | None = None) -> int:
         debug=args.debug,
         evidence_recorder=recorder,
         evidence_error_stream=sys.stderr,
+        specialized_router=execute_bounded_terminal_request,
     )
 
 

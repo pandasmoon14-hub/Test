@@ -12,6 +12,7 @@ from astra_runtime.myravant_live_play_evidence import (
     build_live_play_session_header,
 )
 from astra_runtime.myravant_play_application import MyravantPlayApplication
+from astra_runtime.myravant_vsm14_application import MyravantVSM14Application
 from astra_runtime.myravant_terminal import (
     parse_terminal_command,
     run_terminal,
@@ -343,7 +344,8 @@ def test_terminal_custody_survives_true_process_boundary(tmp_path):
     assert "You drop the Brass Lantern." in second.stdout
     assert "Checkpoint written." in second.stdout
 
-    final = MyravantPlayApplication.restore(
+    # The public CLI now writes v5; the old application remains v4-only.
+    final = MyravantVSM14Application.restore(
         checkpoint_path=checkpoint
     )
     assert final.current_place_id().endswith(":yard")
