@@ -7,6 +7,9 @@ import shutil
 import subprocess
 import sys
 
+from astra_runtime.domain.persistent_world_entity_location_representation import (
+    canonical_serialize_persistent_world_entity_location_representation,
+)
 from astra_runtime.myravant_play_application import MyravantPlayApplication
 from astra_runtime.myravant_vsm14_application import MyravantVSM14Application
 
@@ -146,7 +149,14 @@ def test_public_entrypoint_restores_v4_then_upgrades_on_save(tmp_path):
     new = MyravantVSM14Application.restore(checkpoint_path=checkpoint)
     assert new.follow_intent_state.active_intents == ()
     assert new.current_place_id() == old.current_place_id()
-    assert new.state.representation == old.state.representation
+    # The representation serializer canonically sorts entities and relations.
+    # Raw dataclass tuple equality would reject semantically identical restores.
+    assert canonical_serialize_persistent_world_entity_location_representation(
+        new.state.representation
+    ) == canonical_serialize_persistent_world_entity_location_representation(
+        old.state.representation
+    )
+    assert new.representation_digest() == old.representation_digest()
     assert new.runtime_state.committed_actor_object_handoff_transitions == (
         old.runtime_state.committed_actor_object_handoff_transitions
     )
