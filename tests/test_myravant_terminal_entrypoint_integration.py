@@ -127,7 +127,12 @@ def test_installed_entrypoint_preserves_prior_bounded_routes_and_unknown_pressur
 def test_public_entrypoint_restores_v4_then_upgrades_on_save(tmp_path):
     checkpoint = tmp_path / "historical.json"
     old = MyravantPlayApplication.new(checkpoint_path=checkpoint)
+    # V4 is selected only when the historical application has a committed
+    # actor-object handoff; movement alone uses its V2 checkpoint writer.
+    assert old.pickup("lantern").authoritative_changed
     assert old.move("south").authoritative_changed
+    assert old.move("south").authoritative_changed
+    assert old.give_object("lantern", "groundskeeper").authoritative_changed
     old.save()
     assert json.loads(checkpoint.read_text(encoding="utf-8"))["format_version"] == 4
     run = _run_terminal(
@@ -136,11 +141,15 @@ def test_public_entrypoint_restores_v4_then_upgrades_on_save(tmp_path):
         "--checkpoint", str(checkpoint),
     )
     assert run.returncode == 0, (run.stdout, run.stderr)
-    assert "Yard" in run.stdout
+    assert "Gatehouse" in run.stdout
     assert json.loads(checkpoint.read_text(encoding="utf-8"))["format_version"] == 5
     new = MyravantVSM14Application.restore(checkpoint_path=checkpoint)
     assert new.follow_intent_state.active_intents == ()
     assert new.current_place_id() == old.current_place_id()
+    assert new.state.representation == old.state.representation
+    assert new.runtime_state.committed_actor_object_handoff_transitions == (
+        old.runtime_state.committed_actor_object_handoff_transitions
+    )
 
 
 def test_public_entrypoint_refuses_corrupt_v5_and_does_not_replace_file(tmp_path):
