@@ -91,9 +91,7 @@ def test_installed_entrypoint_follow_restart_cancel_and_evidence(tmp_path):
     assert "Checkpoint written." in second.stdout
     restored = MyravantVSM14Application.restore(checkpoint_path=checkpoint)
     assert restored.follow_intent_state.active_intents == ()
-    assert restored.entity_place_id(restored.fixture.player_entity_id) != restored.entity_place_id(
-        original.fixture.player_entity_id
-    ) or restored.current_place_id() != original.current_place_id()
+    assert restored.current_place_id() != original.current_place_id()
     assert "vsm14_persistent_follow_intent" in {
         item["parsed_action"] for item in _interactions(trace2)
     }
@@ -106,7 +104,7 @@ def test_installed_entrypoint_preserves_prior_bounded_routes_and_unknown_pressur
         "ask groundskeeper to drop lantern\n"
         "ask groundskeeper to store lantern in chest\n"
         "ask groundskeeper to go to yard\n"
-        "ask groundskeeper to open chest\n"
+        "ask groundskeeper to light lantern\n"
         "climb onto the roof\n"
         "exit\n",
         "--trace", str(trace),
