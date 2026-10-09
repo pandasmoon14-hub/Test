@@ -75,7 +75,7 @@ ACTUAL_PLAY_PRESSURES = {
         "listen at the workshop door",
         "eavesdrop on the groundskeeper",
         "look under the tool chest",
-        "inspect the lantern for an inscription",
+        "search the lantern for an inscription",
         "follow the tracks into the woods",
         "check if the groundskeeper is lying",
         "test whether the chest has a false bottom",
