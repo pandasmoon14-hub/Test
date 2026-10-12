@@ -423,9 +423,9 @@ class MyravantPlayFixture:
                 raise MyravantPlayFixtureError(
                     "object displacement route direction must be cardinal"
                 )
-            if route.method != "throw":
+            if route.method not in {"throw", "push", "slide"}:
                 raise MyravantPlayFixtureError(
-                    "COMP-3 fixture supports only throw displacement"
+                    "fixture displacement method is not registered"
                 )
             displacement_keys.append(
                 (
@@ -1635,6 +1635,30 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             direction="east",
             destination_place_id=ORCHARD_PATH_ID,
             method="throw",
+        ),
+        # Noncanonical, explicitly licensed ground-contact opportunities.
+        # A route grants neither universal object pushability nor a
+        # material/force/surface law beyond this validation fixture.
+        FixtureObjectDisplacementRoute(
+            object_entity_id=LANTERN_ID,
+            source_place_id=WORKSHOP_ID,
+            direction="south",
+            destination_place_id=YARD_ID,
+            method="slide",
+        ),
+        FixtureObjectDisplacementRoute(
+            object_entity_id=LANTERN_ID,
+            source_place_id=YARD_ID,
+            direction="east",
+            destination_place_id=ORCHARD_PATH_ID,
+            method="push",
+        ),
+        FixtureObjectDisplacementRoute(
+            object_entity_id=TOOL_CHEST_ID,
+            source_place_id=YARD_ID,
+            direction="north",
+            destination_place_id=WORKSHOP_ID,
+            method="push",
         ),
     )
 
