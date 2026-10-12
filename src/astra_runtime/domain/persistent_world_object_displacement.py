@@ -550,6 +550,19 @@ def _apply_displacement(
             "displacement source relation is absent or duplicated"
         )
     source = sources[0]
+    # Replay must independently verify the acting entity was at the method's
+    # source; a forged ground-placement receipt cannot make distant control
+    # lawful merely by naming a true object placement relation.
+    actor_places = [
+        relation.object_entity_id
+        for relation in representation.relations
+        if relation.relation_type == LOCATED_AT_RELATION_TYPE
+        and relation.subject_entity_id == actor_entity_id
+    ]
+    if actor_places != [source_place_id]:
+        raise PersistentWorldObjectDisplacementPlacementError(
+            "displacement actor is not at the recorded source place"
+        )
     expected_relation = (
         CARRIED_BY_RELATION_TYPE if method == "throw"
         else LOCATED_AT_RELATION_TYPE
