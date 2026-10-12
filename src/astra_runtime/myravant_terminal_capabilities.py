@@ -8,6 +8,9 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_actor_ground_assistance import (
+    parse_ground_contact_request,
+)
 from astra_runtime.myravant_vsm9_actor_mediated_object_state import parse_vsm9_request
 from astra_runtime.myravant_vsm10_actor_mediated_movement import parse_vsm10_request
 from astra_runtime.myravant_vsm11_actor_mediated_storage import parse_vsm11_request
@@ -27,6 +30,7 @@ def execute_bounded_terminal_request(
     if not any(
         parse(raw_text).parsed
         for parse in (
+            parse_ground_contact_request,
             parse_vsm14_follow_request,
             parse_vsm13_request,
             parse_vsm12_request,
