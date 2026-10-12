@@ -892,11 +892,20 @@ class MyravantPlayApplication:
             place_id = direction_evidence.target_place_id
             # Check *direct* world placement; do not reveal carried objects
             # or concealed contents simply because they exist in the world.
-            objects, actors = self._directional_sightings(place_id)
-            visible_names = (*objects, *actors)
-            observed_name = self.fixture.entity_name(entity_id)
-            if observed_name not in visible_names:
+            visible_ids = {
+                item.entity_id
+                for item in (
+                    *self.fixture.public_entities_at(
+                        self.state.representation, place_id
+                    ),
+                    *self.fixture.public_actors_at(
+                        self.state.representation, place_id
+                    ),
+                )
+            }
+            if entity_id not in visible_ids:
                 return unavailable
+            observed_name = self.fixture.entity_name(entity_id)
             place_label = f"to the {direction_evidence.direction}"
             evidence = self.fixture.visual_observation_evidence(
                 observer_entity_id=self.fixture.player_entity_id,
