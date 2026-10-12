@@ -680,12 +680,16 @@ def _restore_object_displacement_transition(material):
         "command_family": "inventory",
         "mutation_performed": False,
     }
+    expected_message = (
+        "bounded thrown-object displacement prepared"
+        if receipt.method == "throw"
+        else f"qualified {receipt.method} displacement prepared"
+    )
     if (
         preview_material["command_id"] != command_id
         or preview_material["preview_id"] != receipt.preview_id
         or preview_material["status"] != "preview_created"
-        or preview_material["messages"]
-        != ["bounded thrown-object displacement prepared"]
+        or preview_material["messages"] != [expected_message]
         or preview_material["requires_confirmation"] is not False
         or preview_material["metadata"] != expected_preview_metadata
     ):
@@ -696,7 +700,7 @@ def _restore_object_displacement_transition(material):
         preview_id=preview_material["preview_id"],
         command_id=command_id,
         status="preview_created",
-        messages=("bounded thrown-object displacement prepared",),
+        messages=(expected_message,),
         requires_confirmation=False,
         metadata=MappingProxyType(dict(expected_preview_metadata)),
     )
