@@ -249,6 +249,9 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
             failure_class="unsupported_compound_intent_sequencing",
         )
 
+    if lowered in (["inventory"], ["check", "inventory"], ["my", "inventory"]):
+        return ParsedTerminalCommand(action="inspect_self", raw_text=raw_text)
+
     if verb in {"look", "l"} and (
         len(parts) == 1
         or (verb == "look" and lowered[1:] == ["around"])
@@ -664,7 +667,7 @@ def _write_result(
 
 def _write_help(output: TextIO) -> str:
     visible = (
-        "Commands: look, look <direction>, inspect <entity>, move <direction>, "
+        "Commands: look, look <direction>, inspect <entity>, inventory, move <direction>, "
         "drop <object>, give <object> to <actor>, "
         "ask <actor> for <object>, "
         "ask <actor> to open/close <object>, "
@@ -836,8 +839,11 @@ def run_terminal(
                 error_stream=evidence_error_stream,
             )
             continue
-        if parsed.action == "inspect":
-            result = application.inspect(parsed.argument or "")
+        if parsed.action in {"inspect", "inspect_self"}:
+            result = application.inspect(
+                "self" if parsed.action == "inspect_self"
+                else parsed.argument or ""
+            )
             visible = _write_result(output_stream, result, debug=debug)
             _record_result(
                 evidence_recorder,
