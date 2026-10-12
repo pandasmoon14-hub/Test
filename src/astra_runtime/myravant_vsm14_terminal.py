@@ -11,6 +11,11 @@ from pathlib import Path
 from typing import TextIO
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_actor_ground_assistance import (
+    GroundContactRequestReceipt,
+    execute_ground_contact_request,
+    parse_ground_contact_request,
+)
 from astra_runtime.myravant_terminal import _write_result
 from astra_runtime.myravant_vsm13_terminal import (
     VSM13TerminalInteraction,
@@ -29,7 +34,9 @@ class VSM14TerminalInteraction:
     raw_text: str
     route: str
     result: PlayApplicationResult
-    request_receipt: VSM14FollowRequestReceipt | None = None
+    request_receipt: (
+        VSM14FollowRequestReceipt | GroundContactRequestReceipt | None
+    ) = None
     prior_interaction: VSM13TerminalInteraction | None = None
 
 
@@ -38,6 +45,16 @@ def execute_vsm14_terminal_input(
     raw_text: str,
 ) -> VSM14TerminalInteraction:
     """Route one input through VSM-14 first, then the complete prior terminal."""
+
+    ground = parse_ground_contact_request(raw_text)
+    if ground.parsed:
+        execution = execute_ground_contact_request(application, raw_text)
+        return VSM14TerminalInteraction(
+            raw_text=raw_text,
+            route="large3_actor_mediated_ground_contact",
+            result=execution.result,
+            request_receipt=execution.request_receipt,
+        )
 
     parsed = parse_vsm14_follow_request(raw_text)
     if parsed.parsed:
