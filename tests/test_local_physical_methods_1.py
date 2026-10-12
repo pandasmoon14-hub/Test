@@ -191,13 +191,14 @@ def test_installed_multi_method_play_state_restarts_and_replays(tmp_path):
         saved = MyravantVSM14Application.restore(checkpoint_path=save)
         assert json.loads(save.read_text(encoding="utf-8"))["format_version"] == 5
         assert saved.authoritative_digest() == events[-1]["post_state_digest"]
+        previous_checkpoint_bytes = save.read_bytes()
         rest = _installed(
             ("look", "inspect chest", "inventory", "save"),
             "--load", str(save), "--checkpoint", str(save),
         )
         assert rest.returncode == 0, (rest.stdout, rest.stderr)
         assert "Tool Chest" in rest.stdout
-        assert save.read_bytes() == save.read_bytes()
+        assert save.read_bytes() == previous_checkpoint_bytes
         results.append((
             [(
                 r["parsed_action"], r["result_type"], r["failure_class"],
