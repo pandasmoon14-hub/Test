@@ -1895,10 +1895,28 @@ class MyravantPlayApplication:
         object_reference: str,
         direction: str,
     ) -> PlayApplicationResult:
+        return self.displace_object(object_reference, direction, method="throw")
+
+    def displace_object(
+        self,
+        object_reference: str,
+        direction: str,
+        *,
+        method: str,
+    ) -> PlayApplicationResult:
         pre_digest = self.authoritative_digest()
+        if method not in {"throw", "push", "slide"}:
+            return PlayApplicationResult(
+                result_type="object_displacement_rejected",
+                message="That displacement method is not licensed.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="object_displacement_method_unavailable",
+            )
         unavailable = PlayApplicationResult(
             result_type="object_displacement_rejected",
-            message="You cannot throw that from the current state.",
+            message=f"You cannot {method} that from the current state.",
             authoritative_changed=False,
             pre_state_digest=pre_digest,
             post_state_digest=pre_digest,
@@ -1911,16 +1929,23 @@ class MyravantPlayApplication:
         except UnavailableFixtureCustodyError:
             return unavailable
 
-        carried = any(
-            relation.relation_type == CARRIED_BY_RELATION_TYPE
+        source_place_id = self.current_place_id()
+        source_type = (
+            CARRIED_BY_RELATION_TYPE if method == "throw"
+            else LOCATED_AT_RELATION_TYPE
+        )
+        source_holder = (
+            self.fixture.player_entity_id if method == "throw"
+            else source_place_id
+        )
+        eligible = any(
+            relation.relation_type == source_type
             and relation.subject_entity_id == object_entity_id
-            and relation.object_entity_id == self.fixture.player_entity_id
+            and relation.object_entity_id == source_holder
             for relation in self.state.representation.relations
         )
-        if not carried:
+        if not eligible:
             return unavailable
-
-        source_place_id = self.current_place_id()
         normalized_direction = direction.strip().casefold()
         try:
             destination_place_id = (
@@ -1928,13 +1953,13 @@ class MyravantPlayApplication:
                     object_entity_id=object_entity_id,
                     source_place_id=source_place_id,
                     direction=normalized_direction,
-                    method="throw",
+                    method=method,
                 )
             )
         except UnavailableFixtureDisplacementError:
             return PlayApplicationResult(
                 result_type="object_displacement_rejected",
-                message="You cannot throw that way from here.",
+                message=f"You cannot {method} that way from here.",
                 authoritative_changed=False,
                 pre_state_digest=pre_digest,
                 post_state_digest=pre_digest,
@@ -1949,7 +1974,7 @@ class MyravantPlayApplication:
             payload={
                 "object_entity_id": object_entity_id,
                 "destination_entity_id": destination_place_id,
-                "method": "throw",
+                "method": method,
             },
             metadata={"client": "myravant-terminal-comp3"},
         )
@@ -1960,7 +1985,7 @@ class MyravantPlayApplication:
                 source_place_id=source_place_id,
                 direction=normalized_direction,
                 destination_place_id=destination_place_id,
-                method="throw",
+                method=method,
             )
         )
         try:
@@ -1975,7 +2000,7 @@ class MyravantPlayApplication:
         except PersistentWorldObjectDisplacementError as exc:
             return PlayApplicationResult(
                 result_type="object_displacement_rejected",
-                message="The throw was rejected by the authoritative runtime.",
+                message=f"The {method} was rejected by the authoritative runtime.",
                 authoritative_changed=False,
                 command_id=command_id,
                 spatial_evidence_id=spatial.evidence_id,
@@ -1995,7 +2020,7 @@ class MyravantPlayApplication:
         return PlayApplicationResult(
             result_type="object_displacement_committed",
             message=(
-                f"You throw the {object_name} "
+                f"You {method} the {object_name} "
                 f"{normalized_direction}."
             ),
             authoritative_changed=True,
