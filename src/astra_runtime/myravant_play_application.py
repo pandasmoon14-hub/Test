@@ -192,6 +192,8 @@ class PublicDirectionalObservationView:
     target_place_id: str
     name: str
     description: str
+    visible_objects: tuple[str, ...] = ()
+    visible_actors: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -771,6 +773,165 @@ class MyravantPlayApplication:
             post_state_digest=digest,
         )
 
+    def _bounded_remote_light_available(self, place_id: str) -> bool:
+        """Only directly positioned or actor-carried fixture light at that place.
+
+        A remote observer cannot assume that a source contained in a sealed
+        object illuminates the whole place, or that their own light reaches it.
+        The existing local light owner remains unchanged.
+        """
+
+        if place_id == self.current_place_id():
+            return self._bounded_local_light_available()
+        lantern_state = self.object_lit_state(LANTERN_ID)
+        if lantern_state is None or lantern_state.state != "lit":
+            return False
+        relations = self.state.representation.relations
+        if any(
+            relation.relation_type == LOCATED_AT_RELATION_TYPE
+            and relation.subject_entity_id == LANTERN_ID
+            and relation.object_entity_id == place_id
+            for relation in relations
+        ):
+            return True
+        carrier_ids = {
+            relation.object_entity_id
+            for relation in relations
+            if relation.relation_type == CARRIED_BY_RELATION_TYPE
+            and relation.subject_entity_id == LANTERN_ID
+        }
+        return any(
+            relation.relation_type == LOCATED_AT_RELATION_TYPE
+            and relation.subject_entity_id in carrier_ids
+            and relation.object_entity_id == place_id
+            for relation in relations
+        )
+
+    def _directional_sightings(
+        self, place_id: str,
+    ) -> tuple[tuple[str, ...], tuple[str, ...]]:
+        """Sensing candidates restricted to directly located public entities.
+
+        Contents of containers, equipment held by an actor and private
+        knowledge are excluded. A movement route by itself never licenses
+        a directional observation.
+        """
+
+        light = self._bounded_remote_light_available(place_id)
+        objects = tuple(
+            item.name
+            for item in self.fixture.public_entities_at(
+                self.state.representation, place_id
+            )
+            if self.fixture.visual_observation_evidence(
+                observer_entity_id=self.fixture.player_entity_id,
+                target_entity_id=item.entity_id,
+                place_id=place_id,
+                local_light_available=light,
+            ).observable
+        )
+        actors = tuple(
+            item.name
+            for item in self.fixture.public_actors_at(
+                self.state.representation, place_id
+            )
+            if self.fixture.visual_observation_evidence(
+                observer_entity_id=self.fixture.player_entity_id,
+                target_entity_id=item.entity_id,
+                place_id=place_id,
+                local_light_available=light,
+            ).observable
+        )
+        return objects, actors
+
+    def focused_observation(
+        self,
+        entity_reference: str,
+        *,
+        direction: str | None = None,
+    ) -> PlayApplicationResult:
+        """Read-only situated attempt to locate, not manipulate, a target."""
+
+        digest = self.authoritative_digest()
+        unavailable = PlayApplicationResult(
+            result_type="focused_observation_unavailable",
+            message="You cannot verify that target from this view.",
+            authoritative_changed=False,
+            pre_state_digest=digest,
+            post_state_digest=digest,
+            failure_class="focused_target_not_observed",
+        )
+        try:
+            entity_id = self.fixture.resolve_inspection_reference(
+                entity_reference
+            )
+        except UnavailableFixtureCustodyError:
+            return unavailable
+
+        if direction is None:
+            fact = self._public_observation_fact(entity_id)
+            if fact is None:
+                return unavailable
+            observed_name = fact.name
+            place_label = "here"
+            evidence = self.visual_observation_evidence(entity_id)
+        else:
+            try:
+                direction_evidence = self.fixture.directional_observation_evidence(
+                    observer_entity_id=self.fixture.player_entity_id,
+                    source_place_id=self.current_place_id(),
+                    direction=direction,
+                )
+            except UnavailableFixtureObservationError:
+                return unavailable
+            if (
+                not direction_evidence.observable
+                or direction_evidence.target_place_id is None
+            ):
+                return unavailable
+            place_id = direction_evidence.target_place_id
+            # Check *direct* world placement; do not reveal carried objects
+            # or concealed contents simply because they exist in the world.
+            visible_ids = {
+                item.entity_id
+                for item in (
+                    *self.fixture.public_entities_at(
+                        self.state.representation, place_id
+                    ),
+                    *self.fixture.public_actors_at(
+                        self.state.representation, place_id
+                    ),
+                )
+            }
+            if entity_id not in visible_ids:
+                return unavailable
+            observed_name = self.fixture.entity_name(entity_id)
+            place_label = f"to the {direction_evidence.direction}"
+            evidence = self.fixture.visual_observation_evidence(
+                observer_entity_id=self.fixture.player_entity_id,
+                target_entity_id=entity_id,
+                place_id=place_id,
+                local_light_available=self._bounded_remote_light_available(
+                    place_id
+                ),
+            )
+            if not evidence.observable:
+                return unavailable
+
+        view = PublicInspectionView(
+            name="Focused observation",
+            description=f"You can see the {observed_name} {place_label}.",
+        )
+        return PlayApplicationResult(
+            result_type="focused_sighting",
+            message=view.description,
+            view=view,
+            authoritative_changed=False,
+            observation_evidence_id=evidence.evidence_id,
+            pre_state_digest=digest,
+            post_state_digest=digest,
+        )
+
     def look_direction(self, direction: str) -> PlayApplicationResult:
         """Observe an explicitly licensed direction without moving or advancing time."""
 
@@ -816,12 +977,17 @@ class MyravantPlayApplication:
         presentation = self.fixture.place_presentation(
             evidence.target_place_id
         )
+        visible_objects, visible_actors = self._directional_sightings(
+            evidence.target_place_id
+        )
         view = PublicDirectionalObservationView(
             source_place_id=source_place_id,
             direction=evidence.direction,
             target_place_id=evidence.target_place_id,
             name=presentation.name,
             description=presentation.description,
+            visible_objects=visible_objects,
+            visible_actors=visible_actors,
         )
         return PlayApplicationResult(
             result_type="directional_observation",
