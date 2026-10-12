@@ -835,6 +835,33 @@ class MyravantPlayApplication:
 
     def inspect(self, entity_reference: str) -> PlayApplicationResult:
         digest = self.authoritative_digest()
+
+        # A player's own location and directly carried objects are already
+        # qualified by their existing state owners. This is a public,
+        # nonmutating projection, not a new anatomy or knowledge owner.
+        if entity_reference.strip().casefold() in {"self", "myself", "me"}:
+            place = self.fixture.place_presentation(self.current_place_id())
+            carrying = self.fixture.public_entities_carried_by(
+                self.state.representation,
+                self.fixture.player_entity_id,
+            )
+            carrying_names = ", ".join(item.name for item in carrying)
+            view = PublicInspectionView(
+                name=self.fixture.entity_name(self.fixture.player_entity_id),
+                description=(
+                    f"Current place: {place.name}.\n"
+                    f"Carrying: {carrying_names if carrying_names else 'nothing'}."
+                ),
+            )
+            return PlayApplicationResult(
+                result_type="self_inspection",
+                message=view.name,
+                view=view,
+                authoritative_changed=False,
+                pre_state_digest=digest,
+                post_state_digest=digest,
+            )
+
         unavailable = PlayApplicationResult(
             result_type="inspection_unavailable",
             message="You cannot inspect that from the current state.",
