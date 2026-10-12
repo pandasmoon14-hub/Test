@@ -61,21 +61,21 @@ def test_actor_physical_request_parser_preserves_other_owners(
 
 
 @pytest.mark.parametrize(
-    "request",
+    "raw_attempt",
     (
         "ask groundskeeper to slide the hill south",
         "ask groundskeeper to push it east",
     ),
 )
-def test_unqualified_referent_preserved_without_hijacking_owner(request):
+def test_unqualified_referent_preserved_without_hijacking_owner(raw_attempt):
     # A rejected parse preserves the player's referent for capability
     # pressure, but cannot take ownership of the command or mutate state.
     app = MyravantVSM14Application.new()
     before = app.authoritative_digest()
-    parsed = parse_ground_contact_request(request)
+    parsed = parse_ground_contact_request(raw_attempt)
     assert parsed.parsed is False
     assert parsed.object_reference in {"hill", "it"}
-    assert execute_bounded_terminal_request(app, request) is None
+    assert execute_bounded_terminal_request(app, raw_attempt) is None
     assert app.authoritative_digest() == before
     assert not app.runtime_state.committed_object_displacement_transitions
 
