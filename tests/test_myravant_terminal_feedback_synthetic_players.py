@@ -164,7 +164,7 @@ PLAYER_POLICIES = {
     "risk_and_consequence_tester": (
         "look",
         "assess whether the gate is guarded",
-        "move south",
+        ("does not currently", "look south", "move south"),
         "try crossing the yard without being seen",
         "look",
         "move south",
