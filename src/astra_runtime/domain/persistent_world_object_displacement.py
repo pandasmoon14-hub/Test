@@ -62,7 +62,7 @@ from astra_runtime.kernel.transaction_preview import TransactionPreview, create_
 RT010_OBJECT_DISPLACEMENT_OWNER = "RT-010"
 AFQR18_OBJECT_DISPLACEMENT_SPATIAL_OWNER = "AFQR-18"
 AFQR19_OBJECT_DISPLACEMENT_OPPORTUNITY_OWNER = "AFQR-19"
-OBJECT_DISPLACEMENT_METHODS = frozenset({"throw"})
+OBJECT_DISPLACEMENT_METHODS = frozenset({"throw", "push", "slide"})
 _SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 
 
@@ -133,7 +133,7 @@ class ObjectDisplacementQualificationEvidence:
         for name in ("evidence_id", "actor_entity_id", "object_entity_id"):
             _require_record_id(getattr(self, name), name)
         if self.method not in OBJECT_DISPLACEMENT_METHODS:
-            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be throw")
+            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be one of throw, push, slide")
         if type(self.qualified) is not bool:
             raise InvalidPersistentWorldObjectDisplacementRequestError("qualified must be bool")
         if self.semantic_owner != RT010_OBJECT_DISPLACEMENT_OWNER:
@@ -160,7 +160,7 @@ class ObjectDisplacementSpatialEvidence:
         ):
             _require_record_id(getattr(self, name), name)
         if self.method not in OBJECT_DISPLACEMENT_METHODS:
-            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be throw")
+            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be one of throw, push, slide")
         if type(self.spatially_permitted) is not bool:
             raise InvalidPersistentWorldObjectDisplacementRequestError(
                 "spatially_permitted must be bool"
@@ -190,7 +190,7 @@ class ObjectDisplacementOpportunityEvidence:
         ):
             _require_record_id(getattr(self, name), name)
         if self.method not in OBJECT_DISPLACEMENT_METHODS:
-            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be throw")
+            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be one of throw, push, slide")
         if type(self.opportunity_available) is not bool or type(self.resolution_accepted) is not bool:
             raise InvalidPersistentWorldObjectDisplacementRequestError(
                 "opportunity/resolution flags must be bool"
@@ -237,18 +237,22 @@ class PersistentWorldObjectDisplacementCommitReceipt:
         _require_sha256(self.command_fingerprint, "command_fingerprint")
         _require_sha256(self.pre_state_digest, "pre_state_digest")
         _require_sha256(self.post_state_digest, "post_state_digest")
-        if self.method != "throw":
-            raise InvalidPersistentWorldObjectDisplacementRequestError("receipt method must be throw")
+        if self.method not in OBJECT_DISPLACEMENT_METHODS:
+            raise InvalidPersistentWorldObjectDisplacementRequestError("unknown receipt displacement method")
         if self.source_place_id == self.destination_place_id:
             raise InvalidPersistentWorldObjectDisplacementRequestError(
                 "throw destination must differ from source"
             )
+        expected_source = (
+            CARRIED_BY_RELATION_TYPE if self.method == "throw"
+            else LOCATED_AT_RELATION_TYPE
+        )
         if (
-            self.source_relation_type != CARRIED_BY_RELATION_TYPE
+            self.source_relation_type != expected_source
             or self.destination_relation_type != LOCATED_AT_RELATION_TYPE
         ):
             raise InvalidPersistentWorldObjectDisplacementRequestError(
-                "throw relation types must be carried_by -> located_at"
+                "displacement source/destination relation types do not match method"
             )
         if self.status != "committed":
             raise InvalidPersistentWorldObjectDisplacementRequestError(
@@ -455,9 +459,9 @@ def fingerprint_persistent_world_object_displacement_command(
         raise InvalidPersistentWorldObjectDisplacementRequestError(
             "COMP-3 requires transfer_object command type"
         )
-    if command.payload.get("method") != "throw":
+    if command.payload.get("method") not in OBJECT_DISPLACEMENT_METHODS:
         raise InvalidPersistentWorldObjectDisplacementRequestError(
-            "COMP-3 supports only throw method"
+            "unsupported displacement method"
         )
     try:
         return fingerprint_command_envelope(command, allow_nan=False)
@@ -472,7 +476,7 @@ def _validate_owner_evidence(
     spatial_evidence: ObjectDisplacementSpatialEvidence,
     opportunity_evidence: ObjectDisplacementOpportunityEvidence,
     actor_entity_id: str, object_entity_id: str,
-    source_place_id: str, destination_place_id: str,
+    source_place_id: str, destination_place_id: str, method: str,
 ) -> None:
     if not isinstance(qualification_evidence, ObjectDisplacementQualificationEvidence):
         raise PersistentWorldObjectDisplacementEvidenceError(
@@ -487,7 +491,7 @@ def _validate_owner_evidence(
             "invalid AFQR-19 displacement opportunity evidence"
         )
     expected = (
-        actor_entity_id, object_entity_id, source_place_id, destination_place_id, "throw",
+        actor_entity_id, object_entity_id, source_place_id, destination_place_id, method,
     )
     if (
         spatial_evidence.actor_entity_id,
@@ -512,7 +516,7 @@ def _validate_owner_evidence(
     if (
         qualification_evidence.actor_entity_id != actor_entity_id
         or qualification_evidence.object_entity_id != object_entity_id
-        or qualification_evidence.method != "throw"
+        or qualification_evidence.method != method
     ):
         raise PersistentWorldObjectDisplacementEvidenceError(
             "RT-010 evidence does not match displacement transition"
@@ -535,6 +539,7 @@ def _apply_displacement(
     *, representation: PersistentWorldEntityLocationRepresentation,
     object_entity_id: str, actor_entity_id: str, destination_place_id: str,
     source_relation_id: str, destination_relation_id: str,
+    source_place_id: str, method: str,
 ) -> PersistentWorldEntityLocationRepresentation:
     sources = [
         relation for relation in representation.relations
@@ -545,13 +550,32 @@ def _apply_displacement(
             "displacement source relation is absent or duplicated"
         )
     source = sources[0]
+    # Replay must independently verify the acting entity was at the method's
+    # source; a forged ground-placement receipt cannot make distant control
+    # lawful merely by naming a true object placement relation.
+    actor_places = [
+        relation.object_entity_id
+        for relation in representation.relations
+        if relation.relation_type == LOCATED_AT_RELATION_TYPE
+        and relation.subject_entity_id == actor_entity_id
+    ]
+    if actor_places != [source_place_id]:
+        raise PersistentWorldObjectDisplacementPlacementError(
+            "displacement actor is not at the recorded source place"
+        )
+    expected_relation = (
+        CARRIED_BY_RELATION_TYPE if method == "throw"
+        else LOCATED_AT_RELATION_TYPE
+    )
+    expected_holder = actor_entity_id if method == "throw" else source_place_id
     if (
-        source.relation_type != CARRIED_BY_RELATION_TYPE
+        method not in OBJECT_DISPLACEMENT_METHODS
+        or source.relation_type != expected_relation
         or source.subject_entity_id != object_entity_id
-        or source.object_entity_id != actor_entity_id
+        or source.object_entity_id != expected_holder
     ):
         raise PersistentWorldObjectDisplacementPlacementError(
-            "throw source must be target object carried by source actor"
+            "displacement object source does not satisfy its chosen method"
         )
     remaining = [
         relation for relation in representation.relations
@@ -622,9 +646,10 @@ def prepare_persistent_world_object_displacement(
             "actor requires exactly one current location"
         )
     source_place_id = actor_locations[0].object_entity_id
+    method = command.payload["method"]
     if source_place_id == destination_place_id:
         raise PersistentWorldObjectDisplacementPlacementError(
-            "throw destination must differ from actor source place"
+            "displacement destination must differ from actor source place"
         )
     placements = [
         relation for relation in representation.relations
@@ -633,13 +658,18 @@ def prepare_persistent_world_object_displacement(
             LOCATED_AT_RELATION_TYPE, CARRIED_BY_RELATION_TYPE, CONTAINED_BY_RELATION_TYPE,
         }
     ]
+    required_relation_type = (
+        CARRIED_BY_RELATION_TYPE if method == "throw"
+        else LOCATED_AT_RELATION_TYPE
+    )
+    required_holder_id = actor_entity_id if method == "throw" else source_place_id
     if (
         len(placements) != 1
-        or placements[0].relation_type != CARRIED_BY_RELATION_TYPE
-        or placements[0].object_entity_id != actor_entity_id
+        or placements[0].relation_type != required_relation_type
+        or placements[0].object_entity_id != required_holder_id
     ):
         raise PersistentWorldObjectDisplacementPlacementError(
-            "throw requires target object carried by source actor"
+            "target object is not at the qualified method's source"
         )
     source_relation = placements[0]
     _validate_owner_evidence(
@@ -650,6 +680,7 @@ def prepare_persistent_world_object_displacement(
         object_entity_id=object_entity_id,
         source_place_id=source_place_id,
         destination_place_id=destination_place_id,
+        method=method,
     )
     actual_digest = digest_persistent_world_entity_location_representation(representation)
     if expected_pre_state_digest != actual_digest:
@@ -671,7 +702,10 @@ def prepare_persistent_world_object_displacement(
         preview_id=build_record_id("object_displacement_preview", token),
         command=command,
         status="preview_created",
-        messages=("bounded thrown-object displacement prepared",),
+        messages=((
+            "bounded thrown-object displacement prepared"
+            if method == "throw" else f"qualified {method} displacement prepared"
+        ),),
         requires_confirmation=False,
         metadata={
             "package": "TERMINAL-PLAY-COMP-3",
@@ -689,7 +723,7 @@ def prepare_persistent_world_object_displacement(
         ),
         change_type="relationship_update",
         payload={
-            "method": "throw",
+            "method": method,
             "actor_entity_id": actor_entity_id,
             "object_entity_id": object_entity_id,
             "source_place_id": source_place_id,
@@ -714,6 +748,8 @@ def prepare_persistent_world_object_displacement(
         destination_place_id=destination_place_id,
         source_relation_id=source_relation.relation_id,
         destination_relation_id=destination_relation_id,
+        source_place_id=source_place_id,
+        method=method,
     )
     post_digest = digest_persistent_world_entity_location_representation(post_representation)
     return PersistentWorldObjectDisplacementPreparedTransition(
@@ -721,7 +757,7 @@ def prepare_persistent_world_object_displacement(
         command_fingerprint=fingerprint,
         actor_entity_id=actor_entity_id,
         object_entity_id=object_entity_id,
-        method="throw",
+        method=method,
         source_place_id=source_place_id,
         destination_place_id=destination_place_id,
         source_relation_id=source_relation.relation_id,
@@ -861,6 +897,8 @@ def replay_persistent_world_object_displacement(
             destination_place_id=receipt.destination_place_id,
             source_relation_id=receipt.source_relation_id,
             destination_relation_id=receipt.destination_relation_id,
+            source_place_id=receipt.source_place_id,
+            method=receipt.method,
         )
     except PersistentWorldObjectDisplacementError as exc:
         raise PersistentWorldObjectDisplacementReplayError(

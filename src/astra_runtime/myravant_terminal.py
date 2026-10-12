@@ -81,6 +81,8 @@ _COMPOUND_ACTION_STARTERS = frozenset({
     "throw",
     "toss",
     "hurl",
+    "push",
+    "slide",
     "ask",
     "wait",
 })
@@ -92,6 +94,8 @@ _UNSUPPORTED_CAPABILITY_BY_VERB = {
     "throw": "unsupported_capability_throwing",
     "toss": "unsupported_capability_throwing",
     "hurl": "unsupported_capability_throwing",
+    "push": "unsupported_capability_ground_displacement",
+    "slide": "unsupported_capability_ground_displacement",
 }
 
 
@@ -301,7 +305,7 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
                 raw_text=raw_text,
             )
 
-    if verb in {"throw", "toss", "hurl"} and len(parts) >= 3:
+    if verb in {"throw", "toss", "hurl", "push", "slide"} and len(parts) >= 3:
         direction = _DIRECTION_ALIASES.get(lowered[-1])
         if direction is not None:
             object_reference = _normalized_target(parts[1:-1])
@@ -314,7 +318,9 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
                 )
             if object_reference:
                 return ParsedTerminalCommand(
-                    action="throw",
+                    action=(
+                        verb if verb in {"push", "slide"} else "throw"
+                    ),
                     argument=f"{object_reference} -> {direction}",
                     raw_text=raw_text,
                 )
@@ -671,7 +677,7 @@ def _write_help(output: TextIO) -> str:
         "drop <object>, give <object> to <actor>, "
         "ask <actor> for <object>, "
         "ask <actor> to open/close <object>, "
-        "throw <object> <direction>, open <object>, "
+        "throw/push/slide <object> <direction>, open <object>, "
         "close <object>, light <object>, "
         "extinguish <object>, put <object> in <container>, "
         "take <object> from <container>, wait, save, help, exit\n"
@@ -864,7 +870,7 @@ def run_terminal(
                 error_stream=evidence_error_stream,
             )
             continue
-        if parsed.action == "throw":
+        if parsed.action in {"throw", "push", "slide"}:
             try:
                 object_reference, direction = _split_throw_argument(
                     parsed.argument or ""
@@ -880,9 +886,12 @@ def run_terminal(
                     failure_class="object_displacement_route_unavailable",
                 )
             else:
-                result = application.throw_object(
-                    object_reference,
-                    direction,
+                result = (
+                    application.throw_object(object_reference, direction)
+                    if parsed.action == "throw"
+                    else application.displace_object(
+                        object_reference, direction, method=parsed.action,
+                    )
                 )
             visible = _write_result(output_stream, result, debug=debug)
             _record_result(
