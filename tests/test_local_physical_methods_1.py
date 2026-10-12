@@ -8,12 +8,14 @@ is not a universal push/slide rule, material claim, or canon decision.
 from __future__ import annotations
 
 import json
+from dataclasses import replace
 import shutil
 import subprocess
 
 import pytest
 
 from astra_runtime.domain.persistent_world_object_displacement import (
+    PersistentWorldObjectDisplacementReplayError,
     replay_persistent_world_object_displacement,
 )
 from astra_runtime.myravant_terminal import parse_terminal_command
@@ -94,6 +96,12 @@ def test_slide_and_push_are_real_distinct_grounded_world_transitions():
     assert replay_persistent_world_object_displacement(
         pre_state_representation=before_push, receipt=receipt,
     ) == app.state.representation
+    # A correctly hashed pre-state does not authorize a forged actor location.
+    forged = replace(receipt, source_place_id="astra:entity:gatehouse")
+    with pytest.raises(PersistentWorldObjectDisplacementReplayError):
+        replay_persistent_world_object_displacement(
+            pre_state_representation=before_push, receipt=forged,
+        )
 
 
 def test_push_chest_qualified_without_claiming_arbitrary_object_pushability():
