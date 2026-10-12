@@ -351,7 +351,7 @@ def execute_ground_contact_request(
     result = PlayApplicationResult(
         result_type="actor_mediated_ground_displacement_committed",
         message=(
-            f"The Groundskeeper {method}s the "
+            f"The Groundskeeper {method + ('es' if method == 'push' else 's')} the "
             f"{application.fixture.entity_name(object_id)} {direction}."
         ),
         authoritative_changed=True,
