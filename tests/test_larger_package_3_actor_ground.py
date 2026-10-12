@@ -31,6 +31,7 @@ from astra_runtime.myravant_play_fixture import (
 )
 from astra_runtime.myravant_vsm14_application import MyravantVSM14Application
 from astra_runtime.myravant_vsm14_terminal import execute_vsm14_terminal_input
+from astra_runtime.myravant_terminal_capabilities import execute_bounded_terminal_request
 
 
 @pytest.mark.parametrize(
@@ -44,9 +45,9 @@ from astra_runtime.myravant_vsm14_terminal import execute_vsm14_terminal_input
         ("ask groundskeeper to follow me", False, None, None),
         ("ask town council for charter", False, None, None),
         ("ask groundskeeper to push chest upwards", False, None, None),
-        ("ask groundskeeper to slide the hill south", False, None, None),
+        ("ask groundskeeper to slide the hill south", False, None, "hill"),
         ("push chest north", False, None, None),
-        ("ask groundskeeper to push it east", False, None, None),
+        ("ask groundskeeper to push it east", False, None, "it"),
     ),
 )
 def test_actor_physical_request_parser_preserves_other_owners(
@@ -56,6 +57,27 @@ def test_actor_physical_request_parser_preserves_other_owners(
     assert result.parsed is is_parsed
     assert result.method == method
     assert result.object_reference == target
+    assert result.raw_text == words
+
+
+@pytest.mark.parametrize(
+    "request",
+    (
+        "ask groundskeeper to slide the hill south",
+        "ask groundskeeper to push it east",
+    ),
+)
+def test_unqualified_referent_preserved_without_hijacking_owner(request):
+    # A rejected parse preserves the player's referent for capability
+    # pressure, but cannot take ownership of the command or mutate state.
+    app = MyravantVSM14Application.new()
+    before = app.authoritative_digest()
+    parsed = parse_ground_contact_request(request)
+    assert parsed.parsed is False
+    assert parsed.object_reference in {"hill", "it"}
+    assert execute_bounded_terminal_request(app, request) is None
+    assert app.authoritative_digest() == before
+    assert not app.runtime_state.committed_object_displacement_transitions
 
 
 def _meet(app):
