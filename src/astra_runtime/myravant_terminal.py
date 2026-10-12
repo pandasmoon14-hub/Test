@@ -51,6 +51,8 @@ _COMPOUND_ACTION_STARTERS = frozenset({
     "look",
     "inspect",
     "examine",
+    "search",
+    "spot",
     "move",
     "go",
     "walk",
@@ -116,6 +118,48 @@ def _object_action(*, action: str, target_tokens: list[str], raw_text: str) -> P
             failure_class="ambiguous_target_reference",
         )
     return ParsedTerminalCommand(action=action, argument=target, raw_text=raw_text)
+
+
+def _focused_observation_action(
+    target_tokens: list[str], raw_text: str,
+) -> ParsedTerminalCommand:
+    """Represent local or explicitly direction-scoped sensing, not a use action."""
+
+    lowered = [token.casefold() for token in target_tokens]
+    direction = None
+    for index in range(1, len(lowered)):
+        if lowered[index] not in {"to", "in", "toward", "towards"}:
+            continue
+        following = lowered[index + 1:]
+        if following and following[0] == "the":
+            following = following[1:]
+        if len(following) != 1:
+            continue
+        candidate = _DIRECTION_ALIASES.get(following[0])
+        if candidate is not None:
+            direction = candidate
+            target_tokens = target_tokens[:index]
+            break
+
+    if direction is None and len(lowered) >= 2:
+        candidate = _DIRECTION_ALIASES.get(lowered[-1])
+        if candidate is not None:
+            direction = candidate
+            target_tokens = target_tokens[:-1]
+
+    target = _normalized_target(target_tokens)
+    if not target or target in _DEICTIC_TARGETS:
+        return ParsedTerminalCommand(
+            action="ambiguous",
+            argument=target or None,
+            raw_text=raw_text,
+            failure_class="ambiguous_target_reference",
+        )
+    return ParsedTerminalCommand(
+        action="focused_observation",
+        argument=f"{target} -> {direction}" if direction else target,
+        raw_text=raw_text,
+    )
 
 
 def _storage_action(
@@ -255,6 +299,15 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
 
     if lowered in (["inventory"], ["check", "inventory"], ["my", "inventory"]):
         return ParsedTerminalCommand(action="inspect_self", raw_text=raw_text)
+
+    if (
+        (verb in {"look", "search"} and len(lowered) > 1 and lowered[1] == "for")
+        or (verb == "spot" and len(lowered) > 1)
+    ):
+        return _focused_observation_action(
+            parts[2:] if verb in {"look", "search"} else parts[1:],
+            raw_text,
+        )
 
     if verb in {"look", "l"} and (
         len(parts) == 1
@@ -594,11 +647,16 @@ def _render_view(view: PublicLocationView) -> str:
 def _render_directional_observation_view(
     view: PublicDirectionalObservationView,
 ) -> str:
-    return "\n".join((
+    lines = [
         f"To the {view.direction}: {view.name}",
         "",
         view.description,
-    ))
+    ]
+    if view.visible_objects:
+        lines.extend(("", "Visible objects: " + ", ".join(view.visible_objects)))
+    if view.visible_actors:
+        lines.extend(("", "Visible actors: " + ", ".join(view.visible_actors)))
+    return "\n".join(lines)
 
 
 def _render_inspection_view(view: PublicInspectionView) -> str:
@@ -673,7 +731,9 @@ def _write_result(
 
 def _write_help(output: TextIO) -> str:
     visible = (
-        "Commands: look, look <direction>, inspect <entity>, inventory, move <direction>, "
+        "Commands: look, look <direction>, look for <entity> [to <direction>], "
+        "search for <entity>, spot <entity> <direction>, "
+        "inspect <entity>, inventory, move <direction>, "
         "drop <object>, give <object> to <actor>, "
         "ask <actor> for <object>, "
         "ask <actor> to open/close <object>, "
@@ -836,6 +896,24 @@ def run_terminal(
             continue
         if parsed.action == "look_direction":
             result = application.look_direction(parsed.argument or "")
+            visible = _write_result(output_stream, result, debug=debug)
+            _record_result(
+                evidence_recorder,
+                parsed=parsed,
+                visible_output=visible,
+                result=result,
+                error_stream=evidence_error_stream,
+            )
+            continue
+        if parsed.action == "focused_observation":
+            argument = parsed.argument or ""
+            if " -> " in argument:
+                target, direction = argument.rsplit(" -> ", 1)
+                result = application.focused_observation(
+                    target, direction=direction,
+                )
+            else:
+                result = application.focused_observation(argument)
             visible = _write_result(output_stream, result, debug=debug)
             _record_result(
                 evidence_recorder,
