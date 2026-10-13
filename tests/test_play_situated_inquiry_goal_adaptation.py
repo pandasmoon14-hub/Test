@@ -213,9 +213,9 @@ def test_player_changes_method_from_live_answer_and_completes_same_goal(
         trace = tmp_path / f"{trial}.jsonl"
         _seed(checkpoint, held_by_npc=held_by_npc)
         outcome = _play_feedback_conditioned(checkpoint, trace)
-        assert outcome["commands"][1] == (
-            "ask groundskeeper for lantern" if held_by_npc
-            else "pickup lantern"
+        assert outcome["commands"][1:3] == (
+            ("ask groundskeeper for lantern", "light lantern")
+            if held_by_npc else ("look", "pickup lantern")
         )
         outcomes.append(outcome)
     # Same initial state and player policy => identical committed history.
