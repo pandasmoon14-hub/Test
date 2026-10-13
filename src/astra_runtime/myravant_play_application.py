@@ -704,7 +704,12 @@ class MyravantPlayApplication:
         direction: str,
         digest: str,
     ) -> PlayApplicationResult | None:
-        """Derive one bounded AFQR-20 light signal from committed COMP-3 state."""
+        """Derive a bounded remote light signal from current owned world state.
+
+        The explicit fixture throw corridor qualifies *where* a glimmer can
+        be noticed, but the object-displacement method does not own optics.
+        This reveals no remote objects, actors, memories or hidden contents.
+        """
 
         normalized = direction.strip().casefold()
         try:
@@ -740,17 +745,14 @@ class MyravantPlayApplication:
         if len(direct_placements) != 1:
             return None
 
-        matching_displacement = any(
-            transition.receipt.object_entity_id == LANTERN_ID
-            and transition.receipt.source_place_id == source_place_id
-            and transition.receipt.destination_place_id == destination_place_id
-            and transition.receipt.method == "throw"
-            for transition in (
-                self.runtime_state.committed_object_displacement_transitions
-            )
-        )
-        if not matching_displacement:
-            return None
+        # The original explicit fixture throw corridor remains the narrow
+        # spatial light-signal license, not a requirement that the lantern's
+        # *current* illumination be caused by a particular historical method.
+        # A lantern lawfully pushed here, or carried and dropped here, emits
+        # the same bounded signal while it is lit and directly at the site.
+        # Carrying, containing, removing or extinguishing it cannot be
+        # mistaken for that same directly placed environmental source.
+        # This grants no view of the dark destination or its other contents.
 
         signal_evidence = self.fixture.visual_observation_evidence(
             observer_entity_id=self.fixture.player_entity_id,
