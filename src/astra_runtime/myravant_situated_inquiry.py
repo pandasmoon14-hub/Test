@@ -52,11 +52,11 @@ _WHAT_CARRY = re.compile(
     re.IGNORECASE,
 )
 _FOLLOWS = re.compile(
-    rf"^{_SUBJECT}\\s+(?:are|is)\\s+following\\s+me$",
+    rf"^{_SUBJECT}\s+(?:are|is)\s+following\s+me$",
     re.IGNORECASE,
 )
 _SIMPLE_FOLLOWS = re.compile(
-    rf"^{_SUBJECT}\\s+following\\s+me$",
+    rf"^{_SUBJECT}\s+following\s+me$",
     re.IGNORECASE,
 )
 _WHERE_IS = re.compile(
