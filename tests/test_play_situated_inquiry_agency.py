@@ -37,8 +37,8 @@ from astra_runtime.myravant_vsm14_application import MyravantVSM14Application
         ("ask groundskeeper if you are following me?", "own_follow_intent", None),
         ("ask groundskeeper are you following me?", "own_follow_intent", None),
         ("ask groundskeeper whether lantern is in the chest",
-         "unattested", None),
-        ("ask groundskeeper if he remembers the lantern", "unattested", None),
+         "unsupported_question", None),
+        ("ask groundskeeper if he remembers the lantern", "unsupported_question", None),
     ),
 )
 def test_inquiry_anatomy_retains_question_without_claiming_knowledge(
@@ -201,13 +201,14 @@ def test_unknown_and_foreign_facts_do_not_use_global_truth():
         "ask groundskeeper if he remembers the lantern",
         "ask groundskeeper if the waystone is near workshop",
     ):
-        result = _read_only(app, phrase, "situated_inquiry_unknown")
-        assert result.failure_class == "inquiry_fact_unattested"
+        result = _read_only(app, phrase, "situated_inquiry_unsupported")
+        assert result.failure_class == "inquiry_question_unsupported"
+        assert "does not establish what the Groundskeeper knows" in result.message
     invalid = _read_only(
         app, "ask groundskeeper do you have dragonstone",
-        "situated_inquiry_unknown",
+        "situated_inquiry_unavailable",
     )
-    assert invalid.failure_class == "inquiry_object_unqualified"
+    assert invalid.failure_class == "inquiry_target_unresolved"
 
 
 def test_bounded_route_precedes_legacy_only_for_questions():
