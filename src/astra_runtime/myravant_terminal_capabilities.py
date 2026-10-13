@@ -8,6 +8,10 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_situated_inquiry import (
+    execute_situated_inquiry,
+    parse_situated_inquiry,
+)
 from astra_runtime.myravant_actor_ground_assistance import (
     parse_ground_contact_request,
 )
@@ -26,6 +30,11 @@ def execute_bounded_terminal_request(
     raw_text: str,
 ) -> tuple[str, PlayApplicationResult] | None:
     """Route bounded VSM requests; return None for every other attempt."""
+
+    # Qualify dialogue questions before the broad legacy "ask ..." grammar;
+    # observations never own or commit NPC knowledge or object transfers.
+    if parse_situated_inquiry(raw_text).parsed:
+        return "situated_inquiry", execute_situated_inquiry(application, raw_text)
 
     if not any(
         parse(raw_text).parsed
