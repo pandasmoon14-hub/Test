@@ -34,6 +34,8 @@ from astra_runtime.myravant_vsm14_application import MyravantVSM14Application
         ("ask groundskeeper where is the lantern?", "own_custody_location", "lantern"),
         ("ask groundskeeper where the lantern is", "own_custody_location", "lantern"),
         ("ask groundskeeper what are you carrying?", "own_inventory", None),
+        ("ask groundskeeper if you are following me?", "own_follow_intent", None),
+        ("ask groundskeeper are you following me?", "own_follow_intent", None),
         ("ask groundskeeper whether lantern is in the chest",
          "unattested", None),
         ("ask groundskeeper if he remembers the lantern", "unattested", None),
@@ -145,6 +147,51 @@ def test_grounded_current_custody_changes_with_handoff_and_return():
         "situated_inquiry_answered",
     )
     assert "carrying nothing" in empty.message
+
+
+def test_actor_follow_intent_is_current_state_not_invented_promise(tmp_path):
+    checkpoint = tmp_path / "follow-inquiry.json"
+    app = MyravantVSM14Application.new(checkpoint_path=checkpoint)
+    assert app.move("south").authoritative_changed
+    assert app.move("south").authoritative_changed
+    before = _read_only(
+        app, "ask groundskeeper if you are following me",
+        "situated_inquiry_answered",
+    )
+    assert "No, I am not following you." in before.message
+    activate = execute_bounded_terminal_request(
+        app, "ask groundskeeper to follow me"
+    )
+    assert activate is not None
+    assert activate[1].authoritative_changed
+    followed = _read_only(
+        app, "ask groundskeeper if you are following me",
+        "situated_inquiry_answered",
+    )
+    assert "Yes, I am following you." in followed.message
+    assert app.move("north").authoritative_changed
+    after_move = _read_only(
+        app, "ask groundskeeper are you following me",
+        "situated_inquiry_answered",
+    )
+    assert "Yes, I am following you." in after_move.message
+    assert app.save().result_type == "checkpoint_written"
+    restored = MyravantVSM14Application.restore(checkpoint_path=checkpoint)
+    replay = _read_only(
+        restored, "ask groundskeeper if you are following me",
+        "situated_inquiry_answered",
+    )
+    assert replay.message == after_move.message
+    stop = execute_bounded_terminal_request(
+        app, "ask groundskeeper to stop following me"
+    )
+    assert stop is not None
+    assert stop[1].authoritative_changed
+    after = _read_only(
+        app, "ask groundskeeper are you following me",
+        "situated_inquiry_answered",
+    )
+    assert "No, I am not following you." in after.message
 
 
 def test_unknown_and_foreign_facts_do_not_use_global_truth():
