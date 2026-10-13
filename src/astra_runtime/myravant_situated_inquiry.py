@@ -105,7 +105,7 @@ def parse_situated_inquiry(raw_text: str) -> ParsedSituatedInquiry:
         elif _FOLLOWS.fullmatch(content):
             kind = "own_follow_intent"
         else:
-            kind = "unattested"
+            kind = "unsupported_question"
     elif head in {"are", "is"}:
         kind = (
             "own_follow_intent"
@@ -118,12 +118,12 @@ def parse_situated_inquiry(raw_text: str) -> ParsedSituatedInquiry:
             kind = "own_custody"
             object_reference = _object_phrase(carrying.group(1))
         else:
-            kind = "unattested"
+            kind = "unsupported_question"
     elif head == "what":
         if _WHAT_CARRY.fullmatch(content) is not None:
             kind = "own_inventory"
         else:
-            kind = "unattested"
+            kind = "unsupported_question"
     elif head == "where":
         where = _WHERE_IS.fullmatch(content)
         if where is not None:
@@ -132,7 +132,7 @@ def parse_situated_inquiry(raw_text: str) -> ParsedSituatedInquiry:
                 where.group(1) or where.group(2) or ""
             )
         else:
-            kind = "unattested"
+            kind = "unsupported_question"
 
     return ParsedSituatedInquiry(
         raw_text=raw_text,
@@ -163,6 +163,14 @@ def execute_situated_inquiry(
             failure_class=failure,
         )
 
+    if parsed.kind == "unsupported_question":
+        return answer(
+            "situated_inquiry_unsupported",
+            "That kind of question has no qualified inquiry route yet. "
+            "This does not establish what the Groundskeeper knows.",
+            "inquiry_question_unsupported",
+        )
+
     try:
         actor_id = application.fixture.resolve_actor_reference("groundskeeper")
     except UnavailableFixtureHandoffError:
@@ -187,13 +195,6 @@ def execute_situated_inquiry(
             "situated_inquiry_unavailable",
             "The Groundskeeper is not here to answer.",
             "inquiry_actor_not_local",
-        )
-
-    if parsed.kind == "unattested":
-        return answer(
-            "situated_inquiry_unknown",
-            "The Groundskeeper cannot attest to that from current evidence.",
-            "inquiry_fact_unattested",
         )
 
     if parsed.kind == "own_follow_intent":
@@ -237,9 +238,9 @@ def execute_situated_inquiry(
         object_id = application.fixture.resolve_object_reference(target)
     except UnavailableFixtureCustodyError:
         return answer(
-            "situated_inquiry_unknown",
-            "The Groundskeeper cannot identify that object.",
-            "inquiry_object_unqualified",
+            "situated_inquiry_unavailable",
+            "The requested object reference cannot be resolved for this inquiry.",
+            "inquiry_target_unresolved",
         )
     held = any(item.entity_id == object_id for item in carrying)
     if parsed.kind == "own_custody":
@@ -261,7 +262,7 @@ def execute_situated_inquiry(
             "inquiry_location_unattested",
         )
     return answer(
-        "situated_inquiry_unknown",
-        "The Groundskeeper cannot attest to that from current evidence.",
-        "inquiry_fact_unattested",
+        "situated_inquiry_unsupported",
+        "That question has no qualified inquiry route yet.",
+        "inquiry_question_unsupported",
     )
