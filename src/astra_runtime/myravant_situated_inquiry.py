@@ -12,6 +12,9 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
+from astra_runtime.domain.persistent_world_follow_intent import (
+    active_follow_intent_for,
+)
 from astra_runtime.myravant_play_application import (
     MyravantPlayApplication,
     PlayApplicationResult,
@@ -28,7 +31,7 @@ from astra_runtime.myravant_play_fixture import (
 _DISCLOSING_ACTORS = frozenset({GROUNDSKEEPER_ID})
 _INTRO = re.compile(
     r"^(?:i\s+)?ask\s+(?:the\s+)?groundskeeper\s+"
-    r"(?:if|whether|do|does|where|what)\s+(.+)$",
+    r"(?:if|whether|do|does|where|what|are|is)\s+(.+)$",
     re.IGNORECASE,
 )
 _SUBJECT = r"(?:you|he|they|the\s+groundskeeper)"
@@ -46,6 +49,14 @@ _DOES_HAVE = re.compile(
 )
 _WHAT_CARRY = re.compile(
     rf"^(?:are|is)\s+{_SUBJECT}\s+(?:carrying|holding)(?:\s+anything)?$",
+    re.IGNORECASE,
+)
+_FOLLOWS = re.compile(
+    rf"^{_SUBJECT}\\s+(?:are|is)\\s+following\\s+me$",
+    re.IGNORECASE,
+)
+_SIMPLE_FOLLOWS = re.compile(
+    rf"^{_SUBJECT}\\s+following\\s+me$",
     re.IGNORECASE,
 )
 _WHERE_IS = re.compile(
@@ -90,8 +101,16 @@ def parse_situated_inquiry(raw_text: str) -> ParsedSituatedInquiry:
         if carrying is not None:
             kind = "own_custody"
             object_reference = _object_phrase(carrying.group(1))
+        elif _FOLLOWS.fullmatch(content):
+            kind = "own_follow_intent"
         else:
             kind = "unattested"
+    elif head in {"are", "is"}:
+        kind = (
+            "own_follow_intent"
+            if _SIMPLE_FOLLOWS.fullmatch(content)
+            else "unattested"
+        )
     elif head in {"do", "does"}:
         carrying = _DOES_HAVE.fullmatch(content)
         if carrying is not None:
@@ -174,6 +193,28 @@ def execute_situated_inquiry(
             "situated_inquiry_unknown",
             "The Groundskeeper cannot attest to that from current evidence.",
             "inquiry_fact_unattested",
+        )
+
+    if parsed.kind == "own_follow_intent":
+        follow_state = getattr(application, "follow_intent_state", None)
+        if follow_state is None:
+            return answer(
+                "situated_inquiry_unknown",
+                "The Groundskeeper cannot attest to a following commitment.",
+                "inquiry_follow_state_unavailable",
+            )
+        active = active_follow_intent_for(follow_state, actor_id)
+        following_player = (
+            active is not None
+            and active.leader_entity_id == application.fixture.player_entity_id
+        )
+        return answer(
+            "situated_inquiry_answered",
+            (
+                'The Groundskeeper says, "Yes, I am following you."'
+                if following_player else
+                'The Groundskeeper says, "No, I am not following you."'
+            ),
         )
 
     carrying = application.fixture.public_entities_carried_by(
