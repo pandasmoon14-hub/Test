@@ -739,6 +739,7 @@ def _write_help(output: TextIO) -> str:
         "ask groundskeeper if they have <object>, "
         "ask groundskeeper where <object> is, "
         "ask groundskeeper what are you carrying, "
+        "ask groundskeeper are you following me, "
         "ask <actor> to open/close <object>, "
         "throw/push/slide <object> <direction>, open <object>, "
         "close <object>, light <object>, "
