@@ -93,9 +93,7 @@ def test_nonlocal_actor_cannot_disclose_presence_or_custody():
     )
     assert first.failure_class == "inquiry_actor_not_local"
     assert "not here" in first.message
-    assert app.current_place_id() == app.fixture.player_entity_id or (
-        app.fixture.place_presentation(app.current_place_id()).name == "Workshop"
-    )
+    assert app.fixture.place_presentation(app.current_place_id()).name == "Workshop"
 
 
 def test_grounded_current_custody_changes_with_handoff_and_return():
