@@ -107,6 +107,10 @@ def _play_feedback_conditioned(checkpoint, trace):
         if 'Yes, I am carrying that.' in answer:
             chosen = "ask groundskeeper for lantern"
         elif 'No, I am not carrying that.' in answer:
+            # NPC self-custody does not establish an object's location.
+            # The player must use its own visible scene before pickup.
+            sighting = act("look")
+            assert "Brass Lantern" in sighting, sighting
             chosen = "pickup lantern"
         else:
             pytest.fail("The inquiry did not provide a grounded actionable answer")
@@ -136,7 +140,9 @@ def _play_feedback_conditioned(checkpoint, trace):
             process.wait(timeout=10)
 
     rows = _events(trace)
-    assert len(rows) == len(commands) == 7
+    assert len(rows) == len(commands) == (
+        7 if chosen.startswith("ask") else 8
+    )
     assert [row["raw_player_input"] for row in rows] == [
         command + "\n" for command in commands
     ]
@@ -146,15 +152,24 @@ def _play_feedback_conditioned(checkpoint, trace):
     assert rows[0]["authoritative_changed"] is False
     assert rows[0]["pre_state_digest"] == rows[0]["post_state_digest"]
     assert rows[0]["receipt_id"] is None
-    assert rows[1]["authoritative_changed"] is True
-    assert rows[1]["receipt_id"] and rows[1]["state_delta_id"]
-    assert rows[1]["parsed_action"] in {"request_handoff", "pickup"}
-    for i in (2, 3, 4):
+    acquisition_index = 1 if chosen.startswith("ask") else 2
+    if acquisition_index == 2:
+        assert rows[1]["parsed_action"] == "look"
+        assert rows[1]["authoritative_changed"] is False
+        assert rows[1]["pre_state_digest"] == rows[1]["post_state_digest"]
+        assert rows[1]["receipt_id"] is None
+    acquisition = rows[acquisition_index]
+    assert acquisition["authoritative_changed"] is True
+    assert acquisition["receipt_id"] and acquisition["state_delta_id"]
+    assert acquisition["parsed_action"] in {"request_handoff", "pickup"}
+    for i in range(acquisition_index + 1, acquisition_index + 4):
         assert rows[i]["authoritative_changed"], (i, rows[i])
         assert rows[i]["receipt_id"], (i, rows[i])
-    assert rows[5]["authoritative_changed"] is False
-    assert rows[5]["pre_state_digest"] == rows[5]["post_state_digest"]
-    assert rows[6]["result_type"] == "checkpoint_written"
+    viewed = rows[acquisition_index + 4]
+    assert viewed["parsed_action"] == "look"
+    assert viewed["authoritative_changed"] is False
+    assert viewed["pre_state_digest"] == viewed["post_state_digest"]
+    assert rows[-1]["result_type"] == "checkpoint_written"
 
     app = MyravantVSM14Application.restore(checkpoint_path=checkpoint)
     assert app.authoritative_digest() == rows[-1]["post_state_digest"]
