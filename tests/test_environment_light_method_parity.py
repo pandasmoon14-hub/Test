@@ -241,3 +241,114 @@ def test_installed_play_alt_methods_sensing_and_v5_restore(tmp_path, method):
             checkpoint.read_bytes(),
         ))
     assert identical[0] == identical[1]
+
+
+def _prompt(stdout):
+    output = ""
+    while not output.endswith("\n> "):
+        char = stdout.read(1)
+        assert char, ("Installed player closed before next decision", output)
+        output += char
+        assert len(output) < 30000
+    return output
+
+
+@pytest.mark.parametrize("carried", (False, True), ids=("ground", "carried"))
+def test_live_player_selects_distinct_physical_method_from_actual_state(
+    tmp_path, carried,
+):
+    outcomes = []
+    for label in ("alpha", "beta"):
+        checkpoint = tmp_path / f"{label}.json"
+        trace = tmp_path / f"{label}.jsonl"
+        setup = (
+            ("pickup lantern", "light lantern", "move south", "save")
+            if carried else
+            ("light lantern", "slide lantern south", "move south", "save")
+        )
+        seeded = _installed(setup, "--checkpoint", str(checkpoint))
+        assert seeded.returncode == 0, (seeded.stdout, seeded.stderr)
+
+        binary = shutil.which("myravant-play")
+        process = subprocess.Popen(
+            [
+                binary, "--load", str(checkpoint),
+                "--checkpoint", str(checkpoint),
+                "--trace", str(trace), "--repository-sha", "f" * 40,
+            ],
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE, text=True, bufsize=1,
+        )
+        assert process.stdin and process.stdout and process.stderr
+        actions = []
+        try:
+            _prompt(process.stdout)
+
+            def act(phrase):
+                process.stdin.write(phrase + "\n")
+                process.stdin.flush()
+                actions.append(phrase)
+                return _prompt(process.stdout)
+
+            self_view = act("inspect myself")
+            if "Carrying: Brass Lantern." in self_view:
+                method = "throw lantern east"
+            else:
+                # The player cannot deduce ground location from not carrying;
+                # it observes the current scene before choosing ground contact.
+                visible = act("look")
+                assert "Brass Lantern" in visible, visible
+                method = "push lantern east"
+            assert method == (
+                "throw lantern east" if carried else "push lantern east"
+            )
+            action_output = act(method)
+            assert (
+                "You throw the Brass Lantern east." in action_output
+                if carried else "You push the Brass Lantern east." in action_output
+            )
+            signal = act("look east")
+            assert SIGNAL in signal
+            assert "Orchard Path" not in signal
+            assert "Checkpoint written." in act("save")
+            process.stdin.write("exit\n")
+            process.stdin.flush()
+            process.stdin.close()
+            remainder = process.stdout.read()
+            code = process.wait(timeout=45)
+            assert code == 0, (actions, remainder, process.stderr.read())
+        finally:
+            if process.poll() is None:
+                process.kill()
+                process.wait(timeout=10)
+
+        rows = _trace(trace)
+        assert [r["raw_player_input"] for r in rows] == [
+            a + "\n" for a in actions
+        ]
+        assert rows[0]["parsed_action"] == "inspect"
+        assert not rows[0]["authoritative_changed"]
+        assert rows[0]["pre_state_digest"] == rows[0]["post_state_digest"]
+        index = 2 if method.startswith("push") else 1
+        if index == 2:
+            assert rows[1]["parsed_action"] == "look"
+            assert not rows[1]["authoritative_changed"]
+        assert rows[index]["parsed_action"] in {"push", "throw"}
+        assert rows[index]["authoritative_changed"] is True
+        assert rows[index]["receipt_id"] and rows[index]["state_delta_id"]
+        seen = rows[index + 1]
+        assert seen["parsed_action"] == "look_direction"
+        assert seen["result_type"] == "directional_light_signal"
+        assert not seen["authoritative_changed"]
+        assert seen["pre_state_digest"] == seen["post_state_digest"]
+        assert rows[-1]["result_type"] == "checkpoint_written"
+        restored = MyravantVSM14Application.restore(checkpoint_path=checkpoint)
+        assert restored.authoritative_digest() == rows[-1]["post_state_digest"]
+        _assert_readonly_glimmer(restored, expected=True)
+        outcomes.append((
+            tuple(actions),
+            tuple((r["parsed_action"], r["result_type"],
+                   r["pre_state_digest"], r["post_state_digest"]) for r in rows),
+            checkpoint.read_bytes(),
+        ))
+    assert outcomes[0] == outcomes[1]
