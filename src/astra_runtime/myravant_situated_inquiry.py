@@ -17,6 +17,7 @@ from astra_runtime.domain.persistent_world_follow_intent import (
 )
 from astra_runtime.myravant_play_application import (
     MyravantPlayApplication,
+    MyravantPlayApplicationError,
     PlayApplicationResult,
 )
 from astra_runtime.myravant_play_fixture import (
@@ -179,7 +180,7 @@ def execute_situated_inquiry(
 
     try:
         actor_place = application.entity_place_id(actor_id)
-    except Exception:
+    except MyravantPlayApplicationError:
         actor_place = None
     if actor_place != application.current_place_id():
         return answer(
