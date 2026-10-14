@@ -896,8 +896,15 @@ def restore_c1_checkpoint(*, checkpoint_path, expected_campaign_id,
         name="C-1 checkpoint components",
         error_cls=PersistentWorldCheckpointEvidenceError,
     )
+    # The v7 inventory is validated above. The frozen v5 base restorer
+    # must never receive v6/v7 extension keys: it intentionally reconstructs
+    # the historical five-component payload with an exact inventory.
+    base_components = {
+        key: value for key, value in components.items()
+        if key not in {"fixture_service", "actor_situated_knowledge"}
+    }
     runtime = _restore_base_components(
-        components=components, expected_campaign_id=expected_campaign_id,
+        components=base_components, expected_campaign_id=expected_campaign_id,
         expected_initial_open_states=expected_initial_open_states,
         expected_initial_lit_states=expected_initial_lit_states,
         expected_initial_representation=expected_initial_representation,
