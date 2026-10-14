@@ -55,7 +55,8 @@ from astra_runtime.myravant_play_application import (
     PlayApplicationResult,
 )
 from astra_runtime.myravant_play_fixture import (
-    GROUNDSKEEPER_ID, LANTERN_ID, TOOL_CHEST_ID, YARD_ID,
+    GROUNDSKEEPER_ID, LANTERN_ID, TOOL_CHEST_ID, WAYSTONE_ID,
+    WORKSHOP_ID, ORCHARD_PATH_ID, YARD_ID,
     MyravantPlayFixture,
     create_terminal_play_fixture,
 )
@@ -447,6 +448,131 @@ class MyravantVSM14Application(MyravantPlayApplication):
             ),
             logical_time_before=before, logical_time_after=after,
             pre_state_digest=pre_digest,
+            post_state_digest=self.authoritative_digest(),
+        )
+
+    def clear_waystone_route(self, intent: str = "continue") -> PlayApplicationResult:
+        """B-2b: timed physical work, stored only in existing placement history.
+
+        The recovered Waystone obstructs Yard east until it is moved onward.
+        This is a *different* progression representation from B-2a's asset
+        condition: no service counter, recipe, timer, or new material physics.
+        """
+        place = self.current_place_id()
+        local = any(
+            rel.relation_type == "located_at"
+            and rel.subject_entity_id == WAYSTONE_ID
+            and rel.object_entity_id == place
+            for rel in self.state.representation.relations
+        )
+        pre = self.authoritative_digest()
+        def response(message: str, failure: str | None = None):
+            return PlayApplicationResult(
+                result_type="waystone_clearance_status" if failure is None else
+                    "waystone_clearance_rejected",
+                message=message, authoritative_changed=False,
+                pre_state_digest=pre, post_state_digest=pre,
+                failure_class=failure,
+            )
+        if intent not in {"continue", "check", "abandon"}:
+            return response("That clearance instruction is unsupported.",
+                            "waystone_clearance_intent_unavailable")
+        if not local:
+            return response(
+                "The worksite and waystone are not together here.",
+                "waystone_clearance_target_not_local",
+            )
+        if place not in {ORCHARD_PATH_ID, YARD_ID, WORKSHOP_ID}:
+            return response("The route-clearance operation is not licensed here.",
+                            "waystone_clearance_unlicensed_place")
+        if intent == "abandon":
+            return response(
+                "You leave the existing waystone placement in place; "
+                "any resulting route obstruction remains."
+            )
+        if place == WORKSHOP_ID:
+            return response("The waystone is clear of the Yard east route.")
+        if intent == "check":
+            return response(
+                "The recovered waystone currently obstructs the Yard east route. "
+                "It can be pushed north." if place == YARD_ID
+                else "The waystone remains on Orchard Path; a lit source is "
+                     "needed to identify it before dragging it west."
+            )
+        # The existing COMP-3 drag requires a presently observable ground
+        # target. Reject before advancing logical time, not by revealing any
+        # unseen remote target or invented strength/terrain mechanics.
+        if not self._object_currently_observable(WAYSTONE_ID):
+            return response(
+                "The waystone is not presently visible enough for this work.",
+                "waystone_clearance_sensing_unavailable",
+            )
+        method, direction = (
+            ("drag", "west") if place == ORCHARD_PATH_ID
+            else ("push", "north")
+        )
+        try:
+            destination = self.fixture.object_displacement_destination_for(
+                object_entity_id=WAYSTONE_ID,
+                source_place_id=place,
+                direction=direction, method=method,
+            )
+        except Exception:
+            return response(
+                "That transfer is not licensed from this position.",
+                "waystone_clearance_route_unavailable",
+            )
+        if destination not in {YARD_ID, WORKSHOP_ID}:
+            return response(
+                "That destination is not licensed for this undertaking.",
+                "waystone_clearance_destination_unavailable",
+            )
+
+        # Commit logical time via existing WORLD-2 owner, then exactly one
+        # existing COMP-3 displacement. If the second owner refuses or raises,
+        # roll back the in-memory composed root; the terminal has not yet
+        # durably acknowledged either transition.
+        original_runtime = self._runtime_state
+        original_follow = self._follow_intent_state
+        original_service = self._service_state
+        before = self.runtime_state.logical_time_state.logical_position
+        try:
+            tick = self.wait()
+            if not tick.authoritative_changed:
+                raise RuntimeError("clearance work time did not advance")
+            displacement = super().displace_object(
+                "waystone", direction, method=method
+            )
+            if not displacement.authoritative_changed:
+                self._runtime_state = original_runtime
+                self._follow_intent_state = original_follow
+                self._service_state = original_service
+                return response(
+                    "The qualified waystone move did not complete; "
+                    "no work time or placement was committed.",
+                    displacement.failure_class or
+                        "waystone_clearance_displacement_rejected",
+                )
+        except Exception:
+            self._runtime_state = original_runtime
+            self._follow_intent_state = original_follow
+            self._service_state = original_service
+            raise
+        return replace(
+            displacement,
+            result_type="waystone_clearance_committed",
+            message=(
+                "You drag the waystone west into the Yard. Its new placement "
+                "obstructs the east exit until it is moved onward."
+                if destination == YARD_ID else
+                "You push the waystone north into the Workshop; "
+                "the Yard east route is clear."
+            ),
+            logical_time_before=before,
+            logical_time_after=self.runtime_state.logical_time_state.logical_position,
+            consequence_receipt_id=tick.receipt_id,
+            consequence_state_delta_id=tick.state_delta_id,
+            pre_state_digest=pre,
             post_state_digest=self.authoritative_digest(),
         )
 
