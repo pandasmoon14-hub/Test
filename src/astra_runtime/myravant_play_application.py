@@ -2073,7 +2073,7 @@ class MyravantPlayApplication:
         method: str,
     ) -> PlayApplicationResult:
         pre_digest = self.authoritative_digest()
-        if method not in {"throw", "push", "slide"}:
+        if method not in {"throw", "push", "slide", "drag"}:
             return PlayApplicationResult(
                 result_type="object_displacement_rejected",
                 message="That displacement method is not licensed.",
@@ -2095,6 +2095,16 @@ class MyravantPlayApplication:
                 object_reference
             )
         except UnavailableFixtureCustodyError:
+            return unavailable
+
+        # This first fixture-qualified drag is an identified-ground-target
+        # attempt. Require existing AFQR-20 local visual confirmation before
+        # testing placement or route availability, so naming a hidden or
+        # remote object cannot reveal its true location by refusal class.
+        # It is not a universal rule that tactile drag requires sight.
+        if method == "drag" and not self._object_currently_observable(
+            object_entity_id
+        ):
             return unavailable
 
         source_place_id = self.current_place_id()
