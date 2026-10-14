@@ -14,6 +14,9 @@ from astra_runtime.myravant_vsm14_application import MyravantVSM14Application
 def parse_actor_memory_request(raw: str) -> tuple[str, str, str | None] | None:
     text = " ".join(raw.casefold().strip().split()).rstrip("?.!")
     checks = (
+        (r"ask (?:the )?groundskeeper to (?:check|investigate|follow) "
+         r"(?:the )?(?:last |reported )?(?:location|lead|trail) "
+         r"(?:of|for) (.+)", "follow_lead"),
         (r"ask (?:the )?groundskeeper to (?:inspect|examine|look at) (.+)",
          "witness"),
         (r"ask (?:the )?groundskeeper where (?:they|he) last saw (.+)",
