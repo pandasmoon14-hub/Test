@@ -28,7 +28,7 @@ from astra_runtime.domain.persistent_world_fixture_service import (
     serialize_fixture_service, digest_fixture_service_state,
 )
 from astra_runtime.myravant_play_fixture import (
-    PLAYER_ID, TOOL_CHEST_ID, YARD_ID,
+    PLAYER_ID, TOOL_CHEST_ID, YARD_ID, WORKSHOP_ID, ORCHARD_PATH_ID,
 )
 
 B2A_CHECKPOINT_VERSION = 6
@@ -138,8 +138,13 @@ def restore_b2a_checkpoint(*, checkpoint_path, expected_campaign_id,
                 "B-2a command identity collides with existing owner"
             )
         used_commands.add(tr.command_id)
-        if (tr.actor_id, tr.target_id, tr.place_id) != (
-            PLAYER_ID, TOOL_CHEST_ID, YARD_ID
+        if (
+            tr.actor_id != PLAYER_ID or tr.target_id != TOOL_CHEST_ID
+            or (
+                tr.operation == "release"
+                and tr.place_id not in {YARD_ID, WORKSHOP_ID, ORCHARD_PATH_ID}
+            )
+            or (tr.operation != "release" and tr.place_id != YARD_ID)
         ):
             raise PersistentWorldCheckpointEvidenceError(
                 "service event escaped declared fixture"
