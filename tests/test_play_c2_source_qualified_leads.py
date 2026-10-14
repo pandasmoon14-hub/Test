@@ -96,6 +96,41 @@ def test_source_qualified_leads_have_distinct_real_consequences(tmp_path):
     assert again.entity_place_id(GROUNDSKEEPER_ID) == YARD_ID
 
 
+def test_stale_observation_and_false_report_both_remain_fallible(tmp_path):
+    checkpoint = tmp_path / "c2-stale.json"
+    app = MyravantVSM14Application.new(checkpoint_path=checkpoint)
+    _meet_in_yard(app)
+    assert app.actor_memory_interaction("witness", "chest").authoritative_changed
+    # Actual chest is now in a *third* place, distinct from both prior
+    # firsthand observation (Yard) and later unverified report (Gatehouse).
+    assert app.displace_object(
+        "chest", "north", method="push",
+    ).authoritative_changed
+    assert app.actor_memory_interaction(
+        "report", "chest", reported_place="gatehouse",
+    ).authoritative_changed
+    assert app.actor_memory_interaction("follow_report", "chest").authoritative_changed
+    assert app.entity_place_id(GROUNDSKEEPER_ID) == GATEHOUSE_ID
+    assert app.move("south").authoritative_changed
+    before = app.representation_digest()
+
+    # The actor acts on a lawful but outdated observation. The response must
+    # not claim to discover the object's actual Workshop placement.
+    stale = app.actor_memory_interaction("follow_sighting", "chest")
+    assert stale.authoritative_changed
+    assert app.entity_place_id(GROUNDSKEEPER_ID) == YARD_ID
+    assert "witnessed lead" in stale.message
+    assert "Workshop" not in stale.message
+    assert "does not establish" in stale.message
+    assert app.representation_digest() != before
+    assert not _chest_still_in_yard(app)
+    assert len(app.knowledge_state.events) == 2
+    assert app.save().checkpoint_digest
+    restored = MyravantVSM14Application.restore(checkpoint_path=checkpoint)
+    assert restored.authoritative_digest() == app.authoritative_digest()
+    assert not _chest_still_in_yard(restored)
+
+
 def test_missing_source_is_unknown_not_replaced_with_other_or_world_truth():
     sight_only = MyravantVSM14Application.new()
     _meet_in_yard(sight_only)
