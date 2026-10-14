@@ -62,7 +62,7 @@ from astra_runtime.myravant_play_application import (
 from astra_runtime.myravant_play_fixture import (
     GROUNDSKEEPER_ID, GATEHOUSE_ID, LANTERN_ID, TOOL_CHEST_ID, WAYSTONE_ID,
     WORKSHOP_ID, ORCHARD_PATH_ID, YARD_ID,
-    MyravantPlayFixture, UnavailableFixtureDisplacementError,
+    MyravantPlayFixture, UnavailableFixtureCustodyError, UnavailableFixtureDisplacementError,
     create_terminal_play_fixture,
 )
 
@@ -415,7 +415,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
             target_id = self.fixture.resolve_object_reference(
                 target_reference
             )
-        except Exception:
+        except UnavailableFixtureCustodyError:
             return answer(
                 "That object cannot be identified for this conversation.",
                 "actor_knowledge_target_unavailable",
