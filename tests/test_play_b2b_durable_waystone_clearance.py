@@ -197,7 +197,7 @@ def ack_barrier(*args, **kwargs):
 terminal._write_durable_result = ack_barrier
 app = MyravantVSM14Application.new(checkpoint_path=checkpoint)
 terminal.run_terminal(
-    app, input_stream=StringIO("go south\\n"),
+    app, input_stream=StringIO("go south\n"),
     output_stream=sys.stdout,
     specialized_router=execute_bounded_terminal_request,
 )
