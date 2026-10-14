@@ -8,6 +8,12 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_cooperative_delivery_goal import (
+    parse_cooperative_delivery_goal,
+    execute_cooperative_delivery_goal,
+    parse_institutional_petition,
+    execute_institutional_petition,
+)
 from astra_runtime.myravant_situated_inquiry import (
     execute_situated_inquiry,
     parse_situated_inquiry,
@@ -30,6 +36,23 @@ def execute_bounded_terminal_request(
     raw_text: str,
 ) -> tuple[str, PlayApplicationResult] | None:
     """Route bounded VSM requests; return None for every other attempt."""
+
+    # Recognize goal-shaped, actor-situated physical requests before the
+    # narrow execution-verb grammars. All consequences remain in the original
+    # actor mediators and COMP-3, not this interpretation surface.
+    if parse_cooperative_delivery_goal(raw_text):
+        return (
+            "cooperative_delivery_goal",
+            execute_cooperative_delivery_goal(application, raw_text),
+        )
+
+    # Distinguish a petition from a request to hand over a physical object.
+    # No institution, entitlement or native legal mechanics are fabricated.
+    if parse_institutional_petition(raw_text):
+        return (
+            "institutional_petition",
+            execute_institutional_petition(application, raw_text),
+        )
 
     # Qualify dialogue questions before the broad legacy "ask ..." grammar;
     # observations never own or commit NPC knowledge or object transfers.
