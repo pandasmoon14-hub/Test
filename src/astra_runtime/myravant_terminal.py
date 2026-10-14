@@ -831,6 +831,11 @@ def _write_help(output: TextIO) -> str:
         "waystone clearance; physical placement preserves unfinished work. "
         "Every acknowledged gameplay state change is checkpointed first. "
         "Supply --checkpoint or use the printed auto-recovery path.\n"
+        "C-1 actor-scoped investigation: while together, ask groundskeeper "
+        "to inspect chest for a direct sighting, or tell groundskeeper "
+        "chest is at gatehouse as an explicitly unverified report. "
+        "Ask groundskeeper where they last saw chest, or where they think "
+        "chest is; their dated recollection may be stale or mistaken.\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
         "as capability pressure; they do not mutate authoritative state.\n"
     )
