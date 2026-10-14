@@ -2736,6 +2736,12 @@ class MyravantPlayApplication:
             technical_retry=result.technical_retry,
         )
 
+    def _world2_object_opportunity_allowed(
+        self, *, object_entity_id: str, operation: str,
+    ) -> bool:
+        """Owner-specific opportunity gate; base WORLD-2 has no extra asset condition."""
+        return True
+
     def wait(self) -> PlayApplicationResult:
         pre_digest = self.authoritative_digest()
         pre_time = self._runtime_state.logical_time_state
@@ -2868,6 +2874,9 @@ class MyravantPlayApplication:
                     state=self.object_state,
                     actor_entity_id=GROUNDSKEEPER_ID,
                     object_entity_id=TOOL_CHEST_ID,
+                )
+                and self._world2_object_opportunity_allowed(
+                    object_entity_id=TOOL_CHEST_ID, operation=operation,
                 )
             )
             qualification, opportunity = (
