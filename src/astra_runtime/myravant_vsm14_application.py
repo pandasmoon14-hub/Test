@@ -25,11 +25,11 @@ from astra_runtime.domain.persistent_world_follow_intent import (
 from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     PersistentWorldCheckpointFormatError,
 )
-from astra_runtime.domain.persistent_world_fixture_service import (
+from astra_runtime.domain.persistent_world_object_open_close import (
     FixtureServiceError, FixtureServiceState, _transition as _service_transition,
     digest_fixture_service_state, execute_fixture_service,
 )
-from astra_runtime.domain.persistent_world_b2a_checkpoint import (
+from astra_runtime.domain.persistent_world_vsm14_checkpoint import (
     digest_b2a_authoritative_state, restore_b2a_checkpoint,
     write_b2a_checkpoint,
 )
