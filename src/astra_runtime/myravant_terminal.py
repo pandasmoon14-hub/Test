@@ -779,7 +779,9 @@ def _write_durable_result(
             raise SystemExit(3) from exc
         if generated_path is not None:
             output.write(f"Recovery checkpoint: {generated_path}\n")
-    return _write_result(output, result, debug=debug)
+    visible = _write_result(output, result, debug=debug)
+    output.flush()
+    return visible
 
 
 def _write_help(output: TextIO) -> str:
