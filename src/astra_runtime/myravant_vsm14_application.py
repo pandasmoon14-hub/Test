@@ -57,7 +57,7 @@ from astra_runtime.myravant_play_application import (
 from astra_runtime.myravant_play_fixture import (
     GROUNDSKEEPER_ID, LANTERN_ID, TOOL_CHEST_ID, WAYSTONE_ID,
     WORKSHOP_ID, ORCHARD_PATH_ID, YARD_ID,
-    MyravantPlayFixture,
+    MyravantPlayFixture, UnavailableFixtureDisplacementError,
     create_terminal_play_fixture,
 )
 
@@ -517,7 +517,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 source_place_id=place,
                 direction=direction, method=method,
             )
-        except Exception:
+        except UnavailableFixtureDisplacementError:
             return response(
                 "That transfer is not licensed from this position.",
                 "waystone_clearance_route_unavailable",
