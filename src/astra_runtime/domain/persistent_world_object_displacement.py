@@ -62,7 +62,7 @@ from astra_runtime.kernel.transaction_preview import TransactionPreview, create_
 RT010_OBJECT_DISPLACEMENT_OWNER = "RT-010"
 AFQR18_OBJECT_DISPLACEMENT_SPATIAL_OWNER = "AFQR-18"
 AFQR19_OBJECT_DISPLACEMENT_OPPORTUNITY_OWNER = "AFQR-19"
-OBJECT_DISPLACEMENT_METHODS = frozenset({"throw", "push", "slide"})
+OBJECT_DISPLACEMENT_METHODS = frozenset({"throw", "push", "slide", "drag"})
 _SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 
 
@@ -133,7 +133,7 @@ class ObjectDisplacementQualificationEvidence:
         for name in ("evidence_id", "actor_entity_id", "object_entity_id"):
             _require_record_id(getattr(self, name), name)
         if self.method not in OBJECT_DISPLACEMENT_METHODS:
-            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be one of throw, push, slide")
+            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be one of throw, push, slide, drag")
         if type(self.qualified) is not bool:
             raise InvalidPersistentWorldObjectDisplacementRequestError("qualified must be bool")
         if self.semantic_owner != RT010_OBJECT_DISPLACEMENT_OWNER:
@@ -160,7 +160,7 @@ class ObjectDisplacementSpatialEvidence:
         ):
             _require_record_id(getattr(self, name), name)
         if self.method not in OBJECT_DISPLACEMENT_METHODS:
-            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be one of throw, push, slide")
+            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be one of throw, push, slide, drag")
         if type(self.spatially_permitted) is not bool:
             raise InvalidPersistentWorldObjectDisplacementRequestError(
                 "spatially_permitted must be bool"
@@ -190,7 +190,7 @@ class ObjectDisplacementOpportunityEvidence:
         ):
             _require_record_id(getattr(self, name), name)
         if self.method not in OBJECT_DISPLACEMENT_METHODS:
-            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be one of throw, push, slide")
+            raise InvalidPersistentWorldObjectDisplacementRequestError("method must be one of throw, push, slide, drag")
         if type(self.opportunity_available) is not bool or type(self.resolution_accepted) is not bool:
             raise InvalidPersistentWorldObjectDisplacementRequestError(
                 "opportunity/resolution flags must be bool"
