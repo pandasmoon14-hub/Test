@@ -9,7 +9,7 @@ import sys
 import pytest
 
 from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
-    PersistentWorldCheckpointEvidenceError,
+    PersistentWorldCheckpointEvidenceError, _canonical_bytes,
 )
 from astra_runtime.myravant_actor_situated_knowledge import (
     ActorKnowledgeError, ActorKnowledgeState, commit_actor_knowledge,
@@ -205,7 +205,7 @@ def test_c1_replay_with_existing_latch_service_and_strict_integrity(tmp_path):
         payload, sort_keys=True, separators=(",", ":"),
         ensure_ascii=True,
     ).encode()).hexdigest()
-    checkpoint.write_text(json.dumps(envelope), encoding="utf-8")
+    checkpoint.write_bytes(_canonical_bytes(envelope))
     with pytest.raises(PersistentWorldCheckpointEvidenceError):
         MyravantVSM14Application.restore(checkpoint_path=checkpoint)
     checkpoint.write_bytes(original)
