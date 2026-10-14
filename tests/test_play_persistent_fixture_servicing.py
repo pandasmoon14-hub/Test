@@ -14,7 +14,7 @@ import subprocess
 
 import pytest
 
-from astra_runtime.domain.persistent_world_fixture_service import (
+from astra_runtime.domain.persistent_world_object_open_close import (
     FixtureServiceError, digest_fixture_service_state,
     execute_fixture_service, restore_fixture_service, serialize_fixture_service,
 )
