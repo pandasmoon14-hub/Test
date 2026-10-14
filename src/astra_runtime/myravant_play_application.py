@@ -2154,6 +2154,11 @@ class MyravantPlayApplication:
                 direction=normalized_direction,
                 destination_place_id=destination_place_id,
                 method=method,
+                object_open_state=(
+                    open_state.state
+                    if (open_state := self.object_open_state(object_entity_id))
+                    is not None else None
+                ),
             )
         )
         try:
@@ -2168,14 +2173,23 @@ class MyravantPlayApplication:
         except PersistentWorldObjectDisplacementError as exc:
             return PlayApplicationResult(
                 result_type="object_displacement_rejected",
-                message=f"The {method} was rejected by the authoritative runtime.",
+                message=(
+                    "The container must be closed before it can be moved "
+                    "along that route."
+                    if not opportunity.opportunity_available
+                    else f"The {method} was rejected by the authoritative runtime."
+                ),
                 authoritative_changed=False,
                 command_id=command_id,
                 spatial_evidence_id=spatial.evidence_id,
                 opportunity_evidence_id=opportunity.evidence_id,
                 pre_state_digest=pre_digest,
                 post_state_digest=pre_digest,
-                failure_class=type(exc).__name__,
+                failure_class=(
+                    "object_displacement_opportunity_unavailable"
+                    if not opportunity.opportunity_available
+                    else type(exc).__name__
+                ),
             )
 
         self._runtime_state = (

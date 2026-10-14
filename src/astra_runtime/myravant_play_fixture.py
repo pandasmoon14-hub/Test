@@ -209,6 +209,8 @@ class FixtureObjectDisplacementRoute:
     direction: str
     destination_place_id: str
     method: str = "throw"
+    # Noncanonical route opportunity, not an intrinsic law of containers.
+    required_open_state: str | None = None
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -426,6 +428,19 @@ class MyravantPlayFixture:
             if route.method not in {"throw", "push", "slide"}:
                 raise MyravantPlayFixtureError(
                     "fixture displacement method is not registered"
+                )
+            if route.required_open_state not in {None, "closed"}:
+                raise MyravantPlayFixtureError(
+                    "fixture displacement condition must be absent or closed"
+                )
+            if (
+                route.required_open_state is not None
+                and route.object_entity_id not in {
+                    item.object_entity_id for item in self.initial_object_open_states
+                }
+            ):
+                raise MyravantPlayFixtureError(
+                    "conditioned displacement object must support open/close state"
                 )
             displacement_keys.append(
                 (
@@ -665,6 +680,7 @@ class MyravantPlayFixture:
         direction: str,
         destination_place_id: str,
         method: str = "throw",
+        object_open_state: str | None = None,
     ) -> tuple[
         ObjectDisplacementQualificationEvidence,
         ObjectDisplacementSpatialEvidence,
@@ -680,10 +696,27 @@ class MyravantPlayFixture:
             raise UnavailableFixtureDisplacementError(
                 "requested displacement destination does not match explicit route"
             )
+        route = next(
+            route for route in self.object_displacement_routes
+            if route.object_entity_id == object_entity_id
+            and route.source_place_id == source_place_id
+            and route.direction == direction
+            and route.method == method
+        )
+        # AFQR-19 opportunity is qualified against the already-owned
+        # object open/close state, not by the command parser or narration.
+        permitted = (
+            route.required_open_state is None
+            or object_open_state == route.required_open_state
+        )
+        condition_key = (
+            f"|open_state={object_open_state}"
+            if route.required_open_state is not None else ""
+        )
         token = hashlib.sha256(
             (
                 f"{command_id}|{object_entity_id}|{source_place_id}|"
-                f"{direction}|{destination_place_id}|{method}"
+                f"{direction}|{destination_place_id}|{method}{condition_key}"
             ).encode("utf-8")
         ).hexdigest()[:20]
         actor_entity_id = self.player_entity_id
@@ -720,8 +753,8 @@ class MyravantPlayFixture:
                 source_place_id=source_place_id,
                 destination_place_id=destination_place_id,
                 method=method,
-                opportunity_available=True,
-                resolution_accepted=True,
+                opportunity_available=permitted,
+                resolution_accepted=permitted,
             ),
         )
 
@@ -1659,6 +1692,17 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             direction="north",
             destination_place_id=WORKSHOP_ID,
             method="push",
+        ),
+        # Additional content-independent demonstration: this narrow path
+        # allows a secured chest to transport its actual contained objects
+        # into the unlit Orchard Path without inventing object transforms.
+        FixtureObjectDisplacementRoute(
+            object_entity_id=TOOL_CHEST_ID,
+            source_place_id=YARD_ID,
+            direction="east",
+            destination_place_id=ORCHARD_PATH_ID,
+            method="push",
+            required_open_state="closed",
         ),
     )
 
