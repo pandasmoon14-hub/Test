@@ -760,6 +760,9 @@ def _write_help(output: TextIO) -> str:
         "store/retrieve lantern in/from chest, ask groundskeeper to throw "
         "lantern east, ask groundskeeper to follow me, and ask groundskeeper "
         "to stop following me. These are not general NPC controls.\n"
+        "A bounded cooperative goal is also available: ask groundskeeper "
+        "to bring lantern to orchard. The lawful physical method depends "
+        "on the Groundskeeper's actual local opportunity.\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
         "as capability pressure; they do not mutate authoritative state.\n"
     )
