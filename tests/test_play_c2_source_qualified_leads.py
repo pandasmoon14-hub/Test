@@ -71,14 +71,18 @@ def test_source_qualified_leads_have_distinct_real_consequences(tmp_path):
     assert app.save().checkpoint_digest
     restored = MyravantVSM14Application.restore(checkpoint_path=checkpoint)
     assert restored.authoritative_digest() == app.authoritative_digest()
-    assert restored.actor_memory_interaction(
-        "last_saw", "chest",
-    ).message.find("Yard") >= 0
-    assert restored.actor_memory_interaction(
-        "heard", "chest",
-    ).message.find("Gatehouse") >= 0
-
+    # Dialogue remains co-present only: after the false lead, the player
+    # must actually travel to Gatehouse before consulting the Groundskeeper.
+    absent = restored.actor_memory_interaction("last_saw", "chest")
+    assert absent.failure_class == "actor_knowledge_actor_not_local"
     assert restored.move("south").authoritative_changed
+    assert "Yard" in restored.actor_memory_interaction(
+        "last_saw", "chest",
+    ).message
+    assert "Gatehouse" in restored.actor_memory_interaction(
+        "heard", "chest",
+    ).message
+
     witnessed = restored.actor_memory_interaction("follow_sighting", "chest")
     assert witnessed.authoritative_changed
     assert witnessed.receipt_id and witnessed.command_id
