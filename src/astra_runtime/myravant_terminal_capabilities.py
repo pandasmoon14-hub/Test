@@ -8,6 +8,9 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_b2b_waystone_clearance import (
+    parse_waystone_clearance, execute_waystone_clearance,
+)
 from astra_runtime.myravant_b2a_service_goal import (
     parse_b2a_service, execute_b2a_service,
 )
@@ -42,6 +45,14 @@ def execute_bounded_terminal_request(
     raw_text: str,
 ) -> tuple[str, PlayApplicationResult] | None:
     """Route bounded VSM requests; return None for every other attempt."""
+
+    # B-2b is physical progress: Waystone placement creates/clears a real
+    # exit obstruction through the existing COMP-3 and WORLD-2 owners.
+    if parse_waystone_clearance(raw_text) is not None:
+        return (
+            "waystone_clearance",
+            execute_waystone_clearance(application, raw_text),
+        )
 
     # B-2a has its own RT-010/AFQR-16 state; B-1 goals remain mere
     # projections of physical location and object state.

@@ -132,7 +132,7 @@ def test_process_termination_vs_checkpoint_durability(
             assert list(tmp_path.glob(".session.json.*.component-tmp"))
 
 
-def test_clean_exit_without_save_does_not_implicitly_checkpoint(tmp_path):
+def test_terminal_success_without_explicit_save_is_durable(tmp_path):
     checkpoint = tmp_path / "session.json"
     app = MyravantVSM14Application.new(checkpoint_path=checkpoint)
     app.save()
@@ -143,9 +143,9 @@ def test_clean_exit_without_save_does_not_implicitly_checkpoint(tmp_path):
         input="go south\nexit\n", text=True, capture_output=True, timeout=30,
     )
     assert proc.returncode == 0, proc.stderr
-    assert MyravantVSM14Application.restore(
-        checkpoint_path=checkpoint
-    ).authoritative_digest() == original
+    restored = MyravantVSM14Application.restore(checkpoint_path=checkpoint)
+    assert restored.authoritative_digest() != original
+    assert restored.current_place_id() == YARD_ID
 
 
 def test_failed_pre_replace_preserves_previous_checkpoint_and_cleans_temp(

@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
-from dataclasses import dataclass
+import uuid
 from pathlib import Path
+from dataclasses import dataclass
 from typing import Callable, TextIO
 
 from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
@@ -734,6 +736,54 @@ def _write_result(
     return f"{visible}\n" if visible else ""
 
 
+def _write_durable_result(
+    output: TextIO,
+    application: MyravantPlayApplication,
+    result: PlayApplicationResult,
+    *,
+    debug: bool,
+) -> str:
+    """Player success is acknowledged only after the owner checkpoint is durable.
+
+    This is the *player-facing acknowledgement boundary*, not an extra owner
+    of domain truth. In-process results from application operations are staged
+    until the terminal successfully writes the current authoritative snapshot.
+    A failed save is fail-closed: no success text, no more commands accepted.
+    """
+    if result.authoritative_changed:
+        generated_path = None
+        if application.checkpoint_path is None:
+            # Session identity is a storage locator, never authoritative RNG.
+            home = Path(os.environ.get(
+                "MYRAVANT_SAVE_DIR",
+                str(Path.home() / ".myravant" / "saves"),
+            ))
+            try:
+                home.mkdir(mode=0o700, parents=True, exist_ok=True)
+            except OSError as exc:
+                output.write(f"Unable to establish durable storage: {exc}\n")
+                output.flush()
+                raise SystemExit(3) from exc
+            generated_path = home / f"session-{uuid.uuid4().hex}.json"
+            application.checkpoint_path = generated_path
+        try:
+            acknowledgement = application.save()
+            if not acknowledgement.checkpoint_digest:
+                raise RuntimeError("checkpoint writer returned no durable digest")
+        except Exception as exc:
+            output.write(
+                "Action could not be durably acknowledged. "
+                "Session closed to prevent use of uncertain state.\n"
+            )
+            output.flush()
+            raise SystemExit(3) from exc
+        if generated_path is not None:
+            output.write(f"Recovery checkpoint: {generated_path}\n")
+    visible = _write_result(output, result, debug=debug)
+    output.flush()
+    return visible
+
+
 def _write_help(output: TextIO) -> str:
     visible = (
         "Commands: look, look <direction>, look for <entity> [to <direction>], "
@@ -774,6 +824,13 @@ def _write_help(output: TextIO) -> str:
         "After finishing, close and secure chest, then release chest latch to "
         "permit reopening. Each work contribution consumes one logical step. "
         "No recipe, repair economy, generic materials or NPC work scheduler.\n"
+        "B-2b noncanonical timed route clearance: carry a lit lantern to "
+        "Orchard Path, recover waystone, cross back to Yard, then clear "
+        "waystone route to push it north and reopen the Yard east exit. "
+        "Check route clearance, abandon waystone clearance, and resume "
+        "waystone clearance; physical placement preserves unfinished work. "
+        "Every acknowledged gameplay state change is checkpointed first. "
+        "Supply --checkpoint or use the printed auto-recovery path.\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
         "as capability pressure; they do not mutate authoritative state.\n"
     )
@@ -863,7 +920,7 @@ def run_terminal(
     ] | None = None,
 ) -> int:
     output_stream.write("Myravant\n\n")
-    _write_result(output_stream, application.look(), debug=debug)
+    _write_durable_result(output_stream, application, application.look(), debug=debug)
 
     while True:
         output_stream.write("\n> ")
@@ -897,7 +954,7 @@ def run_terminal(
             specialized = specialized_router(application, raw)
             if specialized is not None:
                 route, result = specialized
-                visible = _write_result(output_stream, result, debug=debug)
+                visible = _write_durable_result(output_stream, application, result, debug=debug)
                 _record_result(
                     evidence_recorder,
                     parsed=ParsedTerminalCommand(action=route, raw_text=raw),
@@ -908,7 +965,7 @@ def run_terminal(
                 continue
         if parsed.action == "look":
             result = application.look()
-            visible = _write_result(output_stream, result, debug=debug)
+            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,
                 parsed=parsed,
@@ -919,7 +976,7 @@ def run_terminal(
             continue
         if parsed.action == "look_direction":
             result = application.look_direction(parsed.argument or "")
-            visible = _write_result(output_stream, result, debug=debug)
+            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,
                 parsed=parsed,
@@ -937,7 +994,7 @@ def run_terminal(
                 )
             else:
                 result = application.focused_observation(argument)
-            visible = _write_result(output_stream, result, debug=debug)
+            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,
                 parsed=parsed,
@@ -951,7 +1008,7 @@ def run_terminal(
                 "self" if parsed.action == "inspect_self"
                 else parsed.argument or ""
             )
-            visible = _write_result(output_stream, result, debug=debug)
+            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,
                 parsed=parsed,
@@ -962,7 +1019,7 @@ def run_terminal(
             continue
         if parsed.action == "move":
             result = application.move(parsed.argument or "")
-            visible = _write_result(output_stream, result, debug=debug)
+            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,
                 parsed=parsed,
@@ -994,7 +1051,7 @@ def run_terminal(
                         object_reference, direction, method=parsed.action,
                     )
                 )
-            visible = _write_result(output_stream, result, debug=debug)
+            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,
                 parsed=parsed,
@@ -1026,7 +1083,7 @@ def run_terminal(
                     operation,
                     object_reference,
                 )
-            visible = _write_result(output_stream, result, debug=debug)
+            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,
                 parsed=parsed,
@@ -1055,7 +1112,7 @@ def run_terminal(
                     source_reference,
                     object_reference,
                 )
-            visible = _write_result(output_stream, result, debug=debug)
+            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,
                 parsed=parsed,
@@ -1084,7 +1141,7 @@ def run_terminal(
                     object_reference,
                     recipient_reference,
                 )
-            visible = _write_result(output_stream, result, debug=debug)
+            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,
                 parsed=parsed,
@@ -1119,7 +1176,7 @@ def run_terminal(
                         object_reference,
                         container_reference,
                     )
-            visible = _write_result(output_stream, result, debug=debug)
+            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,
                 parsed=parsed,
@@ -1133,7 +1190,7 @@ def run_terminal(
                 result = application.light_object(parsed.argument or "")
             else:
                 result = application.extinguish_object(parsed.argument or "")
-            visible = _write_result(output_stream, result, debug=debug)
+            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,
                 parsed=parsed,
@@ -1147,7 +1204,7 @@ def run_terminal(
                 result = application.open_object(parsed.argument or "")
             else:
                 result = application.close_object(parsed.argument or "")
-            visible = _write_result(output_stream, result, debug=debug)
+            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,
                 parsed=parsed,
@@ -1161,7 +1218,7 @@ def run_terminal(
                 result = application.pickup(parsed.argument or "")
             else:
                 result = application.drop(parsed.argument or "")
-            visible = _write_result(output_stream, result, debug=debug)
+            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,
                 parsed=parsed,
@@ -1172,8 +1229,8 @@ def run_terminal(
             continue
         if parsed.action == "wait":
             result = application.wait()
-            visible = _write_result(
-                output_stream, result, debug=debug
+            visible = _write_durable_result(
+                output_stream, application, result, debug=debug
             )
             _record_result(
                 evidence_recorder,
@@ -1199,8 +1256,8 @@ def run_terminal(
                     failure_class="checkpoint_path_required",
                 )
             else:
-                visible = _write_result(
-                    output_stream,
+                visible = _write_durable_result(
+                    output_stream, application,
                     result,
                     debug=debug,
                 )
