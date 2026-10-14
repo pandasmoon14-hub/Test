@@ -357,9 +357,13 @@ class MyravantVSM14Application(MyravantPlayApplication):
         self, operation: str, *, method: str = "none",
     ) -> PlayApplicationResult:
         """Only the Yard-located chest can be worked; no remote progress leak."""
-        if self.current_place_id() != YARD_ID or self.entity_place_id(
-            TOOL_CHEST_ID
-        ) != YARD_ID:
+        chest_here = any(
+            r.subject_entity_id == TOOL_CHEST_ID
+            and r.relation_type == "located_at"
+            and r.object_entity_id == YARD_ID
+            for r in self.state.representation.relations
+        )
+        if self.current_place_id() != YARD_ID or not chest_here:
             return self._service_refusal(
                 "That fixture cannot be serviced from here.",
                 "fixture_service_target_not_local",
@@ -444,9 +448,13 @@ class MyravantVSM14Application(MyravantPlayApplication):
         )
 
     def check_chest_latch(self) -> PlayApplicationResult:
-        if self.current_place_id() != YARD_ID or self.entity_place_id(
-            TOOL_CHEST_ID
-        ) != YARD_ID:
+        chest_here = any(
+            r.subject_entity_id == TOOL_CHEST_ID
+            and r.relation_type == "located_at"
+            and r.object_entity_id == YARD_ID
+            for r in self.state.representation.relations
+        )
+        if self.current_place_id() != YARD_ID or not chest_here:
             return self._service_refusal(
                 "The service worksite is not accessible here.",
                 "fixture_service_target_not_local",
