@@ -169,17 +169,25 @@ def test_installed_play_self_observation_crosses_movement_custody_and_resume(tmp
     assert "Carrying: nothing." in restart.stdout
 
 
-def test_existing_nonself_actor_handoff_parse_and_refusal_remains_owned(tmp_path):
+def test_nonself_petition_and_real_handoff_remain_distinct_without_state_change(tmp_path):
     trace = tmp_path / "refusal.jsonl"
     run = _run(
-        ("ask the town council for a charter", "inspect my wounds"),
+        (
+            "ask the town council for a charter",
+            "ask groundskeeper for lantern",
+            "inspect my wounds",
+        ),
         "--trace", str(trace),
     )
     assert run.returncode == 0, (run.stdout, run.stderr)
     rows = _interactions(trace)
-    assert [x["parsed_action"] for x in rows] == ["request_handoff", "inspect"]
-    assert rows[0]["failure_class"] == "actor_object_handoff_target_unavailable"
-    assert rows[1]["failure_class"] == "inspection_target_unavailable"
+    assert [x["parsed_action"] for x in rows] == [
+        "institutional_petition", "request_handoff", "inspect",
+    ]
+    assert rows[0]["failure_class"] == "institutional_petition_unqualified"
+    assert rows[0]["receipt_id"] is None
+    assert rows[1]["result_type"] == "actor_object_handoff_rejected"
+    assert rows[2]["failure_class"] == "inspection_target_unavailable"
     assert all(
         x["authoritative_changed"] is False
         and x["pre_state_digest"] == x["post_state_digest"]
