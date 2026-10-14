@@ -112,6 +112,28 @@ def test_completed_latch_changes_later_opening_opportunity():
     assert app.open_object("chest").authoritative_changed
 
 
+def test_serviced_latch_can_be_released_after_chest_moves(tmp_path):
+    cp = tmp_path / "portable-latch.json"
+    app = _yard()
+    app.checkpoint_path = cp
+    app.service_chest_latch("work", method="manual")
+    app.service_chest_latch("work", method="manual")
+    if app.object_open_state("astra:entity:tool-chest").state == "open":
+        app.close_object("chest")
+    assert app.service_chest_latch("secure").authoritative_changed
+    assert app.displace_object("chest", "north", method="push").authoritative_changed
+    assert app.check_chest_latch().failure_class == "fixture_service_target_not_local"
+    app.move("north")
+    assert app.check_chest_latch().authoritative_changed is False
+    assert "secured" in app.check_chest_latch().message
+    assert app.service_chest_latch("release").authoritative_changed
+    app.save()
+    restored = MyravantVSM14Application.restore(checkpoint_path=cp)
+    assert restored.service_state.progress == 2
+    assert not restored.service_state.secured
+    assert restored.open_object("chest").authoritative_changed
+
+
 def test_service_events_replay_and_retries_refuse_conflicting_meaning():
     app = _yard()
     app.service_chest_latch("work", method="manual")
