@@ -136,6 +136,41 @@ def test_obstacle_blocks_only_licensed_corridor_then_owner_replay_restores(clear
         _blocked(app)
 
 
+@pytest.mark.parametrize("arrival", ("drag", "carry_drop"))
+@pytest.mark.parametrize("clearance", ("pickup", "push"))
+def test_independent_arrival_method_crosses_two_clearance_methods(arrival, clearance):
+    """Legacy COMP-2 custody and newer COMP-3 drag must yield equal blocking.
+
+    Distinct goal/method/history inputs to the same qualified present placement
+    produce the same opportunity. Independent preexisting COMP-2 history exposed
+    the initial cross-family regression during review.
+    """
+    app = MyravantVSM14Application.new()
+    assert app.pickup("lantern").authoritative_changed
+    assert app.light_object("lantern").authoritative_changed
+    assert app.move("south").authoritative_changed
+    assert app.move("east").authoritative_changed
+    if arrival == "drag":
+        reached = app.displace_object("waystone", "west", method="drag")
+        assert reached.authoritative_changed and reached.receipt_id
+        assert app.move("west").authoritative_changed
+    else:
+        picked = app.pickup("waystone")
+        assert picked.authoritative_changed and picked.receipt_id
+        assert app.move("west").authoritative_changed
+        dropped = app.drop("waystone")
+        assert dropped.authoritative_changed and dropped.receipt_id
+
+    assert _placement(app, WAYSTONE_ID) == (LOCATED_AT_RELATION_TYPE, YARD_ID)
+    _blocked(app)
+    changed = _clear(app, clearance)
+    assert changed.authoritative_changed and changed.receipt_id
+    traversed = app.move("east")
+    assert traversed.result_type == "movement_committed"
+    assert traversed.receipt_id and traversed.state_delta_id
+    assert app.current_place_id() == ORCHARD_PATH_ID
+
+
 def test_only_registered_object_placement_obstructs_not_any_nearby_object():
     app = MyravantPlayApplication.new()
     assert app.move("south").authoritative_changed
