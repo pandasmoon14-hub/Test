@@ -12,6 +12,7 @@ import hashlib
 import json
 from dataclasses import asdict, dataclass, replace
 
+from astra_runtime.kernel.record_identity import build_record_id
 from astra_runtime.myravant_play_fixture import (
     GATEHOUSE_ID, GROUNDSKEEPER_ID, LANTERN_ID, ORCHARD_PATH_ID,
     PLAYER_ID, TOOL_CHEST_ID, WAYSTONE_ID, WORKSHOP_ID, YARD_ID,
@@ -117,7 +118,10 @@ def commit_actor_knowledge(
         "prior_memory_digest": prior,
     }
     event = ActorKnowledgeEvent(
-        **material, receipt_id="actor-evidence-" + _digest(material),
+        **material,
+        receipt_id=build_record_id(
+            "receipt", "c1-actor-evidence-" + _digest(material),
+        ),
     )
     return replace(state, events=(*state.events, event)), event
 
