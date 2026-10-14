@@ -492,6 +492,15 @@ class MyravantVSM14Application(MyravantPlayApplication):
             )
         if place == WORKSHOP_ID:
             return response("The waystone is clear of the Yard east route.")
+        # Location authority is not observation authority. A dark-worksite
+        # check must not expose the target's current truth from hidden state.
+        if place == ORCHARD_PATH_ID and not self._object_currently_observable(
+            WAYSTONE_ID
+        ):
+            return response(
+                "The worksite cannot be inspected with the available light.",
+                "waystone_clearance_sensing_unavailable",
+            )
         if intent == "check":
             return response(
                 "The recovered waystone currently obstructs the Yard east route. "
