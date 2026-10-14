@@ -52,6 +52,9 @@ from astra_runtime.domain.persistent_world_vsm14_checkpoint import (
     restore_persistent_world_vsm14_checkpoint,
     write_persistent_world_vsm14_checkpoint,
 )
+from astra_runtime.myravant_vsm10_actor_mediated_movement import (
+    execute_vsm10_request,
+)
 from astra_runtime.kernel.command_envelope import create_command_envelope
 from astra_runtime.kernel.record_identity import build_record_id
 from astra_runtime.myravant_play_application import (
@@ -425,6 +428,41 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 "That target has no supported local investigation evidence.",
                 "actor_knowledge_target_unavailable",
             )
+        if operation == "follow_lead":
+            # C-1 knowledge selects a *proposed destination*, not a right to
+            # move the actor. Existing VSM-10 owns acceptance, spatial
+            # opportunity and actual committed R4-C movement.
+            evidence = last_actor_evidence(
+                self.knowledge_state, GROUNDSKEEPER_ID, target_id,
+            )
+            if evidence is None:
+                return answer(
+                    "The Groundskeeper has no previous location lead to check.",
+                    "actor_knowledge_unknown",
+                )
+            if evidence.reported_place_id not in {YARD_ID, GATEHOUSE_ID}:
+                return answer(
+                    "That lead has no licensed immediate actor movement route.",
+                    "actor_knowledge_followup_route_unavailable",
+                )
+            destination = self.fixture.place_presentation(
+                evidence.reported_place_id
+            ).name.casefold()
+            moved = execute_vsm10_request(
+                self, f"ask groundskeeper to go to {destination}"
+            ).result
+            if not moved.authoritative_changed:
+                return moved
+            return replace(
+                moved,
+                result_type="actor_memory_followup_committed",
+                message=(
+                    f"Following the {evidence.source_kind} lead, the "
+                    f"Groundskeeper goes to {destination}. This does not "
+                    "establish whether the object is actually there."
+                ),
+            )
+
         if operation in {"recall", "last_saw", "heard"}:
             kind = (
                 None if operation == "recall" else
