@@ -425,7 +425,7 @@ class MyravantPlayFixture:
                 raise MyravantPlayFixtureError(
                     "object displacement route direction must be cardinal"
                 )
-            if route.method not in {"throw", "push", "slide"}:
+            if route.method not in {"throw", "push", "slide", "drag"}:
                 raise MyravantPlayFixtureError(
                     "fixture displacement method is not registered"
                 )
@@ -1703,6 +1703,16 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             destination_place_id=ORCHARD_PATH_ID,
             method="push",
             required_open_state="closed",
+        ),
+        # The noncanonical Waystone is recoverable by dragging it along
+        # one licensed ground-contact corridor. No general stone material,
+        # weight, strength or surface-friction law is inferred from its name.
+        FixtureObjectDisplacementRoute(
+            object_entity_id=WAYSTONE_ID,
+            source_place_id=ORCHARD_PATH_ID,
+            direction="west",
+            destination_place_id=YARD_ID,
+            method="drag",
         ),
     )
 
