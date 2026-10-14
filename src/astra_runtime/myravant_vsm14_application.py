@@ -17,6 +17,10 @@ import re
 from dataclasses import replace
 from pathlib import Path
 
+from astra_runtime.myravant_actor_situated_knowledge import (
+    ActorKnowledgeState, commit_actor_knowledge,
+    digest_actor_knowledge, last_actor_evidence,
+)
 from astra_runtime.domain.persistent_world_follow_intent import (
     PersistentWorldFollowIntentRuntimeState,
     active_follow_intent_for,
@@ -31,7 +35,8 @@ from astra_runtime.domain.persistent_world_object_open_close import (
 )
 from astra_runtime.domain.persistent_world_vsm14_checkpoint import (
     digest_b2a_authoritative_state, restore_b2a_checkpoint,
-    write_b2a_checkpoint,
+    write_b2a_checkpoint, digest_c1_authoritative_state,
+    restore_c1_checkpoint, write_c1_checkpoint,
 )
 from astra_runtime.domain.persistent_world_movement_integration import (
     PersistentWorldMovementIntegrationError,
@@ -55,7 +60,7 @@ from astra_runtime.myravant_play_application import (
     PlayApplicationResult,
 )
 from astra_runtime.myravant_play_fixture import (
-    GROUNDSKEEPER_ID, LANTERN_ID, TOOL_CHEST_ID, WAYSTONE_ID,
+    GROUNDSKEEPER_ID, GATEHOUSE_ID, LANTERN_ID, TOOL_CHEST_ID, WAYSTONE_ID,
     WORKSHOP_ID, ORCHARD_PATH_ID, YARD_ID,
     MyravantPlayFixture, UnavailableFixtureDisplacementError,
     create_terminal_play_fixture,
@@ -77,6 +82,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
         runtime_state,
         follow_intent_state: PersistentWorldFollowIntentRuntimeState,
         service_state: FixtureServiceState | None = None,
+        knowledge_state: ActorKnowledgeState | None = None,
         checkpoint_path: str | Path | None = None,
     ) -> None:
         super().__init__(
@@ -92,10 +98,20 @@ class MyravantVSM14Application(MyravantPlayApplication):
             )
         self._follow_intent_state = follow_intent_state
         self._service_state = service_state or FixtureServiceState()
+        self._knowledge_state = (
+            knowledge_state if knowledge_state is not None
+            else ActorKnowledgeState()
+        )
+        if type(self._knowledge_state) is not ActorKnowledgeState:
+            raise TypeError("invalid actor-scoped knowledge state")
 
     @property
     def service_state(self) -> FixtureServiceState:
         return self._service_state
+
+    @property
+    def knowledge_state(self) -> ActorKnowledgeState:
+        return self._knowledge_state
 
     @property
     def follow_intent_state(self) -> PersistentWorldFollowIntentRuntimeState:
@@ -129,6 +145,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 create_persistent_world_follow_intent_runtime_state()
             ),
             service_state=FixtureServiceState(),
+            knowledge_state=ActorKnowledgeState(),
             checkpoint_path=checkpoint_path,
         )
 
@@ -151,35 +168,45 @@ class MyravantVSM14Application(MyravantPlayApplication):
             ),
         )
         try:
-            runtime_state, follow_state, service_state = restore_b2a_checkpoint(
-                **args
+            runtime_state, follow_state, service_state, knowledge_state = (
+                restore_c1_checkpoint(**args)
             )
         except PersistentWorldCheckpointFormatError:
             try:
-                runtime_state, follow_state = restore_persistent_world_vsm14_checkpoint(
+                runtime_state, follow_state, service_state = restore_b2a_checkpoint(
                     **args
                 )
             except PersistentWorldCheckpointFormatError:
-                base = MyravantPlayApplication.restore(
-                    checkpoint_path=checkpoint_path,
-                    fixture=bounded_fixture,
-                )
-                runtime_state = base.runtime_state
-                follow_state = create_persistent_world_follow_intent_runtime_state()
-            service_state = FixtureServiceState()
+                try:
+                    runtime_state, follow_state = (
+                        restore_persistent_world_vsm14_checkpoint(**args)
+                    )
+                except PersistentWorldCheckpointFormatError:
+                    base = MyravantPlayApplication.restore(
+                        checkpoint_path=checkpoint_path,
+                        fixture=bounded_fixture,
+                    )
+                    runtime_state = base.runtime_state
+                    follow_state = (
+                        create_persistent_world_follow_intent_runtime_state()
+                    )
+                service_state = FixtureServiceState()
+            knowledge_state = ActorKnowledgeState()
         return cls(
             fixture=bounded_fixture,
             runtime_state=runtime_state,
             follow_intent_state=follow_state,
             service_state=service_state,
+            knowledge_state=knowledge_state,
             checkpoint_path=checkpoint_path,
         )
 
     def authoritative_digest(self) -> str:
-        return digest_b2a_authoritative_state(
+        return digest_c1_authoritative_state(
             runtime_state=self.runtime_state,
             follow_intent_state=self.follow_intent_state,
             service_state=self.service_state,
+            knowledge_state=self.knowledge_state,
         )
 
     def _next_follow_intent_command_id(self) -> str:
@@ -352,6 +379,151 @@ class MyravantVSM14Application(MyravantPlayApplication):
             result_type="fixture_service_rejected", message=message,
             authoritative_changed=False, pre_state_digest=digest,
             post_state_digest=digest, failure_class=failure,
+        )
+
+    def actor_memory_interaction(
+        self, operation: str, target_reference: str,
+        *, reported_place: str | None = None,
+    ) -> PlayApplicationResult:
+        """First-hand inspection, explicit testimony, and provenance-bounded recall.
+
+        A reported statement never becomes authoritative placement; an old
+        witnessed location never gets silently upgraded to a current fact.
+        """
+        pre = self.authoritative_digest()
+
+        def answer(message: str, failure: str | None = None):
+            return PlayApplicationResult(
+                result_type=(
+                    "actor_memory_answer" if failure is None else
+                    "actor_memory_unavailable"
+                ),
+                message=message, authoritative_changed=False,
+                pre_state_digest=pre, post_state_digest=pre,
+                failure_class=failure,
+            )
+
+        # No remote dialogue, possession of unseen third-party facts, or
+        # refusal-class leak when the actor cannot actually be consulted.
+        player_place = self.current_place_id()
+        if self.entity_place_id(GROUNDSKEEPER_ID) != player_place:
+            return answer(
+                "The Groundskeeper is not here to discuss that.",
+                "actor_knowledge_actor_not_local",
+            )
+        try:
+            target_id = self.fixture.resolve_object_reference(
+                target_reference
+            )
+        except Exception:
+            return answer(
+                "That object cannot be identified for this conversation.",
+                "actor_knowledge_target_unavailable",
+            )
+        if target_id not in {TOOL_CHEST_ID, LANTERN_ID, WAYSTONE_ID}:
+            return answer(
+                "That target has no supported local investigation evidence.",
+                "actor_knowledge_target_unavailable",
+            )
+        if operation in {"recall", "last_saw", "heard"}:
+            kind = (
+                None if operation == "recall" else
+                "witnessed" if operation == "last_saw" else "reported"
+            )
+            event = last_actor_evidence(
+                self.knowledge_state, GROUNDSKEEPER_ID, target_id,
+                source_kind=kind,
+            )
+            if event is None:
+                return answer(
+                    "The Groundskeeper has no qualified record of that.",
+                    "actor_knowledge_unknown",
+                )
+            place_name = self.fixture.place_presentation(
+                event.reported_place_id
+            ).name
+            if event.source_kind == "witnessed":
+                return answer(
+                    f'The Groundskeeper says, "I last saw the '
+                    f'{self.fixture.entity_name(target_id)} at {place_name} '
+                    f'at step {event.logical_step}. I cannot confirm it '
+                    f'is still there."'
+                )
+            return answer(
+                f'The Groundskeeper says, "You told me the '
+                f'{self.fixture.entity_name(target_id)} was at {place_name} '
+                f'at step {event.logical_step}. I have not verified '
+                f'that report."'
+            )
+
+        if operation not in {"witness", "report"}:
+            return answer("That investigation method is not supported.",
+                          "actor_knowledge_method_unavailable")
+        if operation == "witness":
+            visible = (
+                self.fixture.ambient_visual_condition_for(player_place)
+                == "sufficient" or self._bounded_local_light_available()
+            )
+            local = any(
+                rel.relation_type == "located_at"
+                and rel.subject_entity_id == target_id
+                and rel.object_entity_id == player_place
+                for rel in self.state.representation.relations
+            )
+            if not visible or not local:
+                return answer(
+                    "The Groundskeeper cannot directly verify that object "
+                    "here with the available visual evidence.",
+                    "actor_knowledge_witness_opportunity_unavailable",
+                )
+            source = "witnessed"
+            place = player_place
+        else:
+            names = {
+                "yard": YARD_ID, "workshop": WORKSHOP_ID,
+                "orchard path": ORCHARD_PATH_ID,
+                "gatehouse": GATEHOUSE_ID,
+            }
+            place = names.get((reported_place or "").strip().casefold())
+            if place is None:
+                return answer(
+                    "That location cannot be identified in the report.",
+                    "actor_knowledge_report_place_unavailable",
+                )
+            source = "reported"
+
+        step = self.runtime_state.logical_time_state.logical_position
+        command_id = (
+            f"terminal-actor-evidence-{len(self.knowledge_state.events) + 1:06d}"
+        )
+        updated, event = commit_actor_knowledge(
+            state=self.knowledge_state, command_id=command_id,
+            actor_id=GROUNDSKEEPER_ID,
+            source_actor_id=(
+                GROUNDSKEEPER_ID if source == "witnessed"
+                else self.fixture.player_entity_id
+            ),
+            source_kind=source, target_id=target_id,
+            reported_place_id=place, logical_step=step,
+            source_world_digest=self.representation_digest(),
+            expected_pre_digest=digest_actor_knowledge(self.knowledge_state),
+        )
+        self._knowledge_state = updated
+        name = self.fixture.entity_name(target_id)
+        return PlayApplicationResult(
+            result_type="actor_knowledge_committed",
+            message=(
+                f"The Groundskeeper directly observes {name} at "
+                f"{self.fixture.place_presentation(place).name}."
+                if source == "witnessed" else
+                f"You report that {name} is at "
+                f"{self.fixture.place_presentation(place).name}. "
+                "The Groundskeeper retains your unverified report."
+            ),
+            authoritative_changed=True,
+            command_id=event.command_id, receipt_id=event.receipt_id,
+            pre_state_digest=pre,
+            post_state_digest=self.authoritative_digest(),
         )
 
     def service_chest_latch(
@@ -665,7 +837,16 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 "save requires --checkpoint or a loaded checkpoint path"
             )
         pre_digest = self.authoritative_digest()
-        if self.service_state.events:
+        if self.knowledge_state.events:
+            checkpoint_digest = write_c1_checkpoint(
+                runtime_state=self.runtime_state,
+                follow_intent_state=self.follow_intent_state,
+                service_state=self.service_state,
+                knowledge_state=self.knowledge_state,
+                checkpoint_path=self.checkpoint_path,
+                qualification_evidence=self.fixture.checkpoint_qualification,
+            )
+        elif self.service_state.events:
             checkpoint_digest = write_b2a_checkpoint(
                 runtime_state=self.runtime_state,
                 follow_intent_state=self.follow_intent_state,
