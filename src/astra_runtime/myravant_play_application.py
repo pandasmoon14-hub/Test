@@ -1243,16 +1243,41 @@ class MyravantPlayApplication:
                 source_place_id=source_place_id,
                 direction=normalized,
                 destination_place_id=destination_place_id,
+                representation=self.state.representation,
             )
         )
 
-        result = execute_persistent_world_movement(
-            state=self.state,
-            command=command,
-            spatial_evidence=spatial_evidence,
-            opportunity_evidence=opportunity_evidence,
-            expected_pre_state_digest=pre_representation_digest,
-        )
+        try:
+            result = execute_persistent_world_movement(
+                state=self.state,
+                command=command,
+                spatial_evidence=spatial_evidence,
+                opportunity_evidence=opportunity_evidence,
+                expected_pre_state_digest=pre_representation_digest,
+            )
+        except PersistentWorldMovementIntegrationError as exc:
+            # Let the existing AFQR-19 owner reject a blocked opportunity.
+            # The fixture may describe only a qualified obstruction, not
+            # fabricate an alternate destination or commit on refusal.
+            obstructed = not opportunity_evidence.opportunity_available
+            return PlayApplicationResult(
+                result_type="movement_rejected",
+                message=(
+                    "Something obstructs that passage from here."
+                    if obstructed
+                    else "The movement was rejected by the authoritative runtime."
+                ),
+                authoritative_changed=False,
+                command_id=command_id,
+                spatial_evidence_id=spatial_evidence.evidence_id,
+                opportunity_evidence_id=opportunity_evidence.evidence_id,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class=(
+                    "movement_opportunity_obstructed"
+                    if obstructed else type(exc).__name__
+                ),
+            )
 
         self._runtime_state = replace_persistent_world_runtime_movement_state(
             state=self._runtime_state,
