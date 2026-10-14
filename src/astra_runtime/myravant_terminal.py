@@ -822,6 +822,13 @@ def _write_help(output: TextIO) -> str:
         "After finishing, close and secure chest, then release chest latch to "
         "permit reopening. Each work contribution consumes one logical step. "
         "No recipe, repair economy, generic materials or NPC work scheduler.\n"
+        "B-2b noncanonical timed route clearance: carry a lit lantern to "
+        "Orchard Path, recover waystone, cross back to Yard, then clear "
+        "waystone route to push it north and reopen the Yard east exit. "
+        "Check route clearance, abandon waystone clearance, and resume "
+        "waystone clearance; physical placement preserves unfinished work. "
+        "Every acknowledged gameplay state change is checkpointed first. "
+        "Supply --checkpoint or use the printed auto-recovery path.\\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
         "as capability pressure; they do not mutate authoritative state.\n"
     )
