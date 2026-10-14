@@ -892,23 +892,28 @@ class MyravantPlayFixture:
             and relation.object_entity_id == obstruction.blocking_object_place_id
             for relation in current.relations
         )
-        # Different states must not present identical qualification IDs even
-        # when the refused command ID can be retried after clearing the way.
+        # The spatial corridor does not change when the actor clears a
+        # movable obstruction. Only the AFQR-19 opportunity evidence changes.
+        spatial_token = hashlib.sha256(
+            command_id.encode("utf-8")
+        ).hexdigest()[:20]
         material = (
             command_id if obstruction is None
             else f"{command_id}|route-obstruction={int(blocked)}"
         )
-        token = hashlib.sha256(material.encode("utf-8")).hexdigest()[:20]
+        opportunity_token = hashlib.sha256(
+            material.encode("utf-8")
+        ).hexdigest()[:20]
 
         spatial = create_movement_spatial_evidence(
-            evidence_id=build_record_id("evidence", f"g1-spatial-{token}"),
+            evidence_id=build_record_id("evidence", f"g1-spatial-{spatial_token}"),
             actor_entity_id=self.player_entity_id,
             source_place_id=source_place_id,
             destination_place_id=destination_place_id,
             spatially_permitted=True,
         )
         opportunity = create_movement_opportunity_evidence(
-            evidence_id=build_record_id("evidence", f"g1-opportunity-{token}"),
+            evidence_id=build_record_id("evidence", f"g1-opportunity-{opportunity_token}"),
             actor_entity_id=self.player_entity_id,
             destination_place_id=destination_place_id,
             opportunity_available=not blocked,
