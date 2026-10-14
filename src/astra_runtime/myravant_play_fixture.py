@@ -897,9 +897,12 @@ class MyravantPlayFixture:
         spatial_token = hashlib.sha256(
             command_id.encode("utf-8")
         ).hexdigest()[:20]
+        # Preserve the preexisting opportunity identity for unobstructed
+        # travel; only a genuinely obstructed qualification needs a distinct
+        # token. Historical baseline receipts must not drift on clear paths.
         material = (
-            command_id if obstruction is None
-            else f"{command_id}|route-obstruction={int(blocked)}"
+            f"{command_id}|route-obstruction=1"
+            if blocked else command_id
         )
         opportunity_token = hashlib.sha256(
             material.encode("utf-8")
