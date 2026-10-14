@@ -203,6 +203,16 @@ class FixtureMovementRoute:
 
 
 @dataclass(frozen=True, kw_only=True)
+class FixtureMovementObstructionLicense:
+    """One explicitly licensed route obstruction, never generic co-location."""
+
+    source_place_id: str
+    direction: str
+    blocking_object_entity_id: str
+    blocking_object_place_id: str
+
+
+@dataclass(frozen=True, kw_only=True)
 class FixtureObjectDisplacementRoute:
     object_entity_id: str
     source_place_id: str
@@ -340,6 +350,9 @@ class MyravantPlayFixture:
     requested_object_state_routes: tuple[
         FixtureRequestedObjectStateRoute, ...
     ] = ()
+    movement_obstruction_licenses: tuple[
+        FixtureMovementObstructionLicense, ...
+    ] = ()
 
     def __post_init__(self) -> None:
         object.__setattr__(
@@ -408,6 +421,29 @@ class MyravantPlayFixture:
             presentation.entity_id
             for presentation in self.object_presentations
         }
+        obstruction_keys: list[tuple[str, str]] = []
+        for license in self.movement_obstruction_licenses:
+            if license.blocking_object_entity_id not in object_ids:
+                raise MyravantPlayFixtureError(
+                    "movement obstruction must identify an explicit fixture object"
+                )
+            if license.blocking_object_place_id not in place_ids:
+                raise MyravantPlayFixtureError(
+                    "movement obstruction must identify an explicit fixture place"
+                )
+            if not any(
+                route.source_place_id == license.source_place_id
+                and route.direction == license.direction
+                for route in self.movement_routes
+            ):
+                raise MyravantPlayFixtureError(
+                    "movement obstruction must identify an existing movement route"
+                )
+            obstruction_keys.append((license.source_place_id, license.direction))
+        if len(obstruction_keys) != len(set(obstruction_keys)):
+            raise MyravantPlayFixtureError(
+                "movement obstruction licenses must be unique by route"
+            )
         displacement_keys: list[tuple[str, str, str, str]] = []
         for route in self.object_displacement_routes:
             if route.object_entity_id not in object_ids:
@@ -822,6 +858,7 @@ class MyravantPlayFixture:
         source_place_id: str,
         direction: str,
         destination_place_id: str,
+        representation: PersistentWorldEntityLocationRepresentation | None = None,
     ) -> tuple[MovementSpatialEvidence, MovementOpportunityEvidence]:
         expected_destination = self.destination_for(
             source_place_id=source_place_id,
@@ -832,7 +869,36 @@ class MyravantPlayFixture:
                 "requested destination does not match the explicit fixture route"
             )
 
-        token = hashlib.sha256(command_id.encode("utf-8")).hexdigest()[:20]
+        # AFQR-18 defines the licensed spatial corridor. AFQR-19 qualifies
+        # this particular opportunity against the current RT-010 placement.
+        # Shared-room co-location alone NEVER implies a blocked passage.
+        current = (
+            representation
+            if representation is not None
+            else self.initial_state.representation
+        )
+        if current.campaign_id != self.campaign_id:
+            raise UnavailableFixtureMovementError(
+                "movement opportunity campaign identity differs from fixture"
+            )
+        obstruction = next((
+            license for license in self.movement_obstruction_licenses
+            if license.source_place_id == source_place_id
+            and license.direction == direction
+        ), None)
+        blocked = obstruction is not None and any(
+            relation.relation_type == LOCATED_AT_RELATION_TYPE
+            and relation.subject_entity_id == obstruction.blocking_object_entity_id
+            and relation.object_entity_id == obstruction.blocking_object_place_id
+            for relation in current.relations
+        )
+        # Different states must not present identical qualification IDs even
+        # when the refused command ID can be retried after clearing the way.
+        material = (
+            command_id if obstruction is None
+            else f"{command_id}|route-obstruction={int(blocked)}"
+        )
+        token = hashlib.sha256(material.encode("utf-8")).hexdigest()[:20]
 
         spatial = create_movement_spatial_evidence(
             evidence_id=build_record_id("evidence", f"g1-spatial-{token}"),
@@ -845,8 +911,8 @@ class MyravantPlayFixture:
             evidence_id=build_record_id("evidence", f"g1-opportunity-{token}"),
             actor_entity_id=self.player_entity_id,
             destination_place_id=destination_place_id,
-            opportunity_available=True,
-            resolution_accepted=True,
+            opportunity_available=not blocked,
+            resolution_accepted=not blocked,
         )
         return spatial, opportunity
 
@@ -1714,6 +1780,15 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             destination_place_id=YARD_ID,
             method="drag",
         ),
+        # Once recovered to Yard, the same Waystone can be cleared
+        # without taking custody by another explicitly qualified method.
+        FixtureObjectDisplacementRoute(
+            object_entity_id=WAYSTONE_ID,
+            source_place_id=YARD_ID,
+            direction="north",
+            destination_place_id=WORKSHOP_ID,
+            method="push",
+        ),
     )
 
     places = (
@@ -1834,4 +1909,15 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
         object_displacement_routes=object_displacement_routes,
         actor_object_handoff_routes=actor_object_handoff_routes,
         requested_object_state_routes=requested_object_state_routes,
+        movement_obstruction_licenses=(
+            # This deliberately narrow physical obstruction is part of the
+            # Yard east exit only, and only when Waystone is placed in Yard.
+            # It is NOT a generic "objects in rooms block exits" rule.
+            FixtureMovementObstructionLicense(
+                source_place_id=YARD_ID,
+                direction="east",
+                blocking_object_entity_id=WAYSTONE_ID,
+                blocking_object_place_id=YARD_ID,
+            ),
+        ),
     )
