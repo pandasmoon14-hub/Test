@@ -357,13 +357,16 @@ class MyravantVSM14Application(MyravantPlayApplication):
         self, operation: str, *, method: str = "none",
     ) -> PlayApplicationResult:
         """Only the Yard-located chest can be worked; no remote progress leak."""
-        chest_here = any(
+        # Servicing requires the Yard worksite, but releasing an already
+        # serviced latch travels with the real object to prevent stranded state.
+        place = self.current_place_id()
+        chest_local = any(
             r.subject_entity_id == TOOL_CHEST_ID
             and r.relation_type == "located_at"
-            and r.object_entity_id == YARD_ID
+            and r.object_entity_id == place
             for r in self.state.representation.relations
         )
-        if self.current_place_id() != YARD_ID or not chest_here:
+        if not chest_local or (operation != "release" and place != YARD_ID):
             return self._service_refusal(
                 "That fixture cannot be serviced from here.",
                 "fixture_service_target_not_local",
@@ -413,7 +416,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
             state=self.service_state, command_id=cmd_id,
             operation=operation, method=method,
             actor_id=self.fixture.player_entity_id,
-            target_id=TOOL_CHEST_ID, place_id=YARD_ID,
+            target_id=TOOL_CHEST_ID, place_id=place,
             logical_before=before, logical_after=after,
             time_receipt_id=time_receipt, qualified=True,
             expected_pre_digest=digest_fixture_service_state(self.service_state),
@@ -448,13 +451,16 @@ class MyravantVSM14Application(MyravantPlayApplication):
         )
 
     def check_chest_latch(self) -> PlayApplicationResult:
-        chest_here = any(
+        # Inspection is local to the current physical chest, not the
+        # historical servicing worksite; never expose remote condition.
+        place = self.current_place_id()
+        chest_local = any(
             r.subject_entity_id == TOOL_CHEST_ID
             and r.relation_type == "located_at"
-            and r.object_entity_id == YARD_ID
+            and r.object_entity_id == place
             for r in self.state.representation.relations
         )
-        if self.current_place_id() != YARD_ID or not chest_here:
+        if not chest_local:
             return self._service_refusal(
                 "The service worksite is not accessible here.",
                 "fixture_service_target_not_local",
