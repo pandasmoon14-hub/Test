@@ -498,7 +498,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
     def request_object_state_from_actor(
         self, actor_reference: str, operation: str, object_reference: str
     ) -> PlayApplicationResult:
-        if self.service_state.secured and operation == "open":
+        if self.service_state.secured and operation.strip().casefold() == "open":
             try:
                 target = self.fixture.resolve_object_reference(object_reference)
             except Exception:
@@ -512,60 +512,17 @@ class MyravantVSM14Application(MyravantPlayApplication):
             actor_reference, operation, object_reference
         )
 
-    def wait(self) -> PlayApplicationResult:
-        # The WORLD-2 autonomous opener cannot bypass an actually secured
-        # RT-010/AFQR-16 asset condition. Other routines remain unchanged.
-        if self.service_state.secured and (
-            (self.runtime_state.logical_time_state.logical_position + 1) % 4 == 2
-        ):
-            from astra_runtime.domain.persistent_world_logical_time import (
-                WORLD1_SCHEDULER_PROFILE_ID,
-                prepare_persistent_world_logical_time,
-                commit_prepared_persistent_world_logical_time,
-                digest_persistent_world_logical_time_state,
-            )
-            from astra_runtime.domain.persistent_world_runtime_composition import (
-                replace_persistent_world_runtime_logical_time_state,
-            )
-            pre = self.authoritative_digest()
-            t = self.runtime_state.logical_time_state
-            command = create_command_envelope(
-                command_id=self._next_time_command_id(),
-                command_type="wait",
-                source_actor_id=self.fixture.player_entity_id,
-                payload={"advance_steps": 1,
-                         "scheduler_profile_id": WORLD1_SCHEDULER_PROFILE_ID},
-                metadata={"client": "myravant-terminal-world2",
-                          "service_latch_blocks_open": True},
-            )
-            prepared = prepare_persistent_world_logical_time(
-                state=t, command=command,
-                expected_pre_state_digest=digest_persistent_world_logical_time_state(t),
-            )
-            result = commit_prepared_persistent_world_logical_time(
-                state=t, prepared=prepared,
-            )
-            self._runtime_state = replace_persistent_world_runtime_logical_time_state(
-                state=self.runtime_state, logical_time_state=result.state,
-            )
-            return PlayApplicationResult(
-                result_type="world_advanced",
-                message="Time passes. The secured chest remains closed.",
-                authoritative_changed=True, command_id=command.command_id,
-                command_fingerprint=result.receipt.command_fingerprint,
-                preview_id=result.preview.preview_id,
-                receipt_id=result.receipt.receipt_id,
-                state_delta_id=result.state_delta.delta_id,
-                logical_time_before=result.receipt.pre_position,
-                logical_time_after=result.receipt.post_position,
-                pre_state_digest=pre, post_state_digest=self.authoritative_digest(),
-                world_event_class="world_autonomous_action",
-                world_process_actor_id=GROUNDSKEEPER_ID,
-                world_process_action="open",
-                world_process_target_id=TOOL_CHEST_ID,
-                world_process_outcome="rejected",
-            )
-        return super().wait()
+    def _world2_object_opportunity_allowed(
+        self, *, object_entity_id: str, operation: str,
+    ) -> bool:
+        # WORLD-2 still prepares/commits its normal time+consequence path,
+        # including a receipt for the rejected opportunity. RT-010 asset
+        # condition only affects the owner's lawful opportunity check.
+        return not (
+            self.service_state.secured
+            and object_entity_id == TOOL_CHEST_ID
+            and operation == "open"
+        )
 
     def save(self) -> PlayApplicationResult:
         if self.checkpoint_path is None:
