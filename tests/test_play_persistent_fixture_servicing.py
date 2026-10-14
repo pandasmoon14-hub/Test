@@ -104,8 +104,18 @@ def test_completed_latch_changes_later_opening_opportunity():
     assert denied_npc.failure_class == "fixture_service_latch_secured"
     assert app.authoritative_digest() == before
     # Advances through the NPC's open phase without bypassing the latch.
-    for _ in range(4):
-        assert app.wait().authoritative_changed
+    passes = [app.wait() for _ in range(4)]
+    assert all(result.authoritative_changed for result in passes)
+    blocked = [
+        result for result in passes
+        if result.world_process_action == "open_object"
+    ]
+    assert len(blocked) == 1
+    assert blocked[0].world_process_outcome == "opportunity_unavailable"
+    assert blocked[0].due_process_ref
+    assert blocked[0].world_process_command_id
+    assert blocked[0].opportunity_evidence_id
+    assert blocked[0].receipt_id
     assert app.service_state.secured
     assert app.object_open_state("astra:entity:tool-chest").state == "closed"
     assert app.service_chest_latch("release").authoritative_changed
