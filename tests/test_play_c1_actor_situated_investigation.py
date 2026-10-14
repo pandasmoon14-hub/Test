@@ -146,6 +146,38 @@ def test_remote_actor_and_unwitnessed_target_refuse_without_commit():
     ).failure_class == "actor_knowledge_unknown"
 
 
+def test_dark_orchard_requires_real_light_for_npc_witness():
+    from astra_runtime.myravant_vsm14_follow_intent import (
+        execute_vsm14_follow_request,
+    )
+    from astra_runtime.myravant_play_fixture import ORCHARD_PATH_ID
+
+    app = MyravantVSM14Application.new()
+    assert app.pickup("lantern").authoritative_changed
+    _meet_keeper_in_yard(app)
+    following = execute_vsm14_follow_request(
+        app, "ask groundskeeper to follow me"
+    )
+    assert following.result.authoritative_changed
+    assert app.move("east").authoritative_changed
+    assert app.current_place_id() == ORCHARD_PATH_ID
+    assert app.entity_place_id(
+        app.fixture.resolve_actor_reference("groundskeeper")
+    ) == ORCHARD_PATH_ID
+    before = app.authoritative_digest()
+    refused = app.actor_memory_interaction("witness", "waystone")
+    assert not refused.authoritative_changed
+    assert refused.failure_class == "actor_knowledge_witness_opportunity_unavailable"
+    assert app.authoritative_digest() == before
+
+    # This tests sensory opportunity, not an omniscient remote truth probe.
+    assert app.light_object("lantern").authoritative_changed
+    sighting = app.actor_memory_interaction("witness", "waystone")
+    assert sighting.authoritative_changed
+    assert len(app.knowledge_state.events) == 1
+    assert app.knowledge_state.events[0].reported_place_id == ORCHARD_PATH_ID
+
+
 def test_c1_replay_with_existing_latch_service_and_strict_integrity(tmp_path):
     checkpoint = tmp_path / "combined.json"
     app = MyravantVSM14Application.new(checkpoint_path=checkpoint)
