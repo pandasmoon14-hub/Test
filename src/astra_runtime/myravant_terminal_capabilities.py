@@ -8,6 +8,9 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_bounded_work_goals import (
+    parse_bounded_work_goal, execute_bounded_work_goal,
+)
 from astra_runtime.myravant_cooperative_delivery_goal import (
     parse_cooperative_delivery_goal,
     execute_cooperative_delivery_goal,
@@ -36,6 +39,11 @@ def execute_bounded_terminal_request(
     raw_text: str,
 ) -> tuple[str, PlayApplicationResult] | None:
     """Route bounded VSM requests; return None for every other attempt."""
+
+    # A small piece of real work may span multiple separately committed
+    # player actions and saves. Owner state is the only work progress ledger.
+    if parse_bounded_work_goal(raw_text) is not None:
+        return "bounded_work", execute_bounded_work_goal(application, raw_text)
 
     # Recognize goal-shaped, actor-situated physical requests before the
     # narrow execution-verb grammars. All consequences remain in the original

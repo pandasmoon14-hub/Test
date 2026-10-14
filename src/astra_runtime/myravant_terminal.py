@@ -763,6 +763,10 @@ def _write_help(output: TextIO) -> str:
         "A bounded cooperative goal is also available: ask groundskeeper "
         "to bring lantern to orchard. The lawful physical method depends "
         "on the Groundskeeper's actual local opportunity.\n"
+        "Two noncanonical resumable work goals: work on lantern preparation, "
+        "work on chest staging, or check lantern preparation/chest staging. "
+        "Work stages are actual object-state changes; timed labor, material "
+        "consumption, and general crafting are not available.\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
         "as capability pressure; they do not mutate authoritative state.\n"
     )
