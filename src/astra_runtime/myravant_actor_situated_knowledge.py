@@ -88,9 +88,10 @@ def commit_actor_knowledge(
         raise ActorKnowledgeError("knowledge optimistic precondition mismatch")
     if (
         type(command_id) is not str
-        or not command_id.startswith("terminal-actor-evidence-")
-        or not command_id.rsplit("-", 1)[-1].isdigit()
-        or command_id in {x.command_id for x in state.events}
+        or command_id != (
+            f"terminal-actor-evidence-{len(state.events) + 1:06d}"
+        )
+        or (state.events and logical_step < state.events[-1].logical_step)
         or actor_id != GROUNDSKEEPER_ID
         or target_id not in TARGET_IDS
         or reported_place_id not in PLACE_IDS
