@@ -166,10 +166,33 @@ def test_comp2_relocated_waystone_survives_save_restore_and_does_not_remateriali
     refs = pickup_transitions[0].preview.metadata["opportunity_input_evidence_refs"]
     assert refs == [pickup.observation_evidence_id]
 
+    # The newly qualified Yard east-exit obstruction must survive the
+    # checkpoint too. The earlier COMP-2 conservation claim still holds:
+    # clearing it by custody cannot duplicate or rematerialize the stone.
+    before_blocked = restored.authoritative_digest()
+    blocked = restored.move("east")
+    assert blocked.result_type == "movement_rejected"
+    assert blocked.failure_class == "movement_opportunity_obstructed"
+    assert blocked.spatial_evidence_id and blocked.opportunity_evidence_id
+    assert blocked.receipt_id is None and blocked.state_delta_id is None
+    assert blocked.pre_state_digest == blocked.post_state_digest == before_blocked
+    assert _direct_place_for(restored, WAYSTONE_ID) == YARD_ID
+
+    cleared = restored.pickup("waystone")
+    assert cleared.result_type == "custody_committed"
+    assert cleared.receipt_id and cleared.state_delta_id
+    assert _is_carried(restored, WAYSTONE_ID)
     assert restored.move("east").result_type == "movement_committed"
     assert restored.current_place_id() == ORCHARD_PATH_ID
-    assert _direct_place_for(restored, WAYSTONE_ID) == YARD_ID
+    # The object is carried, not independently instantiated at its original
+    # Orchard placement or as a duplicate at the Yard.
+    assert _direct_place_for(restored, WAYSTONE_ID) is None
+    assert _is_carried(restored, WAYSTONE_ID)
     assert "Weathered Waystone" not in restored.look().view.objects
+    assert restored.move("west").result_type == "movement_committed"
+    assert restored.drop("waystone").result_type == "custody_committed"
+    assert _direct_place_for(restored, WAYSTONE_ID) == YARD_ID
+    assert not _is_carried(restored, WAYSTONE_ID)
 
 
 def test_comp2_remote_light_does_not_create_pickup_opportunity():
