@@ -94,8 +94,14 @@ def restore_b2a_checkpoint(*, checkpoint_path, expected_campaign_id,
         raise PersistentWorldCheckpointEvidenceError(
             "B-2a component inventory is invalid"
         )
+    # The frozen v5 base restorer accepts only its historical components.
+    # Strip the v6 extension before reconstructing the legacy base payload.
+    base_components = {
+        key: value for key, value in components.items()
+        if key != "fixture_service"
+    }
     runtime = _restore_base_components(
-        components=components, expected_campaign_id=expected_campaign_id,
+        components=base_components, expected_campaign_id=expected_campaign_id,
         expected_initial_open_states=expected_initial_open_states,
         expected_initial_lit_states=expected_initial_lit_states,
         expected_initial_representation=expected_initial_representation,
