@@ -183,7 +183,15 @@ def test_unexpected_actual_play_attempts_are_captured_without_world_mutation(tmp
     assert [r["raw_player_input"] for r in records[:-1]] == [
         x + "\n" for x in inputs
     ]
-    # Generic "ask X for Y" currently routes a charter petition as a\n    # request_handoff even though no council/charter is executable here. Record\n    # the semantic overmatch explicitly; authority must remain unchanged.\n    expected_routes = ["unsupported"] * 72\n    expected_routes[67] = "request_handoff"\n    assert [r["parsed_action"] for r in records[:72]] == expected_routes\n    assert [r["parsed_action"] for r in records[72:80]] == ["ambiguous"] * 8
+    # Institutional petitions are not custody requests. No charter,
+    # council, permission, or institution is silently created in-world.
+    expected_routes = ["unsupported"] * 72
+    expected_routes[67] = "institutional_petition"
+    assert [r["parsed_action"] for r in records[:72]] == expected_routes
+    assert records[67]["failure_class"] == "institutional_petition_unqualified"
+    assert not records[67]["authoritative_changed"]
+    assert records[67]["receipt_id"] is None
+    assert [r["parsed_action"] for r in records[72:80]] == ["ambiguous"] * 8
     assert [r["parsed_action"] for r in records[80:85]] == ["unsupported"] * 5
     assert [r["failure_class"] for r in records[80:85]] == [
         "unsupported_compound_intent_sequencing"
