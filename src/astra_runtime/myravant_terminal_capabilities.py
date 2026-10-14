@@ -8,6 +8,9 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_c1_investigation_goal import (
+    parse_actor_memory_request, execute_actor_memory_request,
+)
 from astra_runtime.myravant_b2b_waystone_clearance import (
     parse_waystone_clearance, execute_waystone_clearance,
 )
@@ -45,6 +48,14 @@ def execute_bounded_terminal_request(
     raw_text: str,
 ) -> tuple[str, PlayApplicationResult] | None:
     """Route bounded VSM requests; return None for every other attempt."""
+
+    # C-1 distinguishes direct actor sensing, unverified player testimony,
+    # and historical recall. No current-world omniscience is claimed.
+    if parse_actor_memory_request(raw_text) is not None:
+        return (
+            "actor_situated_investigation",
+            execute_actor_memory_request(application, raw_text),
+        )
 
     # B-2b is physical progress: Waystone placement creates/clears a real
     # exit obstruction through the existing COMP-3 and WORLD-2 owners.
