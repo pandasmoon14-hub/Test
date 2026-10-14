@@ -85,6 +85,8 @@ _COMPOUND_ACTION_STARTERS = frozenset({
     "hurl",
     "push",
     "slide",
+    "drag",
+    "haul",
     "ask",
     "wait",
 })
@@ -98,6 +100,8 @@ _UNSUPPORTED_CAPABILITY_BY_VERB = {
     "hurl": "unsupported_capability_throwing",
     "push": "unsupported_capability_ground_displacement",
     "slide": "unsupported_capability_ground_displacement",
+    "drag": "unsupported_capability_ground_displacement",
+    "haul": "unsupported_capability_ground_displacement",
 }
 
 
@@ -358,7 +362,7 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
                 raw_text=raw_text,
             )
 
-    if verb in {"throw", "toss", "hurl", "push", "slide"} and len(parts) >= 3:
+    if verb in {"throw", "toss", "hurl", "push", "slide", "drag", "haul"} and len(parts) >= 3:
         direction = _DIRECTION_ALIASES.get(lowered[-1])
         if direction is not None:
             object_reference = _normalized_target(parts[1:-1])
@@ -372,7 +376,8 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
             if object_reference:
                 return ParsedTerminalCommand(
                     action=(
-                        verb if verb in {"push", "slide"} else "throw"
+                        ("drag" if verb == "haul" else verb)
+                        if verb in {"push", "slide", "drag", "haul"} else "throw"
                     ),
                     argument=f"{object_reference} -> {direction}",
                     raw_text=raw_text,
@@ -741,7 +746,7 @@ def _write_help(output: TextIO) -> str:
         "ask groundskeeper what are you carrying, "
         "ask groundskeeper are you following me, "
         "ask <actor> to open/close <object>, "
-        "throw/push/slide <object> <direction>, open <object>, "
+        "throw/push/slide/drag <object> <direction>, open <object>, "
         "close <object>, light <object>, "
         "extinguish <object>, put <object> in <container>, "
         "take <object> from <container>, wait, save, help, exit\n"
@@ -952,7 +957,7 @@ def run_terminal(
                 error_stream=evidence_error_stream,
             )
             continue
-        if parsed.action in {"throw", "push", "slide"}:
+        if parsed.action in {"throw", "push", "slide", "drag"}:
             try:
                 object_reference, direction = _split_throw_argument(
                     parsed.argument or ""
