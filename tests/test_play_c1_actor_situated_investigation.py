@@ -93,6 +93,38 @@ def test_false_player_report_never_changes_world_or_overwrites_witness():
     assert app.knowledge_state.events[-1].reported_place_id == GATEHOUSE_ID
 
 
+def test_false_lead_can_change_npc_action_without_changing_world_truth(tmp_path):
+    checkpoint = tmp_path / "lead.json"
+    app = MyravantVSM14Application.new(checkpoint_path=checkpoint)
+    _meet_keeper_in_yard(app)
+    assert app.actor_memory_interaction(
+        "report", "chest", reported_place="gatehouse"
+    ).authoritative_changed
+    before = app.representation_digest()
+    followup = app.actor_memory_interaction("follow_lead", "chest")
+    assert followup.authoritative_changed
+    assert "reported lead" in followup.message
+    assert "does not establish" in followup.message
+    assert app.entity_place_id(app.fixture.resolve_actor_reference(
+        "groundskeeper"
+    )) == GATEHOUSE_ID
+    assert before != app.representation_digest()
+    assert app.save().checkpoint_digest
+    restored = MyravantVSM14Application.restore(checkpoint_path=checkpoint)
+    assert restored.authoritative_digest() == app.authoritative_digest()
+    assert restored.entity_place_id(restored.fixture.resolve_actor_reference(
+        "groundskeeper"
+    )) == GATEHOUSE_ID
+    assert restored.knowledge_state.events[-1].source_kind == "reported"
+    # Report did not move the chest: a persistent, agent-directed consequence
+    # is separate from the claimed location's truth.
+    assert any(
+        rel.subject_entity_id == restored.fixture.resolve_object_reference("chest")
+        and rel.object_entity_id == YARD_ID
+        for rel in restored.state.representation.relations
+    )
+
+
 def test_remote_actor_and_unwitnessed_target_refuse_without_commit():
     app = MyravantVSM14Application.new()
     old = app.authoritative_digest()
@@ -179,6 +211,9 @@ def test_interpreter_separates_inquiry_witness_and_testimony():
     assert parse_actor_memory_request(
         "ask groundskeeper where they think chest is"
     ) == ("recall", "chest", None)
+    assert parse_actor_memory_request(
+        "ask groundskeeper to investigate the last location of chest"
+    ) == ("follow_lead", "chest", None)
     for raw in ("ask groundskeeper for chest",
                 "ask groundskeeper if they have chest",
                 "ask council for a charter"):
