@@ -55,6 +55,11 @@ def test_dark_remote_worksite_cannot_mint_time_or_work(tmp_path):
     assert out.failure_class == "waystone_clearance_sensing_unavailable"
     assert app.authoritative_digest() == before
     assert app.runtime_state.logical_time_state.logical_position == t
+    inspection = app.clear_waystone_route("check")
+    assert not inspection.authoritative_changed
+    assert inspection.failure_class == "waystone_clearance_sensing_unavailable"
+    assert app.authoritative_digest() == before
+    assert app.runtime_state.logical_time_state.logical_position == t
 
 
 def test_two_distinct_timed_steps_obstruction_and_recovery(tmp_path):
