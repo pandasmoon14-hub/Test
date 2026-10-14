@@ -171,3 +171,59 @@ def test_failed_durable_write_never_acknowledges_success(
     assert "could not be durably acknowledged" in out.getvalue()
     assert "You move" not in out.getvalue()
     assert not (tmp_path / "failing.json").exists()
+
+def test_real_process_kill_after_terminal_success_ack_is_recoverable(tmp_path):
+    """A child exits by external termination *after* its success was emitted."""
+    import time
+    cp = tmp_path / "ack.json"
+    marker = tmp_path / "ack.marker"
+    child = r"""
+import sys, time
+from pathlib import Path
+from io import StringIO
+from astra_runtime import myravant_terminal as terminal
+from astra_runtime.myravant_vsm14_application import MyravantVSM14Application
+from astra_runtime.myravant_terminal_capabilities import execute_bounded_terminal_request
+
+checkpoint, marker = sys.argv[1:]
+original = terminal._write_durable_result
+def ack_barrier(*args, **kwargs):
+    visible = original(*args, **kwargs)
+    if args[2].authoritative_changed:
+        Path(marker).write_text("ack", encoding="utf-8")
+        while True:
+            time.sleep(0.2)
+    return visible
+terminal._write_durable_result = ack_barrier
+app = MyravantVSM14Application.new(checkpoint_path=checkpoint)
+terminal.run_terminal(
+    app, input_stream=StringIO("go south\\n"),
+    output_stream=sys.stdout,
+    specialized_router=execute_bounded_terminal_request,
+)
+"""
+    proc = subprocess.Popen(
+        [sys.executable, "-c", child, str(cp), str(marker)],
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+    )
+    try:
+        deadline = time.monotonic() + 35
+        while not marker.exists() and proc.poll() is None:
+            if time.monotonic() >= deadline:
+                break
+            time.sleep(0.05)
+        if not marker.exists():
+            stdout, stderr = proc.communicate(timeout=10)
+            pytest.fail(
+                f"child failed to acknowledge: {proc.returncode}: "
+                f"{stdout} {stderr}"
+            )
+        assert marker.read_text(encoding="utf-8") == "ack"
+    finally:
+        if proc.poll() is None:
+            proc.kill()
+        proc.communicate(timeout=10)
+    assert proc.returncode != 0
+    restored = MyravantVSM14Application.restore(checkpoint_path=cp)
+    assert restored.current_place_id() == YARD_ID
+    assert len(restored.state.committed_transitions) == 1
