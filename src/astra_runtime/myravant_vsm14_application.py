@@ -25,6 +25,14 @@ from astra_runtime.domain.persistent_world_follow_intent import (
 from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
     PersistentWorldCheckpointFormatError,
 )
+from astra_runtime.domain.persistent_world_fixture_service import (
+    FixtureServiceError, FixtureServiceState, _transition as _service_transition,
+    digest_fixture_service_state, execute_fixture_service,
+)
+from astra_runtime.domain.persistent_world_b2a_checkpoint import (
+    digest_b2a_authoritative_state, restore_b2a_checkpoint,
+    write_b2a_checkpoint,
+)
 from astra_runtime.domain.persistent_world_movement_integration import (
     PersistentWorldMovementIntegrationError,
     create_movement_opportunity_evidence,
@@ -47,7 +55,7 @@ from astra_runtime.myravant_play_application import (
     PlayApplicationResult,
 )
 from astra_runtime.myravant_play_fixture import (
-    GROUNDSKEEPER_ID,
+    GROUNDSKEEPER_ID, LANTERN_ID, TOOL_CHEST_ID, YARD_ID,
     MyravantPlayFixture,
     create_terminal_play_fixture,
 )
@@ -67,6 +75,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
         fixture: MyravantPlayFixture,
         runtime_state,
         follow_intent_state: PersistentWorldFollowIntentRuntimeState,
+        service_state: FixtureServiceState | None = None,
         checkpoint_path: str | Path | None = None,
     ) -> None:
         super().__init__(
@@ -81,6 +90,11 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 "follow_intent_state must be PersistentWorldFollowIntentRuntimeState"
             )
         self._follow_intent_state = follow_intent_state
+        self._service_state = service_state or FixtureServiceState()
+
+    @property
+    def service_state(self) -> FixtureServiceState:
+        return self._service_state
 
     @property
     def follow_intent_state(self) -> PersistentWorldFollowIntentRuntimeState:
@@ -113,6 +127,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
             follow_intent_state=(
                 create_persistent_world_follow_intent_runtime_state()
             ),
+            service_state=FixtureServiceState(),
             checkpoint_path=checkpoint_path,
         )
 
@@ -124,41 +139,46 @@ class MyravantVSM14Application(MyravantPlayApplication):
         fixture: MyravantPlayFixture | None = None,
     ) -> "MyravantVSM14Application":
         bounded_fixture = fixture or create_terminal_play_fixture()
+        args = dict(
+            checkpoint_path=checkpoint_path,
+            expected_campaign_id=bounded_fixture.campaign_id,
+            expected_initial_open_states=bounded_fixture.initial_object_open_states,
+            expected_initial_lit_states=bounded_fixture.initial_object_lit_states,
+            expected_initial_representation=bounded_fixture.initial_state.representation,
+            expected_initial_representation_digest=(
+                bounded_fixture.provenance.initial_state_digest
+            ),
+        )
         try:
-            runtime_state, follow_state = restore_persistent_world_vsm14_checkpoint(
-                checkpoint_path=checkpoint_path,
-                expected_campaign_id=bounded_fixture.campaign_id,
-                expected_initial_open_states=(
-                    bounded_fixture.initial_object_open_states
-                ),
-                expected_initial_lit_states=(
-                    bounded_fixture.initial_object_lit_states
-                ),
-                expected_initial_representation=(
-                    bounded_fixture.initial_state.representation
-                ),
-                expected_initial_representation_digest=(
-                    bounded_fixture.provenance.initial_state_digest
-                ),
+            runtime_state, follow_state, service_state = restore_b2a_checkpoint(
+                **args
             )
         except PersistentWorldCheckpointFormatError:
-            base = MyravantPlayApplication.restore(
-                checkpoint_path=checkpoint_path,
-                fixture=bounded_fixture,
-            )
-            runtime_state = base.runtime_state
-            follow_state = create_persistent_world_follow_intent_runtime_state()
+            try:
+                runtime_state, follow_state = restore_persistent_world_vsm14_checkpoint(
+                    **args
+                )
+            except PersistentWorldCheckpointFormatError:
+                base = MyravantPlayApplication.restore(
+                    checkpoint_path=checkpoint_path,
+                    fixture=bounded_fixture,
+                )
+                runtime_state = base.runtime_state
+                follow_state = create_persistent_world_follow_intent_runtime_state()
+            service_state = FixtureServiceState()
         return cls(
             fixture=bounded_fixture,
             runtime_state=runtime_state,
             follow_intent_state=follow_state,
+            service_state=service_state,
             checkpoint_path=checkpoint_path,
         )
 
     def authoritative_digest(self) -> str:
-        return digest_persistent_world_vsm14_authoritative_state(
+        return digest_b2a_authoritative_state(
             runtime_state=self.runtime_state,
             follow_intent_state=self.follow_intent_state,
+            service_state=self.service_state,
         )
 
     def _next_follow_intent_command_id(self) -> str:
@@ -325,18 +345,235 @@ class MyravantVSM14Application(MyravantPlayApplication):
             world_process_outcome="committed",
         )
 
+    def _service_refusal(self, message: str, failure: str) -> PlayApplicationResult:
+        digest = self.authoritative_digest()
+        return PlayApplicationResult(
+            result_type="fixture_service_rejected", message=message,
+            authoritative_changed=False, pre_state_digest=digest,
+            post_state_digest=digest, failure_class=failure,
+        )
+
+    def service_chest_latch(
+        self, operation: str, *, method: str = "none",
+    ) -> PlayApplicationResult:
+        """Only the Yard-located chest can be worked; no remote progress leak."""
+        if self.current_place_id() != YARD_ID or self.entity_place_id(
+            TOOL_CHEST_ID
+        ) != YARD_ID:
+            return self._service_refusal(
+                "That fixture cannot be serviced from here.",
+                "fixture_service_target_not_local",
+            )
+        if method == "lantern":
+            lit = self.object_lit_state(LANTERN_ID)
+            lantern_here = any(
+                rel.subject_entity_id == LANTERN_ID
+                and rel.object_entity_id == YARD_ID
+                and rel.relation_type == "located_at"
+                for rel in self.state.representation.relations
+            )
+            if not lantern_here or lit is None or lit.state != "lit":
+                return self._service_refusal(
+                    "A lit lantern must be placed at this worksite.",
+                    "fixture_service_tool_unavailable",
+                )
+        if operation == "secure":
+            open_state = self.object_open_state(TOOL_CHEST_ID)
+            if open_state is None or open_state.state != "closed":
+                return self._service_refusal(
+                    "Close the chest before securing the serviced latch.",
+                    "fixture_service_chest_not_closed",
+                )
+        try:
+            _service_transition(self.service_state, operation, method)
+        except FixtureServiceError:
+            return self._service_refusal(
+                "That latch-service action is not available in its current state.",
+                "fixture_service_opportunity_unavailable",
+            )
+        pre_digest = self.authoritative_digest()
+        before = self.runtime_state.logical_time_state.logical_position
+        time_receipt = ""
+        time_result = None
+        if operation == "work":
+            # Existing WORLD-2 advancement owns all due NPC consequences.
+            # No work is credited by ordinary wait; only this route commits
+            # a service transition after the qualified work time has passed.
+            time_result = self.wait()
+            if not time_result.authoritative_changed:
+                raise FixtureServiceError("qualified labor time did not commit")
+            time_receipt = time_result.receipt_id or ""
+        after = self.runtime_state.logical_time_state.logical_position
+        cmd_id = f"terminal-fixture-service-{len(self.service_state.events) + 1:06d}"
+        next_state, receipt, preview, delta = execute_fixture_service(
+            state=self.service_state, command_id=cmd_id,
+            operation=operation, method=method,
+            actor_id=self.fixture.player_entity_id,
+            target_id=TOOL_CHEST_ID, place_id=YARD_ID,
+            logical_before=before, logical_after=after,
+            time_receipt_id=time_receipt, qualified=True,
+            expected_pre_digest=digest_fixture_service_state(self.service_state),
+        )
+        self._service_state = next_state
+        if operation == "work":
+            message = (
+                "The tool chest latch is now serviceable."
+                if self.service_state.progress == 2
+                else "The latch has one durable work contribution; more work remains."
+            )
+        else:
+            message = {
+                "abandon": "The unfinished work is abandoned; spent effort remains.",
+                "secure": "The serviced latch now secures the closed chest.",
+                "release": "The serviced latch is released.",
+            }[operation]
+        return PlayApplicationResult(
+            result_type="fixture_service_committed", message=message,
+            authoritative_changed=True, command_id=cmd_id,
+            command_fingerprint=receipt.fingerprint,
+            preview_id=receipt.preview_id,
+            receipt_id=receipt.receipt_id,
+            state_delta_id=receipt.state_delta_id,
+            consequence_receipt_id=time_receipt or None,
+            consequence_state_delta_id=(
+                time_result.state_delta_id if time_result else None
+            ),
+            logical_time_before=before, logical_time_after=after,
+            pre_state_digest=pre_digest,
+            post_state_digest=self.authoritative_digest(),
+        )
+
+    def check_chest_latch(self) -> PlayApplicationResult:
+        if self.current_place_id() != YARD_ID or self.entity_place_id(
+            TOOL_CHEST_ID
+        ) != YARD_ID:
+            return self._service_refusal(
+                "The service worksite is not accessible here.",
+                "fixture_service_target_not_local",
+            )
+        s = self.service_state
+        detail = (
+            "serviceable" if s.progress == 2
+            else f"unfinished ({s.progress}/2 work contributions)"
+        )
+        if s.abandoned:
+            detail += "; abandoned, with prior effort preserved"
+        if s.secured:
+            detail += "; chest secured"
+        digest = self.authoritative_digest()
+        return PlayApplicationResult(
+            result_type="fixture_service_status",
+            message=f"Tool chest latch: {detail}.",
+            authoritative_changed=False, pre_state_digest=digest,
+            post_state_digest=digest,
+        )
+
+    def open_object(self, object_reference: str) -> PlayApplicationResult:
+        if self.service_state.secured:
+            try:
+                target = self.fixture.resolve_object_reference(object_reference)
+            except Exception:
+                target = None
+            if target == TOOL_CHEST_ID:
+                return self._service_refusal(
+                    "The serviced chest latch is secured. Release it first.",
+                    "fixture_service_latch_secured",
+                )
+        return super().open_object(object_reference)
+
+    def request_object_state_from_actor(
+        self, actor_reference: str, operation: str, object_reference: str
+    ) -> PlayApplicationResult:
+        if self.service_state.secured and operation == "open":
+            try:
+                target = self.fixture.resolve_object_reference(object_reference)
+            except Exception:
+                target = None
+            if target == TOOL_CHEST_ID:
+                return self._service_refusal(
+                    "The secured latch prevents opening by request.",
+                    "fixture_service_latch_secured",
+                )
+        return super().request_object_state_from_actor(
+            actor_reference, operation, object_reference
+        )
+
+    def wait(self) -> PlayApplicationResult:
+        # The WORLD-2 autonomous opener cannot bypass an actually secured
+        # RT-010/AFQR-16 asset condition. Other routines remain unchanged.
+        if self.service_state.secured and (
+            (self.runtime_state.logical_time_state.logical_position + 1) % 4 == 2
+        ):
+            from astra_runtime.domain.persistent_world_logical_time import (
+                WORLD1_SCHEDULER_PROFILE_ID,
+                prepare_persistent_world_logical_time,
+                commit_prepared_persistent_world_logical_time,
+                digest_persistent_world_logical_time_state,
+            )
+            from astra_runtime.domain.persistent_world_runtime_composition import (
+                replace_persistent_world_runtime_logical_time_state,
+            )
+            pre = self.authoritative_digest()
+            t = self.runtime_state.logical_time_state
+            command = create_command_envelope(
+                command_id=self._next_time_command_id(),
+                command_type="wait",
+                source_actor_id=self.fixture.player_entity_id,
+                payload={"advance_steps": 1,
+                         "scheduler_profile_id": WORLD1_SCHEDULER_PROFILE_ID},
+                metadata={"client": "myravant-terminal-world2",
+                          "service_latch_blocks_open": True},
+            )
+            prepared = prepare_persistent_world_logical_time(
+                state=t, command=command,
+                expected_pre_state_digest=digest_persistent_world_logical_time_state(t),
+            )
+            result = commit_prepared_persistent_world_logical_time(
+                state=t, prepared=prepared,
+            )
+            self._runtime_state = replace_persistent_world_runtime_logical_time_state(
+                state=self.runtime_state, logical_time_state=result.state,
+            )
+            return PlayApplicationResult(
+                result_type="world_advanced",
+                message="Time passes. The secured chest remains closed.",
+                authoritative_changed=True, command_id=command.command_id,
+                command_fingerprint=result.receipt.command_fingerprint,
+                preview_id=result.preview.preview_id,
+                receipt_id=result.receipt.receipt_id,
+                state_delta_id=result.state_delta.delta_id,
+                logical_time_before=result.receipt.pre_position,
+                logical_time_after=result.receipt.post_position,
+                pre_state_digest=pre, post_state_digest=self.authoritative_digest(),
+                world_event_class="world_autonomous_action",
+                world_process_actor_id=GROUNDSKEEPER_ID,
+                world_process_action="open",
+                world_process_target_id=TOOL_CHEST_ID,
+                world_process_outcome="rejected",
+            )
+        return super().wait()
+
     def save(self) -> PlayApplicationResult:
         if self.checkpoint_path is None:
             raise CheckpointPathRequiredError(
                 "save requires --checkpoint or a loaded checkpoint path"
             )
         pre_digest = self.authoritative_digest()
-        checkpoint_digest = write_persistent_world_vsm14_checkpoint(
-            runtime_state=self.runtime_state,
-            follow_intent_state=self.follow_intent_state,
-            checkpoint_path=self.checkpoint_path,
-            qualification_evidence=self.fixture.checkpoint_qualification,
-        )
+        if self.service_state.events:
+            checkpoint_digest = write_b2a_checkpoint(
+                runtime_state=self.runtime_state,
+                follow_intent_state=self.follow_intent_state,
+                service_state=self.service_state,
+                checkpoint_path=self.checkpoint_path,
+                qualification_evidence=self.fixture.checkpoint_qualification,
+            )
+        else:
+            checkpoint_digest = write_persistent_world_vsm14_checkpoint(
+                runtime_state=self.runtime_state,
+                follow_intent_state=self.follow_intent_state,
+                checkpoint_path=self.checkpoint_path,
+                qualification_evidence=self.fixture.checkpoint_qualification,
+            )
         post_digest = self.authoritative_digest()
         return PlayApplicationResult(
             result_type="checkpoint_written",
