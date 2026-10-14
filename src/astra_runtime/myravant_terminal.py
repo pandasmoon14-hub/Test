@@ -773,7 +773,7 @@ def _write_help(output: TextIO) -> str:
         "Check latch service, abandon latch service, resume chest latch service. "
         "After finishing, close and secure chest, then release chest latch to "
         "permit reopening. Each work contribution consumes one logical step. "
-        "No recipe, repair economy, generic materials or NPC work scheduler.\\n"
+        "No recipe, repair economy, generic materials or NPC work scheduler.\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
         "as capability pressure; they do not mutate authoritative state.\n"
     )
