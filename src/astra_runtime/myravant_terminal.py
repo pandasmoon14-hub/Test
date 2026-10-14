@@ -767,6 +767,13 @@ def _write_help(output: TextIO) -> str:
         "work on chest staging, or check lantern preparation/chest staging. "
         "Work stages are actual object-state changes; timed labor, material "
         "consumption, and general crafting are not available.\n"
+        "B-2a noncanonical latch service: at the Yard with the Tool Chest, "
+        "service chest latch (manual, two contributions), or service chest "
+        "latch with lantern (a qualified lit lantern at the worksite). "
+        "Check latch service, abandon latch service, resume chest latch service. "
+        "After finishing, close and secure chest, then release chest latch to "
+        "permit reopening. Each work contribution consumes one logical step. "
+        "No recipe, repair economy, generic materials or NPC work scheduler.\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
         "as capability pressure; they do not mutate authoritative state.\n"
     )

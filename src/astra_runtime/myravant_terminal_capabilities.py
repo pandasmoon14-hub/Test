@@ -8,6 +8,9 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_b2a_service_goal import (
+    parse_b2a_service, execute_b2a_service,
+)
 from astra_runtime.myravant_bounded_work_goals import (
     parse_bounded_work_goal, execute_bounded_work_goal,
 )
@@ -39,6 +42,11 @@ def execute_bounded_terminal_request(
     raw_text: str,
 ) -> tuple[str, PlayApplicationResult] | None:
     """Route bounded VSM requests; return None for every other attempt."""
+
+    # B-2a has its own RT-010/AFQR-16 state; B-1 goals remain mere
+    # projections of physical location and object state.
+    if parse_b2a_service(raw_text) is not None:
+        return "fixture_service", execute_b2a_service(application, raw_text)
 
     # A small piece of real work may span multiple separately committed
     # player actions and saves. Owner state is the only work progress ledger.
