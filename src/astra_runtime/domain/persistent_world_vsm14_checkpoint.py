@@ -63,6 +63,11 @@ from astra_runtime.myravant_play_fixture import (
     PLAYER_ID, TOOL_CHEST_ID, YARD_ID, WORKSHOP_ID, ORCHARD_PATH_ID,
 )
 
+from astra_runtime.myravant_actor_situated_knowledge import (
+    ActorKnowledgeError, ActorKnowledgeState, digest_actor_knowledge,
+    restore_actor_knowledge, serialize_actor_knowledge,
+)
+
 from astra_runtime.kernel.state_delta import StateDeltaEnvelope
 from astra_runtime.kernel.transaction_preview import TransactionPreview
 
@@ -767,50 +772,178 @@ def restore_b2a_checkpoint(*, checkpoint_path, expected_campaign_id,
             "empty service history must use historical v5 format"
         )
 
-    # Time is owned separately: each work record must cite an actual committed
-    # AFQR-04 advancement, and the receipt's positions must be identical.
-    by_receipt = {
-        tr.receipt.receipt_id: tr.receipt
-        for tr in runtime.logical_time_state.committed_transitions
-    }
-    seen_time: set[str] = set()
-    used_commands = {
-        tr.command_id for tr in runtime.logical_time_state.committed_transitions
-    }
-    used_commands.update(
-        tr.command_id for tr in follow.committed_transitions
+    _validate_fixture_service_cross_owner(
+        service=service, runtime=runtime, follow=follow,
     )
-    for tr in service.events:
-        if tr.command_id in used_commands:
-            raise PersistentWorldCheckpointEvidenceError(
-                "B-2a command identity collides with existing owner"
-            )
-        used_commands.add(tr.command_id)
-        if (
-            tr.actor_id != PLAYER_ID or tr.target_id != TOOL_CHEST_ID
-            or (
-                tr.operation == "release"
-                and tr.place_id not in {YARD_ID, WORKSHOP_ID, ORCHARD_PATH_ID}
-            )
-            or (tr.operation != "release" and tr.place_id != YARD_ID)
-        ):
-            raise PersistentWorldCheckpointEvidenceError(
-                "service event escaped declared fixture"
-            )
-        if tr.logical_after > runtime.logical_time_state.logical_position:
-            raise PersistentWorldCheckpointEvidenceError(
-                "service event refers to future world time"
-            )
-        if tr.operation == "work":
-            receipt = by_receipt.get(tr.time_receipt_id)
+    return runtime, follow, service
+
+def _validate_fixture_service_cross_owner(*, service, runtime, follow):
+        # Time is owned separately: each work record must cite an actual committed
+        # AFQR-04 advancement, and the receipt's positions must be identical.
+        by_receipt = {
+            tr.receipt.receipt_id: tr.receipt
+            for tr in runtime.logical_time_state.committed_transitions
+        }
+        seen_time: set[str] = set()
+        used_commands = {
+            tr.command_id for tr in runtime.logical_time_state.committed_transitions
+        }
+        used_commands.update(
+            tr.command_id for tr in follow.committed_transitions
+        )
+        for tr in service.events:
+            if tr.command_id in used_commands:
+                raise PersistentWorldCheckpointEvidenceError(
+                    "B-2a command identity collides with existing owner"
+                )
+            used_commands.add(tr.command_id)
             if (
-                receipt is None or
-                receipt.pre_position != tr.logical_before or
-                receipt.post_position != tr.logical_after or
-                tr.time_receipt_id in seen_time
+                tr.actor_id != PLAYER_ID or tr.target_id != TOOL_CHEST_ID
+                or (
+                    tr.operation == "release"
+                    and tr.place_id not in {YARD_ID, WORKSHOP_ID, ORCHARD_PATH_ID}
+                )
+                or (tr.operation != "release" and tr.place_id != YARD_ID)
             ):
                 raise PersistentWorldCheckpointEvidenceError(
-                    "labor lacks distinct matching AFQR-04 receipt"
+                    "service event escaped declared fixture"
                 )
-            seen_time.add(tr.time_receipt_id)
-    return runtime, follow, service
+            if tr.logical_after > runtime.logical_time_state.logical_position:
+                raise PersistentWorldCheckpointEvidenceError(
+                    "service event refers to future world time"
+                )
+            if tr.operation == "work":
+                receipt = by_receipt.get(tr.time_receipt_id)
+                if (
+                    receipt is None or
+                    receipt.pre_position != tr.logical_before or
+                    receipt.post_position != tr.logical_after or
+                    tr.time_receipt_id in seen_time
+                ):
+                    raise PersistentWorldCheckpointEvidenceError(
+                        "labor lacks distinct matching AFQR-04 receipt"
+                    )
+                seen_time.add(tr.time_receipt_id)
+
+
+# C-1 is a new opt-in component. V1–V6 remain byte/meaning frozen.
+C1_ACTOR_KNOWLEDGE_CHECKPOINT_VERSION = 7
+
+
+def digest_c1_authoritative_state(*, runtime_state, follow_intent_state,
+                                  service_state: FixtureServiceState,
+                                  knowledge_state: ActorKnowledgeState) -> str:
+    base = digest_b2a_authoritative_state(
+        runtime_state=runtime_state, follow_intent_state=follow_intent_state,
+        service_state=service_state,
+    )
+    if not knowledge_state.events:
+        return base
+    return _sha256_bytes(_canonical_bytes({
+        "family": "myravant-c1-actor-knowledge-v7",
+        "base": base,
+        "knowledge": digest_actor_knowledge(knowledge_state),
+    }))
+
+
+def write_c1_checkpoint(*, runtime_state, follow_intent_state,
+                        service_state, knowledge_state, checkpoint_path,
+                        qualification_evidence) -> str:
+    if not knowledge_state.events:
+        raise PersistentWorldCheckpointEvidenceError(
+            "empty actor knowledge uses the historical checkpoint format"
+        )
+    payload = serialize_persistent_world_vsm14_checkpoint_payload(
+        runtime_state=runtime_state, follow_intent_state=follow_intent_state,
+    )
+    payload["components"]["fixture_service"] = serialize_fixture_service(
+        service_state
+    )
+    payload["components"]["actor_situated_knowledge"] = (
+        serialize_actor_knowledge(knowledge_state)
+    )
+    return _write_envelope(
+        envelope={
+            "format_identity": COMPONENT_CHECKPOINT_FORMAT_IDENTITY,
+            "format_version": C1_ACTOR_KNOWLEDGE_CHECKPOINT_VERSION,
+            "campaign_identity":
+                runtime_state.movement_state.representation.campaign_id,
+            "authoritative_payload": payload,
+            "integrity_digest": _sha256_bytes(_canonical_bytes(payload)),
+            "qualification_provenance":
+                _normalize_qualification(qualification_evidence),
+        },
+        checkpoint_path=checkpoint_path,
+    )
+
+
+def restore_c1_checkpoint(*, checkpoint_path, expected_campaign_id,
+                          expected_initial_open_states,
+                          expected_initial_lit_states,
+                          expected_initial_representation,
+                          expected_initial_representation_digest):
+    envelope = _read_checkpoint_envelope(_checkpoint_path(checkpoint_path))
+    payload = _validate_envelope_common(
+        envelope=envelope, expected_campaign_id=expected_campaign_id,
+        expected_version=C1_ACTOR_KNOWLEDGE_CHECKPOINT_VERSION,
+    )
+    components = _require_exact_dict(
+        payload["components"],
+        expected_keys={
+            *VSM14_COMPONENT_CHECKPOINT_COMPONENT_KEYS,
+            "fixture_service", "actor_situated_knowledge",
+        },
+        name="C-1 checkpoint components",
+        error_cls=PersistentWorldCheckpointEvidenceError,
+    )
+    runtime = _restore_base_components(
+        components=components, expected_campaign_id=expected_campaign_id,
+        expected_initial_open_states=expected_initial_open_states,
+        expected_initial_lit_states=expected_initial_lit_states,
+        expected_initial_representation=expected_initial_representation,
+        expected_initial_representation_digest=expected_initial_representation_digest,
+    )
+    follow = _restore_follow_component(components["follow_intent"])
+    try:
+        service = restore_fixture_service(components["fixture_service"])
+    except FixtureServiceError as exc:
+        raise PersistentWorldCheckpointEvidenceError(
+            "C-1 service extension cannot replay"
+        ) from exc
+    if service.events:
+        _validate_fixture_service_cross_owner(
+            service=service, runtime=runtime, follow=follow,
+        )
+
+    # These are independent owner command identities, not a second event
+    # scheduler. Reject aliasing against every already reconstructed owner.
+    ids = {
+        item.command_id for item in follow.committed_transitions
+    }
+    for transitions in (
+        runtime.movement_state.committed_transitions,
+        runtime.committed_custody_transitions,
+        runtime.committed_object_state_transitions,
+        runtime.committed_object_lit_transitions,
+        runtime.committed_storage_transitions,
+        runtime.committed_object_displacement_transitions,
+        runtime.committed_actor_object_handoff_transitions,
+        runtime.logical_time_state.committed_transitions,
+        service.events,
+    ):
+        ids.update(item.command_id for item in transitions)
+    try:
+        knowledge = restore_actor_knowledge(
+            components["actor_situated_knowledge"],
+            maximum_step=runtime.logical_time_state.logical_position,
+            existing_command_ids=ids,
+        )
+    except ActorKnowledgeError as exc:
+        raise PersistentWorldCheckpointEvidenceError(
+            "C-1 actor evidence cannot replay"
+        ) from exc
+    if not knowledge.events:
+        raise PersistentWorldCheckpointEvidenceError(
+            "empty actor evidence must use pre-C1 format"
+        )
+    return runtime, follow, service, knowledge
