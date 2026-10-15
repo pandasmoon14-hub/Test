@@ -1280,7 +1280,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 detail.append(open_state.state)
             lines.append(" — ".join(detail))
         message = (
-            "Currently carried:\\n" + "\\n".join(lines)
+            "Currently carried:\n" + "\n".join(lines)
             if lines else "You are not carrying any declared objects."
         )
         return PlayApplicationResult(
