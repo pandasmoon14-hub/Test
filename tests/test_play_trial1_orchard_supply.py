@@ -240,6 +240,59 @@ def test_loaded_chest_requires_closure_then_can_be_unpacked(tmp_path):
     assert _last_displacement(restored)==receipt
 
 
+def test_yard_supply_advice_never_asserts_unverified_or_remote_chest_cargo():
+    """External review F1/F3: advice must not infer invisible or absent contents."""
+    app = MyravantVSM14Application.new()
+    remote = execute_orchard_supply_attempt(app, "supply orchard with lantern")
+    assert not remote.authoritative_changed
+    assert "Lantern-loaded" not in remote.message
+    assert "closed Tool Chest" not in remote.message
+
+    assert app.move("south").authoritative_changed
+    before = app.authoritative_digest()
+    empty = execute_orchard_supply_attempt(app, "supply orchard with lantern")
+    assert empty.result_type == "orchard_supply_observed"
+    assert "The local Tool Chest is closed." in empty.message
+    assert "does not establish whether the Chest contains the Lantern" in empty.message
+    assert "Lantern-loaded" not in empty.message
+    assert empty.pre_state_digest == empty.post_state_digest == before
+    assert app.authoritative_digest() == before
+
+    assert app.open_object("chest").authoritative_changed
+    open_advice = execute_orchard_supply_attempt(app, "supply orchard with lantern")
+    assert "The local Tool Chest is open." in open_advice.message
+    assert "Lantern-loaded" not in open_advice.message
+
+    assert app.close_object("chest").authoritative_changed
+    pushed = execute_orchard_supply_attempt(
+        app, "supply orchard with lantern by pushing the loaded chest",
+    )
+    assert pushed.authoritative_changed
+    assert _grounded(app, TOOL_CHEST_ID, ORCHARD_PATH_ID)
+    after = app.authoritative_digest()
+    now_remote = execute_orchard_supply_attempt(app, "supply orchard with lantern")
+    assert "The local Tool Chest" not in now_remote.message
+    assert "Lantern-loaded" not in now_remote.message
+    assert now_remote.pre_state_digest == now_remote.post_state_digest == after
+    assert app.authoritative_digest() == after
+
+
+def test_local_known_storage_does_not_turn_goal_advice_into_hidden_truth():
+    app = MyravantVSM14Application.new()
+    _at_yard_with_lantern(app)
+    assert app.open_object("chest").authoritative_changed
+    assert app.store_object("lantern", "chest").authoritative_changed
+    assert app.close_object("chest").authoritative_changed
+    cargo = containment_relation_for(app.storage_state, LANTERN_ID)
+    assert cargo is not None and cargo.object_entity_id == TOOL_CHEST_ID
+    baseline = app.authoritative_digest()
+    advice = execute_orchard_supply_attempt(app, "supply orchard with lantern")
+    assert "The local Tool Chest is closed." in advice.message
+    assert "does not establish whether the Chest contains the Lantern" in advice.message
+    assert "Lantern-loaded" not in advice.message
+    assert advice.pre_state_digest == advice.post_state_digest == baseline
+
+
 def test_unverified_claimed_cargo_moves_only_real_chest_not_imagined_lantern(tmp_path):
     """Counterexample: hidden cargo truth must not be exposed by push eligibility.
 
