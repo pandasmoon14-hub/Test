@@ -8,6 +8,9 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_goal_method_lantern import (
+    parse_lantern_destination_goal, execute_lantern_destination_goal,
+)
 from astra_runtime.myravant_player_sensory_breadth import (
     parse_player_sensory_attempt, execute_player_sensory_attempt,
 )
@@ -60,6 +63,15 @@ def execute_bounded_terminal_request(
     raw_text: str,
 ) -> tuple[str, PlayApplicationResult] | None:
     """Route bounded VSM requests; return None for every other attempt."""
+
+    # A stated physical objective and chosen method are distinct. Execute
+    # only through existing player COMP-3 or voluntary actor VSM-13 owners;
+    # read-only method inquiry never commits a hidden planner outcome.
+    if parse_lantern_destination_goal(raw_text) is not None:
+        return (
+            "destination_goal_method",
+            execute_lantern_destination_goal(application, raw_text),
+        )
 
     # Player sensory methods are distinguished from visual sighting and
     # from third-party actor investigation. No implicit remote reach.
