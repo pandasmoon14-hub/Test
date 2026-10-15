@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from dataclasses import replace
 import subprocess
 import sys
 
@@ -231,6 +232,48 @@ def test_replay_refuses_rehashed_payload_corruption_and_fake_parts(tmp_path):
     assert MyravantVSM14Application.restore(
         checkpoint_path=checkpoint
     ).authoritative_digest() == app.authoritative_digest()
+
+
+def test_cross_owner_replay_rejects_brace_alias_of_actor_knowledge(tmp_path, monkeypatch):
+    """The v8 checkpoint owns a cross-family command-ID uniqueness gate.
+
+    Corrupt the reconstructed fixture owner's return value (rather than
+    modifying its serialized bytes) to isolate the independent v8 join gate:
+    normally each owner also prevents this alias with distinct command
+    prefixes, but a future owner revision must not erase the invariant.
+    """
+    from astra_runtime import myravant_d1_checkpoint as d1_checkpoint
+
+    checkpoint = tmp_path / "d1-collision.json"
+    app = MyravantVSM14Application.new(checkpoint_path=checkpoint)
+    _yard(app)
+    assert app.wait().authoritative_changed
+    assert app.entity_place_id(GROUNDSKEEPER_ID) == YARD_ID
+    seen = app.actor_memory_interaction("witness", "chest")
+    assert seen.authoritative_changed
+    assert app.alter_chest_brace("manual").authoritative_changed
+    assert app.save().checkpoint_digest
+    # The intact checkpoint must restore normally.
+    assert MyravantVSM14Application.restore(
+        checkpoint_path=checkpoint
+    ).authoritative_digest() == app.authoritative_digest()
+
+    original_restore = d1_checkpoint.restore_fixture_brace
+    knowledge_command = app.knowledge_state.events[0].command_id
+
+    def aliased_owner_result(payload):
+        restored = original_restore(payload)
+        replaced = replace(restored.events[0], command_id=knowledge_command)
+        return replace(restored, events=(replaced, *restored.events[1:]))
+
+    monkeypatch.setattr(
+        d1_checkpoint, "restore_fixture_brace", aliased_owner_result
+    )
+    with pytest.raises(
+        PersistentWorldCheckpointEvidenceError,
+        match="unique, causal WORLD-2 time evidence",
+    ):
+        MyravantVSM14Application.restore(checkpoint_path=checkpoint)
 
 
 def test_direct_owner_rejects_forged_clock_and_duplicate_command():
