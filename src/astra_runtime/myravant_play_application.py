@@ -2792,14 +2792,60 @@ class MyravantPlayApplication:
                         "source_time_command_id": command_id,
                     },
                 )
-                spatial, opportunity = (
-                    self.fixture.autonomous_movement_evidence(
-                        command_id=movement_command.command_id,
-                        actor_entity_id=GROUNDSKEEPER_ID,
-                        source_place_id=source_place_id,
-                        destination_place_id=destination_place_id,
+                # Follow intent may lawfully place the actor outside the
+                # two-place WORLD-2 routine, or already at this phase's
+                # destination. Neither licenses a new autonomous move.
+                # A skipped *NPC* opportunity must not stall *world time*.
+                # Like the existing skipped object-routine branch below,
+                # only WORLD-2 commits the time transition and its receipt.
+                try:
+                    spatial, opportunity = (
+                        self.fixture.autonomous_movement_evidence(
+                            command_id=movement_command.command_id,
+                            actor_entity_id=GROUNDSKEEPER_ID,
+                            source_place_id=source_place_id,
+                            destination_place_id=destination_place_id,
+                        )
                     )
-                )
+                except UnavailableFixtureMovementError:
+                    time_result = commit_prepared_persistent_world_logical_time(
+                        state=pre_time,
+                        prepared=prepared_time,
+                    )
+                    self._runtime_state = (
+                        replace_persistent_world_runtime_logical_time_state(
+                            state=self._runtime_state,
+                            logical_time_state=time_result.state,
+                        )
+                    )
+                    return PlayApplicationResult(
+                        result_type="world_advanced",
+                        message="Time passes.",
+                        authoritative_changed=True,
+                        command_id=command_id,
+                        command_fingerprint=(
+                            time_result.receipt.command_fingerprint
+                        ),
+                        preview_id=time_result.preview.preview_id,
+                        receipt_id=time_result.receipt.receipt_id,
+                        state_delta_id=time_result.state_delta.delta_id,
+                        due_process_ref=due_process_ref,
+                        world_event_class="world_autonomous_action",
+                        world_process_actor_id=GROUNDSKEEPER_ID,
+                        world_process_action="move",
+                        world_process_target_id=destination_place_id,
+                        world_process_command_id=world_process_command_id,
+                        world_process_outcome=(
+                            "already_satisfied"
+                            if source_place_id == destination_place_id
+                            else "opportunity_unavailable"
+                        ),
+                        logical_time_before=time_result.receipt.pre_position,
+                        logical_time_after=time_result.receipt.post_position,
+                        pre_state_digest=pre_digest,
+                        post_state_digest=self.authoritative_digest(),
+                        technical_retry=time_result.technical_retry,
+                    )
                 prepared_movement = prepare_persistent_world_movement(
                     state=self.state,
                     command=movement_command,
