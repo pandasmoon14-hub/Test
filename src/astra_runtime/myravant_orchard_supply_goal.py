@@ -79,6 +79,11 @@ def parse_orchard_supply_attempt(raw: str) -> OrchardSupplyAttempt | None:
     if match is None:
         return None
     method = match.group("method")
+    # Compound or sequential requests must not be silently interpreted as
+    # a single action. The terminal's durable acknowledgement boundary
+    # belongs to each individual owner transition.
+    if method is not None and re.search(r"\\b(?:and|then)\\b", method):
+        return None
     return OrchardSupplyAttempt(
         raw_text=raw,
         method=(_METHOD.get(method, "unqualified") if method else None),
