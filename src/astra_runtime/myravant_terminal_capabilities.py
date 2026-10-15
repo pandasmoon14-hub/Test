@@ -8,6 +8,9 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_d1_brace_goal import (
+    parse_d1_brace, execute_d1_brace,
+)
 from astra_runtime.myravant_c1_investigation_goal import (
     parse_actor_memory_request, execute_actor_memory_request,
 )
@@ -48,6 +51,11 @@ def execute_bounded_terminal_request(
     raw_text: str,
 ) -> tuple[str, PlayApplicationResult] | None:
     """Route bounded VSM requests; return None for every other attempt."""
+
+    # D-1's structural component exists only in the declared fixture profile.
+    # Its executor owns no new world laws: RT-010 + WORLD-2 validate changes.
+    if parse_d1_brace(raw_text) is not None:
+        return "fixture_brace", execute_d1_brace(application, raw_text)
 
     # C-1 distinguishes direct actor sensing, unverified player testimony,
     # and historical recall. No current-world omniscience is claimed.
