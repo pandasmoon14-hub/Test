@@ -155,6 +155,10 @@ def restore_d1_checkpoint(*, checkpoint_path, expected_campaign_id,
         raise PersistentWorldCheckpointEvidenceError(
             "D-1 actor knowledge cannot replay"
         ) from exc
+    # Knowledge was reconstructed after the other owners. Its commands are
+    # still distinct authoritative transitions and must never alias a later
+    # restored material event, independent of today's parser ID prefixes.
+    ids.update(event.command_id for event in knowledge.events)
     time_receipts = {
         x.receipt.receipt_id: x.receipt
         for x in runtime.logical_time_state.committed_transitions
