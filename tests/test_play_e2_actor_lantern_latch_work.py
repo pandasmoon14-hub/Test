@@ -152,6 +152,29 @@ def test_remote_actor_wrong_resource_and_completed_work_refuse_without_tick():
     assert app.authoritative_digest() == pre
 
 
+
+def test_npc_departure_during_world_tick_rolls_back_all_owners(tmp_path):
+    """A due autonomous movement cannot become free offscreen NPC labor."""
+    app = MyravantVSM14Application.new(
+        checkpoint_path=tmp_path / "e2-departure.json"
+    )
+    _worksite(app)  # tick 1: actor arrives
+    _supply_lantern(app)
+    assert app.wait().authoritative_changed  # tick 2: chest opens
+    assert app.wait().authoritative_changed  # tick 3: chest closes
+    assert app.entity_place_id(GROUNDSKEEPER_ID) == YARD_ID
+    before = app.authoritative_digest()
+    before_step = app.runtime_state.logical_time_state.logical_position
+    denied = app.request_groundskeeper_latch_work()
+    assert denied.failure_class == "actor_service_actor_departed"
+    assert not denied.authoritative_changed
+    assert app.authoritative_digest() == before
+    assert app.runtime_state.logical_time_state.logical_position == before_step
+    assert app.entity_place_id(GROUNDSKEEPER_ID) == YARD_ID
+    assert not app.service_state.events
+    assert not has_e2_npc_work(app.service_state)
+
+
 def test_v10_rehashed_forged_actor_work_receipt_cannot_restore(tmp_path):
     checkpoint = tmp_path / "e2-corrupt.json"
     app = MyravantVSM14Application.new(checkpoint_path=checkpoint)
