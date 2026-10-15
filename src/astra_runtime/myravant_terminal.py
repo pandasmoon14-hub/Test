@@ -834,6 +834,12 @@ _HELP_TOPICS: dict[str, str] = {
         "how to get waystone to yard for context-sensitive methods. "
         "Routes can require light or a closed container; moving one "
         "object can change passage access or carry its contained objects.\n"
+        "To provision Orchard Path, try supply orchard with lantern for "
+        "locally grounded choices. You can choose by carrying it, by "
+        "throwing it, by asking groundskeeper, or by pushing the loaded "
+        "chest. If the Chest reaches Orchard Path, you may separately "
+        "open it and retrieve the Lantern. The east passage may need "
+        "Waystone clearance first; each action has its own consequences.\n"
         "These are examples of tested opportunities, not universal "
         "strength, material or physics rules."
     ),
