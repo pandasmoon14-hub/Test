@@ -24,7 +24,7 @@ from astra_runtime.domain.persistent_world_vsm14_checkpoint import (
 from astra_runtime.domain.persistent_world_object_open_close import (
     FixtureServiceError, restore_fixture_service, serialize_fixture_service,
 )
-from astra_runtime.domain.persistent_world_fixture_brace import (
+from astra_runtime.myravant_fixture_brace import (
     FixtureBraceError, FixtureBraceState,
     digest_fixture_brace, restore_fixture_brace, serialize_fixture_brace,
 )

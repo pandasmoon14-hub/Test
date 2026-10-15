@@ -8,8 +8,8 @@ import sys
 
 import pytest
 
-from astra_runtime.domain.persistent_world_d1_checkpoint import D1_VERSION
-from astra_runtime.domain.persistent_world_fixture_brace import (
+from astra_runtime.myravant_d1_checkpoint import D1_VERSION
+from astra_runtime.myravant_fixture_brace import (
     BRACE_ID, FixtureBraceError, FixtureBraceState,
     digest_fixture_brace, execute_fixture_brace, restore_fixture_brace,
     serialize_fixture_brace,
@@ -159,6 +159,11 @@ def test_refusal_preserves_state_for_remote_worksite_and_incompatible_method():
     refusal = app.alter_chest_brace("manual")
     assert refusal.failure_class == "fixture_brace_method_unavailable"
     assert app.authoritative_digest() == before
+    # A detached brace cannot be refitted while the chest remains open.
+    cannot_refit = app.alter_chest_brace("refit")
+    assert cannot_refit.failure_class == "fixture_brace_chest_not_closed"
+    assert not cannot_refit.authoritative_changed
+    assert app.close_object("chest").authoritative_changed
     assert app.alter_chest_brace("refit").authoritative_changed
     before = app.authoritative_digest()
     assert app.alter_chest_brace("refit").failure_class == "fixture_brace_method_unavailable"
@@ -265,7 +270,7 @@ def test_installed_two_sessions_resume_material_work_and_durable_acks(tmp_path):
 
     second = run((
         "resume removing chest brace", "inspect chest brace",
-        "reinstall chest brace", "inspect chest brace",
+        "close chest", "reinstall chest brace", "inspect chest brace",
     ), "--load", str(checkpoint))
     assert second.returncode == 0, (second.stdout, second.stderr)
     assert "detached at yard" in second.stdout

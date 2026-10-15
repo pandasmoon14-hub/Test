@@ -17,11 +17,11 @@ import re
 from dataclasses import replace
 from pathlib import Path
 
-from astra_runtime.domain.persistent_world_fixture_brace import (
+from astra_runtime.myravant_fixture_brace import (
     BRACE_ID, FixtureBraceError, FixtureBraceState,
     digest_fixture_brace, execute_fixture_brace, next_brace_condition,
 )
-from astra_runtime.domain.persistent_world_d1_checkpoint import (
+from astra_runtime.myravant_d1_checkpoint import (
     digest_d1_authoritative_state, restore_d1_checkpoint, write_d1_checkpoint,
 )
 from astra_runtime.myravant_actor_situated_knowledge import (
