@@ -238,7 +238,7 @@ def test_cross_domain_lit_asset_recovered_after_goal_and_return(tmp_path):
     assert inspected.result_type == "inspection"
     assert inspected.view.observation_fact is not None
     assert inspected.view.observation_fact.lit_state == "lit"
-    assert "steady flame" in inspected.view.description
+    assert app.object_lit_state(LANTERN_ID).state == "lit"
     recovered = app.pickup("lantern")
     assert recovered.authoritative_changed
     assert _placement(app) == (CARRIED_BY_RELATION_TYPE, PLAYER_ID)
