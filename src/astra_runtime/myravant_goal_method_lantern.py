@@ -41,7 +41,8 @@ _GOAL = re.compile(
 )
 _METHODS = {
     "push": "push", "pushing": "push", "pushing it": "push",
-    "shove": "push", "shoving": "push", "ground push": "push",
+    "shove": "push", "shoving": "push", "a push": "push",
+    "ground push": "push",
     "throw": "throw", "throwing": "throw", "throwing it": "throw",
     "toss": "throw", "tossing": "throw", "tossing it": "throw",
     "ask groundskeeper": "actor_throw",
@@ -50,6 +51,8 @@ _METHODS = {
     "groundskeeper": "actor_throw",
     "the groundskeeper": "actor_throw",
     "asking groundskeeper to throw": "actor_throw",
+    "asking groundskeeper to throw it": "actor_throw",
+    "asking the groundskeeper to throw": "actor_throw",
     "asking the groundskeeper to throw it": "actor_throw",
     "having groundskeeper throw it": "actor_throw",
     "having the groundskeeper throw it": "actor_throw",
