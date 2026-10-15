@@ -1146,6 +1146,22 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 "fixture_duty_worksite_not_local",
             )
         if operation == "check":
+            chest_visible_here = any(
+                rel.relation_type == "located_at"
+                and rel.subject_entity_id == TOOL_CHEST_ID
+                and rel.object_entity_id == YARD_ID
+                for rel in self.state.representation.relations
+            )
+            if (
+                self.duty_state.status == "fulfilled"
+                and not chest_visible_here
+                and self.entity_place_id(GROUNDSKEEPER_ID) != YARD_ID
+            ):
+                return refused(
+                    "The completion cannot be confirmed without the chest "
+                    "or Groundskeeper at the worksite.",
+                    "fixture_duty_outcome_unobservable",
+                )
             return PlayApplicationResult(
                 result_type="fixture_duty_status",
                 message={
@@ -1289,12 +1305,9 @@ class MyravantVSM14Application(MyravantPlayApplication):
             ),
             pre_state_digest=original_digest,
             post_state_digest=self.authoritative_digest(),
-            consequence_receipt_id=(
-                tick.consequence_receipt_id or service_event.receipt_id
-            ),
-            consequence_state_delta_id=(
-                tick.consequence_state_delta_id or service_event.state_delta_id
-            ),
+            # Preserve WORLD-2's own consequence fields unmodified.
+            # The distinct NPC service and duty receipts live in their
+            # committed owner events, not under the routine's event label.
         )
 
     def save(self) -> PlayApplicationResult:
