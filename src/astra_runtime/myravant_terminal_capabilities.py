@@ -8,6 +8,9 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_physical_placement_goal import (
+    parse_physical_placement_goal, execute_physical_placement_goal,
+)
 from astra_runtime.myravant_goal_method_lantern import (
     parse_lantern_destination_goal, execute_lantern_destination_goal,
 )
@@ -71,6 +74,14 @@ def execute_bounded_terminal_request(
         return (
             "destination_goal_method",
             execute_lantern_destination_goal(application, raw_text),
+        )
+
+    # Compose local Chest and Waystone placement/clearance goals only over
+    # actual COMP-3 fixture routes. No global pathfinder or rules owner.
+    if parse_physical_placement_goal(raw_text) is not None:
+        return (
+            "physical_placement_goal",
+            execute_physical_placement_goal(application, raw_text),
         )
 
     # Player sensory methods are distinguished from visual sighting and
