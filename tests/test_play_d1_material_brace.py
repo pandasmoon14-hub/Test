@@ -117,6 +117,32 @@ def test_lantern_method_is_genuinely_distinct_opportunity_and_work_time(tmp_path
     assert reread.brace_state.condition == "detached_at_yard"
 
 
+def test_detached_component_stays_at_worksite_when_chest_moves(tmp_path):
+    checkpoint = tmp_path / "d1-separated.json"
+    app = MyravantVSM14Application.new(checkpoint_path=checkpoint)
+    _yard(app)
+    _remove_manual(app)
+    part_identity = serialize_fixture_brace(app.brace_state)["component_id"]
+    before = app.authoritative_digest()
+    pushed = app.displace_object("chest", "north", method="push")
+    assert pushed.authoritative_changed
+    assert app.authoritative_digest() != before
+    assert app.brace_state.condition == "detached_at_yard"
+    assert serialize_fixture_brace(app.brace_state)["component_id"] == part_identity
+    assert serialize_fixture_brace(app.brace_state)["quantity"] == 1
+    # No remote refit or phantom transfer of the removed component.
+    refusal = app.alter_chest_brace("refit")
+    assert refusal.failure_class == "fixture_brace_worksite_unavailable"
+    assert not refusal.authoritative_changed
+    assert app.save().checkpoint_digest
+    restored = MyravantVSM14Application.restore(checkpoint_path=checkpoint)
+    assert restored.authoritative_digest() == app.authoritative_digest()
+    assert restored.brace_state.condition == "detached_at_yard"
+    assert restored.alter_chest_brace(
+        "refit"
+    ).failure_class == "fixture_brace_worksite_unavailable"
+
+
 def test_refusal_preserves_state_for_remote_worksite_and_incompatible_method():
     app = MyravantVSM14Application.new()
     before = app.authoritative_digest()
