@@ -189,6 +189,50 @@ def test_v9_rejects_cross_owner_alias_even_after_owner_replay(tmp_path, monkeypa
         MyravantVSM14Application.restore(checkpoint_path=checkpoint)
 
 
+
+def test_v9_replay_rejects_retroactive_fulfillment_before_agreement(
+    tmp_path, monkeypatch,
+):
+    """Even an owner-returned coherent event cannot borrow a pre-request tick.
+
+    Isolate the cross-owner causal boundary by changing the reconstructed duty
+    record, rather than relying on the owner's fingerprint gate to reject it.
+    """
+    from astra_runtime import myravant_e1_checkpoint as adapter
+
+    checkpoint = tmp_path / "e1-retroactive-tick.json"
+    app = MyravantVSM14Application.new(checkpoint_path=checkpoint)
+    _ready(app)
+    accepted = app.groundskeeper_chest_duty("request")
+    assert accepted.authoritative_changed
+    finished = app.wait()
+    assert finished.authoritative_changed
+    assert app.duty_state.status == "fulfilled"
+    app.save()
+    assert MyravantVSM14Application.restore(
+        checkpoint_path=checkpoint
+    ).authoritative_digest() == app.authoritative_digest()
+
+    original_restore = adapter.restore_fixture_duty
+
+    def retroactive_request(material):
+        duty = original_restore(material)
+        # Pretend the original request happened only when fulfillment was
+        # recorded. The WORLD-2 receipt then precedes consent, which is
+        # forbidden despite otherwise consistent service and tick receipts.
+        first = replace(
+            duty.events[0], logical_step=duty.events[-1].logical_step,
+        )
+        return replace(duty, events=(first, *duty.events[1:]))
+
+    monkeypatch.setattr(adapter, "restore_fixture_duty", retroactive_request)
+    with pytest.raises(
+        PersistentWorldCheckpointEvidenceError,
+        match="no causal NPC service and WORLD-2 tick",
+    ):
+        MyravantVSM14Application.restore(checkpoint_path=checkpoint)
+
+
 def test_owner_qualifies_replay_and_no_result_without_real_receipts():
     state = FixtureDutyState()
     with pytest.raises(FixtureDutyError):
