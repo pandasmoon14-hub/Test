@@ -8,6 +8,9 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_orchard_supply_goal import (
+    parse_orchard_supply_attempt, execute_orchard_supply_attempt,
+)
 from astra_runtime.myravant_physical_placement_goal import (
     parse_physical_placement_goal, execute_physical_placement_goal,
 )
@@ -66,6 +69,15 @@ def execute_bounded_terminal_request(
     raw_text: str,
 ) -> tuple[str, PlayApplicationResult] | None:
     """Route bounded VSM requests; return None for every other attempt."""
+
+    # Supply is a bounded multi-owner player objective. A chosen method
+    # performs at most one owner transition and terminal durability remains
+    # responsible for acknowledging each accepted step.
+    if parse_orchard_supply_attempt(raw_text) is not None:
+        return (
+            "orchard_supply_goal",
+            execute_orchard_supply_attempt(application, raw_text),
+        )
 
     # A stated physical objective and chosen method are distinct. Execute
     # only through existing player COMP-3 or voluntary actor VSM-13 owners;
