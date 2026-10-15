@@ -24,6 +24,13 @@ from astra_runtime.myravant_fixture_brace import (
 from astra_runtime.myravant_d1_checkpoint import (
     digest_d1_authoritative_state, restore_d1_checkpoint, write_d1_checkpoint,
 )
+from astra_runtime.myravant_e1_latch_duty import (
+    FixtureDutyError, FixtureDutyState, digest_fixture_duty,
+    execute_fixture_duty,
+)
+from astra_runtime.myravant_e1_checkpoint import (
+    digest_e1_authoritative_state, restore_e1_checkpoint, write_e1_checkpoint,
+)
 from astra_runtime.myravant_actor_situated_knowledge import (
     ActorKnowledgeState, commit_actor_knowledge,
     digest_actor_knowledge, last_actor_evidence,
@@ -94,6 +101,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
         service_state: FixtureServiceState | None = None,
         knowledge_state: ActorKnowledgeState | None = None,
         brace_state: FixtureBraceState | None = None,
+        duty_state: FixtureDutyState | None = None,
         checkpoint_path: str | Path | None = None,
     ) -> None:
         super().__init__(
@@ -120,6 +128,9 @@ class MyravantVSM14Application(MyravantPlayApplication):
         )
         if type(self._brace_state) is not FixtureBraceState:
             raise TypeError("invalid conserved brace state")
+        self._duty_state = duty_state if duty_state is not None else FixtureDutyState()
+        if type(self._duty_state) is not FixtureDutyState:
+            raise TypeError("invalid bounded actor duty state")
 
     @property
     def service_state(self) -> FixtureServiceState:
@@ -132,6 +143,10 @@ class MyravantVSM14Application(MyravantPlayApplication):
     @property
     def brace_state(self) -> FixtureBraceState:
         return self._brace_state
+
+    @property
+    def duty_state(self) -> FixtureDutyState:
+        return self._duty_state
 
     @property
     def follow_intent_state(self) -> PersistentWorldFollowIntentRuntimeState:
@@ -167,6 +182,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
             service_state=FixtureServiceState(),
             knowledge_state=ActorKnowledgeState(),
             brace_state=FixtureBraceState(),
+            duty_state=FixtureDutyState(),
             checkpoint_path=checkpoint_path,
         )
 
@@ -190,34 +206,39 @@ class MyravantVSM14Application(MyravantPlayApplication):
         )
         try:
             (runtime_state, follow_state, service_state, knowledge_state,
-             brace_state) = restore_d1_checkpoint(**args)
+             brace_state, duty_state) = restore_e1_checkpoint(**args)
         except PersistentWorldCheckpointFormatError:
-            brace_state = FixtureBraceState()
+            duty_state = FixtureDutyState()
             try:
-                runtime_state, follow_state, service_state, knowledge_state = (
-                    restore_c1_checkpoint(**args)
-                )
+                (runtime_state, follow_state, service_state, knowledge_state,
+                 brace_state) = restore_d1_checkpoint(**args)
             except PersistentWorldCheckpointFormatError:
+                brace_state = FixtureBraceState()
                 try:
-                    runtime_state, follow_state, service_state = restore_b2a_checkpoint(
-                        **args
+                    runtime_state, follow_state, service_state, knowledge_state = (
+                        restore_c1_checkpoint(**args)
                     )
                 except PersistentWorldCheckpointFormatError:
                     try:
-                        runtime_state, follow_state = (
-                            restore_persistent_world_vsm14_checkpoint(**args)
+                        runtime_state, follow_state, service_state = restore_b2a_checkpoint(
+                            **args
                         )
                     except PersistentWorldCheckpointFormatError:
-                        base = MyravantPlayApplication.restore(
-                            checkpoint_path=checkpoint_path,
-                            fixture=bounded_fixture,
-                        )
-                        runtime_state = base.runtime_state
-                        follow_state = (
-                            create_persistent_world_follow_intent_runtime_state()
-                        )
-                    service_state = FixtureServiceState()
-                knowledge_state = ActorKnowledgeState()
+                        try:
+                            runtime_state, follow_state = (
+                                restore_persistent_world_vsm14_checkpoint(**args)
+                            )
+                        except PersistentWorldCheckpointFormatError:
+                            base = MyravantPlayApplication.restore(
+                                checkpoint_path=checkpoint_path,
+                                fixture=bounded_fixture,
+                            )
+                            runtime_state = base.runtime_state
+                            follow_state = (
+                                create_persistent_world_follow_intent_runtime_state()
+                            )
+                        service_state = FixtureServiceState()
+                    knowledge_state = ActorKnowledgeState()
         return cls(
             fixture=bounded_fixture,
             runtime_state=runtime_state,
@@ -225,16 +246,18 @@ class MyravantVSM14Application(MyravantPlayApplication):
             service_state=service_state,
             knowledge_state=knowledge_state,
             brace_state=brace_state,
+            duty_state=duty_state,
             checkpoint_path=checkpoint_path,
         )
 
     def authoritative_digest(self) -> str:
-        return digest_d1_authoritative_state(
+        return digest_e1_authoritative_state(
             runtime_state=self.runtime_state,
             follow_intent_state=self.follow_intent_state,
             service_state=self.service_state,
             knowledge_state=self.knowledge_state,
             brace_state=self.brace_state,
+            duty_state=self.duty_state,
         )
 
     def _next_follow_intent_command_id(self) -> str:
@@ -1097,13 +1120,214 @@ class MyravantVSM14Application(MyravantPlayApplication):
             and operation == "open"
         )
 
+
+    def groundskeeper_chest_duty(self, operation: str = "check") -> PlayApplicationResult:
+        """One fixture-declared voluntary agreement, not generic NPC obedience.
+
+        Actor consent is only declared for this specific, serviceable Yard
+        latch. Only the player can request/cancel while conversing locally.
+        Inspecting from afar cannot reveal an unobserved offscreen completion.
+        """
+        pre = self.authoritative_digest()
+
+        def refused(message: str, reason: str) -> PlayApplicationResult:
+            return PlayApplicationResult(
+                result_type="fixture_duty_rejected", message=message,
+                authoritative_changed=False, pre_state_digest=pre,
+                post_state_digest=pre, failure_class=reason,
+            )
+
+        if operation not in {"request", "cancel", "check"}:
+            return refused("That duty instruction has no qualified route.",
+                           "fixture_duty_operation_unavailable")
+        if self.current_place_id() != YARD_ID:
+            return refused(
+                "The agreement can only be confirmed at the Yard worksite.",
+                "fixture_duty_worksite_not_local",
+            )
+        if operation == "check":
+            chest_visible_here = any(
+                rel.relation_type == "located_at"
+                and rel.subject_entity_id == TOOL_CHEST_ID
+                and rel.object_entity_id == YARD_ID
+                for rel in self.state.representation.relations
+            )
+            if (
+                self.duty_state.status == "fulfilled"
+                and not chest_visible_here
+                and self.entity_place_id(GROUNDSKEEPER_ID) != YARD_ID
+            ):
+                return refused(
+                    "The completion cannot be confirmed without the chest "
+                    "or Groundskeeper at the worksite.",
+                    "fixture_duty_outcome_unobservable",
+                )
+            return PlayApplicationResult(
+                result_type="fixture_duty_status",
+                message={
+                    "none": "No latch duty has been agreed.",
+                    "pending": "The Groundskeeper agreed to secure the serviced chest when able.",
+                    "cancelled": "The previous latch duty was cancelled.",
+                    "fulfilled": "The Groundskeeper fulfilled the latch duty.",
+                }[self.duty_state.status],
+                authoritative_changed=False, pre_state_digest=pre,
+                post_state_digest=pre,
+            )
+        if self.entity_place_id(GROUNDSKEEPER_ID) != YARD_ID:
+            return refused(
+                "The Groundskeeper is not here to agree to this change.",
+                "fixture_duty_actor_not_local",
+            )
+        if operation == "request":
+            chest_here = any(
+                rel.relation_type == "located_at"
+                and rel.subject_entity_id == TOOL_CHEST_ID
+                and rel.object_entity_id == YARD_ID
+                for rel in self.state.representation.relations
+            )
+            chest_state = self.object_open_state(TOOL_CHEST_ID)
+            if not (
+                chest_here and chest_state is not None
+                and chest_state.state == "closed"
+                and self.brace_state.condition == "attached"
+                and self.service_state.progress == 2
+                and not self.service_state.abandoned
+                and not self.service_state.secured
+            ):
+                return refused(
+                    "The chest must be here, closed, braced and fully serviced "
+                    "before the Groundskeeper can accept this duty.",
+                    "fixture_duty_resources_unavailable",
+                )
+        try:
+            next_state, event, _, _ = execute_fixture_duty(
+                state=self.duty_state,
+                command_id=f"terminal-fixture-duty-{len(self.duty_state.events) + 1:06d}",
+                operation=operation,
+                logical_step=self.runtime_state.logical_time_state.logical_position,
+                expected_pre_digest=digest_fixture_duty(self.duty_state),
+                qualified=True,
+            )
+        except FixtureDutyError:
+            return refused(
+                "This agreement cannot change from its current state.",
+                "fixture_duty_opportunity_unavailable",
+            )
+        self._duty_state = next_state
+        return PlayApplicationResult(
+            result_type="fixture_duty_committed",
+            message=(
+                "The Groundskeeper agrees to secure the ready latch during "
+                "a subsequent qualified Yard visit."
+                if operation == "request" else
+                "The Groundskeeper accepts the cancellation; no duty remains."
+            ),
+            authoritative_changed=True, command_id=event.command_id,
+            command_fingerprint=event.fingerprint,
+            preview_id=event.preview_id,
+            receipt_id=event.receipt_id,
+            state_delta_id=event.state_delta_id,
+            pre_state_digest=pre,
+            post_state_digest=self.authoritative_digest(),
+        )
+
+    def wait(self) -> PlayApplicationResult:
+        """WORLD-2 still owns advancement; one pending local duty may mature.
+
+        This does not grant a new scheduler. The existing tick determines
+        whether the actor is present, with a serviced/closed/braced local
+        chest; only then is an RT-010 NPC 'secure' operation permitted.
+        """
+        if self.duty_state.status != "pending":
+            return super().wait()
+        before_runtime = self._runtime_state
+        before_follow = self._follow_intent_state
+        before_service = self._service_state
+        before_duty = self._duty_state
+        original_digest = self.authoritative_digest()
+        tick = super().wait()
+        if not tick.authoritative_changed:
+            return tick
+        chest_here = any(
+            rel.relation_type == "located_at"
+            and rel.subject_entity_id == TOOL_CHEST_ID
+            and rel.object_entity_id == YARD_ID
+            for rel in self.state.representation.relations
+        )
+        closed = self.object_open_state(TOOL_CHEST_ID)
+        if not (
+            self.entity_place_id(GROUNDSKEEPER_ID) == YARD_ID
+            and chest_here and closed is not None
+            and closed.state == "closed"
+            and self.service_state.progress == 2
+            and not self.service_state.abandoned
+            and not self.service_state.secured
+            and self.brace_state.condition == "attached"
+        ):
+            return tick
+        now = self.runtime_state.logical_time_state.logical_position
+        try:
+            next_service, service_event, _, _ = execute_fixture_service(
+                state=self.service_state,
+                command_id=(
+                    f"terminal-fixture-service-{len(self.service_state.events) + 1:06d}"
+                ),
+                operation="secure", method="none",
+                actor_id=GROUNDSKEEPER_ID, target_id=TOOL_CHEST_ID,
+                place_id=YARD_ID, logical_before=now,
+                logical_after=now, time_receipt_id="", qualified=True,
+                expected_pre_digest=digest_fixture_service_state(self.service_state),
+            )
+            self._service_state = next_service
+            next_duty, duty_event, _, _ = execute_fixture_duty(
+                state=self.duty_state,
+                command_id=f"terminal-fixture-duty-{len(self.duty_state.events) + 1:06d}",
+                operation="fulfill", logical_step=now,
+                time_receipt_id=tick.receipt_id or "",
+                service_receipt_id=service_event.receipt_id,
+                expected_pre_digest=digest_fixture_duty(self.duty_state),
+                qualified=True,
+            )
+            self._duty_state = next_duty
+        except (FixtureServiceError, FixtureDutyError):
+            self._runtime_state = before_runtime
+            self._follow_intent_state = before_follow
+            self._service_state = before_service
+            self._duty_state = before_duty
+            raise
+        # Do not reveal an offscreen action through player narration.
+        visible = self.current_place_id() == YARD_ID
+        return replace(
+            tick,
+            message=(
+                "Time passes. The Groundskeeper secures the serviced chest."
+                if visible else "Time passes."
+            ),
+            pre_state_digest=original_digest,
+            post_state_digest=self.authoritative_digest(),
+            # Preserve WORLD-2's own consequence fields unmodified.
+            # The distinct NPC service and duty receipts live in their
+            # committed owner events, not under the routine's event label.
+        )
+
     def save(self) -> PlayApplicationResult:
         if self.checkpoint_path is None:
             raise CheckpointPathRequiredError(
                 "save requires --checkpoint or a loaded checkpoint path"
             )
         pre_digest = self.authoritative_digest()
-        if self.brace_state.events:
+        if self.duty_state.events:
+            checkpoint_digest = write_e1_checkpoint(
+                runtime_state=self.runtime_state,
+                follow_intent_state=self.follow_intent_state,
+                service_state=self.service_state,
+                knowledge_state=self.knowledge_state,
+                brace_state=self.brace_state,
+                duty_state=self.duty_state,
+                checkpoint_path=self.checkpoint_path,
+                qualification_evidence=self.fixture.checkpoint_qualification,
+            )
+        elif self.brace_state.events:
             checkpoint_digest = write_d1_checkpoint(
                 runtime_state=self.runtime_state,
                 follow_intent_state=self.follow_intent_state,

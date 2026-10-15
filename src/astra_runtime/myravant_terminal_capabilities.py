@@ -8,6 +8,9 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_e1_duty_goal import (
+    parse_e1_latch_duty, execute_e1_latch_duty,
+)
 from astra_runtime.myravant_d1_brace_goal import (
     parse_d1_brace, execute_d1_brace,
 )
@@ -51,6 +54,11 @@ def execute_bounded_terminal_request(
     raw_text: str,
 ) -> tuple[str, PlayApplicationResult] | None:
     """Route bounded VSM requests; return None for every other attempt."""
+
+    # A voluntary Yard-latch obligation is recognized only for the declared
+    # Groundskeeper fixture; no general service-market parsing is assumed.
+    if parse_e1_latch_duty(raw_text) is not None:
+        return "fixture_duty", execute_e1_latch_duty(application, raw_text)
 
     # D-1's structural component exists only in the declared fixture profile.
     # Its executor owns no new world laws: RT-010 + WORLD-2 validate changes.
