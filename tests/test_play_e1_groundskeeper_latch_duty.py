@@ -158,7 +158,9 @@ def test_v9_rejects_rehashed_causal_receipt_forgery(tmp_path):
     envelope["integrity_digest"] = hashlib.sha256(
         _canonical_bytes(envelope["authoritative_payload"])
     ).hexdigest()
-    checkpoint.write_text(json.dumps(envelope))
+    # Keep the outer envelope canonical so the v9 causal owner is exercised,
+    # rather than letting the earlier byte-format guard reject the fixture.
+    checkpoint.write_bytes(_canonical_bytes(envelope))
     with pytest.raises(PersistentWorldCheckpointEvidenceError):
         MyravantVSM14Application.restore(checkpoint_path=checkpoint)
 
