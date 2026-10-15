@@ -822,6 +822,12 @@ _HELP_TOPICS: dict[str, str] = {
         "Some physically grounded objects admit a specific push, slide, "
         "drag or throw direction: push chest north, slide lantern south, "
         "drag waystone west, throw lantern east.\n"
+        "You can state an outcome before choosing a method: get lantern "
+        "to orchard. When at the Yard, choose, for example, send lantern "
+        "to orchard by pushing or send lantern to orchard by throwing. "
+        "You may ask the Groundskeeper to throw it if the actor is here "
+        "and carries the Lantern. The request does not choose or execute "
+        "other preparatory actions.\n"
         "These are examples of tested opportunities, not universal "
         "strength, material or physics rules."
     ),
