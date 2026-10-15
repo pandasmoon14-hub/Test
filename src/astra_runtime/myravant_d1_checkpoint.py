@@ -133,7 +133,11 @@ def restore_d1_checkpoint(*, checkpoint_path, expected_campaign_id,
         raise PersistentWorldCheckpointEvidenceError(
             "secured latch has an absent or loosened structural brace"
         )
-    all_owners = (
+    # Legacy owners have their own replay contracts. The v8 join must
+    # separately reject fixture-service aliases of any reconstructed physical
+    # or follow/time command; converting all IDs to a set first would mask
+    # precisely that cross-owner collision.
+    base_owners = (
         runtime.movement_state.committed_transitions,
         runtime.committed_custody_transitions,
         runtime.committed_object_state_transitions,
@@ -142,9 +146,15 @@ def restore_d1_checkpoint(*, checkpoint_path, expected_campaign_id,
         runtime.committed_object_displacement_transitions,
         runtime.committed_actor_object_handoff_transitions,
         runtime.logical_time_state.committed_transitions,
-        follow.committed_transitions, service.events,
+        follow.committed_transitions,
     )
-    ids = {event.command_id for transitions in all_owners for event in transitions}
+    ids = {event.command_id for transitions in base_owners for event in transitions}
+    for event in service.events:
+        if event.command_id in ids:
+            raise PersistentWorldCheckpointEvidenceError(
+                "D-1 service command identity collides with restored owner"
+            )
+        ids.add(event.command_id)
     try:
         knowledge = restore_actor_knowledge(
             components["actor_situated_knowledge"],
