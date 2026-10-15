@@ -276,6 +276,42 @@ def test_cross_owner_replay_rejects_brace_alias_of_actor_knowledge(tmp_path, mon
         MyravantVSM14Application.restore(checkpoint_path=checkpoint)
 
 
+def test_v8_replay_rejects_service_command_alias_of_physical_owner(
+    tmp_path, monkeypatch,
+):
+    """v8 must reject older service/physical aliases, not only brace aliases."""
+    from astra_runtime import myravant_d1_checkpoint as d1_checkpoint
+
+    checkpoint = tmp_path / "d1-service-physical-collision.json"
+    app = MyravantVSM14Application.new(checkpoint_path=checkpoint)
+    _yard(app)
+    assert app.service_chest_latch("work", method="manual").authoritative_changed
+    assert app.alter_chest_brace("manual").authoritative_changed
+    assert app.save().checkpoint_digest
+    assert MyravantVSM14Application.restore(
+        checkpoint_path=checkpoint
+    ).authoritative_digest() == app.authoritative_digest()
+
+    physical_command_id = (
+        app.runtime_state.movement_state.committed_transitions[0].command_id
+    )
+    original_restore = d1_checkpoint.restore_fixture_service
+
+    def aliased_service_owner(payload):
+        restored = original_restore(payload)
+        aliased = replace(restored.events[0], command_id=physical_command_id)
+        return replace(restored, events=(aliased, *restored.events[1:]))
+
+    monkeypatch.setattr(
+        d1_checkpoint, "restore_fixture_service", aliased_service_owner
+    )
+    with pytest.raises(
+        PersistentWorldCheckpointEvidenceError,
+        match="service command identity collides",
+    ):
+        MyravantVSM14Application.restore(checkpoint_path=checkpoint)
+
+
 def test_direct_owner_rejects_forged_clock_and_duplicate_command():
     state = FixtureBraceState()
     with pytest.raises(FixtureBraceError):
