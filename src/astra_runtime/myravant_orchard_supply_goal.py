@@ -166,11 +166,10 @@ def execute_orchard_supply_attempt(
         if here == YARD_ID:
             blockade = _located(app, WAYSTONE_ID, YARD_ID)
             parts = [
-                "From the Yard you may supply Orchard Path by carrying "
-                "the Lantern east if you hold it; throwing it east if "
-                "you hold it; asking the Groundskeeper to throw it "
-                "if present and carrying it; or pushing a closed, "
-                "Lantern-loaded Tool Chest east."
+                "From the Yard you may attempt to supply Orchard Path by "
+                "carrying the Lantern east if you hold it; throwing it "
+                "east if you hold it; or asking a present Groundskeeper "
+                "who carries it to throw it. No action is automatic."
             ]
             if held:
                 parts.append("You currently carry the Lantern.")
@@ -184,7 +183,13 @@ def execute_orchard_supply_attempt(
             if chest_here and app._object_currently_observable(TOOL_CHEST_ID):
                 state = app.object_open_state(TOOL_CHEST_ID)
                 if state is not None:
-                    parts.append(f"The local Tool Chest is {state.state}.")
+                    parts.append(
+                        f"The local Tool Chest is {state.state}. "
+                        "A closed Chest can be pushed east along its "
+                        "qualified route; any actually contained items "
+                        "move with it. This advice does not establish "
+                        "whether the Chest contains the Lantern."
+                    )
             if blockade and app._object_currently_observable(WAYSTONE_ID):
                 parts.append(
                     "The local Waystone obstructs the east passage. "
