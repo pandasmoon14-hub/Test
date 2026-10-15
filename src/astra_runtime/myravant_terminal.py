@@ -879,6 +879,11 @@ _HELP_TOPICS: dict[str, str] = {
         "latch with lantern, or ask groundskeeper to secure chest latch "
         "later when the latch is ready. Check chest duty or "
         "cancel groundskeeper chest duty while the actor is available.\n"
+        "For Chest readiness, try prepare chest for orchard at the Yard. "
+        "Choose one qualified step: manual service, lantern service, "
+        "Groundskeeper-assisted service, brace refit, closure, direct "
+        "securing, delayed duty, or a separately qualified push east. "
+        "Each step has actual prerequisites and no automatic success.\n"
         "Resources, voluntary commitments, work progress and time "
         "are real; general crafting, wages and a market are not defined."
     ),
