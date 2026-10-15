@@ -867,7 +867,7 @@ def _write_help(output: TextIO) -> str:
         "Touch requires an explicitly qualified ground target at the player's "
         "current place and can succeed without visual light; it does not "
         "establish hidden contents, anatomy or NPC knowledge. "
-        "Unqualified touch methods refuse without changing world state.\\n"
+        "Unqualified touch methods refuse without changing world state.\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
         "as capability pressure; they do not mutate authoritative state.\n"
     )
