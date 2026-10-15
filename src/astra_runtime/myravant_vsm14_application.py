@@ -77,6 +77,7 @@ from astra_runtime.myravant_play_application import (
     CheckpointPathRequiredError,
     MyravantPlayApplication,
     PlayApplicationResult,
+    PublicInspectionView,
 )
 from astra_runtime.myravant_play_fixture import (
     GROUNDSKEEPER_ID, GATEHOUSE_ID, LANTERN_ID, TOOL_CHEST_ID, WAYSTONE_ID,
@@ -1256,6 +1257,94 @@ class MyravantVSM14Application(MyravantPlayApplication):
             logical_time_before=before, logical_time_after=after,
             pre_state_digest=pre,
             post_state_digest=self.authoritative_digest(),
+        )
+
+    def inspect_personal_holdings(self) -> PlayApplicationResult:
+        """Read only actual player custody and the state of held assets.
+
+        No assertion about hands, anatomy, dress, injuries or equipment slots
+        is inferred from the player's existing carried_by relations.
+        """
+        pre = self.authoritative_digest()
+        held = self.fixture.public_entities_carried_by(
+            self.state.representation, self.fixture.player_entity_id,
+        )
+        lines = []
+        for item in held:
+            detail = [item.name]
+            lit = self.object_lit_state(item.entity_id)
+            open_state = self.object_open_state(item.entity_id)
+            if lit is not None:
+                detail.append(lit.state)
+            if open_state is not None:
+                detail.append(open_state.state)
+            lines.append(" — ".join(detail))
+        message = (
+            "Currently carried:\\n" + "\\n".join(lines)
+            if lines else "You are not carrying any declared objects."
+        )
+        return PlayApplicationResult(
+            result_type="player_holdings_observed",
+            message=message,
+            view=PublicInspectionView(
+                name="Carried objects", description=message,
+            ),
+            authoritative_changed=False,
+            pre_state_digest=pre, post_state_digest=pre,
+        )
+
+    def feel_for_local_object(self, target_reference: str) -> PlayApplicationResult:
+        """Player-owned nonvisual, fixture-qualified near-field contact.
+
+        This is neither sight nor persisted actor memory. Only two explicitly
+        licensed objects can be touched while grounded at the player's place;
+        remote, held-by-another and contained targets remain out of reach.
+        """
+        pre = self.authoritative_digest()
+
+        def refused(failure: str) -> PlayApplicationResult:
+            return PlayApplicationResult(
+                result_type="player_contact_unavailable",
+                message="You cannot establish direct contact with that target here.",
+                authoritative_changed=False,
+                pre_state_digest=pre, post_state_digest=pre,
+                failure_class=failure,
+            )
+
+        normalized = " ".join(target_reference.casefold().split())
+        if normalized in {"it", "them", "this", "that", "these", "those", ""}:
+            return refused("player_contact_ambiguous_target")
+        try:
+            target_id = self.fixture.resolve_object_reference(target_reference)
+        except UnavailableFixtureCustodyError:
+            return refused("player_contact_target_unavailable")
+        if target_id not in {TOOL_CHEST_ID, WAYSTONE_ID}:
+            return refused("player_contact_affordance_unavailable")
+        place = self.current_place_id()
+        grounded = any(
+            relation.relation_type == "located_at"
+            and relation.subject_entity_id == target_id
+            and relation.object_entity_id == place
+            for relation in self.state.representation.relations
+        )
+        evidence = self.fixture.player_contact_evidence(
+            observer_entity_id=self.fixture.player_entity_id,
+            target_entity_id=target_id, place_id=place,
+            target_grounded_here=grounded,
+        )
+        if not evidence.contacted:
+            return refused("player_contact_opportunity_unavailable")
+        name = self.fixture.entity_name(target_id)
+        return PlayApplicationResult(
+            result_type="player_contact_observed",
+            message=(
+                f"You make direct contact with {name} here. "
+                "This confirms touch only, not contents, visibility, "
+                "hidden condition or another actor's knowledge."
+            ),
+            authoritative_changed=False,
+            observation_evidence_id=evidence.evidence_id,
+            pre_state_digest=pre, post_state_digest=pre,
         )
 
     def groundskeeper_chest_duty(self, operation: str = "check") -> PlayApplicationResult:
