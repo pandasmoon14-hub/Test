@@ -132,7 +132,7 @@ def execute_fixture_duty(
         messages=("bounded local duty decision prepared",),
         requires_confirmation=False,
         metadata={
-            "package": "PLAY-E1", "semantic_owner": "AFQR-12/RT-010",
+            "package": "PLAY-E1", "semantic_owner": "PLAY-E1/fixture-local-duty",
             "mutation_performed": False,
         },
     )
