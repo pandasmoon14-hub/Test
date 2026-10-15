@@ -17,6 +17,13 @@ import re
 from dataclasses import replace
 from pathlib import Path
 
+from astra_runtime.domain.persistent_world_fixture_brace import (
+    BRACE_ID, FixtureBraceError, FixtureBraceState,
+    digest_fixture_brace, execute_fixture_brace, next_brace_condition,
+)
+from astra_runtime.domain.persistent_world_d1_checkpoint import (
+    digest_d1_authoritative_state, restore_d1_checkpoint, write_d1_checkpoint,
+)
 from astra_runtime.myravant_actor_situated_knowledge import (
     ActorKnowledgeState, commit_actor_knowledge,
     digest_actor_knowledge, last_actor_evidence,
@@ -86,6 +93,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
         follow_intent_state: PersistentWorldFollowIntentRuntimeState,
         service_state: FixtureServiceState | None = None,
         knowledge_state: ActorKnowledgeState | None = None,
+        brace_state: FixtureBraceState | None = None,
         checkpoint_path: str | Path | None = None,
     ) -> None:
         super().__init__(
@@ -107,6 +115,11 @@ class MyravantVSM14Application(MyravantPlayApplication):
         )
         if type(self._knowledge_state) is not ActorKnowledgeState:
             raise TypeError("invalid actor-scoped knowledge state")
+        self._brace_state = (
+            brace_state if brace_state is not None else FixtureBraceState()
+        )
+        if type(self._brace_state) is not FixtureBraceState:
+            raise TypeError("invalid conserved brace state")
 
     @property
     def service_state(self) -> FixtureServiceState:
@@ -115,6 +128,10 @@ class MyravantVSM14Application(MyravantPlayApplication):
     @property
     def knowledge_state(self) -> ActorKnowledgeState:
         return self._knowledge_state
+
+    @property
+    def brace_state(self) -> FixtureBraceState:
+        return self._brace_state
 
     @property
     def follow_intent_state(self) -> PersistentWorldFollowIntentRuntimeState:
@@ -149,6 +166,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
             ),
             service_state=FixtureServiceState(),
             knowledge_state=ActorKnowledgeState(),
+            brace_state=FixtureBraceState(),
             checkpoint_path=checkpoint_path,
         )
 
@@ -171,45 +189,52 @@ class MyravantVSM14Application(MyravantPlayApplication):
             ),
         )
         try:
-            runtime_state, follow_state, service_state, knowledge_state = (
-                restore_c1_checkpoint(**args)
-            )
+            (runtime_state, follow_state, service_state, knowledge_state,
+             brace_state) = restore_d1_checkpoint(**args)
         except PersistentWorldCheckpointFormatError:
+            brace_state = FixtureBraceState()
             try:
-                runtime_state, follow_state, service_state = restore_b2a_checkpoint(
-                    **args
+                runtime_state, follow_state, service_state, knowledge_state = (
+                    restore_c1_checkpoint(**args)
                 )
             except PersistentWorldCheckpointFormatError:
                 try:
-                    runtime_state, follow_state = (
-                        restore_persistent_world_vsm14_checkpoint(**args)
+                    runtime_state, follow_state, service_state = restore_b2a_checkpoint(
+                        **args
                     )
                 except PersistentWorldCheckpointFormatError:
-                    base = MyravantPlayApplication.restore(
-                        checkpoint_path=checkpoint_path,
-                        fixture=bounded_fixture,
-                    )
-                    runtime_state = base.runtime_state
-                    follow_state = (
-                        create_persistent_world_follow_intent_runtime_state()
-                    )
-                service_state = FixtureServiceState()
-            knowledge_state = ActorKnowledgeState()
+                    try:
+                        runtime_state, follow_state = (
+                            restore_persistent_world_vsm14_checkpoint(**args)
+                        )
+                    except PersistentWorldCheckpointFormatError:
+                        base = MyravantPlayApplication.restore(
+                            checkpoint_path=checkpoint_path,
+                            fixture=bounded_fixture,
+                        )
+                        runtime_state = base.runtime_state
+                        follow_state = (
+                            create_persistent_world_follow_intent_runtime_state()
+                        )
+                    service_state = FixtureServiceState()
+                knowledge_state = ActorKnowledgeState()
         return cls(
             fixture=bounded_fixture,
             runtime_state=runtime_state,
             follow_intent_state=follow_state,
             service_state=service_state,
             knowledge_state=knowledge_state,
+            brace_state=brace_state,
             checkpoint_path=checkpoint_path,
         )
 
     def authoritative_digest(self) -> str:
-        return digest_c1_authoritative_state(
+        return digest_d1_authoritative_state(
             runtime_state=self.runtime_state,
             follow_intent_state=self.follow_intent_state,
             service_state=self.service_state,
             knowledge_state=self.knowledge_state,
+            brace_state=self.brace_state,
         )
 
     def _next_follow_intent_command_id(self) -> str:
@@ -653,6 +678,11 @@ class MyravantVSM14Application(MyravantPlayApplication):
                     "fixture_service_tool_unavailable",
                 )
         if operation == "secure":
+            if self.brace_state.condition != "attached":
+                return self._service_refusal(
+                    "The chest brace must be attached before securing the latch.",
+                    "fixture_service_brace_not_attached",
+                )
             open_state = self.object_open_state(TOOL_CHEST_ID)
             if open_state is None or open_state.state != "closed":
                 return self._service_refusal(
@@ -716,6 +746,145 @@ class MyravantVSM14Application(MyravantPlayApplication):
             logical_time_before=before, logical_time_after=after,
             pre_state_digest=pre_digest,
             post_state_digest=self.authoritative_digest(),
+        )
+
+    def alter_chest_brace(self, method: str = "manual") -> PlayApplicationResult:
+        """D-1 fixture-only component removal and refit using existing time.
+
+        A single conserved brace can be attached, loosened, or grounded at
+        the Yard. This is a structural condition, not a second object owner or
+        generic crafting yield. Existing RT-010 and WORLD-2 own effects.
+        """
+        pre = self.authoritative_digest()
+
+        def refused(message: str, reason: str) -> PlayApplicationResult:
+            return PlayApplicationResult(
+                result_type="fixture_brace_rejected", message=message,
+                authoritative_changed=False, failure_class=reason,
+                pre_state_digest=pre, post_state_digest=pre,
+            )
+
+        player_place = self.current_place_id()
+        chest_here = any(
+            rel.relation_type == "located_at"
+            and rel.subject_entity_id == TOOL_CHEST_ID
+            and rel.object_entity_id == YARD_ID
+            for rel in self.state.representation.relations
+        )
+        if player_place != YARD_ID or not chest_here:
+            return refused(
+                "The chest and its brace are not together at the worksite.",
+                "fixture_brace_worksite_unavailable",
+            )
+        if self.service_state.secured:
+            return refused(
+                "Release the secured chest latch before altering its brace.",
+                "fixture_brace_secured_latch",
+            )
+        try:
+            next_condition = next_brace_condition(
+                self.brace_state.condition, method
+            )
+        except FixtureBraceError:
+            return refused(
+                "That material method is not available in this condition.",
+                "fixture_brace_method_unavailable",
+            )
+        if method == "lantern":
+            lit = self.object_lit_state(LANTERN_ID)
+            illuminated_here = any(
+                rel.relation_type == "located_at"
+                and rel.subject_entity_id == LANTERN_ID
+                and rel.object_entity_id == YARD_ID
+                for rel in self.state.representation.relations
+            )
+            if lit is None or lit.state != "lit" or not illuminated_here:
+                return refused(
+                    "A lit lantern must be directly placed at the Yard worksite.",
+                    "fixture_brace_instrument_unavailable",
+                )
+        if method == "refit" and next_condition == "attached":
+            chest_open = self.object_open_state(TOOL_CHEST_ID)
+            if chest_open is None or chest_open.state != "closed":
+                return refused(
+                    "Close the chest before refitting the structural brace.",
+                    "fixture_brace_chest_not_closed",
+                )
+        original_runtime = self._runtime_state
+        original_follow = self._follow_intent_state
+        original_service = self._service_state
+        original_brace = self._brace_state
+        before = self.runtime_state.logical_time_state.logical_position
+        source_world_digest = self.representation_digest()
+        try:
+            tick = self.wait()
+            if not tick.authoritative_changed or not tick.receipt_id:
+                raise FixtureBraceError("one WORLD-2 work step was not committed")
+            next_state, event = execute_fixture_brace(
+                state=self.brace_state,
+                command_id=(
+                    f"terminal-fixture-brace-{len(self.brace_state.events) + 1:06d}"
+                ),
+                method=method,
+                actor_id=self.fixture.player_entity_id,
+                object_id=TOOL_CHEST_ID,
+                component_id=BRACE_ID,
+                place_id=YARD_ID,
+                logical_before=before,
+                logical_after=self.runtime_state.logical_time_state.logical_position,
+                time_receipt_id=tick.receipt_id,
+                source_world_digest=source_world_digest,
+                expected_pre_digest=digest_fixture_brace(self.brace_state),
+                qualified=True,
+            )
+            self._brace_state = next_state
+        except Exception:
+            self._runtime_state = original_runtime
+            self._follow_intent_state = original_follow
+            self._service_state = original_service
+            self._brace_state = original_brace
+            raise
+        status = {
+            "attached": "refitted to the Tool Chest; its one brace is intact.",
+            "loosened": "loosened on the Tool Chest; one further manual step can remove it.",
+            "detached_at_yard": "detached and left at the Yard; the chest cannot be secured until it is refitted.",
+        }[self.brace_state.condition]
+        return PlayApplicationResult(
+            result_type="fixture_brace_committed",
+            message=f"The conserved chest brace is {status}",
+            authoritative_changed=True, command_id=event.command_id,
+            command_fingerprint=event.fingerprint, receipt_id=event.receipt_id,
+            state_delta_id=event.state_delta_id,
+            consequence_receipt_id=tick.receipt_id,
+            consequence_state_delta_id=tick.state_delta_id,
+            logical_time_before=before,
+            logical_time_after=self.runtime_state.logical_time_state.logical_position,
+            pre_state_digest=pre, post_state_digest=self.authoritative_digest(),
+        )
+
+    def inspect_chest_brace(self) -> PlayApplicationResult:
+        """Do not reveal the component condition from another room."""
+        pre = self.authoritative_digest()
+        if self.current_place_id() != YARD_ID or not any(
+            rel.relation_type == "located_at"
+            and rel.subject_entity_id == TOOL_CHEST_ID
+            and rel.object_entity_id == YARD_ID
+            for rel in self.state.representation.relations
+        ):
+            return PlayApplicationResult(
+                result_type="fixture_brace_rejected",
+                message="The structural worksite is unavailable from here.",
+                failure_class="fixture_brace_worksite_unavailable",
+                pre_state_digest=pre, post_state_digest=pre,
+            )
+        return PlayApplicationResult(
+            result_type="fixture_brace_status",
+            message=(
+                "One conserved Tool Chest brace: "
+                f"{self.brace_state.condition.replace('_', ' ')}. "
+                "No additional part has been created."
+            ),
+            pre_state_digest=pre, post_state_digest=pre,
         )
 
     def clear_waystone_route(self, intent: str = "continue") -> PlayApplicationResult:
@@ -932,7 +1101,17 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 "save requires --checkpoint or a loaded checkpoint path"
             )
         pre_digest = self.authoritative_digest()
-        if self.knowledge_state.events:
+        if self.brace_state.events:
+            checkpoint_digest = write_d1_checkpoint(
+                runtime_state=self.runtime_state,
+                follow_intent_state=self.follow_intent_state,
+                service_state=self.service_state,
+                knowledge_state=self.knowledge_state,
+                brace_state=self.brace_state,
+                checkpoint_path=self.checkpoint_path,
+                qualification_evidence=self.fixture.checkpoint_qualification,
+            )
+        elif self.knowledge_state.events:
             checkpoint_digest = write_c1_checkpoint(
                 runtime_state=self.runtime_state,
                 follow_intent_state=self.follow_intent_state,
