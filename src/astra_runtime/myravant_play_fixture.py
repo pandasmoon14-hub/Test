@@ -712,10 +712,10 @@ class MyravantPlayFixture:
             raise MyravantPlayFixtureError(
                 "C-3 contact opportunity must be an explicit boolean"
             )
-        token = hashlib.sha256(
+        token = hashlib.sha256((
             f"{observer_entity_id}|{target_entity_id}|{place_id}|"
-            f"{int(target_grounded_here)}|near-field".encode("utf-8")
-        ).hexdigest()[:20]
+            f"{int(target_grounded_here)}|near-field"
+        ).encode("utf-8")).hexdigest()[:20]
         return FixtureActorContactEvidence(
             evidence_id=build_record_id("evidence", f"c3-contact-{token}"),
             observer_entity_id=observer_entity_id,
