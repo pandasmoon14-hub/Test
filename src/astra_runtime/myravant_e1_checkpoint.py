@@ -40,6 +40,7 @@ from astra_runtime.myravant_play_fixture import (
 )
 
 E1_VERSION = 9
+E2_VERSION = 10
 
 
 def digest_e1_authoritative_state(
@@ -96,12 +97,12 @@ def write_e1_checkpoint(
 def restore_e1_checkpoint(
     *, checkpoint_path, expected_campaign_id, expected_initial_open_states,
     expected_initial_lit_states, expected_initial_representation,
-    expected_initial_representation_digest,
+    expected_initial_representation_digest, checkpoint_version=E1_VERSION,
 ):
     envelope = _read_checkpoint_envelope(_checkpoint_path(checkpoint_path))
     payload = _validate_envelope_common(
         envelope=envelope, expected_campaign_id=expected_campaign_id,
-        expected_version=E1_VERSION,
+        expected_version=checkpoint_version,
     )
     components = _require_exact_dict(
         payload["components"],
@@ -132,7 +133,14 @@ def restore_e1_checkpoint(
     try:
         service = restore_fixture_service(components["fixture_service"])
         brace = restore_fixture_brace(components["fixture_brace"])
-        duty = restore_fixture_duty(components["fixture_duty"])
+        duty_material = components["fixture_duty"]
+        if (
+            checkpoint_version == E2_VERSION
+            and duty_material == serialize_fixture_duty(FixtureDutyState())
+        ):
+            duty = FixtureDutyState()
+        else:
+            duty = restore_fixture_duty(duty_material)
     except (FixtureServiceError, FixtureBraceError, FixtureDutyError) as exc:
         raise PersistentWorldCheckpointEvidenceError(
             "E1 owner-local histories cannot replay"
@@ -156,6 +164,7 @@ def restore_e1_checkpoint(
     }
     used_work_ticks = set()
     npc_services = {}
+    npc_work_count = 0
     previous_service_step = -1
     for event in service.events:
         if (
@@ -180,15 +189,25 @@ def restore_e1_checkpoint(
                     "E1 player service escaped fixture"
                 )
         elif event.actor_id == GROUNDSKEEPER_ID:
+            if event.place_id != YARD_ID:
+                raise PersistentWorldCheckpointEvidenceError(
+                    "E1 NPC service action escaped licensed worksite"
+                )
             if (
-                event.operation != "secure" or event.method != "none"
-                or event.place_id != YARD_ID
-                or event.logical_before != event.logical_after
+                event.operation == "work"
+                and event.method == "lantern"
+                and checkpoint_version == E2_VERSION
             ):
+                npc_work_count += 1
+            elif (
+                event.operation == "secure" and event.method == "none"
+                and event.logical_before == event.logical_after
+            ):
+                npc_services[event.receipt_id] = event
+            else:
                 raise PersistentWorldCheckpointEvidenceError(
                     "E1 NPC service action is not a licensed latch duty"
                 )
-            npc_services[event.receipt_id] = event
         else:
             raise PersistentWorldCheckpointEvidenceError(
                 "E1 unlicensed service actor"
@@ -273,8 +292,80 @@ def restore_e1_checkpoint(
         raise PersistentWorldCheckpointEvidenceError(
             "E1 NPC service lacks a voluntary committed duty"
         )
+    if checkpoint_version == E2_VERSION and not npc_work_count:
+        raise PersistentWorldCheckpointEvidenceError(
+            "E2 v10 requires a real NPC lantern work contribution"
+        )
     if service.secured and brace.condition != "attached":
         raise PersistentWorldCheckpointEvidenceError(
             "E1 secured chest has incompatible brace condition"
         )
     return runtime, follow, service, knowledge, brace, duty
+
+
+def has_e2_npc_work(service_state) -> bool:
+    """Version activation depends on a committed, distinct NPC work event."""
+    return any(
+        event.actor_id == GROUNDSKEEPER_ID and event.operation == "work"
+        and event.method == "lantern"
+        for event in service_state.events
+    )
+
+
+def digest_e2_authoritative_state(
+    *, runtime_state, follow_intent_state, service_state,
+    knowledge_state, brace_state, duty_state,
+) -> str:
+    original = digest_e1_authoritative_state(
+        runtime_state=runtime_state,
+        follow_intent_state=follow_intent_state,
+        service_state=service_state,
+        knowledge_state=knowledge_state,
+        brace_state=brace_state,
+        duty_state=duty_state,
+    )
+    if not has_e2_npc_work(service_state):
+        return original
+    return _sha256_bytes(_canonical_bytes({
+        "family": "myravant-e2-actor-latch-service-v10",
+        "base": original,
+    }))
+
+
+def write_e2_checkpoint(
+    *, runtime_state, follow_intent_state, service_state,
+    knowledge_state, brace_state, duty_state, checkpoint_path,
+    qualification_evidence,
+) -> str:
+    if not has_e2_npc_work(service_state):
+        raise PersistentWorldCheckpointEvidenceError(
+            "E2 v10 requires committed NPC servicing"
+        )
+    payload = serialize_persistent_world_vsm14_checkpoint_payload(
+        runtime_state=runtime_state, follow_intent_state=follow_intent_state,
+    )
+    payload["components"]["fixture_service"] = serialize_fixture_service(
+        service_state
+    )
+    payload["components"]["actor_situated_knowledge"] = (
+        serialize_actor_knowledge(knowledge_state)
+    )
+    payload["components"]["fixture_brace"] = serialize_fixture_brace(brace_state)
+    payload["components"]["fixture_duty"] = serialize_fixture_duty(duty_state)
+    return _write_envelope(
+        envelope={
+            "format_identity": COMPONENT_CHECKPOINT_FORMAT_IDENTITY,
+            "format_version": E2_VERSION,
+            "campaign_identity":
+                runtime_state.movement_state.representation.campaign_id,
+            "authoritative_payload": payload,
+            "integrity_digest": _sha256_bytes(_canonical_bytes(payload)),
+            "qualification_provenance":
+                _normalize_qualification(qualification_evidence),
+        }, checkpoint_path=checkpoint_path,
+    )
+
+
+def restore_e2_checkpoint(**kwargs):
+    """Reuse v9 owner replay while admitting only E2's added NPC work method."""
+    return restore_e1_checkpoint(checkpoint_version=E2_VERSION, **kwargs)
