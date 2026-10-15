@@ -13,9 +13,6 @@ from dataclasses import dataclass
 from astra_runtime.domain.persistent_world_entity_location_representation import (
     CARRIED_BY_RELATION_TYPE, LOCATED_AT_RELATION_TYPE,
 )
-from astra_runtime.domain.persistent_world_object_storage_transfer import (
-    containment_relation_for,
-)
 from astra_runtime.myravant_play_application import PlayApplicationResult
 from astra_runtime.myravant_play_fixture import (
     GROUNDSKEEPER_ID, LANTERN_ID, TOOL_CHEST_ID, WAYSTONE_ID,
@@ -229,17 +226,13 @@ def execute_orchard_supply_attempt(
             return execute_vsm13_request(
                 app, "ask groundskeeper to throw lantern east",
             ).result
-        # A container move is licensed only when the specified cargo
-        # really exists in it; never fabricate cargo by calling push.
-        if not chest_here or not (
-            (contained := containment_relation_for(app.storage_state, LANTERN_ID))
-            is not None and contained.object_entity_id == TOOL_CHEST_ID
-        ):
-            return refusal(
-                "orchard_supply_loaded_container_unavailable",
-                "This loaded-container delivery is not qualified from "
-                "the current local arrangement.",
-            )
+        # This is a chosen *physical* push, not a cargo inspection.
+        # Whether the Chest actually contains a Lantern cannot be
+        # inferred from acceptance/refusal of the action. An empty,
+        # closed Chest may lawfully move, but no Lantern is created
+        # and no "Orchard supplied" success is declared.
+        # COMP-3/AFQR-19 still verify ground placement, the licensed
+        # route and the actual closed-container prerequisite.
         return app.displace_object("chest", "east", method="push")
 
     if here != ORCHARD_PATH_ID:
