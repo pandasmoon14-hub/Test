@@ -836,6 +836,10 @@ def _write_help(output: TextIO) -> str:
         "chest is at gatehouse as an explicitly unverified report. "
         "Ask groundskeeper where they last saw chest, or where they think "
         "chest is; their dated recollection may be stale or mistaken.\n"
+        "C-2 source-qualified follow-up: ask groundskeeper to investigate "
+        "last witnessed location of chest, or last reported location of "
+        "chest. Both are fallible historical leads; actual movement still "
+        "requires the Groundskeeper's cooperation and a lawful route.\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
         "as capability pressure; they do not mutate authoritative state.\n"
     )

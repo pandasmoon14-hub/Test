@@ -428,16 +428,30 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 "That target has no supported local investigation evidence.",
                 "actor_knowledge_target_unavailable",
             )
-        if operation == "follow_lead":
-            # C-1 knowledge selects a *proposed destination*, not a right to
-            # move the actor. Existing VSM-10 owns acceptance, spatial
-            # opportunity and actual committed R4-C movement.
+        if operation in {"follow_lead", "follow_sighting", "follow_report"}:
+            # Source qualification selects from this actor's historical memory,
+            # not from current object placement. The requested source is a
+            # player preference, never evidence that the remembered claim is
+            # current truth. Existing VSM-10 owns acceptance, spatial
+            # opportunity and committed R4-C movement.
+            source_kind = {
+                "follow_lead": None,
+                "follow_sighting": "witnessed",
+                "follow_report": "reported",
+            }[operation]
             evidence = last_actor_evidence(
                 self.knowledge_state, GROUNDSKEEPER_ID, target_id,
+                source_kind=source_kind,
             )
             if evidence is None:
                 return answer(
-                    "The Groundskeeper has no previous location lead to check.",
+                    (
+                        "The Groundskeeper has no firsthand sighting of that "
+                        "object to follow." if source_kind == "witnessed" else
+                        "The Groundskeeper has no attributed report about that "
+                        "object to follow." if source_kind == "reported" else
+                        "The Groundskeeper has no previous location lead to check."
+                    ),
                     "actor_knowledge_unknown",
                 )
             if evidence.reported_place_id not in {YARD_ID, GATEHOUSE_ID}:

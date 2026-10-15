@@ -14,6 +14,14 @@ from astra_runtime.myravant_vsm14_application import MyravantVSM14Application
 def parse_actor_memory_request(raw: str) -> tuple[str, str, str | None] | None:
     text = " ".join(raw.casefold().strip().split()).rstrip("?.!")
     checks = (
+        # Source-qualified investigation keeps witnessed observations distinct
+        # from hearsay. Generic "last location" retains C-1 latest-lead behavior.
+        (r"ask (?:the )?groundskeeper to (?:check|investigate|follow) "
+         r"(?:the )?(?:last )?(?:witnessed|firsthand|observed) "
+         r"(?:location|lead|trail) (?:of|for) (.+)", "follow_sighting"),
+        (r"ask (?:the )?groundskeeper to (?:check|investigate|follow) "
+         r"(?:the )?(?:last )?(?:reported|unverified) "
+         r"(?:location|lead|trail) (?:of|for) (.+)", "follow_report"),
         (r"ask (?:the )?groundskeeper to (?:check|investigate|follow) "
          r"(?:the )?(?:last |reported )?(?:location|lead|trail) "
          r"(?:of|for) (.+)", "follow_lead"),
