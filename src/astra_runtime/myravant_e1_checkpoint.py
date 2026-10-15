@@ -237,6 +237,7 @@ def restore_e1_checkpoint(
         last_brace_step = event.logical_after
 
     fulfilled_services = set()
+    latest_request_step = None
     for event in duty.events:
         if (
             event.command_id in ids
@@ -246,11 +247,19 @@ def restore_e1_checkpoint(
                 "E1 duty identity or time collides with existing owners"
             )
         ids.add(event.command_id)
+        if event.operation == "request":
+            latest_request_step = event.logical_step
         if event.operation == "fulfill":
             service_event = npc_services.get(event.service_receipt_id)
             tick = time_receipts.get(event.time_receipt_id)
             if (
                 service_event is None or tick is None
+                or latest_request_step is None
+                # Fulfilling a duty requires a fresh advancement, not an
+                # earlier receipt relabeled as a later NPC consequence.
+                or tick.pre_position < latest_request_step
+                or tick.post_position <= latest_request_step
+                or event.time_receipt_id in used_work_ticks
                 or tick.post_position != event.logical_step
                 or service_event.logical_after != event.logical_step
                 or event.service_receipt_id in fulfilled_services
@@ -258,6 +267,7 @@ def restore_e1_checkpoint(
                 raise PersistentWorldCheckpointEvidenceError(
                     "E1 fulfillment has no causal NPC service and WORLD-2 tick"
                 )
+            used_work_ticks.add(event.time_receipt_id)
             fulfilled_services.add(event.service_receipt_id)
     if set(npc_services) != fulfilled_services:
         raise PersistentWorldCheckpointEvidenceError(
