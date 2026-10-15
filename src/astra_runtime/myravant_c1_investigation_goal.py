@@ -25,6 +25,10 @@ def parse_actor_memory_request(raw: str) -> tuple[str, str, str | None] | None:
         (r"ask (?:the )?groundskeeper to (?:check|investigate|follow) "
          r"(?:the )?(?:last |reported )?(?:location|lead|trail) "
          r"(?:of|for) (.+)", "follow_lead"),
+        (r"ask (?:the )?groundskeeper to (?:feel|touch) (.+)",
+         "touch"),
+        (r"ask (?:the )?groundskeeper to (?:check|examine) (.+?) "
+         r"(?:by touch|with their hands)", "touch"),
         (r"ask (?:the )?groundskeeper to (?:inspect|examine|look at) (.+)",
          "witness"),
         (r"ask (?:the )?groundskeeper where (?:they|he) last saw (.+)",
