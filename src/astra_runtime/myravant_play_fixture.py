@@ -262,6 +262,19 @@ class FixtureDirectionalObservationEvidence:
 
 
 @dataclass(frozen=True, kw_only=True)
+class FixtureActorContactEvidence:
+    """Read-only, fixture-licensed nonvisual contact; not a memory event."""
+
+    evidence_id: str
+    observer_entity_id: str
+    target_entity_id: str
+    place_id: str
+    contacted: bool
+    basis: str
+    semantic_owner: str = AFQR20_FIXTURE_SENSING_OWNER
+
+
+@dataclass(frozen=True, kw_only=True)
 class FixtureVisualObservationEvidence:
     """Derived AFQR-20 evidence; never authoritative state or actor knowledge."""
 
@@ -578,12 +591,53 @@ class MyravantPlayFixture:
         place_id: str,
         local_light_available: bool,
     ) -> FixtureVisualObservationEvidence:
-        """Derive bounded AFQR-20 observation without creating knowledge or state."""
+        """Preserve COMP-1's explicitly player-only visual observation route."""
 
         if observer_entity_id != self.player_entity_id:
             raise MyravantPlayFixtureError(
                 "COMP-1 supports only the bounded fixture player observer"
             )
+        return self._qualified_visual_evidence(
+            observer_entity_id=observer_entity_id,
+            target_entity_id=target_entity_id,
+            place_id=place_id,
+            local_light_available=local_light_available,
+            evidence_prefix="comp1-visual",
+        )
+
+    def actor_visual_observation_evidence(
+        self,
+        *,
+        observer_entity_id: str,
+        target_entity_id: str,
+        place_id: str,
+        local_light_available: bool,
+    ) -> FixtureVisualObservationEvidence:
+        """C-3 Groundskeeper sensing qualification; no player-visibility proxy."""
+
+        if observer_entity_id != GROUNDSKEEPER_ID:
+            raise MyravantPlayFixtureError(
+                "C-3 visual sensing supports only the declared Groundskeeper"
+            )
+        return self._qualified_visual_evidence(
+            observer_entity_id=observer_entity_id,
+            target_entity_id=target_entity_id,
+            place_id=place_id,
+            local_light_available=local_light_available,
+            evidence_prefix="c3-actor-visual",
+        )
+
+    def _qualified_visual_evidence(
+        self,
+        *,
+        observer_entity_id: str,
+        target_entity_id: str,
+        place_id: str,
+        local_light_available: bool,
+        evidence_prefix: str,
+    ) -> FixtureVisualObservationEvidence:
+        """Share visual qualification without sharing actor permissions."""
+
         observable_target_ids = {
             presentation.entity_id
             for presentation in (
@@ -621,7 +675,7 @@ class MyravantPlayFixture:
         return FixtureVisualObservationEvidence(
             evidence_id=build_record_id(
                 "evidence",
-                f"comp1-visual-{token}",
+                f"{evidence_prefix}-{token}",
             ),
             observer_entity_id=observer_entity_id,
             target_entity_id=target_entity_id,
@@ -630,6 +684,48 @@ class MyravantPlayFixture:
             local_light_available=local_light_available,
             observable=observable,
             basis=basis,
+        )
+
+    def actor_contact_evidence(
+        self,
+        *,
+        observer_entity_id: str,
+        target_entity_id: str,
+        place_id: str,
+        target_grounded_here: bool,
+    ) -> FixtureActorContactEvidence:
+        """Qualify one near-field touch of an explicitly licensed fixture object.
+
+        Caller must derive actual actor co-presence and current placement from
+        authoritative state. Contact does not bypass storage or extend reach,
+        identify a hidden remote target, or commit knowledge. The two exposed
+        neutral objects are fixture licenses, not universal touch physics.
+        """
+        if observer_entity_id != GROUNDSKEEPER_ID:
+            raise MyravantPlayFixtureError("C-3 contact actor is unqualified")
+        if target_entity_id not in {TOOL_CHEST_ID, WAYSTONE_ID}:
+            raise UnavailableFixtureCustodyError(
+                "C-3 contact target is outside declared fixture affordances"
+            )
+        self.place_presentation(place_id)
+        if type(target_grounded_here) is not bool:
+            raise MyravantPlayFixtureError(
+                "C-3 contact opportunity must be an explicit boolean"
+            )
+        token = hashlib.sha256(
+            f"{observer_entity_id}|{target_entity_id}|{place_id}|"
+            f"{int(target_grounded_here)}|near-field".encode("utf-8")
+        ).hexdigest()[:20]
+        return FixtureActorContactEvidence(
+            evidence_id=build_record_id("evidence", f"c3-contact-{token}"),
+            observer_entity_id=observer_entity_id,
+            target_entity_id=target_entity_id,
+            place_id=place_id,
+            contacted=target_grounded_here,
+            basis=(
+                "grounded_local_near_field"
+                if target_grounded_here else "no_qualified_contact"
+            ),
         )
 
     def object_presentation(
