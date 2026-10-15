@@ -728,6 +728,50 @@ class MyravantPlayFixture:
             ),
         )
 
+    def player_contact_evidence(
+        self,
+        *,
+        observer_entity_id: str,
+        target_entity_id: str,
+        place_id: str,
+        target_grounded_here: bool,
+    ) -> FixtureActorContactEvidence:
+        """BREADTH-1: qualified near-field player sensing, never omniscience.
+
+        A separate fixture permission preserves historical C-3 Groundskeeper
+        evidence and its actor-specific scope. Ground contact is confirmed
+        from current placement by the caller, not inferred from object identity,
+        remembered reports, containment, custody or ambient illumination.
+        """
+        if observer_entity_id != self.player_entity_id:
+            raise MyravantPlayFixtureError(
+                "player contact requires the current player observer"
+            )
+        if target_entity_id not in {TOOL_CHEST_ID, WAYSTONE_ID}:
+            raise UnavailableFixtureCustodyError(
+                "target lacks a qualified near-field player contact affordance"
+            )
+        self.place_presentation(place_id)
+        if type(target_grounded_here) is not bool:
+            raise MyravantPlayFixtureError(
+                "contact opportunity must be an explicit boolean"
+            )
+        token = hashlib.sha256((
+            f"{observer_entity_id}|{target_entity_id}|{place_id}|"
+            f"{int(target_grounded_here)}|near-field-player"
+        ).encode("utf-8")).hexdigest()[:20]
+        return FixtureActorContactEvidence(
+            evidence_id=build_record_id("evidence", f"player-contact-{token}"),
+            observer_entity_id=observer_entity_id,
+            target_entity_id=target_entity_id,
+            place_id=place_id,
+            contacted=target_grounded_here,
+            basis=(
+                "grounded_local_near_field" if target_grounded_here
+                else "no_qualified_contact"
+            ),
+        )
+
     def object_presentation(
         self,
         object_entity_id: str,
