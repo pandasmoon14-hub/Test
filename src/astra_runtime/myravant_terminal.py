@@ -559,8 +559,12 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
         return ParsedTerminalCommand(action="wait", raw_text=raw_text)
     if verb == "save" and len(parts) == 1:
         return ParsedTerminalCommand(action="save", raw_text=raw_text)
-    if verb in {"help", "?"} and len(parts) == 1:
-        return ParsedTerminalCommand(action="help", raw_text=raw_text)
+    if verb in {"help", "?"} and len(parts) in {1, 2}:
+        return ParsedTerminalCommand(
+            action="help",
+            argument=lowered[1] if len(parts) == 2 else None,
+            raw_text=raw_text,
+        )
     if verb in {"exit", "quit"} and len(parts) == 1:
         return ParsedTerminalCommand(action="exit", raw_text=raw_text)
 
@@ -784,93 +788,144 @@ def _write_durable_result(
     return visible
 
 
-def _write_help(output: TextIO) -> str:
-    visible = (
-        "Commands: look, look <direction>, look for <entity> [to <direction>], "
-        "search for <entity>, spot <entity> <direction>, "
-        "inspect <entity>, inventory, move <direction>, "
-        "drop <object>, give <object> to <actor>, "
-        "ask <actor> for <object>, "
-        "ask groundskeeper if they have <object>, "
-        "ask groundskeeper where <object> is, "
-        "ask groundskeeper what are you carrying, "
-        "ask groundskeeper are you following me, "
-        "ask <actor> to open/close <object>, "
-        "throw/push/slide/drag <object> <direction>, open <object>, "
-        "close <object>, light <object>, "
-        "extinguish <object>, put <object> in <container>, "
-        "take <object> from <container>, wait, save, help, exit\n"
-        "Natural equivalents such as 'I head north', 'look around', "
-        "'examine the lantern', 'look at the lantern', 'open the chest', "
-        "'walk to the south exit', and 'grab the lantern' route to existing "
-        "mechanics when unambiguous.\n"
-        "Additional fixture-bounded requests: ask groundskeeper to light lantern, "
-        "ask groundskeeper to go to yard, "
-        "ask groundskeeper to pick up/drop lantern, ask groundskeeper to "
-        "store/retrieve lantern in/from chest, ask groundskeeper to throw "
-        "lantern east, ask groundskeeper to follow me, and ask groundskeeper "
-        "to stop following me. These are not general NPC controls.\n"
-        "A bounded cooperative goal is also available: ask groundskeeper "
-        "to bring lantern to orchard. The lawful physical method depends "
-        "on the Groundskeeper's actual local opportunity.\n"
-        "Two noncanonical resumable work goals: work on lantern preparation, "
-        "work on chest staging, or check lantern preparation/chest staging. "
-        "Work stages are actual object-state changes; timed labor, material "
-        "consumption, and general crafting are not available.\n"
-        "B-2a noncanonical latch service: at the Yard with the Tool Chest, "
-        "service chest latch (manual, two contributions), or service chest "
-        "latch with lantern (a qualified lit lantern at the worksite). "
-        "Check latch service, abandon latch service, resume chest latch service. "
-        "After finishing, close and secure chest, then release chest latch to "
-        "permit reopening. Each work contribution consumes one logical step. "
-        "No recipe, repair economy, generic materials or NPC work scheduler.\n"
-        "B-2b noncanonical timed route clearance: carry a lit lantern to "
-        "Orchard Path, recover waystone, cross back to Yard, then clear "
-        "waystone route to push it north and reopen the Yard east exit. "
-        "Check route clearance, abandon waystone clearance, and resume "
-        "waystone clearance; physical placement preserves unfinished work. "
-        "Every acknowledged gameplay state change is checkpointed first. "
-        "Supply --checkpoint or use the printed auto-recovery path.\n"
-        "C-1 actor-scoped investigation: while together, ask groundskeeper "
-        "to inspect chest for a direct sighting, or tell groundskeeper "
-        "chest is at gatehouse as an explicitly unverified report. "
-        "Ask groundskeeper where they last saw chest, or where they think "
-        "chest is; their dated recollection may be stale or mistaken.\n"
-        "C-2 source-qualified follow-up: ask groundskeeper to investigate "
-        "last witnessed location of chest, or last reported location of "
-        "chest. Both are fallible historical leads; actual movement still "
-        "requires the Groundskeeper's cooperation and a lawful route.\n"
-        "C-3 sensory distinction: ask groundskeeper to touch chest or "
-        "check chest by touch to qualify a local physical contact even in "
-        "poor light. This immediate nonvisual observation is not stored as "
-        "a historical sighting; ask groundskeeper to inspect chest requires "
-        "qualified Groundskeeper visual evidence to create a lasting memory.\n"
-        "D-1 fixture structural alteration: at the Yard, remove chest brace "
-        "manually over two committed work steps, or remove chest brace with "
-        "lantern when a lit lantern is placed at the Yard worksite. "
-        "Inspect chest brace, refit chest brace or tighten chest brace to "
-        "restore the single conserved component. A detached brace remains "
-        "at the Yard and prevents securing the Tool Chest until refitted. "
-        "These are noncanonical fixture affordances, not universal materials "
-        "or crafting rules.\n"
-        "E-1 fixture obligation: after fully servicing, bracing and closing "
-        "the chest at the Yard, ask groundskeeper to secure chest latch later. "
-        "Check chest duty or cancel groundskeeper chest duty locally. "
-        "A voluntary accepted task can affect a later world tick.\n"
-        "E-2 alternative NPC labor: bring, drop and light the Lantern at "
-        "the Yard, meet the Groundskeeper, then ask groundskeeper to repair "
-        "chest latch with lantern. The actual Groundskeeper's work takes "
-        "one world step and must be physically qualified. Personal manual "
-        "servicing remains available; no generic hiring or economy.\n"
-        "BREADTH-1 player senses: check my hands, inspect my carried objects, "
-        "feel for chest, touch chest, or search by touch for waystone. "
-        "Touch requires an explicitly qualified ground target at the player's "
-        "current place and can succeed without visual light; it does not "
-        "establish hidden contents, anatomy or NPC knowledge. "
-        "Unqualified touch methods refuse without changing world state.\n"
-        "Compound intentions and genuinely unsupported attempts are preserved "
-        "as capability pressure; they do not mutate authoritative state.\n"
+# Player-facing discoverability is presentation, not a command whitelist.
+# A category describes methods that depend on actual world opportunity; it
+# does not promise universal object affordances or NPC obedience.
+_HELP_TOPICS: dict[str, str] = {
+    "travel": (
+        "Travel and time\n"
+        "Look around: look; look north/south/east/west; look for lantern.\n"
+        "Travel: go south, walk north, or move east. Routes and obstructions "
+        "depend on current location and world state.\n"
+        "Wait advances world time; people may act independently. "
+        "Use look again to observe what changed.\n"
+        "Other attempts are evaluated on their own terms; the examples "
+        "are not a list of everything you may try."
+    ),
+    "senses": (
+        "Observation and yourself\n"
+        "look, inspect lantern, examine chest, look at chest, "
+        "search for waystone, look south.\n"
+        "To inspect current possessions: inventory, inspect myself, "
+        "check my hands, or examine what I am carrying.\n"
+        "To attempt direct physical sensing: touch chest, feel for waystone, "
+        "or search by touch for chest. Touch needs a reachable, grounded "
+        "object with a known affordance; it does not grant hidden knowledge.\n"
+        "What can be seen and what can be touched may differ in poor light."
+    ),
+    "objects": (
+        "Handling objects\n"
+        "take lantern, drop lantern, give lantern to groundskeeper, "
+        "ask groundskeeper for lantern.\n"
+        "open chest, close chest, light lantern, extinguish lantern, "
+        "put lantern in chest, take lantern from chest.\n"
+        "Some physically grounded objects admit a specific push, slide, "
+        "drag or throw direction: push chest north, slide lantern south, "
+        "drag waystone west, throw lantern east.\n"
+        "These are examples of tested opportunities, not universal "
+        "strength, material or physics rules."
+    ),
+    "people": (
+        "People and cooperation\n"
+        "Ask a present, willing person to help with a qualified task; "
+        "the request is not automatic obedience.\n"
+        "Examples: ask groundskeeper to follow me; ask groundskeeper to "
+        "stop following me; ask groundskeeper to go to yard; ask "
+        "groundskeeper to bring lantern to orchard; ask groundskeeper to "
+        "open chest; ask groundskeeper to light lantern.\n"
+        "Ask groundskeeper to pick up lantern, drop lantern, store "
+        "lantern in chest, retrieve lantern from chest, or throw lantern east "
+        "when the necessary object, location and opportunity exist.\n"
+        "For recollection and investigation, see help inquiry. "
+        "A petition is not the same as handing over an object."
+    ),
+    "work": (
+        "Ongoing work and consequences\n"
+        "Try work on lantern preparation or work on chest staging. "
+        "Check or resume an unfinished goal; actual object state persists.\n"
+        "At the Yard, service chest latch (two manual contributions) "
+        "or service chest latch with lantern after supplying a lit lantern. "
+        "Check latch service, resume chest latch service or abandon latch service.\n"
+        "Remove chest brace (manual method), or remove chest brace with "
+        "lantern when the tool is lit at the worksite. Inspect chest "
+        "brace or refit chest brace. Refit and close the chest before "
+        "securing the serviced latch; release chest latch to reopen.\n"
+        "At Orchard Path, recover waystone; clear waystone route after "
+        "meeting the actual route, placement and light conditions. "
+        "Check route clearance or abandon waystone clearance.\n"
+        "When co-present at the Yard, ask groundskeeper to repair chest "
+        "latch with lantern, or ask groundskeeper to secure chest latch "
+        "later when the latch is ready. Check chest duty or "
+        "cancel groundskeeper chest duty while the actor is available.\n"
+        "Resources, voluntary commitments, work progress and time "
+        "are real; general crafting, wages and a market are not defined."
+    ),
+    "inquiry": (
+        "Learning from another person\n"
+        "Ask groundskeeper if they have lantern, where lantern is, what "
+        "are you carrying, or are you following me.\n"
+        "Ask groundskeeper to inspect chest for a first-hand visual "
+        "sighting. Tell groundskeeper chest is at gatehouse to offer an "
+        "unverified report, not rewrite world truth.\n"
+        "Ask groundskeeper where they last saw chest, where they think "
+        "chest is, or to investigate last witnessed location of chest "
+        "or last reported location of chest.\n"
+        "Ask groundskeeper to touch chest or check chest by touch "
+        "where near-field contact is qualified. A touch is not "
+        "automatically a remembered visual sighting. Reports may be stale."
+    ),
+    "session": (
+        "Session controls\n"
+        "save writes an authoritative checkpoint when available. "
+        "The terminal automatically checkpoints acknowledged state "
+        "changes when configured for durable play.\n"
+        "wait advances time. exit ends your current session.\n"
+        "To resume a saved game, launch Myravant with --load <checkpoint>. "
+        "A recovery checkpoint may be printed when one is created.\n"
+        "Try help travel, help senses, help objects, help people, "
+        "help work or help inquiry for other possibilities."
+    ),
+}
+_HELP_ALIASES = {
+    "movement": "travel",
+    "time": "travel",
+    "observation": "senses",
+    "self": "senses",
+    "inventory": "senses",
+    "items": "objects",
+    "npc": "people",
+    "npcs": "people",
+    "tasks": "work",
+    "memory": "inquiry",
+    "investigation": "inquiry",
+    "save": "session",
+    "system": "session",
+}
+
+
+def _write_help(output: TextIO, topic: str | None = None) -> str:
+    """Display concise ordinary help or one requested capability section."""
+    normalized = topic.strip().casefold() if topic else ""
+    normalized = _HELP_ALIASES.get(normalized, normalized)
+    overview = (
+        "Commands: look, inspect, inventory, move, wait, save, exit.\n"
+        "You can attempt other coherent actions; outcomes depend on "
+        "your situation, resources and other actors.\n"
+        "Explore: help travel, help senses, help objects, help people, "
+        "help work, help inquiry, help session.\n"
+        "For every topic together: help all.\n"
     )
+    if not normalized:
+        visible = overview
+    elif normalized == "all":
+        visible = overview + "\n" + "\n\n".join(_HELP_TOPICS.values()) + "\n"
+    elif normalized in _HELP_TOPICS:
+        visible = _HELP_TOPICS[normalized] + "\n"
+    else:
+        visible = (
+            "No help topic named " + repr(topic) + ".\n"
+            "Choose travel, senses, objects, people, work, inquiry or session.\n"
+        )
     output.write(visible)
     return visible
 
@@ -985,7 +1040,7 @@ def run_terminal(
             )
             return 0
         if parsed.action == "help":
-            _write_help(output_stream)
+            _write_help(output_stream, parsed.argument)
             continue
         if specialized_router is not None:
             specialized = specialized_router(application, raw)
