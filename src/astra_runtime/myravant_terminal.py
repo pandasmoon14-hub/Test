@@ -862,6 +862,12 @@ def _write_help(output: TextIO) -> str:
         "chest latch with lantern. The actual Groundskeeper's work takes "
         "one world step and must be physically qualified. Personal manual "
         "servicing remains available; no generic hiring or economy.\n"
+        "BREADTH-1 player senses: check my hands, inspect my carried objects, "
+        "feel for chest, touch chest, or search by touch for waystone. "
+        "Touch requires an explicitly qualified ground target at the player's "
+        "current place and can succeed without visual light; it does not "
+        "establish hidden contents, anatomy or NPC knowledge. "
+        "Unqualified touch methods refuse without changing world state.\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
         "as capability pressure; they do not mutate authoritative state.\n"
     )
