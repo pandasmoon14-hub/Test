@@ -840,6 +840,11 @@ def _write_help(output: TextIO) -> str:
         "last witnessed location of chest, or last reported location of "
         "chest. Both are fallible historical leads; actual movement still "
         "requires the Groundskeeper's cooperation and a lawful route.\n"
+        "C-3 sensory distinction: ask groundskeeper to touch chest or "
+        "check chest by touch to qualify a local physical contact even in "
+        "poor light. This immediate nonvisual observation is not stored as "
+        "a historical sighting; ask groundskeeper to inspect chest requires "
+        "qualified Groundskeeper visual evidence to create a lasting memory.\n"
         "Compound intentions and genuinely unsupported attempts are preserved "
         "as capability pressure; they do not mutate authoritative state.\n"
     )
