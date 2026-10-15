@@ -190,14 +190,9 @@ def test_actor_cooperation_rejects_remote_or_wrong_custody_then_commits(tmp_path
     assert _last_displacement(restored)==receipt
 
 
-def test_loaded_chest_requires_actual_cargo_and_closure_then_can_be_unpacked(tmp_path):
+def test_loaded_chest_requires_closure_then_can_be_unpacked(tmp_path):
     app=MyravantVSM14Application.new(checkpoint_path=tmp_path/"sealed.json")
     _at_yard_with_lantern(app)
-    empty=execute_orchard_supply_attempt(
-        app,"supply orchard with lantern by pushing the loaded chest",
-    )
-    assert empty.failure_class=="orchard_supply_loaded_container_unavailable"
-    assert not empty.authoritative_changed
     assert app.open_object("chest").authoritative_changed
     assert app.store_object("lantern","chest").authoritative_changed
     relation=containment_relation_for(app.storage_state,LANTERN_ID)
@@ -243,6 +238,42 @@ def test_loaded_chest_requires_actual_cargo_and_closure_then_can_be_unpacked(tmp
     assert _grounded(restored,TOOL_CHEST_ID,ORCHARD_PATH_ID)
     assert _carried(restored,LANTERN_ID,PLAYER_ID)
     assert _last_displacement(restored)==receipt
+
+
+def test_unverified_claimed_cargo_moves_only_real_chest_not_imagined_lantern(tmp_path):
+    """Counterexample: hidden cargo truth must not be exposed by push eligibility.
+
+    The goal states a belief about contents, but the only authoritative
+    outcome is the existing qualified chest push, not 'supplies delivered'.
+    """
+    app = MyravantVSM14Application.new(
+        checkpoint_path=tmp_path / "claimed-cargo.json",
+    )
+    assert app.move("south").authoritative_changed
+    before = app.authoritative_digest()
+    moved = execute_orchard_supply_attempt(
+        app, "supply orchard with lantern by pushing the loaded chest",
+    )
+    assert moved.authoritative_changed
+    assert moved.result_type == "object_displacement_committed"
+    assert moved.message == "You push the Tool Chest east."
+    assert moved.pre_state_digest == before
+    assert moved.receipt_id == _last_displacement(app).receipt_id
+    assert _grounded(app, TOOL_CHEST_ID, ORCHARD_PATH_ID)
+    # Lantern was never in the Chest; intent does not materialize cargo.
+    assert _grounded(app, LANTERN_ID, WORKSHOP_ID)
+    assert containment_relation_for(app.storage_state, LANTERN_ID) is None
+    assert app.move("east").authoritative_changed
+    inquiry = execute_orchard_supply_attempt(app, "check orchard supply")
+    assert not inquiry.authoritative_changed
+    assert "No presently observable Lantern supply" in inquiry.message
+    assert app.save().checkpoint_digest
+    restored = MyravantVSM14Application.restore(
+        checkpoint_path=app.checkpoint_path,
+    )
+    assert restored.authoritative_digest() == app.authoritative_digest()
+    assert _grounded(restored, LANTERN_ID, WORKSHOP_ID)
+    assert _grounded(restored, TOOL_CHEST_ID, ORCHARD_PATH_ID)
 
 
 def test_route_blocker_distinguishes_carriage_from_qualified_throw_and_clearing():
