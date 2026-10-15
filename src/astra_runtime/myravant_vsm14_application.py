@@ -508,26 +508,68 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 f'that report."'
             )
 
-        if operation not in {"witness", "report"}:
+        if operation not in {"witness", "report", "touch"}:
             return answer("That investigation method is not supported.",
                           "actor_knowledge_method_unavailable")
-        if operation == "witness":
-            visible = (
-                self.fixture.ambient_visual_condition_for(player_place)
-                == "sufficient" or self._bounded_local_light_available()
-            )
-            local = any(
+        visual_evidence_id = None
+        if operation in {"witness", "touch"}:
+            # First-person Groundskeeper evidence, not a proxy for a player's
+            # sensory reach. Only actually grounded objects in this shared
+            # place can be considered; carrying/containment does not license
+            # either sight or physical touch of the contained object.
+            grounded_here = any(
                 rel.relation_type == "located_at"
                 and rel.subject_entity_id == target_id
                 and rel.object_entity_id == player_place
                 for rel in self.state.representation.relations
             )
-            if not visible or not local:
+            if operation == "touch":
+                # A read-only near-field contact does not become a persisted
+                # "last saw" memory: v7 knows visual witnessing and reported
+                # testimony only. Adding tactile memory requires a distinct
+                # future versioned evidence contract rather than relabeling.
+                if target_id not in {TOOL_CHEST_ID, WAYSTONE_ID}:
+                    return answer(
+                        "That physical contact method is unavailable here.",
+                        "actor_contact_opportunity_unavailable",
+                    )
+                contact = self.fixture.actor_contact_evidence(
+                    observer_entity_id=GROUNDSKEEPER_ID,
+                    target_entity_id=target_id,
+                    place_id=player_place,
+                    target_grounded_here=grounded_here,
+                )
+                if not contact.contacted:
+                    return answer(
+                        "The Groundskeeper cannot establish direct contact "
+                        "with that object from here.",
+                        "actor_contact_opportunity_unavailable",
+                    )
+                return PlayApplicationResult(
+                    result_type="actor_contact_observed",
+                    message=(
+                        "The Groundskeeper confirms by touch that "
+                        f"{self.fixture.entity_name(target_id)} is here. "
+                        "This is a present contact, not a persisted sighting."
+                    ),
+                    authoritative_changed=False,
+                    observation_evidence_id=contact.evidence_id,
+                    pre_state_digest=pre,
+                    post_state_digest=pre,
+                )
+            sight = self.fixture.actor_visual_observation_evidence(
+                observer_entity_id=GROUNDSKEEPER_ID,
+                target_entity_id=target_id,
+                place_id=player_place,
+                local_light_available=self._bounded_local_light_available(),
+            )
+            if not sight.observable or not grounded_here:
                 return answer(
                     "The Groundskeeper cannot directly verify that object "
                     "here with the available visual evidence.",
                     "actor_knowledge_witness_opportunity_unavailable",
                 )
+            visual_evidence_id = sight.evidence_id
             source = "witnessed"
             place = player_place
         else:
@@ -574,6 +616,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
             ),
             authoritative_changed=True,
             command_id=event.command_id, receipt_id=event.receipt_id,
+            observation_evidence_id=visual_evidence_id,
             pre_state_digest=pre,
             post_state_digest=self.authoritative_digest(),
         )
