@@ -11,6 +11,9 @@ import json
 from dataclasses import asdict, dataclass, replace
 
 from astra_runtime.kernel.record_identity import build_record_id
+from astra_runtime.kernel.command_envelope import create_command_envelope
+from astra_runtime.kernel.transaction_preview import create_transaction_preview
+from astra_runtime.kernel.state_delta import create_state_delta_envelope
 from astra_runtime.myravant_play_fixture import PLAYER_ID, TOOL_CHEST_ID, YARD_ID
 
 PROFILE = "myravant-d1-tool-chest-brace-v1"
@@ -47,6 +50,7 @@ class FixtureBraceEvent:
     pre_digest: str
     post_digest: str
     fingerprint: str
+    preview_id: str
     receipt_id: str
     state_delta_id: str
 
@@ -92,7 +96,7 @@ def execute_fixture_brace(
     actor_id: str, object_id: str, component_id: str, place_id: str,
     logical_before: int, logical_after: int, time_receipt_id: str,
     source_world_digest: str, expected_pre_digest: str, qualified: bool,
-) -> tuple[FixtureBraceState, FixtureBraceEvent]:
+) -> tuple[FixtureBraceState, FixtureBraceEvent, object, object]:
     if type(state) is not FixtureBraceState or not qualified:
         raise FixtureBraceError("unqualified chest-brace state or opportunity")
     if (
@@ -126,12 +130,52 @@ def execute_fixture_brace(
         "post_digest": digest_fixture_brace(post),
     }
     fingerprint = _digest(material)
-    event = FixtureBraceEvent(
-        **material, fingerprint=fingerprint,
-        receipt_id=build_record_id("receipt", "d1-brace-" + fingerprint[:28]),
-        state_delta_id=build_record_id("state_delta", "d1-brace-" + fingerprint[:28]),
+    token = fingerprint[:28]
+    command = create_command_envelope(
+        command_id=command_id, command_type="interact",
+        source_actor_id=actor_id,
+        payload={
+            "target_id": object_id, "component_id": component_id,
+            "method": method, "post_condition": target,
+        },
+        metadata={"package": "PLAY-MATERIAL-D1", "profile": PROFILE},
     )
-    return replace(post, events=(*state.events, event)), event
+    preview = create_transaction_preview(
+        preview_id=build_record_id("material_preview", "d1-brace-" + token),
+        command=command, status="preview_created",
+        messages=("fixture-qualified physical component change prepared",),
+        requires_confirmation=False,
+        metadata={
+            "package": "PLAY-MATERIAL-D1",
+            "semantic_owner": "RT-010",
+            "mutation_performed": False,
+        },
+    )
+    delta = create_state_delta_envelope(
+        delta_id=build_record_id("material_delta", "d1-brace-" + token),
+        source_command_id=command_id,
+        source_preview_id=preview.preview_id,
+        affected_record_ids=(object_id,),
+        change_type="record_update",
+        payload={
+            "profile": PROFILE, "component_id": component_id, "quantity": 1,
+            "method": method, "before_condition": state.condition,
+            "after_condition": target, "worksite": place_id,
+            "logical_before": logical_before,
+            "logical_after": logical_after, "time_receipt_id": time_receipt_id,
+        },
+        metadata={
+            "asset_owner": "RT-010",
+            "opportunity_owner": "AFQR-19",
+            "transition_owner": "AFQR-01",
+        },
+    )
+    event = FixtureBraceEvent(
+        **material, fingerprint=fingerprint, preview_id=preview.preview_id,
+        receipt_id=build_record_id("material_receipt", "d1-brace-" + token),
+        state_delta_id=delta.delta_id,
+    )
+    return replace(post, events=(*state.events, event)), event, preview, delta
 
 
 def serialize_fixture_brace(state: FixtureBraceState) -> dict[str, object]:
@@ -161,7 +205,7 @@ def restore_fixture_brace(material: object) -> FixtureBraceState:
             raise FixtureBraceError("invalid chest-brace event payload")
         try:
             saved = FixtureBraceEvent(**raw)
-            state, recomputed = execute_fixture_brace(
+            state, recomputed, _, _ = execute_fixture_brace(
                 state=state, command_id=saved.command_id, method=saved.method,
                 actor_id=saved.actor_id, object_id=saved.object_id,
                 component_id=saved.component_id, place_id=saved.place_id,
