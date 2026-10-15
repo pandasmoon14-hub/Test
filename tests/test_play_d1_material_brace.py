@@ -30,7 +30,9 @@ def _yard(app):
 def _remove_manual(app):
     first = app.alter_chest_brace("manual")
     assert first.authoritative_changed
-    assert first.receipt_id and first.state_delta_id
+    assert first.preview_id and first.receipt_id and first.state_delta_id
+    assert first.preview_id == app.brace_state.events[0].preview_id
+    assert first.state_delta_id == app.brace_state.events[0].state_delta_id
     assert first.consequence_receipt_id
     assert first.logical_time_after == first.logical_time_before + 1
     assert app.brace_state.condition == "loosened"
