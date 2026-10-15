@@ -828,6 +828,12 @@ _HELP_TOPICS: dict[str, str] = {
         "You may ask the Groundskeeper to throw it if the actor is here "
         "and carries the Lantern. The request does not choose or execute "
         "other preparatory actions.\n"
+        "Other local placement goals: get waystone to yard by dragging; "
+        "clear the yard east exit by pushing waystone north; move chest "
+        "to orchard by pushing. Ask how to get chest to orchard or "
+        "how to get waystone to yard for context-sensitive methods. "
+        "Routes can require light or a closed container; moving one "
+        "object can change passage access or carry its contained objects.\n"
         "These are examples of tested opportunities, not universal "
         "strength, material or physics rules."
     ),
