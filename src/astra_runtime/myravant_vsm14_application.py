@@ -820,7 +820,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
             tick = self.wait()
             if not tick.authoritative_changed or not tick.receipt_id:
                 raise FixtureBraceError("one WORLD-2 work step was not committed")
-            next_state, event = execute_fixture_brace(
+            next_state, event, preview, delta = execute_fixture_brace(
                 state=self.brace_state,
                 command_id=(
                     f"terminal-fixture-brace-{len(self.brace_state.events) + 1:06d}"
@@ -853,8 +853,10 @@ class MyravantVSM14Application(MyravantPlayApplication):
             result_type="fixture_brace_committed",
             message=f"The conserved chest brace is {status}",
             authoritative_changed=True, command_id=event.command_id,
-            command_fingerprint=event.fingerprint, receipt_id=event.receipt_id,
-            state_delta_id=event.state_delta_id,
+            command_fingerprint=event.fingerprint,
+            preview_id=preview.preview_id,
+            receipt_id=event.receipt_id,
+            state_delta_id=delta.delta_id,
             consequence_receipt_id=tick.receipt_id,
             consequence_state_delta_id=tick.state_delta_id,
             logical_time_before=before,
