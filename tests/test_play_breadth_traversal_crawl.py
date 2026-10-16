@@ -19,6 +19,8 @@ from astra_runtime.myravant_play_fixture import (
 )
 from astra_runtime.myravant_terminal import parse_terminal_command
 from astra_runtime.myravant_vsm14_application import MyravantVSM14Application
+from astra_runtime.myravant_vsm14_follow_intent import execute_vsm14_follow_request
+from astra_runtime.myravant_play_fixture import GROUNDSKEEPER_ID
 
 
 def _establish_obstruction(app):
@@ -86,6 +88,48 @@ def test_fixture_rejects_nonexistent_crawl_corridor_or_bypass():
                 method="crawl", bypass_obstruction=True,
             ),
         ))
+
+
+def test_subclass_movement_contract_preserves_walk_follow_and_crawl_nontransfer():
+    app=MyravantVSM14Application.new()
+    assert app.move("south").authoritative_changed
+    assert app.wait().authoritative_changed
+    assert app.current_place_id()==YARD_ID
+    assert app.entity_place_id(GROUNDSKEEPER_ID)==YARD_ID
+    agreement=execute_vsm14_follow_request(
+        app,"ask groundskeeper to follow me"
+    )
+    assert agreement.result.authoritative_changed
+    assert agreement.result.receipt_id
+
+    # Default walking still invokes the preexisting co-present actor follower.
+    walked=app.move("north")
+    assert walked.result_type=="movement_committed"
+    assert walked.authoritative_changed
+    assert walked.consequence_receipt_id
+    assert app.current_place_id()==WORKSHOP_ID
+    assert app.entity_place_id(GROUNDSKEEPER_ID)==WORKSHOP_ID
+
+    # Follow intent does not invent the Groundskeeper's ability to crawl.
+    crawled=app.move("south",method="crawl")
+    assert crawled.result_type=="movement_committed"
+    assert crawled.receipt_id
+    assert crawled.consequence_receipt_id is None
+    assert "cannot follow that traversal method" in crawled.message
+    assert app.current_place_id()==YARD_ID
+    assert app.entity_place_id(GROUNDSKEEPER_ID)==WORKSHOP_ID
+    # Actor consent/intent remains independent and persistent.
+    assert len(app.follow_intent_state.committed_transitions)==1
+
+
+def test_move_override_seam_preserves_old_positional_walk_behavior():
+    app=MyravantVSM14Application.new()
+    positional=app.move("south")
+    explicit=MyravantVSM14Application.new().move("south",method="walk")
+    assert positional.result_type==explicit.result_type=="movement_committed"
+    assert positional.receipt_id==explicit.receipt_id
+    assert positional.command_fingerprint==explicit.command_fingerprint
+    assert positional.opportunity_evidence_id==explicit.opportunity_evidence_id
 
 
 def test_unlicensed_crawl_refused_even_when_normal_walk_is_open():
