@@ -355,11 +355,11 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
             raw_text=raw_text,
         )
 
-    if verb in {"move", "go", "walk", "head"}:
+    if verb in {"move", "go", "walk", "head", "crawl"}:
         direction = _movement_direction(parts[1:])
         if direction is not None:
             return ParsedTerminalCommand(
-                action="move",
+                action="move_crawl" if verb == "crawl" else "move",
                 argument=direction,
                 raw_text=raw_text,
             )
@@ -797,6 +797,9 @@ _HELP_TOPICS: dict[str, str] = {
         "Look around: look; look north/south/east/west; look for lantern.\n"
         "Travel: go south, walk north, or move east. Routes and obstructions "
         "depend on current location and world state.\n"
+        "Try crawl south from the Workshop or crawl east at the Yard. "
+        "These are route-specific crawl clearances, not universal mobility "
+        "or a guarantee that a body can bypass every obstruction.\n"
         "Wait advances world time; people may act independently. "
         "Use look again to observe what changed.\n"
         "Other attempts are evaluated on their own terms; the examples "
@@ -1142,8 +1145,11 @@ def run_terminal(
                 error_stream=evidence_error_stream,
             )
             continue
-        if parsed.action == "move":
-            result = application.move(parsed.argument or "")
+        if parsed.action in {"move", "move_crawl"}:
+            result = application.move(
+                parsed.argument or "",
+                method="crawl" if parsed.action == "move_crawl" else "walk",
+            )
             visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
                 evidence_recorder,

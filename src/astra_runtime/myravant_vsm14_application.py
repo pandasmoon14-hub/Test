@@ -308,7 +308,9 @@ class MyravantVSM14Application(MyravantPlayApplication):
             for route in self.fixture.movement_routes
         )
 
-    def move(self, direction: str) -> PlayApplicationResult:
+    def move(
+        self, direction: str, *, method: str = "walk",
+    ) -> PlayApplicationResult:
         leader_entity_id = self.fixture.player_entity_id
         active = active_follow_intent_for(
             self.follow_intent_state, GROUNDSKEEPER_ID
@@ -321,7 +323,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
             except Exception:
                 follower_place_id = None
 
-        player_result = super().move(direction)
+        player_result = super().move(direction, method=method)
         if (
             player_result.result_type != "movement_committed"
             or active is None
@@ -329,6 +331,19 @@ class MyravantVSM14Application(MyravantPlayApplication):
             or follower_place_id != source_place_id
         ):
             return player_result
+
+        # Follow intent does not assert that the NPC shares the player's
+        # traversal technique or body clearance. The player may complete a
+        # crawl without giving an unsupported actor a phantom crawl receipt.
+        # Existing default walk-follow behavior remains unchanged.
+        if method != "walk":
+            return replace(
+                player_result,
+                message=(
+                    f"{player_result.message} The Groundskeeper cannot "
+                    "follow that traversal method."
+                ),
+            )
 
         destination_place_id = self.current_place_id()
         if not self._follow_route_exists(
