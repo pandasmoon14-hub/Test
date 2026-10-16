@@ -802,7 +802,7 @@ _HELP_TOPICS: dict[str, str] = {
         "Explicit two-step intentions can join supported methods with "
         "'then', e.g. take lantern then go south. Each step resolves and "
         "saves independently; a later refusal never rewinds an earlier "
-        "committed action. No simultaneous method is implied.\\n"
+        "committed action. No simultaneous method is implied.\n"
         "Other attempts are evaluated on their own terms; the examples "
         "are not a list of everything you may try."
     ),
@@ -1197,7 +1197,7 @@ def run_terminal(
                 continue
 
             for index, step in enumerate(steps, 1):
-                prefix = f"Step {index}/2 ({step.action}):\\n"
+                prefix = f"Step {index}/2 ({step.action}):\n"
                 output_stream.write(prefix)
                 outcome = _execute_original_sequence_step(application, step)
                 visible = prefix + _write_durable_result(
@@ -1216,7 +1216,7 @@ def run_terminal(
                 if outcome.failure_class is not None:
                     if index == 1:
                         output_stream.write(
-                            "The second step was not attempted.\\n"
+                            "The second step was not attempted.\n"
                         )
                     break
             continue
