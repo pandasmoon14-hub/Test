@@ -292,6 +292,51 @@ def test_cancel_agreement_and_no_automatic_latch_completion():
     assert app.duty_state.status=="cancelled"
 
 
+def test_pending_duty_blocks_conflicting_direct_secure_until_cancelled(tmp_path):
+    """One agreed NPC method may not leave a phantom pending obligation."""
+    app=MyravantVSM14Application.new(
+        checkpoint_path=tmp_path/"switch-method.json",
+    )
+    yard(app)
+    assert goal(app,"manual service").authoritative_changed
+    assert goal(app,"manual service").authoritative_changed
+    assert goal(app,"closing chest").authoritative_changed
+    agreed=goal(app,"asking groundskeeper to secure later")
+    assert agreed.authoritative_changed
+    assert app.duty_state.status=="pending"
+    assert not app.service_state.secured
+
+    current=goal(app)
+    assert "pending" in current.message
+    assert "You can secure the latch yourself" not in current.message
+    before=app.authoritative_digest()
+    direct=goal(app,"securing the latch myself")
+    bypass=app.service_chest_latch("secure")
+    for result in (direct,bypass):
+        assert result.failure_class=="fixture_service_pending_duty"
+        assert not result.authoritative_changed
+        assert result.pre_state_digest==result.post_state_digest==before
+    assert app.authoritative_digest()==before
+    assert app.duty_state.status=="pending"
+
+    assert goal(app,"cancelling groundskeeper duty").authoritative_changed
+    assert app.duty_state.status=="cancelled"
+    player=goal(app,"securing the latch myself")
+    assert player.authoritative_changed
+    assert player.receipt_id and player.state_delta_id
+    assert app.service_state.secured
+    assert app.service_state.events[-1].actor_id==PLAYER_ID
+    assert app.save().checkpoint_digest
+    restored=MyravantVSM14Application.restore(
+        checkpoint_path=app.checkpoint_path,
+    )
+    assert restored.authoritative_digest()==app.authoritative_digest()
+    assert restored.duty_state.status=="cancelled"
+    assert restored.service_state.secured
+    assert restored.wait().authoritative_changed
+    assert restored.duty_state.status=="cancelled"
+
+
 def test_goal_based_wait_uses_same_owner_duty_receipts():
     app=MyravantVSM14Application.new()
     yard(app)
