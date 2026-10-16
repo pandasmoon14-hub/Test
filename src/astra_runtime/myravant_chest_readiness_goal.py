@@ -160,7 +160,10 @@ def execute_chest_readiness_goal(
             )
         if not closed:
             parts.append("Close the Chest before securing.")
-        if progress == 2 and brace == "attached" and closed and not secured:
+        if (
+            progress == 2 and brace == "attached" and closed
+            and not secured and duty != "pending"
+        ):
             parts.append(
                 "You can secure the latch yourself, or ask a co-present "
                 "Groundskeeper to secure it later, when willing."
@@ -187,8 +190,10 @@ def execute_chest_readiness_goal(
             parts.append("The Groundskeeper is presently at this worksite.")
         parts.append(
             "Pushing the Chest to Orchard is a separate qualified "
-            "physical choice. Nothing is repaired, secured, loaded or "
-            "delivered by asking for these options."
+            "physical choice. Moving it away before completing local "
+            "work or an accepted Yard duty may remove the opportunity "
+            "to finish those actions. Nothing is repaired, secured, "
+            "loaded or delivered by asking for these options."
         )
         return PlayApplicationResult(
             result_type="chest_readiness_methods_observed",
