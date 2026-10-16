@@ -43,6 +43,14 @@ jobs:
           name: myravant-synthetic-play-discovery-linux
           path: synthetic-play-evidence.json
           if-no-files-found: error
+      - name: Generate ordinary-action coverage evidence
+        run: python scripts/report_myravant_action_coverage.py --output action-coverage-evidence.json
+      - name: Upload ordinary-action coverage evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-action-coverage-baseline-linux
+          path: action-coverage-evidence.json
+          if-no-files-found: error
 
   core-windows:
     name: core-windows
