@@ -899,7 +899,7 @@ _HELP_TOPICS: dict[str, str] = {
         "or last reported location of chest.\n"
         "Ask groundskeeper to touch chest or check chest by touch "
         "where near-field contact is qualified. A touch is not "
-        "automatically a remembered visual sighting. Reports may be stale.\\n"
+        "automatically a remembered visual sighting. Reports may be stale.\n"
         "For conflicting local Chest leads, try trace chest with "
         "groundskeeper. You may choose a firsthand witnessed sighting, "
         "give an explicitly unverified report, compare the two historical "
