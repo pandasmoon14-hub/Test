@@ -344,7 +344,7 @@ def test_sustained_terminal_campaign_replay_and_restart(tmp_path, name):
         if extra:
             observed = [
                 row for row in interactions
-                if row["raw_player_input"] == "move south then move north\\n"
+                if row["raw_player_input"] == "move south then move north\n"
             ]
             assert len(observed) == 2
             assert [row["parsed_action"] for row in observed] == [
