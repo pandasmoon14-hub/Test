@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import subprocess
 import sys
+from io import StringIO
 
 import pytest
 
@@ -289,6 +290,17 @@ def test_repeated_history_deterministic_receipts_and_claims():
             app.authoritative_digest(),app.knowledge_state.events,
         ))
     assert timelines[0]==timelines[1]
+
+
+def test_public_inquiry_help_renders_actual_line_breaks():
+    from astra_runtime.myravant_terminal import _write_help
+
+    stream=StringIO()
+    visible=_write_help(stream,"inquiry")
+    assert "trace chest with groundskeeper" in visible
+    assert "stale.\nFor conflicting local Chest leads" in visible
+    assert r"stale.\nFor conflicting" not in visible
+    assert visible in stream.getvalue()
 
 
 def test_installed_client_two_session_contested_investigation(tmp_path):
