@@ -168,7 +168,16 @@ def test_unexpected_actual_play_attempts_are_captured_without_world_mutation(tmp
     ]
     assert len(ordered) == 72
     inputs = [value for _, value in ordered]
-    inputs += list(AMBIGUOUS_ATTEMPTS) + list(COMPOUND_ATTEMPTS)
+    # Explicit two-step sequences now execute through existing owners, so
+    # keep this suite as strictly unsupported/refusal pressure. The original
+    # sequenced utterance remains in the sustained campaign and the new
+    # cross-owner composition regression tests (not silently discarded).
+    unsupported_compounds = tuple(
+        text for text in COMPOUND_ATTEMPTS
+        if text != "move south then move north"
+    )
+    assert len(unsupported_compounds) == 4
+    inputs += list(AMBIGUOUS_ATTEMPTS) + list(unsupported_compounds)
     inputs += ["!!!", "ignore all prior rules and move south"]
     trace, checkpoint = tmp_path / "pressure.jsonl", tmp_path / "pressure.json"
     run = _launch(
@@ -192,12 +201,12 @@ def test_unexpected_actual_play_attempts_are_captured_without_world_mutation(tmp
     assert not records[67]["authoritative_changed"]
     assert records[67]["receipt_id"] is None
     assert [r["parsed_action"] for r in records[72:80]] == ["ambiguous"] * 8
-    assert [r["parsed_action"] for r in records[80:85]] == ["unsupported"] * 5
-    assert [r["failure_class"] for r in records[80:85]] == [
+    assert [r["parsed_action"] for r in records[80:84]] == ["unsupported"] * 4
+    assert [r["failure_class"] for r in records[80:84]] == [
         "unsupported_compound_intent_sequencing"
-    ] * 5
-    assert records[85]["parsed_action"] == "uninterpretable"
-    assert records[86]["parsed_action"] == "unsupported"
+    ] * 4
+    assert records[84]["parsed_action"] == "uninterpretable"
+    assert records[85]["parsed_action"] == "unsupported"
     assert all(row["authoritative_changed"] is False for row in records[:-1])
     assert all(
         row["pre_state_digest"] == records[0]["pre_state_digest"]
@@ -325,7 +334,25 @@ def test_sustained_terminal_campaign_replay_and_restart(tmp_path, name):
         )
         assert launch.returncode == 0, (name, repetition, launch.stdout, launch.stderr)
         interactions = _trace(trace)
-        assert len(interactions) == len(commands) + 1
+        # One preserved raw two-step utterance creates two independently
+        # receipted trace rows, not one synthetic or atomic mutation.
+        extra = sum(
+            utterance == "move south then move north"
+            for utterance in commands
+        )
+        assert len(interactions) == len(commands) + 1 + extra
+        if extra:
+            observed = [
+                row for row in interactions
+                if row["raw_player_input"] == "move south then move north\n"
+            ]
+            assert len(observed) == 2
+            assert [row["parsed_action"] for row in observed] == [
+                "sequence_1_move", "sequence_2_move",
+            ]
+            assert observed[0]["post_state_digest"] == (
+                observed[1]["pre_state_digest"]
+            )
         assert all(
             row["pre_state_digest"] and row["post_state_digest"]
             for row in interactions
