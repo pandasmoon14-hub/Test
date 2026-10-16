@@ -23,6 +23,9 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          # Preserve exact candidate identity in replay/evidence receipts.
+          # PR default checkout otherwise uses a synthetic merge commit.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Set up Python 3.12
         uses: actions/setup-python@v6
         with:
@@ -43,6 +46,14 @@ jobs:
           name: myravant-synthetic-play-discovery-linux
           path: synthetic-play-evidence.json
           if-no-files-found: error
+      - name: Generate ordinary-action coverage evidence
+        run: python scripts/report_myravant_action_coverage.py --output action-coverage-evidence.json
+      - name: Upload ordinary-action coverage evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-action-coverage-baseline-linux
+          path: action-coverage-evidence.json
+          if-no-files-found: error
 
   core-windows:
     name: core-windows
@@ -59,6 +70,9 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          # Preserve exact candidate identity in replay/evidence receipts.
+          # PR default checkout otherwise uses a synthetic merge commit.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Set up Python 3.12
         uses: actions/setup-python@v6
         with:
