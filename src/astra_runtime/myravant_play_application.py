@@ -1208,9 +1208,20 @@ class MyravantPlayApplication:
                 return candidate
             sequence += 1
 
-    def move(self, direction: str) -> PlayApplicationResult:
+    def move(
+        self, direction: str, *, method: str = "walk",
+    ) -> PlayApplicationResult:
         normalized = direction.strip().lower()
         pre_digest = self.authoritative_digest()
+        if method not in {"walk", "crawl"}:
+            return PlayApplicationResult(
+                result_type="movement_rejected",
+                message="That traversal method is not yet qualified.",
+                authoritative_changed=False,
+                pre_state_digest=pre_digest,
+                post_state_digest=pre_digest,
+                failure_class="traversal_method_unavailable",
+            )
         pre_representation_digest = self.representation_digest()
         source_place_id = self.current_place_id()
 
@@ -1235,7 +1246,11 @@ class MyravantPlayApplication:
             command_type="move",
             source_actor_id=self.fixture.player_entity_id,
             payload={"destination_entity_id": destination_place_id},
-            metadata={"client": "myravant-terminal-g1"},
+            metadata=(
+                {"client": "myravant-terminal-g1"}
+                if method == "walk" else
+                {"client": "myravant-terminal-g1", "traversal_method": method}
+            ),
         )
         spatial_evidence, opportunity_evidence = (
             self.fixture.movement_evidence(
@@ -1244,6 +1259,7 @@ class MyravantPlayApplication:
                 direction=normalized,
                 destination_place_id=destination_place_id,
                 representation=self.state.representation,
+                method=method,
             )
         )
 
@@ -1259,13 +1275,15 @@ class MyravantPlayApplication:
             # Let the existing AFQR-19 owner reject a blocked opportunity.
             # The fixture may describe only a qualified obstruction, not
             # fabricate an alternate destination or commit on refusal.
-            obstructed = not opportunity_evidence.opportunity_available
+            unavailable = not opportunity_evidence.opportunity_available
             return PlayApplicationResult(
                 result_type="movement_rejected",
                 message=(
+                    "That crawling method has no qualified clearance here."
+                    if unavailable and method == "crawl" else
                     "Something obstructs that passage from here."
-                    if obstructed
-                    else "The movement was rejected by the authoritative runtime."
+                    if unavailable else
+                    "The movement was rejected by the authoritative runtime."
                 ),
                 authoritative_changed=False,
                 command_id=command_id,
@@ -1274,8 +1292,10 @@ class MyravantPlayApplication:
                 pre_state_digest=pre_digest,
                 post_state_digest=pre_digest,
                 failure_class=(
+                    "traversal_method_opportunity_unavailable"
+                    if unavailable and method == "crawl" else
                     "movement_opportunity_obstructed"
-                    if obstructed else type(exc).__name__
+                    if unavailable else type(exc).__name__
                 ),
             )
 
@@ -1290,7 +1310,11 @@ class MyravantPlayApplication:
 
         return PlayApplicationResult(
             result_type="movement_committed",
-            message=f"You move to the {destination_name}.",
+            message=(
+                f"You crawl through to the {destination_name}."
+                if method == "crawl" else
+                f"You move to the {destination_name}."
+            ),
             authoritative_changed=True,
             command_id=command_id,
             command_fingerprint=result.receipt.command_fingerprint,

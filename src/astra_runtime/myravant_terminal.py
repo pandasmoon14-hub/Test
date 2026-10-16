@@ -356,11 +356,11 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
             raw_text=raw_text,
         )
 
-    if verb in {"move", "go", "walk", "head"}:
+    if verb in {"move", "go", "walk", "head", "crawl"}:
         direction = _movement_direction(parts[1:])
         if direction is not None:
             return ParsedTerminalCommand(
-                action="move",
+                action="move_crawl" if verb == "crawl" else "move",
                 argument=direction,
                 raw_text=raw_text,
             )
@@ -798,6 +798,9 @@ _HELP_TOPICS: dict[str, str] = {
         "Look around: look; look north/south/east/west; look for lantern.\n"
         "Travel: go south, walk north, or move east. Routes and obstructions "
         "depend on current location and world state.\n"
+        "Try crawl south from the Workshop or crawl east at the Yard. "
+        "These are route-specific crawl clearances, not universal mobility "
+        "or a guarantee that a body can bypass every obstruction.\n"
         "Wait advances world time; people may act independently. "
         "Use look again to observe what changed.\n"
         "For exactly two independent steps, try go south then inspect chest. "
@@ -1040,7 +1043,7 @@ def _finish_evidence(
 # identical existing application owners below. No hidden planner/automation.
 _COMPOSABLE_STEP_ACTIONS = frozenset({
     "look", "look_direction", "focused_observation", "inspect", "inspect_self",
-    "move", "pickup", "drop", "open", "close", "light", "extinguish",
+    "move", "move_crawl", "pickup", "drop", "open", "close", "light", "extinguish",
     "store", "retrieve", "throw", "push", "slide", "drag", "wait",
 })
 
@@ -1078,8 +1081,11 @@ def _execute_composable_core_step(
         return application.focused_observation(argument)
     if action in {"inspect", "inspect_self"}:
         return application.inspect("self" if action == "inspect_self" else argument)
-    if action == "move":
-        return application.move(argument)
+    if action in {"move", "move_crawl"}:
+        return application.move(
+            argument,
+            method="crawl" if action == "move_crawl" else "walk",
+        )
     if action in {"throw", "push", "slide", "drag"}:
         try:
             object_reference, direction = _split_throw_argument(argument)
@@ -1225,7 +1231,7 @@ def run_terminal(
                 continue
         if parsed.action in {
             "look", "look_direction", "focused_observation",
-            "inspect", "inspect_self", "move", "throw", "push", "slide", "drag",
+            "inspect", "inspect_self", "move", "move_crawl", "throw", "push", "slide", "drag",
         }:
             result = _execute_composable_core_step(application, parsed)
             visible = _write_durable_result(

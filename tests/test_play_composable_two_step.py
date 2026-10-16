@@ -302,3 +302,52 @@ def test_full_baseline_preserves_other_cases_and_correctly_counts_sequence(tmp_p
     assert rows["Q03"]["outcome"]=="unsupported_novelty"
     assert rows["M01"]["outcome"]=="executed"
     assert rows["I01"]["outcome"]=="executed"
+
+def test_integrated_crawl_followed_by_local_inspection(tmp_path):
+    checkpoint=tmp_path/"crawl-inspect.json"
+    out,rows=_play(
+        checkpoint,tmp_path/"crawl-inspect.jsonl",
+        ("crawl south then inspect chest",),
+    )
+    assert [r["parsed_action"] for r in rows]==[
+        "sequence_1_move_crawl", "sequence_2_inspect",
+    ], (out.stdout,rows)
+    assert rows[0]["authoritative_changed"]
+    assert not rows[1]["authoritative_changed"]
+    assert rows[0]["receipt_id"]
+    assert rows[0]["post_state_digest"]==rows[1]["pre_state_digest"]
+    assert MyravantVSM14Application.restore(
+        checkpoint_path=checkpoint,
+    ).current_place_id()==YARD_ID
+
+
+def test_integrated_walk_then_qualified_crawl_is_two_durable_owner_moves(tmp_path):
+    checkpoint=tmp_path/"walk-crawl.json"
+    out,rows=_play(
+        checkpoint,tmp_path/"walk-crawl.jsonl",
+        ("go south then crawl east",),
+    )
+    assert [r["parsed_action"] for r in rows]==[
+        "sequence_1_move", "sequence_2_move_crawl",
+    ], (out.stdout,rows)
+    assert all(r["authoritative_changed"] and r["receipt_id"] for r in rows)
+    assert rows[0]["post_state_digest"]==rows[1]["pre_state_digest"]
+    restored=MyravantVSM14Application.restore(checkpoint_path=checkpoint)
+    assert restored.current_place_id()==ORCHARD_PATH_ID
+    assert restored.authoritative_digest()==rows[-1]["post_state_digest"]
+
+
+def test_integrated_unqualified_crawl_refusal_cancels_following_step(tmp_path):
+    checkpoint=tmp_path/"unqualified-crawl.json"
+    out,rows=_play(
+        checkpoint,tmp_path/"unqualified-crawl.jsonl",
+        ("crawl north then move south",),
+    )
+    assert len(rows)==1, (out.stdout,rows)
+    assert rows[0]["parsed_action"]=="sequence_1_move_crawl"
+    assert not rows[0]["authoritative_changed"]
+    assert rows[0]["failure_class"]
+    assert "Sequence halted" in out.stdout
+    assert MyravantVSM14Application.restore(
+        checkpoint_path=checkpoint,
+    ).current_place_id()==WORKSHOP_ID
