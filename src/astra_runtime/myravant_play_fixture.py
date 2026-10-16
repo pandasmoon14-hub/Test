@@ -203,6 +203,21 @@ class FixtureMovementRoute:
 
 
 @dataclass(frozen=True, kw_only=True)
+class FixtureMovementMethodRoute:
+    """Noncanonical clearance for a specific technique on one real corridor.
+
+    A technique never changes AFQR-18 spatial route ownership; the fixture
+    qualifies method-specific AFQR-19 opportunity. Obstruction bypass must
+    be explicitly licensed, not inferred from the verb 'crawl'.
+    """
+
+    source_place_id: str
+    direction: str
+    method: str
+    bypass_obstruction: bool = False
+
+
+@dataclass(frozen=True, kw_only=True)
 class FixtureMovementObstructionLicense:
     """One explicitly licensed route obstruction, never generic co-location."""
 
@@ -366,6 +381,7 @@ class MyravantPlayFixture:
     movement_obstruction_licenses: tuple[
         FixtureMovementObstructionLicense, ...
     ] = ()
+    movement_method_routes: tuple[FixtureMovementMethodRoute, ...] = ()
 
     def __post_init__(self) -> None:
         object.__setattr__(
@@ -434,6 +450,40 @@ class MyravantPlayFixture:
             presentation.entity_id
             for presentation in self.object_presentations
         }
+        method_keys: list[tuple[str, str, str]] = []
+        for license in self.movement_method_routes:
+            if license.method not in {"crawl"}:
+                raise MyravantPlayFixtureError(
+                    "unqualified fixture traversal method"
+                )
+            if not any(
+                route.source_place_id == license.source_place_id
+                and route.direction == license.direction
+                for route in self.movement_routes
+            ):
+                raise MyravantPlayFixtureError(
+                    "fixture traversal method has no actual corridor"
+                )
+            if type(license.bypass_obstruction) is not bool:
+                raise MyravantPlayFixtureError(
+                    "traversal bypass qualification must be boolean"
+                )
+            if license.bypass_obstruction and not any(
+                obstacle.source_place_id == license.source_place_id
+                and obstacle.direction == license.direction
+                for obstacle in self.movement_obstruction_licenses
+            ):
+                raise MyravantPlayFixtureError(
+                    "method bypass must reference an explicit obstruction"
+                )
+            method_keys.append((
+                license.source_place_id, license.direction, license.method,
+            ))
+        if len(method_keys) != len(set(method_keys)):
+            raise MyravantPlayFixtureError(
+                "duplicate fixture traversal method qualification"
+            )
+
         obstruction_keys: list[tuple[str, str]] = []
         for license in self.movement_obstruction_licenses:
             if license.blocking_object_entity_id not in object_ids:
@@ -999,6 +1049,7 @@ class MyravantPlayFixture:
         direction: str,
         destination_place_id: str,
         representation: PersistentWorldEntityLocationRepresentation | None = None,
+        method: str = "walk",
     ) -> tuple[MovementSpatialEvidence, MovementOpportunityEvidence]:
         expected_destination = self.destination_for(
             source_place_id=source_place_id,
@@ -1032,6 +1083,22 @@ class MyravantPlayFixture:
             and relation.object_entity_id == obstruction.blocking_object_place_id
             for relation in current.relations
         )
+        crawl_license = next((
+            license for license in self.movement_method_routes
+            if license.source_place_id == source_place_id
+            and license.direction == direction
+            and license.method == method
+        ), None)
+        # Walk retains its original opportunity semantics. Crawl requires
+        # an explicit route-specific fixture clearance, and only the one
+        # licensed underpass can bypass a currently obstructed walking route.
+        allowed = (
+            not blocked if method == "walk" else
+            crawl_license is not None and (
+                not blocked or crawl_license.bypass_obstruction
+            ) if method == "crawl" else False
+        )
+
         # The spatial corridor does not change when the actor clears a
         # movable obstruction. Only the AFQR-19 opportunity evidence changes.
         spatial_token = hashlib.sha256(
@@ -1041,6 +1108,9 @@ class MyravantPlayFixture:
         # travel; only a genuinely obstructed qualification needs a distinct
         # token. Historical baseline receipts must not drift on clear paths.
         material = (
+            (f"{command_id}|method={method}|blocked={int(blocked)}"
+             f"|allowed={int(allowed)}")
+            if method != "walk" else
             f"{command_id}|route-obstruction=1"
             if blocked else command_id
         )
@@ -1059,8 +1129,8 @@ class MyravantPlayFixture:
             evidence_id=build_record_id("evidence", f"g1-opportunity-{opportunity_token}"),
             actor_entity_id=self.player_entity_id,
             destination_place_id=destination_place_id,
-            opportunity_available=not blocked,
-            resolution_accepted=not blocked,
+            opportunity_available=allowed,
+            resolution_accepted=allowed,
         )
         return spatial, opportunity
 
@@ -2066,6 +2136,19 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
                 direction="east",
                 blocking_object_entity_id=WAYSTONE_ID,
                 blocking_object_place_id=YARD_ID,
+            ),
+        ),
+        movement_method_routes=(
+            # Human-scale noncanonical corridor clearance is fixture evidence,
+            # not a universal law that all body forms can crawl everywhere.
+            FixtureMovementMethodRoute(
+                source_place_id=WORKSHOP_ID, direction="south", method="crawl",
+            ),
+            # One specifically declared low clearance beneath the placed
+            # Waystone admits crawling when ordinary walking is obstructed.
+            FixtureMovementMethodRoute(
+                source_place_id=YARD_ID, direction="east", method="crawl",
+                bypass_obstruction=True,
             ),
         ),
     )
