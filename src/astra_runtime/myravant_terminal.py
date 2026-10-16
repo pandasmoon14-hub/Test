@@ -799,6 +799,10 @@ _HELP_TOPICS: dict[str, str] = {
         "depend on current location and world state.\n"
         "Wait advances world time; people may act independently. "
         "Use look again to observe what changed.\n"
+        "Explicit two-step intentions can join supported methods with "
+        "'then', e.g. take lantern then go south. Each step resolves and "
+        "saves independently; a later refusal never rewinds an earlier "
+        "committed action. No simultaneous method is implied.\\n"
         "Other attempts are evaluated on their own terms; the examples "
         "are not a list of everything you may try."
     ),
@@ -1031,6 +1035,90 @@ def _finish_evidence(
             error_stream.write(f"Trace evidence incomplete: {exc}\n")
 
 
+# A client-side, explicitly bounded two-step request is not an action owner.
+# Each original domain command is independently qualified and durably
+# acknowledged, including the possibility that only the first one commits.
+_SEQUENCE_STEPS = frozenset({
+    "look", "look_direction", "focused_observation", "inspect", "inspect_self",
+    "move", "pickup", "drop", "light", "extinguish", "open", "close", "wait",
+    "store", "retrieve", "throw", "push", "slide", "drag",
+})
+
+
+def _parse_explicit_two_step_intent(
+    raw_text: str,
+) -> tuple[ParsedTerminalCommand, ...] | None:
+    normalized = " ".join(raw_text.strip().casefold().split())
+    if " then " not in normalized:
+        return None
+    parts = normalized.split(" then ")
+    if len(parts) != 2 or any(not part for part in parts):
+        return ()
+    steps = tuple(parse_terminal_command(part) for part in parts)
+    if any(step.action not in _SEQUENCE_STEPS for step in steps):
+        return ()
+
+    # Reject malformed compound components before the first action commits.
+    try:
+        for step in steps:
+            if step.action in {"store", "retrieve"}:
+                _split_storage_argument(step.argument or "")
+            if step.action in {"throw", "push", "slide", "drag"}:
+                _split_throw_argument(step.argument or "")
+    except ValueError:
+        return ()
+    return steps
+
+
+def _execute_original_sequence_step(
+    application: MyravantPlayApplication,
+    parsed: ParsedTerminalCommand,
+) -> PlayApplicationResult:
+    """Call only the existing authoritative owner associated with a step.
+
+    The client does not infer opportunity or state, undo earlier commits,
+    resolve unqualified verbs, or own a durable multi-command queue.
+    """
+    action, argument = parsed.action, parsed.argument or ""
+    if action == "look":
+        return application.look()
+    if action == "look_direction":
+        return application.look_direction(argument)
+    if action == "focused_observation":
+        if " -> " in argument:
+            target, direction = argument.rsplit(" -> ", 1)
+            return application.focused_observation(target, direction=direction)
+        return application.focused_observation(argument)
+    if action in {"inspect", "inspect_self"}:
+        return application.inspect("self" if action == "inspect_self" else argument)
+    if action == "move":
+        return application.move(argument)
+    if action == "pickup":
+        return application.pickup(argument)
+    if action == "drop":
+        return application.drop(argument)
+    if action == "light":
+        return application.light_object(argument)
+    if action == "extinguish":
+        return application.extinguish_object(argument)
+    if action == "open":
+        return application.open_object(argument)
+    if action == "close":
+        return application.close_object(argument)
+    if action == "wait":
+        return application.wait()
+    if action == "store":
+        item, container = _split_storage_argument(argument)
+        return application.store_object(item, container)
+    if action == "retrieve":
+        item, container = _split_storage_argument(argument)
+        return application.retrieve_object(item, container)
+    if action in {"throw", "push", "slide", "drag"}:
+        item, direction = _split_throw_argument(argument)
+        return application.displace_object(item, direction, method=action)
+    raise AssertionError("unsupported step reached bounded executor")
+
+
 def run_terminal(
     application: MyravantPlayApplication,
     *,
@@ -1074,6 +1162,63 @@ def run_terminal(
             return 0
         if parsed.action == "help":
             _write_help(output_stream, parsed.argument)
+            continue
+
+        # Explicit sequential intent is qualified *before* either action;
+        # a later contextual refusal does not undo the already durable first
+        # transition. No simultaneous action, implicit third step or planner.
+        steps = _parse_explicit_two_step_intent(raw)
+        if steps is not None:
+            if not steps:
+                digest = application.authoritative_digest()
+                refused = PlayApplicationResult(
+                    result_type="sequential_intent_refused",
+                    message=(
+                        "Both steps must be individually supported, clear "
+                        "actions joined by one 'then'; no step was attempted."
+                    ),
+                    authoritative_changed=False,
+                    failure_class="sequential_intent_step_unqualified",
+                    pre_state_digest=digest,
+                    post_state_digest=digest,
+                )
+                visible = _write_durable_result(
+                    output_stream, application, refused, debug=debug,
+                )
+                _record_result(
+                    evidence_recorder,
+                    parsed=ParsedTerminalCommand(
+                        action="sequential_intent_refused", raw_text=raw,
+                    ),
+                    visible_output=visible,
+                    result=refused,
+                    error_stream=evidence_error_stream,
+                )
+                continue
+
+            for index, step in enumerate(steps, 1):
+                prefix = f"Step {index}/2 ({step.action}):\\n"
+                output_stream.write(prefix)
+                outcome = _execute_original_sequence_step(application, step)
+                visible = prefix + _write_durable_result(
+                    output_stream, application, outcome, debug=debug,
+                )
+                _record_result(
+                    evidence_recorder,
+                    parsed=ParsedTerminalCommand(
+                        action=f"sequential_step_{index}_{step.action}",
+                        raw_text=raw,
+                    ),
+                    visible_output=visible,
+                    result=outcome,
+                    error_stream=evidence_error_stream,
+                )
+                if outcome.failure_class is not None:
+                    if index == 1:
+                        output_stream.write(
+                            "The second step was not attempted.\\n"
+                        )
+                    break
             continue
         if specialized_router is not None:
             specialized = specialized_router(application, raw)
