@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import subprocess
 import sys
+from dataclasses import replace
 
 import pytest
 
@@ -40,7 +41,7 @@ def _establish_obstruction(app):
     ("crawl south","move_crawl","south"),
     ("I crawl south","move_crawl","south"),
     ("crawl to the south exit","move_crawl","south"),
-    ("Crawl east!","unsupported",None),
+    ("crawl east","move_crawl","east"),
     ("walk south","move","south"),
     ("sprint south","unsupported",None),
     ("sneak south","unsupported",None),
@@ -65,8 +66,26 @@ def test_crawl_and_walk_use_same_owner_but_distinct_command_fingerprints():
     assert a.spatial_evidence_id and b.spatial_evidence_id
     assert a.opportunity_evidence_id!=b.opportunity_evidence_id
     assert "crawl" in b.message
-    assert crawl.state.committed_transitions[-1].command.metadata["traversal_method"]=="crawl"
-    assert "traversal_method" not in walk.state.committed_transitions[-1].command.metadata
+    assert crawl.state.committed_transitions[-1].receipt.command_fingerprint==b.command_fingerprint
+    assert walk.state.committed_transitions[-1].receipt.command_fingerprint==a.command_fingerprint
+
+
+def test_fixture_rejects_nonexistent_crawl_corridor_or_bypass():
+    app=MyravantVSM14Application.new()
+    with pytest.raises(MyravantPlayFixtureError):
+        replace(app.fixture, movement_method_routes=(
+            FixtureMovementMethodRoute(
+                source_place_id=WORKSHOP_ID, direction="west",
+                method="crawl", bypass_obstruction=True,
+            ),
+        ))
+    with pytest.raises(MyravantPlayFixtureError):
+        replace(app.fixture, movement_method_routes=(
+            FixtureMovementMethodRoute(
+                source_place_id=WORKSHOP_ID, direction="south",
+                method="crawl", bypass_obstruction=True,
+            ),
+        ))
 
 
 def test_unlicensed_crawl_refused_even_when_normal_walk_is_open():
@@ -105,10 +124,7 @@ def test_method_discrimination_at_same_obstructed_corridor_with_checkpoint(tmp_p
     assert restored.authoritative_digest()==app.authoritative_digest()
     assert restored.entity_place_id(WAYSTONE_ID)==YARD_ID
     assert restored.current_place_id()==ORCHARD_PATH_ID
-    assert any(
-        transition.command.metadata.get("traversal_method")=="crawl"
-        for transition in restored.state.committed_transitions
-    )
+    assert restored.state.committed_transitions[-1].receipt.command_fingerprint==passed.command_fingerprint
     assert dragging.receipt_id and passed.receipt_id
     assert dragging.receipt_id!=passed.receipt_id
 
@@ -155,7 +171,7 @@ def test_two_session_installed_terminal_exercises_crawl_then_recovery(tmp_path):
     def play(cmds,*args):
         return subprocess.run(
             [sys.executable,"-m","astra_runtime.myravant_terminal",*args],
-            input="\\n".join((*cmds,"exit","")),text=True,capture_output=True,
+            input="\n".join((*cmds,"exit","")),text=True,capture_output=True,
             timeout=120,
         )
     first=play(("crawl south",), "--checkpoint",str(checkpoint))
