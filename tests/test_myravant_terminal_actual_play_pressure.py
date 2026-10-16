@@ -152,7 +152,7 @@ AMBIGUOUS_ATTEMPTS = (
     "ask her to open chest",
 )
 COMPOUND_ATTEMPTS = (
-    "move south then move north",
+    "move south then sneak north",
     "pickup lantern and drop lantern",
     "open chest and take lantern",
     "wait and then move south",
@@ -192,10 +192,19 @@ def test_unexpected_actual_play_attempts_are_captured_without_world_mutation(tmp
     assert not records[67]["authoritative_changed"]
     assert records[67]["receipt_id"] is None
     assert [r["parsed_action"] for r in records[72:80]] == ["ambiguous"] * 8
-    assert [r["parsed_action"] for r in records[80:85]] == ["unsupported"] * 5
+    # The original negative corpus still targets *unqualified* compounds.
+    # Positive two-step routing has dedicated committed/replay tests.
+    assert [r["parsed_action"] for r in records[80:85]] == [
+        "sequential_intent_refused", "unsupported", "unsupported",
+        "sequential_intent_refused", "sequential_intent_refused",
+    ]
     assert [r["failure_class"] for r in records[80:85]] == [
-        "unsupported_compound_intent_sequencing"
-    ] * 5
+        "sequential_intent_step_unqualified",
+        "unsupported_compound_intent_sequencing",
+        "unsupported_compound_intent_sequencing",
+        "sequential_intent_step_unqualified",
+        "sequential_intent_step_unqualified",
+    ]
     assert records[85]["parsed_action"] == "uninterpretable"
     assert records[86]["parsed_action"] == "unsupported"
     assert all(row["authoritative_changed"] is False for row in records[:-1])
@@ -290,7 +299,7 @@ SUSTAINED_CAMPAIGNS = {
         "move west", "move north", "wait", "look", "inspect lantern",
     ),
     "unknown_actions_then_recovery": (
-        "climb onto the roof", "take it", "move south then move north",
+        "climb onto the roof", "take it", "move south then sneak north",
         "look", "grab brass lantern", "look", "move south",
         "hide behind the chest", "look", "put lantern in chest", "look",
         "move south", "ask groundskeeper to follow me", "look",
