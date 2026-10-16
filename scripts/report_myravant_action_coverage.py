@@ -177,10 +177,10 @@ def execute_case(case: Case, root: Path, *, installed: str, repository_sha: str)
     assert len(attempted) in (1, 2), case.case_id
     assert len(interactions) == setup_count + len(attempted) + 1
     assert all(
-        item["raw_player_input"] == case.attempt + "\\n"
+        item["raw_player_input"] == case.attempt + "\n"
         for item in attempted
     ), case.case_id
-    assert interactions[-1]["raw_player_input"] == "save\\n"
+    assert interactions[-1]["raw_player_input"] == "save\n"
     for index, item in enumerate(attempted):
         assert item["pre_state_digest"] and item["post_state_digest"]
         if item["authoritative_changed"]:
