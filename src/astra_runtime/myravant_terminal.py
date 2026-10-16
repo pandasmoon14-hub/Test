@@ -799,6 +799,9 @@ _HELP_TOPICS: dict[str, str] = {
         "depend on current location and world state.\n"
         "Wait advances world time; people may act independently. "
         "Use look again to observe what changed.\n"
+        "For exactly two independent steps, try go south then inspect chest. "
+        "Each step is checked and saved separately; a refusal stops the "
+        "second step. This does not promise simultaneous actions.\\n"
         "Other attempts are evaluated on their own terms; the examples "
         "are not a list of everything you may try."
     ),
@@ -1031,6 +1034,107 @@ def _finish_evidence(
             error_stream.write(f"Trace evidence incomplete: {exc}\n")
 
 
+# A deliberately bounded sequence interpreter, not an action authority.
+# Both ordinary one-step commands and this explicit two-step path call the
+# identical existing application owners below. No hidden planner/automation.
+_COMPOSABLE_STEP_ACTIONS = frozenset({
+    "look", "look_direction", "focused_observation", "inspect", "inspect_self",
+    "move", "pickup", "drop", "open", "close", "light", "extinguish",
+    "store", "retrieve", "throw", "push", "slide", "drag", "wait",
+})
+
+
+def _explicit_two_step_intent(raw_text: str) -> tuple[
+    ParsedTerminalCommand, ParsedTerminalCommand,
+] | None:
+    # Sequence is explicit, ordered and exactly two independent commands.
+    # Simultaneous 'while', mixed 'and', malformed third steps and internal
+    # save/exit/help are not silently collapsed into a single success.
+    pieces = re.split(r"\\s+then\\s+", raw_text.strip(), flags=re.IGNORECASE)
+    if len(pieces) != 2 or not all(pieces):
+        return None
+    parsed = tuple(parse_terminal_command(piece) for piece in pieces)
+    if any(step.action not in _COMPOSABLE_STEP_ACTIONS for step in parsed):
+        return None
+    return parsed[0], parsed[1]
+
+
+def _execute_composable_core_step(
+    application: MyravantPlayApplication, parsed: ParsedTerminalCommand,
+) -> PlayApplicationResult:
+    # This dispatcher is presentation-level reuse of original one-step
+    # semantics. Every authoritative transition is still made by its owner.
+    action = parsed.action
+    argument = parsed.argument or ""
+    if action == "look":
+        return application.look()
+    if action == "look_direction":
+        return application.look_direction(argument)
+    if action == "focused_observation":
+        if " -> " in argument:
+            target, direction = argument.rsplit(" -> ", 1)
+            return application.focused_observation(target, direction=direction)
+        return application.focused_observation(argument)
+    if action in {"inspect", "inspect_self"}:
+        return application.inspect("self" if action == "inspect_self" else argument)
+    if action == "move":
+        return application.move(argument)
+    if action in {"throw", "push", "slide", "drag"}:
+        try:
+            object_reference, direction = _split_throw_argument(argument)
+        except ValueError:
+            digest = application.authoritative_digest()
+            return PlayApplicationResult(
+                result_type="object_displacement_rejected",
+                message="That throw could not be routed.",
+                authoritative_changed=False,
+                pre_state_digest=digest, post_state_digest=digest,
+                failure_class="object_displacement_route_unavailable",
+            )
+        return (
+            application.throw_object(object_reference, direction)
+            if action == "throw"
+            else application.displace_object(
+                object_reference, direction, method=action,
+            )
+        )
+    if action in {"store", "retrieve"}:
+        try:
+            object_reference, container_reference = _split_storage_argument(argument)
+        except ValueError:
+            digest = application.authoritative_digest()
+            return PlayApplicationResult(
+                result_type="storage_rejected",
+                message="That storage attempt could not be routed.",
+                authoritative_changed=False,
+                pre_state_digest=digest, post_state_digest=digest,
+                failure_class="storage_target_unavailable",
+            )
+        return (
+            application.store_object(object_reference, container_reference)
+            if action == "store" else
+            application.retrieve_object(object_reference, container_reference)
+        )
+    if action in {"light", "extinguish"}:
+        return (
+            application.light_object(argument) if action == "light"
+            else application.extinguish_object(argument)
+        )
+    if action in {"open", "close"}:
+        return (
+            application.open_object(argument) if action == "open"
+            else application.close_object(argument)
+        )
+    if action in {"pickup", "drop"}:
+        return (
+            application.pickup(argument) if action == "pickup"
+            else application.drop(argument)
+        )
+    if action == "wait":
+        return application.wait()
+    raise ValueError("not a bounded, qualified composable core step")
+
+
 def run_terminal(
     application: MyravantPlayApplication,
     *,
@@ -1075,6 +1179,36 @@ def run_terminal(
         if parsed.action == "help":
             _write_help(output_stream, parsed.argument)
             continue
+        # Preflight *both* independently parseable steps before executing
+        # either. Once execution begins, each step is independently durable;
+        # a contextual refusal stops the sequence but does not undo a lawful
+        # first transition. This is explicit sequence, not simultaneous work.
+        planned = _explicit_two_step_intent(raw)
+        if planned is not None:
+            for ordinal, step in enumerate(planned, 1):
+                output_stream.write(f"Sequence step {ordinal}/2: ")
+                result = _execute_composable_core_step(application, step)
+                visible = _write_durable_result(
+                    output_stream, application, result, debug=debug,
+                )
+                _record_result(
+                    evidence_recorder,
+                    parsed=ParsedTerminalCommand(
+                        action=f"sequence_{ordinal}_{step.action}",
+                        argument=step.argument, raw_text=raw,
+                    ),
+                    visible_output=(
+                        f"Sequence step {ordinal}/2: " + visible
+                    ),
+                    result=result, error_stream=evidence_error_stream,
+                )
+                if result.failure_class is not None:
+                    output_stream.write(
+                        "Sequence halted after this refusal; "
+                        "no later step was attempted.\\n"
+                    )
+                    break
+            continue
         if specialized_router is not None:
             specialized = specialized_router(application, raw)
             if specialized is not None:
@@ -1088,101 +1222,17 @@ def run_terminal(
                     error_stream=evidence_error_stream,
                 )
                 continue
-        if parsed.action == "look":
-            result = application.look()
-            visible = _write_durable_result(output_stream, application, result, debug=debug)
-            _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
+        if parsed.action in {
+            "look", "look_direction", "focused_observation",
+            "inspect", "inspect_self", "move", "throw", "push", "slide", "drag",
+        }:
+            result = _execute_composable_core_step(application, parsed)
+            visible = _write_durable_result(
+                output_stream, application, result, debug=debug,
             )
-            continue
-        if parsed.action == "look_direction":
-            result = application.look_direction(parsed.argument or "")
-            visible = _write_durable_result(output_stream, application, result, debug=debug)
             _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
-            )
-            continue
-        if parsed.action == "focused_observation":
-            argument = parsed.argument or ""
-            if " -> " in argument:
-                target, direction = argument.rsplit(" -> ", 1)
-                result = application.focused_observation(
-                    target, direction=direction,
-                )
-            else:
-                result = application.focused_observation(argument)
-            visible = _write_durable_result(output_stream, application, result, debug=debug)
-            _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
-            )
-            continue
-        if parsed.action in {"inspect", "inspect_self"}:
-            result = application.inspect(
-                "self" if parsed.action == "inspect_self"
-                else parsed.argument or ""
-            )
-            visible = _write_durable_result(output_stream, application, result, debug=debug)
-            _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
-            )
-            continue
-        if parsed.action == "move":
-            result = application.move(parsed.argument or "")
-            visible = _write_durable_result(output_stream, application, result, debug=debug)
-            _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
-            )
-            continue
-        if parsed.action in {"throw", "push", "slide", "drag"}:
-            try:
-                object_reference, direction = _split_throw_argument(
-                    parsed.argument or ""
-                )
-            except ValueError:
-                digest = application.authoritative_digest()
-                result = PlayApplicationResult(
-                    result_type="object_displacement_rejected",
-                    message="That throw could not be routed.",
-                    authoritative_changed=False,
-                    pre_state_digest=digest,
-                    post_state_digest=digest,
-                    failure_class="object_displacement_route_unavailable",
-                )
-            else:
-                result = (
-                    application.throw_object(object_reference, direction)
-                    if parsed.action == "throw"
-                    else application.displace_object(
-                        object_reference, direction, method=parsed.action,
-                    )
-                )
-            visible = _write_durable_result(output_stream, application, result, debug=debug)
-            _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
+                evidence_recorder, parsed=parsed, visible_output=visible,
+                result=result, error_stream=evidence_error_stream,
             )
             continue
         if parsed.action == "request_object_state":
@@ -1275,94 +1325,17 @@ def run_terminal(
                 error_stream=evidence_error_stream,
             )
             continue
-        if parsed.action in {"store", "retrieve"}:
-            try:
-                object_reference, container_reference = _split_storage_argument(
-                    parsed.argument or ""
-                )
-            except ValueError:
-                digest = application.authoritative_digest()
-                result = PlayApplicationResult(
-                    result_type="storage_rejected",
-                    message="That storage attempt could not be routed.",
-                    authoritative_changed=False,
-                    pre_state_digest=digest,
-                    post_state_digest=digest,
-                    failure_class="storage_target_unavailable",
-                )
-            else:
-                if parsed.action == "store":
-                    result = application.store_object(
-                        object_reference,
-                        container_reference,
-                    )
-                else:
-                    result = application.retrieve_object(
-                        object_reference,
-                        container_reference,
-                    )
-            visible = _write_durable_result(output_stream, application, result, debug=debug)
-            _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
-            )
-            continue
-        if parsed.action in {"light", "extinguish"}:
-            if parsed.action == "light":
-                result = application.light_object(parsed.argument or "")
-            else:
-                result = application.extinguish_object(parsed.argument or "")
-            visible = _write_durable_result(output_stream, application, result, debug=debug)
-            _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
-            )
-            continue
-        if parsed.action in {"open", "close"}:
-            if parsed.action == "open":
-                result = application.open_object(parsed.argument or "")
-            else:
-                result = application.close_object(parsed.argument or "")
-            visible = _write_durable_result(output_stream, application, result, debug=debug)
-            _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
-            )
-            continue
-        if parsed.action in {"pickup", "drop"}:
-            if parsed.action == "pickup":
-                result = application.pickup(parsed.argument or "")
-            else:
-                result = application.drop(parsed.argument or "")
-            visible = _write_durable_result(output_stream, application, result, debug=debug)
-            _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
-            )
-            continue
-        if parsed.action == "wait":
-            result = application.wait()
+        if parsed.action in {
+            "store", "retrieve", "light", "extinguish",
+            "open", "close", "pickup", "drop", "wait",
+        }:
+            result = _execute_composable_core_step(application, parsed)
             visible = _write_durable_result(
-                output_stream, application, result, debug=debug
+                output_stream, application, result, debug=debug,
             )
             _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
+                evidence_recorder, parsed=parsed, visible_output=visible,
+                result=result, error_stream=evidence_error_stream,
             )
             continue
         if parsed.action == "save":
