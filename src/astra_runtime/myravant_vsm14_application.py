@@ -308,7 +308,9 @@ class MyravantVSM14Application(MyravantPlayApplication):
             for route in self.fixture.movement_routes
         )
 
-    def move(self, direction: str) -> PlayApplicationResult:
+    def move(
+        self, direction: str, *, method: str = "walk",
+    ) -> PlayApplicationResult:
         leader_entity_id = self.fixture.player_entity_id
         active = active_follow_intent_for(
             self.follow_intent_state, GROUNDSKEEPER_ID
@@ -321,7 +323,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
             except Exception:
                 follower_place_id = None
 
-        player_result = super().move(direction)
+        player_result = super().move(direction, method=method)
         if (
             player_result.result_type != "movement_committed"
             or active is None
