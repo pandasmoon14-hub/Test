@@ -215,6 +215,62 @@ def test_player_choice_composes_movement_and_real_object_displacement(tmp_path):
     assert len(app.displacement_state.committed_object_displacement_transitions)==1
 
 
+def test_same_destination_two_real_methods_yield_different_custody(tmp_path):
+    # Choice A: carry it from Workshop to Yard (custody + player movement).
+    carry_path=tmp_path/"carry.json"
+    carry_out,carry_rows=_play(
+        carry_path,tmp_path/"carry.jsonl",
+        ("take lantern then move south",),
+    )
+    assert len(carry_rows)==2,(carry_out.stdout,carry_rows)
+    assert [r["result_type"] for r in carry_rows]==[
+        "custody_committed","movement_committed",
+    ]
+    assert all(r["receipt_id"] for r in carry_rows)
+    carried=MyravantVSM14Application.restore(checkpoint_path=carry_path)
+    assert carried.current_place_id()==YARD_ID
+    assert not any(
+        rel.subject_entity_id==LANTERN_ID
+        and rel.relation_type==LOCATED_AT_RELATION_TYPE
+        for rel in carried.state.representation.relations
+    )
+
+    # Choice B: keep the Lantern grounded but slide it physically to Yard,
+    # then walk there. Same destination goal, different persistent custody.
+    slide_path=tmp_path/"slide.json"
+    slide_out,slide_rows=_play(
+        slide_path,tmp_path/"slide.jsonl",
+        ("slide lantern south then move south",),
+    )
+    assert len(slide_rows)==2,(slide_out.stdout,slide_rows)
+    assert [r["result_type"] for r in slide_rows]==[
+        "object_displacement_committed","movement_committed",
+    ]
+    assert all(r["receipt_id"] for r in slide_rows)
+    grounded=MyravantVSM14Application.restore(checkpoint_path=slide_path)
+    assert grounded.current_place_id()==YARD_ID
+    assert _place(grounded,LANTERN_ID)==YARD_ID
+    assert carried.authoritative_digest()!=grounded.authoritative_digest()
+    assert carry_rows[0]["receipt_id"]!=slide_rows[0]["receipt_id"]
+
+
+def test_remote_target_refusal_cannot_leak_location_or_mutate_later_step(tmp_path):
+    save=tmp_path/"remote.json"
+    out,rows=_play(
+        save,tmp_path/"remote.jsonl",
+        ("go south then inspect waystone",),
+    )
+    assert len(rows)==2,(out.stdout,rows)
+    assert rows[0]["authoritative_changed"]
+    assert not rows[1]["authoritative_changed"]
+    assert rows[1]["failure_class"],rows
+    assert rows[0]["post_state_digest"]==rows[1]["post_state_digest"]
+    app=MyravantVSM14Application.restore(checkpoint_path=save)
+    assert app.current_place_id()==YARD_ID
+    assert _place(app,TOOL_CHEST_ID)==YARD_ID
+    assert rows[-1]["post_state_digest"]==app.authoritative_digest()
+
+
 def test_snapshot_after_first_committed_world_tick_and_read_only_observation(tmp_path):
     save=tmp_path/"observation.json"
     out,rows=_play(
