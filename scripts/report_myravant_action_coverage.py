@@ -228,9 +228,9 @@ def run_baseline(*, output: Path, cases=CASES) -> dict:
         "not_a_new_rules_owner": True,
         "case_count": len(rows),
         "family_count": len(families),
-        "expectation_counts": dict(sorted(Counter(
-            row["expectation"] for row in rows,
-        ).items())),
+        "expectation_counts": dict(sorted(
+            Counter(row["expectation"] for row in rows).items()
+        )),
         "observed_outcomes": dict(sorted(tally.items())),
         "per_family": {
             fam: dict(sorted(counts.items()))
