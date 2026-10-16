@@ -379,6 +379,70 @@ def test_remote_absent_unknown_refusals_do_not_mutate():
         assert app.authoritative_digest()==before
 
 
+def test_local_readiness_advice_tracks_observed_lantern_and_actor_without_storage_leaks():
+    """Review-derived adversarial local information boundaries."""
+    app=MyravantVSM14Application.new()
+    yard(app)
+    pre=app.authoritative_digest()
+    base=goal(app)
+    assert "A Lantern is grounded" not in base.message
+    assert "Groundskeeper is presently" not in base.message
+    assert app.authoritative_digest()==pre
+
+    assert app.wait().authoritative_changed
+    seen=goal(app)
+    assert "Groundskeeper is presently" in seen.message
+    assert seen.pre_state_digest==seen.post_state_digest
+    assert app.move("north").authoritative_changed
+    assert app.pickup("lantern").authoritative_changed
+    assert app.move("south").authoritative_changed
+    carried=goal(app)
+    assert "A Lantern is grounded" not in carried.message
+    assert not carried.authoritative_changed
+
+    assert app.drop("lantern").authoritative_changed
+    grounded=goal(app)
+    assert "A Lantern is grounded" in grounded.message
+    assert grounded.pre_state_digest==grounded.post_state_digest
+    assert app.pickup("lantern").authoritative_changed
+    assert app.open_object("chest").authoritative_changed
+    assert app.store_object("lantern","chest").authoritative_changed
+    contained=goal(app)
+    assert "A Lantern is grounded" not in contained.message
+    assert not contained.authoritative_changed
+    assert contained.pre_state_digest==contained.post_state_digest
+    # Actual containment remains owner truth, but unmentioned to the
+    # local readiness query unless accessed by a lawful separate method.
+    record=containment_relation_for(app.storage_state,LANTERN_ID)
+    assert record is not None and record.object_entity_id==TOOL_CHEST_ID
+
+
+def test_pending_agreement_does_not_secure_absent_chest_after_player_dispatch(tmp_path):
+    """Physical player freedom does not constitute automatic NPC completion."""
+    app=MyravantVSM14Application.new(checkpoint_path=tmp_path/"absent-duty.json")
+    yard(app)
+    assert goal(app,"manual service").authoritative_changed
+    assert goal(app,"manual service").authoritative_changed
+    assert goal(app,"closing chest").authoritative_changed
+    assert goal(app,"asking groundskeeper to secure later").authoritative_changed
+    assert app.duty_state.status=="pending"
+    before=app.authoritative_digest()
+    pushed=goal(app,"pushing it east")
+    assert pushed.authoritative_changed
+    assert pushed.pre_state_digest==before
+    assert placed(app,TOOL_CHEST_ID,ORCHARD_PATH_ID)
+    tick=app.wait()
+    assert tick.authoritative_changed
+    assert app.duty_state.status=="pending"
+    assert not app.service_state.secured
+    assert app.save().checkpoint_digest
+    recovered=MyravantVSM14Application.restore(checkpoint_path=app.checkpoint_path)
+    assert recovered.authoritative_digest()==app.authoritative_digest()
+    assert recovered.duty_state.status=="pending"
+    assert not recovered.service_state.secured
+    assert placed(recovered,TOOL_CHEST_ID,ORCHARD_PATH_ID)
+
+
 def test_secured_real_cargo_ships_without_creating_contents(tmp_path):
     app=MyravantVSM14Application.new(checkpoint_path=tmp_path/"ship.json")
     assert app.pickup("lantern").authoritative_changed
