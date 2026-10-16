@@ -708,6 +708,17 @@ class MyravantVSM14Application(MyravantPlayApplication):
                     "fixture_service_tool_unavailable",
                 )
         if operation == "secure":
+            # A pending voluntary agreement is a separate, authoritative
+            # actor obligation. Securing directly without first cancelling
+            # it would leave a permanently pending promise about already
+            # completed work; the player must choose which method owns the
+            # final commitment instead of silently invalidating the NPC.
+            if self.duty_state.status == "pending":
+                return self._service_refusal(
+                    "Cancel the accepted Groundskeeper duty before "
+                    "securing the latch yourself.",
+                    "fixture_service_pending_duty",
+                )
             if self.brace_state.condition != "attached":
                 return self._service_refusal(
                     "The chest brace must be attached before securing the latch.",

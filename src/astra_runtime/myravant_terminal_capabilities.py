@@ -8,6 +8,9 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_chest_readiness_goal import (
+    parse_chest_readiness_goal, execute_chest_readiness_goal,
+)
 from astra_runtime.myravant_orchard_supply_goal import (
     parse_orchard_supply_attempt, execute_orchard_supply_attempt,
 )
@@ -69,6 +72,14 @@ def execute_bounded_terminal_request(
     raw_text: str,
 ) -> tuple[str, PlayApplicationResult] | None:
     """Route bounded VSM requests; return None for every other attempt."""
+
+    # Goal-led chest restoration chooses one existing lawful owner action
+    # per player request; no job queue, task state or automatic completion.
+    if parse_chest_readiness_goal(raw_text) is not None:
+        return (
+            "chest_readiness_goal",
+            execute_chest_readiness_goal(application, raw_text),
+        )
 
     # Supply is a bounded multi-owner player objective. A chosen method
     # performs at most one owner transition and terminal durability remains
