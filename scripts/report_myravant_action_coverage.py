@@ -170,28 +170,69 @@ def execute_case(case: Case, root: Path, *, installed: str, repository_sha: str)
     assert rows[0]["record_type"] == "session_start"
     assert rows[-1]["record_type"] == "session_end"
     interactions = [r for r in rows if r["record_type"] == "interaction"]
-    assert len(interactions) == len(CONTEXTS[case.context]) + 2, case.case_id
-    observed = interactions[-2]
-    assert observed["raw_player_input"] == case.attempt + "\n", case.case_id
-    assert interactions[-1]["raw_player_input"] == "save\n"
-    assert observed["pre_state_digest"] and observed["post_state_digest"]
-    if observed["authoritative_changed"]:
-        assert observed["pre_state_digest"] != observed["post_state_digest"]
-    else:
-        assert observed["pre_state_digest"] == observed["post_state_digest"]
+    setup_count = len(CONTEXTS[case.context])
+    attempted = interactions[setup_count:-1]
+    # One player input can now contain exactly two independently recorded
+    # original-owner operations. Count the attempt once; retain both receipts.
+    assert len(attempted) in (1, 2), case.case_id
+    assert len(interactions) == setup_count + len(attempted) + 1
+    assert all(
+        item["raw_player_input"] == case.attempt + "\\n"
+        for item in attempted
+    ), case.case_id
+    assert interactions[-1]["raw_player_input"] == "save\\n"
+    for index, item in enumerate(attempted):
+        assert item["pre_state_digest"] and item["post_state_digest"]
+        if item["authoritative_changed"]:
+            assert item["pre_state_digest"] != item["post_state_digest"]
+        else:
+            assert item["pre_state_digest"] == item["post_state_digest"]
+        if index:
+            assert attempted[index - 1]["post_state_digest"] == (
+                item["pre_state_digest"]
+            )
+    observed = attempted[-1]
+    any_changed = any(item["authoritative_changed"] for item in attempted)
+    failure = next(
+        (item["failure_class"] for item in attempted if item["failure_class"]),
+        None,
+    )
+    aggregate = {
+        **observed,
+        "authoritative_changed": any_changed,
+        "failure_class": failure,
+    }
     restored = MyravantVSM14Application.restore(checkpoint_path=checkpoint)
     assert restored.authoritative_digest() == interactions[-1]["post_state_digest"]
     assert restored.authoritative_digest() == observed["post_state_digest"]
     return {
         **asdict(case),
-        "parsed_action": observed["parsed_action"],
+        "parsed_action": (
+            " + ".join(item["parsed_action"] for item in attempted)
+            if len(attempted) > 1 else observed["parsed_action"]
+        ),
         "result_type": observed["result_type"],
-        "failure_class": observed["failure_class"],
-        "authoritative_changed": observed["authoritative_changed"],
-        "outcome": observed_class(case, observed),
-        "player_visible_output": observed["player_visible_output"],
-        "pre_state_digest": observed["pre_state_digest"],
+        "failure_class": failure,
+        "authoritative_changed": any_changed,
+        "partial_failure": bool(any_changed and failure),
+        "outcome": observed_class(case, aggregate),
+        "player_visible_output": "".join(
+            item["player_visible_output"] for item in attempted
+        ),
+        "pre_state_digest": attempted[0]["pre_state_digest"],
         "post_state_digest": observed["post_state_digest"],
+        "step_count": len(attempted),
+        "route_steps": [
+            {
+                "parsed_action": item["parsed_action"],
+                "result_type": item["result_type"],
+                "failure_class": item["failure_class"],
+                "authoritative_changed": item["authoritative_changed"],
+                "pre_state_digest": item["pre_state_digest"],
+                "post_state_digest": item["post_state_digest"],
+            }
+            for item in attempted
+        ],
         "checkpoint_sha256": sha256(checkpoint.read_bytes()).hexdigest(),
         "trace_sha256": sha256(trace.read_bytes()).hexdigest(),
         "setup_input": list(CONTEXTS[case.context]),
