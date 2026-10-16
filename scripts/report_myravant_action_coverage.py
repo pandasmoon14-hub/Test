@@ -170,31 +170,62 @@ def execute_case(case: Case, root: Path, *, installed: str, repository_sha: str)
     assert rows[0]["record_type"] == "session_start"
     assert rows[-1]["record_type"] == "session_end"
     interactions = [r for r in rows if r["record_type"] == "interaction"]
-    assert len(interactions) == len(CONTEXTS[case.context]) + 2, case.case_id
-    observed = interactions[-2]
-    assert observed["raw_player_input"] == case.attempt + "\n", case.case_id
+    setup_count = len(CONTEXTS[case.context])
+    assert len(interactions) >= setup_count + 2, case.case_id
+    assert [r["raw_player_input"] for r in interactions[:setup_count]] == [
+        line + "\n" for line in CONTEXTS[case.context]
+    ], case.case_id
     assert interactions[-1]["raw_player_input"] == "save\n"
-    assert observed["pre_state_digest"] and observed["post_state_digest"]
-    if observed["authoritative_changed"]:
-        assert observed["pre_state_digest"] != observed["post_state_digest"]
-    else:
-        assert observed["pre_state_digest"] == observed["post_state_digest"]
+    steps = interactions[setup_count:-1]
+    assert len(steps) in (1, 2), case.case_id
+    assert all(
+        item["raw_player_input"] == case.attempt + "\n" for item in steps
+    ), case.case_id
+    for step in steps:
+        assert step["pre_state_digest"] and step["post_state_digest"]
+        if step["authoritative_changed"]:
+            assert step["pre_state_digest"] != step["post_state_digest"]
+        else:
+            assert step["pre_state_digest"] == step["post_state_digest"]
+    for prior, following in zip(steps, steps[1:]):
+        assert prior["post_state_digest"] == following["pre_state_digest"]
     restored = MyravantVSM14Application.restore(checkpoint_path=checkpoint)
     assert restored.authoritative_digest() == interactions[-1]["post_state_digest"]
-    assert restored.authoritative_digest() == observed["post_state_digest"]
+    assert restored.authoritative_digest() == steps[-1]["post_state_digest"]
+    refused = next((item for item in steps if item["failure_class"]), None)
+    changed = any(item["authoritative_changed"] for item in steps)
+    observed = refused or steps[-1]
+    # A lawful earlier commitment is still real if later observation does
+    # not mutate. Any refusal remains visible as a refusal and stops progress.
+    outcome = (
+        observed_class(case, refused) if refused is not None else
+        "executed" if changed else observed_class(case, observed)
+    )
     return {
         **asdict(case),
-        "parsed_action": observed["parsed_action"],
+        "parsed_action": " -> ".join(item["parsed_action"] for item in steps),
         "result_type": observed["result_type"],
         "failure_class": observed["failure_class"],
-        "authoritative_changed": observed["authoritative_changed"],
-        "outcome": observed_class(case, observed),
-        "player_visible_output": observed["player_visible_output"],
-        "pre_state_digest": observed["pre_state_digest"],
-        "post_state_digest": observed["post_state_digest"],
+        "authoritative_changed": changed,
+        "outcome": outcome,
+        "player_visible_output": "".join(
+            item["player_visible_output"] for item in steps
+        ),
+        "pre_state_digest": steps[0]["pre_state_digest"],
+        "post_state_digest": steps[-1]["post_state_digest"],
         "checkpoint_sha256": sha256(checkpoint.read_bytes()).hexdigest(),
         "trace_sha256": sha256(trace.read_bytes()).hexdigest(),
         "setup_input": list(CONTEXTS[case.context]),
+        "step_count": len(steps),
+        "step_outcomes": [{
+            "route": item["parsed_action"],
+            "result": item["result_type"],
+            "failure": item["failure_class"],
+            "changed": item["authoritative_changed"],
+            "receipt_id": item.get("receipt_id"),
+            "pre_digest": item["pre_state_digest"],
+            "post_digest": item["post_state_digest"],
+        } for item in steps],
     }
 
 
