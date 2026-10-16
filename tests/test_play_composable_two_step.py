@@ -32,14 +32,16 @@ def _play(path, trace, commands, *, load=False):
     if load:
         args.extend(["--load", str(path)])
     proc=subprocess.run(
-        args, input="\n".join((*commands,"exit","")), capture_output=True,
+        args, input="\n".join((*commands,"save","exit","")), capture_output=True,
         text=True, timeout=100,
     )
     assert proc.returncode==0,(proc.stdout,proc.stderr)
     raw=[json.loads(row) for row in trace.read_text(encoding="utf-8").splitlines()]
     assert raw[0]["record_type"]=="session_start"
     assert raw[-1]["record_type"]=="session_end"
-    return proc, [item for item in raw if item["record_type"]=="interaction"]
+    interactions=[item for item in raw if item["record_type"]=="interaction"]
+    assert interactions[-1]["parsed_action"]=="save"
+    return proc, interactions[:-1]
 
 
 def _place(app,entity_id):
