@@ -8,6 +8,9 @@ This module has no world authority, command registry, or new game mechanics.
 from __future__ import annotations
 
 from astra_runtime.myravant_play_application import PlayApplicationResult
+from astra_runtime.myravant_chest_investigation_goal import (
+    parse_chest_investigation, execute_chest_investigation,
+)
 from astra_runtime.myravant_chest_readiness_goal import (
     parse_chest_readiness_goal, execute_chest_readiness_goal,
 )
@@ -72,6 +75,14 @@ def execute_bounded_terminal_request(
     raw_text: str,
 ) -> tuple[str, PlayApplicationResult] | None:
     """Route bounded VSM requests; return None for every other attempt."""
+
+    # Distinguish the Groundskeeper's persisted sightings from player's
+    # unverified reports without looking up remote current-world truth.
+    if parse_chest_investigation(raw_text) is not None:
+        return (
+            "chest_investigation_goal",
+            execute_chest_investigation(application, raw_text),
+        )
 
     # Goal-led chest restoration chooses one existing lawful owner action
     # per player request; no job queue, task state or automatic completion.
