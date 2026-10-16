@@ -1049,7 +1049,7 @@ def _parse_explicit_two_step_intent(
     raw_text: str,
 ) -> tuple[ParsedTerminalCommand, ...] | None:
     normalized = " ".join(raw_text.strip().casefold().split())
-    if " then " not in normalized:
+    if "then" not in normalized.split():
         return None
     parts = normalized.split(" then ")
     if len(parts) != 2 or any(not part for part in parts):
