@@ -71,13 +71,39 @@ def test_parser_preserves_distinct_source_method(raw,method,place):
     "prepare chest for orchard by manual service",
     "trace lantern with groundskeeper",
     "trace chest with merchant",
-    "trace chest with groundskeeper by reporting the moon",
     "trace chest with groundskeeper by witnessing it then pushing it",
     "trace chest with groundskeeper by reporting yard and following it",
     "trace chest with groundskeeper by pushing it afterwards inspecting",
 ])
 def test_no_capture_of_existing_intents_or_compound_actions(raw):
     assert parse_chest_investigation(raw) is None
+
+
+def test_unqualified_report_place_fails_closed_without_inventing_evidence():
+    """A recognizable goal with unsupported content is a refusal, not canon."""
+    text="trace chest with groundskeeper by reporting the moon"
+    parsed=parse_chest_investigation(text)
+    assert parsed is not None
+    assert parsed.method=="unqualified"
+    assert parsed.report_place is None
+
+    app=MyravantVSM14Application.new()
+    before=app.authoritative_digest()
+    refusal=execute_chest_investigation(app,text)
+    assert refusal.failure_class=="chest_investigation_method_unqualified"
+    assert refusal.result_type=="chest_investigation_unavailable"
+    assert not refusal.authoritative_changed
+    assert refusal.pre_state_digest==refusal.post_state_digest==before
+    assert app.authoritative_digest()==before
+    assert not app.knowledge_state.events
+
+    together_in_yard(app)
+    local_before=app.authoritative_digest()
+    refusal=execute_chest_investigation(app,text)
+    assert refusal.failure_class=="chest_investigation_method_unqualified"
+    assert refusal.pre_state_digest==refusal.post_state_digest==local_before
+    assert app.authoritative_digest()==local_before
+    assert not app.knowledge_state.events
 
 
 def test_unseen_leads_remote_dialogue_and_unqualified_method_do_not_mutate():
