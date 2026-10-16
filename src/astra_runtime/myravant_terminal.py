@@ -801,7 +801,7 @@ _HELP_TOPICS: dict[str, str] = {
         "Use look again to observe what changed.\n"
         "For exactly two independent steps, try go south then inspect chest. "
         "Each step is checked and saved separately; a refusal stops the "
-        "second step. This does not promise simultaneous actions.\\n"
+        "second step. This does not promise simultaneous actions.\n"
         "Other attempts are evaluated on their own terms; the examples "
         "are not a list of everything you may try."
     ),
@@ -1050,7 +1050,7 @@ def _explicit_two_step_intent(raw_text: str) -> tuple[
     # Sequence is explicit, ordered and exactly two independent commands.
     # Simultaneous 'while', mixed 'and', malformed third steps and internal
     # save/exit/help are not silently collapsed into a single success.
-    pieces = re.split(r"\\s+then\\s+", raw_text.strip(), flags=re.IGNORECASE)
+    pieces = re.split(r"\s+then\s+", raw_text.strip(), flags=re.IGNORECASE)
     if len(pieces) != 2 or not all(pieces):
         return None
     parsed = tuple(parse_terminal_command(piece) for piece in pieces)
@@ -1205,7 +1205,7 @@ def run_terminal(
                 if result.failure_class is not None:
                     output_stream.write(
                         "Sequence halted after this refusal; "
-                        "no later step was attempted.\\n"
+                        "no later step was attempted.\n"
                     )
                     break
             continue
