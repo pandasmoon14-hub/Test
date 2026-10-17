@@ -389,8 +389,18 @@ class MyravantPlayFixture:
     movement_method_routes: tuple[FixtureMovementMethodRoute, ...] = ()
     posture_profile: PostureProfile | None = None
     posture_movement_licenses: tuple[PostureMovementLicense, ...] = ()
+    # Explicit scenario qualifications; defaults preserve the historical fixture.
+    fixed_object_ids: tuple[str, ...] = ()
+    light_source_id: str = LANTERN_ID
+    storage_pairs: tuple[tuple[str, str], ...] = ((LANTERN_ID, TOOL_CHEST_ID),)
+    stock_world_routine: bool = True
+    specialist_routes: tuple[str, ...] | None = None
 
     def __post_init__(self) -> None:
+        if type(self.stock_world_routine) is not bool:
+            raise MyravantPlayFixtureError("world routine admission must be explicit bool")
+        if len(set(self.fixed_object_ids)) != len(self.fixed_object_ids) or not set(self.fixed_object_ids) <= {p.entity_id for p in self.object_presentations}:
+            raise MyravantPlayFixtureError("fixed objects must be distinct declared objects")
         profile = self.posture_profile
         if profile is not None and (
             type(profile) is not PostureProfile or profile.actor_id != self.player_entity_id
@@ -1521,7 +1531,7 @@ class MyravantPlayFixture:
             actor_entity_id=self.player_entity_id,
             object_entity_id=object_entity_id,
             operation=operation,
-            qualified=True,
+            qualified=object_entity_id not in self.fixed_object_ids,
         )
         opportunity = create_custody_opportunity_evidence(
             evidence_id=build_record_id(
@@ -1551,7 +1561,7 @@ class MyravantPlayFixture:
     ]:
         'Return bounded RT-010/AFQR-19 evidence for INT-1/WORLD-2.'
 
-        if object_entity_id != TOOL_CHEST_ID:
+        if object_entity_id not in {s.object_entity_id for s in self.initial_object_open_states}:
             raise UnavailableFixtureCustodyError(
                 "target has no bounded fixture open/close state"
             )
@@ -1611,7 +1621,7 @@ class MyravantPlayFixture:
         object_entity_id: str,
         state: str,
     ) -> str:
-        if object_entity_id != TOOL_CHEST_ID or state not in {"open", "closed"}:
+        if object_entity_id not in {s.object_entity_id for s in self.initial_object_open_states} or state not in {"open", "closed"}:
             raise UnavailableFixtureCustodyError(
                 "no bounded public open-state presentation exists"
             )
@@ -1629,7 +1639,7 @@ class MyravantPlayFixture:
     ]:
         """Return bounded RT-010/AFQR-19 evidence for the INT-2 lantern route."""
 
-        if object_entity_id != LANTERN_ID:
+        if object_entity_id not in {s.object_entity_id for s in self.initial_object_lit_states}:
             raise UnavailableFixtureCustodyError(
                 "target has no bounded fixture lit/unlit state"
             )
@@ -1670,7 +1680,7 @@ class MyravantPlayFixture:
         object_entity_id: str,
         state: str,
     ) -> str:
-        if object_entity_id != LANTERN_ID or state not in {"unlit", "lit"}:
+        if object_entity_id not in {s.object_entity_id for s in self.initial_object_lit_states} or state not in {"unlit", "lit"}:
             raise UnavailableFixtureCustodyError(
                 "no bounded public lit-state presentation exists"
             )
@@ -1684,10 +1694,7 @@ class MyravantPlayFixture:
         object_entity_id: str,
         container_entity_id: str,
     ) -> bool:
-        return (
-            object_entity_id == LANTERN_ID
-            and container_entity_id == TOOL_CHEST_ID
-        )
+        return (object_entity_id, container_entity_id) in self.storage_pairs
 
     def object_storage_evidence(
         self,

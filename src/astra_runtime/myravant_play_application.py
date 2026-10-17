@@ -403,6 +403,7 @@ class MyravantPlayApplication:
 
         try:
             runtime_state = restore_persistent_world_world1_checkpoint(
+                expected_initial_representation=bounded_fixture.initial_state.representation,
                 checkpoint_path=checkpoint_path,
                 expected_campaign_id=bounded_fixture.campaign_id,
                 expected_initial_open_states=(
@@ -714,7 +715,7 @@ class MyravantPlayApplication:
         normalized = direction.strip().casefold()
         try:
             destination_place_id = self.fixture.object_displacement_destination_for(
-                object_entity_id=LANTERN_ID,
+                object_entity_id=self.fixture.light_source_id,
                 source_place_id=source_place_id,
                 direction=normalized,
                 method="throw",
@@ -731,7 +732,7 @@ class MyravantPlayApplication:
         if movement_destination != destination_place_id:
             return None
 
-        lantern_state = self.object_lit_state(LANTERN_ID)
+        lantern_state = self.object_lit_state(self.fixture.light_source_id)
         if lantern_state is None or lantern_state.state != "lit":
             return None
 
@@ -739,7 +740,7 @@ class MyravantPlayApplication:
             relation
             for relation in self.state.representation.relations
             if relation.relation_type == LOCATED_AT_RELATION_TYPE
-            and relation.subject_entity_id == LANTERN_ID
+            and relation.subject_entity_id == self.fixture.light_source_id
             and relation.object_entity_id == destination_place_id
         ]
         if len(direct_placements) != 1:
@@ -756,14 +757,14 @@ class MyravantPlayApplication:
 
         signal_evidence = self.fixture.visual_observation_evidence(
             observer_entity_id=self.fixture.player_entity_id,
-            target_entity_id=LANTERN_ID,
+            target_entity_id=self.fixture.light_source_id,
             place_id=destination_place_id,
             local_light_available=True,
         )
         if not signal_evidence.observable:
             return None
 
-        lantern_name = self.fixture.entity_name(LANTERN_ID)
+        lantern_name = self.fixture.entity_name(self.fixture.light_source_id)
         return PlayApplicationResult(
             result_type="directional_light_signal",
             message=(
@@ -785,13 +786,13 @@ class MyravantPlayApplication:
 
         if place_id == self.current_place_id():
             return self._bounded_local_light_available()
-        lantern_state = self.object_lit_state(LANTERN_ID)
+        lantern_state = self.object_lit_state(self.fixture.light_source_id)
         if lantern_state is None or lantern_state.state != "lit":
             return False
         relations = self.state.representation.relations
         if any(
             relation.relation_type == LOCATED_AT_RELATION_TYPE
-            and relation.subject_entity_id == LANTERN_ID
+            and relation.subject_entity_id == self.fixture.light_source_id
             and relation.object_entity_id == place_id
             for relation in relations
         ):
@@ -800,7 +801,7 @@ class MyravantPlayApplication:
             relation.object_entity_id
             for relation in relations
             if relation.relation_type == CARRIED_BY_RELATION_TYPE
-            and relation.subject_entity_id == LANTERN_ID
+            and relation.subject_entity_id == self.fixture.light_source_id
         }
         return any(
             relation.relation_type == LOCATED_AT_RELATION_TYPE
@@ -1623,7 +1624,7 @@ class MyravantPlayApplication:
     def _bounded_local_light_available(self) -> bool:
         """Return whether the existing lit lantern exposes local visual signal."""
 
-        lantern_state = self.object_lit_state(LANTERN_ID)
+        lantern_state = self.object_lit_state(self.fixture.light_source_id)
         if lantern_state is None or lantern_state.state != "lit":
             return False
 
@@ -1631,7 +1632,7 @@ class MyravantPlayApplication:
         relations = self.state.representation.relations
         if any(
             relation.relation_type == LOCATED_AT_RELATION_TYPE
-            and relation.subject_entity_id == LANTERN_ID
+            and relation.subject_entity_id == self.fixture.light_source_id
             and relation.object_entity_id == place_id
             for relation in relations
         ):
@@ -1640,7 +1641,7 @@ class MyravantPlayApplication:
             relation.object_entity_id
             for relation in relations
             if relation.relation_type == CARRIED_BY_RELATION_TYPE
-            and relation.subject_entity_id == LANTERN_ID
+            and relation.subject_entity_id == self.fixture.light_source_id
         }
         if carrier_ids and any(
             relation.relation_type == LOCATED_AT_RELATION_TYPE
@@ -1652,7 +1653,7 @@ class MyravantPlayApplication:
 
         containment = containment_relation_for(
             self.storage_state,
-            LANTERN_ID,
+            self.fixture.light_source_id,
         )
         if containment is None:
             return False
@@ -2831,6 +2832,26 @@ class MyravantPlayApplication:
                     digest_persistent_world_logical_time_state(pre_time)
                 ),
             )
+            if not self.fixture.stock_world_routine:
+                # A locality with no admitted autonomous process still has time.
+                # Do not run the historical Groundskeeper routine on new people.
+                committed = commit_prepared_persistent_world_logical_time(
+                    state=pre_time, prepared=prepared_time,
+                )
+                self._runtime_state = replace_persistent_world_runtime_logical_time_state(
+                    state=self._runtime_state, logical_time_state=committed.state,
+                )
+                return PlayApplicationResult(
+                    result_type="world_advanced", message="Time passes.",
+                    authoritative_changed=True, command_id=command_id,
+                    command_fingerprint=committed.receipt.command_fingerprint,
+                    preview_id=committed.preview.preview_id,
+                    receipt_id=committed.receipt.receipt_id,
+                    state_delta_id=committed.state_delta.delta_id,
+                    logical_time_before=committed.receipt.pre_position,
+                    logical_time_after=committed.receipt.post_position,
+                    pre_state_digest=pre_digest, post_state_digest=self.authoritative_digest(),
+                )
             phase = prepared_time.post_position % 4
             due_process_ref = build_record_id(
                 "evidence",

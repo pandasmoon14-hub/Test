@@ -98,7 +98,7 @@ BOUNDED_TERMINAL_ROUTES = frozenset({
 })
 
 
-def classify_bounded_terminal_request(raw_text: str, *, fixture=None) -> str | None:
+def _classify_bounded_terminal_request(raw_text: str, *, fixture=None) -> str | None:
     """Pure grammar classification with the same precedence on every surface.
 
     No application state, opportunity grant, executor, or persistence is touched.
@@ -151,6 +151,12 @@ def classify_bounded_terminal_request(raw_text: str, *, fixture=None) -> str | N
     if parse_vsm9_request(raw_text).parsed:
         return 'vsm9_actor_mediated'
     return None
+
+
+def classify_bounded_terminal_request(raw_text: str, *, fixture=None) -> str | None:
+    route = _classify_bounded_terminal_request(raw_text, fixture=fixture)
+    admitted = getattr(fixture, "specialist_routes", None)
+    return route if admitted is None or route in admitted else None
 
 
 def execute_classified_bounded_terminal_request(

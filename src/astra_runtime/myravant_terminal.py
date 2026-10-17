@@ -1075,9 +1075,14 @@ def _explicit_two_step_intent(raw_text: str, *, fixture=None) -> tuple[
     # Local import avoids the historical VSM terminal import cycle.
     from astra_runtime.myravant_terminal_capabilities import (
         BOUNDED_TERMINAL_ROUTES, classify_bounded_terminal_request,
+        _classify_bounded_terminal_request,
     )
     parsed_steps = []
     for piece in pieces:
+        admitted = getattr(fixture, "specialist_routes", None)
+        candidate = _classify_bounded_terminal_request(piece, fixture=fixture)
+        if admitted is not None and candidate is not None and candidate not in admitted:
+            return None
         step = parse_terminal_command(piece)
         # Standalone specialists have first refusal even when generic inspect
         # or ask also recognizes the words. Preflight must preserve that meaning.
@@ -1109,6 +1114,14 @@ def _execute_composable_core_step(
             application, argument, route=action,
         )
     if action == "change_posture":
+        if not hasattr(application, "change_posture"):
+            digest = application.authoritative_digest()
+            return PlayApplicationResult(
+                result_type="posture_rejected",
+                message="No posture profile is qualified for this starting character.",
+                authoritative_changed=False, pre_state_digest=digest, post_state_digest=digest,
+                failure_class="posture_profile_unavailable",
+            )
         return application.change_posture(argument)
     if action == "player_sense":
         # Existing BREADTH-1 AFQR-20 contact/holdings owner; read-only
@@ -1291,7 +1304,10 @@ def run_terminal(
             )
             return 0
         if parsed.action == "help":
-            _write_help(output_stream, parsed.argument)
+            if getattr(application.fixture, "locality_help", None):
+                output_stream.write(application.fixture.locality_help + "\n")
+            else:
+                _write_help(output_stream, parsed.argument)
             continue
         # Preflight *both* independently parseable steps before executing
         # either. Once execution begins, each step is independently durable;
@@ -1464,6 +1480,10 @@ def build_argument_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
+        "--locality", choices=("development", "tarrow"), default="development",
+        help="Select a qualified locality; saved campaigns are not converted.",
+    )
+    parser.add_argument(
         "--repository-sha",
         help=(
             "Override the repository SHA recorded in --trace evidence. "
@@ -1493,6 +1513,13 @@ def main(argv: list[str] | None = None) -> int:
     from astra_runtime.myravant_vsm14_application import MyravantVSM14Application
 
     checkpoint_path = args.checkpoint or args.load
+    application_type = MyravantVSM14Application
+    locality_args = {}
+    if args.locality == "tarrow":
+        from astra_runtime.myravant_tarrow import create_tarrow_fixture, execute_tarrow_request
+        application_type = MyravantPlayApplication
+        locality_args = {"fixture": create_tarrow_fixture()}
+        execute_bounded_terminal_request = execute_tarrow_request
 
     if (
         args.trace is not None
@@ -1506,14 +1533,14 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         if args.load is not None:
-            application = MyravantVSM14Application.restore(
-                checkpoint_path=args.load
+            application = application_type.restore(
+                checkpoint_path=args.load, **locality_args
             )
             if checkpoint_path is not None:
                 application.checkpoint_path = checkpoint_path
         else:
-            application = MyravantVSM14Application.new(
-                checkpoint_path=checkpoint_path
+            application = application_type.new(
+                checkpoint_path=checkpoint_path, **locality_args
             )
     except PersistentWorldCheckpointError as exc:
         sys.stderr.write(f"Unable to restore checkpoint: {exc}\n")
