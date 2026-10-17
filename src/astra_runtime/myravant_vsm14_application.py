@@ -17,6 +17,13 @@ import re
 from dataclasses import replace
 from pathlib import Path
 
+from astra_runtime.myravant_posture import (
+    PostureState, PostureError, digest_posture, execute_posture,
+)
+from astra_runtime.myravant_posture_checkpoint import (
+    digest_posture_authoritative_state, restore_posture_checkpoint,
+    write_posture_checkpoint, has_posture_movement,
+)
 from astra_runtime.myravant_fixture_brace import (
     BRACE_ID, FixtureBraceError, FixtureBraceState,
     digest_fixture_brace, execute_fixture_brace, next_brace_condition,
@@ -105,6 +112,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
         knowledge_state: ActorKnowledgeState | None = None,
         brace_state: FixtureBraceState | None = None,
         duty_state: FixtureDutyState | None = None,
+        posture_state: PostureState | None = None,
         checkpoint_path: str | Path | None = None,
     ) -> None:
         super().__init__(
@@ -131,9 +139,72 @@ class MyravantVSM14Application(MyravantPlayApplication):
         )
         if type(self._brace_state) is not FixtureBraceState:
             raise TypeError("invalid conserved brace state")
+        self._posture_state = posture_state if posture_state is not None else PostureState()
+        if type(self._posture_state) is not PostureState:
+            raise TypeError("invalid posture state")
         self._duty_state = duty_state if duty_state is not None else FixtureDutyState()
         if type(self._duty_state) is not FixtureDutyState:
             raise TypeError("invalid bounded actor duty state")
+
+    @property
+    def posture_state(self) -> PostureState:
+        return self._posture_state
+
+    def change_posture(self, configuration: str) -> PlayApplicationResult:
+        pre_digest = self.authoritative_digest()
+        try:
+            state, event = execute_posture(
+                state=self.posture_state, profile=self.fixture.posture_profile,
+                command_id=f"terminal-posture-{len(self.posture_state.events) + 1:06d}",
+                actor_id=self.fixture.player_entity_id, configuration=configuration,
+                place_id=self.current_place_id(),
+                representation_digest=self.representation_digest(),
+                movement_count=len(self.state.committed_transitions),
+                logical_step=self.runtime_state.logical_time_state.logical_position,
+                expected_pre_digest=digest_posture(self.posture_state),
+            )
+        except PostureError:
+            return PlayApplicationResult(
+                result_type="posture_rejected",
+                message="That configuration has no qualified profile or opportunity here.",
+                pre_state_digest=pre_digest, post_state_digest=pre_digest,
+                failure_class="posture_opportunity_unavailable",
+            )
+        self._posture_state = state
+        if event is None:
+            return PlayApplicationResult(
+                result_type="posture_unchanged",
+                message=f"Your recorded posture is already {configuration}.",
+                pre_state_digest=pre_digest, post_state_digest=pre_digest,
+            )
+        return PlayApplicationResult(
+            result_type="posture_committed",
+            message=f"Your recorded posture is now {configuration}.",
+            authoritative_changed=True, command_id=event.command_id,
+            command_fingerprint=event.fingerprint, preview_id=event.preview_id,
+            receipt_id=event.receipt_id, state_delta_id=event.state_delta_id,
+            pre_state_digest=pre_digest, post_state_digest=self.authoritative_digest(),
+        )
+
+    def inspect(self, entity_reference: str) -> PlayApplicationResult:
+        result = super().inspect(entity_reference)
+        if result.result_type == "self_inspection":
+            result = replace(result, view=replace(
+                result.view, description=result.view.description +
+                f"\nRecorded posture: {self.posture_state.configuration or 'unrecorded'}.",
+            ))
+        return result
+
+    def _movement_posture_event(self, *, source_place_id, direction, method):
+        if not self.posture_state.events:
+            return None
+        event = self.posture_state.events[-1]
+        if self.fixture.posture_movement_qualified(
+            event=event, source_place_id=source_place_id,
+            direction=direction, method=method, representation=self.state.representation,
+        ):
+            return event
+        return None
 
     @property
     def service_state(self) -> FixtureServiceState:
@@ -197,6 +268,30 @@ class MyravantVSM14Application(MyravantPlayApplication):
         fixture: MyravantPlayFixture | None = None,
     ) -> "MyravantVSM14Application":
         bounded_fixture = fixture or create_terminal_play_fixture()
+        try:
+            values, posture_state = restore_posture_checkpoint(
+                checkpoint_path=checkpoint_path, fixture=bounded_fixture,
+            )
+        except PersistentWorldCheckpointFormatError:
+            app = cls._restore_without_posture(
+                checkpoint_path=checkpoint_path, fixture=bounded_fixture,
+            )
+            if has_posture_movement(app.runtime_state):
+                from astra_runtime.domain.persistent_world_local_checkpoint_restore import (
+                    PersistentWorldCheckpointEvidenceError,
+                )
+                raise PersistentWorldCheckpointEvidenceError("posture movement lost its owner component")
+            return app
+        runtime, follow, service, knowledge, brace, duty = values
+        return cls(
+            fixture=bounded_fixture, runtime_state=runtime, follow_intent_state=follow,
+            service_state=service, knowledge_state=knowledge, brace_state=brace,
+            duty_state=duty, posture_state=posture_state, checkpoint_path=checkpoint_path,
+        )
+
+    @classmethod
+    def _restore_without_posture(cls, *, checkpoint_path, fixture):
+        bounded_fixture = fixture or create_terminal_play_fixture()
         args = dict(
             checkpoint_path=checkpoint_path,
             expected_campaign_id=bounded_fixture.campaign_id,
@@ -258,7 +353,8 @@ class MyravantVSM14Application(MyravantPlayApplication):
         )
 
     def authoritative_digest(self) -> str:
-        return digest_e2_authoritative_state(
+        return digest_posture_authoritative_state(
+            posture_state=self.posture_state,
             runtime_state=self.runtime_state,
             follow_intent_state=self.follow_intent_state,
             service_state=self.service_state,
@@ -336,12 +432,16 @@ class MyravantVSM14Application(MyravantPlayApplication):
         # traversal technique or body clearance. The player may complete a
         # crawl without giving an unsupported actor a phantom crawl receipt.
         # Existing default walk-follow behavior remains unchanged.
-        if method != "walk":
+        if method != "walk" or (
+            player_result.opportunity_evidence_id is not None
+            and ":posture-opportunity-" in player_result.opportunity_evidence_id
+        ):
             return replace(
                 player_result,
                 message=(
                     f"{player_result.message} The Groundskeeper cannot "
-                    "follow that traversal method."
+                    + ("follow that traversal method." if method != "walk" else
+                       "use your recorded posture's passage clearance.")
                 ),
             )
 
@@ -1568,7 +1668,16 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 "save requires --checkpoint or a loaded checkpoint path"
             )
         pre_digest = self.authoritative_digest()
-        if has_e2_npc_work(self.service_state):
+        if self.posture_state.events:
+            checkpoint_digest = write_posture_checkpoint(
+                runtime_state=self.runtime_state,
+                follow_intent_state=self.follow_intent_state,
+                service_state=self.service_state, knowledge_state=self.knowledge_state,
+                brace_state=self.brace_state, duty_state=self.duty_state,
+                posture_state=self.posture_state, checkpoint_path=self.checkpoint_path,
+                qualification_evidence=self.fixture.checkpoint_qualification,
+            )
+        elif has_e2_npc_work(self.service_state):
             checkpoint_digest = write_e2_checkpoint(
                 runtime_state=self.runtime_state,
                 follow_intent_state=self.follow_intent_state,

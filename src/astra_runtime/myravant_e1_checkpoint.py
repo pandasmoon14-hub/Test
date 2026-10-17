@@ -104,6 +104,22 @@ def restore_e1_checkpoint(
         envelope=envelope, expected_campaign_id=expected_campaign_id,
         expected_version=checkpoint_version,
     )
+    return _restore_e1_payload(
+        payload=payload, checkpoint_version=checkpoint_version,
+        expected_campaign_id=expected_campaign_id,
+        expected_initial_open_states=expected_initial_open_states,
+        expected_initial_lit_states=expected_initial_lit_states,
+        expected_initial_representation=expected_initial_representation,
+        expected_initial_representation_digest=expected_initial_representation_digest,
+    )
+
+
+def _restore_e1_payload(
+    *, payload, checkpoint_version, expected_campaign_id,
+    expected_initial_open_states, expected_initial_lit_states,
+    expected_initial_representation, expected_initial_representation_digest,
+):
+    """Replay validated component envelopes; v11 adds no E1 service meaning."""
     components = _require_exact_dict(
         payload["components"],
         expected_keys={
@@ -135,7 +151,7 @@ def restore_e1_checkpoint(
         brace = restore_fixture_brace(components["fixture_brace"])
         duty_material = components["fixture_duty"]
         if (
-            checkpoint_version == E2_VERSION
+            checkpoint_version in (E2_VERSION, 11)
             and duty_material == serialize_fixture_duty(FixtureDutyState())
         ):
             duty = FixtureDutyState()
@@ -196,7 +212,7 @@ def restore_e1_checkpoint(
             if (
                 event.operation == "work"
                 and event.method == "lantern"
-                and checkpoint_version == E2_VERSION
+                and checkpoint_version in (E2_VERSION, 11)
             ):
                 npc_work_count += 1
             elif (
