@@ -219,19 +219,36 @@ def test_unsupported_and_remote_goals_refuse_without_revealing_remote_placement(
         assert app.authoritative_digest() == before
 
 
-def test_dark_waystone_drag_requires_existing_visual_opportunity():
+def test_dark_waystone_goal_withholds_method_advice_but_contact_qualifies_drag():
     app = MyravantVSM14Application.new()
+    remote = app.authoritative_digest()
+    cannot_guess = app.displace_object("waystone", "west", method="drag")
+    assert cannot_guess.failure_class == "object_displacement_target_unavailable"
+    assert cannot_guess.pre_state_digest == cannot_guess.post_state_digest == remote
     assert app.move("south").authoritative_changed
     assert app.move("east").authoritative_changed
     baseline = app.authoritative_digest()
+
+    assert app.inspect("waystone").failure_class == "inspection_target_unavailable"
     query = execute_physical_placement_goal(app, "get waystone to yard")
     assert query.failure_class == "physical_goal_local_evidence_unavailable"
+    assert query.pre_state_digest == query.post_state_digest == baseline
+
+    touched = app.feel_for_local_object("waystone")
+    assert touched.result_type == "player_contact_observed"
+    assert touched.observation_evidence_id
+    assert touched.pre_state_digest == touched.post_state_digest == baseline
+    assert app.authoritative_digest() == baseline
+
     dragged = execute_physical_placement_goal(
         app, "get waystone to yard by dragging"
     )
-    assert not dragged.authoritative_changed
-    assert dragged.failure_class == "object_displacement_target_unavailable"
-    assert app.authoritative_digest() == baseline
+    assert dragged.authoritative_changed
+    assert dragged.result_type == "object_displacement_committed"
+    assert dragged.observation_evidence_id == touched.observation_evidence_id
+    assert dragged.receipt_id and dragged.state_delta_id
+    assert _place(app, WAYSTONE_ID) == YARD_ID
+
 
 
 def test_two_identical_waystone_goal_histories_replay_deterministically():

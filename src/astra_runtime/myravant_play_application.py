@@ -2146,15 +2146,35 @@ class MyravantPlayApplication:
         except UnavailableFixtureCustodyError:
             return unavailable
 
-        # This first fixture-qualified drag is an identified-ground-target
-        # attempt. Require existing AFQR-20 local visual confirmation before
-        # testing placement or route availability, so naming a hidden or
-        # remote object cannot reveal its true location by refusal class.
-        # It is not a universal rule that tactile drag requires sight.
+        # AFQR-20 retains observation/contact authority. A drag target may
+        # be identified visually, or through *current*, fixture-qualified
+        # near-field contact; neither sense grants route/method permission.
+        # Requalify from authoritative placement on every attempt. A remembered
+        # name, remote/contained object or unsupported touch affordance cannot
+        # reveal hidden location through a distinctive refusal.
+        contact_evidence_id = None
         if method == "drag" and not self._object_currently_observable(
             object_entity_id
         ):
-            return unavailable
+            place_id = self.current_place_id()
+            grounded_here = any(
+                relation.relation_type == LOCATED_AT_RELATION_TYPE
+                and relation.subject_entity_id == object_entity_id
+                and relation.object_entity_id == place_id
+                for relation in self.state.representation.relations
+            )
+            try:
+                contact = self.fixture.player_contact_evidence(
+                    observer_entity_id=self.fixture.player_entity_id,
+                    target_entity_id=object_entity_id,
+                    place_id=place_id,
+                    target_grounded_here=grounded_here,
+                )
+            except UnavailableFixtureCustodyError:
+                return unavailable
+            if not contact.contacted:
+                return unavailable
+            contact_evidence_id = contact.evidence_id
 
         source_place_id = self.current_place_id()
         source_type = (
@@ -2191,6 +2211,7 @@ class MyravantPlayApplication:
                 pre_state_digest=pre_digest,
                 post_state_digest=pre_digest,
                 failure_class="object_displacement_route_unavailable",
+                observation_evidence_id=contact_evidence_id,
             )
 
         command_id = self._next_displacement_command_id()
@@ -2277,6 +2298,7 @@ class MyravantPlayApplication:
             pre_state_digest=pre_digest,
             post_state_digest=self.authoritative_digest(),
             technical_retry=result.technical_retry,
+            observation_evidence_id=contact_evidence_id,
         )
 
     def give_object(

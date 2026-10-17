@@ -100,15 +100,16 @@ def test_new_ground_drag_has_true_commit_and_native_owner_replay():
     _stone_ground_at_yard(app)
 
 
-def test_unlit_attempt_is_nonmutating_and_does_not_confirm_hidden_placement():
+def test_unlit_contact_allows_ground_drag_without_confirming_remote_placement():
     app = MyravantVSM14Application.new()
     assert app.move("south").authoritative_changed
     assert app.move("east").authoritative_changed
     baseline = app.authoritative_digest()
     assert app.focused_observation("waystone").result_type == "focused_observation_unavailable"
-    unseen = app.displace_object("waystone", "west", method="drag")
-    other = app.displace_object("lantern", "west", method="drag")
-    for denied in (unseen, other):
+    # CONTACT-1 supersedes the historical sight-only prerequisite. Darkness
+    # still grants neither remote target access nor an unlicensed route.
+    for target in ("lantern", "chest", "unknown trinket"):
+        denied = app.displace_object(target, "west", method="drag")
         assert denied.result_type == "object_displacement_rejected"
         assert denied.failure_class == "object_displacement_target_unavailable"
         assert denied.receipt_id is None and denied.state_delta_id is None
@@ -122,6 +123,18 @@ def test_unlit_attempt_is_nonmutating_and_does_not_confirm_hidden_placement():
         assert not result.authoritative_changed
         assert result.pre_state_digest == result.post_state_digest == baseline
     assert app.authoritative_digest() == baseline
+
+    contact = app.feel_for_local_object("waystone")
+    assert contact.result_type == "player_contact_observed"
+    moved = app.displace_object("waystone", "west", method="drag")
+    assert moved.authoritative_changed and moved.receipt_id
+    assert moved.observation_evidence_id == contact.observation_evidence_id
+    _stone_ground_at_yard(app)
+    after = app.authoritative_digest()
+    stale = app.displace_object("waystone", "west", method="drag")
+    assert stale.failure_class == "object_displacement_target_unavailable"
+    assert stale.pre_state_digest == stale.post_state_digest == after
+    assert app.authoritative_digest() == after
 
 
 def test_waystone_carry_and_ground_drag_complete_same_world_goal():

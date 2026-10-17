@@ -51,9 +51,9 @@ PROBES = (
     # Merely knowing the name/location of a dark target does not grant
     # visual access or dragging opportunity. Both denials are unchanged.
     (
-        "dark_contact_does_not_follow_name",
-        ("go south", "look for waystone", "go east", "drag waystone west"),
-        "object_displacement_target_unavailable", ORCHARD_PATH_ID, YARD_ID,
+        "dark_name_does_not_license_wrong_route",
+        ("go south", "look for waystone", "go east", "drag waystone north"),
+        "object_displacement_route_unavailable", ORCHARD_PATH_ID, YARD_ID,
     ),
     # Moving a closed but unlit Chest into Orchard cannot itself reveal
     # the Waystone in the dark.

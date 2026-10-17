@@ -19,6 +19,9 @@ from astra_runtime.myravant_live_play_evidence import (
     LivePlayEvidenceRecorder,
     build_live_play_session_header,
 )
+from astra_runtime.myravant_player_sensory_breadth import (
+    parse_player_sensory_attempt, execute_player_sensory_attempt,
+)
 from astra_runtime.myravant_play_application import (
     CheckpointPathRequiredError,
     MyravantPlayApplication,
@@ -831,6 +834,8 @@ _HELP_TOPICS: dict[str, str] = {
         "drag a closed chest north from Yard; slide a closed chest east "
         "from Yard; slide a recovered Waystone north. No universal "
         "material, force, dragging or sliding rule is implied.\n"
+        "In poor light, try feel for waystone then drag waystone west; "
+        "contact is rechecked and does not authorize unlicensed routes.\n"
         "Goal-led attempts: get lantern to orchard, get waystone to yard "
         "by dragging, clear the yard east exit by pushing waystone north, "
         "or move chest to orchard by pushing. Ask how to get chest to "
@@ -1038,6 +1043,7 @@ _COMPOSABLE_STEP_ACTIONS = frozenset({
     "look", "look_direction", "focused_observation", "inspect", "inspect_self",
     "move", "move_crawl", "pickup", "drop", "open", "close", "light", "extinguish",
     "store", "retrieve", "throw", "push", "slide", "drag", "wait",
+    "player_sense",
 })
 
 
@@ -1050,7 +1056,19 @@ def _explicit_two_step_intent(raw_text: str) -> tuple[
     pieces = re.split(r"\s+then\s+", raw_text.strip(), flags=re.IGNORECASE)
     if len(pieces) != 2 or not all(pieces):
         return None
-    parsed = tuple(parse_terminal_command(piece) for piece in pieces)
+    parsed_steps = []
+    for piece in pieces:
+        step = parse_terminal_command(piece)
+        if step.action == "unsupported" and (
+            parse_player_sensory_attempt(piece) is not None
+        ):
+            # Reuse BREADTH-1's existing bounded sensory grammar rather than
+            # introduce a named-object sequence-only parser.
+            step = ParsedTerminalCommand(
+                action="player_sense", argument=piece, raw_text=piece,
+            )
+        parsed_steps.append(step)
+    parsed = tuple(parsed_steps)
     if any(step.action not in _COMPOSABLE_STEP_ACTIONS for step in parsed):
         return None
     return parsed[0], parsed[1]
@@ -1063,6 +1081,10 @@ def _execute_composable_core_step(
     # semantics. Every authoritative transition is still made by its owner.
     action = parsed.action
     argument = parsed.argument or ""
+    if action == "player_sense":
+        # Existing BREADTH-1 AFQR-20 contact/holdings owner; read-only
+        # result has no persisted target or deferred manipulation privilege.
+        return execute_player_sensory_attempt(application, argument)
     if action == "look":
         return application.look()
     if action == "look_direction":
