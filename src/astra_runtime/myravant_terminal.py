@@ -834,6 +834,8 @@ _HELP_TOPICS: dict[str, str] = {
         "drag a closed chest north from Yard; slide a closed chest east "
         "from Yard; slide a recovered Waystone north. No universal "
         "material, force, dragging or sliding rule is implied.\n"
+        "In poor light, try feel for waystone then drag waystone west; "
+        "contact is rechecked and does not authorize unlicensed routes.\n"
         "Goal-led attempts: get lantern to orchard, get waystone to yard "
         "by dragging, clear the yard east exit by pushing waystone north, "
         "or move chest to orchard by pushing. Ask how to get chest to "
