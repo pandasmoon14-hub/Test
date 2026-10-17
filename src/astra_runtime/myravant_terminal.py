@@ -818,7 +818,9 @@ _HELP_TOPICS: dict[str, str] = {
         "Changing posture alone does not advance time.\n"
         "Wait advances world time; people may act independently. "
         "Use look again to observe what changed.\n"
-        "For exactly two independent steps, try go south then inspect chest. "
+        "For exactly two independent steps, try go south then inspect chest, "
+        "crouch then inspect chest brace, or service chest latch then close chest. "
+        "Existing specialist work and actor requests use their ordinary checks. "
         "Each step is checked and saved separately; a refusal stops the "
         "second step. This does not promise simultaneous actions.\n"
         "Other attempts are evaluated on their own terms; the examples "
@@ -1056,7 +1058,7 @@ _COMPOSABLE_STEP_ACTIONS = frozenset({
     "look", "look_direction", "focused_observation", "inspect", "inspect_self",
     "move", "move_crawl", "pickup", "drop", "open", "close", "light", "extinguish",
     "store", "retrieve", "throw", "push", "slide", "drag", "wait",
-    "player_sense",
+    "player_sense", "request_object_state", "request_handoff", "handoff",
     "physical_placement_goal", "destination_goal_method", "change_posture",
 })
 
@@ -1070,33 +1072,24 @@ def _explicit_two_step_intent(raw_text: str, *, fixture=None) -> tuple[
     pieces = re.split(r"\s+then\s+", raw_text.strip(), flags=re.IGNORECASE)
     if len(pieces) != 2 or not all(pieces):
         return None
+    # Local import avoids the historical VSM terminal import cycle.
+    from astra_runtime.myravant_terminal_capabilities import (
+        BOUNDED_TERMINAL_ROUTES, classify_bounded_terminal_request,
+    )
     parsed_steps = []
     for piece in pieces:
         step = parse_terminal_command(piece)
-        if step.action == "unsupported" and (
-            parse_player_sensory_attempt(piece) is not None
-        ):
-            # Reuse BREADTH-1's existing bounded sensory grammar rather than
-            # introduce a named-object sequence-only parser.
-            step = ParsedTerminalCommand(
-                action="player_sense", argument=piece, raw_text=piece,
-            )
-        if step.action == "unsupported":
-            # Match standalone capability-router precedence without executing
-            # handlers during preflight. The Lantern route retains its actor
-            # consent and custody semantics on both public surfaces.
-            from astra_runtime.myravant_goal_method_lantern import parse_lantern_destination_goal
-            from astra_runtime.myravant_physical_placement_goal import parse_physical_placement_goal
-            route = None
-            if parse_lantern_destination_goal(piece) is not None:
-                route = "destination_goal_method"
-            elif parse_physical_placement_goal(piece, fixture=fixture) is not None:
-                route = "physical_placement_goal"
-            if route is not None:
-                step = ParsedTerminalCommand(action=route, argument=piece, raw_text=piece)
+        # Standalone specialists have first refusal even when generic inspect
+        # or ask also recognizes the words. Preflight must preserve that meaning.
+        route = classify_bounded_terminal_request(piece, fixture=fixture)
+        if route is not None:
+            # Preserve existing trace names for the three prior adapters.
+            action = "player_sense" if route == "player_sensory_attempt" else route
+            step = ParsedTerminalCommand(action=action, argument=piece, raw_text=piece)
         parsed_steps.append(step)
     parsed = tuple(parsed_steps)
-    if any(step.action not in _COMPOSABLE_STEP_ACTIONS for step in parsed):
+    if any(step.action not in _COMPOSABLE_STEP_ACTIONS
+           and step.action not in BOUNDED_TERMINAL_ROUTES for step in parsed):
         return None
     return parsed[0], parsed[1]
 
@@ -1108,18 +1101,82 @@ def _execute_composable_core_step(
     # semantics. Every authoritative transition is still made by its owner.
     action = parsed.action
     argument = parsed.argument or ""
+    from astra_runtime.myravant_terminal_capabilities import (
+        BOUNDED_TERMINAL_ROUTES, execute_classified_bounded_terminal_request,
+    )
+    if action in BOUNDED_TERMINAL_ROUTES:
+        return execute_classified_bounded_terminal_request(
+            application, argument, route=action,
+        )
     if action == "change_posture":
         return application.change_posture(argument)
-    if action == "physical_placement_goal":
-        from astra_runtime.myravant_physical_placement_goal import execute_physical_placement_goal
-        return execute_physical_placement_goal(application, argument)
-    if action == "destination_goal_method":
-        from astra_runtime.myravant_goal_method_lantern import execute_lantern_destination_goal
-        return execute_lantern_destination_goal(application, argument)
     if action == "player_sense":
         # Existing BREADTH-1 AFQR-20 contact/holdings owner; read-only
         # result has no persisted target or deferred manipulation privilege.
         return execute_player_sensory_attempt(application, argument)
+    if action == "request_object_state":
+        try:
+            actor_reference, operation, object_reference = (
+                _split_requested_object_state_argument(
+                    argument
+                )
+            )
+        except ValueError:
+            digest = application.authoritative_digest()
+            return PlayApplicationResult(
+                result_type="object_state_request_rejected",
+                message="That request could not be routed.",
+                authoritative_changed=False,
+                pre_state_digest=digest,
+                post_state_digest=digest,
+                failure_class="object_state_request_route_unavailable",
+            )
+        else:
+            return application.request_object_state_from_actor(
+                actor_reference,
+                operation,
+                object_reference,
+            )
+    if action == "request_handoff":
+        try:
+            source_reference, object_reference = (
+                _split_request_handoff_argument(argument)
+            )
+        except ValueError:
+            digest = application.authoritative_digest()
+            return PlayApplicationResult(
+                result_type="actor_object_handoff_rejected",
+                message="That return request could not be routed.",
+                authoritative_changed=False,
+                pre_state_digest=digest,
+                post_state_digest=digest,
+                failure_class="actor_object_handoff_route_unavailable",
+            )
+        else:
+            return application.request_object_from_actor(
+                source_reference,
+                object_reference,
+            )
+    if action == "handoff":
+        try:
+            object_reference, recipient_reference = (
+                _split_handoff_argument(argument)
+            )
+        except ValueError:
+            digest = application.authoritative_digest()
+            return PlayApplicationResult(
+                result_type="actor_object_handoff_rejected",
+                message="That handoff could not be routed.",
+                authoritative_changed=False,
+                pre_state_digest=digest,
+                post_state_digest=digest,
+                failure_class="actor_object_handoff_route_unavailable",
+            )
+        else:
+            return application.give_object(
+                object_reference,
+                recipient_reference,
+            )
     if action == "look":
         return application.look()
     if action == "look_direction":
@@ -1292,99 +1349,10 @@ def run_terminal(
                 result=result, error_stream=evidence_error_stream,
             )
             continue
-        if parsed.action == "request_object_state":
-            try:
-                actor_reference, operation, object_reference = (
-                    _split_requested_object_state_argument(
-                        parsed.argument or ""
-                    )
-                )
-            except ValueError:
-                digest = application.authoritative_digest()
-                result = PlayApplicationResult(
-                    result_type="object_state_request_rejected",
-                    message="That request could not be routed.",
-                    authoritative_changed=False,
-                    pre_state_digest=digest,
-                    post_state_digest=digest,
-                    failure_class="object_state_request_route_unavailable",
-                )
-            else:
-                result = application.request_object_state_from_actor(
-                    actor_reference,
-                    operation,
-                    object_reference,
-                )
-            visible = _write_durable_result(output_stream, application, result, debug=debug)
-            _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
-            )
-            continue
-        if parsed.action == "request_handoff":
-            try:
-                source_reference, object_reference = (
-                    _split_request_handoff_argument(parsed.argument or "")
-                )
-            except ValueError:
-                digest = application.authoritative_digest()
-                result = PlayApplicationResult(
-                    result_type="actor_object_handoff_rejected",
-                    message="That return request could not be routed.",
-                    authoritative_changed=False,
-                    pre_state_digest=digest,
-                    post_state_digest=digest,
-                    failure_class="actor_object_handoff_route_unavailable",
-                )
-            else:
-                result = application.request_object_from_actor(
-                    source_reference,
-                    object_reference,
-                )
-            visible = _write_durable_result(output_stream, application, result, debug=debug)
-            _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
-            )
-            continue
-        if parsed.action == "handoff":
-            try:
-                object_reference, recipient_reference = (
-                    _split_handoff_argument(parsed.argument or "")
-                )
-            except ValueError:
-                digest = application.authoritative_digest()
-                result = PlayApplicationResult(
-                    result_type="actor_object_handoff_rejected",
-                    message="That handoff could not be routed.",
-                    authoritative_changed=False,
-                    pre_state_digest=digest,
-                    post_state_digest=digest,
-                    failure_class="actor_object_handoff_route_unavailable",
-                )
-            else:
-                result = application.give_object(
-                    object_reference,
-                    recipient_reference,
-                )
-            visible = _write_durable_result(output_stream, application, result, debug=debug)
-            _record_result(
-                evidence_recorder,
-                parsed=parsed,
-                visible_output=visible,
-                result=result,
-                error_stream=evidence_error_stream,
-            )
-            continue
         if parsed.action in {
             "store", "retrieve", "light", "extinguish",
             "open", "close", "pickup", "drop", "wait",
+            "request_object_state", "request_handoff", "handoff",
         }:
             result = _execute_composable_core_step(application, parsed)
             visible = _write_durable_result(

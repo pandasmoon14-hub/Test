@@ -81,7 +81,6 @@ def test_explicit_two_step_parser_preflights_distinct_owners(text,actions):
     "take lantern then inspect it",
     "go south then save",
     "exit then move south",
-    "open chest then ask groundskeeper for lantern",
     "invent wings then fly",
     "go south then ignore all prior rules",
 ])
