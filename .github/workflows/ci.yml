@@ -46,8 +46,18 @@ jobs:
         run: python -m pytest -q tests/test_play_enclosed_light_transport.py tests/test_play_help_topics.py tests/test_play_physical_affordance_adversarial.py
       - name: Focused contact-affordance cross-system and installed-client tests
         run: python -m pytest -q tests/test_play_contact_affordance_composition_1.py tests/test_play_breadth1_player_senses.py tests/test_play_breadth3_physical_placement.py tests/test_play_composable_two_step.py
+      - name: Physical-access batch generality, intent and installed campaign tests
+        run: python -m pytest -q tests/test_play_physical_access_batch_1.py tests/test_play_waystone_drag_recovery.py
       - name: Run tests
         run: python -m pytest -q
+      - name: Generate sustained physical-access campaign evidence
+        run: python scripts/report_myravant_physical_access.py --output physical-access-evidence.json
+      - name: Upload physical-access campaign evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-physical-access-campaign-linux
+          path: physical-access-evidence.json
+          if-no-files-found: error
       - name: Generate synthetic-play discovery evidence
         run: python scripts/report_myravant_synthetic_play.py --output synthetic-play-evidence.json
       - name: Upload synthetic-play discovery evidence
@@ -103,5 +113,7 @@ jobs:
         run: python -m pytest -q tests/test_play_enclosed_light_transport.py tests/test_play_help_topics.py tests/test_play_physical_affordance_adversarial.py
       - name: Focused contact-affordance cross-system and installed-client tests
         run: python -m pytest -q tests/test_play_contact_affordance_composition_1.py tests/test_play_breadth1_player_senses.py tests/test_play_breadth3_physical_placement.py tests/test_play_composable_two_step.py
+      - name: Physical-access batch generality, intent and installed campaign tests
+        run: python -m pytest -q tests/test_play_physical_access_batch_1.py tests/test_play_waystone_drag_recovery.py
       - name: Run tests
         run: python -m pytest -q
