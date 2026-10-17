@@ -1963,6 +1963,15 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             destination_place_id=YARD_ID,
             method="slide",
         ),
+        # The same corridor separately licenses a visible, grounded drag.
+        # The qualification is not an assertion about all carried objects.
+        FixtureObjectDisplacementRoute(
+            object_entity_id=LANTERN_ID,
+            source_place_id=WORKSHOP_ID,
+            direction="south",
+            destination_place_id=YARD_ID,
+            method="drag",
+        ),
         FixtureObjectDisplacementRoute(
             object_entity_id=LANTERN_ID,
             source_place_id=YARD_ID,
@@ -1977,6 +1986,16 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             destination_place_id=WORKSHOP_ID,
             method="push",
         ),
+        # Unlike this fixture's northward push, a northward drag requires
+        # the Chest to be closed. Actual open state belongs to RT-010.
+        FixtureObjectDisplacementRoute(
+            object_entity_id=TOOL_CHEST_ID,
+            source_place_id=YARD_ID,
+            direction="north",
+            destination_place_id=WORKSHOP_ID,
+            method="drag",
+            required_open_state="closed",
+        ),
         # Additional content-independent demonstration: this narrow path
         # allows a secured chest to transport its actual contained objects
         # into the unlit Orchard Path without inventing object transforms.
@@ -1986,6 +2005,17 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             direction="east",
             destination_place_id=ORCHARD_PATH_ID,
             method="push",
+            required_open_state="closed",
+        ),
+        # Separate, qualified sliding route to the same destination.
+        # It has the same explicit closure requirement; no default
+        # slideability, friction or geometry is inferred.
+        FixtureObjectDisplacementRoute(
+            object_entity_id=TOOL_CHEST_ID,
+            source_place_id=YARD_ID,
+            direction="east",
+            destination_place_id=ORCHARD_PATH_ID,
+            method="slide",
             required_open_state="closed",
         ),
         # The noncanonical Waystone is recoverable by dragging it along
@@ -2006,6 +2036,15 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
             direction="north",
             destination_place_id=WORKSHOP_ID,
             method="push",
+        ),
+        # The recovered Waystone can instead be slid from the Yard;
+        # this has no license in the dark Orchard or other directions.
+        FixtureObjectDisplacementRoute(
+            object_entity_id=WAYSTONE_ID,
+            source_place_id=YARD_ID,
+            direction="north",
+            destination_place_id=WORKSHOP_ID,
+            method="slide",
         ),
     )
 
