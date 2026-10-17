@@ -307,6 +307,13 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
             failure_class="unsupported_compound_intent_sequencing",
         )
 
+    from astra_runtime.myravant_posture import parse_posture
+    posture = parse_posture(" ".join(parts))
+    if " ".join(lowered) in {"inspect posture", "check posture"}:
+        return ParsedTerminalCommand(action="inspect_self", raw_text=raw_text)
+    if posture is not None:
+        return ParsedTerminalCommand(action="change_posture", argument=posture, raw_text=raw_text)
+
     if lowered in (["inventory"], ["check", "inventory"], ["my", "inventory"]):
         return ParsedTerminalCommand(action="inspect_self", raw_text=raw_text)
 
@@ -804,6 +811,11 @@ _HELP_TOPICS: dict[str, str] = {
         "Try crawl south from the Workshop or crawl east at the Yard. "
         "These are route-specific crawl clearances, not universal mobility "
         "or a guarantee that a body can bypass every obstruction.\n"
+        "This fixture also admits stand, crouch, kneel, sit and lie down. "
+        "Inspect self shows your recorded posture; old sessions start unrecorded. "
+        "A recorded crouch, kneel or lying configuration qualifies the Yard's "
+        "low passage when obstructed. Walking and crawling keep their own methods. "
+        "Changing posture alone does not advance time.\n"
         "Wait advances world time; people may act independently. "
         "Use look again to observe what changed.\n"
         "For exactly two independent steps, try go south then inspect chest. "
@@ -1045,7 +1057,7 @@ _COMPOSABLE_STEP_ACTIONS = frozenset({
     "move", "move_crawl", "pickup", "drop", "open", "close", "light", "extinguish",
     "store", "retrieve", "throw", "push", "slide", "drag", "wait",
     "player_sense",
-    "physical_placement_goal", "destination_goal_method",
+    "physical_placement_goal", "destination_goal_method", "change_posture",
 })
 
 
@@ -1096,6 +1108,8 @@ def _execute_composable_core_step(
     # semantics. Every authoritative transition is still made by its owner.
     action = parsed.action
     argument = parsed.argument or ""
+    if action == "change_posture":
+        return application.change_posture(argument)
     if action == "physical_placement_goal":
         from astra_runtime.myravant_physical_placement_goal import execute_physical_placement_goal
         return execute_physical_placement_goal(application, argument)
@@ -1267,7 +1281,7 @@ def run_terminal(
                 continue
         if parsed.action in {
             "look", "look_direction", "focused_observation",
-            "inspect", "inspect_self", "move", "move_crawl", "throw", "push", "slide", "drag",
+            "inspect", "inspect_self", "move", "move_crawl", "throw", "push", "slide", "drag", "change_posture",
         }:
             result = _execute_composable_core_step(application, parsed)
             visible = _write_durable_result(

@@ -67,7 +67,9 @@ def test_player_self_view_updates_from_existing_authoritative_owners():
     assert first.result_type == "self_inspection"
     assert first.view is not None
     assert first.view.name == "Traveler"
-    assert first.view.description == "Current place: Workshop.\nCarrying: nothing."
+    assert first.view.description == (
+        "Current place: Workshop.\nCarrying: nothing.\nRecorded posture: unrecorded."
+    )
     assert first.pre_state_digest == first.post_state_digest == before
     assert app.authoritative_digest() == before
 

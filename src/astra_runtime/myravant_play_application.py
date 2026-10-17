@@ -1208,6 +1208,18 @@ class MyravantPlayApplication:
                 return candidate
             sequence += 1
 
+    def _movement_posture_event(self, *, source_place_id, direction, method):
+        """Optional owner-qualified evidence; legacy applications have no posture."""
+        return None
+
+    def change_posture(self, configuration: str) -> PlayApplicationResult:
+        digest = self.authoritative_digest()
+        return PlayApplicationResult(
+            result_type="posture_rejected", message="No posture profile is available here.",
+            pre_state_digest=digest, post_state_digest=digest,
+            failure_class="posture_profile_unavailable",
+        )
+
     def move(
         self, direction: str, *, method: str = "walk",
     ) -> PlayApplicationResult:
@@ -1240,17 +1252,21 @@ class MyravantPlayApplication:
                 failure_class="unavailable_fixture_route",
             )
 
+        posture_event = self._movement_posture_event(
+            source_place_id=source_place_id, direction=normalized, method=method,
+        )
         command_id = self._next_movement_command_id()
+        metadata = {"client": "myravant-terminal-g1"}
+        if method != "walk":
+            metadata["traversal_method"] = method
+        if posture_event is not None:
+            metadata["posture_receipt_id"] = posture_event.receipt_id
         command = create_command_envelope(
             command_id=command_id,
             command_type="move",
             source_actor_id=self.fixture.player_entity_id,
             payload={"destination_entity_id": destination_place_id},
-            metadata=(
-                {"client": "myravant-terminal-g1"}
-                if method == "walk" else
-                {"client": "myravant-terminal-g1", "traversal_method": method}
-            ),
+            metadata=metadata,
         )
         spatial_evidence, opportunity_evidence = (
             self.fixture.movement_evidence(
@@ -1260,6 +1276,7 @@ class MyravantPlayApplication:
                 destination_place_id=destination_place_id,
                 representation=self.state.representation,
                 method=method,
+                posture_event=posture_event,
             )
         )
 
@@ -1281,7 +1298,11 @@ class MyravantPlayApplication:
                 message=(
                     "That crawling method has no qualified clearance here."
                     if unavailable and method == "crawl" else
-                    "Something obstructs that passage from here."
+                    "Something obstructs that passage from here. "
+                    + ("A recorded crouch, kneel or lying configuration can qualify "
+                       "this fixture clearance; try crouch, then walk east."
+                       if any(x.source_place_id == source_place_id and x.direction == normalized
+                              for x in self.fixture.posture_movement_licenses) else "")
                     if unavailable else
                     "The movement was rejected by the authoritative runtime."
                 ),

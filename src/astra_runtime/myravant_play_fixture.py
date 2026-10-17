@@ -8,6 +8,11 @@ content system.
 
 from __future__ import annotations
 
+from astra_runtime.myravant_posture import (
+    PostureProfile, PostureMovementLicense, PostureEvent, digest_posture_profile,
+)
+
+
 import hashlib
 import json
 from dataclasses import dataclass
@@ -382,8 +387,31 @@ class MyravantPlayFixture:
         FixtureMovementObstructionLicense, ...
     ] = ()
     movement_method_routes: tuple[FixtureMovementMethodRoute, ...] = ()
+    posture_profile: PostureProfile | None = None
+    posture_movement_licenses: tuple[PostureMovementLicense, ...] = ()
 
     def __post_init__(self) -> None:
+        profile = self.posture_profile
+        if profile is not None and (
+            type(profile) is not PostureProfile or profile.actor_id != self.player_entity_id
+            or not set(profile.places) <= {p.entity_id for p in self.place_presentations}
+        ):
+            raise MyravantPlayFixtureError("posture profile escaped its actor or places")
+        for license in self.posture_movement_licenses:
+            if (
+                type(license) is not PostureMovementLicense or profile is None
+                or license.profile_id != profile.profile_id
+                or type(license.version) is not int or license.version != profile.version
+                or license.method != "walk" or not license.configurations
+                or type(license.configurations) is not tuple
+                or not set(license.configurations) <= set(profile.configurations)
+                or not any(r.source_place_id == license.source_place_id
+                           and r.direction == license.direction for r in self.movement_routes)
+                or not any(o.source_place_id == license.source_place_id
+                           and o.direction == license.direction
+                           for o in self.movement_obstruction_licenses)
+            ):
+                raise MyravantPlayFixtureError("unqualified posture movement declaration")
         object.__setattr__(
             self,
             "checkpoint_qualification",
@@ -1054,6 +1082,36 @@ class MyravantPlayFixture:
             basis=basis,
         )
 
+    def posture_movement_qualified(
+        self, *, event, source_place_id, direction, method, representation,
+    ) -> bool:
+        profile = self.posture_profile
+        if (
+            type(event) is not PostureEvent or profile is None
+            or event.actor_id != self.player_entity_id
+            or event.profile_id != profile.profile_id
+            or event.profile_version != profile.version
+            or event.profile_digest != digest_posture_profile(profile)
+            or event.after not in profile.configurations
+            or representation.campaign_id != self.campaign_id
+        ):
+            return False
+        licensed = any(
+            x.source_place_id == source_place_id and x.direction == direction
+            and x.method == method and x.profile_id == event.profile_id
+            and x.version == event.profile_version and event.after in x.configurations
+            for x in self.posture_movement_licenses
+        )
+        blocked = any(
+            x.source_place_id == source_place_id and x.direction == direction
+            and any(r.relation_type == LOCATED_AT_RELATION_TYPE
+                    and r.subject_entity_id == x.blocking_object_entity_id
+                    and r.object_entity_id == x.blocking_object_place_id
+                    for r in representation.relations)
+            for x in self.movement_obstruction_licenses
+        )
+        return licensed and blocked
+
     def movement_evidence(
         self,
         *,
@@ -1063,6 +1121,7 @@ class MyravantPlayFixture:
         destination_place_id: str,
         representation: PersistentWorldEntityLocationRepresentation | None = None,
         method: str = "walk",
+        posture_event: PostureEvent | None = None,
     ) -> tuple[MovementSpatialEvidence, MovementOpportunityEvidence]:
         expected_destination = self.destination_for(
             source_place_id=source_place_id,
@@ -1112,6 +1171,13 @@ class MyravantPlayFixture:
             ) if method == "crawl" else False
         )
 
+        posture_qualified = posture_event is not None and self.posture_movement_qualified(
+            event=posture_event, source_place_id=source_place_id, direction=direction,
+            method=method, representation=current,
+        )
+        if posture_qualified:
+            allowed = True
+
         # The spatial corridor does not change when the actor clears a
         # movable obstruction. Only the AFQR-19 opportunity evidence changes.
         spatial_token = hashlib.sha256(
@@ -1127,6 +1193,8 @@ class MyravantPlayFixture:
             f"{command_id}|route-obstruction=1"
             if blocked else command_id
         )
+        if posture_qualified:
+            material = f"{material}|posture={posture_event.receipt_id}"
         opportunity_token = hashlib.sha256(
             material.encode("utf-8")
         ).hexdigest()[:20]
@@ -1139,7 +1207,7 @@ class MyravantPlayFixture:
             spatially_permitted=True,
         )
         opportunity = create_movement_opportunity_evidence(
-            evidence_id=build_record_id("evidence", f"g1-opportunity-{opportunity_token}"),
+            evidence_id=build_record_id("evidence", f"posture-opportunity-{opportunity_token}" if posture_qualified else f"g1-opportunity-{opportunity_token}"),
             actor_entity_id=self.player_entity_id,
             destination_place_id=destination_place_id,
             opportunity_available=allowed,
@@ -2190,6 +2258,16 @@ def create_terminal_play_fixture() -> MyravantPlayFixture:
                 blocking_object_place_id=YARD_ID,
             ),
         ),
+        posture_profile=PostureProfile(
+            actor_id=PLAYER_ID, profile_id="noncanonical-humanoid-posture", version=1,
+            configurations=("standing", "crouching", "kneeling", "sitting", "lying"),
+            places=(GATEHOUSE_ID, YARD_ID, WORKSHOP_ID, ORCHARD_PATH_ID),
+        ),
+        posture_movement_licenses=(PostureMovementLicense(
+            source_place_id=YARD_ID, direction="east", method="walk",
+            profile_id="noncanonical-humanoid-posture", version=1,
+            configurations=("crouching", "kneeling", "lying"),
+        ),),
         movement_method_routes=(
             # Human-scale noncanonical corridor clearance is fixture evidence,
             # not a universal law that all body forms can crawl everywhere.
