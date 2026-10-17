@@ -80,7 +80,6 @@ def test_goal_parser_retains_target_destination_method_and_goal(
 
 
 @pytest.mark.parametrize("raw", [
-    "get lantern to orchard",
     "ask groundskeeper to bring lantern to orchard",
     "take chest",
     "move north",

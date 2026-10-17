@@ -836,7 +836,8 @@ _HELP_TOPICS: dict[str, str] = {
         "material, force, dragging or sliding rule is implied.\n"
         "In poor light, try feel for waystone then drag waystone west; "
         "contact is rechecked and does not authorize unlicensed routes.\n"
-        "Goal-led attempts: get lantern to orchard, get waystone to yard "
+        "Goal-led attempts: get lantern to yard by sliding then go south; "
+        "get lantern to orchard; get waystone to yard "
         "by dragging, clear the yard east exit by pushing waystone north, "
         "or move chest to orchard by pushing. Ask how to get chest to "
         "orchard to inspect current methods; a chosen action is one step, "
@@ -1044,10 +1045,11 @@ _COMPOSABLE_STEP_ACTIONS = frozenset({
     "move", "move_crawl", "pickup", "drop", "open", "close", "light", "extinguish",
     "store", "retrieve", "throw", "push", "slide", "drag", "wait",
     "player_sense",
+    "physical_placement_goal", "destination_goal_method",
 })
 
 
-def _explicit_two_step_intent(raw_text: str) -> tuple[
+def _explicit_two_step_intent(raw_text: str, *, fixture=None) -> tuple[
     ParsedTerminalCommand, ParsedTerminalCommand,
 ] | None:
     # Sequence is explicit, ordered and exactly two independent commands.
@@ -1067,6 +1069,19 @@ def _explicit_two_step_intent(raw_text: str) -> tuple[
             step = ParsedTerminalCommand(
                 action="player_sense", argument=piece, raw_text=piece,
             )
+        if step.action == "unsupported":
+            # Match standalone capability-router precedence without executing
+            # handlers during preflight. The Lantern route retains its actor
+            # consent and custody semantics on both public surfaces.
+            from astra_runtime.myravant_goal_method_lantern import parse_lantern_destination_goal
+            from astra_runtime.myravant_physical_placement_goal import parse_physical_placement_goal
+            route = None
+            if parse_lantern_destination_goal(piece) is not None:
+                route = "destination_goal_method"
+            elif parse_physical_placement_goal(piece, fixture=fixture) is not None:
+                route = "physical_placement_goal"
+            if route is not None:
+                step = ParsedTerminalCommand(action=route, argument=piece, raw_text=piece)
         parsed_steps.append(step)
     parsed = tuple(parsed_steps)
     if any(step.action not in _COMPOSABLE_STEP_ACTIONS for step in parsed):
@@ -1081,6 +1096,12 @@ def _execute_composable_core_step(
     # semantics. Every authoritative transition is still made by its owner.
     action = parsed.action
     argument = parsed.argument or ""
+    if action == "physical_placement_goal":
+        from astra_runtime.myravant_physical_placement_goal import execute_physical_placement_goal
+        return execute_physical_placement_goal(application, argument)
+    if action == "destination_goal_method":
+        from astra_runtime.myravant_goal_method_lantern import execute_lantern_destination_goal
+        return execute_lantern_destination_goal(application, argument)
     if action == "player_sense":
         # Existing BREADTH-1 AFQR-20 contact/holdings owner; read-only
         # result has no persisted target or deferred manipulation privilege.
@@ -1205,7 +1226,7 @@ def run_terminal(
         # either. Once execution begins, each step is independently durable;
         # a contextual refusal stops the sequence but does not undo a lawful
         # first transition. This is explicit sequence, not simultaneous work.
-        planned = _explicit_two_step_intent(raw)
+        planned = _explicit_two_step_intent(raw, fixture=application.fixture)
         if planned is not None:
             for ordinal, step in enumerate(planned, 1):
                 output_stream.write(f"Sequence step {ordinal}/2: ")

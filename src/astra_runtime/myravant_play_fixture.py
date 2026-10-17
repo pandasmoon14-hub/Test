@@ -625,6 +625,19 @@ class MyravantPlayFixture:
                 return presentation
         raise UnknownFixturePlaceError(f"unknown fixture place: {place_id!r}")
 
+    def resolve_place_reference(self, reference: str) -> str:
+        """Resolve declared presentation only; never infer a reachable route."""
+        normalized = " ".join(reference.casefold().replace("-", " ").split())
+        matches = []
+        for item in self.place_presentations:
+            name = " ".join(item.name.casefold().replace("-", " ").split())
+            local = " ".join(item.entity_id.rsplit(":", 1)[-1].casefold().replace("-", " ").split())
+            if normalized and normalized in {name, local, name.split()[0] if name else ""}:
+                matches.append(item.entity_id)
+        if len(matches) != 1:
+            raise UnknownFixturePlaceError("place reference is unknown or ambiguous")
+        return matches[0]
+
     def ambient_visual_condition_for(self, place_id: str) -> str:
         try:
             return self.ambient_visual_conditions[place_id]

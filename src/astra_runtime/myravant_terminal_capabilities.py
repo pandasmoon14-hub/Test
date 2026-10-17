@@ -110,9 +110,9 @@ def execute_bounded_terminal_request(
             execute_lantern_destination_goal(application, raw_text),
         )
 
-    # Compose local Chest and Waystone placement/clearance goals only over
+    # Compose declared local placement and bounded clearance goals only over
     # actual COMP-3 fixture routes. No global pathfinder or rules owner.
-    if parse_physical_placement_goal(raw_text) is not None:
+    if parse_physical_placement_goal(raw_text, fixture=application.fixture) is not None:
         return (
             "physical_placement_goal",
             execute_physical_placement_goal(application, raw_text),
