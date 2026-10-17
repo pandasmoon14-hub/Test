@@ -36,6 +36,8 @@ jobs:
           python -m pip install -e .
       - name: Check installed dependencies
         run: python -m pip check
+      - name: Specialist composition family contracts
+        run: python -m pytest -q tests/test_play_specialist_composition.py
       - name: Approved posture family and replay contracts
         run: python -m pytest -q tests/test_play_posture_movement.py
       - name: Focused traversal contract and installed-client tests
@@ -52,6 +54,18 @@ jobs:
         run: python -m pytest -q tests/test_play_physical_access_batch_1.py tests/test_play_waystone_drag_recovery.py
       - name: Run tests
         run: python -m pytest -q
+      - name: Generate specialist composition campaign evidence
+        run: python scripts/report_myravant_specialist_composition.py --output specialist-composition-evidence.json
+      - name: Generate isolated specialist composition mutations
+        run: python scripts/report_myravant_specialist_mutations.py --output specialist-composition-mutations.json
+      - name: Upload specialist composition evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-specialist-composition-linux
+          path: |
+            specialist-composition-evidence.json
+            specialist-composition-mutations.json
+          if-no-files-found: error
       - name: Generate posture campaign evidence
         run: python scripts/report_myravant_posture.py --output posture-evidence.json
       - name: Generate isolated posture mutation evidence
@@ -92,7 +106,8 @@ jobs:
   core-windows:
     name: core-windows
     runs-on: windows-latest
-    timeout-minutes: 20
+    # Budget for the long Windows suite plus focused/full installed-family coverage.
+    timeout-minutes: 25
     env:
       PYTHONUTF8: "1"
     steps:
@@ -117,6 +132,8 @@ jobs:
           python -m pip install -e .
       - name: Check installed dependencies
         run: python -m pip check
+      - name: Specialist composition family contracts
+        run: python -m pytest -q tests/test_play_specialist_composition.py
       - name: Approved posture family and replay contracts
         run: python -m pytest -q tests/test_play_posture_movement.py
       - name: Focused traversal contract and installed-client tests
