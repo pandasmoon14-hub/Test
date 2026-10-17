@@ -386,3 +386,38 @@ def test_installed_posture_and_movement_sequence_receipts_match_direct(tmp_path)
     assert [r["receipt_id"] for r in direct] == [r["receipt_id"] for r in sequenced]
     assert [r["post_state_digest"] for r in direct] == [r["post_state_digest"] for r in sequenced]
     assert App.restore(checkpoint_path=tmp_path / "two.json").current_place_id() == ORCHARD_PATH_ID
+
+
+@pytest.mark.parametrize("override", [
+    {"place_id": YARD_ID}, {"movement_count": 5}, {"logical_step": 1},
+])
+def test_locally_valid_owner_receipt_cannot_forge_its_world_anchor(tmp_path, override):
+    app = App.new(checkpoint_path=tmp_path / "anchor.json")
+    args = owner_args(app)
+    forged, event = execute_posture(**{**args, **override})
+    # This is valid AFQR-16 local evidence. Its AFQR-18/WORLD-2 join is false.
+    assert restore_posture(serialize_posture(forged), profile=args["profile"]) == forged
+    assert event.receipt_id
+    app.change_posture("crouching")
+    app.save()
+    rehash(app.checkpoint_path, lambda m: m["authoritative_payload"]["components"].update(
+        actor_posture=serialize_posture(forged)))
+    with pytest.raises(PersistentWorldCheckpointEvidenceError):
+        App.restore(checkpoint_path=app.checkpoint_path)
+
+
+def test_valid_alternate_pose_receipt_cannot_qualify_recorded_crossing(tmp_path):
+    app = App.new(checkpoint_path=tmp_path / "wrong-receipt.json")
+    obstruction(app)
+    args = {**owner_args(app), "place_id": YARD_ID,
+            "movement_count": len(app.state.committed_transitions)}
+    # Both transitions are locally legal from this actual prestate. Only the
+    # crouching receipt qualifies the committed passage crossing.
+    standing, _ = execute_posture(**{**args, "configuration": "standing"})
+    app.change_posture("crouching")
+    assert app.move("east").authoritative_changed
+    app.save()
+    rehash(app.checkpoint_path, lambda m: m["authoritative_payload"]["components"].update(
+        actor_posture=serialize_posture(standing)))
+    with pytest.raises(PersistentWorldCheckpointEvidenceError):
+        App.restore(checkpoint_path=app.checkpoint_path)
