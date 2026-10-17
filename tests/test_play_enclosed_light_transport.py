@@ -272,18 +272,72 @@ def test_installed_player_adapts_method_condition_and_darkness(tmp_path, transpo
     assert outputs[0] == outputs[1]
 
 
-def test_no_unlicensed_method_or_remote_light_leak_after_sealed_transport():
-    app = MyravantVSM14Application.new()
+@pytest.mark.parametrize("licensed_method", ("push", "slide"))
+def test_no_unlicensed_method_or_remote_light_leak_after_sealed_transport(
+    licensed_method, tmp_path,
+):
+    # An expanded, *licensed* slide must not silently become an arbitrary
+    # drag. Both the established push and the new slide protect the same
+    # contained, lit Lantern and its AFQR-20 visibility boundary.
+    app = MyravantVSM14Application.new(
+        checkpoint_path=tmp_path / f"sealed-{licensed_method}.json",
+    )
     _put_lit_lantern_in_open_chest(app)
     assert app.close_object("chest").authoritative_changed
+
+    initial_containment = tuple(
+        r for r in app.state.representation.relations
+        if r.relation_type == CONTAINED_BY_RELATION_TYPE
+        and r.subject_entity_id == LANTERN_ID
+        and r.object_entity_id == TOOL_CHEST_ID
+    )
+    assert len(initial_containment) == 1
     digest = app.authoritative_digest()
-    bad_method = app.displace_object("chest", "east", method="slide")
+    bad_method = app.displace_object("chest", "east", method="drag")
     assert bad_method.failure_class == "object_displacement_route_unavailable"
+    assert not bad_method.authoritative_changed
+    assert bad_method.receipt_id is None and bad_method.state_delta_id is None
     assert bad_method.pre_state_digest == bad_method.post_state_digest == digest
-    assert app.displace_object("chest", "east", method="push").authoritative_changed
-    # Contained lantern light is not a directly placed source, so the
-    # separate Yard->Orchard glimmer corridor from #504 stays silent.
+    assert app.authoritative_digest() == digest
+
+    moved = app.displace_object("chest", "east", method=licensed_method)
+    assert moved.authoritative_changed
+    assert moved.receipt_id and moved.state_delta_id
+    assert moved.spatial_evidence_id and moved.opportunity_evidence_id
+    assert app.entity_place_id(TOOL_CHEST_ID) == ORCHARD_PATH_ID
+    assert tuple(
+        r for r in app.state.representation.relations
+        if r.relation_type == CONTAINED_BY_RELATION_TYPE
+        and r.subject_entity_id == LANTERN_ID
+        and r.object_entity_id == TOOL_CHEST_ID
+    ) == initial_containment
+    assert app.object_lit_state(LANTERN_ID).state == "lit"
+    receipt = app.displacement_state.committed_object_displacement_transitions[-1].receipt
+    assert receipt.method == licensed_method
+    assert receipt.receipt_id == moved.receipt_id
+
+    # The #504 Yard-to-Orchard glimmer license concerns directly placed
+    # illumination; sealed contents must not cause a remote light signal.
+    remote_digest = app.authoritative_digest()
     from_yard = app.look_direction("east")
     assert from_yard.result_type == "directional_observation_unavailable"
     assert from_yard.failure_class == "directional_observation_unlicensed"
-    assert from_yard.pre_state_digest == from_yard.post_state_digest
+    assert from_yard.pre_state_digest == from_yard.post_state_digest == remote_digest
+    assert app.authoritative_digest() == remote_digest
+
+    assert app.move("east").authoritative_changed
+    _read_only_sighting(app, expected=False)
+    assert app.open_object("chest").authoritative_changed
+    _read_only_sighting(app, expected=True)
+
+    assert app.save().checkpoint_digest
+    restored = MyravantVSM14Application.restore(checkpoint_path=app.checkpoint_path)
+    assert restored.authoritative_digest() == app.authoritative_digest()
+    assert restored.entity_place_id(TOOL_CHEST_ID) == ORCHARD_PATH_ID
+    assert tuple(
+        r for r in restored.state.representation.relations
+        if r.relation_type == CONTAINED_BY_RELATION_TYPE
+        and r.subject_entity_id == LANTERN_ID
+        and r.object_entity_id == TOOL_CHEST_ID
+    ) == initial_containment
+    _read_only_sighting(restored, expected=True)
