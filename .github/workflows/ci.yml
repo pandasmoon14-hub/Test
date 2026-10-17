@@ -106,7 +106,8 @@ jobs:
   core-windows:
     name: core-windows
     runs-on: windows-latest
-    timeout-minutes: 20
+    # Budget for the long Windows suite plus focused/full installed-family coverage.
+    timeout-minutes: 25
     env:
       PYTHONUTF8: "1"
     steps:
