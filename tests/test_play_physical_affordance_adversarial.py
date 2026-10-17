@@ -33,7 +33,7 @@ PROBES = (
     (
         "custody_then_drag",
         ("take lantern then drag lantern south",),
-        "object_displacement_target_unavailable", WORKSHOP_ID, WORKSHOP_ID,
+        "object_displacement_target_unavailable", WORKSHOP_ID, YARD_ID,
     ),
     # Naming a remote object never licenses action or subsequent locomotion.
     (
