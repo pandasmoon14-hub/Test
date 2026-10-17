@@ -301,3 +301,18 @@ def test_destination_with_two_licensed_directions_requires_choice():
     result = execute_physical_placement_goal(app, "get painted crate to yard by sliding")
     assert result.failure_class == "physical_goal_route_unavailable"
     assert result.receipt_id is None and app.authoritative_digest() == before
+
+
+def test_unique_object_reference_survives_shared_display_names():
+    identity = "astra:entity:neutral-crate"
+    fixture, _ = _neutral_fixture(identity, "Brass Lantern")
+    app = MyravantVSM14Application.new(fixture=fixture)
+    before = app.authoritative_digest()
+    # A shared name remains ambiguous; the original unique local ID must
+    # not be replaced by that name between qualification and dispatch.
+    assert parse_physical_placement_goal("get brass lantern to yard by sliding", fixture=fixture) is None
+    assert app.authoritative_digest() == before
+    output = _run(app, "get neutral-crate to yard by sliding then go south")
+    assert "You slide the Brass Lantern south." in output
+    assert _place(app, identity) == YARD_ID
+    assert _place(app, LANTERN_ID) == WORKSHOP_ID

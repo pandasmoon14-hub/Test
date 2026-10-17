@@ -38,8 +38,8 @@ existing owner procedures and demonstrated reuse, not newly invented mechanics.
 - `myravant_play_fixture.py`: presentation-only unambiguous place resolution.
   Resolving a known place does not establish reachability or a displacement route.
 - `myravant_physical_placement_goal.py`: fixture-based object/place resolution,
-  actual custody-sensitive method selection, route filtering, strict method
-  preservation and original COMP-3 dispatch. The historical Yard-east clearance
+  actual custody-sensitive method selection, route filtering, unique reference
+  preservation across duplicate display names, strict method preservation and original COMP-3 dispatch. The historical Yard-east clearance
   objective remains explicitly fixture-specific.
 - `myravant_terminal.py`: pure two-step preflight recognizes existing physical
   goal adapters, preserving standalone Lantern-goal precedence. Execution still

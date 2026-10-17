@@ -29,6 +29,7 @@ class ParsedPhysicalGoal:
     destination_id: str
     method: str | None
     clearance: bool = False
+    target_reference: str | None = None
 
 
 _GOAL = re.compile(
@@ -125,6 +126,7 @@ def parse_physical_placement_goal(
         target_id=target,
         destination_id=destination,
         method=_METHODS.get(named_method, "unqualified") if named_method else None,
+        target_reference=match.group("object"),
     )
 
 
@@ -237,5 +239,7 @@ def execute_physical_placement_goal(
     # Exact chosen method and direction pass unchanged to the existing
     # authoritative executor, including chest closure and drag observation.
     direction = matching[0].direction
-    target_reference = app.fixture.entity_name(parsed.target_id)
+    # Preserve the unique reference that actually resolved. A display name
+    # may be shared by another object even when the supplied local ID is not.
+    target_reference = parsed.target_reference or app.fixture.entity_name(parsed.target_id)
     return app.displace_object(target_reference, direction, method=parsed.method)
