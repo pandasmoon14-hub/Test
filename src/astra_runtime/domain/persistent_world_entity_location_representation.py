@@ -259,6 +259,10 @@ class PersistentWorldRelation:
                 raise InvalidContainedByRelationError(
                     "contained_by may not self-reference"
                 )
+        elif self.relation_type in {"supported_by", "reserved_by"}:
+            expected = "AFQR-18" if self.relation_type == "supported_by" else "RT-010"
+            if self.semantic_owner != expected or self.subject_entity_id == self.object_entity_id:
+                raise InvalidPersistentWorldRelationError("invalid approved material relation")
         else:
             raise UnsupportedPersistentWorldRelationTypeError(
                 "relation type lacks separately qualified semantic ownership"
@@ -375,7 +379,7 @@ class PersistentWorldEntityLocationRepresentation:
                         "'character_or_creature'"
                     )
 
-            if relation.relation_type == CONTAINED_BY_RELATION_TYPE:
+            if relation.relation_type in {CONTAINED_BY_RELATION_TYPE, "supported_by", "reserved_by"}:
                 subject = entity_by_id[relation.subject_entity_id]
                 if subject.classification != "object":
                     raise InvalidContainedByRelationError(
@@ -538,3 +542,16 @@ def create_scene_location_owner_transport_reference(
             "semantic_authority_acquired": False,
         },
     )
+
+
+def directly_supported_at(representation, object_entity_id, place_id):
+    """AFQR-18 read: one surface directly located at the requested place.
+
+    No support-chain traversal, carried platform, interior access or force law.
+    Material composition separately validates the declaration and unique placement.
+    """
+    placements = [r for r in representation.relations if r.subject_entity_id == object_entity_id]
+    if len(placements) != 1 or placements[0].relation_type != 'supported_by':
+        return False
+    surfaces = [r for r in representation.relations if r.subject_entity_id == placements[0].object_entity_id]
+    return len(surfaces) == 1 and surfaces[0].relation_type == 'located_at' and surfaces[0].object_entity_id == place_id

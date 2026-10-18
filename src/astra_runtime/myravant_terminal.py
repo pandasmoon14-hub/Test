@@ -1486,7 +1486,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--locality", choices=("development", "tarrow", "tarrow-depth"), default="development",
+        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material"), default="development",
         help="Select a qualified locality; saved campaigns are not converted.",
     )
     parser.add_argument(
@@ -1521,7 +1521,7 @@ def main(argv: list[str] | None = None) -> int:
     checkpoint_path = args.checkpoint or args.load
     application_type = MyravantVSM14Application
     locality_args = {}
-    if args.locality in {"tarrow", "tarrow-depth"}:
+    if args.locality in {"tarrow", "tarrow-depth", "tarrow-material"}:
         from astra_runtime.myravant_tarrow import create_tarrow_fixture, execute_tarrow_request
         application_type = MyravantPlayApplication
         locality_args = {"fixture": create_tarrow_fixture()}
@@ -1530,6 +1530,13 @@ def main(argv: list[str] | None = None) -> int:
             from astra_runtime.myravant_tarrow_environment import create_environment_fixture, execute_environment_request
             locality_args = {"fixture": create_environment_fixture()}
             execute_bounded_terminal_request = execute_environment_request
+
+    if args.locality == "tarrow-material":
+        from astra_runtime.myravant_material_application import MaterialApplication
+        from astra_runtime.myravant_tarrow_material import create_material_fixture, execute_material_locality_request
+        application_type = MaterialApplication
+        locality_args = {"fixture": create_material_fixture()}
+        execute_bounded_terminal_request = execute_material_locality_request
 
     if (
         args.trace is not None
@@ -1552,7 +1559,7 @@ def main(argv: list[str] | None = None) -> int:
             application = application_type.new(
                 checkpoint_path=checkpoint_path, **locality_args
             )
-    except PersistentWorldCheckpointError as exc:
+    except (PersistentWorldCheckpointError, ValueError) as exc:
         sys.stderr.write(f"Unable to restore checkpoint: {exc}\n")
         return 2
 

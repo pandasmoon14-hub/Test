@@ -933,6 +933,7 @@ class TestGuardrailAllowlists:
             "persistent_world_entity_location_representation.py",
             "persistent_world_follow_intent.py",
             "persistent_world_movement_integration.py",
+            "persistent_world_material.py",  # Owner-approved #542.
             "persistent_world_local_checkpoint_restore.py",
             "persistent_world_object_custody_transfer.py",
             "persistent_world_object_displacement.py",

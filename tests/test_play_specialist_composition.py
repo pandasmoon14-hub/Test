@@ -77,8 +77,11 @@ def play(path, trace, commands, *, load=False):
 
 
 def test_family_inventory_is_complete_for_current_installed_router():
-    assert len(FAMILIES) == len(BOUNDED_TERMINAL_ROUTES) == 23
-    assert {row[0] for row in FAMILIES} == BOUNDED_TERMINAL_ROUTES
+    # Original default-fixture families remain unchanged; material is profile-scoped.
+    # Its installed and pure-preflight coverage lives in test_play_material.
+    assert len(FAMILIES) == 23
+    assert len(BOUNDED_TERMINAL_ROUTES) == 24
+    assert {row[0] for row in FAMILIES} | {'material'} == BOUNDED_TERMINAL_ROUTES
 
 
 @pytest.mark.parametrize('route,raw,setup', FAMILIES + CORE_ACTORS)
