@@ -131,6 +131,7 @@ from astra_runtime.myravant_play_fixture import (
     UnavailableFixtureDisplacementError,
     UnavailableFixtureHandoffError,
     UnavailableFixtureMovementError,
+    UnknownFixturePlaceError,
     UnavailableFixtureObservationError,
     create_terminal_play_fixture,
 )
@@ -2803,6 +2804,25 @@ class MyravantPlayApplication:
             post_state_digest=self.authoritative_digest(),
             technical_retry=result.technical_retry,
         )
+
+    def approach_place(self, reference: str) -> PlayApplicationResult:
+        """One declared adjacent route only; never a path planner or teleport."""
+        pre = self.authoritative_digest()
+        try:
+            destination = self.fixture.resolve_place_reference(reference)
+        except UnknownFixturePlaceError:
+            destination = None
+        routes = [r for r in self.fixture.movement_routes
+                  if r.source_place_id == self.current_place_id()
+                  and r.destination_place_id == destination]
+        if len(routes) != 1:
+            return PlayApplicationResult(
+                result_type="movement_rejected", authoritative_changed=False,
+                message="No single qualified local route reaches that position from here.",
+                pre_state_digest=pre, post_state_digest=pre,
+                failure_class="movement_local_target_unavailable",
+            )
+        return self.move(routes[0].direction)
 
     def _world2_object_opportunity_allowed(
         self, *, object_entity_id: str, operation: str,

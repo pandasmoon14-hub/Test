@@ -17,6 +17,14 @@ canonical names alone do not make fixture behavior a canonical rule.
 | Tarrow initial containment | existing RT-010 state + WORLD-1 checkpoint | source coffer contents and Set G Pin Blank refinement | exact initial witness, receipt history, hidden state and forged-root rejection |
 | Tarrow public role/activity guide | nonmutating presentation | Set G / current social-world reconstruction | no private knowledge/current-location/consent grants |
 
+Environmental-depth preview additions:
+
+| Runtime behavior | Current binding / state | Replacement boundary | Evidence required |
+| --- | --- | --- | --- |
+| Tarrow local positions and fixed fittings | ordinary place/entity identities; static area labels | noncanonical development layout; not a canonical nested-space/support system | named/cardinal receipt parity, local reach, sightline separation and restart |
+| Basket/tray clearance and cargo | explicit displacement, open-state and obstruction licenses | no universal force, mass, carrying capacity or all-container law | qualified methods, current closure, re-blocking, identity conservation and replay |
+| Visible wear and surface traces | authored observable descriptions | no automatic history, knowledge, repair or diagnosis state | local sensing and hidden-information refusal |
+
 Historical checkpoints preserve the meaning under which they were committed.
 A future canonical implementation must explicitly preserve, migrate, quarantine
 or reject incompatible campaign state rather than rewrite historical outcomes.

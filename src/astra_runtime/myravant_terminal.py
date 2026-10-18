@@ -54,6 +54,7 @@ _DIRECTION_ALIASES = {
     "western": "west",
 }
 _COMPOUND_ACTION_STARTERS = frozenset({
+    "approach",
     "look",
     "inspect",
     "examine",
@@ -340,6 +341,9 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
                 argument=direction,
                 raw_text=raw_text,
             )
+
+    if verb == "approach":
+        return _object_action(action="move_to", target_tokens=parts[1:], raw_text=raw_text)
 
     if verb in {"inspect", "examine"}:
         return _object_action(
@@ -1056,7 +1060,7 @@ def _finish_evidence(
 # identical existing application owners below. No hidden planner/automation.
 _COMPOSABLE_STEP_ACTIONS = frozenset({
     "look", "look_direction", "focused_observation", "inspect", "inspect_self",
-    "move", "move_crawl", "pickup", "drop", "open", "close", "light", "extinguish",
+    "move", "move_crawl", "move_to", "pickup", "drop", "open", "close", "light", "extinguish",
     "store", "retrieve", "throw", "push", "slide", "drag", "wait",
     "player_sense", "request_object_state", "request_handoff", "handoff",
     "physical_placement_goal", "destination_goal_method", "change_posture",
@@ -1201,6 +1205,8 @@ def _execute_composable_core_step(
         return application.focused_observation(argument)
     if action in {"inspect", "inspect_self"}:
         return application.inspect("self" if action == "inspect_self" else argument)
+    if action == "move_to":
+        return application.approach_place(argument)
     if action in {"move", "move_crawl"}:
         return application.move(
             argument,
@@ -1354,7 +1360,7 @@ def run_terminal(
                 continue
         if parsed.action in {
             "look", "look_direction", "focused_observation",
-            "inspect", "inspect_self", "move", "move_crawl", "throw", "push", "slide", "drag", "change_posture",
+            "inspect", "inspect_self", "move", "move_crawl", "move_to", "throw", "push", "slide", "drag", "change_posture",
         }:
             result = _execute_composable_core_step(application, parsed)
             visible = _write_durable_result(
@@ -1480,7 +1486,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--locality", choices=("development", "tarrow"), default="development",
+        "--locality", choices=("development", "tarrow", "tarrow-depth"), default="development",
         help="Select a qualified locality; saved campaigns are not converted.",
     )
     parser.add_argument(
@@ -1515,11 +1521,15 @@ def main(argv: list[str] | None = None) -> int:
     checkpoint_path = args.checkpoint or args.load
     application_type = MyravantVSM14Application
     locality_args = {}
-    if args.locality == "tarrow":
+    if args.locality in {"tarrow", "tarrow-depth"}:
         from astra_runtime.myravant_tarrow import create_tarrow_fixture, execute_tarrow_request
         application_type = MyravantPlayApplication
         locality_args = {"fixture": create_tarrow_fixture()}
         execute_bounded_terminal_request = execute_tarrow_request
+        if args.locality == "tarrow-depth":
+            from astra_runtime.myravant_tarrow_environment import create_environment_fixture, execute_environment_request
+            locality_args = {"fixture": create_environment_fixture()}
+            execute_bounded_terminal_request = execute_environment_request
 
     if (
         args.trace is not None

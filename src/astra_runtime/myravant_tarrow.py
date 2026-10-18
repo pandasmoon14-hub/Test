@@ -88,10 +88,36 @@ ACTIVITIES = (
 )
 
 
+@dataclass(frozen=True)
+class TarrowLayout:
+    """Immutable scenario declarations, not a semantic owner or content loader."""
+    version: str = VERSION
+    places: tuple = PLACES
+    people: tuple = PEOPLE
+    objects: tuple = OBJECTS
+    edges: tuple = EDGES
+    fixed: tuple = ("post", "rack", "gate")
+    storage: tuple = tuple((k, "coffer") for k in ("lamp", "blank", "wedge", "slate", "folio"))
+    contained: tuple = (("wedge", "coffer"), ("slate", "coffer"), ("blank", "rack"))
+    carried: tuple = (("folio", "wayfarer"),)
+    dark: tuple = ("underbank",)
+    open_states: tuple = (("coffer", "closed"),)
+    lit_states: tuple = (("lamp", "unlit"),)
+    displacement: tuple = ()
+    obstructions: tuple = ()
+    sightlines: tuple = ()
+    positions: tuple = ()
+    specialists: tuple = ()
+
+
 class TarrowFixture(f.MyravantPlayFixture):
     @property
     def locality_help(self):
-        return ("Tarrow Reach: look; inspect <visible name>; inspect self; go north/south/east/west; "
+        return (("Nearby positions: approach <exact position name> follows one adjacent route; "
+                 "look north/south/east/west observes only a declared sightline. "
+                 "Push/slide <object> <direction> or get <object> to <position> by pushing/sliding "
+                 "uses an explicit local method. Containers must be closed on these routes.\n"
+                 if self.position_areas else "") + "Tarrow Reach: look; inspect <visible name>; inspect self; go north/south/east/west; "
                 "take/drop <object>; open/close <coffer>; light/extinguish <lamp>; "
                 "put <object> in <coffer>; retrieve <object> from <coffer>; wait; save; exit.\n"
                 "Use locality, community, or activities for public context. Exactly two supported "
@@ -99,38 +125,46 @@ class TarrowFixture(f.MyravantPlayFixture):
                 "routines, dialogue and posture for an unspecified body are not yet qualified.")
 
 
-def create_tarrow_fixture():
+def create_tarrow_fixture(*, layout: TarrowLayout | None = None):
+    layout = layout or TarrowLayout(places=PLACES, people=PEOPLE, objects=OBJECTS, edges=EDGES)
     player = identity("wayfarer")
-    binding = {"version": VERSION, "places": [asdict(p) for p in PLACES],
-               "people": PEOPLE, "objects": OBJECTS, "edges": EDGES,
+    binding = {"version": layout.version, "places": [asdict(p) for p in layout.places],
+               "people": layout.people, "objects": layout.objects, "edges": layout.edges,
                "sources": SOURCE_REFS, "activities": ACTIVITIES,
-               "fixed": ("post", "rack", "gate"),
-               "storage": ("lamp", "blank", "wedge", "slate", "folio"),
-               "initial_containment": (("wedge", "coffer"), ("slate", "coffer"), ("blank", "rack")),
-               "initial_carry": ("folio", "wayfarer"), "initial_player_place": "common",
-               "dark": ("underbank",), "stock_world_routine": False, "specialist_routes": ()}
+               "fixed": layout.fixed,
+               "storage": tuple(k for k,c in layout.storage),
+               "initial_containment": layout.contained,
+               "initial_carry": ("folio", "wayfarer") if layout.carried == (("folio", "wayfarer"),) else layout.carried, "initial_player_place": "common",
+               "dark": layout.dark, "stock_world_routine": False, "specialist_routes": ()}
+    if layout.version != VERSION:
+        binding.update(storage_pairs=layout.storage, open_states=layout.open_states,
+                       lit_states=layout.lit_states,
+                       displacement=layout.displacement, obstructions=layout.obstructions,
+                       sightlines=layout.sightlines, positions=layout.positions,
+                       specialists=layout.specialists)
     binding_digest = hashlib.sha256(json.dumps(binding, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
-    campaign = build_record_id("campaign", "tarrow-locality-v" + VERSION + "-" + binding_digest[:20])
+    campaign = build_record_id("campaign", "tarrow-locality-v" + layout.version + "-" + binding_digest[:20])
     presentations = lambda rows: tuple(f.PublicEntityPresentation(entity_id=identity(r[0]), name=r[1], description=r[2]) for r in rows)
-    places = presentations(tuple((p.key, p.name, p.description) for p in PLACES))
-    objects = presentations(OBJECTS)
-    actors = presentations(PEOPLE)
+    places = presentations(tuple((p.key, p.name, p.description) for p in layout.places))
+    objects = presentations(layout.objects)
+    actors = presentations(layout.people)
     entities = tuple(f._entity(p.entity_id, kind) for rows, kind in (
         (places, "place"), (objects, "object"), (actors, "character_or_creature")) for p in rows) + (f._entity(player, "character_or_creature"),)
     relations = [f._located("tarrow-player", player, identity("common"))]
-    relations += [f._located("tarrow-place-" + key, identity(key), identity(place)) for key, _, _, place in OBJECTS + PEOPLE if place]
-    for key, container in (("wedge", "coffer"), ("slate", "coffer"), ("blank", "rack")):
+    relations += [f._located("tarrow-place-" + key, identity(key), identity(place)) for key, _, _, place in layout.objects + layout.people if place]
+    for key, container in layout.contained:
         relations.append(create_contained_by_relation(relation_id=build_record_id("relation", "tarrow-contained-" + key), subject_entity_id=identity(key), object_entity_id=identity(container)))
-    relations.append(create_carried_by_relation(relation_id=build_record_id("relation", "tarrow-folio"), subject_entity_id=identity("folio"), object_entity_id=player))
+    for key, carrier in layout.carried:
+        relations.append(create_carried_by_relation(relation_id=build_record_id("relation", "tarrow-" + key), subject_entity_id=identity(key), object_entity_id=identity(carrier)))
     rep = f.create_persistent_world_entity_location_representation(campaign_id=campaign, entities=entities, relations=tuple(relations))
-    opens = (f.create_persistent_world_object_open_state(object_entity_id=identity("coffer"), state="closed"),)
-    lights = (f.create_persistent_world_object_lit_state(object_entity_id=identity("lamp"), state="unlit"),)
+    opens = tuple(f.create_persistent_world_object_open_state(object_entity_id=identity(key), state=state) for key,state in layout.open_states)
+    lights = tuple(f.create_persistent_world_object_lit_state(object_entity_id=identity(key), state=state) for key,state in layout.lit_states)
     custody = f.create_persistent_world_object_custody_runtime_state(movement_state=f.create_persistent_world_movement_runtime_state(representation=rep))
     opened = f.create_persistent_world_object_open_close_runtime_state(custody_state=custody, object_open_states=opens)
     lit = f.create_persistent_world_object_lit_runtime_state(open_close_state=opened, object_lit_states=lights)
-    ambient = {p.entity_id: "insufficient" if p.entity_id == identity("underbank") else "sufficient" for p in places}
+    ambient = {p.entity_id: "insufficient" if p.entity_id in {identity(k) for k in layout.dark} else "sufficient" for p in places}
     provenance = f.FixtureProvenanceReceipt(
-        fixture_id="myravant-tarrow-locality", fixture_version=VERSION,
+        fixture_id="myravant-tarrow-locality", fixture_version=layout.version,
         fixture_status="canon_sources_with_development_bindings", canon=False, default_world=False,
         origin_workstream="PLAY-TARROW-REACH-1", origin_merge_commit="163721ca06ec4c6df2618f96520ea8ab3a4a9d1e",
         origin_merged_at="2026-10-17", g1_baseline_sha="163721ca06ec4c6df2618f96520ea8ab3a4a9d1e",
@@ -149,11 +183,23 @@ def create_tarrow_fixture():
         initial_object_open_states=opens, initial_object_lit_states=lights,
         ambient_visual_conditions=ambient, ambient_visual_profile_version=f.FIXTURE_AMBIENT_VISUAL_PROFILE_VERSION,
         place_presentations=places, object_presentations=objects, actor_presentations=actors,
-        movement_routes=tuple(f.FixtureMovementRoute(source_place_id=identity(a), direction=d, destination_place_id=identity(b)) for a,d,b in EDGES),
-        checkpoint_qualification={"qualification_id": build_record_id("evidence", "tarrow-checkpoint-v" + VERSION), "semantic_owner": "AFQR-01", "qualified": True, "provenance": "owner-approved Tarrow development binding", "fixture_campaign_id": campaign},
-        provenance=provenance, fixed_object_ids=tuple(identity(k) for k in ("post", "rack", "gate")),
-        light_source_id=identity("lamp"), stock_world_routine=False, specialist_routes=(),
-        storage_pairs=tuple((identity(k), identity("coffer")) for k in ("lamp", "blank", "wedge", "slate", "folio")),
+        movement_routes=tuple(f.FixtureMovementRoute(source_place_id=identity(a), direction=d, destination_place_id=identity(b)) for a,d,b in layout.edges),
+        checkpoint_qualification={"qualification_id": build_record_id("evidence", "tarrow-checkpoint-v" + layout.version), "semantic_owner": "AFQR-01", "qualified": True, "provenance": "owner-approved Tarrow development binding", "fixture_campaign_id": campaign},
+        provenance=provenance, fixed_object_ids=tuple(identity(k) for k in layout.fixed),
+        light_source_id=identity("lamp"), stock_world_routine=False, specialist_routes=layout.specialists,
+        storage_pairs=tuple((identity(k), identity(c)) for k,c in layout.storage),
+        object_displacement_routes=tuple(f.FixtureObjectDisplacementRoute(
+            object_entity_id=identity(k), source_place_id=identity(a), direction=d,
+            destination_place_id=identity(b), method=m, required_open_state=state,
+        ) for k,a,d,b,m,state in layout.displacement),
+        movement_obstruction_licenses=tuple(f.FixtureMovementObstructionLicense(
+            source_place_id=identity(a), direction=d, blocking_object_entity_id=identity(k),
+            blocking_object_place_id=identity(place),
+        ) for a,d,k,place in layout.obstructions),
+        directional_observation_licenses=tuple(f.FixtureDirectionalObservationLicense(
+            source_place_id=identity(a), direction=d, target_place_id=identity(b),
+        ) for a,d,b in layout.sightlines),
+        position_areas=tuple((identity(k), identity(area)) for k,area in layout.positions),
     )
 
 
