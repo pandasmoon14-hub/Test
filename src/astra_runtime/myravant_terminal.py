@@ -1486,7 +1486,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material"), default="development",
+        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water"), default="development",
         help="Select a qualified locality; saved campaigns are not converted.",
     )
     parser.add_argument(
@@ -1537,6 +1537,13 @@ def main(argv: list[str] | None = None) -> int:
         application_type = MaterialApplication
         locality_args = {"fixture": create_material_fixture()}
         execute_bounded_terminal_request = execute_material_locality_request
+
+    if args.locality == "tarrow-water":
+        from astra_runtime.myravant_water_application import WaterApplication
+        from astra_runtime.myravant_tarrow_water import create_water_fixture, execute_water_locality_request
+        application_type = WaterApplication
+        locality_args = {"fixture": create_water_fixture()}
+        execute_bounded_terminal_request = execute_water_locality_request
 
     if (
         args.trace is not None

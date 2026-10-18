@@ -24,6 +24,25 @@ FORMAT = 'myravant.material-owner-journal'
 
 
 class MaterialApplication(MyravantPlayApplication):
+    checkpoint_format = FORMAT
+
+    @staticmethod
+    def default_fixture():
+        from astra_runtime.myravant_tarrow_material import create_material_fixture
+        return create_material_fixture()
+
+    def _checkpoint_profile(self):
+        return asdict(self.material_profile)
+
+    def _capture_transaction(self):
+        return self._runtime_state, self.connections, self.journal
+
+    def _restore_transaction(self, snapshot):
+        self._runtime_state, self.connections, self.journal = snapshot
+
+    def _validate_transaction(self):
+        validate_joint(self.state.representation, self.connections, self.material_profile)
+
     def __init__(self, *, material_profile=None, **kwargs):
         super().__init__(**kwargs)
         self.material_profile = material_profile or self.fixture.material_profile
@@ -227,27 +246,26 @@ class MaterialApplication(MyravantPlayApplication):
         if self.checkpoint_path is None:
             return self._result('A checkpoint path is required.',failure='checkpoint_path_required')
         d=self.authoritative_digest()
-        payload={'campaign':self.fixture.campaign_id,'profile':asdict(self.material_profile),
+        payload={'campaign':self.fixture.campaign_id,'profile':self._checkpoint_profile(),
                  'root':self.fixture.provenance.initial_state_digest,'journal':list(self.journal),'final':d}
-        envelope={'format_identity':FORMAT,'format_version':1,'payload':payload,'integrity_digest':digest(payload)}
+        envelope={'format_identity':self.checkpoint_format,'format_version':1,'payload':payload,'integrity_digest':digest(payload)}
         checkpoint_digest=_write_envelope(envelope=envelope,checkpoint_path=self.checkpoint_path)
         return PlayApplicationResult(result_type='checkpoint_written',message='Checkpoint written.',pre_state_digest=d,post_state_digest=d,checkpoint_digest=checkpoint_digest)
 
     @classmethod
     def restore(cls, *, checkpoint_path, fixture=None):
         if fixture is None:
-            from astra_runtime.myravant_tarrow_material import create_material_fixture
-            fixture=create_material_fixture()
+            fixture=cls.default_fixture()
         try:
+            app=cls.new(fixture=fixture)
             raw=json.loads(Path(checkpoint_path).read_text())
-            if set(raw)!={'format_identity','format_version','payload','integrity_digest'} or raw['format_identity']!=FORMAT or type(raw['format_version']) is not int or raw['format_version']!=1:
+            if set(raw)!={'format_identity','format_version','payload','integrity_digest'} or raw['format_identity']!=app.checkpoint_format or type(raw['format_version']) is not int or raw['format_version']!=1:
                 raise MaterialError('incompatible material checkpoint')
             p=raw['payload']
-            if set(p)!={'campaign','profile','root','journal','final'} or digest(p)!=raw['integrity_digest'] or p['campaign']!=fixture.campaign_id or p['root']!=fixture.provenance.initial_state_digest or digest(p['profile'])!=digest(asdict(fixture.material_profile)):
+            if set(p)!={'campaign','profile','root','journal','final'} or digest(p)!=raw['integrity_digest'] or p['campaign']!=fixture.campaign_id or p['root']!=fixture.provenance.initial_state_digest or digest(p['profile'])!=digest(app._checkpoint_profile()):
                 raise MaterialError('material binding or integrity mismatch')
-            app=cls.new(fixture=fixture)
             for entry in p['journal']:
-                if set(entry)!={'method','args','kwargs','result'} or entry['method'] not in JOURNALED:
+                if set(entry)!={'method','args','kwargs','result'} or entry['method'] not in app.replay_methods:
                     raise MaterialError('unknown material replay operation')
                 result=getattr(app,entry['method'])(*entry['args'],**entry['kwargs'])
                 if not result.authoritative_changed or _receipt(result)!=entry['result']:
@@ -272,13 +290,13 @@ def _transaction(method, name):
         if self._in_transaction:
             return method(self,*args,**kwargs)
         before=self.authoritative_digest()
-        old=(self._runtime_state,self.connections,self.journal)
+        old=self._capture_transaction()
         path=self.checkpoint_path
         self._in_transaction=True
         self.checkpoint_path=None
         try:
             result=method(self,*args,**kwargs)
-            validate_joint(self.state.representation,self.connections,self.material_profile)
+            self._validate_transaction()
             after=self.authoritative_digest()
             if after!=before:
                 result=replace(result,pre_state_digest=before,post_state_digest=after)
@@ -289,7 +307,7 @@ def _transaction(method, name):
                     result=replace(result,checkpoint_digest=checkpoint.checkpoint_digest)
             return result
         except Exception as exc:
-            self._runtime_state,self.connections,self.journal=old
+            self._restore_transaction(old)
             if isinstance(exc,(OSError,PersistentWorldCheckpointWriteError)):
                 self._durability_failed=True
                 return self._result('The change could not be acknowledged. This session is halted; restart from a validated checkpoint.',failure='material_checkpoint_write_failed')
@@ -304,6 +322,7 @@ def _transaction(method, name):
 JOURNALED=('material','pickup','drop','store_object','retrieve_object','displace_object','throw_object',
            'give_object','open_object','close_object','light_object','extinguish_object','move','approach_place','wait',
            'request_object_from_actor','request_object_state_from_actor')
+MaterialApplication.replay_methods = JOURNALED
 for _name in JOURNALED:
     setattr(MaterialApplication,_name,_transaction(getattr(MaterialApplication,_name),_name))
 

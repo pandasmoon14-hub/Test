@@ -37,6 +37,8 @@ jobs:
           python -m pip install -e .
       - name: Check installed dependencies
         run: python -m pip check
+      - name: Water quantities, cleaning and replay contracts
+        run: python -m pytest -q tests/test_play_water_cleaning.py
       - name: Material placement, fastening and replay contracts
         run: python -m pytest -q tests/test_play_material.py
       - name: Tarrow environmental-depth contracts
@@ -61,6 +63,18 @@ jobs:
         run: python -m pytest -q tests/test_play_physical_access_batch_1.py tests/test_play_waystone_drag_recovery.py
       - name: Run tests
         run: python -m pytest -q
+      - name: Generate water campaigns and isolated mutations
+        run: |
+          python scripts/report_myravant_water.py --output water-evidence.json
+          python scripts/report_myravant_water_mutations.py --output water-mutations.json
+      - name: Upload water and cleaning evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-tarrow-water-linux
+          path: |
+            water-evidence.json
+            water-mutations.json
+          if-no-files-found: error
       - name: Generate material campaigns and isolated mutations
         run: |
           python scripts/report_myravant_material.py --output material-evidence.json
@@ -175,6 +189,8 @@ jobs:
           python -m pip install -e .
       - name: Check installed dependencies
         run: python -m pip check
+      - name: Water quantities, cleaning and replay contracts
+        run: python -m pytest -q tests/test_play_water_cleaning.py
       - name: Material placement, fastening and replay contracts
         run: python -m pytest -q tests/test_play_material.py
       - name: Tarrow environmental-depth contracts
