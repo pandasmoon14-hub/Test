@@ -24,7 +24,7 @@ class MaterialFixture(TarrowFixture):
                 'Components and whole fasteners can be recovered. No force, load, cutting or repair is inferred.\n'+super().locality_help)
 
 
-def create_material_fixture():
+def material_layout():
     layout=environment_layout()
     additions=(
         ('repair-board','Repair Board','A loose board for the declared reversible workshop arrangement.','work-bench'),
@@ -60,6 +60,11 @@ def create_material_fixture():
     layout=replace(layout,version=version,objects=layout.objects+additions,
         storage=layout.storage+tuple((k,c) for k,_,_,_ in additions for c in containers),
         specialists=(*layout.specialists,'material'))
+    return layout, profile
+
+
+def create_material_fixture():
+    layout, profile = material_layout()
     fixture=create_tarrow_fixture(layout=layout)
     result=MaterialFixture(**fixture.__dict__,material_profile=profile)
     profile.validate(result.initial_state.representation)

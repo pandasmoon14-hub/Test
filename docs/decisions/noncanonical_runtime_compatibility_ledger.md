@@ -40,3 +40,12 @@ or reject incompatible campaign state rather than rewrite historical outcomes.
 
 Material checkpoints use a separate versioned identity; historical Tarrow saves
 are not reinterpreted. See `tarrow_material_1_contract.md` and issue #542.
+
+## Tarrow water and cleaning — approved #544
+
+| Development affordance | Current boundary | Extension / compatibility requirement |
+| --- | --- | --- |
+| Finite quantities and capacities | Whole water units, exact rational removable residue; declared pairs only | Native statistics and other substances require explicit profiles and versioned bindings |
+| Wipe, scrub, rinse and wring | Adhered residue distinct from suspended residue; no potability, drying or chemical claim | Keep both compartments and conservation on extension; see water_domain_expansion_register.md |
+| Wet/dirty cargo | Water/condition follow object identity; no inferred spills or neighbor transfer | Closure/transport/exposure contracts before new passive effects |
+| Water replay | Separate water-material journal root/profile witness | Old material/depth/locality campaigns keep their meanings; migration is explicit |
