@@ -22,7 +22,7 @@ At planning for any package involving liquids, cleaning, material alteration, st
 
 ## Dependency-ordered expansion candidates
 
-All rows below are **deferred / not yet authorized**. Priority is a recommendation conditional on the trigger, not automatic activation.
+Except for the explicitly selected drying extension described below, these rows remain **deferred / not yet authorized**. Priority is conditional on a demonstrated trigger, not automatic activation.
 
 | Order / capability | Trigger: when it becomes necessary | What to add | Ownership and prerequisite | Evidence needed before admission |
 | --- | --- | --- | --- | --- |
@@ -40,8 +40,20 @@ All rows below are **deferred / not yet authorized**. Priority is a recommendati
 | On demand — Extraordinary creation/control | A native ability creates, transforms or controls water | Explicit ability provenance, costs/limits, new source/sink accounting and material handoffs | Canon approval, ability/resource authorities and RT-010; no material reducer invents powers | Ability-specific limits, replayed committed randomness where applicable, ordinary water interoperability, hidden knowledge boundaries |
 | Scale trigger — Larger histories/regions | Measured save/replay or many-reservoir cost obstructs a real campaign | Equivalent snapshots/compaction and bounded local/offscreen resolution | Existing persistence, commitment, version and scheduling owners; measure before changing architecture | Full journal versus compacted equivalence, fault recovery, migration, no omitted state families or changed physical semantics |
 
+## Selected extension — approved #546, implementation candidate
+
+Cam approved the combined time/environment/work contract #546. Its current candidate implements drying for the declared Cleaning Cloth in the separate `tarrow-time` profile. This is **implemented candidate coverage, not certification or merge evidence**. The original `tarrow-water` profile retains its earlier meanings.
+
+The selected extension reuses WORLD-1 logical intervals and AFQR-17 environmental authority, with RT-010 material handoffs. Exact fractional drying credit accumulates under explicit exposure rates; whole water units transfer into a per-position evaporated-water accounting compartment. A closed container suspends exposure. On loss of the last retained water unit, suspended residue becomes a separate deposit on the absorbent; it is conserved even when ordinary adhered-residue capacity is already occupied. Qualified rinsing or collection can recover deposited residue. The accounting compartment does not implement humidity, atmospheric transport or recoverable condensation.
+
+Physical mutations consume one declared development interval; observations and work declarations do not. Passive evolution precedes the active contribution, which requalifies after that interval. A contribution losing its opportunity can therefore be interrupted after elapsed time and passive consequences have committed. Bounded waits and work requests commit separately durable intervals. Versioned profile/journal replay reconstructs time, drying credit, deposited residue, environmental water, work lifecycle and physical traces.
+
+The trigger was the combined environmental/time package, so drying was deliberately selected before the provisionally earlier spills/contact-transfer rows. Those rows are still unsupported. Current drying admits one absorbent and two exposure-rate profiles with one declared condition boundary; it does not implement generic ventilation, weather, spontaneous dampness, Screen Cloth absorption, vessel evaporation, offscreen catch-up or wall-clock progression.
+
+Required certification remains: elapsed-history/restart equivalence, containment and exposure contrasts, material accounting including deposited residue, post-passive interruption, interval durability failures and integrated installed-client journeys. Record observed results in the implementation PR before upgrading this status. See `tarrow_environment_depth_closure_assessment.md`; #540 remains open.
+
 ## Next selection rule
 
-After #544 is certified, select the highest-value triggered row alongside the next coherent environmental/material package. Spills and wet transfer are likely first integrations because they extend the same conservation model, but require a concrete play need. Drying must wait for an explicit environmental/time contract. Channel flow should be selected when crossing/infrastructure work needs it. Native ingestion, extraordinary abilities and health remain native-rule dependencies, not generic water completeness requirements.
+After the current candidate is certified, select the highest-value still-triggered row alongside the next coherent environmental/material package. Spills and wet transfer remain likely integrations because they extend the conservation model, but require a concrete play need. Drying has an approved bounded environmental/time contract under #546; further absorbents, exposure effects or atmospheric behavior require explicit profile/semantic extensions. Channel flow should be selected when crossing/infrastructure work needs it. Native ingestion, extraordinary abilities and health remain native-rule dependencies, not generic water completeness requirements.
 
 No row is a promise that a specific natural-language action currently executes. Preserve unsupported intentions and truthful limits in player feedback. Keep old water checkpoints under their original profile/rules meanings unless an explicit versioned migration is validated.

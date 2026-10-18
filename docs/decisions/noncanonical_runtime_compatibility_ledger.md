@@ -49,3 +49,19 @@ are not reinterpreted. See `tarrow_material_1_contract.md` and issue #542.
 | Wipe, scrub, rinse and wring | Adhered residue distinct from suspended residue; no potability, drying or chemical claim | Keep both compartments and conservation on extension; see water_domain_expansion_register.md |
 | Wet/dirty cargo | Water/condition follow object identity; no inferred spills or neighbor transfer | Closure/transport/exposure contracts before new passive effects |
 | Water replay | Separate water-material journal root/profile witness | Old material/depth/locality campaigns keep their meanings; migration is explicit |
+
+
+## Tarrow time, continuing work and evidence — approved #546, candidate
+
+Implementation is present for review; certification and merge have not been established by this ledger. The opt-in `tarrow-time` binding does not upgrade existing water/material campaigns. #540 remains open; no NPC-routine gate is declared closed.
+
+| Development affordance | Current candidate boundary | Extension / compatibility requirement |
+| --- | --- | --- |
+| Physical-action intervals and bounded durations | One WORLD-1 interval per admitted physical mutation; observations and work declarations consume none; passive effects precede requalified active contributions | Native durations, concurrent actors, autonomous routines and offscreen advancement require their own contracts; no wall-clock equivalence inferred |
+| Continuing cleaning and assembly | Selected player task records lifecycle and actual material contribution receipts; explicit work only; departure pauses active work; abandonment retains material consequences | Not NPC employment, reservation, consent or arbitrary project planning; goals and qualification remain activity-specific |
+| Exposure-dependent drying | Cleaning Cloth only; exact credit under explicit sheltered/aired profiles and a declared condition boundary; closed containment suspends exposure | Not universal weather, ventilation, temperature, humidity or Screen Cloth wetness; new admitted materials require profile witnesses |
+| Evaporated water and deposited residue | Per-position environmental water accounting; final suspended residue remains as a separate absorbent deposit; declared recovery methods | Conservation ledger is not atmospheric hydrology; no condensation, flow or invisible disposal; preserve deposited and adhered distinctions |
+| Physical traces | Receipt-attributed wipe, brush, wetting, fastening and drying traces for declared subjects, projected through current local visibility | No culprit, event time, intent, diagnosis or automatic knowledge; authored wear remains appearance, not committed history; no general trace decay claimed |
+| Timed checkpoint binding | Separate format identity and bound timing/environment/work profile; chronological operation replay reconstructs candidate state | Historical checkpoint families retain meaning and reject this binding; any future migration/compaction needs equivalence and failure evidence |
+
+The milestone assessment is `tarrow_environment_depth_closure_assessment.md`. Bounded environmental time and evidence improve several layers without proving complete environmental depth or authorizing native rules.

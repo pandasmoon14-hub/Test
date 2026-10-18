@@ -55,6 +55,12 @@ class WaterApplication(MaterialApplication):
             raise ValueError('water profile references absent objects')
         validate(self.fixture.water_initial, self.water_profile)
 
+    def _prepare_water_transition(self, operation, participants, amount):
+        return execute(self.water_state, self.water_profile, operation, participants, amount), None
+
+    def _install_water_transition(self, candidate, auxiliary):
+        self.water_state = candidate
+
     def water(self, operation, *references, amount=None):
         pre = self.authoritative_digest()
         try:
@@ -73,7 +79,7 @@ class WaterApplication(MaterialApplication):
                 r = placement(self.state.representation, carried)
                 if r.relation_type!='carried_by' or r.object_entity_id!=self.fixture.player_entity_id:
                     raise WaterCleaningRefusal('Carry the source vessel or working tool before using this method.')
-            candidate = execute(self.water_state,self.water_profile,operation,participants,amount)
+            candidate, auxiliary = self._prepare_water_transition(operation,participants,amount)
             command_id = f'terminal-water-{len(self.journal)+1:06d}'
             token = digest([command_id,pre,operation,participants,amount])[:28]
             command = create_command_envelope(command_id=command_id,command_type='interact',source_actor_id=self.fixture.player_entity_id,
@@ -85,7 +91,7 @@ class WaterApplication(MaterialApplication):
                 payload={'operation':operation,'participants':list(participants),'amount':amount,'pre_digest':pre},
                 metadata={'semantic_owner':'RT-010','transition_owner':'AFQR-01'})
             old = self.water_state
-            self.water_state = candidate
+            self._install_water_transition(candidate, auxiliary)
         except ValueError as exc:
             return self._result(str(exc),failure='water_opportunity_unavailable')
         source,target = (self.fixture.entity_name(x) for x in participants)

@@ -72,6 +72,7 @@ from astra_runtime.myravant_vsm14_terminal import execute_vsm14_terminal_input
 
 # Static interpreter routes, not a world command registry or semantic owner.
 BOUNDED_TERMINAL_ROUTES = frozenset({
+    'timed',
     'water',
     'material',
     'chest_investigation_goal',
@@ -106,6 +107,10 @@ def _classify_bounded_terminal_request(raw_text: str, *, fixture=None) -> str | 
     No application state, opportunity grant, executor, or persistence is touched.
     Qualification remains in the original handlers at each actual execution.
     """
+    if getattr(fixture, 'environment_profile', None) is not None:
+        from astra_runtime.myravant_timed_application import parse_timed
+        if parse_timed(raw_text) is not None:
+            return 'timed'
     if getattr(fixture, 'water_profile', None) is not None:
         from astra_runtime.myravant_water_application import parse_water
         if parse_water(raw_text) is not None:
@@ -175,6 +180,9 @@ def execute_classified_bounded_terminal_request(
     """Call the original handler; a planned grammar match grants no privilege."""
     if classify_bounded_terminal_request(raw_text, fixture=application.fixture) != route:
         raise ValueError("specialist route no longer matches its original grammar")
+    if route == 'timed':
+        from astra_runtime.myravant_timed_application import execute_timed_request
+        return execute_timed_request(application, raw_text)[1]
     if route == 'water':
         from astra_runtime.myravant_water_application import execute_water_request
         return execute_water_request(application, raw_text)[1]
