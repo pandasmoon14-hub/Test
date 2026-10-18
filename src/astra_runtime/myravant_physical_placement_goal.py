@@ -36,7 +36,7 @@ _GOAL = re.compile(
     r"^(?:(?:i (?:want|need) to|how (?:do|can) i|can i) )?"
     r"(?:get|move|bring|send|put|take) (?:the )?"
     r"(?P<object>.+?) "
-    r"(?:to|into|onto) (?:the )?"
+    r"(?P<placement>to|into|onto) (?:the )?"
     r"(?P<destination>.+?)"
     r"(?: (?:by|with|using|via) (?P<method>.+))?$"
 )
@@ -123,6 +123,11 @@ def parse_physical_placement_goal(
             destination = fixture.resolve_place_reference(match.group("destination"))
         except (UnavailableFixtureCustodyError, UnknownFixturePlaceError):
             return None
+    if (fixture is not None and match.group("placement") != "to"
+        and destination in dict(fixture.position_areas)):
+        # A work position is not the supporting surface or interior of a
+        # similarly named fitting. Preserve the requested relationship.
+        return None
     return ParsedPhysicalGoal(
         raw_text=raw,
         target_id=target,

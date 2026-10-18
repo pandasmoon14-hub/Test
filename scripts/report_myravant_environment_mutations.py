@@ -5,6 +5,9 @@ from pathlib import Path
 from report_myravant_specialist_mutations import run_mutations
 
 MUTATIONS=(
+    ('support_relation_silently_becomes_location','myravant_physical_placement_goal.py',
+     'match.group("placement") != "to"', 'False',
+     'test_surface_or_interior_relation_is_not_rewritten_as_position[onto]'),
     ('basket_no_longer_obstructs_declared_passage','myravant_tarrow_environment.py',
      'obstructions=(("yard","east","basket","yard"),)','obstructions=()',
      'test_clearance_methods_preserve_hidden_cargo_and_later_reblock[push]'),
@@ -22,4 +25,4 @@ if __name__=='__main__':
     result=run_mutations(Path(__file__).resolve().parents[1],mutations=MUTATIONS,
                          test_filename='test_play_tarrow_environment.py')
     args.output.write_text(json.dumps(result,indent=2,sort_keys=True)+'\n',encoding='utf-8')
-    print('Environmental mutations: 3/3 intended defects detected; unmutated controls passed.')
+    print('Environmental mutations: 4/4 intended defects detected; unmutated controls passed.')

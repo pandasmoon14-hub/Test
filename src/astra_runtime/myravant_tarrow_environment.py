@@ -64,7 +64,7 @@ FITTINGS = (
     ("guide-face", "Gate Guide Face", "A visible guide surface bearing uneven rub marks beside the gate leaf.", "control-position"),
     ("edge-rail", "Deck Edge Rail", "A fixed rail along the inspection edge. Water is visible beyond the deck boundary.", "deck-edge"),
     ("guest-bench", "Guest Bench", "A low fixed bench with a polished front edge in the shared belongings bay.", "guest-luggage"),
-    ("bench", "Workroom Bench Fitting", "A fixed workbench with old scrape marks crossing a visible repair patch.", "work-bench"),
+    ("bench", "Workroom Bench", "A fixed workbench with old scrape marks crossing a visible repair patch.", "work-bench"),
     ("tool-shelf", "Tool Shelf", "A fixed shelf with tool-shaped outlines, small scuffs and empty spaces.", "work-shelf"),
     ("message-rest", "Message Rest", "A fixed stopping-place fitting beside the track, within reach of the delivery box.", "north-staging"),
     ("bank-mark", "Bank Water Mark", "A darkened band on the exposed bank surface beside the water.", "bank-edge"),

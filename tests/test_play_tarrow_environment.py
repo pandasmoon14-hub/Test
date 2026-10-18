@@ -288,3 +288,19 @@ def test_placement_goal_does_not_silently_replace_material_method(method):
     a=new();a.move("south");before=a.authoritative_digest()
     play(a,f"get delivery basket to yard tool station by {method}")
     assert a.authoritative_digest()==before
+
+
+@pytest.mark.parametrize("preposition",["onto","into"])
+def test_surface_or_interior_relation_is_not_rewritten_as_position(preposition):
+    a=new();clear_access(a);reach(a,"work-bench")
+    assert a.displace_object("parts tray","east",method="push").authoritative_changed
+    assert a.approach_place("workshop workroom").authoritative_changed
+    before=a.authoritative_digest()
+    text=play(a,f"get parts tray {preposition} workroom bench by pushing")
+    assert a.authoritative_digest()==before
+    assert "You push" not in text
+    # The location-only request remains a real qualified alternative.
+    text=play(a,"get parts tray to workroom bench by pushing")
+    assert "You push" in text
+    assert any(r.subject_entity_id==identity("parts-tray") and r.object_entity_id==identity("work-bench")
+               for r in a.state.representation.relations)

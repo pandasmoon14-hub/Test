@@ -63,6 +63,9 @@ not grant interaction with everything inside it. Duplicate movement directions,
 unknown endpoints and inconsistent presentation grouping fail declaration checks.
 
 Generic goal-method placement reuses actual scenario object/place references.
+For local positions, `to` declares a location goal; `onto`/`into` may not silently
+become plain location movement. A bench working position is not the bench's
+supporting surface or interior. Those requested relationships remain unqualified.
 Old Waystone clearance syntax is not admitted where no Waystone exists. Stock
 Chest, Groundskeeper, NPC-work and duty handlers remain excluded. Two-step input
 preserves preflight, current-state requalification, stopping and durable partial
