@@ -395,6 +395,8 @@ class MyravantPlayFixture:
     storage_pairs: tuple[tuple[str, str], ...] = ((LANTERN_ID, TOOL_CHEST_ID),)
     stock_world_routine: bool = True
     specialist_routes: tuple[str, ...] | None = None
+    # Presentation grouping only. Current position remains an AFQR-18 place.
+    position_areas: tuple[tuple[str, str], ...] = ()
 
     def __post_init__(self) -> None:
         if type(self.stock_world_routine) is not bool:
@@ -461,6 +463,12 @@ class MyravantPlayFixture:
                 "place/object/actor presentation identities must be disjoint"
             )
 
+        route_keys = [(r.source_place_id, r.direction) for r in self.movement_routes]
+        if (len(route_keys) != len(set(route_keys))
+            or any(r.source_place_id not in place_ids or r.destination_place_id not in place_ids
+                   or r.direction not in CARDINAL_DIRECTIONS
+                   or r.source_place_id == r.destination_place_id for r in self.movement_routes)):
+            raise MyravantPlayFixtureError("movement corridors require unique declared endpoints and directions")
         directional_keys: list[tuple[str, str]] = []
         for observation_license in self.directional_observation_licenses:
             if observation_license.source_place_id not in place_ids:
@@ -484,6 +492,12 @@ class MyravantPlayFixture:
                 "directional observation licenses must be unique by source/direction"
             )
 
+        position_ids = [position for position,area in self.position_areas]
+        if (len(position_ids) != len(set(position_ids))
+            or any(position not in place_ids or area not in place_ids
+                   or position == area or area in position_ids
+                   for position,area in self.position_areas)):
+            raise MyravantPlayFixtureError("positions require distinct declared presentation areas")
         object_ids = {
             presentation.entity_id
             for presentation in self.object_presentations

@@ -92,6 +92,8 @@ def parse_physical_placement_goal(
         return None
     clear = _CLEAR.fullmatch(normalized)
     if clear is not None:
+        if fixture is not None and WAYSTONE_ID not in {p.entity_id for p in fixture.object_presentations}:
+            return None
         named_method = clear.group("method")
         return ParsedPhysicalGoal(
             raw_text=raw, target_id=WAYSTONE_ID,

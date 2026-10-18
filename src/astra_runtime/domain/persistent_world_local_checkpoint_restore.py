@@ -2260,6 +2260,7 @@ from astra_runtime.domain.persistent_world_object_open_close import (
     replay_persistent_world_object_open_close_transition_history,
     serialize_persistent_world_object_open_close_commit_receipt,
     serialize_persistent_world_object_open_state,
+    canonical_serialize_persistent_world_object_open_states,
 )
 
 OBJECT_OPEN_CLOSE_CHECKPOINT_FORMAT_IDENTITY = (
@@ -2692,13 +2693,8 @@ def _restore_int1_payload(
             "INT-1 object-state transition replay failed"
         ) from exc
 
-    if tuple(
-        serialize_persistent_world_object_open_state(item)
-        for item in replayed
-    ) != tuple(
-        serialize_persistent_world_object_open_state(item)
-        for item in object_states
-    ):
+    if (canonical_serialize_persistent_world_object_open_states(replayed)
+        != canonical_serialize_persistent_world_object_open_states(object_states)):
         raise PersistentWorldCheckpointEvidenceError(
             "INT-1 restored object state disagrees with replayed transition history"
         )
@@ -2782,6 +2778,7 @@ from astra_runtime.domain.persistent_world_object_lit_state import (
     digest_persistent_world_object_lit_states,
     replay_persistent_world_object_lit_states,
     serialize_persistent_world_object_lit_state,
+    canonical_serialize_persistent_world_object_lit_states,
     serialize_persistent_world_object_lit_state_commit_receipt,
 )
 
@@ -3241,13 +3238,8 @@ def restore_persistent_world_object_lit_state_checkpoint(
                 "INT-2 object-lit transition replay failed"
             ) from exc
 
-    if tuple(
-        serialize_persistent_world_object_lit_state(item)
-        for item in replayed
-    ) != tuple(
-        serialize_persistent_world_object_lit_state(item)
-        for item in lit_states
-    ):
+    if (canonical_serialize_persistent_world_object_lit_states(replayed)
+        != canonical_serialize_persistent_world_object_lit_states(lit_states)):
         raise PersistentWorldCheckpointEvidenceError(
             "INT-2 restored lit state disagrees with replayed transition history"
         )
@@ -3503,13 +3495,8 @@ def _restore_int2_payload_for_int3(
                 "nested INT-2 object-lit transition replay failed"
             ) from exc
 
-    if tuple(
-        serialize_persistent_world_object_lit_state(item)
-        for item in replayed
-    ) != tuple(
-        serialize_persistent_world_object_lit_state(item)
-        for item in lit_states
-    ):
+    if (canonical_serialize_persistent_world_object_lit_states(replayed)
+        != canonical_serialize_persistent_world_object_lit_states(lit_states)):
         raise PersistentWorldCheckpointEvidenceError(
             "nested INT-2 lit state disagrees with replayed transition history"
         )
