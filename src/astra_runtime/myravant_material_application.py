@@ -169,28 +169,28 @@ class MaterialApplication(MyravantPlayApplication):
             return self._result('The assembled screen blocks that sightline.',failure='material_sightline_obstructed')
         return super().look_direction(direction)
 
-    def focused_observation(self, reference, *, direction=None):
+    def focused_observation(self, entity_reference, *, direction=None):
         if direction is None:
             try:
-                obj=self.fixture.resolve_object_reference(reference)
+                obj=self.fixture.resolve_object_reference(entity_reference)
             except ValueError:
                 obj=None
             if obj is not None and placement(self.state.representation,obj).relation_type in {'supported_by','reserved_by'}:
-                return self.inspect(reference)
+                return self.inspect(entity_reference)
         if direction and self._screened(direction):
             return self._result('The assembled screen blocks that sightline.',failure='material_sightline_obstructed')
-        return super().focused_observation(reference,direction=direction)
+        return super().focused_observation(entity_reference,direction=direction)
 
-    def inspect(self, reference):
+    def inspect(self, entity_reference):
         try:
-            obj=self.fixture.resolve_object_reference(reference)
+            obj=self.fixture.resolve_object_reference(entity_reference)
         except ValueError:
-            return super().inspect(reference)
+            return super().inspect(entity_reference)
         if not self._visible(obj):
             return self._result('You cannot inspect that in the current state.',failure='material_target_unavailable')
         r=placement(self.state.representation,obj)
         if r.relation_type not in {'supported_by','reserved_by'}:
-            result=super().inspect(reference)
+            result=super().inspect(entity_reference)
         else:
             p=self.fixture.object_presentation(obj)
             result=self._result(p.name+'\n'+p.description)

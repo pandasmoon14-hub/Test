@@ -391,3 +391,9 @@ def test_material_preflight_is_pure_and_receipts_match_sequence(tmp_path,monkeyp
     out=io.StringIO();run_terminal(b,input_stream=io.StringIO('inspect self then put repair board on workroom bench\nexit\n'),output_stream=out,specialized_router=execute_material_locality_request)
     assert a.authoritative_digest()==b.authoritative_digest()
     assert a.journal[-1]['result']['receipt_id']==b.journal[-1]['result']['receipt_id']==direct.receipt_id
+
+
+def test_material_application_preserves_public_observation_keywords():
+    a=app();workshop(a)
+    assert a.inspect(entity_reference='repair board').failure_class is None
+    assert a.focused_observation(entity_reference='repair board').failure_class is None
