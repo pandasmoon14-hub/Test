@@ -581,7 +581,8 @@ def _validate_current_availability(
         and relation.object_entity_id == actor_entity_id
         for relation in representation.relations
     )
-    if not (nearby or carried):
+    from astra_runtime.domain.persistent_world_entity_location_representation import directly_supported_at
+    if not (nearby or carried or directly_supported_at(representation, object_entity_id, place_id)):
         raise PersistentWorldObjectOpenClosePlacementError(
             "target must be nearby or carried by the actor"
         )

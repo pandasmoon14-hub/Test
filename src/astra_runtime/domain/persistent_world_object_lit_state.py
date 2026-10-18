@@ -613,7 +613,8 @@ def _validate_current_availability(
             and container_open is not None
             and container_open.state == "open"
         )
-    if not (nearby or carried or contained_accessible):
+    from astra_runtime.domain.persistent_world_entity_location_representation import directly_supported_at
+    if not (nearby or carried or contained_accessible or directly_supported_at(representation, object_entity_id, place_id)):
         raise PersistentWorldObjectLitStatePlacementError(
             "target must be nearby, carried, or visibly contained in an open accessible container"
         )

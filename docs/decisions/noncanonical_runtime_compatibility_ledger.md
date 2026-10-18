@@ -28,3 +28,15 @@ Environmental-depth preview additions:
 Historical checkpoints preserve the meaning under which they were committed.
 A future canonical implementation must explicitly preserve, migrate, quarantine
 or reject incompatible campaign state rather than rewrite historical outcomes.
+
+## Tarrow material arrangements — approved #542
+
+| Development affordance | Current boundary | Canon/replacement dependency |
+| --- | --- | --- |
+| Surface pairs and whole fastening resources | Material preview only; no mass, fit calculation or universal cord behavior | Native material/assembly decisions; qualification profile migration |
+| Barrier and screen dependencies | Explicit support/connection conjunctions for named corridors/sightlines | Approved locality geometry and relevant physical/observation contracts |
+| Reversible component recovery | No cutting, consumption, structural repair or new manufactured identity | Transformation, loss and repair consequence contracts |
+| Conservative movement | Clear support and attachments before moving participants | Qualified group motion/load contracts and replay evidence |
+
+Material checkpoints use a separate versioned identity; historical Tarrow saves
+are not reinterpreted. See `tarrow_material_1_contract.md` and issue #542.

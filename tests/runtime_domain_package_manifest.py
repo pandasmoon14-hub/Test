@@ -37,6 +37,7 @@ AUTHORIZED_RUNTIME_DOMAIN_FILES = frozenset(
         "persistent_world_actor_object_handoff.py",
         "persistent_world_entity_location_representation.py",
         "persistent_world_movement_integration.py",
+        "persistent_world_material.py",  # Owner-approved #542, bounded existing owners.
         "persistent_world_local_checkpoint_restore.py",
         "persistent_world_object_custody_transfer.py",
         "persistent_world_object_displacement.py",
