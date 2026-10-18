@@ -35,7 +35,10 @@ class TimedFixture(WaterFixture):
                 'Physical changes take one development interval; observations and work declarations take none. '
                 'Gather assembly materials first. Work contributes only when explicitly requested. '
                 'Aired/sheltered exposure dries qualified cloth; closed containers pause drying. '
-                'Inspect local objects for physical traces; they do not identify a culprit or an event time.\n' + super().locality_help)
+                'Inspect local objects for physical traces; they do not identify a culprit or an event time.\n' +
+                super().locality_help.replace(
+                    'Water is finite; no disposal into scenery or passive drying is qualified.',
+                    'Water is finite; declared evaporation is tracked. Disposal into scenery is not qualified.'))
 
 
 def create_timed_fixture():

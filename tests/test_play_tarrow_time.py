@@ -57,6 +57,14 @@ def test_physical_actions_advance_time_but_initial_refusals_do_not():
     assert tick(a)==start+1 and a.authoritative_digest()==before
 
 
+def test_help_describes_opt_in_drying_without_changing_old_water_help():
+    from astra_runtime.myravant_tarrow_water import create_water_fixture
+    help_text=create_timed_fixture().locality_help
+    assert 'declared evaporation is tracked' in help_text
+    assert 'no disposal into scenery or passive drying is qualified' not in help_text
+    assert 'no disposal into scenery or passive drying is qualified' in create_water_fixture().locality_help
+
+
 def test_bounded_wait_matches_repeated_single_intervals():
     a=app();b=app()
     for x in (a,b):wet_cloth(x)
