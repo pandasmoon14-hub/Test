@@ -24,7 +24,7 @@ MUTATIONS = (
 )
 
 
-def run_mutations(repository):
+def run_mutations(repository, *, mutations=MUTATIONS, test_filename="test_play_specialist_composition.py"):
     head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repository,
                           check=True, capture_output=True, text=True, timeout=15).stdout.strip()
     results = []
@@ -33,9 +33,9 @@ def run_mutations(repository):
         # Own tests directory avoids the original conftest inserting original src.
         shutil.copytree(repository / "src" / "astra_runtime", root / "astra_runtime",
                         ignore=shutil.ignore_patterns("__pycache__"))
-        shutil.copy(repository / "tests" / "test_play_specialist_composition.py", root / "test_specialist.py")
+        shutil.copy(repository / "tests" / test_filename, root / "test_specialist.py")
         env = dict(os.environ, PYTHONPATH=str(root))
-        for name, filename, before, after, target in MUTATIONS:
+        for name, filename, before, after, target in mutations:
             path = root / "astra_runtime" / filename
             source = path.read_text(encoding="utf-8")
             assert source.count(before) == 1, (name, "mutation anchor changed")

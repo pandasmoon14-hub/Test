@@ -511,6 +511,7 @@ def restore_persistent_world_world1_checkpoint(
     expected_initial_open_states,
     expected_initial_lit_states,
     expected_initial_representation_digest,
+    expected_initial_representation=None,
 ):
     path = _checkpoint_path(checkpoint_path)
     expected_campaign_id = _require_record_id(
@@ -536,6 +537,7 @@ def restore_persistent_world_world1_checkpoint(
         }
     }
     storage_state = _restore_persistent_world_object_storage_payload(
+        expected_initial_representation=expected_initial_representation,
         payload_material=_reconstruct_int3_payload(base_payload),
         expected_campaign_id=expected_campaign_id,
         expected_initial_open_states=expected_initial_open_states,

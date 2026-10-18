@@ -36,6 +36,8 @@ jobs:
           python -m pip install -e .
       - name: Check installed dependencies
         run: python -m pip check
+      - name: Tarrow locality and initial-placement contracts
+        run: python -m pytest -q tests/test_play_tarrow_locality.py
       - name: Specialist composition family contracts
         run: python -m pytest -q tests/test_play_specialist_composition.py
       - name: Approved posture family and replay contracts
@@ -54,6 +56,18 @@ jobs:
         run: python -m pytest -q tests/test_play_physical_access_batch_1.py tests/test_play_waystone_drag_recovery.py
       - name: Run tests
         run: python -m pytest -q
+      - name: Generate Tarrow locality journeys and mutations
+        run: |
+          python scripts/report_myravant_tarrow.py --output tarrow-evidence.json
+          python scripts/report_myravant_tarrow_mutations.py --output tarrow-mutations.json
+      - name: Upload Tarrow locality evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-tarrow-locality-linux
+          path: |
+            tarrow-evidence.json
+            tarrow-mutations.json
+          if-no-files-found: error
       - name: Generate specialist composition campaign evidence
         run: python scripts/report_myravant_specialist_composition.py --output specialist-composition-evidence.json
       - name: Generate isolated specialist composition mutations
@@ -132,6 +146,8 @@ jobs:
           python -m pip install -e .
       - name: Check installed dependencies
         run: python -m pip check
+      - name: Tarrow locality and initial-placement contracts
+        run: python -m pytest -q tests/test_play_tarrow_locality.py
       - name: Specialist composition family contracts
         run: python -m pytest -q tests/test_play_specialist_composition.py
       - name: Approved posture family and replay contracts

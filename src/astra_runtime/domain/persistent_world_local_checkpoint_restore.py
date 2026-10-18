@@ -23,6 +23,7 @@ from types import MappingProxyType
 from typing import Any, Mapping
 
 from astra_runtime.domain.persistent_world_entity_location_representation import (
+    PersistentWorldEntityLocationRepresentation,
     LOCATED_AT_RELATION_TYPE,
     PersistentWorldEntity,
     PersistentWorldEntityLocationRepresentationError,
@@ -3788,12 +3789,18 @@ def _validate_int3_combined_attribution(
     state: PersistentWorldObjectStorageRuntimeState,
     *,
     expected_initial_representation_digest: str,
+    expected_initial_representation=None,
 ) -> None:
     expected_initial_representation_digest = _require_sha256(
         expected_initial_representation_digest,
         name="expected_initial_representation_digest",
         error_cls=PersistentWorldCheckpointEvidenceError,
     )
+    if expected_initial_representation is not None:
+        if (not isinstance(expected_initial_representation, PersistentWorldEntityLocationRepresentation)
+            or digest_persistent_world_entity_location_representation(expected_initial_representation)
+               != expected_initial_representation_digest):
+            raise PersistentWorldCheckpointEvidenceError("initial placement witness disagrees with fixture digest")
     movement = (
         state.lit_state.open_close_state.custody_state.movement_state.committed_transitions
     )
@@ -3815,7 +3822,9 @@ def _validate_int3_combined_attribution(
             raise PersistentWorldCheckpointEvidenceError(
                 "INT-3 transition-free placement differs from fixture initial representation"
             )
-        if containment_present:
+        # Both canonical digests were checked above. Tuple ordering may differ
+        # after serialization; raw dataclass equality is not semantic equality.
+        if containment_present and expected_initial_representation is None:
             raise PersistentWorldCheckpointEvidenceError(
                 "containment exists without attributable storage history"
             )
@@ -3900,6 +3909,7 @@ def _restore_persistent_world_object_storage_payload(
     expected_initial_lit_states: tuple[PersistentWorldObjectLitState, ...],
     expected_initial_representation_digest: str,
     defer_combined_attribution: bool = False,
+    expected_initial_representation=None,
 ) -> PersistentWorldObjectStorageRuntimeState:
     """Restore INT-3 payload material independently of checkpoint envelope.
 
@@ -3982,7 +3992,7 @@ def _restore_persistent_world_object_storage_payload(
         )
     if not defer_combined_attribution:
         _validate_int3_combined_attribution(
-            state,
+            state, expected_initial_representation=expected_initial_representation,
             expected_initial_representation_digest=(
                 expected_initial_representation_digest
             ),
