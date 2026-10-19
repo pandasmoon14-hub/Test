@@ -37,6 +37,8 @@ jobs:
           python -m pip install -e .
       - name: Check installed dependencies
         run: python -m pip check
+      - name: Actor participation, shared intervals and private evidence
+        run: python -m pytest -q tests/test_play_actor_context_compatibility.py tests/test_play_actor_state.py tests/test_play_actor_knowledge.py tests/test_play_actor_physical.py tests/test_play_actor_scheduling.py tests/test_play_actor_persistence.py tests/test_play_actor_transfer.py tests/test_play_actors_entry.py tests/test_play_actor_mutations.py tests/test_play_actor_review_edges.py
       - name: Timed work, environmental processes and replay contracts
         run: python -m pytest -q tests/test_play_tarrow_time.py tests/test_play_tarrow_time_edges.py
       - name: Water quantities, cleaning and replay contracts
@@ -64,8 +66,23 @@ jobs:
       - name: Physical-access batch generality, intent and installed campaign tests
         run: python -m pytest -q tests/test_play_physical_access_batch_1.py tests/test_play_waystone_drag_recovery.py
       - name: Run tests
+        env:
+          MYRAVANT_ACTOR_CAMPAIGN_REPORT_DIR: actor-campaigns
+          MYRAVANT_ACTOR_ASSESSOR_REPORT: actor-assessor.json
         run: python -m pytest -q
-      - name: Generate timed work campaigns and isolated mutations
+      - name: Generate isolated actor mutations
+        # Installed campaigns and separate assessment are exported by the full suite.
+        run: python scripts/report_myravant_actor_mutations.py --output actor-mutations.json
+      - name: Upload actor participation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-tarrow-actors-linux
+          path: |
+            actor-campaigns/*.json
+            actor-assessor.json
+            actor-mutations.json
+          if-no-files-found: error
+      - name: Generate retained timed work campaigns and isolated mutations
         run: |
           python scripts/report_myravant_time.py --output time-evidence.json
           python scripts/report_myravant_time_mutations.py --output time-mutations.json
@@ -230,4 +247,15 @@ jobs:
       - name: Physical-access batch generality, intent and installed campaign tests
         run: python -m pytest -q tests/test_play_physical_access_batch_1.py tests/test_play_waystone_drag_recovery.py
       - name: Run tests
+        env:
+          MYRAVANT_ACTOR_CAMPAIGN_REPORT_DIR: actor-campaigns
+          MYRAVANT_ACTOR_ASSESSOR_REPORT: actor-assessor.json
         run: python -m pytest -q
+      - name: Upload actor assessment and installed campaigns
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-tarrow-actors-windows
+          path: |
+            actor-campaigns/*.json
+            actor-assessor.json
+          if-no-files-found: error

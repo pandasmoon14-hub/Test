@@ -57,3 +57,25 @@ Required certification remains: elapsed-history/restart equivalence, containment
 After the current candidate is certified, select the highest-value still-triggered row alongside the next coherent environmental/material package. Spills and wet transfer remain likely integrations because they extend the conservation model, but require a concrete play need. Drying has an approved bounded environmental/time contract under #546; further absorbents, exposure effects or atmospheric behavior require explicit profile/semantic extensions. Channel flow should be selected when crossing/infrastructure work needs it. Native ingestion, extraordinary abilities and health remain native-rule dependencies, not generic water completeness requirements.
 
 No row is a promise that a specific natural-language action currently executes. Preserve unsupported intentions and truthful limits in player feedback. Keep old water checkpoints under their original profile/rules meanings unless an explicit versioned migration is validated.
+
+## Actor participation integration — #548 candidate
+
+The opt-in actor binding exercises the existing finite stocks, wet cloth,
+brush capacity, soak, rinse, collection, deposits and exposure through actual
+performer custody. Each due actor can perform at most one physical preparation
+or contribution per shared WORLD-1 interval. Ordered contention requalifies
+stocks after earlier player/actor changes; acceptance creates no reservation.
+
+Preparation includes deposited residue when evaluating capacity and chooses a
+currently qualified declared source/destination. A movement or handoff changes
+later exposure through actual placement; it never grants new transfer, spill or
+flow rules. Conservation includes the existing environmental evaporation ledger.
+Old water/time bindings retain their meanings. Certification for this candidate
+is recorded separately in the actor review; this entry does not mark it merged.
+
+Next water triggers remain practical: spills/recovery when work pours onto
+terrain; contact absorption when wet cargo must affect another material; safe
+closures when transport requires retention/leakage; bounded flow when crossing
+infrastructure work actually depends on it. Actor routines alone authorize none
+of these extensions, and the existing receiving-profile and conservation gates
+still apply.

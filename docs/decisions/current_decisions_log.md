@@ -8355,3 +8355,18 @@ R4-D format version 1 retains its existing meaning. No generalized inventory, ow
 
 - **Post-recording focused closure validation:** `68 passed in 0.62s`
 - **Post-recording broader validation:** `220 passed in 2.18s`
+
+## PLAY-TARROW-ACTORS-1 — approved implementation (2026-10-19)
+
+Cam approved issue #548 and its four review clarifications with “Yes i do,
+please proceed.” The bounded contract is mirrored in
+`tarrow_actors_1_contract.md`. Baseline main is
+`4a059264add6b51bc940bdaee42e3f29f9da1458` (merged #547).
+Approval covers actor-indexed scoped participation/due lineage (AFQR-11/12
+and AFQR-03), private provenance-bearing evidence (AFQR-10/14/20), and their
+owner-local persistence, actor-context compatibility extraction, implementation,
+verification, trackers and a draft PR. WORLD-1 remains the only clock; RT-010
+retains physical/material custody authority. Development profiles are not canon.
+Default blocked withdrawal is K=3; local communication and symmetric witnessing
+use the enumerated sensing qualifiers. Risk-selected combinations retain all
+critical adversaries. Merge and human acceptance are separate gates.

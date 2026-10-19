@@ -1495,7 +1495,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time"), default="development",
+        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time", "tarrow-actors"), default="development",
         help="Select a qualified locality; saved campaigns are not converted.",
     )
     parser.add_argument(
@@ -1560,6 +1560,13 @@ def main(argv: list[str] | None = None) -> int:
         application_type = TimedApplication
         locality_args = {"fixture": create_timed_fixture()}
         execute_bounded_terminal_request = execute_timed_locality_request
+
+    if args.locality == "tarrow-actors":
+        from astra_runtime.myravant_actor_application import ActorApplication
+        from astra_runtime.myravant_tarrow_actors import create_actor_fixture, execute_actor_locality_request
+        application_type = ActorApplication
+        locality_args = {"fixture": create_actor_fixture()}
+        execute_bounded_terminal_request = execute_actor_locality_request
 
     if (
         args.trace is not None

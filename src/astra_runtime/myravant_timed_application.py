@@ -84,6 +84,7 @@ class TimedApplication(WaterApplication):
         clock=self.runtime_state.logical_time_state
         receipts={t.receipt.receipt_id for t in clock.committed_transitions}
         receipts.update(i[4] for i in self.intervals if i[4])
+        receipts.update(getattr(self,'_additional_owner_receipts',lambda:())())
         work.canonical_state(self.work_state,participant_ids=ids,receipt_ids=receipts)
         for task in self.work_state.tasks:
             if task.actor_id!=self.fixture.player_entity_id or task.place_id not in places:
