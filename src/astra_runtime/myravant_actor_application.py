@@ -50,6 +50,7 @@ class ActorApplication(TimedApplication):
                 'interval_policy':'prepare-at-start;passive;player;ordered-npcs;one-physical-step-1',
                 'communication_policy':'same-lit-place;direct-character-placement;declared-class-1',
                 'task_condition_policy':'local-lit-declared-goal-facets-1',
+                'status_projection_policy':'last-disclosed-state-and-qualified-reason-1',
                 'player_communication_classes':COMMUNICATION_CLASSES,'evidence_facets':tuple(sorted(knowledge.FACETS)),
                 'reported_assertions':ASSERTIONS}
 
@@ -162,8 +163,9 @@ class ActorApplication(TimedApplication):
 
     def _communicate_status(self,actor):
         task=participation.selected(self.participation_state,actor)
-        self.communicated=(*self.communicated,(self.fixture.player_entity_id,task.task_id,task.status,len(task.contributions),self.runtime_state.logical_time_state.logical_position))
-        return f'{self.fixture.entity_name(actor)} reports {task.status}: {task.kind}, {task.method}; {len(task.contributions)} own committed step(s).'
+        self.communicated=(*self.communicated,(self.fixture.player_entity_id,task.task_id,task.status,len(task.contributions),self.runtime_state.logical_time_state.logical_position,task.reason))
+        reason=f' Reason: {task.reason}' if task.reason else ''
+        return f'{self.fixture.entity_name(actor)} reports {task.status}: {task.kind}, {task.method}; {len(task.contributions)} own committed step(s).'+reason
 
     def request_cleaning(self,actor_reference,surface_reference,tool_reference=None,method=None):
         pre=self.authoritative_digest()
@@ -234,7 +236,8 @@ class ActorApplication(TimedApplication):
                 records=[r for r in self.communicated if r[0]==self.fixture.player_entity_id and any(t.task_id==r[1] and t.actor_id==actor for t in self.participation_state.records)]
                 if not records:return self._result('No last communicated status is available.')
                 r=records[-1]
-                return self._result(f'Last communicated status: {r[2]}; {r[3]} own step(s), at interval {r[4]}. Current status is unavailable here.')
+                reason=f' Last communicated reason: {r[5]}' if r[5] else ''
+                return self._result(f'Last communicated status: {r[2]}; {r[3]} own step(s).'+reason+' Current status is unavailable here.')
             message=self._communicate_status(actor)
         except ValueError as exc:return self._result(str(exc),failure='actor_status_unavailable')
         return self._metadata_result(pre,'participation_status',actor,message)
@@ -249,14 +252,13 @@ class ActorApplication(TimedApplication):
             if event is None:return self._result('No retained evidence for that admitted topic; this does not describe the person’s wider knowledge.')
             rid=self._event('communication',actor,(target,facet,event.event_id))
             self.evidence_state=knowledge.report(self.evidence_state,actor,self.fixture.player_entity_id,target,facet,rid,self.runtime_state.logical_time_state.logical_position,qualified=True)
-            origin=event.origin_tick if event.origin_tick is not None else event.tick
             value=event.value
             if facet=='placement' and isinstance(value,tuple):
                 labels={'located_at':'at','carried_by':'carried by','contained_by':'inside','supported_by':'resting on','reserved_by':'reserved by'}
                 value=labels.get(value[0],'related to')+' '+self.fixture.entity_name(value[1])
             elif isinstance(value,tuple):value=', '.join(value)
             source=(' (a statement from '+self.fixture.entity_name(event.source_actor_id)+')') if event.kind=='reported' else ''
-            message=f'{self.fixture.entity_name(actor)} reports {event.kind} evidence{source} from interval {origin}: {value}. This is a report, not a fresh inspection.'
+            message=f'{self.fixture.entity_name(actor)} reports historical {event.kind} evidence{source}: {value}. This is a report, not a fresh inspection.'
         except ValueError as exc:return self._result(str(exc),failure='actor_report_unavailable')
         return self._metadata_result(pre,'ask_report',actor,message)
 

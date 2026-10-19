@@ -133,3 +133,13 @@ awareness, and extinguishing a lamp after preparation blocks the actor's scrub
 without a second clock, material change or contribution credit. Certification of
 the initial published actor head is superseded by this correction's exact-head
 runs. Existing player physical affordances and old bindings remain unchanged.
+
+### Public status completion
+
+Local work status includes the actor's qualified blocker/withdrawal reason. The
+player's agreement record retains that disclosed reason, so remote queries repeat
+only the last communication even if the actual task has since withdrawn. A new
+restart regression verifies this distinction and zero-time inquiry. Public
+reports identify historical provenance and the original speaker without exposing
+backend observation ticks as event dates; those ticks remain in private evidence.
+Seventeen targeted status/sensing/knowledge cases passed before final certification.
