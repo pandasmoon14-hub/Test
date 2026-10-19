@@ -31,6 +31,7 @@ def observe(app, state, actor_id, receipt_id, tick):
     adhered = dict(app.water_state.adhered)
     suspended = dict(app.water_state.suspended)
     deposits = dict(app.environment_state.deposits)
+    admitted = []
     for presentation in app.fixture.object_presentations:
         obj = presentation.entity_id
         if not app._visible_for_actor(actor_id, obj):
@@ -62,8 +63,8 @@ def observe(app, state, actor_id, receipt_id, tick):
             event = evidence.EvidenceEvent(_identity((actor_id, obj, facet, value, receipt_id, tick)),
                 actor_id, 'witnessed', actor_id, obj, facet, value, tick, receipt_id,
                 'local-visible-object-and-declared-facet')
-            state = evidence.record(state, event, qualified=True)
-    return state
+            admitted.append(event)
+    return evidence.record_many(state, tuple(admitted), qualified=True)
 
 
 def performed(state, actor_id, target_id, facet, value, receipt_id, tick):

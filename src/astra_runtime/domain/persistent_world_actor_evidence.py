@@ -5,7 +5,7 @@ not establish universal truth or deliver communication, and are never a public
 projection. Callers qualify sensing and communication before admission.
 """
 from __future__ import annotations
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, fields
 
 
 def _text(value: object) -> bool:
@@ -48,6 +48,9 @@ class EvidenceEvent:
             raise ValueError("direct evidence must retain the observing or performing actor")
 
 
+_EVENT_FIELDS = fields(EvidenceEvent)
+
+
 @dataclass(frozen=True)
 class EvidenceState:
     events: tuple[EvidenceEvent, ...] = ()
@@ -62,17 +65,33 @@ class EvidenceState:
             raise ValueError("evidence history must remain chronological")
 
 
-def record(state: EvidenceState, event: EvidenceEvent, *, qualified: bool) -> EvidenceState:
+def record_many(state: EvidenceState, events: tuple[EvidenceEvent, ...], *, qualified: bool) -> EvidenceState:
+    """Admit an ordered qualified batch with unchanged per-event provenance rules."""
     if type(qualified) is not bool:
         raise ValueError("qualification must be explicit boolean")
     if not qualified:
         raise ValueError("evidence admission is not qualified")
-    previous = next((e for e in state.events if e.event_id == event.event_id), None)
-    if previous is not None:
-        if previous != event:
-            raise ValueError("evidence identity reused with different provenance")
-        return state
-    return EvidenceState(state.events + (event,))
+    if type(events) is not tuple or any(type(event) is not EvidenceEvent for event in events):
+        raise ValueError("immutable evidence records required")
+    known = {event.event_id: event for event in state.events}
+    admitted = []
+    last_tick = state.events[-1].tick if state.events else None
+    for event in events:
+        previous = known.get(event.event_id)
+        if previous is not None:
+            if previous != event:
+                raise ValueError("evidence identity reused with different provenance")
+            continue
+        if last_tick is not None and last_tick > event.tick:
+            raise ValueError("evidence history must remain chronological")
+        known[event.event_id] = event
+        admitted.append(event)
+        last_tick = event.tick
+    return EvidenceState(state.events + tuple(admitted)) if admitted else state
+
+
+def record(state: EvidenceState, event: EvidenceEvent, *, qualified: bool) -> EvidenceState:
+    return record_many(state, (event,), qualified=qualified)
 
 
 def latest(state: EvidenceState, actor_id: str, target_id: str, facet: str) -> EvidenceEvent | None:
@@ -82,7 +101,9 @@ def latest(state: EvidenceState, actor_id: str, target_id: str, facet: str) -> E
 
 
 def canonical_state(state: EvidenceState, *, actor_ids=None, target_ids=None, receipt_ids=None) -> dict:
-    checked = EvidenceState(tuple(replace(e) for e in state.events))
+    checked = EvidenceState(state.events)
+    for event in checked.events:
+        EvidenceEvent.__post_init__(event)
     for e in checked.events:
         if actor_ids is not None and not {e.actor_id, e.source_actor_id} <= actor_ids:
             raise ValueError("unknown actor reference")
@@ -91,4 +112,4 @@ def canonical_state(state: EvidenceState, *, actor_ids=None, target_ids=None, re
         if receipt_ids is not None and e.receipt_id not in receipt_ids:
             raise ValueError("unknown receipt reference")
     return {"events": [{name: list(value) if type(value) is tuple else value
-                        for name, value in vars(e).items()} for e in checked.events]}
+                        for name, value in ((field.name, getattr(e, field.name)) for field in _EVENT_FIELDS)} for e in checked.events]}

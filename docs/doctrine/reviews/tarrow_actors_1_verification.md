@@ -155,3 +155,26 @@ external discovery still requires lawful post-action sensing. The regression
 failed before correction and passed afterward; 49 related lifecycle, status,
 sensing and persistence cases passed. No contributor identity is inferred from
 observing the already-satisfied goal.
+
+
+### Certification runtime correction
+
+Candidate `8e4bc78` passed the full local suite (10,992 passed), but CI #619's
+Linux job reached its unchanged 20-minute limit during full regression at 82%.
+No test failure preceded cancellation. Profiling isolated repeated immutable
+evidence reconstruction as the dominant actor cost. Canonical projection now
+revalidates every event and reference directly, without reconstructing events;
+qualified observations are admitted as one ordered batch with unchanged
+identity, chronology and provenance rules. There is no validation cache.
+A 23-action durable/replay comparison retained byte-identical results, journals,
+evidence and digests (1,100,181 bytes; SHA-256
+`774c9f5c94e7fe9739fd06e6c0920331c836cd0c44175860a79ef0160a2b60b2`).
+The first measured sample fell from 7.455/7.688s to 4.831s; this is a local
+comparison, not a platform certification.
+
+Focused contract steps run in independent Linux/Windows jobs at the same
+20/25-minute limits, while each core job retains the complete unfiltered
+`python -m pytest -q` suite. All 17 retained evidence runners remain in Linux
+core. Every prior focused command is retained, and the actor focused command
+also runs on Windows. Certification requires all four jobs and final-head
+artifacts; this scheduling change removes no test or acceptance condition.
