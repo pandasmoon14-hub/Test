@@ -116,23 +116,89 @@ class MaterialApplication(MyravantPlayApplication):
             raise MaterialError('That object is not currently accessible.')
         return obj
 
+    def _actor_place_id(self, actor_id):
+        if not any(e.entity_id == actor_id and e.classification == 'character_or_creature'
+                   for e in self.state.representation.entities):
+            raise MaterialError('That actor is unavailable.')
+        return effective_place(self.state.representation, actor_id)
+
+    def _actor_container_accessible(self, actor_id, container):
+        r = placement(self.state.representation, container)
+        return ((r.relation_type == 'located_at' and r.object_entity_id == self._actor_place_id(actor_id))
+                or (r.relation_type == 'carried_by' and r.object_entity_id == actor_id))
+
+    def _actor_local_light_available(self, actor_id):
+        if actor_id == self.fixture.player_entity_id:
+            return self._bounded_local_light_available()
+        lamp = self.fixture.light_source_id
+        light = self.object_lit_state(lamp)
+        if light is None or light.state != 'lit':
+            return False
+        r = placement(self.state.representation, lamp)
+        if r.relation_type == 'contained_by':
+            opened = self.object_open_state(r.object_entity_id)
+            return (self._actor_container_accessible(actor_id, r.object_entity_id)
+                    and opened is not None and opened.state == 'open')
+        return (r.relation_type in {'located_at', 'carried_by', 'supported_by'}
+                and effective_place(self.state.representation, lamp) == self._actor_place_id(actor_id))
+
+    def _visible_for_actor(self, actor_id, obj):
+        """Actual actor-local opportunity, without changing the selected player."""
+        if actor_id == self.fixture.player_entity_id:
+            return self._visible(obj)
+        try:
+            here = self._actor_place_id(actor_id)
+            r = placement(self.state.representation, obj)
+            if r.relation_type == 'carried_by' and r.object_entity_id == actor_id:
+                return True
+            if (effective_place(self.state.representation, obj) != here
+                    or not (self.fixture.ambient_visual_condition_for(here) == 'sufficient'
+                            or self._actor_local_light_available(actor_id))):
+                return False
+            if r.relation_type == 'contained_by':
+                opened = self.object_open_state(r.object_entity_id)
+                return (self._actor_container_accessible(actor_id, r.object_entity_id)
+                        and opened is not None and opened.state == 'open')
+            if r.relation_type in {'supported_by', 'reserved_by'}:
+                return self._visible_for_actor(actor_id, r.object_entity_id)
+            return r.relation_type == 'located_at'
+        except (MaterialError, ValueError):
+            return False
+
+    def _resolve_visible_for_actor(self, actor_id, text):
+        if actor_id == self.fixture.player_entity_id:
+            return self._resolve_visible(text)
+        try:
+            obj = self.fixture.resolve_object_reference(text)
+        except ValueError as exc:
+            raise MaterialError('That object is unavailable or ambiguous.') from exc
+        if not self._visible_for_actor(actor_id, obj):
+            raise MaterialError('That object is not currently accessible.')
+        return obj
+
     def material(self, operation, *references):
+        return self.material_for_actor(self.fixture.player_entity_id, operation, *references)
+
+    def material_for_actor(self, actor_id, operation, *references):
+        """Clock-free owner execution; caller owns commitment and replay boundary."""
         pre=self.authoritative_digest()
         try:
             arities={'put_on':2,'lift_from':2,'tie':3,'fasten':3,'untie':1,'unfasten':1}
             if operation not in arities or len(references)!=arities[operation] or any(type(x) is not str for x in references):
                 raise MaterialError('That material method or participant list is not admitted.')
-            participants=tuple(self._resolve_visible(x) for x in references)
+            self._actor_place_id(actor_id)
+            participants=tuple(self._resolve_visible_for_actor(actor_id,x) for x in references)
             if operation in {'untie','unfasten'}:
                 matches=[c for c in self.connections if c.fastener==participants[0]]
                 if len(matches)!=1:
                     raise MaterialError('No accessible matching connection.')
                 c=matches[0]
                 participants=(c.fastener,c.left,c.right)
-            visible=tuple(p.entity_id for p in self.fixture.object_presentations if self._visible(p.entity_id))
+            visible=tuple(p.entity_id for p in self.fixture.object_presentations if self._visible_for_actor(actor_id,p.entity_id))
             rep,connections,receipt=execute_material(rep=self.state.representation,connections=self.connections,
-                profile=self.material_profile,operation=operation,participants=participants,visible_ids=visible,
-                command_id=f'terminal-material-{len(self.journal)+1:06d}',expected_pre_digest=pre,pre_digest=self.authoritative_digest())
+                profile=replace(self.material_profile,actor_id=actor_id),operation=operation,participants=participants,visible_ids=visible,
+                command_id=(f'terminal-material-{len(self.journal)+1:06d}' if actor_id == self.fixture.player_entity_id
+                            else f'actor-material-{digest(actor_id)[:12]}-{len(self.journal)+1:06d}'),expected_pre_digest=pre,pre_digest=self.authoritative_digest())
             self._runtime_state=replace(self._runtime_state,movement_state=replace(self.state,representation=rep))
             self.connections=connections
         except (MaterialError,ValueError) as exc:
@@ -146,7 +212,8 @@ class MaterialApplication(MyravantPlayApplication):
             'untie':lambda:f'You untie and recover {names[0]}.',
             'unfasten':lambda:f'You unfasten and recover {names[0]}.',
         }
-        return PlayApplicationResult(result_type='material_committed',message=messages[operation](),
+        return PlayApplicationResult(result_type='material_committed',message=(messages[operation]() if actor_id == self.fixture.player_entity_id
+                else messages[operation]().replace('You ',self.fixture.entity_name(actor_id)+' ',1)),
             authoritative_changed=True,pre_state_digest=pre,post_state_digest=self.authoritative_digest(),**receipt)
 
     def _guard(self, reference):
