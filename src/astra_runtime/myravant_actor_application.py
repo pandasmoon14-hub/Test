@@ -51,6 +51,7 @@ class ActorApplication(TimedApplication):
                 'communication_policy':'same-lit-place;direct-character-placement;declared-class-1',
                 'task_condition_policy':'local-lit-declared-goal-facets-1',
                 'status_projection_policy':'last-disclosed-state-and-qualified-reason-1',
+                'completion_attribution_policy':'newly-satisfied-by-this-transition;preparation-discovery-is-external-1',
                 'player_communication_classes':COMMUNICATION_CLASSES,'evidence_facets':tuple(sorted(knowledge.FACETS)),
                 'reported_assertions':ASSERTIONS}
 
@@ -419,16 +420,21 @@ class ActorApplication(TimedApplication):
         tick=self.runtime_state.logical_time_state.logical_position
         for actor,outcome,intent in prepared:
             task=participation.selected(self.participation_state,actor);p=self.actor_profile(actor)
-            receipt=None;complete=False;reason=None
+            receipt=None;complete=False;external_after_preparation=False;reason=None
             if not p.willing:outcome='invalidated';reason='continued consent is unavailable'
             elif self._actor_place_id(actor)==task.place_id and not knowledge._lit(self,actor):
                 outcome='blocked';reason='The task condition is not currently perceptible.'
             elif self._goal_visible_complete(task):outcome='satisfied';reason='qualified local goal is already satisfied'
             elif outcome=='satisfied':outcome='blocked';reason='The prepared satisfied goal changed before resolution.'
             elif outcome=='action':
+                goal_before=self._task_complete(task)
                 result=self._execute_actor(actor,intent)
                 if result.authoritative_changed:
-                    outcome='contributed';receipt=result.receipt_id;complete=self._goal_visible_complete(task)
+                    outcome='contributed';receipt=result.receipt_id
+                    observed_complete=self._goal_visible_complete(task)
+                    complete=observed_complete and not goal_before
+                    external_after_preparation=observed_complete and goal_before
+                    if external_after_preparation:reason='Observed the goal already satisfied after preparation.'
                     self._event('physical_contribution',actor,intent,receipt=receipt)
                     target=task.participants[0]
                     self.evidence_state=knowledge.performed(self.evidence_state,actor,target,'activity',intent[1],receipt,tick)
@@ -439,7 +445,7 @@ class ActorApplication(TimedApplication):
             elif outcome=='blocked':reason=intent
             self.participation_state=participation.resolve_due(self.participation_state,actor,clock.receipt_id,tick,
                 outcome=outcome,qualified=True,profile=participation.ParticipationProfile(actor,p.blocked_limit),
-                receipt_id=receipt,completed=complete,reason=reason)
+                receipt_id=receipt,completed=complete,reason=reason,externally_satisfied=external_after_preparation)
             self._event('due_resolution',actor,(task.task_id,clock.receipt_id,outcome,receipt,reason))
         self.work_state=work.move_outside(self.work_state,self.current_place_id())
         self.intervals=(*self.intervals,(tick,clock.receipt_id,environment_before,digest(env.canonical_environment(self.environment_state)),action_receipt,name,interrupted))

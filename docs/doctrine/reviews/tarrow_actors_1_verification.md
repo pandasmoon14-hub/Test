@@ -143,3 +143,15 @@ restart regression verifies this distinction and zero-time inquiry. Public
 reports identify historical provenance and the original speaker without exposing
 backend observation ticks as event dates; those ticks remain in private evidence.
 Seventeen targeted status/sensing/knowledge cases passed before final certification.
+
+### Preparation and externally satisfied attribution
+
+A reproduced arrival case distinguished causal completion from new awareness:
+an actor returning to an already-clean goal must retain its movement receipt,
+but cannot claim completing the cleaning. The task owner can now retain an
+actual preparation contribution while recording externally satisfied disposition.
+Goal completion requires a newly satisfied predicate from that transition;
+external discovery still requires lawful post-action sensing. The regression
+failed before correction and passed afterward; 49 related lifecycle, status,
+sensing and persistence cases passed. No contributor identity is inferred from
+observing the already-satisfied goal.

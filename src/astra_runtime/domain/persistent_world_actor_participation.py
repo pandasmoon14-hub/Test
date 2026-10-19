@@ -141,7 +141,7 @@ def withdraw(state: ParticipationState, actor_id: str, *, reason: str) -> Partic
 def resolve_due(state: ParticipationState, actor_id: str, interval_id: str, tick: int, *,
                 outcome: str, qualified: bool, profile: ParticipationProfile,
                 receipt_id: str | None = None, completed: bool = False,
-                reason: str | None = None) -> ParticipationState:
+                reason: str | None = None, externally_satisfied: bool = False) -> ParticipationState:
     """Record one caller-qualified due interval; no-due and paused state do not age.
 
     ``qualified`` confirms that this interval follows the acceptance predecessor
@@ -149,6 +149,9 @@ def resolve_due(state: ParticipationState, actor_id: str, interval_id: str, tick
     """
     _bool(qualified)
     _bool(completed)
+    _bool(externally_satisfied)
+    if externally_satisfied and (outcome != 'contributed' or completed):
+        raise ValueError('external satisfaction after preparation cannot claim goal completion')
     record = selected(state, actor_id)
     if profile.actor_id != actor_id or not _text(interval_id) or type(tick) is not int or tick <= record.tick:
         raise ValueError("explicit actor profile and later interval required")
@@ -163,7 +166,8 @@ def resolve_due(state: ParticipationState, actor_id: str, interval_id: str, tick
         if not _text(receipt_id) or any(receipt_id in r.contributions for r in state.records):
             raise ParticipationRefusal("fresh committed contribution required")
         update.update(contributions=record.contributions + (receipt_id,), blocked_due=0,
-                      status="completed" if completed else "active", reason=None)
+                      status="externally_satisfied" if externally_satisfied else "completed" if completed else "active",
+                      reason=(reason or 'goal observed satisfied after preparation') if externally_satisfied else None)
     elif outcome == "blocked":
         if not _text(reason):
             raise ValueError("blocked due interval needs reason")
