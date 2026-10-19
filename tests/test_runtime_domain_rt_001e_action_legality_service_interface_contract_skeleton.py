@@ -935,6 +935,8 @@ class TestGuardrailAllowlists:
             "persistent_world_movement_integration.py",
             "persistent_world_material.py",  # Owner-approved #542.
             "persistent_world_water_cleaning.py",  # Owner-approved #544.
+            "persistent_world_timed_environment.py",  # Owner-approved #546.
+            "persistent_world_continuing_work.py",  # Owner-approved #546.
             "persistent_world_local_checkpoint_restore.py",
             "persistent_world_object_custody_transfer.py",
             "persistent_world_object_displacement.py",

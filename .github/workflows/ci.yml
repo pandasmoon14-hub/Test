@@ -37,6 +37,8 @@ jobs:
           python -m pip install -e .
       - name: Check installed dependencies
         run: python -m pip check
+      - name: Timed work, environmental processes and replay contracts
+        run: python -m pytest -q tests/test_play_tarrow_time.py tests/test_play_tarrow_time_edges.py
       - name: Water quantities, cleaning and replay contracts
         run: python -m pytest -q tests/test_play_water_cleaning.py
       - name: Material placement, fastening and replay contracts
@@ -63,6 +65,18 @@ jobs:
         run: python -m pytest -q tests/test_play_physical_access_batch_1.py tests/test_play_waystone_drag_recovery.py
       - name: Run tests
         run: python -m pytest -q
+      - name: Generate timed work campaigns and isolated mutations
+        run: |
+          python scripts/report_myravant_time.py --output time-evidence.json
+          python scripts/report_myravant_time_mutations.py --output time-mutations.json
+      - name: Upload timed work evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-tarrow-time-linux
+          path: |
+            time-evidence.json
+            time-mutations.json
+          if-no-files-found: error
       - name: Generate water campaigns and isolated mutations
         run: |
           python scripts/report_myravant_water.py --output water-evidence.json
@@ -189,6 +203,8 @@ jobs:
           python -m pip install -e .
       - name: Check installed dependencies
         run: python -m pip check
+      - name: Timed work, environmental processes and replay contracts
+        run: python -m pytest -q tests/test_play_tarrow_time.py tests/test_play_tarrow_time_edges.py
       - name: Water quantities, cleaning and replay contracts
         run: python -m pytest -q tests/test_play_water_cleaning.py
       - name: Material placement, fastening and replay contracts

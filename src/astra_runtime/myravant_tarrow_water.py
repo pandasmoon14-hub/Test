@@ -31,7 +31,7 @@ class WaterFixture(MaterialFixture):
                 'Water is finite; no disposal into scenery or passive drying is qualified.\n' + super().locality_help)
 
 
-def create_water_fixture():
+def water_layout():
     layout, material = material_layout()
     rows = (
         ('wash-bucket', 'Wash Bucket', 'An open development water vessel; inspect its actual contents.', 'work-bench'),
@@ -70,6 +70,11 @@ def create_water_fixture():
     witness = {'water': profile_payload(profile), 'initial': canonical_state(initial), 'material': asdict(material)}
     layout = replace(layout, version='water-1-'+digest(witness)[:16], objects=layout.objects+rows,
         storage=layout.storage+tuple((k,c) for k,_,_,_ in rows for c in containers), specialists=(*layout.specialists,'water'))
+    return layout, material, profile, initial
+
+
+def create_water_fixture():
+    layout, material, profile, initial = water_layout()
     fixture = create_tarrow_fixture(layout=layout)
     return WaterFixture(**fixture.__dict__, material_profile=material, water_profile=profile, water_initial=initial)
 

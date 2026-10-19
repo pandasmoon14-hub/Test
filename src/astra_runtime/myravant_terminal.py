@@ -1268,6 +1268,12 @@ def _execute_composable_core_step(
     raise ValueError("not a bounded, qualified composable core step")
 
 
+def _interval_stream(application, raw):
+    """Optional bounded duration presentation; each yield follows one owner commit."""
+    handler = getattr(application, 'interval_results_for_request', None)
+    return None if handler is None else handler(raw)
+
+
 def run_terminal(
     application: MyravantPlayApplication,
     *,
@@ -1321,28 +1327,31 @@ def run_terminal(
         # first transition. This is explicit sequence, not simultaneous work.
         planned = _explicit_two_step_intent(raw, fixture=application.fixture)
         if planned is not None:
+            halted = False
             for ordinal, step in enumerate(planned, 1):
-                output_stream.write(f"Sequence step {ordinal}/2: ")
-                result = _execute_composable_core_step(application, step)
-                visible = _write_durable_result(
-                    output_stream, application, result, debug=debug,
-                )
-                _record_result(
-                    evidence_recorder,
-                    parsed=ParsedTerminalCommand(
-                        action=f"sequence_{ordinal}_{step.action}",
-                        argument=step.argument, raw_text=raw,
-                    ),
-                    visible_output=(
-                        f"Sequence step {ordinal}/2: " + visible
-                    ),
-                    result=result, error_stream=evidence_error_stream,
-                )
+                stream = _interval_stream(application, step.argument)
+                if stream is None:
+                    stream = (_execute_composable_core_step(application, step),)
+                for result in stream:
+                    output_stream.write(f"Sequence step {ordinal}/2: ")
+                    visible = _write_durable_result(output_stream, application, result, debug=debug)
+                    _record_result(evidence_recorder,
+                        parsed=ParsedTerminalCommand(action=f"sequence_{ordinal}_{step.action}",argument=step.argument,raw_text=raw),
+                        visible_output=f"Sequence step {ordinal}/2: "+visible,result=result,error_stream=evidence_error_stream)
+                    if result.failure_class is not None:
+                        output_stream.write("Sequence halted after this refusal; no later step was attempted.\n")
+                        halted = True
+                        break
+                if halted:
+                    break
+            continue
+        stream = _interval_stream(application, raw)
+        if stream is not None:
+            for result in stream:
+                visible = _write_durable_result(output_stream, application, result, debug=debug)
+                _record_result(evidence_recorder,parsed=ParsedTerminalCommand(action="timed_interval",raw_text=raw),
+                               visible_output=visible,result=result,error_stream=evidence_error_stream)
                 if result.failure_class is not None:
-                    output_stream.write(
-                        "Sequence halted after this refusal; "
-                        "no later step was attempted.\n"
-                    )
                     break
             continue
         if specialized_router is not None:
@@ -1486,7 +1495,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water"), default="development",
+        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time"), default="development",
         help="Select a qualified locality; saved campaigns are not converted.",
     )
     parser.add_argument(
@@ -1544,6 +1553,13 @@ def main(argv: list[str] | None = None) -> int:
         application_type = WaterApplication
         locality_args = {"fixture": create_water_fixture()}
         execute_bounded_terminal_request = execute_water_locality_request
+
+    if args.locality == "tarrow-time":
+        from astra_runtime.myravant_timed_application import TimedApplication
+        from astra_runtime.myravant_tarrow_time import create_timed_fixture, execute_timed_locality_request
+        application_type = TimedApplication
+        locality_args = {"fixture": create_timed_fixture()}
+        execute_bounded_terminal_request = execute_timed_locality_request
 
     if (
         args.trace is not None
