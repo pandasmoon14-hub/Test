@@ -49,6 +49,7 @@ class ActorApplication(TimedApplication):
                 'order':self.fixture.actor_order,'version':self.fixture.actors_version,
                 'interval_policy':'prepare-at-start;passive;player;ordered-npcs;one-physical-step-1',
                 'communication_policy':'same-lit-place;direct-character-placement;declared-class-1',
+                'task_condition_policy':'local-lit-declared-goal-facets-1',
                 'player_communication_classes':COMMUNICATION_CLASSES,'evidence_facets':tuple(sorted(knowledge.FACETS)),
                 'reported_assertions':ASSERTIONS}
 
@@ -287,7 +288,7 @@ class ActorApplication(TimedApplication):
             p=self.actor_profile(actor)
             if not p.standing_kind:
                 self.standing_considered=(*self.standing_considered,actor);continue
-            if not p.willing:continue
+            if not p.willing or not knowledge._lit(self,actor):continue
             if not all(self._visible_for_actor(actor,o) for o in p.standing_participants):continue
             self._accept(actor,p.standing_kind,p.standing_method,p.standing_participants,p.standing_place,actor)
             self.standing_considered=(*self.standing_considered,actor)
@@ -307,6 +308,7 @@ class ActorApplication(TimedApplication):
         except ValueError as exc:return self._result(str(exc),failure='actor_return_unavailable')
 
     def _goal_visible_complete(self,task):
+        if not knowledge._lit(self,task.actor_id):return False
         needed=task.participants[:1] if task.kind=='cleaning' else task.participants
         if self._actor_place_id(task.actor_id)!=task.place_id or not all(self._visible_for_actor(task.actor_id,x) for x in needed):return False
         return self._task_complete(task)
@@ -332,6 +334,7 @@ class ActorApplication(TimedApplication):
         if here!=task.place_id:
             if (here,task.place_id) in p.routes:return 'action',('physical','move',(task.place_id,))
             return 'blocked','No declared one-edge route reaches the task position.'
+        if not knowledge._lit(self,actor):return 'blocked','The task condition is not currently perceptible.'
         if self._goal_visible_complete(task):return 'satisfied',None
         if task.kind=='cleaning':
             surface,tool=task.participants
@@ -416,6 +419,8 @@ class ActorApplication(TimedApplication):
             task=participation.selected(self.participation_state,actor);p=self.actor_profile(actor)
             receipt=None;complete=False;reason=None
             if not p.willing:outcome='invalidated';reason='continued consent is unavailable'
+            elif self._actor_place_id(actor)==task.place_id and not knowledge._lit(self,actor):
+                outcome='blocked';reason='The task condition is not currently perceptible.'
             elif self._goal_visible_complete(task):outcome='satisfied';reason='qualified local goal is already satisfied'
             elif outcome=='satisfied':outcome='blocked';reason='The prepared satisfied goal changed before resolution.'
             elif outcome=='action':

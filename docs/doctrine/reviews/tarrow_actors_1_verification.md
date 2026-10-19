@@ -120,3 +120,16 @@ reports. All 17 previously retained evidence runners remain enabled. Actor
 mutation effectiveness is generated separately. Final review additionally passed
 33 targeted cases after correcting operation-local metadata ownership and naming
 the original speaker in reported evidence.
+
+### Late sensing regression correction
+
+Final adversarial review reproduced a distinction missed by the initial tests:
+carried-object reach remains available in darkness, but it does not admit the
+visual goal facets. Goal recognition, standing eligibility and preparation now
+use the same light qualification as evidence admission. It is rechecked after
+earlier player/actor changes, with an explicit bound task-condition policy.
+Two regression cases pass: a carried clean surface grants no dark satisfaction
+awareness, and extinguishing a lamp after preparation blocks the actor's scrub
+without a second clock, material change or contribution credit. Certification of
+the initial published actor head is superseded by this correction's exact-head
+runs. Existing player physical affordances and old bindings remain unchanged.
