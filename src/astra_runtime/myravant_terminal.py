@@ -1499,7 +1499,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
         help="Select a qualified locality; saved campaigns are not converted.",
     )
     parser.add_argument(
-        "--investigation-case", choices=("cleanup", "assembly", "relay"), default="cleanup",
+        "--investigation-case", choices=("cleanup", "assembly", "relay", "neutral-contended", "neutral-reverse", "neutral-relay"), default="cleanup",
         help="Select a noncanonical, version-bound investigation circumstance profile.",
     )
     parser.add_argument(
