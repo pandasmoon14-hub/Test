@@ -168,7 +168,8 @@ def main(argv=None):
             if args.output:
                 if args.output.resolve().is_relative_to(ROOT):
                     raise ValueError('Write context output outside the checkout')
-                args.output.write_text(value, encoding='utf-8')
+                with args.output.open('x', encoding='utf-8') as stream:
+                    stream.write(value)
             else:
                 print(value, end='')
             return 0

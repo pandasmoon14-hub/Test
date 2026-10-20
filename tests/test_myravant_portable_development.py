@@ -121,3 +121,13 @@ def test_actual_retained_commands_cover_workflow_reports():
     commands = dev.retained_commands(ROOT)
     assert len(commands) >= 17
     assert len({output for _, output in commands}) == len(commands)
+
+
+def test_context_export_does_not_overwrite_existing_evidence(repo, tmp_path, monkeypatch):
+    monkeypatch.setattr(dev, 'ROOT', repo)
+    monkeypatch.setattr(dev, 'context', lambda: {'head': 'fixture'})
+    output = tmp_path / 'context.json';output.write_text('preserve previous evidence')
+    with pytest.raises(SystemExit) as failure:
+        dev.main(['context', '--output', str(output)])
+    assert failure.value.code == 2
+    assert output.read_text() == 'preserve previous evidence'
