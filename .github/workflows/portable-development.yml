@@ -7,7 +7,9 @@ on:
       - README.md
       - docs/development/**
       - scripts/myravant_dev.py
+      - scripts/myravant_assist.py
       - tests/test_myravant_portable_development.py
+      - tests/test_myravant_assist.py
       - .github/workflows/portable-development.yml
   push:
     branches: [main]
@@ -16,7 +18,9 @@ on:
       - README.md
       - docs/development/**
       - scripts/myravant_dev.py
+      - scripts/myravant_assist.py
       - tests/test_myravant_portable_development.py
+      - tests/test_myravant_assist.py
       - .github/workflows/portable-development.yml
 permissions:
   contents: read
@@ -53,7 +57,11 @@ jobs:
           python -m pip install -e .
           python -m pip check
       - name: Verify portable tooling and guidance
-        run: python scripts/myravant_dev.py verify --profile focused --test-path tests/test_myravant_portable_development.py --output "${{ runner.temp }}/portable-evidence"
+        run: python scripts/myravant_dev.py verify --profile focused --test-path tests/test_myravant_portable_development.py --test-path tests/test_myravant_assist.py --output "${{ runner.temp }}/portable-evidence"
+      - name: Exercise ordinary-chat source packet and freshness CLI
+        run: |
+          python scripts/myravant_assist.py packet --task "portable chat feedback" --base HEAD --output "${{ runner.temp }}/portable-evidence/task-packet.json"
+          python scripts/myravant_assist.py refresh --packet "${{ runner.temp }}/portable-evidence/task-packet.json" --output "${{ runner.temp }}/portable-evidence/freshness.json"
       - name: Upload developer verification evidence
         if: always()
         uses: actions/upload-artifact@v4

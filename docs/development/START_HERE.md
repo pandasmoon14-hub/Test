@@ -23,6 +23,13 @@ is separately governed and excluded unless expressly requested.
 5. Use [delivery_templates.md](delivery_templates.md) in the existing owning
    issue/PR, not a second authority ledger. Proceed through available authorized
    implementation and verification; report unavailable gates truthfully.
+6. Apply [source-bound chat feedback](chat_feedback.md) as part of normal
+   continuation, without asking Cam for a special prompt. With a checkout/shell,
+   assemble a task packet, inspect its sources, define acceptance and return a
+   source-bound resume report. Without execution, retrieve the same catalog and
+   relevant sources through available tools, prepare the task specification and
+   local check command, and report the actual capability limit. A packet is a
+   retrieval aid, not permission or a substitute for reading current authority.
 
 ## Current retrieval leads, not frozen status
 

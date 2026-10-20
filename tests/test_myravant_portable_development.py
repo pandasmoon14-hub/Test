@@ -61,7 +61,7 @@ def test_full_command_has_no_filters_and_does_not_certify(repo, tmp_path, monkey
     output = tmp_path / 'evidence'
     assert dev.verify('full', output, repo=repo) == 0
     report = json.loads((output / 'verification.json').read_text())
-    assert report['steps'][0]['argv'] == [sys.executable, '-m', 'pytest', '-q']
+    assert report['steps'][0]['argv'] == [sys.executable, '-m', 'pytest', '-q', '-o', 'addopts=']
     assert report['all_commands_passed'] and not report['certified']
     with pytest.raises(ValueError):dev.verify('full', tmp_path / 'other', ['tests/example.py'], repo)
 
