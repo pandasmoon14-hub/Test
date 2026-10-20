@@ -175,12 +175,15 @@
         "benchmark"
       ],
       "sources": [
+        "scripts/myravant_assist.py",
+        "docs/development/chat_feedback.md",
         "docs/development/START_HERE.md",
         "docs/development/runtime_delivery_protocol.md",
         "docs/development/local_execution.md",
         "scripts/myravant_dev.py"
       ],
       "tests": [
+        "tests/test_myravant_assist.py",
         "tests/test_myravant_portable_development.py"
       ],
       "examples": [
