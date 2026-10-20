@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "mode": "ordinary Chat; model identity not verified (UI selector was Medium)",
+  "observation_date": "2026-10-20T01:38:52Z",
+  "answers": [
+    {"id": "ordinary-startup", "observation_reference": "https://github.com/pandasmoon14-hub/Test/pull/550#issuecomment-6281302357", "facts": {"repository": "pandasmoon14-hub/Test", "active_pr": 550, "head": "15e61c2185194f99f14b761f60ad46c3a99d06c7", "guide_on_main": false}, "claims": []},
+    {"id": "execution-limit", "observation_reference": "https://github.com/pandasmoon14-hub/Test/pull/550#issuecomment-6281302357", "facts": {"local_full_suite_executed": false, "developer_artifacts_inspected": true, "full_ci_pending_at_observation": true}, "claims": []}
+  ]
+}

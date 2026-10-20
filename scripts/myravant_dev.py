@@ -104,6 +104,11 @@ def run_step(argv, logfile, repo=ROOT, env=None):
             'launch_error': error}
 
 
+def pytest_command(paths=()):
+    # A named acceptance target must not be silently narrowed by config addopts.
+    return [sys.executable, '-m', 'pytest', '-q', '-o', 'addopts=', *paths]
+
+
 def verify(profile, output, paths=(), repo=ROOT):
     repo = Path(repo).resolve()
     output = Path(output).resolve()
@@ -112,11 +117,11 @@ def verify(profile, output, paths=(), repo=ROOT):
         raise ValueError('Use an evidence directory outside the Git checkout')
     before = context(repo)
     if profile == 'focused':
-        jobs = [([sys.executable, '-m', 'pytest', '-q', *test_paths(paths, repo)], 'pytest')]
+        jobs = [(pytest_command(test_paths(paths, repo)), 'pytest')]
     elif profile == 'full':
         if paths:
             raise ValueError('Full verification cannot filter test paths')
-        jobs = [([sys.executable, '-m', 'pytest', '-q'], 'pytest')]
+        jobs = [(pytest_command(), 'pytest')]
     else:
         if paths:
             raise ValueError('Retained evidence does not accept test filters')
@@ -125,7 +130,7 @@ def verify(profile, output, paths=(), repo=ROOT):
     output.mkdir(parents=True, exist_ok=True)
     if any(output.iterdir()):
         raise ValueError('Use a new empty evidence directory to preserve earlier runs')
-    env = dict(os.environ, PYTHONUTF8='1')
+    env = dict(os.environ, PYTHONUTF8='1', PYTEST_ADDOPTS='')
     if profile == 'full':
         env.update(MYRAVANT_ACTOR_CAMPAIGN_REPORT_DIR=str(output / 'actor-campaigns'),
                    MYRAVANT_ACTOR_ASSESSOR_REPORT=str(output / 'actor-assessor.json'))
