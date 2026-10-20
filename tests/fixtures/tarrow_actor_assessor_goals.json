@@ -1,0 +1,316 @@
+{
+  "schema": "myravant.actor-assessor-goals.v1",
+  "contract_issue": 548,
+  "baseline_main": "4a059264add6b51bc940bdaee42e3f29f9da1458",
+  "status": "frozen goals before actor implementation; not executed",
+  "authorship": {
+    "kind": "separately authored assessor goals",
+    "independent_of_final_api": true,
+    "blind": false,
+    "human_acceptance": false,
+    "note": "Assessor shares approved contract and repository context; goals are not a predetermined successful transcript. Implementation authors may read this file, so do not label eventual execution blind."
+  },
+  "execution_policy": {
+    "surface": "actual installed launcher plus independent validated checkpoint/receipt inspection",
+    "repeats_per_variant": 2,
+    "adaptive": "Inspect public availability and permission before choosing each action. Select only admitted commands; record branches, refusals and unsupported observations. Never patch runtime constants or invent missing capabilities to achieve a goal.",
+    "fixed_transcript": false,
+    "success_basis": "material states, provenance, authority and durable chronological outcomes; never scenario-complete flags",
+    "clock": "Compare committed WORLD-1 positions and unique interval identities against admitted physical/wait intervals, not number of command lines. Zero-time observations/requests do not tick.",
+    "privacy": "Public assertions must be justified by the receiving actor's admitted evidence or communication. Developer inspection may establish truth but must never supply player/actor decisions.",
+    "frozen_scope": "Concrete command/API bindings may be supplied later without weakening goals. Any semantic goal change requires a recorded revision."
+  },
+  "shared_forbidden_outcomes": [
+    "Acceptance transfers tools or reserves supplies without an owner transition.",
+    "NPC physical steps recursively advance the world clock.",
+    "One actor performs preparation and work as two physical steps in one interval.",
+    "Player absence freezes otherwise due work or grants remote live knowledge.",
+    "A rejected player physical attempt advances NPC work.",
+    "A role or household relationship substitutes for consent or access.",
+    "A failed unacknowledged interval leaks partially committed actor/environment history."
+  ],
+  "journeys": [
+    {
+      "id": "AA01",
+      "title": "Voluntary work while absent and one shared clock",
+      "initial_goal": "Have a willing actor clean a real dirty surface while preserving consent, performer custody and truthful last-communicated status.",
+      "initial_conditions": [
+        "Two actor profiles and a finite dirty target are declared.",
+        "At least one method requires a preparation step; public communication route and tool permission are known."
+      ],
+      "action_strategy": [
+        "Observe local actor availability; branch to an admitted willing actor or record a truthful refusal.",
+        "Request explicit method; verify acceptance alone does not alter materials/time. Attempt an incompatible second request to a busy actor.",
+        "If supplies are unavailable, lawfully supply or release a qualified tool; never assume acceptance reserves it.",
+        "Leave by admitted route; advance bounded time elsewhere; compare 0/1/2 due-actor variants.",
+        "Inspect agreement remotely, then return and inspect the actual surface and inquire locally."
+      ],
+      "objective_predicates": [
+        "Acceptance has performer/requester attribution and zero contributed physical steps.",
+        "Each world interval advances exactly once with 0, 1 or 2 due NPCs; at most one physical step per actor.",
+        "Material residues move conservatively into actual tool/bath/deposit compartments; real work can continue absent player.",
+        "Remote agreement stays last communicated; local report matches performer history without granting hidden third-party knowledge."
+      ],
+      "forbidden_outcomes": [
+        "Pretend success on acceptance.",
+        "Borrow player-held tool, player light or remote senses.",
+        "Busy actor silently queues a second job."
+      ],
+      "restart_points": [
+        "After acceptance before first eligible interval.",
+        "After one real preparation step.",
+        "While player absent before completion."
+      ],
+      "variants": [
+        {
+          "due_actor_count": 0
+        },
+        {
+          "due_actor_count": 1
+        },
+        {
+          "due_actor_count": 2
+        }
+      ],
+      "acceptance_items": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        8,
+        9,
+        13
+      ]
+    },
+    {
+      "id": "AA02",
+      "title": "Contested tools and cooperative assembly",
+      "initial_goal": "Resolve finite tool/fastener competition and finish one reversible assembly through correctly attributed steps.",
+      "initial_conditions": [
+        "Two actors can pursue a declared assembly or cleaning goal.",
+        "One contested tool/fastener is actually accessible under explicit permission; no reservation exists."
+      ],
+      "action_strategy": [
+        "Observe who can lawfully reach the resource. Request compatible explicit goals from willing actors.",
+        "Advance one interval; inspect which actual owner transition acquired/used the resource.",
+        "In reversed actor-order profile, repeat from equivalent qualified root.",
+        "Include a player-first contention variant; release or supply an admitted alternative only after observing the block.",
+        "Cooperate on missing assembly steps; selectively recover connections through admitted actor or player methods."
+      ],
+      "objective_predicates": [
+        "Stable declared order changes contested outcomes where appropriate; no duplicate custody/use or stale stock.",
+        "Losing actor blocks without same-tick replacement action.",
+        "Support placement and fastening are separate physical contributions attributed to actual performers.",
+        "Recovery preserves component identities and finite fastener allocation; task counters do not stand in for assembly state."
+      ],
+      "forbidden_outcomes": [
+        "Same tool carried by two actors.",
+        "Actor retrieves, walks and fastens in one interval.",
+        "Player cancellation controls standing work without actor decision."
+      ],
+      "restart_points": [
+        "Immediately after contention winner acquires resource.",
+        "Between support placement and fastening.",
+        "Before selective recovery."
+      ],
+      "variants": [
+        {
+          "contention": "NPC/NPC",
+          "actor_order": "forward"
+        },
+        {
+          "contention": "NPC/NPC",
+          "actor_order": "reverse"
+        },
+        {
+          "contention": "player/NPC",
+          "actor_order": "forward"
+        }
+      ],
+      "acceptance_items": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        10,
+        13
+      ]
+    },
+    {
+      "id": "AA03",
+      "title": "Blocked-due withdrawal boundaries",
+      "initial_goal": "Show consent withdrawal and K blocked-due accounting at exact boundaries without fabricated work or resurrection.",
+      "initial_conditions": [
+        "An accepted task can remain genuinely blocked by a finite unavailable resource.",
+        "Immutable profile supplies K; default 3 plus one nondefault positive K variant."
+      ],
+      "action_strategy": [
+        "Accept locally, remove opportunity lawfully, then advance to K-1 actually due blocked intervals.",
+        "Interleave zero-time inspection, repeated refused requests, and a paused/not-yet-due interval where admitted.",
+        "Restart, advance through K, restart again and advance to K+1.",
+        "In a separate branch restore opportunity before K and verify one successful preparation resets the blocked count.",
+        "In another branch invalidate consent before a due interval; later request fresh participation rather than resume withdrawn identity."
+      ],
+      "objective_predicates": [
+        "No withdrawal at K-1; withdrawal at Kth blocked due boundary; no old-task contribution at K+1.",
+        "Only actually due committed blocked intervals increment; successful physical preparation/contribution resets.",
+        "Paused, zero-time and technical-retry events do not increment.",
+        "Consent invalidation prevents the next physical transition.",
+        "Withdrawal preserves tools, prior material changes and historical contributions; fresh consent never duplicates them."
+      ],
+      "forbidden_outcomes": [
+        "Blocked lifecycle stops requalification forever.",
+        "Timeout returns tools or updates remote player status automatically.",
+        "Withdrawn task immediately replaced by standing work in the same interval."
+      ],
+      "restart_points": [
+        "K-1 before boundary.",
+        "Exactly K after withdrawal.",
+        "After successful reset."
+      ],
+      "variants": [
+        {
+          "K": 3
+        },
+        {
+          "K": "second immutable positive profile value"
+        }
+      ],
+      "acceptance_items": [
+        1,
+        5,
+        6,
+        8,
+        11,
+        13
+      ]
+    },
+    {
+      "id": "AA04",
+      "title": "Evidence symmetry, stale reports and externally satisfied work",
+      "initial_goal": "Distinguish physical truth, performer knowledge, player evidence and communicated claims under changing visibility.",
+      "initial_conditions": [
+        "One observable work event and one hidden/closed or dark event can be arranged lawfully.",
+        "Actors and player have individually declared sensing/communication opportunities."
+      ],
+      "action_strategy": [
+        "Observe one NPC step with player present and qualified; repeat with player absent or unqualified.",
+        "Have an NPC witness a declared event and compare that actor's evidence with a differently situated observer.",
+        "Communicate an admitted false/stale claim; change the actual target afterward without that recipient observing it.",
+        "Ask locally later; require source-qualified historical answer or unknown/unsupported.",
+        "While a task owner lacks observation, satisfy its material goal through another performer. Revalidate before and after lawful discovery."
+      ],
+      "objective_predicates": [
+        "Witness admission uses same actor-generic mechanism for player/NPC with actor-specific results.",
+        "Reported assertion records speaker/source; changes no object placement or first-hand knowledge.",
+        "Stale answers do not silently refresh from current backend truth.",
+        "Externally satisfied goal grants no false contribution; awareness/reporting occurs only after qualified discovery.",
+        "Offscreen activity and hidden Pin Blank/sealed/private facts never appear through public status or provenance."
+      ],
+      "forbidden_outcomes": [
+        "Exact event dating or culprit inferred from generic trace.",
+        "Player reads NPC private witness store.",
+        "Goal predicate telepathically informs actor or requester."
+      ],
+      "restart_points": [
+        "After witnessed event before inquiry.",
+        "After stale report before hidden physical change.",
+        "Between external satisfaction and actor discovery."
+      ],
+      "variants": [
+        {
+          "observer": "player qualified / NPC unqualified"
+        },
+        {
+          "observer": "NPC qualified / player unqualified"
+        },
+        {
+          "observer": "both qualified with independent provenance"
+        }
+      ],
+      "acceptance_items": [
+        3,
+        5,
+        7,
+        8,
+        9,
+        11,
+        13
+      ]
+    },
+    {
+      "id": "AA05",
+      "title": "Durable prefix and neutral configuration transfer",
+      "initial_goal": "Preserve exactly the acknowledged mixed-owner prefix across restart and faults, with equivalent neutral identities/configuration-only profiles.",
+      "initial_conditions": [
+        "Equivalent configuration-declared roots provide neutral actors, locations and objects without stock Tarrow IDs.",
+        "Supported fault harness can fail before/around atomic replacement and after an acknowledged interval; it does not alter domain decisions."
+      ],
+      "action_strategy": [
+        "Run an admitted mixed player/NPC duration crossing an exposure condition boundary.",
+        "Record each public durable acknowledgement and independent receipt chain.",
+        "Inject persistence failure at selected boundary; stop mutation and restart from validated checkpoint.",
+        "Repeat batched versus single intervals with extra zero-time observations.",
+        "Repeat using neutral identities/topology and two declared priority/participation variants; compare semantic outcomes after identity normalization, not raw ID equality."
+      ],
+      "objective_predicates": [
+        "0/1/2 NPC variants retain one clock advancement per interval.",
+        "After fault, state equals the validated acknowledged prefix, with no partial actor/environment/material/evidence changes.",
+        "Restart/retry does not repeat contributions, observations, drying or withdrawals.",
+        "All admitted rules/profile semantics survive neutral transfer without runtime-code edits.",
+        "Batch/single progression agrees through condition boundary and restart when circumstances agree."
+      ],
+      "forbidden_outcomes": [
+        "Trusted forged final state replaces replay.",
+        "Fault testing conceals unresolved atomic-replacement uncertainty.",
+        "Neutral test obtains success by monkeypatching actor IDs in constants."
+      ],
+      "restart_points": [
+        "Before first interval.",
+        "After acknowledged first interval before later failure.",
+        "Before/at/after condition boundary."
+      ],
+      "variants": [
+        {
+          "fault": "before replacement"
+        },
+        {
+          "fault": "around replacement"
+        },
+        {
+          "fault": "after acknowledged prefix"
+        },
+        {
+          "configuration": "neutral identity/topology + forward priority"
+        },
+        {
+          "configuration": "neutral identity/topology + reverse priority"
+        }
+      ],
+      "acceptance_items": [
+        6,
+        7,
+        8,
+        10,
+        11,
+        14
+      ]
+    }
+  ],
+  "coverage_selection": {
+    "included": "Target all mandatory boundary axes directly; combine compatible ordinary cases in journeys rather than a full Cartesian product. Every selected variant repeats twice.",
+    "deliberate_omissions": [
+      "No seven-person daily simulation.",
+      "No native timetable, invented physiology or East Gate repair.",
+      "No full Cartesian product of every method/order/light/restart/fault combination.",
+      "No claim that these goals alone replace contract tests or six effective mutation classes."
+    ],
+    "residual_risks": [
+      "API binding may reveal unavailable fixture opportunity; report gaps instead of weakening predicates.",
+      "Independent assessor goals are visible to implementers, so they test transfer of goals but are not blind acceptance.",
+      "Human usability and native content validation remain separate gates."
+    ]
+  }
+}

@@ -37,35 +37,48 @@ jobs:
           python -m pip install -e .
       - name: Check installed dependencies
         run: python -m pip check
-      - name: Timed work, environmental processes and replay contracts
-        run: python -m pytest -q tests/test_play_tarrow_time.py tests/test_play_tarrow_time_edges.py
-      - name: Water quantities, cleaning and replay contracts
-        run: python -m pytest -q tests/test_play_water_cleaning.py
-      - name: Material placement, fastening and replay contracts
-        run: python -m pytest -q tests/test_play_material.py
-      - name: Tarrow environmental-depth contracts
-        run: python -m pytest -q tests/test_play_tarrow_environment.py
-      - name: Tarrow locality and initial-placement contracts
-        run: python -m pytest -q tests/test_play_tarrow_locality.py
-      - name: Specialist composition family contracts
-        run: python -m pytest -q tests/test_play_specialist_composition.py
-      - name: Approved posture family and replay contracts
-        run: python -m pytest -q tests/test_play_posture_movement.py
-      - name: Focused traversal contract and installed-client tests
-        run: python -m pytest -q tests/test_play_breadth_traversal_crawl.py
-      - name: Focused two-step contract and installed-client tests
-        run: python -m pytest -q tests/test_play_composable_two_step.py
-      - name: Focused physical-affordance contracts and installed-client tests
-        run: python -m pytest -q tests/test_play_physical_affordance_1.py
-      - name: Enclosed-light, help and supplemental gameplay regression tests
-        run: python -m pytest -q tests/test_play_enclosed_light_transport.py tests/test_play_help_topics.py tests/test_play_physical_affordance_adversarial.py
-      - name: Focused contact-affordance cross-system and installed-client tests
-        run: python -m pytest -q tests/test_play_contact_affordance_composition_1.py tests/test_play_breadth1_player_senses.py tests/test_play_breadth3_physical_placement.py tests/test_play_composable_two_step.py
-      - name: Physical-access batch generality, intent and installed campaign tests
-        run: python -m pytest -q tests/test_play_physical_access_batch_1.py tests/test_play_waystone_drag_recovery.py
       - name: Run tests
+        env:
+          MYRAVANT_ACTOR_CAMPAIGN_REPORT_DIR: actor-campaigns
+          MYRAVANT_ACTOR_ASSESSOR_REPORT: actor-assessor.json
         run: python -m pytest -q
-      - name: Generate timed work campaigns and isolated mutations
+      - name: Generate isolated actor mutations
+        # Installed campaigns and separate assessment are exported by the full suite.
+        run: python scripts/report_myravant_actor_mutations.py --output actor-mutations.json
+      - name: Upload actor participation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-tarrow-actors-linux
+          path: |
+            actor-campaigns/*.json
+            actor-assessor.json
+            actor-mutations.json
+          if-no-files-found: error
+
+  retained-evidence-linux:
+    name: retained-evidence-linux
+    runs-on: ubuntu-latest
+    # Independent retained reports keep the full-suite job within its existing cap.
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          # Preserve exact candidate identity in replay/evidence receipts.
+          # PR default checkout otherwise uses a synthetic merge commit.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements-dev.txt
+          python -m pip install -e .
+      - name: Check installed dependencies
+        run: python -m pip check
+      - name: Generate retained timed work campaigns and isolated mutations
         run: |
           python scripts/report_myravant_time.py --output time-evidence.json
           python scripts/report_myravant_time_mutations.py --output time-mutations.json
@@ -203,6 +216,59 @@ jobs:
           python -m pip install -e .
       - name: Check installed dependencies
         run: python -m pip check
+      - name: Run tests
+        env:
+          MYRAVANT_ACTOR_CAMPAIGN_REPORT_DIR: actor-campaigns
+          MYRAVANT_ACTOR_ASSESSOR_REPORT: actor-assessor.json
+        run: python -m pytest -q
+      - name: Upload actor assessment and installed campaigns
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-tarrow-actors-windows
+          path: |
+            actor-campaigns/*.json
+            actor-assessor.json
+          if-no-files-found: error
+
+  focused-contracts:
+    name: focused-${{ matrix.platform }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux
+            runner: ubuntu-latest
+            budget: 20
+          - platform: windows
+            runner: windows-latest
+            budget: 25
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: ${{ matrix.budget }}
+    env:
+      PYTHONUTF8: "1"
+    steps:
+      - name: Configure Git for Windows checkout
+        if: runner.os == 'Windows'
+        run: |
+          git config --global core.longpaths true
+          git config --global core.autocrlf false
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements-dev.txt
+          python -m pip install -e .
+      - name: Check installed dependencies
+        run: python -m pip check
+      - name: Actor participation, shared intervals and private evidence
+        run: python -m pytest -q tests/test_play_actor_context_compatibility.py tests/test_play_actor_state.py tests/test_play_actor_knowledge.py tests/test_play_actor_physical.py tests/test_play_actor_scheduling.py tests/test_play_actor_persistence.py tests/test_play_actor_transfer.py tests/test_play_actors_entry.py tests/test_play_actor_mutations.py tests/test_play_actor_review_edges.py
       - name: Timed work, environmental processes and replay contracts
         run: python -m pytest -q tests/test_play_tarrow_time.py tests/test_play_tarrow_time_edges.py
       - name: Water quantities, cleaning and replay contracts
@@ -229,5 +295,3 @@ jobs:
         run: python -m pytest -q tests/test_play_contact_affordance_composition_1.py tests/test_play_breadth1_player_senses.py tests/test_play_breadth3_physical_placement.py tests/test_play_composable_two_step.py
       - name: Physical-access batch generality, intent and installed campaign tests
         run: python -m pytest -q tests/test_play_physical_access_batch_1.py tests/test_play_waystone_drag_recovery.py
-      - name: Run tests
-        run: python -m pytest -q

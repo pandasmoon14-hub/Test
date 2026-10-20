@@ -62,11 +62,16 @@ class WaterApplication(MaterialApplication):
         self.water_state = candidate
 
     def water(self, operation, *references, amount=None):
+        return self.water_for_actor(self.fixture.player_entity_id, operation, *references, amount=amount)
+
+    def water_for_actor(self, actor_id, operation, *references, amount=None):
+        """Clock-free qualified execution; caller owns commitment and replay."""
         pre = self.authoritative_digest()
         try:
             if len(references)!=2 or any(type(x) is not str for x in references):
                 raise WaterCleaningRefusal('Specify two accessible water or cleaning participants.')
-            participants = tuple(self._resolve_visible(x) for x in references)
+            self._actor_place_id(actor_id)
+            participants = tuple(self._resolve_visible_for_actor(actor_id,x) for x in references)
             tracked = {a.id for a in self.water_profile.assets}
             if not set(participants) <= tracked:
                 raise WaterCleaningRefusal('That material method is not qualified for these participants.')
@@ -77,12 +82,13 @@ class WaterApplication(MaterialApplication):
             carried = participants[0] if operation in {'pour','empty','wring','rinse','collect'} else participants[1] if operation in {'soak','wipe','scrub'} else None
             if carried is not None:
                 r = placement(self.state.representation, carried)
-                if r.relation_type!='carried_by' or r.object_entity_id!=self.fixture.player_entity_id:
+                if r.relation_type!='carried_by' or r.object_entity_id!=actor_id:
                     raise WaterCleaningRefusal('Carry the source vessel or working tool before using this method.')
             candidate, auxiliary = self._prepare_water_transition(operation,participants,amount)
-            command_id = f'terminal-water-{len(self.journal)+1:06d}'
+            command_id = (f'terminal-water-{len(self.journal)+1:06d}' if actor_id == self.fixture.player_entity_id
+                          else f'actor-water-{digest(actor_id)[:12]}-{len(self.journal)+1:06d}')
             token = digest([command_id,pre,operation,participants,amount])[:28]
-            command = create_command_envelope(command_id=command_id,command_type='interact',source_actor_id=self.fixture.player_entity_id,
+            command = create_command_envelope(command_id=command_id,command_type='interact',source_actor_id=actor_id,
                 payload={'operation':operation,'participants':list(participants),'amount':amount}, metadata={'package':'PLAY-TARROW-WATER-1'})
             preview = create_transaction_preview(preview_id=build_record_id('water_preview',token),command=command,
                 metadata={'semantic_owner':'RT-010','opportunity_owner':'AFQR-19','mutation_performed':False})

@@ -65,3 +65,25 @@ Implementation is present for review; certification and merge have not been esta
 | Timed checkpoint binding | Separate format identity and bound timing/environment/work profile; chronological operation replay reconstructs candidate state | Historical checkpoint families retain meaning and reject this binding; any future migration/compaction needs equivalence and failure evidence |
 
 The milestone assessment is `tarrow_environment_depth_closure_assessment.md`. Bounded environmental time and evidence improve several layers without proving complete environmental depth or authorizing native rules.
+
+## Tarrow voluntary cooperation and actor evidence — approved #548 candidate
+
+`tarrow-actors` uses a distinct actor/time/material journal format and root.
+It adds actor-local participation, K-bounded withdrawal, standing eligibility,
+private witnessed/reported/performed history, and ordered clock-free owner
+contributions under one WORLD-1 interval. Exact profile/order, local communication,
+assertion facets and player-first policy are bound to the checkpoint. Native
+occupations confer no automatic consent or capability. Oren/Tali starts and jobs
+are development configuration, not canonical timetable or employment.
+
+Old public material/water execution defaults remain compatibility-bearing. The
+separate actor-context extraction is verified before the feature commit. Old
+checkpoint families reject actor envelopes and actor replay rejects old bindings.
+Reports preserve source and age; false attributed statements change evidence,
+not material truth. The return policy admits task materials only while the actor
+is paused or terminal and willing, using an actual handoff and one physical slot.
+
+This candidate does not complete #508, #538, #493/#495 or human acceptance.
+Certification and remaining limits belong to the actor review. #547 has already
+merged and #540 has accepted its bounded environmental milestone; the earlier
+candidate wording in the historical #546 entry above predates that disposition.
