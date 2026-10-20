@@ -114,3 +114,7 @@ owning doctrine, decisions, manifests, or control files.
 Historical Astra Ascension and Aether Forge documents can explain earlier
 identity, extraction, and handoff behavior, but they are not Myravant's
 current identity or an automatic current-work queue.
+
+
+Development continuation: start with [AGENTS.md](AGENTS.md) and the
+[portable development entry point](docs/development/START_HERE.md).

@@ -11,6 +11,17 @@ Aether Forge is subordinate developer tooling and history; it is not the
 repository's identity. Do not describe this repository as only an extraction
 system.
 
+## Portable startup and delivery
+
+For ordinary Chat, Work, local agents and human-assisted sessions, read
+[docs/development/START_HERE.md](docs/development/START_HERE.md) and follow its
+[portable delivery protocol](docs/development/runtime_delivery_protocol.md).
+Installed skills and a repeated master prompt are not prerequisites. Check actual
+tool access, current sources, authorization and the active task before acting.
+Reuse existing owning issues/PRs for continuity; load only relevant references.
+Account instructions must direct ordinary Chat here; this file cannot install
+account settings or grant execution tools.
+
 ## Preflight before substantive work
 
 1. Resolve current `main` and record the exact commit inspected.
@@ -89,7 +100,8 @@ identity occurrence is encountered.
 ## Working rules
 
 - Keep one bounded concern per PR; preserve exact scope and avoid unrelated
-  cleanup.
+  cleanup. A concern may be a substantial coherent capability family spanning
+  many actions and systems; do not interpret it as one tiny verb per PR.
 - Do not implement a future substrate merely because doctrine describes it.
 - Do not weaken tests just to pass; first determine whether code or test is
   wrong.
