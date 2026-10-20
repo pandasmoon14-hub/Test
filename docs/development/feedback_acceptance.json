@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "task": "Verify the portable chat feedback tools and runnable integration examples",
+  "authorization_reference": "Cam approved the twelve additional measures on 2026-10-19 America/Denver; no gameplay, canon or merge authorization",
+  "criteria": [
+    {"id": "tooling", "description": "Reject false passes, stale evidence and unsafe paths using real child processes", "kind": "test", "target": "tests/test_myravant_assist.py"},
+    {"id": "existing-portability", "description": "Preserve prior portable execution and evidence contracts", "kind": "test", "target": "tests/test_myravant_portable_development.py"},
+    {"id": "water-example", "description": "Water and residue remain separately conserved in the reference journey", "kind": "test", "target": "tests/test_play_water_cleaning.py::test_rinse_dry_brush_into_bath_moves_residue_and_retains_every_water_unit"},
+    {"id": "material-example", "description": "Fastening method and resource remain distinct", "kind": "test", "target": "tests/test_play_material.py::test_method_and_fastener_are_not_interchangeable"},
+    {"id": "time-example", "description": "Later interval failure retains earlier durable acknowledgement", "kind": "test", "target": "tests/test_play_tarrow_time.py::test_failed_later_interval_retains_previous_durable_acknowledgement"},
+    {"id": "interface-example", "description": "Installed help does not mutate time or checkpoint state", "kind": "test", "target": "tests/test_play_help_topics.py::test_installed_terminal_help_topics_do_not_advance_time_or_make_checkpoint"},
+    {"id": "ordinary-chat", "description": "Observe an ordinary chat retrieve the published follow-up and use its source-bound feedback without an additional master prompt", "kind": "manual"}
+  ]
+}

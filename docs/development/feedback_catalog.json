@@ -1,0 +1,252 @@
+{
+  "version": 1,
+  "routes": [
+    {
+      "id": "material",
+      "terms": [
+        "material",
+        "support",
+        "fasten",
+        "tie",
+        "barrier",
+        "screen",
+        "assembly",
+        "placement"
+      ],
+      "sources": [
+        "docs/decisions/tarrow_material_1_contract.md",
+        "src/astra_runtime/myravant_material_application.py"
+      ],
+      "tests": [
+        "tests/test_play_material.py"
+      ],
+      "examples": [
+        {
+          "id": "material-reference",
+          "description": "Executable bounded fixture: declared fastener and method qualifications.",
+          "test": "tests/test_play_material.py::test_method_and_fastener_are_not_interchangeable"
+        }
+      ],
+      "failures": [
+        {
+          "id": "material-guard",
+          "trigger": "Substituting fastening methods or moving connected objects.",
+          "cause": "Method/fastener compatibility and attachment constraints are independent qualifications, as asserted by regression tests.",
+          "correction": "Preserve method identity; qualify current relationships before every mutation.",
+          "source": "tests/test_play_material.py"
+        }
+      ],
+      "lenses": [
+        "Mechanics: distinguish method, resource allocation and resulting relationship.",
+        "Player consequence: recovery can reopen passage without making sight equivalent to movement."
+      ]
+    },
+    {
+      "id": "water",
+      "terms": [
+        "water",
+        "cleaning",
+        "rinse",
+        "soak",
+        "residue",
+        "conservation",
+        "vessel"
+      ],
+      "sources": [
+        "docs/decisions/tarrow_water_1_contract.md",
+        "docs/decisions/water_domain_expansion_register.md",
+        "src/astra_runtime/myravant_water_application.py"
+      ],
+      "tests": [
+        "tests/test_play_water_cleaning.py"
+      ],
+      "examples": [
+        {
+          "id": "water-reference",
+          "description": "Executable noncanonical fixture: rinsing conserves water while relocating residue.",
+          "test": "tests/test_play_water_cleaning.py::test_rinse_dry_brush_into_bath_moves_residue_and_retains_every_water_unit"
+        }
+      ],
+      "failures": [
+        {
+          "id": "water-guard",
+          "trigger": "Rinsing a dry brush into a bath.",
+          "cause": "Residue transfer must not consume or manufacture water; the named test asserts both quantities.",
+          "correction": "Track water and residue separately and preserve their conserved totals.",
+          "source": "tests/test_play_water_cleaning.py"
+        }
+      ],
+      "lenses": [
+        "Ecology/chemistry analogy is a proposal lens, not universal hydrology.",
+        "Player consequence: dirty water and recoverable residue persist through transport."
+      ]
+    },
+    {
+      "id": "time",
+      "terms": [
+        "time",
+        "wait",
+        "duration",
+        "drying",
+        "passive",
+        "continuing",
+        "trace",
+        "resume"
+      ],
+      "sources": [
+        "docs/decisions/tarrow_time_1_contract.md",
+        "src/astra_runtime/myravant_timed_application.py"
+      ],
+      "tests": [
+        "tests/test_play_tarrow_time.py",
+        "tests/test_play_tarrow_time_edges.py"
+      ],
+      "examples": [
+        {
+          "id": "time-reference",
+          "description": "Executable bounded fixture: a later failure preserves earlier durable intervals.",
+          "test": "tests/test_play_tarrow_time.py::test_failed_later_interval_retains_previous_durable_acknowledgement"
+        }
+      ],
+      "failures": [
+        {
+          "id": "time-guard",
+          "trigger": "A multi-interval action fails after an earlier committed step.",
+          "cause": "Acknowledged durable intervals cannot be rolled back as though the entire request were atomic.",
+          "correction": "Commit and acknowledge intervals separately; retain earlier durable effects on later failure.",
+          "source": "tests/test_play_tarrow_time.py"
+        }
+      ],
+      "lenses": [
+        "Simulation: separate logical time, environment and ongoing intention owners.",
+        "Player consequence: leaving, interruption and return preserve real partial work."
+      ]
+    },
+    {
+      "id": "interface",
+      "terms": [
+        "interface",
+        "terminal",
+        "help",
+        "parser",
+        "player",
+        "presentation",
+        "discoverability"
+      ],
+      "sources": [
+        "src/astra_runtime/myravant_terminal.py",
+        "docs/decisions/tarrow_environment_depth_1_contract.md"
+      ],
+      "tests": [
+        "tests/test_play_help_topics.py"
+      ],
+      "examples": [
+        {
+          "id": "interface-reference",
+          "description": "Executable installed-terminal reference: help remains read-only.",
+          "test": "tests/test_play_help_topics.py::test_installed_terminal_help_topics_do_not_advance_time_or_make_checkpoint"
+        }
+      ],
+      "failures": [
+        {
+          "id": "interface-guard",
+          "trigger": "Help or observation routes are treated as physical actions.",
+          "cause": "Presentation requests must not acquire mutation or clock authority; the named test checks time and checkpoint behavior.",
+          "correction": "Keep help read-only and verify actual installed-terminal behavior.",
+          "source": "tests/test_play_help_topics.py"
+        }
+      ],
+      "lenses": [
+        "Interaction design: offer understandable choices while retaining method distinctions.",
+        "Player consequence: asking for help does not spend world time or reveal hidden truth."
+      ]
+    },
+    {
+      "id": "developer",
+      "terms": [
+        "developer",
+        "portable",
+        "chat",
+        "feedback",
+        "packet",
+        "freshness",
+        "evidence",
+        "pytest",
+        "benchmark"
+      ],
+      "sources": [
+        "scripts/myravant_assist.py",
+        "docs/development/chat_feedback.md",
+        "docs/development/START_HERE.md",
+        "docs/development/runtime_delivery_protocol.md",
+        "docs/development/local_execution.md",
+        "scripts/myravant_dev.py"
+      ],
+      "tests": [
+        "tests/test_myravant_assist.py",
+        "tests/test_myravant_portable_development.py"
+      ],
+      "examples": [
+        {
+          "id": "developer-reference",
+          "description": "Executable tooling reference: source changes invalidate a verification result.",
+          "test": "tests/test_myravant_portable_development.py::test_source_change_during_checks_invalidates_result"
+        }
+      ],
+      "failures": [
+        {
+          "id": "developer-guard",
+          "trigger": "Source changes while checks run, or cached remote data is described as live.",
+          "cause": "Evidence belongs to its inspected source fingerprint; local cached refs do not establish remote freshness.",
+          "correction": "Rebuild stale evidence against the actual candidate and report unavailable remote checks.",
+          "source": "tests/test_myravant_portable_development.py"
+        }
+      ],
+      "lenses": [
+        "Software delivery: executable acceptance is evidence of named checks, not coverage proof.",
+        "Human factors: retain a compact task state and resume the first unmet authorized condition."
+      ]
+    },
+    {
+      "id": "native-research",
+      "terms": [
+        "native",
+        "research",
+        "canon",
+        "fixture",
+        "conversion",
+        "provenance",
+        "source",
+        "substrate"
+      ],
+      "sources": [
+        "docs/decisions/noncanonical_runtime_compatibility_ledger.md",
+        "docs/doctrine/reviews/r4_a_myravant_native_substrate_design.yaml",
+        "docs/development/source_and_capability_map.md"
+      ],
+      "tests": [
+        "tests/test_r4_a_myravant_native_substrate_design.py"
+      ],
+      "examples": [
+        {
+          "id": "native-research-reference",
+          "description": "Historical design-scope reference: accepted design does not authorize implementation.",
+          "test": "tests/test_r4_a_myravant_native_substrate_design.py::test_r4_a_scope_is_exact_and_design_only"
+        }
+      ],
+      "failures": [
+        {
+          "id": "native-research-guard",
+          "trigger": "Treating accepted design, source conversion or fixture behavior as runtime/canon approval.",
+          "cause": "Design acceptance and implementation authorization are separate dispositions; the named test asserts authorization remains false for that historical tranche.",
+          "correction": "Read the applicable current owner decision; preserve fixture and source provenance rather than inferring promotion.",
+          "source": "tests/test_r4_a_myravant_native_substrate_design.py"
+        }
+      ],
+      "lenses": [
+        "TTRPG/worldbuilding: label repository fact, approved decision, inference and proposal separately.",
+        "Cross-domain references suggest questions; meaningful player consequences require approved mechanics and observed execution."
+      ]
+    }
+  ]
+}
