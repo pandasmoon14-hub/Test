@@ -178,3 +178,19 @@ Focused contract steps run in independent Linux/Windows jobs at the same
 core. Every prior focused command is retained, and the actor focused command
 also runs on Windows. Certification requires all four jobs and final-head
 artifacts; this scheduling change removes no test or acceptance condition.
+
+### Integrated-main retained-evidence scheduling recovery
+
+After merging main's portability tools into the actor branch, CI #627 passed
+11,049 Linux tests but its final retained coverage report was cancelled at the
+20-minute job boundary. Windows and both focused jobs passed. The earlier
+actor-only four-job timing certificate remains historical evidence.
+
+The integrated configuration now has five required jobs. All seventeen retained
+report commands and their uploads move unchanged to `retained-evidence-linux`,
+with the existing Linux 20-minute limit. Linux core retains its complete unfiltered
+full suite, already-exported actor campaigns/assessment, isolated actor mutations
+and actor evidence upload. Windows core and both focused jobs remain unchanged.
+No command, artifact, regression check or acceptance condition is removed; no
+time limit is raised. This supersedes the earlier four-job scheduling description.
+Final-head CI must establish completion and measured headroom for all five jobs.
