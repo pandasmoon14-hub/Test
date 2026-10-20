@@ -43,6 +43,6 @@ def test_neutral_relay_is_attributed_and_durably_recallable(tmp_path):
     assert app.tell_actor('Jun', 'panel a', 'residue', 'clear').authoritative_changed
     assert app.ask_report('Jun', 'panel a', 'residue').authoritative_changed
     record = app.compare_history('panel a', 'residue').message
-    assert 'earlier speaker disclosed as Visitor' in record
+    assert 'earlier speaker disclosed as Traveler' in record
     assert 'No account is selected as true' in record
     assert InvestigationApplication.restore(fixture=fixture, checkpoint_path=app.checkpoint_path).compare_history('panel a', 'residue').message == record
