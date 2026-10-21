@@ -110,12 +110,26 @@ def journey(root, recipe, repository_sha):
         assert "assembly" in request.casefold(), request
         until(lambda a: bool(a.connections))
         assert app.connections, "actual assembly joint required"
-        text = stage("inspect plate", "recall plate assembly")
+        text = stage("inspect plate", "compare reports about plate assembly")
+        plate = _id(fixture, "Plate")
+        admitted_assembly = tuple(
+            e for e in app.evidence_state.events
+            if e.actor_id == fixture.player_entity_id
+            and e.target_id == plate and e.facet == "assembly"
+            and e.kind == "witnessed"
+        )
+        observed_states = {e.value for e in admitted_assembly}
+        # A missing history is not a successful investigation objective.
+        # The player must have lawfully witnessed both the separate and
+        # completed configurations; querying those records changes no owner.
+        contrasted = (("joining frame", "separate") in observed_states
+                      and ("joining frame", "joined") in observed_states
+                      and "Different retained values" in text
+                      and "joined" in text and "separate" in text)
         objectives = {"distinct_shared_resource_priority": placement(
                           app.state.representation, brush).object_entity_id == winner,
                       "real_reversible_joining": bool(app.connections),
-                      "history_before_and_after_action": "Retained player history" in text or
-                                                          "No player-admitted history" in text,
+                      "history_before_and_after_action": contrasted,
                       "work_and_evidence_replay_survive_restart": True}
     assert all(objectives.values()), objectives
     return {"recipe": recipe, "prehistory_receipts": preparation,
