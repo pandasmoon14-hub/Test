@@ -101,7 +101,7 @@ def journey(root, recipe, repository_sha):
             assert part.selected(app.participation_state, owner).status == "withdrawn"
         name = fixture.entity_name(owner)
         request = stage("ask " + name + " to assemble joining frame")
-        assert "assembly" in request.casefold() and "accepted" not in request.casefold() or "assemble" in request.casefold()
+        assert "assembly" in request.casefold(), request
         until(lambda a: bool(a.connections))
         assert app.connections, "actual assembly joint required"
         text = stage("inspect plate", "recall plate assembly")

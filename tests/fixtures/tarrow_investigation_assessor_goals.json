@@ -1,0 +1,43 @@
+{
+  "schema": "myravant.investigation-separate-goals.v1",
+  "contract_issue": 552,
+  "authorship": "separately specified developer evaluation criteria, same program, not blind or human",
+  "require_source_exact_head": true,
+  "require_repeat_count": 2,
+  "require_actual_restored_stages": true,
+  "goals": [
+    {
+      "id": "INV-01",
+      "recipe": "neutral-contended",
+      "thesis": "Finite contention changes who can prepare work; player can intervene to complete a real reversible join.",
+      "required_objectives": [
+        "distinct_shared_resource_priority",
+        "real_reversible_joining",
+        "history_before_and_after_action",
+        "work_and_evidence_replay_survive_restart"
+      ]
+    },
+    {
+      "id": "INV-02",
+      "recipe": "neutral-reverse",
+      "thesis": "Different actor order and blocked limit change lawful opportunity; a subsequent explicit arrangement produces a real joint.",
+      "required_objectives": [
+        "distinct_shared_resource_priority",
+        "real_reversible_joining",
+        "history_before_and_after_action",
+        "work_and_evidence_replay_survive_restart"
+      ]
+    },
+    {
+      "id": "INV-03",
+      "recipe": "neutral-relay",
+      "thesis": "A false but attributed historical report persists while the player removes actual residue.",
+      "required_objectives": [
+        "historical_false_account_retained",
+        "historical_and_current_contrary_values",
+        "material_after_player_action_changed",
+        "no_omniscient_guilt_resolution"
+      ]
+    }
+  ]
+}
