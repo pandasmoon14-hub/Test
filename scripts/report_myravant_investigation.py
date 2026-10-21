@@ -126,10 +126,24 @@ def journey(root, recipe, repository_sha):
                       and ("joining frame", "joined") in observed_states
                       and "Different retained values" in text
                       and "joined" in text and "separate" in text)
+        # The joining is reversible through the existing material owner,
+        # not by toggling a case objective or restoring the original fixture.
+        joined = bool(app.connections)
+        released_text = stage("untie cord", "inspect plate",
+                              "compare reports about plate assembly")
+        cord = _id(fixture, "Cord")
+        released = (joined and not app.connections
+                    and placement(app.state.representation, cord).relation_type != "reserved_by")
+        retained_join = ("joined" in released_text and "separate" in released_text
+                         and "No account is selected as true" in released_text)
+        assert released and retained_join, (
+            "A player must be able to release the actual connection while "
+            "retaining source-qualified before/after evidence", released_text
+        )
         objectives = {"distinct_shared_resource_priority": placement(
                           app.state.representation, brush).object_entity_id == winner,
-                      "real_reversible_joining": bool(app.connections),
-                      "history_before_and_after_action": contrasted,
+                      "real_reversible_joining": released,
+                      "history_before_and_after_action": contrasted and retained_join,
                       "work_and_evidence_replay_survive_restart": True}
     assert all(objectives.values()), objectives
     return {"recipe": recipe, "prehistory_receipts": preparation,
