@@ -12,6 +12,17 @@ import subprocess
 
 SPEC = Path(__file__).resolve().parents[1] / 'tests/fixtures/tarrow_investigation_assessor_goals.json'
 
+# Negative claims below are deliberately restricted to explicit verdict forms;
+# the report's "no account is selected as ... guilty" disclaimer is permitted.
+FORBIDDEN_VERDICTS = re.compile(
+    r'\b(?:the first account is established true|'
+    r'the (?:first|second) account is (?:proven|definitely) (?:true|false)|'
+    r'[a-z][a-z -]* is guilty of |'
+    r'[a-z][a-z -]* must be lying)\b',
+    re.IGNORECASE,
+)
+NONCONCLUSIVE_NOTICE = 'No account is selected as true, false, guilty or conclusive.'
+
 
 def evaluate(journeys, specification, expected_sha):
     if (specification.get('schema') != 'myravant.investigation-separate-goals.v1'
@@ -38,6 +49,23 @@ def evaluate(journeys, specification, expected_sha):
         for number, replay in enumerate(repeats):
             if replay.get('recipe') != goal['recipe'] or not replay.get('prehistory_receipts'):
                 raise ValueError('case identity/actual history is missing')
+            # A real public fresh-start must create the journal. Loading a
+            # pre-built private developer checkpoint cannot satisfy this gate.
+            start = replay.get('public_start')
+            if not isinstance(start, dict):
+                raise ValueError('public fresh-start evidence is missing')
+            launch = start.get('launch_args', [])
+            if (not isinstance(launch, list)
+                    or '--prepare-investigation' not in launch
+                    or '--load' in launch
+                    or '--checkpoint' not in launch
+                    or start.get('restored_digest') != replay.get('initial_digest')
+                    or start.get('prehistory_receipts') != replay['prehistory_receipts']
+                    or not start.get('trace')
+                    or start['trace'][-1].get('evidence_complete') is not True
+                    or not start.get('stdout')
+                    or 'circumstance prepared through committed world actions' not in start['stdout']):
+                raise ValueError('public fresh-start receipt or restore evidence is invalid')
             flags = replay['objectives']
             missing = [key for key in goal['required_objectives']
                        if flags.get(key) is not True]
@@ -63,6 +91,19 @@ def evaluate(journeys, specification, expected_sha):
                 for x in queried
             ):
                 raise ValueError('query is missing or not read-only')
+            # Observe every public comparison stage's recorded terminal
+            # transcript, not solely the runner's passed objective booleans.
+            compared = [
+                stage for stage in stages
+                if any(x.get('record_type') == 'interaction'
+                       and x.get('raw_player_input', '').strip().casefold().startswith('compare ')
+                       for x in stage['trace'])
+            ]
+            if (not compared
+                    or any(NONCONCLUSIVE_NOTICE not in stage.get('stdout', '')
+                           or FORBIDDEN_VERDICTS.search(stage.get('stdout', ''))
+                           for stage in compared)):
+                raise ValueError('public comparison is missing nonconclusive evidence or states a verdict')
             rows.append({'goal': goal['id'], 'recipe': goal['recipe'],
                          'repeat': number, 'named_objectives_passed': len(goal['required_objectives']),
                          'installed_interactions': len(all_interactions),
@@ -77,6 +118,7 @@ def evaluate(journeys, specification, expected_sha):
         'independent_from_implementation_author': False,
         'rows': rows,
         'limits': ['Declaratively separate developer goals, not an independent or blind assessor.',
+                   'Comparison verdict restraint checked against recorded public terminal output.',
                    'Uploaded traces and source-bound replay must be verified independently.',
                    'No general NPC investigation, universal sensory knowledge or native canon claim.'],
     }

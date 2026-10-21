@@ -48,3 +48,89 @@ def test_history_report_is_an_assertion_and_cannot_clean_a_panel(tmp_path):
     for _ in range(3):
         app.compare_history("panel a", "residue")
     assert before == (app.authoritative_digest(), app.journal, app.evidence_state)
+
+
+
+@pytest.mark.parametrize("recipe", tuple(PREHISTORIES))
+def test_public_fresh_start_prepares_lawful_history_and_replay(recipe, tmp_path):
+    import subprocess
+    import sys
+
+    path = tmp_path / (recipe + ".json")
+    args = [sys.executable, "-m", "astra_runtime.myravant_terminal",
+            "--locality", "tarrow-investigation", "--investigation-case", recipe,
+            "--prepare-investigation", "--checkpoint", str(path)]
+    result = subprocess.run(
+        args, input="recall panel a residue\nsave\nexit\n",
+        text=True, capture_output=True, timeout=90,
+    )
+    assert result.returncode == 0, (result.stdout, result.stderr)
+    assert "circumstance prepared through committed world actions" in result.stdout
+    assert path.exists()
+    fixture = create_investigation_fixture(recipe)
+    restored = InvestigationApplication.restore(fixture=fixture, checkpoint_path=path)
+    assert len(restored.journal) >= len(PREHISTORIES[recipe])
+    assert all(e["result"]["receipt_id"] for e in restored.journal[:len(PREHISTORIES[recipe])])
+    if recipe == "neutral-relay":
+        assert "earlier speaker disclosed as Traveler" in result.stdout
+        assert len(restored.disclosed_relays) == 1
+    else:
+        from astra_runtime.domain.persistent_world_material import placement
+        brush = next(p.entity_id for p in fixture.object_presentations if p.name == "Brush")
+        assert placement(restored.state.representation, brush).object_entity_id == fixture.actor_order[0]
+
+    before = path.read_bytes()
+    replay = subprocess.run(
+        [sys.executable, "-m", "astra_runtime.myravant_terminal",
+         "--locality", "tarrow-investigation", "--investigation-case", recipe,
+         "--load", str(path), "--checkpoint", str(path)],
+        input="recall panel a residue\nsave\nexit\n",
+        text=True, capture_output=True, timeout=90,
+    )
+    assert replay.returncode == 0, (replay.stdout, replay.stderr)
+    assert "circumstance prepared through committed world actions" not in replay.stdout
+    assert "No account is selected as true" not in replay.stderr
+    # Repeating the preparation may not overwrite any acknowledged history.
+    denied = subprocess.run(args, input="exit\n", text=True, capture_output=True, timeout=90)
+    assert denied.returncode == 2 and "existing checkpoint" in denied.stderr
+    assert path.read_bytes() == before
+
+
+@pytest.mark.parametrize("extra", [
+    ("--load", "existing.json"),
+    (),
+])
+def test_prepared_start_rejects_ambiguous_or_absent_checkpoint(extra, tmp_path):
+    import subprocess
+    import sys
+
+    args = [sys.executable, "-m", "astra_runtime.myravant_terminal",
+            "--locality", "tarrow-investigation",
+            "--investigation-case", "neutral-relay", "--prepare-investigation",
+            *extra]
+    if extra:
+        args += ["--checkpoint", str(tmp_path / "not-created.json")]
+    result = subprocess.run(args, input="exit\n",
+                            text=True, capture_output=True, timeout=90)
+    assert result.returncode == 2
+    assert "requires --locality tarrow-investigation" in result.stderr
+    assert not (tmp_path / "not-created.json").exists()
+
+
+@pytest.mark.parametrize("locality,recipe", [
+    ("tarrow-investigation", "cleanup"),
+    ("tarrow-actors", "neutral-contended"),
+])
+def test_preparation_cannot_mutate_unrelated_profile(locality, recipe, tmp_path):
+    import subprocess
+    import sys
+
+    save = tmp_path / "forbidden.json"
+    result = subprocess.run(
+        [sys.executable, "-m", "astra_runtime.myravant_terminal",
+         "--locality", locality, "--investigation-case", recipe,
+         "--prepare-investigation", "--checkpoint", str(save)],
+        input="exit\n", text=True, capture_output=True, timeout=90,
+    )
+    assert result.returncode == 2
+    assert not save.exists()

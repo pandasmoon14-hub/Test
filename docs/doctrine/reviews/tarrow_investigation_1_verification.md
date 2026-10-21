@@ -38,10 +38,19 @@ new sensing, hidden-truth resolution, or a human-play release.
   attributed incorrect testimony. The neutral roots are deliberately bounded
   profile recipes, not an unbounded procedural content generator.
 - Causal prehistories are produced through qualified, receipted owner actions
-  and replayed via the ordinary durable journal. The builder refuses to
-  overwrite a saved campaign. Player follow-up demonstrates actual cleaning
-  and a reversible assembly: real joining, historical witnessed evidence,
-  player untie/recovery, and continued recall through restarts.
+  and replayed via the ordinary durable journal. The public opt-in fresh-start
+  command `myravant-play --locality tarrow-investigation --investigation-case
+  neutral-relay --prepare-investigation --checkpoint new-save.json` invokes
+  the existing validated case builder on a **new** checkpoint only. Other
+  supported prehistory cases: `neutral-contended` and `neutral-reverse`.
+  The flag refuses old checkpoints, `--load`, other localities, non-neutral
+  cases and missing checkpoint paths. Subsequent sessions must use
+  `--load new-save.json` with the same case. No default-world profile or
+  historical campaign is silently prepared or converted.
+  Installed journeys now begin from this public launch rather than a
+  developer-constructed checkpoint. Player follow-up demonstrates actual
+  cleaning and a reversible assembly: real joining, historical witnessed
+  evidence, player untie/recovery, and continued recall through restarts.
 - Existing owner roles remain: AFQR-10 actor-scoped evidence; AFQR-14 qualified
   communication; AFQR-20 sensing; actor participation/consent; material, water,
   environment and WORLD-1 transition owners; AFQR-01 persistence/replay.
@@ -67,7 +76,13 @@ Thirteen evidence artifacts uploaded for the same workflow, including
 [`myravant-investigation-linux`](https://github.com/pandasmoon14-hub/Test/actions/runs/39527170470/artifacts/12313623244),
 actor evidence on Linux and Windows, and all retained families.
 The investigation archive contains the installed journey, assessment and
-mutation reports. These are developer-authored and source-qualified
+mutation reports. In the completion pass the runner additionally records
+the initial **public** `--prepare-investigation` launch, its complete
+journal receipts and a replay-verified save, while the separate developer
+assessor inspects comparison-bearing public terminal output rather than
+trusting a hardcoded guilt-verdict success flag. Missing fresh-start evidence,
+false final verdicts or a missing disclaimer fail closed. These remain
+developer-authored and source-qualified
 engineering exercises, **not blind, external independent or human acceptance**.
 The separated assessment is a separately stated developer goal contract, not
 independent from the development program.
@@ -130,3 +145,15 @@ The installed `myravant-play` launcher and development requirements must be
 available for the evidence scripts. The exact-head GitHub Actions job is the
 recorded remote execution; commands above are reproduction instructions, not
 claims of additional local execution.
+
+
+## Completion-pass verification scope (new current-head tests required)
+
+The fresh-start integration and non-vacuous public-verdict assessment were
+added **after** the six-job certified head documented above. The latest
+certification must execute the new focused terminal/assessor tests, long
+installed objective-first campaigns twice per case, their assessor and
+mutations, preserved retained runners and both complete platform suites.
+Do not use run #39534715208 as evidence for the changed executable tree.
+Current feature scope remains noncanonical and Option A only; tests do not
+substitute for blind or independent play.

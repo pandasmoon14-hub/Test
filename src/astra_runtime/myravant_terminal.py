@@ -1503,6 +1503,15 @@ def build_argument_parser() -> argparse.ArgumentParser:
         help="Select a noncanonical, version-bound investigation circumstance profile.",
     )
     parser.add_argument(
+        "--prepare-investigation",
+        action="store_true",
+        help=(
+            "Start a neutral, noncanonical investigation with lawful, receipted "
+            "prehistory at a new --checkpoint. Refuses --load and existing saves; "
+            "use --load for every subsequent session."
+        ),
+    )
+    parser.add_argument(
         "--repository-sha",
         help=(
             "Override the repository SHA recorded in --trace evidence. "
@@ -1589,8 +1598,27 @@ def main(argv: list[str] | None = None) -> int:
         )
         return 2
 
+    # Noncanonical case preparation is a deliberate fresh-start choice, never
+    # an implicit fixture side effect and never run when restoring a campaign.
+    # The existing case builder performs only qualified owner actions, saves
+    # their receipts and returns the replay-validated state.
+    if args.prepare_investigation:
+        from astra_runtime.myravant_investigation_cases import PREHISTORIES
+        if (args.locality != "tarrow-investigation" or args.load is not None
+                or args.checkpoint is None or args.investigation_case not in PREHISTORIES):
+            sys.stderr.write(
+                "Prepared investigation requires --locality tarrow-investigation, "
+                "a neutral --investigation-case, a new --checkpoint and no --load.\n"
+            )
+            return 2
+
     try:
-        if args.load is not None:
+        if args.prepare_investigation:
+            from astra_runtime.myravant_investigation_cases import build_investigation_case
+            application, _preparation_receipts = build_investigation_case(
+                args.investigation_case, checkpoint_path
+            )
+        elif args.load is not None:
             application = application_type.restore(
                 checkpoint_path=args.load, **locality_args
             )
@@ -1601,8 +1629,15 @@ def main(argv: list[str] | None = None) -> int:
                 checkpoint_path=checkpoint_path, **locality_args
             )
     except (PersistentWorldCheckpointError, ValueError) as exc:
-        sys.stderr.write(f"Unable to restore checkpoint: {exc}\n")
+        sys.stderr.write(f"Unable to initialize or restore checkpoint: {exc}\n")
         return 2
+
+    if args.prepare_investigation:
+        sys.stdout.write(
+            "Noncanonical investigation circumstance prepared through "
+            "committed world actions; inspect, recall and inquire to learn "
+            "what your character has actually admitted.\n"
+        )
 
     recorder = None
 
