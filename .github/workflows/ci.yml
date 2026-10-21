@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
     # Environmental depth is reviewed separately, stacked on locality PR #539.
-    branches: [main, play-tarrow-reach-1]
+    branches: [main, play-tarrow-reach-1, play-tarrow-investigation-1]
   push:
     branches: [main]
 
@@ -41,7 +41,7 @@ jobs:
         env:
           MYRAVANT_ACTOR_CAMPAIGN_REPORT_DIR: actor-campaigns
           MYRAVANT_ACTOR_ASSESSOR_REPORT: actor-assessor.json
-        run: python -m pytest -q
+        run: python -m pytest -q --durations=50 --durations-min=0.5 --junitxml=suite.xml
       - name: Generate isolated actor mutations
         # Installed campaigns and separate assessment are exported by the full suite.
         run: python scripts/report_myravant_actor_mutations.py --output actor-mutations.json
@@ -53,6 +53,14 @@ jobs:
             actor-campaigns/*.json
             actor-assessor.json
             actor-mutations.json
+          if-no-files-found: error
+
+      - name: Upload serial suite profile
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: suite-serial-linux
+          path: suite.xml
           if-no-files-found: error
 
   retained-evidence-linux:
@@ -220,7 +228,7 @@ jobs:
         env:
           MYRAVANT_ACTOR_CAMPAIGN_REPORT_DIR: actor-campaigns
           MYRAVANT_ACTOR_ASSESSOR_REPORT: actor-assessor.json
-        run: python -m pytest -q
+        run: python -m pytest -q --durations=50 --durations-min=0.5 --junitxml=suite.xml
       - name: Upload actor assessment and installed campaigns
         uses: actions/upload-artifact@v4
         with:
@@ -228,6 +236,14 @@ jobs:
           path: |
             actor-campaigns/*.json
             actor-assessor.json
+          if-no-files-found: error
+
+      - name: Upload serial suite profile
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: suite-serial-windows
+          path: suite.xml
           if-no-files-found: error
 
   focused-contracts:
@@ -330,4 +346,143 @@ jobs:
             investigation-journeys.json
             investigation-assessment.json
             investigation-mutations.json
+          if-no-files-found: error
+
+  parallel-pilot-linux:
+    if: github.head_ref == 'ci-performance-pilot'
+    name: parallel-pilot-linux
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          # Preserve exact candidate identity in replay/evidence receipts.
+          # PR default checkout otherwise uses a synthetic merge commit.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements-ci-pilot.txt
+          python -m pip install -e .
+      - name: Check installed dependencies
+        run: python -m pip check
+      - name: Run tests
+        env:
+          MYRAVANT_ACTOR_CAMPAIGN_REPORT_DIR: actor-campaigns
+          MYRAVANT_ACTOR_ASSESSOR_REPORT: actor-assessor.json
+        run: python -m pytest -q -n 2 --dist loadfile --max-worker-restart=0 --durations=50 --durations-min=0.5 --junitxml=suite.xml
+      - name: Generate isolated actor mutations
+        # Installed campaigns and separate assessment are exported by the full suite.
+        run: python scripts/report_myravant_actor_mutations.py --output actor-mutations.json
+      - name: Upload actor participation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: pilot-myravant-tarrow-actors-linux
+          path: |
+            actor-campaigns/*.json
+            actor-assessor.json
+            actor-mutations.json
+          if-no-files-found: error
+
+      - name: Upload parallel suite profile
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: suite-parallel-linux
+          path: suite.xml
+          if-no-files-found: error
+
+  parallel-pilot-windows:
+    if: github.head_ref == 'ci-performance-pilot'
+    name: parallel-pilot-windows
+    runs-on: windows-latest
+    # Budget for the long Windows suite plus focused/full installed-family coverage.
+    timeout-minutes: 25
+    env:
+      PYTHONUTF8: "1"
+    steps:
+      - name: Configure Git for Windows checkout
+        run: |
+          git config --global core.longpaths true
+          git config --global core.autocrlf false
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          # Preserve exact candidate identity in replay/evidence receipts.
+          # PR default checkout otherwise uses a synthetic merge commit.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements-ci-pilot.txt
+          python -m pip install -e .
+      - name: Check installed dependencies
+        run: python -m pip check
+      - name: Run tests
+        env:
+          MYRAVANT_ACTOR_CAMPAIGN_REPORT_DIR: actor-campaigns
+          MYRAVANT_ACTOR_ASSESSOR_REPORT: actor-assessor.json
+        run: python -m pytest -q -n 2 --dist loadfile --max-worker-restart=0 --durations=50 --durations-min=0.5 --junitxml=suite.xml
+      - name: Upload actor assessment and installed campaigns
+        uses: actions/upload-artifact@v4
+        with:
+          name: pilot-myravant-tarrow-actors-windows
+          path: |
+            actor-campaigns/*.json
+            actor-assessor.json
+          if-no-files-found: error
+
+      - name: Upload parallel suite profile
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: suite-parallel-windows
+          path: suite.xml
+          if-no-files-found: error
+
+  parallel-equivalence:
+    if: always() && github.head_ref == 'ci-performance-pilot'
+    needs: [core-linux, core-windows, parallel-pilot-linux, parallel-pilot-windows]
+    name: parallel-equivalence-${{ matrix.platform }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [linux, windows]
+    steps:
+      - name: Require all serial and pilot jobs to succeed
+        env:
+          SOURCE_JOBS: ${{ toJSON(needs) }}
+        run: python -c "import json, os, sys; jobs = json.loads(os.environ['SOURCE_JOBS']); sys.exit(0 if all(j['result'] == 'success' for j in jobs.values()) else 1)"
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: suite-serial-${{ matrix.platform }}
+          path: serial
+      - uses: actions/download-artifact@v4
+        with:
+          name: suite-parallel-${{ matrix.platform }}
+          path: parallel
+      - name: Compare every test identity and outcome
+        run: python scripts/compare_pytest_profiles.py serial/suite.xml parallel/suite.xml --output equivalence.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: parallel-equivalence-${{ matrix.platform }}
+          path: equivalence.json
           if-no-files-found: error
