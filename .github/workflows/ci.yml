@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
     # Environmental depth is reviewed separately, stacked on locality PR #539.
-    branches: [main, play-tarrow-reach-1]
+    branches: [main, play-tarrow-reach-1, play-tarrow-investigation-1]
   push:
     branches: [main]
 
@@ -33,7 +33,7 @@ jobs:
           python-version: "3.12"
       - name: Install dependencies
         run: |
-          python -m pip install -r requirements-dev.txt
+          python -m pip install -r requirements-ci.txt
           python -m pip install -e .
       - name: Check installed dependencies
         run: python -m pip check
@@ -41,7 +41,7 @@ jobs:
         env:
           MYRAVANT_ACTOR_CAMPAIGN_REPORT_DIR: actor-campaigns
           MYRAVANT_ACTOR_ASSESSOR_REPORT: actor-assessor.json
-        run: python -m pytest -q
+        run: python -m pytest -q -n 2 --dist loadfile --max-worker-restart=0 --durations=50 --durations-min=0.5 --junitxml=suite.xml
       - name: Generate isolated actor mutations
         # Installed campaigns and separate assessment are exported by the full suite.
         run: python scripts/report_myravant_actor_mutations.py --output actor-mutations.json
@@ -53,6 +53,14 @@ jobs:
             actor-campaigns/*.json
             actor-assessor.json
             actor-mutations.json
+          if-no-files-found: error
+
+      - name: Upload suite profile
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: suite-core-linux
+          path: suite.xml
           if-no-files-found: error
 
   retained-evidence-linux:
@@ -220,7 +228,7 @@ jobs:
         env:
           MYRAVANT_ACTOR_CAMPAIGN_REPORT_DIR: actor-campaigns
           MYRAVANT_ACTOR_ASSESSOR_REPORT: actor-assessor.json
-        run: python -m pytest -q
+        run: python -m pytest -q --durations=50 --durations-min=0.5 --junitxml=suite.xml
       - name: Upload actor assessment and installed campaigns
         uses: actions/upload-artifact@v4
         with:
@@ -228,6 +236,14 @@ jobs:
           path: |
             actor-campaigns/*.json
             actor-assessor.json
+          if-no-files-found: error
+
+      - name: Upload suite profile
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: suite-core-windows
+          path: suite.xml
           if-no-files-found: error
 
   focused-contracts:
