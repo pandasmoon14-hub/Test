@@ -79,7 +79,10 @@ def test_public_fresh_start_prepares_lawful_history_and_replay(recipe, tmp_path)
         brush = next(p.entity_id for p in fixture.object_presentations if p.name == "Brush")
         assert placement(restored.state.representation, brush).object_entity_id == fixture.actor_order[0]
 
-    before = path.read_bytes()
+    # A legitimate explicit save may normalize JSON serialization bytes
+    # without changing its authority-bearing state, receipts or chronology.
+    before_digest = restored.authoritative_digest()
+    before_journal = restored.journal
     replay = subprocess.run(
         [sys.executable, "-m", "astra_runtime.myravant_terminal",
          "--locality", "tarrow-investigation", "--investigation-case", recipe,
@@ -89,11 +92,14 @@ def test_public_fresh_start_prepares_lawful_history_and_replay(recipe, tmp_path)
     )
     assert replay.returncode == 0, (replay.stdout, replay.stderr)
     assert "circumstance prepared through committed world actions" not in replay.stdout
-    assert "No account is selected as true" not in replay.stderr
-    # Repeating the preparation may not overwrite any acknowledged history.
+    after_replay = InvestigationApplication.restore(fixture=fixture, checkpoint_path=path)
+    assert after_replay.authoritative_digest() == before_digest
+    assert after_replay.journal == before_journal
+    # Refused *preparation* cannot rewrite any acknowledged save bytes.
+    settled_bytes = path.read_bytes()
     denied = subprocess.run(args, input="exit\n", text=True, capture_output=True, timeout=90)
     assert denied.returncode == 2 and "existing checkpoint" in denied.stderr
-    assert path.read_bytes() == before
+    assert path.read_bytes() == settled_bytes
 
 
 @pytest.mark.parametrize("extra", [
