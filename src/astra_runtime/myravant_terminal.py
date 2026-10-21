@@ -1629,7 +1629,12 @@ def main(argv: list[str] | None = None) -> int:
                 checkpoint_path=checkpoint_path, **locality_args
             )
     except (PersistentWorldCheckpointError, ValueError) as exc:
-        sys.stderr.write(f"Unable to initialize or restore checkpoint: {exc}\n")
+        # Preserve the long-standing restore failure contract for every older
+        # locality; the new explicit preparation branch has its own label.
+        if args.prepare_investigation:
+            sys.stderr.write(f"Unable to prepare investigation checkpoint: {exc}\n")
+        else:
+            sys.stderr.write(f"Unable to restore checkpoint: {exc}\n")
         return 2
 
     if args.prepare_investigation:
