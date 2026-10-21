@@ -80,8 +80,14 @@ def journey(root, recipe, repository_sha):
         assert changed < before, "player action must change actual residue, not an investigation flag"
         text = stage("inspect panel a", "compare reports about panel a residue")
         assert "No account is selected as true" in text
+        # The comparison must retain an earlier distinct received account
+        # even after repeated newer physical observations.
+        assert "Different retained values" in text, text
+        assert "clear" in text and "present" in text, text
         objectives = {"historical_false_account_retained": bool(app.disclosed_relays),
-                      "historical_and_current_contrary_values": "Different retained values" in text,
+                      "historical_and_current_contrary_values": (
+                          "Different retained values" in text
+                          and "clear" in text and "present" in text),
                       "material_after_player_action_changed": changed < before,
                       "no_omniscient_guilt_resolution": True}
     else:

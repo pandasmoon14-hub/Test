@@ -94,8 +94,8 @@ def test_old_actor_save_cannot_cross_investigation_binding(tmp_path):
 
 def test_distinct_case_roots_and_exact_recipe_restart(tmp_path):
     fixtures = tuple(create_investigation_fixture(case) for case in CASES)
-    assert len({f.provenance.initial_state_digest for f in fixtures}) == 3
-    assert len({f.actors_version for f in fixtures}) == 3
+    assert len({f.provenance.initial_state_digest for f in fixtures}) == len(CASES)
+    assert len({f.actors_version for f in fixtures}) == len(CASES)
     f = fixtures[1]
     path = tmp_path / "assembly.json"
     app = InvestigationApplication.new(fixture=f, checkpoint_path=path)

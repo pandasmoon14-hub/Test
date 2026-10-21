@@ -19,7 +19,7 @@ def test_generated_history_is_real_repeatable_and_checkpoint_bound(recipe, tmp_p
         app, receipts = build_investigation_case(recipe, file)
         assert receipts and all(receipt for _, receipt in receipts)
         assert app.journal and file.exists()
-        assert app.fixture.actors_version.endswith(recipe)
+        assert app.fixture.actors_version == 'investigation-neutral-1-' + recipe.removeprefix('neutral-')
         before = app.authoritative_digest()
         restored = InvestigationApplication.restore(
             fixture=create_investigation_fixture(recipe), checkpoint_path=file)

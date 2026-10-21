@@ -15,7 +15,7 @@ from astra_runtime import myravant_actor_knowledge as knowledge
 
 MAX_HISTORY = 8
 DISCLOSURE_POLICY = "recipient-visible-immediate-and-one-disclosed-source-1"
-QUERY_POLICY = "requester-admitted-target-and-facet-only;read-only-1"
+QUERY_POLICY = "requester-admitted-target-and-facet-only;read-only;value-diverse-comparison-2"
 
 
 def _key(value):
@@ -159,13 +159,34 @@ class InvestigationApplication(ActorApplication):
             return self._read_only_result(
                 "No player-admitted accounts match that subject and topic. "
                 "Unrecorded events and undisclosed accounts remain unknown.")
-        rows = entries[-MAX_HISTORY:]
-        distinct = len({repr(e.value) for e in rows})
+        # Comparison needs historical value diversity as well as recency.
+        # A flat last-N window can hide a still-retained contradictory report
+        # after enough later observations. Include one earlier distinct value,
+        # if any, while retaining the seven most recent reports and preserving
+        # original admission-order labels. This does not inspect world truth.
+        first = max(0, len(entries) - MAX_HISTORY)
+        numbered = list(enumerate(entries[first:], start=first + 1))
+        shown_values = {repr(event.value) for _, event in numbered}
+        if first:
+            omitted_distinct = next(
+                ((i, event) for i, event in enumerate(entries[:first], 1)
+                 if repr(event.value) not in shown_values),
+                None,
+            )
+            if omitted_distinct is not None:
+                numbered = [omitted_distinct, *numbered[1:]]
+                numbered.sort(key=lambda item: item[0])
+        distinct = len({repr(e.value) for _, e in numbered})
         note = ("Different retained values may describe different conditions or contexts."
-                if distinct > 1 else "Retained values agree; that does not certify truth.")
+                if distinct > 1 else "Displayed retained values agree; that does not certify truth.")
+        truncated = (
+            f" Displayed {len(numbered)} of {len(entries)} admitted records; some history is omitted."
+            if len(entries) > len(numbered) else ""
+        )
         return self._read_only_result("Comparison of retained player-admitted accounts:\n" +
-            "\n".join(str(i + 1) + ". " + self._present(e) for i, e in enumerate(rows)) +
-            "\n" + note + " No account is selected as true, false, guilty or conclusive.")
+            "\n".join(str(i) + ". " + self._present(e) for i, e in numbered) +
+            "\n" + note + truncated +
+            " No account is selected as true, false, guilty or conclusive.")
 
     def ask_report(self, actor_reference, target_reference, facet):
         # Qualification, delivery and the authoritative report remain owned by
