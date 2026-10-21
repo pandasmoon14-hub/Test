@@ -1495,8 +1495,21 @@ def build_argument_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time", "tarrow-actors"), default="development",
+        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time", "tarrow-actors", "tarrow-investigation"), default="development",
         help="Select a qualified locality; saved campaigns are not converted.",
+    )
+    parser.add_argument(
+        "--investigation-case", choices=("cleanup", "assembly", "relay", "neutral-contended", "neutral-reverse", "neutral-relay"), default="cleanup",
+        help="Select a noncanonical, version-bound investigation circumstance profile.",
+    )
+    parser.add_argument(
+        "--prepare-investigation",
+        action="store_true",
+        help=(
+            "Start a neutral, noncanonical investigation with lawful, receipted "
+            "prehistory at a new --checkpoint. Refuses --load and existing saves; "
+            "use --load for every subsequent session."
+        ),
     )
     parser.add_argument(
         "--repository-sha",
@@ -1568,6 +1581,13 @@ def main(argv: list[str] | None = None) -> int:
         locality_args = {"fixture": create_actor_fixture()}
         execute_bounded_terminal_request = execute_actor_locality_request
 
+    if args.locality == "tarrow-investigation":
+        from astra_runtime.myravant_investigation_application import InvestigationApplication
+        from astra_runtime.myravant_tarrow_investigation import create_investigation_fixture, execute_investigation_request
+        application_type = InvestigationApplication
+        locality_args = {"fixture": create_investigation_fixture(args.investigation_case)}
+        execute_bounded_terminal_request = execute_investigation_request
+
     if (
         args.trace is not None
         and checkpoint_path is not None
@@ -1578,8 +1598,27 @@ def main(argv: list[str] | None = None) -> int:
         )
         return 2
 
+    # Noncanonical case preparation is a deliberate fresh-start choice, never
+    # an implicit fixture side effect and never run when restoring a campaign.
+    # The existing case builder performs only qualified owner actions, saves
+    # their receipts and returns the replay-validated state.
+    if args.prepare_investigation:
+        from astra_runtime.myravant_investigation_cases import PREHISTORIES
+        if (args.locality != "tarrow-investigation" or args.load is not None
+                or args.checkpoint is None or args.investigation_case not in PREHISTORIES):
+            sys.stderr.write(
+                "Prepared investigation requires --locality tarrow-investigation, "
+                "a neutral --investigation-case, a new --checkpoint and no --load.\n"
+            )
+            return 2
+
     try:
-        if args.load is not None:
+        if args.prepare_investigation:
+            from astra_runtime.myravant_investigation_cases import build_investigation_case
+            application, _preparation_receipts = build_investigation_case(
+                args.investigation_case, checkpoint_path
+            )
+        elif args.load is not None:
             application = application_type.restore(
                 checkpoint_path=args.load, **locality_args
             )
@@ -1590,8 +1629,20 @@ def main(argv: list[str] | None = None) -> int:
                 checkpoint_path=checkpoint_path, **locality_args
             )
     except (PersistentWorldCheckpointError, ValueError) as exc:
-        sys.stderr.write(f"Unable to restore checkpoint: {exc}\n")
+        # Preserve the long-standing restore failure contract for every older
+        # locality; the new explicit preparation branch has its own label.
+        if args.prepare_investigation:
+            sys.stderr.write(f"Unable to prepare investigation checkpoint: {exc}\n")
+        else:
+            sys.stderr.write(f"Unable to restore checkpoint: {exc}\n")
         return 2
+
+    if args.prepare_investigation:
+        sys.stdout.write(
+            "Noncanonical investigation circumstance prepared through "
+            "committed world actions; inspect, recall and inquire to learn "
+            "what your character has actually admitted.\n"
+        )
 
     recorder = None
 
