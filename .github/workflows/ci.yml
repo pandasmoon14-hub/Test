@@ -268,7 +268,7 @@ jobs:
       - name: Check installed dependencies
         run: python -m pip check
       - name: Actor participation, shared intervals and private evidence
-        run: python -m pytest -q tests/test_play_actor_context_compatibility.py tests/test_play_actor_state.py tests/test_play_actor_knowledge.py tests/test_play_actor_physical.py tests/test_play_actor_scheduling.py tests/test_play_actor_persistence.py tests/test_play_actor_transfer.py tests/test_play_actors_entry.py tests/test_play_actor_mutations.py tests/test_play_actor_review_edges.py tests/test_play_investigation_readonly.py tests/test_play_investigation_neutral.py
+        run: python -m pytest -q tests/test_play_actor_context_compatibility.py tests/test_play_actor_state.py tests/test_play_actor_knowledge.py tests/test_play_actor_physical.py tests/test_play_actor_scheduling.py tests/test_play_actor_persistence.py tests/test_play_actor_transfer.py tests/test_play_actors_entry.py tests/test_play_actor_mutations.py tests/test_play_actor_review_edges.py tests/test_play_investigation_readonly.py tests/test_play_investigation_neutral.py tests/test_play_investigation_cases.py
       - name: Timed work, environmental processes and replay contracts
         run: python -m pytest -q tests/test_play_tarrow_time.py tests/test_play_tarrow_time_edges.py
       - name: Water quantities, cleaning and replay contracts
