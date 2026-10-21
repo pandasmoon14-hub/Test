@@ -24,11 +24,14 @@ new sensing, hidden-truth resolution, or a human-play release.
   admitted contrary value when truncation would erase meaningful disagreement.
   It labels omitted records and does not invent or certify a preferred account.
 - A separate versioned investigation checkpoint binds case, query version and
-  a **proposed** recipient-visible relay-disclosure policy. A prior speaker is
-  durably captured only during an already qualified report delivery and only
-  when that earlier identity is disclosed. Recall never dereferences the
-  speaker's hidden source event. Old actor/time/material/water/default
-  checkpoints retain their format identities; cross-profile restore rejects.
+  the **owner-approved Option A** recipient-visible one-hop relay-disclosure
+  policy ([#552 owner decision](https://github.com/pandasmoon14-hub/Test/issues/552#issuecomment-6306702761)).
+  A prior speaker is durably captured only during an already qualified local
+  report delivery and only when that identity is disclosed to the recipient.
+  Recall never dereferences the speaker's private source event. Old
+  actor/time/material/water/default checkpoints retain their format identities;
+  cross-profile restore rejects. The approval is restricted to this opt-in
+  runtime profile and does not adopt universal epistemic or communication canon.
 - Three existing-owner Tarrow configurations and three neutral development
   roots (`neutral-contended`, `neutral-reverse`, `neutral-relay`) exercise
   finite resource contention, actor ordering, blocking/withdrawal, and
@@ -85,18 +88,30 @@ checkout or human-play study was performed in the authoring session.
 valid for the unchanged executable tree, but any new PR head must obtain its
 own required exact-head CI status before a merge-ready declaration.
 
-## Remaining review gates (not silently accepted)
+## Owner decision and remaining gates
 
-1. **Owner semantic decision in issue #552.** Proposed policy: requester-admitted
-   exact-subject/facet query, no hidden target enumeration, durable one-hop
-   earlier-speaker disclosure only when delivered to the requester through an
-   already qualified report. This requires explicit owner disposition for
-   AFQR-10/14-compatible retained metadata and query/profile version. An
-   alternative would suppress historical earlier-speaker recall and retain
-   immediate-reporter-only metadata, reducing continuity without new fields.
-2. **Merge.** Repository rules require explicit owner merge direction, PR review
-   and final-head guarded checks. Green CI does not constitute merge authority.
-3. **Further human / broad scope.** #508-C as an entire program, #538,
+**Option A approved:** The owner explicitly selected Option A on
+2026-10-20 America/Denver, documented in
+[#552 comment #6306702761](https://github.com/pandasmoon14-hub/Test/issues/552#issuecomment-6306702761).
+This supersedes the pending A/B decision in #552 comment #6306553665.
+The approved design is recipient-owned, replay-bound retention of at most the
+immediately prior **already disclosed** speaker on a qualified local report;
+no speaker-private source traversal, hidden-target enumeration, truth
+promotion or retrospective enrichment of legacy saves is authorized.
+The source implementation was already present in the reviewed executable
+tree, and the owner choice requires **no executable code modification**.
+
+The remaining gates are:
+
+1. **Merge:** Repository rules require separately scoped owner merge
+   authorization and final-head checks; selecting A is not merge permission.
+   The source-bound COMMENT review in PR #553 is not an independent external
+   approval. The PR remains draft until applicable gates are satisfied.
+2. **Exact-head certification:** After this documentation-only decision record,
+   check CI for the exact updated head. Earlier passing executable evidence is
+   still valid for that unchanged executable tree but cannot be mislabeled as
+   a new-head certificate.
+3. **Further human / broad scope:** #508-C as an entire program, #538,
    #493, #495, general NPC investigation, universal epistemic projection,
    authored/native canon, new sensing, blind play and human-play readiness
    remain separate gates. Tested fixtures do not imply general coverage.
