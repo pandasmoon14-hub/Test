@@ -92,7 +92,7 @@ def main():
     report = evaluate(json.loads(args.input.read_text()),
                       json.loads(SPEC.read_text()), current)
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(report, sort_keys=True, indent=2) + '\\n')
+    args.output.write_text(json.dumps(report, sort_keys=True, indent=2) + '\n')
     print('Separate developer assessor: three goals, six repeated installed outcomes qualified.')
 
 

@@ -10,8 +10,8 @@ MUTATIONS = (
     (
         'world_refresh_on_recall',
         'myravant_investigation_application.py',
-        '    def recall_history(self, target_text, facet):\\n        status, entries = self._admitted_history(target_text, facet)',
-        "    def recall_history(self, target_text, facet):\\n        self._observe_all('mutant-report')\\n        status, entries = self._admitted_history(target_text, facet)",
+        '    def recall_history(self, target_text, facet):\n        status, entries = self._admitted_history(target_text, facet)',
+        "    def recall_history(self, target_text, facet):\n        self._observe_all('mutant-report')\n        status, entries = self._admitted_history(target_text, facet)",
         'test_recall_cannot_refresh_world_truth_or_evidence',
     ),
     (
@@ -45,8 +45,8 @@ MUTATIONS = (
     (
         'query_advances_world_clock',
         'myravant_investigation_application.py',
-        '    def compare_history(self, target_text, facet):\\n        status, entries = self._admitted_history(target_text, facet)',
-        '    def compare_history(self, target_text, facet):\\n        self.wait()\\n        status, entries = self._admitted_history(target_text, facet)',
+        '    def compare_history(self, target_text, facet):\n        status, entries = self._admitted_history(target_text, facet)',
+        '    def compare_history(self, target_text, facet):\n        self.wait()\n        status, entries = self._admitted_history(target_text, facet)',
         'test_comparison_cannot_advance_world_time',
     ),
 )
@@ -63,7 +63,7 @@ def main():
     )
     assert len(report['mutations']) == 6
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(report, sort_keys=True, indent=2) + '\\n')
+    args.output.write_text(json.dumps(report, sort_keys=True, indent=2) + '\n')
     print('Investigation mutations: 6/6 intended defects detected with passing controls.')
 
 

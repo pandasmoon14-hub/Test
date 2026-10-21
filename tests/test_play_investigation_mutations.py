@@ -37,7 +37,7 @@ def test_only_requester_events_appear_in_history():
            and app.fixture.entity_name(event.target_id) == 'Panel A']
     assert own
     public = app.recall_history('panel a', 'activity').message
-    listed = [line for line in public.splitlines() if re.match(r'^\\d+\\. ', line)]
+    listed = [line for line in public.splitlines() if re.match(r'^\d+\. ', line)]
     assert len(listed) == min(8, len(own))
     assert 'received statement from Jun' in public
 
