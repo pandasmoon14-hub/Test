@@ -169,7 +169,7 @@ class TimedApplication(WaterApplication):
             operation=args[0]
             if operation in {'wipe','scrub'}:
                 subject=self.fixture.resolve_object_reference(args[1]);kind='wiped' if operation=='wipe' else 'brushed'
-            elif operation=='soak':
+            elif operation in {'soak','spill','blot','press'}:
                 subject=self.fixture.resolve_object_reference(args[2]);kind='wet'
         elif name=='material' and args and args[0] in {'tie','fasten'}:
             subject=self.fixture.resolve_object_reference(args[1]);kind='fastened'

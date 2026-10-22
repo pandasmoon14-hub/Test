@@ -187,7 +187,7 @@ def execute_with_deposits(water: wc.WaterCleaningState, env: TimedEnvironmentSta
     deposits = dict(env.deposits)
     assets = {a.id: a for a in water_profile.assets}
     stock, adhered, suspended = map(dict, (water.water, water.adhered, water.suspended))
-    if operation != "pour" and amount is not None:
+    if operation not in ("pour", "spill") and amount is not None:
         raise wc.WaterCleaningRefusal("this method does not accept a quantity")
     if operation in ("wipe", "scrub"):
         if operation == "wipe" and not stock[target]:

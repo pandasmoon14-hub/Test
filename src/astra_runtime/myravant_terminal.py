@@ -1495,7 +1495,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time", "tarrow-actors", "tarrow-service", "tarrow-investigation", "tarrow-transformation"), default="development",
+        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time", "tarrow-actors", "tarrow-service", "tarrow-surface-water", "tarrow-investigation", "tarrow-transformation"), default="development",
         help="Select a qualified locality; saved campaigns are not converted.",
     )
     parser.add_argument(
@@ -1584,6 +1584,12 @@ def main(argv: list[str] | None = None) -> int:
         application_type = ActorApplication
         locality_args = {"fixture": create_actor_fixture()}
         execute_bounded_terminal_request = execute_actor_locality_request
+
+    if args.locality == "tarrow-surface-water":
+        from astra_runtime.myravant_surface_water_application import SurfaceWaterApplication, execute_surface_water_request
+        application_type = SurfaceWaterApplication
+        locality_args = {"fixture": SurfaceWaterApplication.default_fixture()}
+        execute_bounded_terminal_request = execute_surface_water_request
 
     if args.locality == "tarrow-service":
         from astra_runtime.myravant_service_application import (
