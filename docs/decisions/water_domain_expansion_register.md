@@ -79,3 +79,9 @@ closures when transport requires retention/leakage; bounded flow when crossing
 infrastructure work actually depends on it. Actor routines alone authorize none
 of these extensions, and the existing receiving-profile and conservation gates
 still apply.
+
+## Surface-water work — #559 approved candidate, not certified
+
+Cam approved Option A W1–W12 for a **separate opt-in, noncanonical** surface-liquid profile. The candidate extends finite water accounting to named Practice Panel/Sorting Board receiving compartments and a declared Packing Felt absorbent. An exact deliberate pour may deposit finite water; scoop, blot and explicit pressing allow capacity/rate-bounded recovery. All suspended residue is conserved with the moving liquid under the existing exact mixing abstraction, without dissolving adhered dirt. Existing cloth/felt exposure can dry under the approved one-clock profile; there is **no surface evaporation** or spontaneous wet transfer from mere proximity, packing, carrying or accidental tipping.
+
+Implementation/evidence belongs to the future draft PR linked to [issue #559](https://github.com/pandasmoon14-hub/Test/issues/559). Until exact-head certification, this is **candidate only**: do not upgrade the deferred spill and absorption rows to verified completion. Legacy water/time/actor bindings are not migrated. The remaining re-entry triggers are terrain puddles/flow when infrastructure play requires them, contact with different constituents when declared separation is needed, surface evaporation when exposure itself is a goal, and vessel seal/transport leakage only when player goals demand it. Human play and broad #508/#493/#495/#538 closures remain independently gated.
