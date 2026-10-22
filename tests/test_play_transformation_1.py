@@ -10,7 +10,7 @@ from astra_runtime.myravant_tarrow import identity
 from astra_runtime.myravant_tarrow_transformation import (
     create_transformation_fixture,parse_transformation_request)
 from astra_runtime.myravant_transformation_application import TransformationApplication
-from astra_runtime.domain.persistent_world_transformation import role
+from astra_runtime.domain.persistent_world_material import role
 from astra_runtime.domain.persistent_world_material import MaterialError, placement, active_effects, digest
 from astra_runtime.domain.persistent_world_component_checkpoint import _canonical_bytes
 
@@ -79,7 +79,9 @@ def test_refit_requires_actual_custody_and_restores_function_with_replay(tmp_pat
     assert started.authoritative_changed
     tick=app.runtime_state.logical_time_state.logical_position
     assert app.contribute_transformation().failure_class
-    assert app.runtime_state.logical_time_state.logical_position==tick
+    assert app.runtime_state.logical_time_state.logical_position==tick+1
+    assert app.transform_state.work.status=="blocked"
+    assert app.transform_state.work.stage==0
     assert app.pickup("Alignment Tool").authoritative_changed
     first=app.contribute_transformation()
     assert first.authoritative_changed and app.transform_state.work.stage==1
@@ -190,10 +192,11 @@ def test_stale_refit_opportunity_refuses_without_free_interval(tmp_path):
     assert app.contribute_transformation().authoritative_changed
     first=app.transform_state.work.receipts
     assert app.material("lift_from","Barrier Crossbar","Yard Work Trestle").authoritative_changed
-    before=(app.runtime_state.logical_time_state.logical_position,app.authoritative_digest())
+    before=app.runtime_state.logical_time_state.logical_position
     rejected=app.contribute_transformation()
-    assert rejected.failure_class=="transformation_opportunity_unavailable"
-    assert (app.runtime_state.logical_time_state.logical_position,app.authoritative_digest())==before
+    assert rejected.failure_class=="timed_action_interrupted"
+    assert app.runtime_state.logical_time_state.logical_position==before+1
+    assert app.transform_state.work.status=="blocked"
     assert app.transform_state.work.receipts==first
     assert app.material("put_on","Barrier Crossbar","Yard Work Trestle").authoritative_changed
     assert app.contribute_transformation().authoritative_changed
@@ -227,3 +230,111 @@ def test_abandoned_partial_work_requires_new_scope_but_keeps_receipts(tmp_path):
     assert role(app.transform_state,identity("barrier-crossbar"))=="fit"
     assert TransformationApplication.restore(fixture=app.fixture,
         checkpoint_path=app.checkpoint_path).authoritative_digest()==app.authoritative_digest()
+
+
+
+def test_spare_cannot_bypass_committed_replacement_barrier(tmp_path):
+    app=new(tmp_path);yard(app);stage_original(app)
+    p=app.transform_profile
+    assert app.pickup("Barrier Spare").authoritative_changed
+    assert app.material("put_on","Barrier Spare","Yard Work Trestle").authoritative_changed
+    assert app.pickup("Barrier Board").authoritative_changed
+    assert app.material("put_on","Barrier Board","Yard Work Trestle").authoritative_changed
+    assert app.pickup("Barrier Cord").authoritative_changed
+    before=app.authoritative_digest()
+    unqualified=app.material("tie","Barrier Board","Barrier Spare","Barrier Cord")
+    assert unqualified.failure_class=="component_unfit"
+    assert app.authoritative_digest()==before
+    assert not active_effects(app.state.representation,app.connections,app.material_profile)
+    assert app.material("lift_from","Barrier Spare","Yard Work Trestle").authoritative_changed
+    assert app.begin_transformation("replace","Barrier Crossbar","Barrier Spare").authoritative_changed
+    assert app.contribute_transformation().authoritative_changed
+    assert app.contribute_transformation().authoritative_changed
+    assert app._replacement_committed()
+    assert app.material("tie","Barrier Board","Barrier Spare","Barrier Cord").authoritative_changed
+    assert app.move("north").failure_class=="material_passage_obstructed"
+    assert app.material("untie","Barrier Cord").authoritative_changed
+    assert app.move("north").authoritative_changed
+
+
+def test_npc_work_control_requires_named_local_consensual_request(tmp_path):
+    app=new(tmp_path);yard(app);stage_original(app)
+    accepted=app.begin_transformation("refit","Barrier Crossbar","Alignment Tool","Tali Ren")
+    assert accepted.authoritative_changed,accepted.message
+    current=app.authoritative_digest()
+    assert app.control_transformation("pause").failure_class=="transformation_control_unavailable"
+    assert app.authoritative_digest()==current
+    assert app.move("east").authoritative_changed
+    assert app.control_transformation("pause","Tali Ren").failure_class=="transformation_control_unavailable"
+    assert app.move("west").authoritative_changed
+    paused=app.control_transformation("pause","Tali Ren")
+    assert paused.authoritative_changed,paused.message
+    before=app.transform_state.work.stage
+    assert app.wait().authoritative_changed
+    assert app.transform_state.work.stage==before
+    assert app.control_transformation("resume","Tali Ren").authoritative_changed
+    assert app.control_transformation("abandon","Oren").failure_class=="transformation_control_unavailable"
+    assert app.control_transformation("abandon","Tali Ren").authoritative_changed
+    assert app.transform_state.work.status=="abandoned"
+
+
+def test_npc_declared_scope_and_bounded_withdrawal(tmp_path):
+    app=new(tmp_path);yard(app);stage_original(app)
+    assert app.begin_transformation("repurpose","Barrier Crossbar","Alignment Tool","Tali Ren").failure_class
+    assert app.begin_transformation("refit","Barrier Crossbar","Alignment Tool","Tali Ren").authoritative_changed
+    assert app.pickup("Alignment Tool").authoritative_changed
+    for _ in range(app.actor_profile(identity("tali")).blocked_limit):
+        assert app.wait().authoritative_changed
+    assert app.transform_state.work.status=="withdrawn"
+    assert app.transform_state.work.stage==0
+    count=len(app.transform_state.work.due_intervals)
+    assert app.wait().authoritative_changed
+    assert len(app.transform_state.work.due_intervals)==count
+
+
+def test_fault_after_physical_lift_rolls_back_only_stage_and_preserves_time(tmp_path,monkeypatch):
+    from astra_runtime import myravant_transformation_application as module
+    app=new(tmp_path);yard(app);stage_original(app)
+    assert app.pickup("Barrier Spare").authoritative_changed
+    assert app.begin_transformation("replace","Barrier Crossbar","Barrier Spare").authoritative_changed
+    clock_before=app.runtime_state.logical_time_state.logical_position
+    state_before=app.state.representation
+    connections_before=app.connections
+    def broken_record(*args,**kwargs):
+        raise MaterialError("injected post-owner failure")
+    monkeypatch.setattr(module,"record_stage",broken_record)
+    result=app.contribute_transformation()
+    assert result.failure_class=="timed_action_interrupted"
+    assert "injected post-owner failure" in result.message
+    assert app.runtime_state.logical_time_state.logical_position==clock_before+1
+    assert app.state.representation==state_before
+    assert app.connections==connections_before
+    assert app.transform_state.work.stage==0
+    assert not app.transform_state.lineage
+    assert app.transform_state.work.status=="blocked"
+    assert TransformationApplication.restore(fixture=app.fixture,checkpoint_path=app.checkpoint_path).authoritative_digest()==app.authoritative_digest()
+
+
+def test_installed_named_variant_changes_real_part_access(tmp_path):
+    fixture=create_transformation_fixture(spare_at="work-bench")
+    app=TransformationApplication.new(fixture=fixture,checkpoint_path=tmp_path/"variant.json")
+    yard(app);stage_original(app)
+    refused=app.begin_transformation("replace","Barrier Crossbar","Barrier Spare")
+    assert refused.failure_class=="transformation_acceptance_unavailable"
+    assert app.move("west").authoritative_changed
+    assert app.move("west").authoritative_changed
+    assert app.pickup("Barrier Spare").authoritative_changed
+    assert app.move("east").authoritative_changed
+    assert app.move("east").authoritative_changed
+    assert app.begin_transformation("replace","Barrier Crossbar","Barrier Spare").authoritative_changed
+    assert app.contribute_transformation().authoritative_changed
+    with pytest.raises(MaterialError):
+        TransformationApplication.restore(checkpoint_path=app.checkpoint_path,
+                                          fixture=create_transformation_fixture())
+    assert TransformationApplication.restore(checkpoint_path=app.checkpoint_path,
+                                             fixture=fixture).transform_state.work.stage==1
+
+def test_public_actor_control_grammar_is_explicit():
+    assert parse_transformation_request("ask tali ren to pause transformation") == ("control",("pause","tali ren"))
+    assert parse_transformation_request("pause transformation") == ("control",("pause",))
+    assert parse_transformation_request("ask unknown to cancel transformation") is None

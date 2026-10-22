@@ -50,6 +50,16 @@ def evaluate(journeys, spec, head):
                     r.get("failure_class")=="material_passage_obstructed" and
                     r.get("raw_player_input","").casefold().strip()=="go north" for r in interactions):
                 raise ValueError("no actual barrier-blocked movement")
+            if goal["scenario"]=="replace-repurpose":
+                if rep.get("resource_case")!="split-spare":
+                    raise ValueError("required alternate physical resource profile missing")
+                north=[r for r in interactions
+                       if r.get("raw_player_input","").strip().casefold()=="go north"]
+                if len(north)!=2 or north[0].get("failure_class")!="material_passage_obstructed" or north[1].get("failure_class"):
+                    raise ValueError("replacement route did not block and later reopen")
+                if not any(r.get("raw_player_input","").strip().casefold().startswith("start replacing") and
+                           r.get("failure_class")=="transformation_acceptance_unavailable" for r in interactions):
+                    raise ValueError("missing actual remote-resource refusal")
             if goal["scenario"]=="actor-contention" and not any(
                     row[1]==rep["lineage"][0][1] for row in rep["lineage"]):
                 raise ValueError("actor attribution mismatch")

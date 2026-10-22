@@ -23,13 +23,20 @@
       "id": "TX02",
       "scenario": "replace-repurpose",
       "required_objectives": [
+        "noncanonical_resource_variation_refused_early",
         "removed_old_part_retained",
         "whole_spare_installed",
+        "replacement_barrier_blocks_then_reopens",
         "old_part_repurposed_with_real_assembly",
         "three_distinct_stage_receipts"
       ],
       "required_public_inputs": [
         "start replacing",
+        "go west",
+        "take barrier spare",
+        "tie barrier board to barrier spare",
+        "go north",
+        "untie barrier cord",
         "start repurposing",
         "tie repair board"
       ]

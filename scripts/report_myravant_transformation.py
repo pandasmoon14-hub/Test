@@ -10,7 +10,7 @@ import time
 from astra_runtime.myravant_tarrow import identity
 from astra_runtime.myravant_tarrow_transformation import create_transformation_fixture
 from astra_runtime.myravant_transformation_application import TransformationApplication
-from astra_runtime.domain.persistent_world_transformation import role
+from astra_runtime.domain.persistent_world_material import role
 from astra_runtime.domain.persistent_world_material import placement, active_effects
 
 
@@ -19,7 +19,8 @@ SCENARIOS=("refit-barrier","replace-repurpose","actor-contention")
 
 def journey(root,scenario,head):
     save=root/"campaign.json"
-    fixture=create_transformation_fixture()
+    resource_case="split-spare" if scenario=="replace-repurpose" else "standard"
+    fixture=create_transformation_fixture(spare_at="work-bench" if resource_case=="split-spare" else "yard-tools")
     launcher=shutil.which("myravant-play")
     assert launcher,"installed myravant-play launcher required"
     stages=[]
@@ -28,7 +29,8 @@ def journey(root,scenario,head):
     def stage(*commands):
         nonlocal app
         trace=root/(str(len(stages))+".jsonl")
-        argv=[launcher,"--locality","tarrow-transformation","--checkpoint",str(save),
+        argv=[launcher,"--locality","tarrow-transformation",
+              "--transformation-case",resource_case,"--checkpoint",str(save),
               "--trace",str(trace),"--repository-sha",head]
         if save.exists():argv+=["--load",str(save)]
         before=time.perf_counter()
@@ -69,7 +71,10 @@ def journey(root,scenario,head):
                       e.source==identity("yard-tools") for e in effects),
                     "two_lineage_receipts":len(app.transform_state.lineage)==2}
     elif scenario=="replace-repurpose":
-        stage(*prefix,"take barrier spare",
+        stage(*prefix,"start replacing barrier crossbar with barrier spare")
+        early_refusal=any(r.get("failure_class")=="transformation_acceptance_unavailable"
+                          for r in stages[-1]["trace"] if r.get("record_type")=="interaction")
+        stage("go west","go west","take barrier spare","go east","go east",
               "start replacing barrier crossbar with barrier spare","work transformation")
         partial=(app.transform_state.work.stage==1 and
                  placement(app.state.representation,identity("barrier-crossbar")).relation_type=="carried_by")
@@ -77,15 +82,26 @@ def journey(root,scenario,head):
         replacement=(placement(app.state.representation,identity("barrier-spare")).relation_type=="supported_by"
                      and placement(app.state.representation,identity("barrier-crossbar")).relation_type=="carried_by"
                      and app.transform_state.lineage[-1][3]==identity("barrier-spare"))
-        stage("take alignment tool","go west","go west",
+        stage("take barrier board","put barrier board on yard work trestle",
+              "take barrier cord","tie barrier board to barrier spare using barrier cord",
+              "go north","untie barrier cord","go north")
+        attempts=[r for r in stages[-1]["trace"] if r.get("record_type")=="interaction"
+                  and r.get("raw_player_input","").strip().casefold()=="go north"]
+        function=(len(attempts)==2 and
+                  attempts[0].get("failure_class")=="material_passage_obstructed" and
+                  not attempts[1].get("failure_class") and
+                  app.current_place_id()==identity("yard-sorting"))
+        stage("go south","take alignment tool","go west","go west",
               "start repurposing barrier crossbar using alignment tool","work transformation",
               "take repair board","put repair board on workroom bench",
               "put barrier crossbar on workroom bench","take repair cord",
               "tie repair board to barrier crossbar using repair cord")
         joined=any(c.left==identity("repair-board") and c.right==identity("barrier-crossbar")
                    for c in app.connections)
-        objectives={"removed_old_part_retained":partial,
+        objectives={"noncanonical_resource_variation_refused_early":early_refusal,
+                    "removed_old_part_retained":partial,
                     "whole_spare_installed":replacement,
+                    "replacement_barrier_blocks_then_reopens":function,
                     "old_part_repurposed_with_real_assembly":joined and
                        role(app.transform_state,identity("barrier-crossbar"))=="spacer",
                     "three_distinct_stage_receipts":len({x[5] for x in app.transform_state.lineage})==3}
@@ -106,7 +122,7 @@ def journey(root,scenario,head):
                         for r in app.transform_state.lineage)}
     else:raise ValueError("invalid scenario")
     assert all(objectives.values()),(scenario,objectives,[s["stdout"][-1200:] for s in stages])
-    return {"scenario":scenario,"objectives":objectives,
+    return {"scenario":scenario,"resource_case":resource_case,"objectives":objectives,
             "stages":stages,"final_digest":app.authoritative_digest(),
             "receipt_ids":tuple(r[5] for r in app.transform_state.lineage),
             "lineage":app.transform_state.lineage,

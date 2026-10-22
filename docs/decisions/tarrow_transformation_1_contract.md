@@ -103,3 +103,19 @@ with no new consent grant. These earlier runs are not certification of later
 heads. Refer to draft PR #556's latest exact-head GitHub run, review and
 checkpoint comments for **actual**, not anticipated, results. Final full-source
 certification remains required.
+
+## Repair review amendment — source-bound, pending exact-head certification
+
+The review at PR #556 review #5608321209 identified five important gaps beyond
+historical domain allowlist failures. The subsequent candidate integrates the
+profile-specific whole-component records into the already-authorized
+`domain/persistent_world_material.py`, rather than installing a second runtime
+domain module or disabling historical guardrails. The repair also requires a
+committed replacement stage before the spare's barrier connection; explicit
+local, consent-qualified named requests to control NPC work; charged WORLD-1
+intervals for stale qualified work attempts; bounded actor blocked interval
+handling and atomic rollback of material stages after the clock has advanced.
+The installed replacement journey must demonstrate real blocking, lawful
+reopening, remnant use, and the `split-spare` remote resource variation. Passing
+these source requirements and full CI is necessary; assertions in this note
+are not an independent engineering certificate.
