@@ -79,7 +79,7 @@ class WaterApplication(MaterialApplication):
             for obj in participants:
                 if placement(self.state.representation,obj).relation_type not in {'located_at','supported_by','carried_by'}:
                     raise WaterCleaningRefusal('Take the participant out of its container before using it.')
-            carried = participants[0] if operation in {'pour','empty','wring','rinse','collect'} else participants[1] if operation in {'soak','wipe','scrub'} else None
+            carried = participants[0] if operation in {'pour','spill','empty','wring','rinse','collect','press'} else participants[1] if operation in {'soak','wipe','scrub','blot','scoop'} else None
             if carried is not None:
                 r = placement(self.state.representation, carried)
                 if r.relation_type!='carried_by' or r.object_entity_id!=actor_id:
@@ -103,7 +103,7 @@ class WaterApplication(MaterialApplication):
         source,target = (self.fixture.entity_name(x) for x in participants)
         moved = abs(dict(candidate.water)[participants[1]]-dict(old.water)[participants[1]])
         message = f'{operation.capitalize()}: {source} to {target}.'
-        if operation in {'pour','fill','empty','soak','wring'}:
+        if operation in {'pour','spill','scoop','blot','press','fill','empty','soak','wring'}:
             message += f' Transferred {moved} water unit(s).'
         elif operation in {'wipe','scrub','rinse','collect'}:
             message += ' Residue transferred; inspect the participants for current condition.'
@@ -128,9 +128,9 @@ class WaterApplication(MaterialApplication):
         adhered = dict(self.water_state.adhered)[obj]
         suspended = dict(self.water_state.suspended)[obj]
         lines = [f'Removable residue: {adhered} unit(s).']
-        if asset.kind in {'vessel','absorbent'}:
+        if asset.kind in {'vessel','absorbent'} or (asset.kind=='surface' and asset.water_capacity):
             lines += [f'Water: {water}/{asset.water_capacity} unit(s).', f'Suspended residue: {suspended} unit(s).']
-        if asset.kind=='absorbent':
+        if asset.kind=='absorbent' or (asset.kind=='surface' and asset.water_capacity):
             lines += ['Condition: wet.' if water else 'Condition: dry.']
         return replace(result,view=None,message=base+'\n'+'\n'.join(lines))
 
@@ -149,6 +149,10 @@ WaterApplication.water = _transaction(WaterApplication.water, 'water')
 
 # Full-match grammar retains all participants and rejects unsupported modifiers.
 _PATTERNS = (
+    ('spill', r'pour ([0-9]+) units? from (.+?) onto (.+)'),
+    ('scoop', r'scoop (?:water )?from (.+?) into (.+)'),
+    ('blot', r'blot (.+?) (?:using|with) (.+)'),
+    ('press', r'press (.+?) against (.+)'),
     ('pour', r'pour ([0-9]+) units? from (.+?) into (.+)'),
     ('fill', r'fill (.+?) from (.+)'),
     ('empty', r'empty (.+?) into (.+)'),
@@ -167,7 +171,7 @@ def parse_water(raw):
         match = re.fullmatch(pattern, text)
         if match:
             groups = match.groups()
-            if operation=='pour':
+            if operation in {'pour','spill'}:
                 # Bounded parser work, including hostile enormous quantities.
                 if len(groups[0]) > 9:
                     return operation, groups[1:], 0

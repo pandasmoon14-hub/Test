@@ -42,7 +42,7 @@ class WaterCleaningAsset:
             raise ValueError("unknown water/cleaning kind")
         if not _integer(self.water_capacity) or self.water_capacity < 0:
             raise ValueError("water capacity must be a nonnegative integer")
-        if self.kind not in ("vessel", "absorbent") and self.water_capacity:
+        if self.kind not in ("vessel", "absorbent", "surface") and self.water_capacity:
             raise ValueError("only vessels and absorbents hold water")
         object.__setattr__(self, "residue_capacity", _quantity(self.residue_capacity))
         object.__setattr__(self, "transfer_rate", _quantity(self.transfer_rate))
@@ -50,6 +50,10 @@ class WaterCleaningAsset:
 
 _KINDS = {
     "pour": (("vessel",), ("vessel",)),
+    "spill": (("vessel",), ("surface",)),
+    "scoop": (("surface",), ("vessel",)),
+    "blot": (("surface",), ("absorbent",)),
+    "press": (("absorbent",), ("absorbent",)),
     "fill": (("vessel",), ("vessel",)),
     "empty": (("vessel",), ("vessel",)),
     "soak": (("vessel",), ("absorbent",)),
@@ -148,7 +152,7 @@ def execute(state: WaterCleaningState, profile: WaterCleaningProfile, operation:
 
     Participants are source then target. For wipe/scrub this is surface then
     tool; for rinse this is tool then bath; for soak this is vessel then cloth.
-    Only pour accepts an explicit amount. All other amounts refuse.
+    Only pour and deliberate surface spill accept an explicit amount. All other amounts refuse.
     """
     validate(state, profile)
     if type(participants) is not tuple or len(participants) != 2 or any(type(p) is not str for p in participants):
@@ -156,7 +160,7 @@ def execute(state: WaterCleaningState, profile: WaterCleaningProfile, operation:
     source, target = participants
     if (operation, source, target) not in profile.allowed_pairs:
         raise WaterCleaningRefusal("operation pair is not declared")
-    if operation == "pour":
+    if operation in ("pour", "spill"):
         if not _integer(amount) or amount <= 0:
             raise WaterCleaningRefusal("pour requires a positive integer quantity")
     elif amount is not None:
@@ -177,8 +181,14 @@ def execute(state: WaterCleaningState, profile: WaterCleaningProfile, operation:
         suspended[source] -= residue
         suspended[target] += residue
 
-    if operation == "pour":
+    if operation in ("pour", "spill"):
         liquid(amount)
+    elif operation in ("scoop", "blot", "press"):
+        # Surface recovery and contact are explicit. Rates are declared whole-unit
+        # upper bounds; no rounding or fractional-water sink is admitted.
+        asset = assets[source] if operation == "scoop" else assets[target]
+        rate = asset.transfer_rate.numerator // asset.transfer_rate.denominator
+        liquid(min(water[source], assets[target].water_capacity - water[target], rate))
     elif operation == "fill":
         liquid(min(water[source], assets[target].water_capacity - water[target]))
     elif operation in ("empty", "wring"):

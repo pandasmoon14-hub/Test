@@ -38,7 +38,7 @@ class ActorProfile:
             values = getattr(self, name)
             if type(values) is not tuple or any(type(v) is not str or not v.strip() for v in values) or len(set(values)) != len(values):
                 raise ValueError('distinct immutable actor profile values required')
-        if not set(self.communication_classes) <= {'request', 'status', 'report', 'control'} or not set(self.methods) <= {'wipe', 'scrub'}:
+        if not set(self.communication_classes) <= {'request', 'status', 'report', 'control'} or not set(self.methods) <= {'wipe', 'scrub', 'blot'}:
             raise ValueError('unknown communication class or cleaning method')
         for name, size in (('cleaning_pairs', 3), ('routes', 2)):
             rows = getattr(self, name)
