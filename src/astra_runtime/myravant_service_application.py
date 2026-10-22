@@ -12,7 +12,7 @@ from astra_runtime.myravant_play_application import PlayApplicationResult
 from astra_runtime.myravant_tarrow import identity
 from astra_runtime.myravant_tarrow_actors import create_actor_fixture
 from astra_runtime.domain import persistent_world_actor_participation as participation
-from astra_runtime.domain import persistent_world_service_commitment as service
+from astra_runtime import myravant_service_commitment as service
 from astra_runtime.domain.persistent_world_material import digest, placement
 
 SERVICE_METHODS = ("offer_service", "respond_service", "withdraw_service",
