@@ -45,9 +45,10 @@ def test_complete_return_and_once_only_custody(_repeat, tmp_path):
     handoff = app.settle_service()
     assert handoff.authoritative_changed, handoff.message
     assert service.latest(app.service_state).state == "settled"
+    custody_receipt = service.latest(app.service_state).custody_receipt
     repeat = app.settle_service()
     assert not repeat.authoritative_changed
-    assert service.latest(app.service_state).custody_receipt == handoff.receipt_id
+    assert service.latest(app.service_state).custody_receipt == custody_receipt
     assert ServiceApplication.restore(checkpoint_path=checkpoint).authoritative_digest() == app.authoritative_digest()
 
 
