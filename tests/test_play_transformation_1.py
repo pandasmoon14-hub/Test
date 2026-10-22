@@ -112,6 +112,7 @@ def test_replacement_preserves_removed_part_then_repurposes_it(tmp_path):
     recovered=TransformationApplication.restore(fixture=app.fixture,checkpoint_path=app.checkpoint_path)
     assert recovered.transform_state.work.stage==1
     assert recovered.contribute_transformation().authoritative_changed
+    assert recovered.transform_state.lineage[-1][3]==identity("barrier-spare")
     assert placement(recovered.state.representation,identity("barrier-spare")).relation_type=="supported_by"
     assert placement(recovered.state.representation,identity("barrier-crossbar")).relation_type=="carried_by"
     assert role(recovered.transform_state,identity("barrier-crossbar"))=="unfit"
@@ -181,3 +182,30 @@ def test_installed_terminal_selects_separate_locality(tmp_path):
     assert "Transformation: refit" in proc.stdout
     assert path.exists()
     assert TransformationApplication.restore(checkpoint_path=path).transform_state.work is not None
+
+def test_stale_refit_opportunity_refuses_without_free_interval(tmp_path):
+    app=new(tmp_path);yard(app);stage_original(app)
+    assert app.pickup("Alignment Tool").authoritative_changed
+    assert app.begin_transformation("refit","Barrier Crossbar","Alignment Tool").authoritative_changed
+    assert app.contribute_transformation().authoritative_changed
+    first=app.transform_state.work.receipts
+    assert app.material("lift_from","Barrier Crossbar","Yard Work Trestle").authoritative_changed
+    before=(app.runtime_state.logical_time_state.logical_position,app.authoritative_digest())
+    rejected=app.contribute_transformation()
+    assert rejected.failure_class=="transformation_opportunity_unavailable"
+    assert (app.runtime_state.logical_time_state.logical_position,app.authoritative_digest())==before
+    assert app.transform_state.work.receipts==first
+    assert app.material("put_on","Barrier Crossbar","Yard Work Trestle").authoritative_changed
+    assert app.contribute_transformation().authoritative_changed
+    assert role(app.transform_state,identity("barrier-crossbar"))=="fit"
+
+
+def test_resealed_final_digest_tamper_rejected_even_if_checksum_valid(tmp_path):
+    app=new(tmp_path);yard(app);stage_original(app)
+    assert app.save().checkpoint_digest
+    raw=json.loads(app.checkpoint_path.read_text())
+    raw["payload"]["final"]="0"*64
+    raw["integrity_digest"]=digest(raw["payload"])
+    app.checkpoint_path.write_bytes(_canonical_bytes(raw))
+    with pytest.raises(MaterialError):
+        TransformationApplication.restore(fixture=app.fixture,checkpoint_path=app.checkpoint_path)
