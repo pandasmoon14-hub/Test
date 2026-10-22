@@ -63,7 +63,16 @@ class ActorFixture(TimedFixture):
 
     @property
     def locality_help(self):
-        return ('Voluntary cooperation: ask <actor> to clean <surface> [using <tool>] [by wiping/scrubbing]; '
+        service_help = (
+            'Service agreement (noncanonical opt-in): offer tali service; '
+            'accept/decline tali service version <N> fingerprint <64 hex>; '
+            'ask tali about service; withdraw tali service; give tali service peg. '
+            'One real, whole peg, qualified local consent and completed actor work '
+            'are required; transfer is custody only. No reservations or wages.\n'
+            if any(o.entity_id == identity('service-peg') for o in self.object_presentations)
+            else ''
+        )
+        return service_help + ('Voluntary cooperation: ask <actor> to clean <surface> [using <tool>] [by wiping/scrubbing]; '
                 'ask <actor> to assemble <arrangement>; ask <actor> to pause/resume/cancel work; '
                 'ask <actor> about work; ask <actor> about <target> <facet>; ask <actor> for <object>.\n'
                 'Tell <actor> that <target> residue is clear/present or moisture is wet/dry; statements remain attributed reports, not truth.\n'
@@ -73,11 +82,15 @@ class ActorFixture(TimedFixture):
                 'An agreement shows last communicated status; it is not remote live knowledge.\n' + super().locality_help)
 
 
-def create_actor_fixture(*, actor_profiles=None, actor_order=None):
+def create_actor_fixture(*, actor_profiles=None, actor_order=None, service_peg=False):
     timed = create_timed_fixture()
     layout, _, _, _ = water_layout()
     layout = replace(layout, people=tuple((*row[:3], 'work-bench' if row[0] == 'oren' else 'yard-tools' if row[0] == 'tali' else row[3]) for row in layout.people),
                      specialists=(*layout.specialists, 'timed', 'actors'))
+    if type(service_peg) is not bool:raise ValueError('service profile switch must be explicit')
+    if service_peg:
+        layout=replace(layout,objects=(*layout.objects,('service-peg','Service Workshop Peg',
+            'One whole noncanonical peg, not a coin or property-title grant.','yard-tools')))
     pairs = tuple((source, tool, method) for method, source, tool in timed.water_profile.allowed_pairs if method in {'wipe', 'scrub'})
     routes = tuple((identity(source), identity(target)) for source, _, target in layout.edges)
     if actor_profiles is None:
@@ -89,6 +102,9 @@ def create_actor_fixture(*, actor_profiles=None, actor_order=None):
                          standing_kind='cleaning', standing_method='scrub',
                          standing_participants=(identity('sorting-board'), identity('cleaning-brush')), standing_place=identity('yard-tools')),
         )
+    if service_peg:
+        actor_profiles=tuple(replace(p,standing_kind=None,standing_method=None,
+            standing_participants=(),standing_place=None) if p.actor_id==identity('tali') else p for p in actor_profiles)
     if type(actor_profiles) is not tuple or any(type(p) is not ActorProfile for p in actor_profiles):
         raise ValueError('immutable actor profiles required')
     ids = tuple(p.actor_id for p in actor_profiles)
@@ -107,11 +123,11 @@ def create_actor_fixture(*, actor_profiles=None, actor_order=None):
             raise ValueError('unknown assembly scope')
         if not set(profile.routes) <= set(routes) or (profile.standing_place is not None and profile.standing_place not in places):
             raise ValueError('actor route/activity place is not admitted')
-    witness = {'actors': [asdict(p) for p in actor_profiles], 'order': actor_order,
+    witness = {'service_peg':service_peg,'actors': [asdict(p) for p in actor_profiles], 'order': actor_order,
                'actors_version': 'actors-1', 'timed_binding': timed.provenance.initial_state_digest,
                'environment': canonical_profile(timed.environment_profile), 'assemblies': [asdict(a) for a in timed.assemblies],
                'timing_version': timed.timing_version, 'trace_subjects': timed.trace_subjects}
-    layout = replace(layout, version='actors-1-' + digest(witness)[:16])
+    layout = replace(layout, version=('service-1-' if service_peg else 'actors-1-') + digest(witness)[:16])
     root = create_tarrow_fixture(layout=layout)
     inherited = {name: getattr(timed, name) for name in ('material_profile', 'water_profile', 'water_initial', 'environment_profile', 'assemblies', 'trace_subjects', 'timing_version')}
     return ActorFixture(**root.__dict__, **inherited, actor_profiles=actor_profiles, actor_order=actor_order)
