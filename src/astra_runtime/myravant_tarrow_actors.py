@@ -63,7 +63,16 @@ class ActorFixture(TimedFixture):
 
     @property
     def locality_help(self):
-        return ('Voluntary cooperation: ask <actor> to clean <surface> [using <tool>] [by wiping/scrubbing]; '
+        service_help = (
+            'Service agreement (noncanonical opt-in): offer tali service; '
+            'accept/decline tali service version <N> fingerprint <64 hex>; '
+            'ask tali about service; withdraw tali service; give tali service peg. '
+            'One real, whole peg, qualified local consent and completed actor work '
+            'are required; transfer is custody only. No reservations or wages.\n'
+            if any(o.entity_id == identity('service-peg') for o in self.object_presentations)
+            else ''
+        )
+        return service_help + ('Voluntary cooperation: ask <actor> to clean <surface> [using <tool>] [by wiping/scrubbing]; '
                 'ask <actor> to assemble <arrangement>; ask <actor> to pause/resume/cancel work; '
                 'ask <actor> about work; ask <actor> about <target> <facet>; ask <actor> for <object>.\n'
                 'Tell <actor> that <target> residue is clear/present or moisture is wet/dry; statements remain attributed reports, not truth.\n'
