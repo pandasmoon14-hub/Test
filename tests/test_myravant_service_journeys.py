@@ -89,3 +89,28 @@ def test_public_parser_isolated_to_service_profile():
     assert kind == "service" and not result.authoritative_changed  # Tali is not local
     assert not app.service_state.history
     assert identity("service-peg") in {o.entity_id for o in app.fixture.object_presentations}
+
+
+@pytest.mark.parametrize("_repeat", range(2))
+def test_actual_brush_shortage_blocks_and_recovery_is_requalified(_repeat, tmp_path):
+    """A held-away brush is not reserved by the service offer."""
+    app = ServiceApplication.new(checkpoint_path=tmp_path / "shortage.json")
+    offer_and_accept(app)
+    taken = app.pickup("Cleaning Brush")
+    assert taken.authoritative_changed, taken.message
+    assert app.move("east").authoritative_changed
+    blocked = app.wait()
+    assert blocked.authoritative_changed, blocked.message
+    assert service.latest(app.service_state).state != "eligible"
+    assert service.latest(app.service_state).custody_receipt is None
+    assert app.move("west").authoritative_changed
+    dropped = app.drop("Cleaning Brush")
+    assert dropped.authoritative_changed, dropped.message
+    for _ in range(8):
+        if service.latest(app.service_state).state == "eligible":
+            break
+        assert app.wait().authoritative_changed
+    assert service.latest(app.service_state).state == "eligible"
+    assert ServiceApplication.restore(
+        checkpoint_path=tmp_path / "shortage.json"
+    ).authoritative_digest() == app.authoritative_digest()
