@@ -1,0 +1,53 @@
+{
+  "schema": "myravant.transformation-goals.v1",
+  "contract_issue": 555,
+  "repeat_count": 2,
+  "goals": [
+    {
+      "id": "TX01",
+      "scenario": "refit-barrier",
+      "required_objectives": [
+        "committed_partial_and_restart",
+        "original_identity_restored",
+        "real_barrier_effect",
+        "two_lineage_receipts"
+      ],
+      "required_public_inputs": [
+        "start refitting",
+        "work transformation",
+        "tie barrier board",
+        "go north"
+      ]
+    },
+    {
+      "id": "TX02",
+      "scenario": "replace-repurpose",
+      "required_objectives": [
+        "removed_old_part_retained",
+        "whole_spare_installed",
+        "old_part_repurposed_with_real_assembly",
+        "three_distinct_stage_receipts"
+      ],
+      "required_public_inputs": [
+        "start replacing",
+        "start repurposing",
+        "tie repair board"
+      ]
+    },
+    {
+      "id": "TX03",
+      "scenario": "actor-contention",
+      "required_objectives": [
+        "qualified_voluntary_actor_work",
+        "real_access_contention_blocks",
+        "restore_after_resource_return",
+        "actor_attributed_lineage"
+      ],
+      "required_public_inputs": [
+        "ask tali ren to refit",
+        "lift barrier crossbar",
+        "put barrier crossbar"
+      ]
+    }
+  ]
+}
