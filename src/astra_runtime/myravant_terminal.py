@@ -1503,6 +1503,10 @@ def build_argument_parser() -> argparse.ArgumentParser:
         help="Select a noncanonical, version-bound investigation circumstance profile.",
     )
     parser.add_argument(
+        "--surface-case", choices=("standard", "shared-workbench"), default="standard",
+        help="Select qualified noncanonical surface-water actor placement.",
+    )
+    parser.add_argument(
         "--surface-order", choices=("standard", "reversed"), default="standard",
         help="Select ordered opt-in surface-water actor profile variation.",
     )
@@ -1593,7 +1597,8 @@ def main(argv: list[str] | None = None) -> int:
         from astra_runtime.myravant_surface_water_application import SurfaceWaterApplication, execute_surface_water_request
         application_type = SurfaceWaterApplication
         from astra_runtime.myravant_tarrow_surface_water import create_surface_fixture
-        locality_args = {"fixture": create_surface_fixture(reverse_order=args.surface_order == "reversed")}
+        locality_args = {"fixture": create_surface_fixture(reverse_order=args.surface_order == "reversed",
+                                                          shared_workbench=args.surface_case == "shared-workbench")}
         execute_bounded_terminal_request = execute_surface_water_request
 
     if args.locality == "tarrow-service":
@@ -1619,7 +1624,7 @@ def main(argv: list[str] | None = None) -> int:
             spare_at="work-bench" if args.transformation_case == "split-spare" else "yard-tools")}
         execute_bounded_terminal_request = execute_transformation_request
 
-    if args.locality != "tarrow-surface-water" and args.surface_order != "standard":
+    if args.locality != "tarrow-surface-water" and (args.surface_order != "standard" or args.surface_case != "standard"):
         sys.stderr.write("A surface actor-order case requires --locality tarrow-surface-water.\n")
         return 2
 
