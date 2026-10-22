@@ -255,3 +255,23 @@ class ServiceApplication(ActorApplication):
 for _name in SERVICE_METHODS:
     setattr(ServiceApplication, _name,
             _transaction(getattr(ServiceApplication, _name), _name))
+
+
+def execute_service_locality_request(application, raw):
+    """Player-facing qualified commands, with existing actor/material routes retained."""
+    import re
+    from astra_runtime.myravant_tarrow_actors import execute_actor_locality_request
+    query = " ".join(raw.casefold().strip().split())
+    if query == "offer tali service":
+        return "service", application.offer_service()
+    match = re.fullmatch(r"(accept|decline) tali service version ([1-9][0-9]*) fingerprint ([0-9a-f]{64})", query)
+    if match:
+        return "service", application.respond_service(int(match[2]), match[3],
+                                                      accept=match[1] == "accept")
+    if query == "withdraw tali service":
+        return "service", application.withdraw_service()
+    if query == "give tali service peg":
+        return "service", application.settle_service()
+    if query == "ask tali about service":
+        return "service", application.service_status()
+    return execute_actor_locality_request(application, raw)
