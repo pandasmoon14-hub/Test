@@ -45,8 +45,10 @@ def run():
         cases["capacity_bypass_detected"] = False
     # Moving two absorbents beside each other is a placement change, not an
     # admitted liquid owner operation; water compartments must remain identical.
-    felt = alter(first, "water", "packing-felt", 1)
-    cases["implicit_contact_detected"] = felt != first
+    felt = alter(alter(first, "water", "practice-panel", 1),
+                 "water", "packing-felt", 1)
+    cases["implicit_contact_detected"] = (quantities(felt) == quantities(first)
+                                            and felt != first)
     untouched = first
     cases["control_pour_conserved"] = quantities(untouched) == quantities(start)
     cases["control_no_contact_stable"] = (
