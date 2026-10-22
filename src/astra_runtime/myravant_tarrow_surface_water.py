@@ -36,7 +36,9 @@ class SurfaceFixture(ActorFixture):
         )
 
 
-def create_surface_fixture(*, reverse_order=False):
+def create_surface_fixture(*, reverse_order=False, shared_workbench=False):
+    if type(shared_workbench) is not bool:
+        raise ValueError("surface actor-position variant must be explicit")
     if type(reverse_order) is not bool:
         raise ValueError("surface actor-order variant must be explicit")
     base = create_actor_fixture()
@@ -88,7 +90,7 @@ def create_surface_fixture(*, reverse_order=False):
         layout,
         people=tuple((*row[:3],
                       "work-bench" if row[0] == "oren" else
-                      "yard-tools" if row[0] == "tali" else row[3])
+                      ("work-bench" if shared_workbench else "yard-tools") if row[0] == "tali" else row[3])
                      for row in layout.people),
         objects=(*layout.objects,
                  ("packing-felt", "Packing Felt",
@@ -102,6 +104,7 @@ def create_surface_fixture(*, reverse_order=False):
         "water": profile_payload(profile), "initial": canonical_state(water),
         "environment": canonical_profile(environment),
         "actors": [asdict(x) for x in actors], "order": order,
+        "shared_workbench": shared_workbench, "people": layout.people,
         "assemblies": [asdict(x) for x in base.assemblies],
         "policy": "deliberate-contact-whole-unit-1"
     }
