@@ -209,3 +209,21 @@ def test_resealed_final_digest_tamper_rejected_even_if_checksum_valid(tmp_path):
     app.checkpoint_path.write_bytes(_canonical_bytes(raw))
     with pytest.raises(MaterialError):
         TransformationApplication.restore(fixture=app.fixture,checkpoint_path=app.checkpoint_path)
+
+def test_abandoned_partial_work_requires_new_scope_but_keeps_receipts(tmp_path):
+    app=new(tmp_path);yard(app);stage_original(app)
+    assert app.pickup("Alignment Tool").authoritative_changed
+    assert app.begin_transformation("refit","Barrier Crossbar","Alignment Tool").authoritative_changed
+    assert app.contribute_transformation().authoritative_changed
+    first=app.transform_state.work.receipts
+    assert app.control_transformation("abandon").authoritative_changed
+    assert app.transform_state.work.status=="abandoned"
+    assert app.contribute_transformation().failure_class
+    assert app.begin_transformation("replace","Barrier Crossbar","Barrier Spare").failure_class
+    reaccepted=app.begin_transformation("refit","Barrier Crossbar","Alignment Tool")
+    assert reaccepted.authoritative_changed and "Renewed" in reaccepted.message
+    assert app.transform_state.work.receipts==first
+    assert app.contribute_transformation().authoritative_changed
+    assert role(app.transform_state,identity("barrier-crossbar"))=="fit"
+    assert TransformationApplication.restore(fixture=app.fixture,
+        checkpoint_path=app.checkpoint_path).authoritative_digest()==app.authoritative_digest()
