@@ -89,6 +89,15 @@ class TransformationApplication(ActorApplication):
     def _qualified(self,task):
         p=self.transform_profile
         actor=task.actor
+        if actor!=self.fixture.player_entity_id:
+            if not self.actor_profile(actor).willing:
+                raise MaterialError("The actor no longer consents to this work.")
+            try:
+                other=participation.selected(self.participation_state,actor)
+                if other.status in {"active","paused","blocked"}:
+                    raise MaterialError("The actor has other selected work.")
+            except participation.ParticipationRefusal:
+                pass
         at=p.work_place if task.method=="repurpose" else p.barrier_place
         if self._actor_place_id(actor)!=at:
             raise MaterialError("The performer is not at the declared work position.")
@@ -140,6 +149,15 @@ class TransformationApplication(ActorApplication):
             existing=self.transform_state.work
             if existing and existing.status in {"active","blocked","paused"}:
                 raise MaterialError("Finish or abandon existing transformation work first.")
+            # An abandoned undertaking does not rewind an acknowledged partial
+            # component. A fresh same-actor agreement reuses its real receipts.
+            if (existing and existing.status=="abandoned" and
+                    (existing.method,existing.actor,existing.target,existing.resource)
+                    == (method,actor,p.old,required)):
+                self.transform_state=replace(self.transform_state,
+                    work=replace(existing,status="active"))
+                return self._metadata_result(pre,"transformation_renewal",actor,
+                    "Renewed transformation; earlier acknowledged stages and resources remain.")
             if method=="refit" and role(self.transform_state,p.old)!="unfit":
                 raise MaterialError("That component is not available for refitting.")
             if method in {"replace","repurpose"} and role(self.transform_state,p.old)!="unfit":
