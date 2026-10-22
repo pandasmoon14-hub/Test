@@ -1495,12 +1495,16 @@ def build_argument_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time", "tarrow-actors", "tarrow-investigation"), default="development",
+        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time", "tarrow-actors", "tarrow-investigation", "tarrow-transformation"), default="development",
         help="Select a qualified locality; saved campaigns are not converted.",
     )
     parser.add_argument(
         "--investigation-case", choices=("cleanup", "assembly", "relay", "neutral-contended", "neutral-reverse", "neutral-relay"), default="cleanup",
         help="Select a noncanonical, version-bound investigation circumstance profile.",
+    )
+    parser.add_argument(
+        "--transformation-case", choices=("standard", "split-spare"), default="standard",
+        help="Select a version-bound noncanonical transformation resource arrangement.",
     )
     parser.add_argument(
         "--prepare-investigation",
@@ -1587,6 +1591,18 @@ def main(argv: list[str] | None = None) -> int:
         application_type = InvestigationApplication
         locality_args = {"fixture": create_investigation_fixture(args.investigation_case)}
         execute_bounded_terminal_request = execute_investigation_request
+
+    if args.locality == "tarrow-transformation":
+        from astra_runtime.myravant_transformation_application import TransformationApplication
+        from astra_runtime.myravant_tarrow_transformation import create_transformation_fixture, execute_transformation_request
+        application_type = TransformationApplication
+        locality_args = {"fixture": create_transformation_fixture(
+            spare_at="work-bench" if args.transformation_case == "split-spare" else "yard-tools")}
+        execute_bounded_terminal_request = execute_transformation_request
+
+    if args.locality != "tarrow-transformation" and args.transformation_case != "standard":
+        sys.stderr.write("A transformation case requires --locality tarrow-transformation.\n")
+        return 2
 
     if (
         args.trace is not None
