@@ -8,7 +8,7 @@ from astra_runtime.myravant_actor_application import ActorApplication
 from astra_runtime.myravant_material_application import _transaction
 from astra_runtime.myravant_play_application import PlayApplicationResult
 from astra_runtime.domain.persistent_world_material import MaterialError, digest, placement
-from astra_runtime.domain.persistent_world_transformation import (
+from astra_runtime.domain.persistent_world_material import (
     TransformationWork, initial_state, role, validate_profile, validate_state, record_stage)
 from astra_runtime.domain import persistent_world_actor_participation as participation
 from astra_runtime import myravant_actor_knowledge as knowledge
@@ -53,6 +53,12 @@ class TransformationApplication(ActorApplication):
         previous,self.transform_state=snapshot
         super()._restore_transaction(previous)
 
+    def _replacement_committed(self):
+        p=self.transform_profile
+        return any(row[0]=="replace" and row[2]==p.old and row[3]==p.spare
+                   and row[4]==2 and row[6] is not None
+                   for row in self.transform_state.lineage)
+
     def _validate_transaction(self):
         super()._validate_transaction()
         if not hasattr(self,"transform_state"):return
@@ -64,6 +70,8 @@ class TransformationApplication(ActorApplication):
         for c in self.connections:
             if c.left==p.barrier_board and c.right==p.old and role(self.transform_state,p.old)!="fit":
                 raise MaterialError("unfit component cannot form the barrier connection")
+            if c.left==p.barrier_board and c.right==p.spare and not self._replacement_committed():
+                raise MaterialError("spare barrier connection requires completed physical replacement")
             if c.left==p.repair_board and c.right==p.old and role(self.transform_state,p.old)!="spacer":
                 raise MaterialError("unrepurposed component cannot form workshop connection")
 
@@ -80,6 +88,8 @@ class TransformationApplication(ActorApplication):
                 p=self.transform_profile
                 if left==p.barrier_board and right==p.old and role(self.transform_state,p.old)!="fit":
                     return self._result("This component is not qualified for barrier fastening.",failure="component_unfit")
+                if left==p.barrier_board and right==p.spare and not self._replacement_committed():
+                    return self._result("Complete the physical replacement before fastening this spare as the restored barrier.",failure="component_unfit")
                 if left==p.repair_board and right==p.old and role(self.transform_state,p.old)!="spacer":
                     return self._result("That component has not been repurposed for this connection.",failure="component_unfit")
             except ValueError:
@@ -90,6 +100,8 @@ class TransformationApplication(ActorApplication):
         p=self.transform_profile
         actor=task.actor
         if actor!=self.fixture.player_entity_id:
+            if task.method not in dict(self.fixture.transformation_actor_methods).get(actor,()):
+                raise MaterialError("This actor has no declared transformation method.")
             if not self.actor_profile(actor).willing:
                 raise MaterialError("The actor no longer consents to this work.")
             try:
@@ -137,6 +149,8 @@ class TransformationApplication(ActorApplication):
             if actor!=self.fixture.player_entity_id:
                 self._route(actor,"request")
                 if not self.actor_profile(actor).willing:raise MaterialError("The actor declines.")
+                if method not in dict(self.fixture.transformation_actor_methods).get(actor,()):
+                    raise MaterialError("That actor has not agreed to this declared transformation method.")
                 try:
                     other=participation.selected(self.participation_state,actor)
                     if other.status in {"active","blocked","paused"}:raise MaterialError("The actor is busy.")
@@ -169,18 +183,30 @@ class TransformationApplication(ActorApplication):
         except ValueError as exc:
             return self._result(str(exc),failure="transformation_acceptance_unavailable")
 
-    def control_transformation(self,operation):
+    def control_transformation(self,operation,actor_reference=None):
         pre=self.authoritative_digest()
         try:
             task=self.transform_state.work
             if task is None:raise MaterialError("No transformation work selected.")
+            player=self.fixture.player_entity_id
+            if task.actor!=player:
+                if actor_reference is None:
+                    raise MaterialError("This is the actor's work. Ask that actor through a qualified route.")
+                actor=self._actor(actor_reference)
+                if actor!=task.actor:
+                    raise MaterialError("That actor does not own the selected transformation.")
+                self._route(actor,"control")
+                if not self.actor_profile(actor).willing:
+                    raise MaterialError("The actor declines to change the work.")
+            elif actor_reference is not None:
+                raise MaterialError("This is player-owned work, not the addressed actor's task.")
             if operation=="pause" and task.status in {"active","blocked"}:state="paused"
             elif operation=="resume" and task.status in {"paused","blocked"}:state="active"
-            elif operation=="abandon" and task.status not in {"abandoned","completed"}:state="abandoned"
+            elif operation=="abandon" and task.status not in {"abandoned","withdrawn","completed"}:state="abandoned"
             else:raise MaterialError("That work transition is unavailable.")
-            self.transform_state=replace(self.transform_state,work=replace(task,status=state))
+            self.transform_state=replace(self.transform_state,work=replace(task,status=state,reason=None))
             return self._metadata_result(pre,"transformation_"+operation,task.actor,
-                "Transformation "+state+"; already committed work and parts remain.")
+                "Transformation "+state+" by lawful control; committed work and parts remain.")
         except ValueError as exc:
             return self._result(str(exc),failure="transformation_control_unavailable")
 
@@ -189,34 +215,54 @@ class TransformationApplication(ActorApplication):
         if task is None:return self._result("No transformation is selected.")
         return self._result("Transformation: "+task.method+"; "+task.status+
             "; "+str(task.stage)+"/"+str(1 if task.method=="repurpose" else 2)+
-            " contribution(s). Actual component fit: "+str(role(self.transform_state,self.transform_profile.old))+".")
+            " contribution(s). Actual component fit: "+str(role(self.transform_state,self.transform_profile.old))+"."+
+            (" Work notice: "+task.reason if task.reason else ""))
 
     def _perform_transformation(self,actor,clock_receipt):
         task=self.transform_state.work
         if task is None or task.actor!=actor or task.status not in {"active","blocked"}:
             return None
+        # The caller has committed this one WORLD-1 interval already. Taking an
+        # after-clock snapshot lets a subsequently refused owner stage restore
+        # all physical/material/evidence effects without erasing elapsed time.
+        after_clock=self._capture_transaction()
         try:
-            # A willing NPC first prepares a visible, locally reachable resource
-            # through the existing actor-owned pickup route. No borrowed player
-            # inventory, reservation, or free combined work is inferred.
+            p=self.transform_profile
             if actor!=self.fixture.player_entity_id:
-                required=[task.resource]
-                if task.method=="repurpose":required.insert(0,task.target)
-                for obj in required:
+                profile=self.actor_profile(actor)
+                if not profile.willing or task.method not in dict(self.fixture.transformation_actor_methods).get(actor,()):
+                    raise MaterialError("The actor is unwilling or lacks the declared method.")
+                try:
+                    other=participation.selected(self.participation_state,actor)
+                    if other.status in {"active","paused","blocked"}:
+                        raise MaterialError("The actor has other continuing work.")
+                except participation.ParticipationRefusal:
+                    pass
+                if self._actor_place_id(actor)!=(p.work_place if task.method=="repurpose" else p.barrier_place):
+                    raise MaterialError("The actor is not at the agreed work position.")
+                if not self._visible_for_actor(actor,p.old):
+                    raise MaterialError("The work target is not accessible to this actor.")
+                if not (self.fixture.ambient_visual_condition_for(self._actor_place_id(actor))=="sufficient"
+                        or self._actor_local_light_available(actor)):
+                    raise MaterialError("The actor cannot perceive the work.")
+                resources=[task.resource]
+                if task.method=="repurpose":resources.insert(0,task.target)
+                for obj in resources:
                     need=self._need_custody(actor,obj)
                     if need is not None:
                         prepared=self._execute_actor(actor,need)
                         if not prepared.authoritative_changed:
                             raise MaterialError(prepared.message)
-                        self._event("transformation_preparation",actor,need,
-                                    receipt=prepared.receipt_id)
+                        self._event("transformation_preparation",actor,need,receipt=prepared.receipt_id)
                         self.evidence_state=knowledge.performed(self.evidence_state,actor,obj,
                             "activity","transformation_preparation",prepared.receipt_id,
                             self.runtime_state.logical_time_state.logical_position)
                         self._observe_all(prepared.receipt_id)
+                        self.transform_state=replace(self.transform_state,work=replace(task,
+                            due_intervals=(*task.due_intervals,clock_receipt),blocked_due=0,
+                            status="active",reason=None))
                         return prepared
             self._qualified(task)
-            p=self.transform_profile
             physical=None
             if task.method=="replace":
                 op="lift_from" if task.stage==0 else "put_on"
@@ -228,7 +274,8 @@ class TransformationApplication(ActorApplication):
                 physical=result.receipt_id
             tick=self.runtime_state.logical_time_state.logical_position
             updated,receipt=record_stage(self.transform_state,p,actor,clock_receipt,tick,physical)
-            self.transform_state=updated
+            self.transform_state=replace(updated,work=replace(updated.work,
+                due_intervals=(*task.due_intervals,clock_receipt),blocked_due=0,reason=None))
             self._event("transformation_contribution",actor,
                         (task.method,updated.work.stage,physical),receipt=receipt)
             self.evidence_state=knowledge.performed(self.evidence_state,actor,p.old,
@@ -256,7 +303,16 @@ class TransformationApplication(ActorApplication):
                 state_delta_id=delta.delta_id,receipt_id=receipt,
                 opportunity_evidence_id=build_record_id("evidence","transformation-"+token))
         except ValueError as exc:
-            self.transform_state=replace(self.transform_state,work=replace(task,status="blocked"))
+            # No material/actor intermediate step survives a failed contribution.
+            # Due WORLD-1 time and passive environmental work are not rewound.
+            self._restore_transaction(after_clock)
+            current=self.transform_state.work
+            limit=self.actor_profile(actor).blocked_limit if actor!=self.fixture.player_entity_id else None
+            blocked_due=current.blocked_due+1
+            status="withdrawn" if limit is not None and blocked_due>=limit else "blocked"
+            self.transform_state=replace(self.transform_state,work=replace(current,
+                status=status,blocked_due=blocked_due,
+                due_intervals=(*current.due_intervals,clock_receipt),reason=str(exc)))
             return self._result(str(exc),failure="transformation_opportunity_unavailable")
 
     def _interval(self,name,args=(),kwargs=None,contribution=False):
@@ -273,10 +329,10 @@ class TransformationApplication(ActorApplication):
         task=self.transform_state.work
         if task is None or task.actor!=self.fixture.player_entity_id or task.status not in {"active","blocked"}:
             return self._result("No active player transformation selected.",failure="transformation_work_unavailable")
-        try:self._qualified(task)
-        except ValueError as exc:return self._result(str(exc),failure="transformation_opportunity_unavailable")
         before=self.authoritative_digest()
         clock=self._interval("wait")
+        if clock.failure_class or not clock.authoritative_changed:
+            return clock
         actual=self._perform_transformation(task.actor,clock.due_process_ref)
         if actual is None:return self._result("No transformation contribution was qualified.",failure="transformation_work_unavailable")
         if actual.failure_class:

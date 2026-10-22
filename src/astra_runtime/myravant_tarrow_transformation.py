@@ -7,12 +7,13 @@ from astra_runtime.myravant_tarrow_water import water_layout
 from astra_runtime.myravant_tarrow_actors import ActorFixture, create_actor_fixture, execute_actor_locality_request
 from astra_runtime.myravant_tarrow_time import AssemblyProfile
 from astra_runtime.domain.persistent_world_material import MaterialEffect, digest
-from astra_runtime.domain.persistent_world_transformation import TransformationProfile, validate_profile
+from astra_runtime.domain.persistent_world_material import TransformationProfile, validate_profile
 
 
 @dataclass(frozen=True)
 class TransformationFixture(ActorFixture):
     transformation_profile: TransformationProfile | None = None
+    transformation_actor_methods: tuple[tuple[str, tuple[str, ...]], ...] = ()
 
     @property
     def locality_help(self):
@@ -67,12 +68,13 @@ def create_transformation_fixture(*, actor_order=None, spare_at="yard-tools", to
     order=base.actor_order if actor_order is None else actor_order
     if type(order) is not tuple or len(order)!=len(profiles) or set(order)!={a.actor_id for a in profiles}:
         raise ValueError("invalid declared actor order")
+    actor_methods=((identity("tali"),("refit","replace")),(identity("oren"),("repurpose",)))
     assemblies=(*base.assemblies,AssemblyProfile("restored barrier",p.barrier_place,
                     p.barrier_board,p.spare,p.trestle,p.trestle,identity("barrier-cord"),"tie"))
     witness={"profile":asdict(p),"material":asdict(material),
              "actors":[asdict(a) for a in profiles],"order":order,
              "assemblies":[asdict(a) for a in assemblies],
-             "placements":(spare_at,tool_at),"parent":base.provenance.initial_state_digest}
+             "placements":(spare_at,tool_at),"actor_methods":actor_methods,"parent":base.provenance.initial_state_digest}
     layout=replace(layout,version="transformation-1-"+digest(witness)[:16])
     root=create_tarrow_fixture(layout=layout)
     validate_profile(p,root.initial_state.representation,material)
@@ -82,7 +84,7 @@ def create_transformation_fixture(*, actor_order=None, spare_at="yard-tools", to
         trace_subjects=base.trace_subjects,timing_version="transformation-time-1",
         actor_profiles=profiles,actor_order=order,
         actors_version="transformation-actor-1-"+digest(witness)[:16],
-        transformation_profile=p)
+        transformation_profile=p,transformation_actor_methods=actor_methods)
 
 
 def parse_transformation_request(raw):
@@ -90,6 +92,8 @@ def parse_transformation_request(raw):
     m=re.fullmatch(r"start (refitting|replacing|repurposing) (.+?) (using|with) (.+)",text)
     if m:
         return "begin",({"refitting":"refit","replacing":"replace","repurposing":"repurpose"}[m[1]],m[2],m[4],None)
+    m=re.fullmatch(r"ask (.+?) to (pause|resume|abandon) transformation",text)
+    if m:return "control",(m[2],m[1])
     m=re.fullmatch(r"ask (.+?) to (refit|replace|repurpose) (.+?) (using|with) (.+)",text)
     if m:return "begin",(m[2],m[3],m[5],m[1])
     if text=="work transformation":return "work",()

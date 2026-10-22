@@ -1503,6 +1503,10 @@ def build_argument_parser() -> argparse.ArgumentParser:
         help="Select a noncanonical, version-bound investigation circumstance profile.",
     )
     parser.add_argument(
+        "--transformation-case", choices=("standard", "split-spare"), default="standard",
+        help="Select a version-bound noncanonical transformation resource arrangement.",
+    )
+    parser.add_argument(
         "--prepare-investigation",
         action="store_true",
         help=(
@@ -1592,8 +1596,13 @@ def main(argv: list[str] | None = None) -> int:
         from astra_runtime.myravant_transformation_application import TransformationApplication
         from astra_runtime.myravant_tarrow_transformation import create_transformation_fixture, execute_transformation_request
         application_type = TransformationApplication
-        locality_args = {"fixture": create_transformation_fixture()}
+        locality_args = {"fixture": create_transformation_fixture(
+            spare_at="work-bench" if args.transformation_case == "split-spare" else "yard-tools")}
         execute_bounded_terminal_request = execute_transformation_request
+
+    if args.locality != "tarrow-transformation" and args.transformation_case != "standard":
+        sys.stderr.write("A transformation case requires --locality tarrow-transformation.\n")
+        return 2
 
     if (
         args.trace is not None
