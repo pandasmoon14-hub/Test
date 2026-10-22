@@ -87,11 +87,24 @@ def validate_state(state, profile, actors, receipts):
             raise MaterialError("invalid transformation task")
     if len(set(row[5] for row in state.lineage)) != len(state.lineage):
         raise MaterialError("duplicate transformation receipts")
-    for row in state.lineage:
+    expected_role = "unfit"
+    for index,row in enumerate(state.lineage):
         if (len(row) != 7 or row[0] not in {"refit", "replace", "repurpose"} or
                 row[1] not in actors or row[2] != profile.old or
-                row[3] not in {profile.old, profile.spare} or row[5] not in receipts):
-            raise MaterialError("invalid component provenance")
+                row[3] != (profile.spare if row[0]=="replace" and row[4]==2 else profile.old) or
+                row[5] not in receipts or
+                (row[0]=="replace") != (row[6] is not None) or
+                type(row[4]) is not int or row[4] not in {1,2} or
+                (row[4]==2 and
+                 (index==0 or state.lineage[index-1][0]!=row[0] or state.lineage[index-1][4]!=1)) or
+                (row[0]=="repurpose" and row[4]!=1)):
+            raise MaterialError("invalid component provenance or stage order")
+        if row[0]=="refit":
+            expected_role="prepared" if row[4]==1 else "fit"
+        elif row[0]=="repurpose":
+            expected_role="spacer"
+    if roles[profile.old] != expected_role:
+        raise MaterialError("component fit differs from acknowledged owner lineage")
     if work and work.stage and tuple(row[5] for row in state.lineage[-work.stage:]) != work.receipts:
         raise MaterialError("lost acknowledged work")
 
