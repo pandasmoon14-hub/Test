@@ -59,6 +59,10 @@ def create_surface_fixture(*, reverse_order=False):
     pairs += [("scoop", surface, vessel) for surface in surfaces for vessel in vessels]
     pairs += [("blot", surface, tool) for surface in surfaces for tool in (cloth, felt)]
     pairs += [("press", cloth, felt), ("press", felt, cloth)]
+    pairs += [("wring", felt, vessel) for vessel in vessels]
+    pairs += [("soak", vessel, felt) for vessel in vessels]
+    pairs += [("rinse", felt, vessel) for vessel in vessels]
+    pairs += [("collect", felt, identity("debris-tray"))]
     profile = WaterCleaningProfile(assets, tuple(pairs))
     water = WaterCleaningState(
         (*initial.water, (felt, 0)), (*initial.adhered, (felt, Fraction(0))),
