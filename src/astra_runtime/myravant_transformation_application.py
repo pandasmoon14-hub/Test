@@ -308,7 +308,7 @@ class TransformationApplication(ActorApplication):
             self._restore_transaction(after_clock)
             current=self.transform_state.work
             limit=self.actor_profile(actor).blocked_limit if actor!=self.fixture.player_entity_id else None
-            blocked_due=current.blocked_due+1
+            blocked_due=min(32,current.blocked_due+1)
             status="withdrawn" if limit is not None and blocked_due>=limit else "blocked"
             self.transform_state=replace(self.transform_state,work=replace(current,
                 status=status,blocked_due=blocked_due,

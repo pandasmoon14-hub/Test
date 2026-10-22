@@ -185,7 +185,7 @@ def test_installed_terminal_selects_separate_locality(tmp_path):
     assert path.exists()
     assert TransformationApplication.restore(checkpoint_path=path).transform_state.work is not None
 
-def test_stale_refit_opportunity_refuses_without_free_interval(tmp_path):
+def test_stale_refit_work_interval_is_charged_and_previous_receipts_survive(tmp_path):
     app=new(tmp_path);yard(app);stage_original(app)
     assert app.pickup("Alignment Tool").authoritative_changed
     assert app.begin_transformation("refit","Barrier Crossbar","Alignment Tool").authoritative_changed
@@ -338,3 +338,20 @@ def test_public_actor_control_grammar_is_explicit():
     assert parse_transformation_request("ask tali ren to pause transformation") == ("control",("pause","tali ren"))
     assert parse_transformation_request("pause transformation") == ("control",("pause",))
     assert parse_transformation_request("ask unknown to cancel transformation") is None
+
+
+def test_player_may_retry_after_more_than_profile_maximum_blocked_intervals():
+    app=new();yard(app);stage_original(app)
+    assert app.begin_transformation("refit","Barrier Crossbar","Alignment Tool").authoritative_changed
+    before=app.runtime_state.logical_time_state.logical_position
+    for _ in range(34):
+        failure=app.contribute_transformation()
+        assert failure.failure_class=="timed_action_interrupted"
+        assert app.transform_state.work.status=="blocked"
+        assert app.transform_state.work.stage==0
+    assert app.transform_state.work.blocked_due==32
+    assert len(app.transform_state.work.due_intervals)==34
+    assert app.runtime_state.logical_time_state.logical_position==before+34
+    assert app.pickup("Alignment Tool").authoritative_changed
+    assert app.contribute_transformation().authoritative_changed
+    assert app.transform_state.work.stage==1

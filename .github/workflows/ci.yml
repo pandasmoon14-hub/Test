@@ -374,7 +374,7 @@ jobs:
         run: python scripts/report_myravant_transformation.py --output transformation-journeys.json
       - name: Assess separately declared developer goals
         run: python scripts/assess_myravant_transformation.py --input transformation-journeys.json --output transformation-assessment.json
-      - name: Detect six isolated transformation mutations
+      - name: Detect eleven isolated transformation mutations
         run: python scripts/report_myravant_transformation_mutations.py --output transformation-mutations.json
       - name: Upload transformation evidence
         if: always()

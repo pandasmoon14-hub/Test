@@ -119,3 +119,14 @@ The installed replacement journey must demonstrate real blocking, lawful
 reopening, remnant use, and the `split-spare` remote resource variation. Passing
 these source requirements and full CI is necessary; assertions in this note
 are not an independent engineering certificate.
+
+## Final bounded-failure control amendments
+
+The player-side blocked-due diagnostic saturates at 32 while preserving every
+WORLD-1 due interval and allowing further lawful attempts indefinitely; an
+actor-specific blocked limit still causes nonconsenting NPC withdrawal. The
+transformation mutation harness now explicitly tests eleven isolated controls,
+adding premature spare fastening, remote NPC control, attempted-work clock cost,
+post-owner rollback and unbounded player retry to its original six source-copy
+defects. A green status requires effective detection with passing unmutated
+controls; the changes do not authorize a general crafting or governance layer.
