@@ -96,7 +96,7 @@ def journey(folder, name, sha):
     elif name == "actor-scarcity":
         play(*workshop, "take wash bucket",
              "pour 2 units from wash bucket onto practice panel",
-             "ask oren to blot practice panel using cleaning cloth")
+             "ask oren kesh to blot practice panel using cleaning cloth")
         objectives["agreement_no_free_work"] = stock(app, "practice-panel") == 2
         play("wait", "wait", "wait", "wait")
         worker = selected(app.participation_state, identity("oren"))

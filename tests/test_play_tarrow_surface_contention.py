@@ -16,15 +16,15 @@ def test_two_voluntary_actors_compete_over_same_finite_surface(reverse):
         assert a.move(direction).authoritative_changed
     assert a.pickup("wash bucket").authoritative_changed
     assert a.water("spill", "wash bucket", "practice panel", amount=3).authoritative_changed
-    assert a.request_blotting("oren", "practice panel", "cleaning cloth").authoritative_changed
-    assert a.request_blotting("tali", "practice panel", "packing felt").authoritative_changed
+    assert a.request_blotting("oren kesh", "practice panel", "cleaning cloth").authoritative_changed
+    assert a.request_blotting("tali ren", "practice panel", "packing felt").authoritative_changed
     assert dict(a.water_state.water)[identity("practice-panel")] == 3
     for _ in range(5):
         if dict(a.water_state.water)[identity("practice-panel")] == 0:
             break
         assert a.wait().authoritative_changed
     assert dict(a.water_state.water)[identity("practice-panel")] == 0
-    jobs = [selected(a.participation_state, identity(n)) for n in ("oren", "tali")]
+    jobs = [selected(a.participation_state, identity(n)) for n in ("oren kesh", "tali ren")]
     # Both had to prepare real tools and contribute through RT-010, but the
     # declared resolution order decides which actor completes the final stock.
     assert all(job.contributions for job in jobs)

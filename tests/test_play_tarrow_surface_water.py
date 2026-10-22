@@ -103,7 +103,7 @@ def test_actor_blotting_is_consumptive_participation(tmp_path):
     workshop(a)
     take(a, "wash bucket")
     act(a, "spill", "wash bucket", "practice panel", amount=2)
-    result = a.request_blotting("oren", "practice panel", "cleaning cloth")
+    result = a.request_blotting("oren kesh", "practice panel", "cleaning cloth")
     assert result.authoritative_changed, result.message
     assert amount(a, "practice-panel") == 2
     for _ in range(6):
