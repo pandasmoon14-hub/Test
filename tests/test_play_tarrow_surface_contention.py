@@ -24,7 +24,7 @@ def test_two_voluntary_actors_compete_over_same_finite_surface(reverse):
             break
         assert a.wait().authoritative_changed
     assert dict(a.water_state.water)[identity("practice-panel")] == 0
-    jobs = [selected(a.participation_state, identity(n)) for n in ("oren kesh", "tali ren")]
+    jobs = [selected(a.participation_state, identity(n)) for n in ("oren", "tali")]
     # Both had to prepare real tools and contribute through RT-010, but the
     # declared resolution order decides which actor completes the final stock.
     assert all(job.contributions for job in jobs)
