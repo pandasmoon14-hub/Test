@@ -302,7 +302,7 @@ jobs:
       - name: Water quantities, cleaning and replay contracts
         run: python -m pytest -q tests/test_play_water_cleaning.py
       - name: Surface liquid, deliberate contact and actor replay contracts
-        run: python -m pytest -q tests/test_play_tarrow_surface_water.py tests/test_play_tarrow_surface_water_edges.py
+        run: python -m pytest -q tests/test_play_tarrow_surface_water.py tests/test_play_tarrow_surface_water_edges.py tests/test_play_tarrow_surface_contention.py
       - name: Material placement, fastening and replay contracts
         run: python -m pytest -q tests/test_play_material.py
       - name: Tarrow environmental-depth contracts
