@@ -74,9 +74,9 @@ def test_rates_and_no_unapproved_contact_or_surface_cleaning():
     act(a, "spill", "wash bucket", "practice panel", amount=3)
     act(a, "blot", "practice panel", "cleaning cloth")
     assert amount(a, "practice-panel") == 2
-    before = amount(a, "cleaning cloth")
+    before = amount(a, "cleaning-cloth")
     assert a.look().failure_class is None
-    assert amount(a, "cleaning cloth") == before
+    assert amount(a, "cleaning-cloth") == before
     act(a, "blot", "practice panel", "packing felt")
     assert amount(a, "practice-panel") == 0
     assert amount(a, "practice-panel", "adhered") == 3
