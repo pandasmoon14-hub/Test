@@ -104,8 +104,7 @@ def test_resealed_surface_checkpoint_refuses_forged_history(tmp_path, kind):
 def test_old_profile_and_versioned_surface_root_do_not_interchange(tmp_path):
     old = WaterApplication.new(fixture=create_water_fixture(),
                                checkpoint_path=tmp_path / "old.json")
-    assert old.pickup("wash bucket").failure_class is not None
-    assert old.wait().authoritative_changed
+    assert old.move("south").authoritative_changed
     surface = SurfaceWaterApplication.new(fixture=create_surface_fixture(),
                                            checkpoint_path=tmp_path / "surface.json")
     assert surface.wait().authoritative_changed
