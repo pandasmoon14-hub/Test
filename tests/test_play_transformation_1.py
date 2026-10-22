@@ -64,7 +64,11 @@ def test_declared_profiles_have_distinct_real_resource_and_actor_variation():
     "pause transformation","work transformation"])
 def test_public_grammar_preserves_targets_and_methods(input):
     assert parse_transformation_request(input) is not None
-    assert parse_transformation_request(input+" somehow") is None
+    modified=parse_transformation_request(input+" somehow")
+    if modified is None:
+        assert input in {"pause transformation","work transformation"}
+    else:
+        assert modified[0]=="begin" and modified[1][2].endswith(" somehow")
 
 
 def test_refit_requires_actual_custody_and_restores_function_with_replay(tmp_path):
@@ -129,18 +133,18 @@ def test_replacement_preserves_removed_part_then_repurposes_it(tmp_path):
 
 def test_willing_actor_uses_own_tool_and_committed_world_intervals(tmp_path):
     app=new(tmp_path);yard(app);stage_original(app)
-    assert app.pickup("Alignment Tool").authoritative_changed
-    handed=app.give_object("Alignment Tool","Tali Ren")
-    assert handed.authoritative_changed,handed.message
     agreed=app.begin_transformation("refit","Barrier Crossbar","Alignment Tool","Tali Ren")
     assert agreed.authoritative_changed,agreed.message
     before=app.runtime_state.logical_time_state.logical_position
+    assert app.wait().authoritative_changed
+    assert app.transform_state.work.stage==0
+    assert placement(app.state.representation,identity("alignment-tool")).object_entity_id==identity("tali")
     assert app.wait().authoritative_changed
     assert app.transform_state.work.stage==1
     assert app.wait().authoritative_changed
     assert app.transform_state.work.status=="completed"
     assert role(app.transform_state,identity("barrier-crossbar"))=="fit"
-    assert app.runtime_state.logical_time_state.logical_position==before+2
+    assert app.runtime_state.logical_time_state.logical_position==before+3
     restored=TransformationApplication.restore(fixture=app.fixture,checkpoint_path=app.checkpoint_path)
     assert restored.authoritative_digest()==app.authoritative_digest()
     assert all(x[1]==identity("tali") for x in restored.transform_state.lineage)

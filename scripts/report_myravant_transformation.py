@@ -90,10 +90,11 @@ def journey(root,scenario,head):
                        role(app.transform_state,identity("barrier-crossbar"))=="spacer",
                     "three_distinct_stage_receipts":len({x[5] for x in app.transform_state.lineage})==3}
     elif scenario=="actor-contention":
-        stage(*prefix,"take alignment tool","give alignment tool to tali ren",
-              "ask tali ren to refit barrier crossbar using alignment tool","wait")
+        stage(*prefix,"ask tali ren to refit barrier crossbar using alignment tool",
+              "wait","wait")
         started=(app.transform_state.work.actor==identity("tali") and
-                 app.transform_state.work.stage==1)
+                 app.transform_state.work.stage==1 and
+                 placement(app.state.representation,identity("alignment-tool")).object_entity_id==identity("tali"))
         stage("lift barrier crossbar from yard work trestle")
         blocked=(app.transform_state.work.stage==1 and
                  app.transform_state.work.status=="blocked")

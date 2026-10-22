@@ -178,6 +178,25 @@ class TransformationApplication(ActorApplication):
         if task is None or task.actor!=actor or task.status not in {"active","blocked"}:
             return None
         try:
+            # A willing NPC first prepares a visible, locally reachable resource
+            # through the existing actor-owned pickup route. No borrowed player
+            # inventory, reservation, or free combined work is inferred.
+            if actor!=self.fixture.player_entity_id:
+                required=[task.resource]
+                if task.method=="repurpose":required.insert(0,task.target)
+                for obj in required:
+                    need=self._need_custody(actor,obj)
+                    if need is not None:
+                        prepared=self._execute_actor(actor,need)
+                        if not prepared.authoritative_changed:
+                            raise MaterialError(prepared.message)
+                        self._event("transformation_preparation",actor,need,
+                                    receipt=prepared.receipt_id)
+                        self.evidence_state=knowledge.performed(self.evidence_state,actor,obj,
+                            "activity","transformation_preparation",prepared.receipt_id,
+                            self.runtime_state.logical_time_state.logical_position)
+                        self._observe_all(prepared.receipt_id)
+                        return prepared
             self._qualified(task)
             p=self.transform_profile
             physical=None
