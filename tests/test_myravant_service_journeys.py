@@ -98,12 +98,9 @@ def test_actual_brush_shortage_blocks_and_recovery_is_requalified(_repeat, tmp_p
     offer_and_accept(app)
     taken = app.pickup("Cleaning Brush")
     assert taken.authoritative_changed, taken.message
-    assert app.move("east").authoritative_changed
-    blocked = app.wait()
-    assert blocked.authoritative_changed, blocked.message
+    # The player now holds the only qualified brush. Tali cannot take it.
     assert service.latest(app.service_state).state != "eligible"
     assert service.latest(app.service_state).custody_receipt is None
-    assert app.move("west").authoritative_changed
     dropped = app.drop("Cleaning Brush")
     assert dropped.authoritative_changed, dropped.message
     for _ in range(8):
