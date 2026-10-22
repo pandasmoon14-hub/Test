@@ -7,7 +7,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from astra_runtime.domain import persistent_world_service_commitment as service
+from astra_runtime import myravant_service_commitment as service
 from astra_runtime.myravant_tarrow import identity
 
 
