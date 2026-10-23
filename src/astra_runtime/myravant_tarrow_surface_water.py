@@ -137,7 +137,6 @@ def create_surface_fixture(*, reverse_order=False, shared_workbench=False, struc
             specialists=(*layout.specialists, 'structures'))
 
     witness = {
-        "structure_case": structure_case,
         "old_water_root": layout.version, "material": asdict(material),
         "water": profile_payload(profile), "initial": canonical_state(water),
         "environment": canonical_profile(environment),
@@ -146,6 +145,8 @@ def create_surface_fixture(*, reverse_order=False, shared_workbench=False, struc
         "assemblies": [asdict(x) for x in assemblies],
         "policy": "deliberate-contact-whole-unit-1"
     }
+    if structure_case is not None:
+        witness["structure_case"] = structure_case
     layout = replace(layout, version=("structures-1-" if structure_case is not None else "surface-water-1-")+digest(witness)[:16])
     root = create_tarrow_fixture(layout=layout)
     return SurfaceFixture(
