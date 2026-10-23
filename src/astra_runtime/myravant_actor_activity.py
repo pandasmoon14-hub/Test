@@ -52,8 +52,10 @@ class ActivityProgram:
         kinds = {m.kind for stage in self.stages for m in stage.options}
         if not {"cleaning", "assembly"} <= kinds:
             raise ValueError("activity requires genuinely distinct work families")
-        if any({x.place_id for x in stage.options}.__len__() != 1 for stage in self.stages):
-            raise ValueError("stage alternatives must preserve the same goal place")
+        if any((len({x.place_id for x in stage.options}) != 1 or
+                len({x.participants[0] for x in stage.options}) != 1)
+                for stage in self.stages):
+            raise ValueError("alternatives must preserve the same goal and place")
 
 
 @dataclass(frozen=True)
@@ -117,7 +119,8 @@ def canonical_activities(records, programs, *, task_records=(), receipt_ids=None
                        for s in program.stages for m in s.options):
                 raise ValueError("activity stage exceeds declared program")
         finished = [x[0] for x in r.stages_finished]
-        if finished != list(range(len(finished))) or len(finished) > len(program.stages):
+        if (finished != list(range(len(finished))) or len(finished) > len(program.stages)
+                or r.stage_index != len(finished)):
             raise ValueError("nonsequential activity stage history")
         for index, task_id, status, receipt in r.stages_finished:
             task = task_map.get(task_id)
