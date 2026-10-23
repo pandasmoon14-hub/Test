@@ -69,7 +69,7 @@ def test_acceptance_is_zero_time_with_explicit_consent_and_no_reservation(tmp_pa
     assert not a.request_activity("Oren Kesh", "bench upkeep").authoritative_changed
     assert a.activity_records[0].activity_id == record.activity_id
     changed(a.wait())
-    assert tick(a) == 1 and a.activity_records[0].task_id is not None
+    assert tick(a) == before + 1 and a.activity_records[0].task_id is not None
     assert len(a.participation_state.records) == 1
     b = ActivityApplication.restore(fixture=a.fixture, checkpoint_path=a.checkpoint_path)
     assert b.authoritative_digest() == a.authoritative_digest()
