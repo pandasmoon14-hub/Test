@@ -172,3 +172,35 @@ def test_public_installed_routes_and_hidden_recipe_non_disclosure(tmp_path):
     assert "received statement" in body
     assert "actor activities (noncanonical)" not in body
     assert "generated_token" not in body and "recipe_identity" not in body
+
+
+def test_authored_and_generated_materials_share_the_same_owner_execution():
+    authored = InvestigationApplication.new(
+        fixture=create_investigation_fixture("neutral-relay"))
+    generated = InvestigationApplication.new(
+        fixture=create_generated_locality_fixture(LocalityRecipe("access")))
+    for app in (authored, generated):
+        changed(app.move("east"))
+        changed(app.material("put_on", "Plate", "Bench"))
+        changed(app.material("put_on", "Peg", "Bench"))
+        changed(app.material("tie", "Plate", "Peg", "Cord"))
+        cord = next(p.entity_id for p in app.fixture.object_presentations
+                    if p.name == "Cord")
+        assert len(app.connections) == 1
+        assert placement(app.state.representation, cord).relation_type == "reserved_by"
+        changed(app.material("untie", "Cord"))
+        assert not app.connections
+        assert placement(app.state.representation, cord).relation_type != "reserved_by"
+
+
+def test_read_only_queries_do_not_reroll_root_or_commit_private_facts():
+    fixture = create_generated_locality_fixture(LocalityRecipe("evidence", 1))
+    left = InvestigationApplication.new(fixture=fixture)
+    right = InvestigationApplication.new(fixture=fixture)
+    root = left.fixture.provenance.initial_state_digest
+    before = left.authoritative_digest()
+    for query in ("panel a", "brush"):
+        left.recall_history(query, "residue")
+        right.compare_history(query, "residue")
+    assert left.authoritative_digest() == before == right.authoritative_digest()
+    assert left.fixture.provenance.initial_state_digest == root
