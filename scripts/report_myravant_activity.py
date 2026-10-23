@@ -14,14 +14,14 @@ from astra_runtime.myravant_tarrow_activity import create_activity_fixture
 from astra_runtime.myravant_tarrow import identity
 from astra_runtime.domain.persistent_world_material import placement
 
-CASES = ("chain", "intervention", "contention")
+CASES = ("chain", "intervention", "contention", "player-contends")
 WORKSHOP = ("go south", "go west", "go west", "go west")
 
 
 def run_case(folder, case, sha):
     folder.mkdir()
     save = folder / "campaign.json"
-    fixture_case = "contended" if case == "contention" else "standard"
+    fixture_case = "contended" if case in {"contention", "player-contends"} else "standard"
     fixture = create_activity_fixture(activity_case=fixture_case)
     launcher = shutil.which("myravant-play")
     assert launcher, "installed executable required"
