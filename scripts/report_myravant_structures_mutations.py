@@ -10,6 +10,25 @@ from astra_runtime.myravant_actor_physical import execute_actor_physical
 from astra_runtime.myravant_structures_application import StructuresApplication
 from astra_runtime.myravant_tarrow_structures import create_structures_fixture, cover_subjects
 from astra_runtime.myravant_tarrow import identity
+from report_myravant_specialist_mutations import run_mutations
+
+# Unlike direct negative-state probes below, these are isolated source-copy
+# fault injections. Each passes its unchanged control, changes one specific
+# owner/adapter expression, and MUST fail the associated focused assertion.
+SOURCE_MUTATIONS = (
+    ("cover_connection_gate_ignored", "myravant_tarrow_structures.py",
+     "or not any((c.left, c.right, c.fastener, c.method)",
+     "or True or not any((c.left, c.right, c.fastener, c.method)",
+     "test_cover_reduces_only_qualified_drying_with_conserved_compartments"),
+    ("timed_cover_handoff_dropped", "myravant_timed_application.py",
+     "rate_overrides=self._exposure_rate_overrides(exposures))",
+     "rate_overrides=None)",
+     "test_cover_reduces_only_qualified_drying_with_conserved_compartments"),
+    ("actor_material_barrier_bypassed", "myravant_actor_physical.py",
+     "if any(e.kind == 'movement' and e.source == here and e.direction == route.direction",
+     "if False and any(e.kind == 'movement' and e.source == here and e.direction == route.direction",
+     "test_actor_uses_same_live_partition_and_cannot_bypass_player_block"),
+)
 
 
 def run():
@@ -71,8 +90,15 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
+    probes = run()
+    source = run_mutations(Path(__file__).resolve().parents[1],
+                           mutations=SOURCE_MUTATIONS,
+                           test_filename="test_play_tarrow_structures.py")
+    assert len(source["mutations"]) == 3
     result = {"source": "PLAY-TARROW-STRUCTURES-1",
-              "engineering_authored": True, "mutations": run()}
+              "engineering_authored": True, "negative_state_probes": probes,
+              "source_fault_injections": source,
+              "scope": "three isolated source mutations, each with an unmutated control"}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True)+"\n")
-    print("Structures: five injected failures and two controls detected.")
+    print("Structures: five input-state probes, two controls and three isolated source mutations passed.")
