@@ -194,3 +194,80 @@ def test_private_remote_activity_status_is_not_live_state():
     result = a.activity_status("Oren Kesh")
     assert not result.authoritative_changed
     assert "remote" in result.message.casefold() or "last communicated" in result.message.casefold()
+
+
+
+def test_k_blockage_withheld_stock_withdraws_without_minting_or_double_clock(tmp_path):
+    a = app(tmp_path)
+    workshop(a)
+    changed(a.pickup("cleaning cloth"))
+    changed(a.request_activity("Oren Kesh", "bench upkeep"))
+    accepted = a.activity_records[0].accepted_receipt
+    before = tick(a)
+    for due in range(1, 4):
+        changed(a.wait())
+        task = participation.selected(a.participation_state, identity("oren"))
+        assert tick(a) == before + due
+        assert task.blocked_due == due
+        assert task.status == ("withdrawn" if due == 3 else "blocked")
+    assert a.activity_records[0].status == "withdrawn"
+    assert a.activity_records[0].accepted_receipt == accepted
+    assert a.activity_records[0].stages_finished == ()
+    assert placement(a.state.representation, identity("cleaning-cloth")).object_entity_id == a.fixture.player_entity_id
+    b = ActivityApplication.restore(fixture=a.fixture, checkpoint_path=a.checkpoint_path)
+    assert b.authoritative_digest() == a.authoritative_digest()
+    changed(b.wait())
+    assert b.activity_records[0].status == "withdrawn"
+
+
+def test_player_supplies_tool_before_withdrawal_and_actor_resumes_real_work(tmp_path):
+    a = app(tmp_path)
+    workshop(a)
+    changed(a.pickup("cleaning cloth"))
+    changed(a.request_activity("Oren Kesh", "bench upkeep"))
+    changed(a.wait())
+    task = participation.selected(a.participation_state, identity("oren"))
+    assert task.status == "blocked" and task.blocked_due == 1
+    changed(a.drop("cleaning cloth"))
+    assert participation.selected(a.participation_state, identity("oren")).blocked_due == 2
+    changed(a.wait())
+    task = participation.selected(a.participation_state, identity("oren"))
+    assert task.status == "active" and task.blocked_due == 0
+    assert task.contributions
+    for _ in range(35):
+        changed(a.wait())
+        if a.activity_records[0].status != "active":
+            break
+    assert a.activity_records[0].status == "completed"
+    assert len(a.activity_records[0].stages_finished) == 3
+
+
+def test_stage_alternatives_cannot_change_target_as_if_it_were_a_method():
+    fixture = create_activity_fixture()
+    stage = fixture.activity_programs[0].stages[0]
+    with pytest.raises(ValueError):
+        ActivityProgram("invalid", identity("oren"),
+                        (ActivityStage((stage.options[0], replace(
+                            stage.options[1], participants=(
+                                identity("sorting-board"), identity("cleaning-brush"))))),
+                         fixture.activity_programs[0].stages[1]))
+
+
+def test_two_actor_contention_preserves_finite_tool_and_actual_receipt_order(tmp_path):
+    a = app(tmp_path, "contended")
+    workshop(a)
+    changed(a.request_activity("Tali Ren", "bench upkeep"))
+    changed(a.request_activity("Oren Kesh", "bench upkeep"))
+    before = tick(a)
+    changed(a.wait())
+    assert tick(a) == before + 1
+    first, second = a.fixture.actor_order
+    tasks = [participation.selected(a.participation_state, actor) for actor in (first, second)]
+    assert len(tasks[0].contributions) == 1
+    assert tasks[1].status == "blocked"
+    assert placement(a.state.representation, identity("cleaning-cloth")).object_entity_id == first
+    b = ActivityApplication.restore(fixture=a.fixture, checkpoint_path=a.checkpoint_path)
+    assert b.authoritative_digest() == a.authoritative_digest()
+    changed(a.wait())
+    changed(b.wait())
+    assert b.authoritative_digest() == a.authoritative_digest()
