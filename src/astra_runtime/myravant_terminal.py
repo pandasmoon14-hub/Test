@@ -1511,6 +1511,10 @@ def build_argument_parser() -> argparse.ArgumentParser:
         help="Select ordered opt-in surface-water actor profile variation.",
     )
     parser.add_argument(
+        "--activity-case", choices=("standard", "contended"), default="standard",
+        help="Select declared local actor activity variation.",
+    )
+    parser.add_argument(
         "--structures-case", choices=("standard", "cross-workshop"), default="standard",
         help="Select a different declared structural corridor profile, not a ruleset or generated canon.",
     )
@@ -1647,8 +1651,12 @@ def main(argv: list[str] | None = None) -> int:
         sys.stderr.write("A surface actor-order case requires --locality tarrow-surface-water.\n")
         return 2
 
-    if args.locality != "tarrow-structures" and args.structures_case != "standard":
+    if args.locality not in {"tarrow-structures", "tarrow-activities"} and args.structures_case != "standard":
         sys.stderr.write("A structural configuration requires --locality tarrow-structures.\n")
+        return 2
+
+    if args.locality != "tarrow-activities" and args.activity_case != "standard":
+        sys.stderr.write("Activity variant requires --locality tarrow-activities.\n")
         return 2
 
     if args.locality != "tarrow-transformation" and args.transformation_case != "standard":
