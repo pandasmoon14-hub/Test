@@ -106,6 +106,11 @@ def create_surface_fixture(*, reverse_order=False, shared_workbench=False, struc
     # one NEW opt-in configuration only. Earlier surface roots are unchanged.
     assemblies = base.assemblies
     if structure_case is not None:
+        # This NEW versioned preview retains the aired-to-sheltered schedule
+        # at a later committed boundary, leaving genuine exposure contrast for
+        # a constructed cover before the ambient change. Old profiles keep t12.
+        environment = replace(environment, schedule=((24, identity('yard-tools'),
+                                                       Fraction(1, 4), 'sheltered'),))
         panel, cord = identity('work-panel'), identity('work-cord')
         cover, cover_tie = identity('cover-cloth'), identity('cover-tie')
         crossbar, trestle = identity('barrier-crossbar'), identity('trestle')
