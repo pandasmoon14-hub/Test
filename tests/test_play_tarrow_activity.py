@@ -271,3 +271,45 @@ def test_two_actor_contention_preserves_finite_tool_and_actual_receipt_order(tmp
     changed(a.wait())
     changed(b.wait())
     assert b.authoritative_digest() == a.authoritative_digest()
+
+
+
+def test_scrub_method_recovers_actual_brush_not_unrelated_cloth(tmp_path):
+    """The initial wipe tool is not a proxy for the alternate scrub tool."""
+    a = app(tmp_path)
+    changed(a.move("south"))
+    changed(a.move("west"))
+    changed(a.pickup("cleaning brush"))
+    changed(a.move("west"))
+    changed(a.move("west"))
+    changed(a.drop("cleaning brush"))
+    changed(a.pickup("cleaning cloth"))  # Player keeps the first-choice tool.
+    changed(a.request_activity("Oren Kesh", "bench upkeep"))
+    changed(a.wait())
+    selected = participation.selected(a.participation_state, identity("oren"))
+    assert selected.kind == "cleaning" and selected.method == "scrub"
+    assert selected.participants[1] == identity("cleaning-brush")
+    for _ in range(45):
+        changed(a.wait())
+        if a.activity_records[0].status != "active":
+            break
+    completed = a.activity_records[0]
+    assert completed.status == "completed", (completed, a.participation_state.records)
+    recovered = next(t for t in a.participation_state.records
+                     if t.task_id == completed.stages_finished[-1][1])
+    assert recovered.kind == "recovery"
+    assert recovered.participants == (identity("cleaning-brush"),)
+    brush = placement(a.state.representation, identity("cleaning-brush"))
+    cloth = placement(a.state.representation, identity("cleaning-cloth"))
+    assert (brush.relation_type, brush.object_entity_id) == ("located_at", identity("work-bench"))
+    assert (cloth.relation_type, cloth.object_entity_id) == ("carried_by", a.fixture.player_entity_id)
+    restored = ActivityApplication.restore(fixture=a.fixture, checkpoint_path=a.checkpoint_path)
+    assert restored.authoritative_digest() == a.authoritative_digest()
+
+
+def test_declared_recovery_must_cover_both_cleaning_tools():
+    fixture = create_activity_fixture()
+    program = fixture.activity_programs[0]
+    missing_alternative = replace(program.stages[-1], options=(program.stages[-1].options[0],))
+    with pytest.raises(ValueError, match="recovery"):
+        replace(program, stages=(*program.stages[:-1], missing_alternative))
