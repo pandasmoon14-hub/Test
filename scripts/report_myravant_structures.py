@@ -97,7 +97,7 @@ def run_case(folder, case, sha):
         goals["actually_covered"] = identity("packing-felt") in cover_subjects(
             application.state.representation, application.connections, fixture.cover_profile)
         held = dict(application.water_state.water)[identity("packing-felt")]
-        play("wait 4 steps")
+        play("wait")
         goals["retained_wetness_after_exposure"] = (
             held > 0 and dict(application.water_state.water)[identity("packing-felt")] > 0)
         play("untie cover tie")
@@ -120,17 +120,22 @@ def run_case(folder, case, sha):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--repository-sha", default="not-supplied")
+    parser.add_argument("--repository-sha")
     args = parser.parse_args()
+    # The installed launcher and export identity must refer to the checkout
+    # actually executed. Retained-command discovery requires --output only.
+    sha = args.repository_sha or subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], text=True, timeout=15).strip()
+    assert len(sha) == 40 and all(c in "0123456789abcdef" for c in sha)
     with tempfile.TemporaryDirectory(prefix="myravant-structures-") as root:
-        data = [run_case(Path(root)/f"{case}-{iteration}", case, args.repository_sha)
+        data = [run_case(Path(root)/f"{case}-{iteration}", case, sha)
                 for case in CASES for iteration in range(2)]
         for case in CASES:
             pair = [x for x in data if x["case"] == case]
             assert len(pair) == 2 and pair[0]["final_digest"] == pair[1]["final_digest"]
         result = {"schema": "myravant.structures-installed.v1",
                   "engineering_authored": True, "cases": data,
-                  "campaigns": len(data), "source": args.repository_sha}
+                  "campaigns": len(data), "source": sha}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True)+"\n")
     print(f"Structures: {len(data)} installed journeys, objectives and replay passed.")
