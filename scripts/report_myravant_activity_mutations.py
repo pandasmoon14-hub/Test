@@ -20,6 +20,10 @@ MUTATIONS = (
      "len({x.participants[0] for x in stage.options}) != 1",
      "False",
      "test_stage_alternatives_cannot_change_target_as_if_it_were_a_method"),
+    ("recover_unused_cloth_instead_of_scrub_brush", "myravant_activity_application.py",
+     "if option.participants == (used,)",
+     "if option == stage.options[0]",
+     "test_scrub_method_recovers_actual_brush_not_unrelated_cloth"),
 )
 
 
@@ -30,14 +34,14 @@ def main():
     outcome = run_mutations(Path(__file__).resolve().parents[1],
                             mutations=MUTATIONS,
                             test_filename="test_play_tarrow_activity.py")
-    assert len(outcome["mutations"]) == 3
+    assert len(outcome["mutations"]) == 4
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps({
         "source": "PLAY-TARROW-ACTIVITY-2",
         "engineering_authored": True, "isolated_source_mutations": outcome,
         "not_blind_acceptance": True,
     }, indent=2, sort_keys=True) + "\n")
-    print("Activity: three isolated mutations detected against unchanged controls.")
+    print("Activity: four isolated mutations detected against unchanged controls.")
 
 
 if __name__ == "__main__":
