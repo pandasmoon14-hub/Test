@@ -129,7 +129,7 @@ def test_generation_failures_are_bounded_and_distinct(tmp_path, monkeypatch):
     with pytest.raises(ValueError):
         LocalityRecipe("evidence", budget=17)
     valid = create_generated_locality_fixture(LocalityRecipe("access"))
-    bad = replace(valid, actor_order=(valid.actor_order[0],) * 2)
+    bad = replace(valid, material_profile=replace(valid.material_profile, actor_id="astra:entity:unqualified-actor"))
     import astra_runtime.myravant_generated_locality as generator
     monkeypatch.setattr(generator, "_build_neutral", lambda **kwargs: bad)
     with pytest.raises(InvalidLocality):
