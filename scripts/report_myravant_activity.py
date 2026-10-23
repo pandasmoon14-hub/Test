@@ -64,14 +64,14 @@ def run_case(folder, case, sha):
         }
     elif case == "intervention":
         a = play("take cleaning cloth",
-                 "ask oren kesh to undertake bench upkeep", "wait 2 steps")
+                 "ask oren kesh to undertake bench upkeep", "wait")
         selected = a.participation_state.records[-1]
-        assert selected.status == "blocked" and selected.blocked_due == 2
+        assert selected.status == "blocked" and selected.blocked_due == 1
         a = play("drop cleaning cloth", "wait 20 steps")
         record = a.activity_records[0]
         goals = {
             "blocked_then_resumed": any(
-                event[1] == "due_resolution" and event[3][3] == "blocked"
+                event[1] == "due_resolution" and event[3][2] == "blocked"
                 for event in a.actor_events),
             "completion_after_real_tool": record.status == "completed",
             "recovery_preserves_identity": placement(
