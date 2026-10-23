@@ -50,7 +50,8 @@ def run_case(folder, case, sha):
     if case == "chain":
         a = play("ask oren kesh to undertake bench upkeep")
         assert a.activity_records and not a.activity_records[0].task_ids
-        a = play("wait 20 steps")
+        a = play("go east", "go east", "go east", "go north", "wait 20 steps",
+                 "go south", "go west", "go west", "go west")
         record = a.activity_records[0]
         goals = {
             "three_distinct_stages": len(record.stages_finished) == 3,
