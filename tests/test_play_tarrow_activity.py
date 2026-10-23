@@ -31,6 +31,11 @@ def tick(a):
     return a.runtime_state.logical_time_state.logical_position
 
 
+def workshop(a):
+    for direction in ("south", "west", "west", "west"):
+        changed(a.move(direction))
+
+
 def test_activity_root_differs_without_rewriting_structures():
     old = create_structures_fixture()
     new = create_activity_fixture()
@@ -53,6 +58,7 @@ def test_activity_root_differs_without_rewriting_structures():
 
 def test_acceptance_is_zero_time_with_explicit_consent_and_no_reservation(tmp_path):
     a = app(tmp_path)
+    workshop(a)
     before = tick(a)
     changed(a.request_activity("Oren Kesh", "bench upkeep"))
     assert tick(a) == before
@@ -72,6 +78,7 @@ def test_acceptance_is_zero_time_with_explicit_consent_and_no_reservation(tmp_pa
 
 def test_real_clean_assembly_recovery_chain_and_durable_stage_boundaries(tmp_path):
     a = app(tmp_path)
+    workshop(a)
     changed(a.request_activity("Oren Kesh", "bench upkeep"))
     initial = dict(a.water_state.adhered)[identity("practice-panel")]
     for _ in range(45):
@@ -118,6 +125,7 @@ def test_actor_order_and_intermediate_restore_are_stable(tmp_path, activity_case
 
 def test_cancel_keeps_acknowledged_owner_prefix(tmp_path):
     a = app(tmp_path)
+    workshop(a)
     changed(a.request_activity("Oren Kesh", "bench upkeep"))
     changed(a.wait())
     prefix = a.participation_state.records[-1].contributions
@@ -135,6 +143,7 @@ def test_cancel_keeps_acknowledged_owner_prefix(tmp_path):
 
 def test_old_structures_loader_rejects_activity_profile(tmp_path):
     a = app(tmp_path)
+    workshop(a)
     changed(a.request_activity("Oren Kesh", "bench upkeep"))
     with pytest.raises(MaterialError):
         StructuresApplication.restore(fixture=create_structures_fixture(),
@@ -144,6 +153,7 @@ def test_old_structures_loader_rejects_activity_profile(tmp_path):
 @pytest.mark.parametrize("corruption", ["profile", "journal", "last_state"])
 def test_resealed_activity_checkpoint_tampering_fails(tmp_path, corruption):
     a = app(tmp_path)
+    workshop(a)
     changed(a.request_activity("Oren Kesh", "bench upkeep"))
     changed(a.wait())
     envelope = json.loads(a.checkpoint_path.read_text())
@@ -164,18 +174,19 @@ def test_installed_terminal_routes_admission_wait_and_local_status():
     a = app()
     out = io.StringIO()
     run_terminal(a, input_stream=io.StringIO(
-        "help\ngo south\ngo west\nask oren kesh to undertake bench upkeep\n"
+        "help\ngo south\ngo west\ngo west\ngo west\nask oren kesh to undertake bench upkeep\n"
         "wait\nask oren kesh about activity\nexit\n"),
         output_stream=out, specialized_router=execute_activity_request)
     assert "Actor activities" in out.getvalue()
     assert "bench upkeep" in out.getvalue()
     assert len(a.activity_records) == 1
-    assert tick(a) >= 3
+    assert tick(a) >= 5
     assert a.activity_records[0].task_ids
 
 
 def test_private_remote_activity_status_is_not_live_state():
     a = app()
+    workshop(a)
     changed(a.request_activity("Oren Kesh", "bench upkeep"))
     changed(a.wait())
     # No generic remote live window: at most a last communicated agreement.
