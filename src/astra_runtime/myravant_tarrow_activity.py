@@ -45,14 +45,16 @@ def create_activity_fixture(*, activity_case="standard", structures_case="standa
                                _method("cleaning", "scrub", ("practice-panel", "cleaning-brush"), "work-bench"))),
                 ActivityStage((_method("assembly", "workshop assembly",
                                        ("repair-board", "repair-peg", "repair-cord"), "work-bench"),)),
-                ActivityStage((_method("recovery", "drop", ("cleaning-cloth",), "work-bench"),)),
+                ActivityStage((_method("recovery", "drop", ("cleaning-cloth",), "work-bench"),
+                               _method("recovery", "drop", ("cleaning-brush",), "work-bench"))),
             )),
             ActivityProgram("yard upkeep", identity("tali"), (
                 ActivityStage((_method("cleaning", "scrub", ("sorting-board", "cleaning-brush"), "yard-tools"),
                                _method("cleaning", "wipe", ("sorting-board", "cleaning-cloth"), "yard-tools"))),
                 ActivityStage((_method("assembly", "work partition",
                                        ("work-panel", "barrier-crossbar", "work-cord"), "yard-tools"),)),
-                ActivityStage((_method("recovery", "drop", ("cleaning-brush",), "yard-tools"),)),
+                ActivityStage((_method("recovery", "drop", ("cleaning-brush",), "yard-tools"),
+                               _method("recovery", "drop", ("cleaning-cloth",), "yard-tools"))),
             )),
         )
     else:
@@ -63,7 +65,8 @@ def create_activity_fixture(*, activity_case="standard", structures_case="standa
                            _method("cleaning", "scrub", ("practice-panel", "cleaning-brush"), "work-bench"))),
             ActivityStage((_method("assembly", "workshop assembly",
                                    ("repair-board", "repair-peg", "repair-cord"), "work-bench"),)),
-            ActivityStage((_method("recovery", "drop", ("cleaning-cloth",), "work-bench"),)),
+            ActivityStage((_method("recovery", "drop", ("cleaning-cloth",), "work-bench"),
+                               _method("recovery", "drop", ("cleaning-brush",), "work-bench"))),
         )) for key in ("oren", "tali"))
     return ActivityFixture(**base.__dict__, activity_case=activity_case, activity_programs=profiles)
 
