@@ -170,6 +170,24 @@ class ActivityApplication(StructuresApplication):
                 pass
         return None
 
+    def _recovery_option(self, record, stage):
+        """Follow the actually completed cleaning method, not a default tool.
+
+        The history is an owner Participation task; this metadata cannot grant
+        custody or mark a return complete without the physical owner.
+        """
+        finished = {task_id for _, task_id, _, _ in record.stages_finished}
+        cleaning = [task for task in self.participation_state.records
+                    if task.task_id in finished and task.kind == "cleaning"]
+        if len(cleaning) != 1 or len(cleaning[0].participants) != 2:
+            raise ValueError("Recovery requires one preceding evidenced cleaning task.")
+        used = cleaning[0].participants[1]
+        matches = [option for option in stage.options
+                   if option.participants == (used,)]
+        if len(matches) != 1:
+            raise ValueError("Recovery lacks a declaration for the actual used tool.")
+        return matches[0]
+
     def _start_stage(self, record, option):
         task = self._accept(record.actor_id, option.kind, option.method,
                             option.participants, option.place_id, record.source_actor_id)
@@ -205,7 +223,12 @@ class ActivityApplication(StructuresApplication):
                         continue
                 except participation.ParticipationRefusal:
                     pass
-                chosen = self._selected_option(record.actor_id, stage) or stage.options[0]
+                if stage.options[0].kind == "recovery":
+                    # Never return a different, unused tool just because it is
+                    # already resting at a plausible destination.
+                    chosen = self._recovery_option(record, stage)
+                else:
+                    chosen = self._selected_option(record.actor_id, stage) or stage.options[0]
                 self._start_stage(record, chosen)
                 continue
             current = next(t for t in self.participation_state.records if t.task_id == record.task_id)
@@ -215,7 +238,8 @@ class ActivityApplication(StructuresApplication):
                 (t.kind, t.method, t.participants, t.place_id)
                 == (m.kind, m.method, m.participants, m.place_id)
                 for t in self.participation_state.records if t.task_id in record.task_ids))
-            alternate = self._selected_option(record.actor_id, stage, exclude=used)
+            alternate = (None if stage.options[0].kind == "recovery" else
+                         self._selected_option(record.actor_id, stage, exclude=used))
             if alternate is None:
                 continue
             self.participation_state = participation.withdraw(
