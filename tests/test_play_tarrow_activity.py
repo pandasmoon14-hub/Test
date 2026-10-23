@@ -65,7 +65,7 @@ def test_acceptance_is_zero_time_with_explicit_consent_and_no_reservation(tmp_pa
     record = a.activity_records[0]
     assert record.status == "active" and record.task_id is None
     assert not a.participation_state.records
-    assert "reserves no tools" in a.activity_status("Oren Kesh").message or tick(a) == 0
+    assert "last communicated status" in a.activity_status("Oren Kesh").message
     assert not a.request_activity("Oren Kesh", "bench upkeep").authoritative_changed
     assert a.activity_records[0].activity_id == record.activity_id
     changed(a.wait())
@@ -189,6 +189,7 @@ def test_private_remote_activity_status_is_not_live_state():
     workshop(a)
     changed(a.request_activity("Oren Kesh", "bench upkeep"))
     changed(a.wait())
+    changed(a.move("east"))
     # No generic remote live window: at most a last communicated agreement.
     result = a.activity_status("Oren Kesh")
     assert not result.authoritative_changed
