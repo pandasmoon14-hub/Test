@@ -52,10 +52,17 @@ class ActivityProgram:
         kinds = {m.kind for stage in self.stages for m in stage.options}
         if not {"cleaning", "assembly"} <= kinds:
             raise ValueError("activity requires genuinely distinct work families")
-        if any((len({x.place_id for x in stage.options}) != 1 or
-                len({x.participants[0] for x in stage.options}) != 1)
-                for stage in self.stages):
-            raise ValueError("alternatives must preserve the same goal and place")
+        for index, stage in enumerate(self.stages):
+            if len({x.place_id for x in stage.options}) != 1:
+                raise ValueError("alternatives must preserve the same work place")
+            if stage.options[0].kind == "recovery":
+                used_tools = {m.participants[1] for prior in self.stages[:index]
+                              for m in prior.options if m.kind == "cleaning"}
+                declared = {m.participants[0] for m in stage.options}
+                if not used_tools or declared != used_tools:
+                    raise ValueError("recovery must cover exactly the preceding cleaning tool alternatives")
+            elif len({x.participants[0] for x in stage.options}) != 1:
+                raise ValueError("alternative methods must preserve the same goal target")
 
 
 @dataclass(frozen=True)
