@@ -120,7 +120,7 @@ def create_surface_fixture(*, reverse_order=False, shared_workbench=False, struc
         screen_link = (panel, board, cord, 'tie')
         cover_link = (cover, crossbar, cover_tie, 'tie')
         barrier_support = ((panel, trestle), (crossbar, trestle))
-        barrier_routes = (('yard-tools', 'north'), ('yard-sorting', 'south')) if structure_case == 'standard' else (('yard-tools', 'west'), ('work-bench', 'east'))
+        barrier_routes = (('yard-tools', 'north'), ('yard-sorting', 'south')) if structure_case == 'standard' else (('yard-tools', 'west'), ('workshop', 'east'))
         material = replace(material,
             support_pairs=(*material.support_pairs, (panel, trestle), (panel, box), (cover, trestle)),
             fastening_pairs=(*material.fastening_pairs, barrier_link, screen_link, cover_link),
