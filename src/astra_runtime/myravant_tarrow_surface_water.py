@@ -37,7 +37,11 @@ class SurfaceFixture(ActorFixture):
         )
 
 
-def create_surface_fixture(*, reverse_order=False, shared_workbench=False, structure_case=None):
+def create_surface_fixture(*, reverse_order=False, shared_workbench=False, structure_case=None, activity_case=None):
+    if activity_case is not None and activity_case not in {"standard", "contended"}:
+        raise ValueError("unknown bounded activity profile")
+    if activity_case is not None and structure_case is None:
+        raise ValueError("activity profile requires declared structural root")
     if type(shared_workbench) is not bool:
         raise ValueError("surface actor-position variant must be explicit")
     if type(reverse_order) is not bool:
@@ -152,7 +156,9 @@ def create_surface_fixture(*, reverse_order=False, shared_workbench=False, struc
     }
     if structure_case is not None:
         witness["structure_case"] = structure_case
-    layout = replace(layout, version=("structures-1-" if structure_case is not None else "surface-water-1-")+digest(witness)[:16])
+    if activity_case is not None:
+        witness["activity_case"] = activity_case
+    layout = replace(layout, version=("activity-2-" if activity_case is not None else "structures-1-" if structure_case is not None else "surface-water-1-")+digest(witness)[:16])
     root = create_tarrow_fixture(layout=layout)
     return SurfaceFixture(
         **root.__dict__, material_profile=material, water_profile=profile,
