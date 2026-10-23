@@ -19,8 +19,11 @@ class StructuresApplication(SurfaceWaterApplication):
         return create_structures_fixture()
 
     def _checkpoint_profile(self):
+        cover = asdict(self.fixture.cover_profile)
+        rate = self.fixture.cover_profile.rate
+        cover["rate"] = [rate.numerator, rate.denominator]
         return {"surface": super()._checkpoint_profile(),
-                "cover": asdict(self.fixture.cover_profile),
+                "cover": cover,
                 "structures_case": self.fixture.structures_case,
                 "structures_version": "relationships-and-covered-absorbents-1"}
 
