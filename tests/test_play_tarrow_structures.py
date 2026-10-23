@@ -126,9 +126,11 @@ def test_cover_reduces_only_qualified_drying_with_conserved_compartments(tmp_pat
     assert identity("packing-felt") in cover_subjects(covered.state.representation, covered.connections, covered.fixture.cover_profile)
     assert not cover_subjects(aired.state.representation, aired.connections, aired.fixture.cover_profile)
     start = tally(covered)
-    for _ in range(4):
-        changed(covered.wait())
-        changed(aired.wait())
+    # At installation the felt has already accrued half an aired interval.
+    # One subsequent interval distinguishes qualified cover (3/4 credit,
+    # still wet) from exposed felt (1 whole water unit evaporated).
+    changed(covered.wait())
+    changed(aired.wait())
     assert dict(covered.water_state.water)[identity("packing-felt")] > dict(aired.water_state.water)[identity("packing-felt")]
     assert tally(covered) == tally(aired) == start
     b = StructuresApplication.restore(fixture=covered.fixture, checkpoint_path=covered.checkpoint_path)
