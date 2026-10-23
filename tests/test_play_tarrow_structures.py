@@ -5,7 +5,7 @@ import io
 
 import pytest
 
-from astra_runtime.domain.persistent_world_material import active_effects, placement
+from astra_runtime.domain.persistent_world_material import active_effects, placement, MaterialError
 from astra_runtime.domain.persistent_world_water_cleaning import total_water, total_residue
 from astra_runtime.myravant_actor_physical import execute_actor_physical
 from astra_runtime.myravant_structures_application import StructuresApplication, execute_structures_request
@@ -170,7 +170,7 @@ def test_preexisting_surface_binding_and_checkpoint_are_unchanged(tmp_path):
     assert len([p for p in first.object_presentations if p.name == "Work Panel"]) == 0
     a = app(tmp_path)
     erect_partition(a)
-    with pytest.raises((ValueError, Exception)) as err:
+    with pytest.raises(MaterialError) as err:
         SurfaceWaterApplication.restore(fixture=create_surface_fixture(), checkpoint_path=a.checkpoint_path)
     assert err.value is not None
     assert create_structures_fixture().provenance.fixture_version != first.provenance.fixture_version
