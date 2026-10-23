@@ -129,6 +129,14 @@ def canonical_activities(records, programs, *, task_records=(), receipt_ids=None
         if (finished != list(range(len(finished))) or len(finished) > len(program.stages)
                 or r.stage_index != len(finished)):
             raise ValueError("nonsequential activity stage history")
+        completed_cleaning = [task_map[task_id] for index, task_id, _, _ in r.stages_finished
+                              if task_id in task_map and task_map[task_id].kind == "cleaning"]
+        for task_id in r.task_ids:
+            task = task_map[task_id]
+            if task.kind == "recovery" and (
+                len(completed_cleaning) != 1 or
+                task.participants != (completed_cleaning[0].participants[1],)):
+                raise ValueError("recovery stage must bind the actual prior cleaning tool")
         for index, task_id, status, receipt in r.stages_finished:
             task = task_map.get(task_id)
             if (task is None or task.status != status
