@@ -79,6 +79,20 @@ def run_case(folder, case, sha):
                 a.state.representation, identity("cleaning-cloth")).object_entity_id
                 == identity("work-bench"),
         }
+    elif case == "player-contends":
+        a = play("take cleaning cloth", "ask tali ren to undertake bench upkeep",
+                 "ask oren kesh to undertake bench upkeep", "wait")
+        assert len(a.participation_state.records) == 2
+        assert all(t.status == "blocked" for t in a.participation_state.records)
+        a = play("drop cleaning cloth", "wait")
+        goals = {
+            "all_three_contend": len(a.activity_records) == 2,
+            "finite_custody": placement(a.state.representation,
+                identity("cleaning-cloth")).object_entity_id == a.fixture.actor_order[0],
+            "other_actor_blocked_or_withdrawn": any(
+                t.status in {"blocked", "withdrawn"} for t in a.participation_state.records),
+            "one_clock": len(a.intervals) == a.runtime_state.logical_time_state.logical_position,
+        }
     else:
         a = play("ask tali ren to undertake bench upkeep",
                  "ask oren kesh to undertake bench upkeep",
