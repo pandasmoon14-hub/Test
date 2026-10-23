@@ -87,3 +87,7 @@ This candidate does not complete #508, #538, #493/#495 or human acceptance.
 Certification and remaining limits belong to the actor review. #547 has already
 merged and #540 has accepted its bounded environmental milestone; the earlier
 candidate wording in the historical #546 entry above predates that disposition.
+
+## Functional structures compatibility — #561
+
+The opt-in `tarrow-structures` profile derives an access-blocking partition or a separately configured sightline screen from existing supported and fastened whole parts. A distinct attached cover qualifies only two declared absorbents for a non-increasing per-interval drying rate. This is **not** structural strength, general physical shelter, weather sealing or new canon. New versioned journal/profile references preserve existing material, actor, surface-water, transformation and default semantics; old saves are never silently reinterpreted. Draft #562 remains pending exact-head verification and independent review.

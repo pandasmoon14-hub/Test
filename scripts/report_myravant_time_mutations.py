@@ -6,7 +6,7 @@ from report_myravant_specialist_mutations import run_mutations
 
 MUTATIONS = (
     ('passive_drying_not_scheduled', 'myravant_timed_application.py',
-     'self.water_state,self.environment_state=env.advance_environment(self.water_state,self.environment_state,self.environment_profile,exposures,tick,result.receipt_id)',
+     'self.water_state,self.environment_state=env.advance_environment(self.water_state,self.environment_state,self.environment_profile,exposures,tick,result.receipt_id,\n                                                                          rate_overrides=self._exposure_rate_overrides(exposures))',
      'self.water_state,self.environment_state=self.water_state,self.environment_state',
      'test_wait_dries_cloth_without_working_on_dirty_panel'),
     ('evaporation_ledger_loses_water', 'domain/persistent_world_timed_environment.py',

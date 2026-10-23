@@ -150,13 +150,18 @@ class TimedApplication(WaterApplication):
             return None
         return {obj:exposed(obj) for obj in self.environment_profile.absorbents}
 
+    def _exposure_rate_overrides(self, exposures):
+        """No structural cover in older opt-in profiles."""
+        return None
+
     def _clock_interval(self):
         exposures=self._exposures()
         before=digest(env.canonical_environment(self.environment_state))
         result=MyravantPlayApplication.wait(self)
         if not result.authoritative_changed:raise ValueError('qualified logical interval failed')
         tick=self.runtime_state.logical_time_state.logical_position
-        self.water_state,self.environment_state=env.advance_environment(self.water_state,self.environment_state,self.environment_profile,exposures,tick,result.receipt_id)
+        self.water_state,self.environment_state=env.advance_environment(self.water_state,self.environment_state,self.environment_profile,exposures,tick,result.receipt_id,
+                                                                          rate_overrides=self._exposure_rate_overrides(exposures))
         for due,place,rate,label in self.environment_profile.schedule:
             if due==tick:
                 rid=build_record_id('environment_condition',digest([result.receipt_id,due,place,str(rate),label])[:28])

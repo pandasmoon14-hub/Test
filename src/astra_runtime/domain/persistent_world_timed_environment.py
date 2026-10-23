@@ -136,7 +136,8 @@ def add_trace(env: TimedEnvironmentState, subject: str, kind: str,
 def advance_environment(water: wc.WaterCleaningState, env: TimedEnvironmentState,
                         profile: TimedEnvironmentProfile,
                         exposures: Mapping[str, str | None], tick: int,
-                        cause_id: str) -> tuple[wc.WaterCleaningState, TimedEnvironmentState]:
+                        cause_id: str, *, rate_overrides: Mapping[str, Fraction] | None = None
+                        ) -> tuple[wc.WaterCleaningState, TimedEnvironmentState]:
     """Advance exactly one caller-committed interval ending at ``tick``."""
     validate_environment(water, env, profile)
     if type(tick) is not int or tick < 1 or not _text(cause_id) or set(exposures) != set(profile.absorbents):
@@ -145,6 +146,19 @@ def advance_environment(water: wc.WaterCleaningState, env: TimedEnvironmentState
     for due, place, rate, _ in profile.schedule:
         if due <= tick - 1:
             rates[place] = rate
+    # An explicitly qualified material cover may narrow an absorbent's exposure
+    # for this interval. It cannot invent an ambient rate, speed drying up, or
+    # affect a different subject. Existing callers supply no overrides.
+    if rate_overrides is None:
+        rate_overrides = {}
+    if not isinstance(rate_overrides, Mapping) or not set(rate_overrides) <= set(profile.absorbents):
+        raise ValueError('unqualified cover exposure subject')
+    for subject, rate in rate_overrides.items():
+        if type(rate) not in (int, Fraction) or rate < 0 or rate > 1:
+            raise ValueError('invalid qualified cover rate')
+        place = exposures[subject]
+        if place is None or place not in rates or rate > rates[place]:
+            raise ValueError('cover cannot increase or invent environmental exposure')
     stock, adhered, suspended = map(dict, (water.water, water.adhered, water.suspended))
     credits, deposits, evaporated = map(dict, (env.credits, env.deposits, env.evaporated))
     result_env = env
@@ -157,7 +171,7 @@ def advance_environment(water: wc.WaterCleaningState, env: TimedEnvironmentState
             continue
         if place is None:
             continue
-        earned = credits[subject] + rates[place]
+        earned = credits[subject] + rate_overrides.get(subject, rates[place])
         removed = min(stock[subject], earned.numerator // earned.denominator)
         stock[subject] -= removed
         evaporated[place] += removed
