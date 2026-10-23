@@ -1612,6 +1612,14 @@ def main(argv: list[str] | None = None) -> int:
         locality_args = {"fixture": create_structures_fixture(structures_case=args.structures_case)}
         execute_bounded_terminal_request = execute_structures_request
 
+    if args.locality == "tarrow-activities":
+        from astra_runtime.myravant_activity_application import ActivityApplication
+        from astra_runtime.myravant_tarrow_activity import create_activity_fixture, execute_activity_request
+        application_type = ActivityApplication
+        locality_args = {"fixture": create_activity_fixture(activity_case=args.activity_case,
+                                                           structures_case=args.structures_case)}
+        execute_bounded_terminal_request = execute_activity_request
+
     if args.locality == "tarrow-service":
         from astra_runtime.myravant_service_application import (
             ServiceApplication, execute_service_locality_request,
