@@ -1495,7 +1495,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time", "tarrow-actors", "tarrow-service", "tarrow-surface-water", "tarrow-structures", "tarrow-activities", "tarrow-investigation", "tarrow-transformation"), default="development",
+        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time", "tarrow-actors", "tarrow-service", "tarrow-surface-water", "tarrow-structures", "tarrow-activities", "tarrow-investigation", "tarrow-transformation", "generated-worksite"), default="development",
         help="Select a qualified locality; saved campaigns are not converted.",
     )
     parser.add_argument(
@@ -1517,6 +1517,14 @@ def build_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--structures-case", choices=("standard", "cross-workshop"), default="standard",
         help="Select a different declared structural corridor profile, not a ruleset or generated canon.",
+    )
+    parser.add_argument(
+        "--generated-case", choices=("access", "resources", "evidence"), default="access",
+        help="Select one admitted noncanonical generated worksite pressure family.",
+    )
+    parser.add_argument(
+        "--generated-seed", type=int, default=0,
+        help="Version-bound noncanonical worksite construction seed (0 through 65535).",
     )
     parser.add_argument(
         "--transformation-case", choices=("standard", "split-spare"), default="standard",
@@ -1639,6 +1647,22 @@ def main(argv: list[str] | None = None) -> int:
         locality_args = {"fixture": create_investigation_fixture(args.investigation_case)}
         execute_bounded_terminal_request = execute_investigation_request
 
+    if args.locality == "generated-worksite":
+        from astra_runtime.myravant_generated_locality import (
+            LocalityRecipe, create_generated_locality_fixture,
+        )
+        from astra_runtime.myravant_investigation_application import InvestigationApplication
+        from astra_runtime.myravant_tarrow_investigation import execute_investigation_request
+        try:
+            generated_recipe = LocalityRecipe(case=args.generated_case, seed=args.generated_seed)
+            generated_fixture = create_generated_locality_fixture(generated_recipe)
+        except ValueError:
+            sys.stderr.write("Unable to admit that generated worksite configuration.\n")
+            return 2
+        application_type = InvestigationApplication
+        locality_args = {"fixture": generated_fixture}
+        execute_bounded_terminal_request = execute_investigation_request
+
     if args.locality == "tarrow-transformation":
         from astra_runtime.myravant_transformation_application import TransformationApplication
         from astra_runtime.myravant_tarrow_transformation import create_transformation_fixture, execute_transformation_request
@@ -1657,6 +1681,14 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.locality != "tarrow-activities" and args.activity_case != "standard":
         sys.stderr.write("Activity variant requires --locality tarrow-activities.\n")
+        return 2
+
+    if args.locality != "generated-worksite" and (args.generated_case != "access" or args.generated_seed != 0):
+        sys.stderr.write("Generated construction inputs require --locality generated-worksite.\n")
+        return 2
+
+    if args.locality == "generated-worksite" and args.load is None and args.checkpoint is None:
+        sys.stderr.write("A new generated worksite requires --checkpoint; restore with --load.\n")
         return 2
 
     if args.locality != "tarrow-transformation" and args.transformation_case != "standard":
@@ -1693,6 +1725,10 @@ def main(argv: list[str] | None = None) -> int:
             application, _preparation_receipts = build_investigation_case(
                 args.investigation_case, checkpoint_path
             )
+        elif args.locality == "generated-worksite" and args.load is None:
+            from astra_runtime.myravant_generated_locality import build_generated_locality
+            application, _generation_receipts = build_generated_locality(
+                generated_recipe, checkpoint_path=args.checkpoint)
         elif args.load is not None:
             application = application_type.restore(
                 checkpoint_path=args.load, **locality_args
@@ -1711,6 +1747,12 @@ def main(argv: list[str] | None = None) -> int:
         else:
             sys.stderr.write(f"Unable to restore checkpoint: {exc}\n")
         return 2
+
+    if args.locality == "generated-worksite" and args.load is None:
+        sys.stdout.write(
+            "Generated noncanonical worksite prepared through qualified owner actions; "
+            "private histories remain discoverable only through lawful play.\n"
+        )
 
     if args.prepare_investigation:
         sys.stdout.write(
