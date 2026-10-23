@@ -210,8 +210,11 @@ jobs:
   core-windows:
     name: core-windows
     runs-on: windows-latest
-    # Budget for the long Windows suite plus focused/full installed-family coverage.
-    timeout-minutes: 25
+    # Exact-head #39886248469 reached 9,266 passing tests (82%) at 24m33s
+    # before this 25-minute job cap cancelled the remaining full suite.
+    # Preserve every test and all retained evidence; budget the measured
+    # Windows serial workload and CI overhead without suppressing coverage.
+    timeout-minutes: 40
     env:
       PYTHONUTF8: "1"
     steps:
