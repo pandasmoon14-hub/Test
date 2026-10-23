@@ -352,7 +352,7 @@ jobs:
         run: python -m pip check
       - name: Installed structures journeys and isolated mutations
         run: |
-          python scripts/report_myravant_structures.py --repository-sha ${{ github.event.pull_request.head.sha || github.sha }} --output structures-evidence.json
+          python scripts/report_myravant_structures.py --output structures-evidence.json
           python scripts/report_myravant_structures_mutations.py --output structures-mutations.json
       - name: Upload structures evidence
         uses: actions/upload-artifact@v4
