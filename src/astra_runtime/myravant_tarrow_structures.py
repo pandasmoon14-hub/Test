@@ -74,10 +74,13 @@ def cover_subjects(representation, connections, profile):
                  and placement(representation, subject).object_entity_id == profile.support)
 
 
-def create_structures_fixture(*, structures_case="standard"):
+def create_structures_fixture(*, structures_case="standard", activity_case=None):
     if type(structures_case) is not str or structures_case not in {"standard", "cross-workshop"}:
         raise ValueError("unknown declared structure configuration")
-    parent = create_surface_fixture(structure_case=structures_case)
+    parent = create_surface_fixture(structure_case=structures_case,
+                                    activity_case=activity_case,
+                                    reverse_order=activity_case == "contended",
+                                    shared_workbench=activity_case == "contended")
     cover = CoverExposure(identity("cover-cloth"), identity("barrier-crossbar"),
                           identity("cover-tie"), identity("trestle"),
                           (identity("cleaning-cloth"), identity("packing-felt")))

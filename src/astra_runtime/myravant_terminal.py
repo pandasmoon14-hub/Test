@@ -1495,7 +1495,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time", "tarrow-actors", "tarrow-service", "tarrow-surface-water", "tarrow-structures", "tarrow-investigation", "tarrow-transformation"), default="development",
+        "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time", "tarrow-actors", "tarrow-service", "tarrow-surface-water", "tarrow-structures", "tarrow-activities", "tarrow-investigation", "tarrow-transformation"), default="development",
         help="Select a qualified locality; saved campaigns are not converted.",
     )
     parser.add_argument(
@@ -1509,6 +1509,10 @@ def build_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--surface-order", choices=("standard", "reversed"), default="standard",
         help="Select ordered opt-in surface-water actor profile variation.",
+    )
+    parser.add_argument(
+        "--activity-case", choices=("standard", "contended"), default="standard",
+        help="Select declared local actor activity variation.",
     )
     parser.add_argument(
         "--structures-case", choices=("standard", "cross-workshop"), default="standard",
@@ -1612,6 +1616,14 @@ def main(argv: list[str] | None = None) -> int:
         locality_args = {"fixture": create_structures_fixture(structures_case=args.structures_case)}
         execute_bounded_terminal_request = execute_structures_request
 
+    if args.locality == "tarrow-activities":
+        from astra_runtime.myravant_activity_application import ActivityApplication
+        from astra_runtime.myravant_tarrow_activity import create_activity_fixture, execute_activity_request
+        application_type = ActivityApplication
+        locality_args = {"fixture": create_activity_fixture(activity_case=args.activity_case,
+                                                           structures_case=args.structures_case)}
+        execute_bounded_terminal_request = execute_activity_request
+
     if args.locality == "tarrow-service":
         from astra_runtime.myravant_service_application import (
             ServiceApplication, execute_service_locality_request,
@@ -1639,8 +1651,12 @@ def main(argv: list[str] | None = None) -> int:
         sys.stderr.write("A surface actor-order case requires --locality tarrow-surface-water.\n")
         return 2
 
-    if args.locality != "tarrow-structures" and args.structures_case != "standard":
+    if args.locality not in {"tarrow-structures", "tarrow-activities"} and args.structures_case != "standard":
         sys.stderr.write("A structural configuration requires --locality tarrow-structures.\n")
+        return 2
+
+    if args.locality != "tarrow-activities" and args.activity_case != "standard":
+        sys.stderr.write("Activity variant requires --locality tarrow-activities.\n")
         return 2
 
     if args.locality != "tarrow-transformation" and args.transformation_case != "standard":

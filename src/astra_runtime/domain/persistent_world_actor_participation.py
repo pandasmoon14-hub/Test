@@ -58,7 +58,7 @@ class Participation:
                       self.place_id, self.accepted_receipt, self.eligible_after):
             if not _text(value):
                 raise ValueError("participation identities must be bounded nonempty text")
-        if self.kind not in ("cleaning", "assembly") or self.status not in _STATUSES:
+        if self.kind not in ("cleaning", "assembly", "recovery") or self.status not in _STATUSES:
             raise ValueError("unknown participation kind or status")
         if type(self.tick) is not int or self.tick < 0 or type(self.blocked_due) is not int or not 0 <= self.blocked_due <= 32:
             raise ValueError("invalid participation counters")
