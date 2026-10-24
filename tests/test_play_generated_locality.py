@@ -69,7 +69,6 @@ def test_access_barrier_is_live_material_and_alternate_route_exists(tmp_path):
     changed(app.move("west"))
     changed(app.move("north"))
     changed(app.move("south"))
-    changed(app.move("east"))
     changed(app.material("untie", "Cord"))
     assert not active_effects(app.state.representation, app.connections,
                               app.fixture.material_profile)
@@ -181,8 +180,11 @@ def test_authored_and_generated_materials_share_the_same_owner_execution():
         fixture=create_generated_locality_fixture(LocalityRecipe("access")))
     for app in (authored, generated):
         changed(app.move("east"))
+        changed(app.pickup("Plate"))
         changed(app.material("put_on", "Plate", "Bench"))
+        changed(app.pickup("Peg"))
         changed(app.material("put_on", "Peg", "Bench"))
+        changed(app.pickup("Cord"))
         changed(app.material("tie", "Plate", "Peg", "Cord"))
         cord = next(p.entity_id for p in app.fixture.object_presentations
                     if p.name == "Cord")
