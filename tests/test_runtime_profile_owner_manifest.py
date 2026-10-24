@@ -48,14 +48,15 @@ def test_mutation_control_unregistered_new_authority_owner_is_rejected(tmp_path)
     package.mkdir(parents=True)
     injected = package / "myravant_unregistered_settlement.py"
     injected.write_text(
-        "from dataclasses import dataclass\\n"
-        "@dataclass(frozen=True)\\n"
-        "class SettlementState:\\n"
-        "    accepted: bool = False\\n"
-        "def settle(state):\\n"
-        "    return SettlementState(accepted=True)\\n",
+        "from dataclasses import dataclass\n"
+        "@dataclass(frozen=True)\n"
+        "class SettlementState:\n"
+        "    accepted: bool = False\n"
+        "def settle(state):\n"
+        "    return SettlementState(accepted=True)\n",
         encoding="utf-8",
     )
+    assert ast.parse(injected.read_text(encoding="utf-8"))
     assert unregistered_runtime_root_files(tmp_path) == frozenset({injected.name})
     assert injected.name not in PROFILE_LOCAL_OWNER_FILES
 
@@ -65,5 +66,5 @@ def test_mutation_control_new_adapter_is_not_silently_exempt(tmp_path):
     package = tmp_path / "src" / "astra_runtime"
     package.mkdir(parents=True)
     injected = package / "myravant_new_presentation_adapter.py"
-    injected.write_text('"""Non-owning client adapter."""\\n', encoding="utf-8")
+    injected.write_text('"""Non-owning client adapter."""\n', encoding="utf-8")
     assert unregistered_runtime_root_files(tmp_path) == frozenset({injected.name})
