@@ -35,6 +35,8 @@ def test_neutral_roots_are_deterministic_and_distinct_from_legacy(case, seed):
         "Entrance", "Workshop", "Covered Yard", "Store"}
     assert all("generated-worksite-" in p.entity_id for p in a.object_presentations)
     assert a.provenance.canon is False
+    assert a.provenance.origin_merge_commit == '0' * 40
+    assert a.provenance.origin_merged_at == ''  # not inherited neutral merge evidence
 
 
 @pytest.mark.parametrize("case", CASES)
