@@ -30,6 +30,9 @@ The versioned, sorted JSON report includes:
   application class binding per choice, class-declared checkpoint formats,
   declared replay-method expressions, method inheritance hints, and static
   checkpoint writer/restore function definitions with source line numbers.
+- A source-only inventory of literal `--locality` argument pairs in tests and
+  evidence scripts, marking computed/unrecognized locality arguments separately.
+  This is an index of references, **not** proof that any installed journey ran.
 
 Binding classes are explicitly reviewed against the terminal's actual
 `application_type` dispatch; the harness refuses locality-list drift. The
@@ -44,7 +47,8 @@ For each of the fourteen public locality bindings it starts one bounded
 development fixture, uses the existing public application `new` / `save`
 (or the established generated-worksite preparation) / `restore`, compares
 `authoritative_digest()` before and after, and records the **actual** saved
-`format_identity`, `format_version` and SHA-256 checkpoint bytes. It
+`format_identity`, `format_version` and SHA-256 checkpoint bytes, together with the bound class's actual
+`replay_methods` declarations observed at runtime. It
 rejects mismatches or failed saves. For generated worksite it uses the lawful
 source-history constructor, not a fabricated snapshot.
 
