@@ -99,3 +99,35 @@ Option A A1–A12 was approved by the owner on 2026-10-23, in [#563](https://git
 Finite actor-local stage declarations link distinct existing `cleaning` and `assembly` participations to a qualified final `recovery/drop` physical custody transition. Activity records do **not** own cleaning, assembly, liquid, placement, custody, knowledge, time, reservation or NPC consciousness. Contributed stages require this actor's actual owner receipt; externally satisfied stages do not invent performer attribution. Explicit program alternatives preserve their objective and place; changing an already-blocked method retains its prior physical receipts and receives a distinct participation task. The approved blocked-limit policy, fixed ordered one-world-interval action schedule and audience-safe status remain controlling.
 
 These are **noncanonical worksite configurations**, not generally available autonomous NPC routines, employment, structural engineering, arbitrary planning, invisible stock retrieval, protected canon or human play acceptance. Later canon adoption and compatibility migration require independent decisions and evidence. Draft implementation and any CI artifacts must not be described as merged/certified until their own source-bound gates pass.
+
+## Neutral generated worksite family — approved #565, candidate #566
+
+Cam approved Option A G1–G12 for the opt-in noncanonical Package 07 in
+[issue #565](https://github.com/pandasmoon14-hub/Test/issues/565#issuecomment-6375707101).
+This authorizes bounded generation/admission, player-facing execution, testing
+and a draft PR, but **not** merge, native canon promotion or human acceptance.
+
+The candidate `generated-worksite-1` family derives four connected neutral
+places, stable entity/campaign identities, existing material/actor/evidence
+profiles and lawful historical actions from a versioned case/seed input.
+Its three distinct cases are physical passage obstruction, finite actor tool
+contention and actor-delivered evidence that need not equal physical truth.
+The content constructor is **not** a state, RNG, material, time, memory or
+checkpoint owner. Actual historical changes and replay use the existing
+material, actor, environment and investigation owners. Old
+`investigation-neutral-1-*` cases retain their default identities,
+presentation, and checkpoint meaning.
+
+Generated worksite checkpoints are version/fixture/actor-profile bound and
+must restore committed history without executing the history constructor.
+Invalid, incompatible, occupied or unsatisfiable construction conditions must
+fail without partial live-campaign admission. A later generator/profile
+revision may require explicit compatibility rejection or migration; changing
+old seeds into new worlds is forbidden.
+
+This first local family does **not** establish general geography, arbitrary
+connected graph construction, universal material stocks/capacities, complete
+offscreen inhabitants, global pathfinding, weather, broad settlement
+generation or canonical Tarrow facts. Candidate acceptance is pending
+exact-head test/CI/installed evidence and independent review; no certification
+claim is made by this ledger entry.
