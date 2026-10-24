@@ -78,8 +78,11 @@ def build_generated_locality(recipe: LocalityRecipe, checkpoint_path=None):
     if recipe.case == "access":
         operations = (
             ("move", ("east",)),
+            ("pickup", ("Plate",)),
             ("material", ("put_on", "Plate", "Bench")),
+            ("pickup", ("Peg",)),
             ("material", ("put_on", "Peg", "Bench")),
+            ("pickup", ("Cord",)),
             ("material", ("tie", "Plate", "Peg", "Cord")),
         )
     elif recipe.case == "resources":
