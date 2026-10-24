@@ -1,11 +1,13 @@
 """Four repeatable installed #561 journeys with actual restored state predicates."""
 import argparse
-import json
 from pathlib import Path
 import shutil
-import subprocess
 import tempfile
 
+from _myravant_evidence_runner import (
+    assert_repeat_digest_equality, resolve_repository_sha, run_installed_session,
+    trace_rows, write_json_report,
+)
 from astra_runtime.domain.persistent_world_material import active_effects
 from astra_runtime.myravant_structures_application import StructuresApplication
 from astra_runtime.myravant_tarrow_structures import create_structures_fixture, cover_subjects
@@ -29,15 +31,12 @@ def run_case(folder, case, sha):
     def play(*commands):
         nonlocal application, initial_count
         trace = folder / f"{len(stages):02}.jsonl"
-        cmd = [launcher, "--locality", "tarrow-structures", "--structures-case", variant,
-               "--checkpoint", str(save), "--trace", str(trace),
-               "--repository-sha", sha]
-        if save.exists():
-            cmd.extend(("--load", str(save)))
-        result = subprocess.run(cmd, input="\n".join((*commands, "save", "exit", "")),
-                                text=True, capture_output=True, timeout=100)
+        result = run_installed_session(
+            launcher, ("--locality", "tarrow-structures", "--structures-case", variant),
+            save, trace, sha, commands, load=save.exists(), timeout=100,
+        )
         assert result.returncode == 0, (case, commands, result.stdout, result.stderr)
-        events = [json.loads(x) for x in trace.read_text().splitlines()]
+        events = trace_rows(trace)
         assert events and events[-1].get("evidence_complete") is True
         restored = StructuresApplication.restore(fixture=fixture, checkpoint_path=save)
         if application is not None:
@@ -124,20 +123,17 @@ def main():
     args = parser.parse_args()
     # The installed launcher and export identity must refer to the checkout
     # actually executed. Retained-command discovery requires --output only.
-    sha = args.repository_sha or subprocess.check_output(
-        ["git", "rev-parse", "HEAD"], text=True, timeout=15).strip()
-    assert len(sha) == 40 and all(c in "0123456789abcdef" for c in sha)
+    sha = resolve_repository_sha(args.repository_sha)
     with tempfile.TemporaryDirectory(prefix="myravant-structures-") as root:
         data = [run_case(Path(root)/f"{case}-{iteration}", case, sha)
                 for case in CASES for iteration in range(2)]
-        for case in CASES:
-            pair = [x for x in data if x["case"] == case]
-            assert len(pair) == 2 and pair[0]["final_digest"] == pair[1]["final_digest"]
+        assert_repeat_digest_equality(
+            data, CASES, case_field="case", digest_field="final_digest"
+        )
         result = {"schema": "myravant.structures-installed.v1",
                   "engineering_authored": True, "cases": data,
                   "campaigns": len(data), "source": sha}
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(result, indent=2, sort_keys=True)+"\n")
+    write_json_report(args.output, result)
     print(f"Structures: {len(data)} installed journeys, objectives and replay passed.")
 
 
