@@ -91,6 +91,8 @@ def run_one(case, seed, intervals, repeat):
                 )
             )
             initial = snapshot(app)
+            initial_objectives = goals(app, case)
+            assert all(initial_objectives.values()), (case, initial_objectives)
             interval_ms = []
             for _ in range(intervals):
                 result, ms = duration_ms(app.wait)
@@ -120,7 +122,10 @@ def run_one(case, seed, intervals, repeat):
                 key: "restore difference" for key in expected if expected[key] != actual[key]
             }
             assert len(app.intervals) == app.runtime_state.logical_time_state.logical_position
-            objectives = goals(app, case)
+            objectives = dict(initial_objectives)
+            objectives["one_world_clock"] = (
+                len(app.intervals) == app.runtime_state.logical_time_state.logical_position
+            )
             assert all(objectives.values()), (case, objectives)
             _, peak_bytes = tracemalloc.get_traced_memory()
             return {
@@ -129,7 +134,7 @@ def run_one(case, seed, intervals, repeat):
                 "objectives": objectives,
                 "counts": {
                     "places": len(app.fixture.place_presentations),
-                    "connections": len(app.fixture.routes),
+                    "connections": len(app.fixture.movement_routes),
                     "presented_objects": len(app.fixture.object_presentations),
                     "active_actor_profiles": len(app.fixture.actor_profiles),
                     "admitted_events": len(app.evidence_state.events),
