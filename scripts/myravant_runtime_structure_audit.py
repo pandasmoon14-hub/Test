@@ -279,6 +279,48 @@ def checkpoint_procedures(trees: dict[str, ast.AST]) -> list[dict]:
     return rows
 
 
+
+def installed_locality_references(repo_root: Path) -> dict:
+    """AST census of literal --locality argv pairs in tests and evidence scripts.
+
+    This records source references, NOT whether an installed journey executed.
+    Computed locality arguments are recorded separately rather than guessed.
+    """
+    references = {key: set() for key in BINDING_CLASSES}
+    dynamic = set()
+    for folder in ("tests", "scripts"):
+        for path in sorted((repo_root / folder).rglob("*.py")):
+            if "__pycache__" in path.parts:
+                continue
+            source = path.read_text(encoding="utf-8")
+            if "--locality" not in source:
+                continue
+            tree = ast.parse(source, filename=str(path))
+            relative = path.relative_to(repo_root).as_posix()
+            for node in ast.walk(tree):
+                if not isinstance(node, (ast.List, ast.Tuple)):
+                    continue
+                for pos, part in enumerate(node.elts):
+                    if not isinstance(part, ast.Constant) or part.value != "--locality":
+                        continue
+                    if pos + 1 < len(node.elts) and isinstance(node.elts[pos + 1], ast.Constant):
+                        target = node.elts[pos + 1].value
+                        if isinstance(target, str) and target in references:
+                            references[target].add(relative)
+                        else:
+                            dynamic.add(relative)
+                    else:
+                        dynamic.add(relative)
+    return {
+        "literal_by_binding": {key: sorted(value) for key, value in sorted(references.items())},
+        "no_literal_argv_evidence": sorted(key for key, value in references.items() if not value),
+        "computed_or_unrecognized_argv_sources": sorted(dynamic),
+        "qualification": (
+            "AST-discovered source references only. A test file mentioning a "
+            "locality is not proof of installed-client execution or replay."
+        ),
+    }
+
 def structure_report(repo_root: Path = ROOT) -> dict:
     repo_root = Path(repo_root)
     modules = source_modules(repo_root)
@@ -304,6 +346,7 @@ def structure_report(repo_root: Path = ROOT) -> dict:
         "inventories": inventory_report(repo_root, graph),
         "locality_bindings": bindings,
         "checkpoint_writer_restore_entrypoints": checkpoint_procedures(trees),
+        "installed_locality_journey_source_references": installed_locality_references(repo_root),
         "evidence_boundary": "static analysis only; no replay/digest success inferred",
     }
 
@@ -365,6 +408,7 @@ def verify_binding_roundtrip(binding: str, folder: Path) -> dict:
         "checkpoint_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
         "equal": True,
         "fixture_initial_digest": fixture.provenance.initial_state_digest,
+        "replay_methods": list(getattr(cls, "replay_methods", ())),
         "method": "actual backend save and restore, same explicit fixture",
     }
 
