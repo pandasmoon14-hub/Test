@@ -1,11 +1,13 @@
 """Engineering-authored installed worksite journeys with exact-source replay checks."""
 import argparse
-import json
 from pathlib import Path
 import shutil
-import subprocess
 import tempfile
 
+from _myravant_evidence_runner import (
+    assert_repeat_digest_equality, resolve_repository_sha, run_installed_session,
+    trace_rows, write_json_report,
+)
 from astra_runtime.domain.persistent_world_material import active_effects, placement
 from astra_runtime.myravant_generated_locality import LocalityRecipe, create_generated_locality_fixture
 from astra_runtime.myravant_investigation_application import InvestigationApplication
@@ -31,15 +33,12 @@ def journey(root, case, sha):
 
     def play(commands, load=False):
         trace = root / (str(len(traces)) + ".jsonl")
-        args = [launcher, *flags, "--checkpoint", str(save),
-                "--trace", str(trace), "--repository-sha", sha]
-        if load:
-            args.extend(["--load", str(save)])
-        proc = subprocess.run(args, input="\n".join((*commands, "save", "exit", "")),
-                              text=True, capture_output=True, timeout=120)
+        proc = run_installed_session(
+            launcher, flags, save, trace, sha, commands, load=load, timeout=120
+        )
         assert proc.returncode == 0, (case, proc.stdout[-3000:], proc.stderr)
         assert save.is_file()
-        rows = tuple(json.loads(line) for line in trace.read_text().splitlines())
+        rows = trace_rows(trace)
         assert rows and rows[-1]["evidence_complete"] is True
         app = InvestigationApplication.restore(
             fixture=create_generated_locality_fixture(LocalityRecipe(case, seed)),
@@ -86,20 +85,18 @@ def main():
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--repository-sha")
     args = parser.parse_args()
-    sha = args.repository_sha or subprocess.check_output(
-        ["git", "rev-parse", "HEAD"], text=True, timeout=15).strip()
-    assert len(sha) == 40
+    sha = resolve_repository_sha(args.repository_sha)
     with tempfile.TemporaryDirectory(prefix="myravant-generated-worksite-") as directory:
         runs = [journey(Path(directory) / (case + "-" + str(repeat)), case, sha)
                 for case in CASES for repeat in range(2)]
-        for case in CASES:
-            two = [r for r in runs if r["case"] == case]
-            assert len(two) == 2 and two[0]["digest"] == two[1]["digest"]
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps({
+        assert_repeat_digest_equality(
+            runs, CASES, case_field="case", digest_field="digest"
+        )
+    write_json_report(args.output, {
         "schema": "myravant.generated-worksite-installed.v1", "source": sha,
         "engineering_authored": True, "blind_assessment": False,
-        "runs": runs}, indent=2, sort_keys=True) + "\n")
+        "runs": runs,
+    })
     print("Generated worksite: six installed two-session journeys passed.")
 
 
