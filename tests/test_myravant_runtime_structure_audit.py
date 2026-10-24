@@ -40,6 +40,7 @@ def test_current_source_report_is_deterministic_complete_and_report_only():
     assert not inv["domain_unregistered"]
     assert not inv["domain_registered_missing"]
     assert len(first["locality_bindings"]) == 14
+    assert set(first["installed_locality_journey_source_references"]["literal_by_binding"]) == set(audit.BINDING_CLASSES)
     assert all(item["roundtrip"] == "not_run_static_report"
                for item in first["locality_bindings"])
     assert any(item["function"].startswith("restore_")
@@ -122,6 +123,27 @@ def test_planted_unregistered_root_owner_and_domain_file_are_reported(tmp_path):
     ]
 
 
+
+def test_installed_locality_source_inventory_reports_literals_and_dynamic_refs(tmp_path):
+    tests = tmp_path / "tests"
+    scripts = tmp_path / "scripts"
+    tests.mkdir()
+    scripts.mkdir()
+    (tests / "test_installed.py").write_text(
+        'args = ["myravant-play", "--locality", "tarrow-service"]\n'
+    )
+    (scripts / "report_dynamic.py").write_text(
+        'args = ["myravant-play", "--locality", case]\n'
+    )
+    evidence = audit.installed_locality_references(tmp_path)
+    assert evidence["literal_by_binding"]["tarrow-service"] == [
+        "tests/test_installed.py"
+    ]
+    assert "scripts/report_dynamic.py" in evidence["computed_or_unrecognized_argv_sources"]
+    assert "generated-worksite" in evidence["no_literal_argv_evidence"]
+    assert "not proof" in evidence["qualification"]
+
+
 def test_report_only_scan_never_imports_runtime(tmp_path, monkeypatch):
     """No world state, provider, RNG, checkpoint or runtime API is touched."""
     src = tmp_path / "src" / "astra_runtime"
@@ -144,5 +166,6 @@ def test_actual_binding_roundtrip_preserves_authoritative_digest(binding, tmp_pa
     assert len(result["before_digest"]) == 64
     assert result["before_digest"] == result["restored_digest"]
     assert len(result["checkpoint_sha256"]) == 64
+    assert isinstance(result["replay_methods"], list)
     assert isinstance(result["format_identity"], str) and result["format_identity"]
     assert isinstance(result["format_version"], int)
