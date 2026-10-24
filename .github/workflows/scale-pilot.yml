@@ -1,0 +1,52 @@
+name: Causal local-scale pilot
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "scripts/benchmark_myravant_scale.py"
+      - "scripts/compare_myravant_scale.py"
+      - ".github/workflows/scale-pilot.yml"
+      - "src/astra_runtime/**"
+
+permissions:
+  contents: read
+
+jobs:
+  source-pinned-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out exact unmodified baseline runtime
+        uses: actions/checkout@v6
+        with:
+          ref: f6c179ea27dde9fe7e0065c3020dc38282a16932
+          path: baseline
+      - name: Check out exact candidate and benchmark tools
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install benchmark dependencies
+        run: python -m pip install -r candidate/requirements-ci.txt
+      - name: Measure historical main baseline
+        run: |
+          python -m pip install -e ./baseline
+          python candidate/scripts/benchmark_myravant_scale.py --source-root baseline --runtime-sha f6c179ea27dde9fe7e0065c3020dc38282a16932 --output evidence/baseline.json
+      - name: Measure candidate using identical workload
+        run: |
+          python -m pip install -e ./candidate
+          python candidate/scripts/benchmark_myravant_scale.py --source-root candidate --runtime-sha ${{ github.event.pull_request.head.sha }} --output evidence/candidate.json
+      - name: Compare authoritative projections and timing distributions
+        run: |
+          python candidate/scripts/compare_myravant_scale.py --baseline evidence/baseline.json --candidate evidence/candidate.json --output evidence/comparison.json
+      - name: Upload source-pinned pilot evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-causal-scale-pilot
+          path: evidence/*.json
+          if-no-files-found: warn
