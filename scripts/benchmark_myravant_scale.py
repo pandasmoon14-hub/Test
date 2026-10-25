@@ -66,7 +66,7 @@ def goals(app, case):
                 placement(app.state.representation, brush).object_entity_id
                 == app.fixture.actor_order[0]
             ),
-            "two_distinct_contending_actors": len(set(app.fixture.actor_order)) == 2,
+            "two_distinct_contending_actors": len(set(app.fixture.actor_order[:2])) == 2,
         }
     return {
         "lawfully_delivered_prior_account": bool(app.disclosed_relays),
