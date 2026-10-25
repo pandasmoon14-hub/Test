@@ -20,34 +20,56 @@ def ident(key):
 
 
 def _build_neutral(*, reverse=False, blocked_limit=3, standing=True,
-                   generated_case=None, generated_seed=0):
+                   generated_case=None, generated_seed=0, generated_scale=0):
     """All scenario declarations are constructor inputs; no mutable runtime remap."""
     if generated_case is not None and generated_case not in {'access', 'resources', 'evidence'}:
         raise ValueError('unadmitted generated locality case')
-    generated_token = (digest(['generated-worksite-1', generated_case, generated_seed])[:18]
-                       if generated_case is not None else None)
+    if (type(generated_scale) is not int or not 0 <= generated_scale <= 3
+            or (generated_case is None and generated_scale)):
+        raise ValueError('unsupported bounded generated locality scale')
+    # Preserve every historical generated-worksite-1 identity at scale zero.
+    token_parts = ['generated-worksite-1', generated_case, generated_seed]
+    if generated_scale:
+        token_parts.extend(('connected-scale-1', generated_scale))
+    generated_token = (digest(token_parts)[:18] if generated_case is not None else None)
+    wings = tuple(range(1, generated_scale + 1))
     uid = (ident if generated_token is None else
            lambda key: 'astra:entity:generated-worksite-' + generated_token + '-' + key)
     places = (('entry', 'studio', 'balcony') if generated_token is None else
-              ('entry', 'studio', 'balcony', 'store'))
-    objects = ('signal', 'brush', 'panel-a', 'panel-b', 'tray', 'cloth', 'plate', 'peg', 'cord', 'bench')
-    actors = ('jun', 'sol')
+              ('entry', 'studio', 'balcony', 'store')) + tuple(f'wing-{n}' for n in wings)
+    wing_panels = tuple(f'wing-{n}-panel' for n in wings)
+    wing_cloths = tuple(f'wing-{n}-cloth' for n in wings)
+    wing_workers = tuple(f'wing-{n}-worker' for n in wings)
+    objects = ('signal', 'brush', 'panel-a', 'panel-b', 'tray', 'cloth', 'plate', 'peg', 'cord', 'bench') + wing_panels + wing_cloths
+    actors = ('jun', 'sol') + wing_workers
     edges = (('entry', 'east', 'studio'), ('studio', 'west', 'entry'),
              ('studio', 'north', 'balcony'), ('balcony', 'south', 'studio'),
              ('balcony', 'west', 'entry'), ('entry', 'north', 'balcony'))
     if generated_token is not None:
         edges = (*edges, ('entry', 'west', 'store'), ('store', 'east', 'entry'))
+    # Every expansion remains one connected owner-owned representation and clock.
+    # These are explicit bilateral routes, not invented teleport or catch-up law.
+    wing_sources = ('studio', 'entry', 'store')
+    wing_directions = (('east', 'west'), ('south', 'north'), ('west', 'east'))
+    edges += tuple(edge for n in wings for edge in (
+        (wing_sources[n-1], wing_directions[n-1][0], f'wing-{n}'),
+        (f'wing-{n}', wing_directions[n-1][1], wing_sources[n-1])))
     order = tuple(uid(k) for k in (tuple(reversed(actors)) if reverse else actors))
     campaign = ('astra:campaign:neutral-investigation-' + digest([edges, order, blocked_limit, standing])[:18]
                 if generated_token is None else
                 'astra:campaign:generated-worksite-' + digest([generated_token, edges, order, standing])[:20])
     entities = tuple(f._entity(uid(k), kind) for keys, kind in (
         (places, 'place'), (objects, 'object'), ((*actors, 'visitor'), 'character_or_creature')) for k in keys)
+    initial_places = {k: ('store' if generated_token is not None and k == 'tray'
+                          else 'studio') for k in (*actors, *objects)}
+    for n in wings:
+        initial_places[f'wing-{n}-panel'] = f'wing-{n}'
+        initial_places[f'wing-{n}-cloth'] = f'wing-{n}'
+        initial_places[f'wing-{n}-worker'] = wing_sources[n-1]
     relations = tuple(f._located('neutral-' + k if generated_token is None else
                                   'generated-' + generated_token + '-' + k,
                                   uid(k), uid(place)) for k, place in (
-        ('visitor', 'entry'), *((k, 'store' if generated_token is not None and k == 'tray'
-                               else 'studio') for k in (*actors, *objects))))
+        ('visitor', 'entry'), *initial_places.items()))
     rep = f.create_persistent_world_entity_location_representation(campaign_id=campaign, entities=entities, relations=relations)
     lights = (f.create_persistent_world_object_lit_state(object_entity_id=uid('signal'), state='unlit'),)
     movement = f.create_persistent_world_movement_runtime_state(representation=rep)
@@ -76,11 +98,15 @@ def _build_neutral(*, reverse=False, blocked_limit=3, standing=True,
         ambient_visual_condition_digest=f.digest_fixture_ambient_visual_conditions(ambient))
     assets = tuple(WaterCleaningAsset(uid(k), kind, water, residue, rate) for k, kind, water, residue, rate in (
         ('brush', 'brush', 0, 8, 2), ('panel-a', 'surface', 0, 3, 0),
-        ('panel-b', 'surface', 0, 3, 0), ('tray', 'tray', 0, 8, 0), ('cloth', 'absorbent', 2, 2, 1)))
-    pairs = tuple(('scrub', uid(k), uid('brush')) for k in ('panel-a', 'panel-b')) + (('collect', uid('brush'), uid('tray')),)
+        ('panel-b', 'surface', 0, 3, 0), ('tray', 'tray', 0, 8, 0), ('cloth', 'absorbent', 2, 2, 1),
+        *((key, 'surface', 0, 3, 0) for key in wing_panels),
+        *((key, 'absorbent', 2, 2, 1) for key in wing_cloths)))
+    pairs = tuple(('scrub', uid(k), uid('brush')) for k in ('panel-a', 'panel-b', *wing_panels)) + (('collect', uid('brush'), uid('tray')),)
     water_profile = WaterCleaningProfile(assets, pairs)
-    initial = WaterCleaningState(tuple((a.id, 2 if a.id == uid('cloth') else 0) for a in assets),
-        tuple((a.id, 3 if a.id in {uid('panel-a'), uid('panel-b')} else 0) for a in assets), tuple((a.id, 0) for a in assets))
+    cloth_ids = {uid(k) for k in ('cloth', *wing_cloths)}
+    panel_ids = {uid(k) for k in ('panel-a', 'panel-b', *wing_panels)}
+    initial = WaterCleaningState(tuple((a.id, 2 if a.id in cloth_ids else 0) for a in assets),
+        tuple((a.id, 3 if a.id in panel_ids else 0) for a in assets), tuple((a.id, 0) for a in assets))
     material = MaterialProfile(uid('visitor'), tuple((uid(k), uid('bench')) for k in ('plate', 'peg')),
         ((uid('plate'), uid('peg'), uid('cord'), 'tie'),))
     if generated_case == 'access':
@@ -93,11 +119,15 @@ def _build_neutral(*, reverse=False, blocked_limit=3, standing=True,
     profiles = tuple(ActorProfile(uid(actor), blocked_limit=blocked_limit, methods=('scrub',),
         cleaning_pairs=((uid(panel), uid('brush'), 'scrub'),),
         routes=tuple((uid(source), uid(target)) for source, _, target in edges),
-        assembly_names=('joining frame',), standing_kind='cleaning' if standing else None, standing_method='scrub' if standing else None,
-        standing_participants=(uid(panel), uid('brush')) if standing else (), standing_place=uid('studio') if standing else None)
-        for actor, panel in zip(actors, ('panel-a', 'panel-b')))
+        assembly_names=('joining frame',),
+        standing_kind='cleaning' if standing and actor in {'jun', 'sol'} else None,
+        standing_method='scrub' if standing and actor in {'jun', 'sol'} else None,
+        standing_participants=(uid(panel), uid('brush')) if standing and actor in {'jun', 'sol'} else (),
+        standing_place=uid('studio') if standing and actor in {'jun', 'sol'} else None)
+        for actor, panel in zip(actors, ('panel-a', 'panel-b', *wing_panels)))
     place_names = {'entry': 'Entrance', 'studio': 'Workshop',
-                   'balcony': 'Covered Yard', 'store': 'Store'}
+                   'balcony': 'Covered Yard', 'store': 'Store',
+                   **{f'wing-{n}': f'Work Annex {n}' for n in wings}}
     presentations = lambda keys, place=False: tuple(f.PublicEntityPresentation(
         entity_id=uid(k),
         name=(place_names[k] if place and generated_token is not None
@@ -113,9 +143,10 @@ def _build_neutral(*, reverse=False, blocked_limit=3, standing=True,
         fixed_object_ids=(uid('bench'),), light_source_id=uid('signal'), storage_pairs=(), stock_world_routine=False,
         specialist_routes=('material', 'water', 'timed', 'actors'), material_profile=material,
         water_profile=water_profile, water_initial=initial,
-        environment_profile=TimedEnvironmentProfile((uid('cloth'),), tuple((uid(p), Fraction(1, 2), 'exposed') for p in places),
+        environment_profile=TimedEnvironmentProfile(tuple(uid(x) for x in ('cloth', *wing_cloths)),
+            tuple((uid(p), Fraction(1, 2), 'exposed') for p in places),
             ((4, uid('studio'), Fraction(1, 4), 'sheltered'),)), assemblies=(assembly,),
-        trace_subjects=(uid('panel-a'), uid('panel-b'), uid('cloth'), uid('plate')),
+        trace_subjects=tuple(uid(x) for x in ('panel-a', 'panel-b', 'cloth', 'plate', *wing_panels, *wing_cloths)),
         actor_profiles=profiles, actor_order=order,
         actors_version=('investigation-neutral-1-' + ('relay' if not standing else 'reverse' if reverse else 'contended')
                         if generated_token is None else 'investigation-neutral-generated-1-' + generated_token))
