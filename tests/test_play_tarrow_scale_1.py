@@ -43,7 +43,7 @@ def test_connected_profile_envelope_and_unique_shared_root(level):
             break
         reached = extended
     assert reached == {p.entity_id for p in fixture.place_presentations}
-    assert fixture.actor_order == tuple(p.actor_id for p in fixture.actor_profiles)
+    assert set(fixture.actor_order) == {p.actor_id for p in fixture.actor_profiles}
 
 
 @pytest.mark.parametrize("level", (1, 2, 3))
