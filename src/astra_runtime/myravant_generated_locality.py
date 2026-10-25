@@ -36,13 +36,15 @@ class LocalityRecipe:
     budget: int = 1
     family: str = FAMILY
     require_unobstructed_direct_route: bool = False
+    scale_level: int = 0  # 0 preserves every historical generated-worksite binding
 
     def __post_init__(self):
         if (type(self.case) is not str or self.case not in CASES
                 or type(self.seed) is not int or not 0 <= self.seed <= 65535
                 or type(self.budget) is not int or not 0 <= self.budget <= 16
                 or self.family != FAMILY
-                or type(self.require_unobstructed_direct_route) is not bool):
+                or type(self.require_unobstructed_direct_route) is not bool
+                or type(self.scale_level) is not int or not 0 <= self.scale_level <= 3):
             raise ValueError("unsupported locality construction input or profile version")
         if self.case == "access" and self.require_unobstructed_direct_route:
             raise UnsatisfiableLocality(
@@ -58,7 +60,8 @@ def create_generated_locality_fixture(recipe: LocalityRecipe):
     try:
         root = _build_neutral(
             reverse=bool(recipe.seed % 2), standing=recipe.case == "resources",
-            generated_case=recipe.case, generated_seed=recipe.seed)
+            generated_case=recipe.case, generated_seed=recipe.seed,
+            generated_scale=recipe.scale_level)
         fixture = InvestigationFixture(**root.__dict__)
         # The application runs cross-domain owner validation against this root
         # before any session gets an authoritative reference to it.
@@ -69,7 +72,12 @@ def create_generated_locality_fixture(recipe: LocalityRecipe):
 
 
 def build_generated_locality(recipe: LocalityRecipe, checkpoint_path=None):
-    """Execute qualified prehistory before publishing the playable campaign."""
+    """Execute qualified prehistory in one root before publishing the campaign.
+
+    Scale levels 1..3 add connected annexes and optional actor requests over
+    the same clock, custody and evidence owners. They are noncanonical profiles;
+    separate sites never become independent simulated campaigns.
+    """
     path = Path(checkpoint_path) if checkpoint_path is not None else None
     if path is not None and path.exists():
         raise ValueError("an existing checkpoint must be restored, not regenerated")

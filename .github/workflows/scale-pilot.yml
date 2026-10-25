@@ -8,6 +8,7 @@ on:
       - "scripts/compare_myravant_scale.py"
       - ".github/workflows/scale-pilot.yml"
       - "src/astra_runtime/**"
+      - "tests/test_play_tarrow_scale_1.py"
 
 permissions:
   contents: read
@@ -43,10 +44,23 @@ jobs:
       - name: Compare authoritative projections and timing distributions
         run: |
           python candidate/scripts/compare_myravant_scale.py --baseline evidence/baseline.json --candidate evidence/candidate.json --output evidence/comparison.json
+      - name: Verify connected worksite objectives, contention, privacy and replay
+        run: python -m pytest -q candidate/tests/test_play_tarrow_scale_1.py
+      - name: Measure each bounded connected campaign workload
+        run: |
+          for level in 1 2 3; do
+            python candidate/scripts/benchmark_myravant_scale.py --source-root candidate --runtime-sha ${{ github.event.pull_request.head.sha }} --scale-level "$level" --intervals 2 --repeats 1 --output "evidence/connected-level-$level.json"
+          done
+      - name: Run repeated installed cross-site journeys and restarts
+        run: python candidate/scripts/report_myravant_connected_scale.py --repository-sha ${{ github.event.pull_request.head.sha }} --output evidence/connected-installed.json
+      - name: Profile representative level-three save/replay path before optimization
+        run: python candidate/scripts/profile_myravant_scale.py --source-root candidate --runtime-sha ${{ github.event.pull_request.head.sha }} --output evidence/connected-level-3-profile.txt
       - name: Upload source-pinned pilot evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: myravant-causal-scale-pilot
-          path: evidence/*.json
+          path: |
+            evidence/*.json
+            evidence/*.txt
           if-no-files-found: warn
