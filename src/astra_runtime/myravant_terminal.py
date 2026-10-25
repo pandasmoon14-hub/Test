@@ -1527,6 +1527,10 @@ def build_argument_parser() -> argparse.ArgumentParser:
         help="Version-bound noncanonical worksite construction seed (0 through 65535).",
     )
     parser.add_argument(
+        "--generated-scale", type=int, choices=(0, 1, 2, 3), default=0,
+        help="Connected noncanonical annex count (0 is the legacy worksite; 1–3 share one campaign clock).",
+    )
+    parser.add_argument(
         "--transformation-case", choices=("standard", "split-spare"), default="standard",
         help="Select a version-bound noncanonical transformation resource arrangement.",
     )
@@ -1654,7 +1658,8 @@ def main(argv: list[str] | None = None) -> int:
         from astra_runtime.myravant_investigation_application import InvestigationApplication
         from astra_runtime.myravant_tarrow_investigation import execute_investigation_request
         try:
-            generated_recipe = LocalityRecipe(case=args.generated_case, seed=args.generated_seed)
+            generated_recipe = LocalityRecipe(case=args.generated_case, seed=args.generated_seed,
+                                            scale_level=args.generated_scale)
             generated_fixture = create_generated_locality_fixture(generated_recipe)
         except ValueError:
             sys.stderr.write("Unable to admit that generated worksite configuration.\n")
@@ -1683,7 +1688,7 @@ def main(argv: list[str] | None = None) -> int:
         sys.stderr.write("Activity variant requires --locality tarrow-activities.\n")
         return 2
 
-    if args.locality != "generated-worksite" and (args.generated_case != "access" or args.generated_seed != 0):
+    if args.locality != "generated-worksite" and (args.generated_case != "access" or args.generated_seed != 0 or args.generated_scale != 0):
         sys.stderr.write("Generated construction inputs require --locality generated-worksite.\n")
         return 2
 
