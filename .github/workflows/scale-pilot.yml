@@ -9,6 +9,7 @@ on:
       - ".github/workflows/scale-pilot.yml"
       - "src/astra_runtime/**"
       - "tests/test_play_tarrow_scale_1.py"
+      - "tests/test_play_tarrow_scale_sustained.py"
 
 permissions:
   contents: read
@@ -46,6 +47,8 @@ jobs:
           python candidate/scripts/compare_myravant_scale.py --baseline evidence/baseline.json --candidate evidence/candidate.json --output evidence/comparison.json
       - name: Verify connected worksite objectives, contention, privacy and replay
         run: python -m pytest -q candidate/tests/test_play_tarrow_scale_1.py
+      - name: Exercise sustained multi-annex causal acceptance and replay
+        run: python -m pytest -q candidate/tests/test_play_tarrow_scale_sustained.py
       - name: Measure each bounded connected campaign workload
         run: |
           for level in 1 2 3; do
