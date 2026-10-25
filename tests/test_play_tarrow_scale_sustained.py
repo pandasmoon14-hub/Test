@@ -73,7 +73,7 @@ def assert_owner_truth(app, visited, finished):
         assert dict(app.water_state.adhered)[panel] < 3
         # The worker never gains knowledge of panels at another worksite,
         # even though all places share the same authoritative campaign.
-        for other in range(1, app.fixture.scale_level + 1) if hasattr(app.fixture, "scale_level") else range(1, 4):
+        for other in range(1, len(app.fixture.actor_profiles) - 1):
             if other != n and other <= len(app.fixture.actor_profiles) - 2:
                 assert not any(e.actor_id == actor and e.target_id == panel_id(app, other)
                                for e in app.evidence_state.events)
@@ -87,12 +87,12 @@ def drive(app, level, *, checkpoint_path=None):
     original_panel = app.fixture.resolve_object_reference("Panel A")
     # The original workshop remains reachable but has no immediate line of
     # communication to any annex. This rejection cannot change world truth.
-    committed(app, Step("request_cleaning", ("Wing 1 Worker", "Wing 1 Panel", "Brush", "scrub"), False))
-    committed(app, Step("ask_report", ("Wing 1 Worker", "Wing 1 Panel", "residue"), False))
+    apply(Step("request_cleaning", ("Wing 1 Worker", "Wing 1 Panel", "Brush", "scrub"), False))
+    apply(Step("ask_report", ("Wing 1 Worker", "Wing 1 Panel", "residue"), False))
 
     # The workshop has a lawful competing need for the one tool.
-    committed(app, Step("request_cleaning", ("Jun", "Panel A", "Brush", "scrub")))
-    committed(app, Step("pickup", ("Brush",)))
+    apply(Step("request_cleaning", ("Jun", "Panel A", "Brush", "scrub")))
+    apply(Step("pickup", ("Brush",)))
     assert placement(app.state.representation, brush).object_entity_id == app.fixture.player_entity_id
     assert any(e[1] == "due_resolution" and e[2] == app.fixture.resolve_actor_reference("Jun")
                and e[3][2] == "blocked" for e in app.actor_events)
@@ -108,25 +108,38 @@ def drive(app, level, *, checkpoint_path=None):
     finished = []
     split_digest = None
     split_journal = None
+    split_bytes = None
+    replay_steps = []
+
+    def apply(step):
+        result = committed(app, step)
+        if split_bytes is not None:
+            replay_steps.append(step)
+        return result
+
+    def travel(direction):
+        result = apply(Step("move", (direction,)))
+        visited.add(app.current_place_id())
+        return result
     for n in range(1, level + 1):
         for direction in routes[n]:
-            move(app, direction, visited)
+            travel(direction)
         assert app.current_place_id() == next(
             p.entity_id for p in app.fixture.place_presentations if p.name == f"Work Annex {n}")
-        committed(app, Step("drop", ("Brush",)))
+        apply(Step("drop", ("Brush",)))
         # Witnessed vs deliberately reported assertions remain distinct.
         if n == 1:
-            committed(app, Step("tell_actor", (f"Wing {n} Worker", f"Wing {n} Panel", "residue", "clear")))
-            committed(app, Step("ask_report", (f"Wing {n} Worker", f"Wing {n} Panel", "residue")))
-        committed(app, Step("request_cleaning", (f"Wing {n} Worker", f"Wing {n} Panel", "Brush", "scrub")))
-        committed(app, Step("wait", ()))  # worker takes custody
+            apply(Step("tell_actor", (f"Wing {n} Worker", f"Wing {n} Panel", "residue", "clear")))
+            apply(Step("ask_report", (f"Wing {n} Worker", f"Wing {n} Panel", "residue")))
+        apply(Step("request_cleaning", (f"Wing {n} Worker", f"Wing {n} Panel", "Brush", "scrub")))
+        apply(Step("wait", ()))  # worker takes custody
         assert placement(app.state.representation, brush).object_entity_id == worker_id(app, n)
         # The player cannot take a tool carried by the worker.
-        committed(app, Step("pickup", ("Brush",), False))
-        committed(app, Step("wait", ()))  # worker actually cleans
+        apply(Step("pickup", ("Brush",), False))
+        apply(Step("wait", ()))  # worker actually cleans
         assert dict(app.water_state.adhered)[panel_id(app, n)] < 3
         if n == 1:
-            committed(app, Step("ask_report", ("Wing 1 Worker", "Wing 1 Panel", "residue")))
+            apply(Step("ask_report", ("Wing 1 Worker", "Wing 1 Panel", "residue")))
             comparison = app.compare_history("Wing 1 Panel", "residue")
             assert not comparison.authoritative_changed
             assert "clear" in comparison.message and "present" in comparison.message
@@ -134,8 +147,8 @@ def drive(app, level, *, checkpoint_path=None):
 
         finished.append(n)
         if n < level:
-            committed(app, Step("participation_control", (f"Wing {n} Worker", "pause")))
-            committed(app, Step("request_object_from_actor", (f"Wing {n} Worker", "Brush")))
+            apply(Step("participation_control", (f"Wing {n} Worker", "pause")))
+            apply(Step("request_object_from_actor", (f"Wing {n} Worker", "Brush")))
             assert placement(app.state.representation, brush).object_entity_id == app.fixture.player_entity_id
             if n == 1 and checkpoint_path is not None:
                 app.checkpoint_path = checkpoint_path
@@ -147,6 +160,8 @@ def drive(app, level, *, checkpoint_path=None):
                 assert snapshot.journal == app.journal
                 split_digest = app.authoritative_digest()
                 split_journal = app.journal
+                split_bytes = checkpoint_path.read_bytes()
+                app.checkpoint_path = None
         # All work is in the one campaign; no other worker knows these
         # panel changes through an automatic universal broadcast.
         assert not any(e.actor_id == worker_id(app, n) and e.target_id == original_panel
@@ -161,13 +176,29 @@ def drive(app, level, *, checkpoint_path=None):
     else:
         tail = ("east", "east", "north", "south")
     for direction in tail:
-        move(app, direction, visited)
-    committed(app, Step("inspect", ("Panel A",)))
+        travel(direction)
+    apply(Step("inspect", ("Panel A",)))
     for _ in range(9):
-        committed(app, Step("wait", ()))
+        apply(Step("wait", ()))
     assert visited == {p.entity_id for p in app.fixture.place_presentations}, (
         level, visited, [p.name for p in app.fixture.place_presentations])
     assert_owner_truth(app, visited, finished)
+    if split_bytes is not None:
+        assert checkpoint_path.read_bytes() == split_bytes
+        shadow = InvestigationApplication.restore(
+            fixture=app.fixture, checkpoint_path=checkpoint_path)
+        assert shadow.authoritative_digest() == split_digest
+        assert shadow.journal == split_journal
+        shadow.checkpoint_path = None
+        for step in replay_steps:
+            committed(shadow, step)
+        assert shadow.authoritative_digest() == app.authoritative_digest()
+        assert shadow.journal == app.journal
+        assert shadow.actor_events == app.actor_events
+        assert shadow.evidence_state == app.evidence_state
+        assert shadow.participation_state == app.participation_state
+        assert shadow.water_state == app.water_state
+        assert shadow.runtime_state.logical_time_state == app.runtime_state.logical_time_state
     jun = app.fixture.resolve_actor_reference("Jun")
     assert any(e[1] == "due_resolution" and e[2] == jun and e[3][2] == "blocked"
                for e in app.actor_events)
