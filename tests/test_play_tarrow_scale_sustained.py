@@ -85,6 +85,21 @@ def drive(app, level, *, checkpoint_path=None):
     visited = {app.current_place_id()}
     brush = app.fixture.resolve_object_reference("Brush")
     original_panel = app.fixture.resolve_object_reference("Panel A")
+    split_digest = None
+    split_journal = None
+    split_bytes = None
+    replay_steps = []
+
+    def apply(step):
+        result = committed(app, step)
+        if split_bytes is not None:
+            replay_steps.append(step)
+        return result
+
+    def travel(direction):
+        result = apply(Step("move", (direction,)))
+        visited.add(app.current_place_id())
+        return result
     # The original workshop remains reachable but has no immediate line of
     # communication to any annex. This rejection cannot change world truth.
     apply(Step("request_cleaning", ("Wing 1 Worker", "Wing 1 Panel", "Brush", "scrub"), False))
@@ -106,21 +121,6 @@ def drive(app, level, *, checkpoint_path=None):
         3: ("north", "west", "west"),
     }
     finished = []
-    split_digest = None
-    split_journal = None
-    split_bytes = None
-    replay_steps = []
-
-    def apply(step):
-        result = committed(app, step)
-        if split_bytes is not None:
-            replay_steps.append(step)
-        return result
-
-    def travel(direction):
-        result = apply(Step("move", (direction,)))
-        visited.add(app.current_place_id())
-        return result
     for n in range(1, level + 1):
         for direction in routes[n]:
             travel(direction)
