@@ -80,14 +80,14 @@ def duration_ms(fn):
     return result, (time.perf_counter_ns() - t) / 1_000_000
 
 
-def run_one(case, seed, intervals, repeat):
+def run_one(case, seed, intervals, repeat, scale_level=0):
     with tempfile.TemporaryDirectory(prefix="myravant-scale-pilot-") as directory:
         checkpoint = Path(directory) / "world.json"
         tracemalloc.start()
         try:
             (app, history), initialize_ms = duration_ms(
                 lambda: generated.build_generated_locality(
-                    generated.LocalityRecipe(case, seed)
+                    generated.LocalityRecipe(case, seed, scale_level=scale_level)
                 )
             )
             initial = snapshot(app)
@@ -167,6 +167,7 @@ def main():
     p.add_argument("--runtime-sha", required=True)
     p.add_argument("--intervals", type=int, default=3)
     p.add_argument("--repeats", type=int, default=2)
+    p.add_argument("--scale-level", type=int, choices=(0, 1, 2, 3), default=0)
     args = p.parse_args()
     if not 1 <= args.intervals <= 32 or not 1 <= args.repeats <= 5:
         p.error("pilot accepts 1..32 intervals and 1..5 repeats")
@@ -180,7 +181,7 @@ def main():
     if sha != args.runtime_sha:
         raise RuntimeError(f"runtime commit mismatch: {sha} != {args.runtime_sha}")
     rows = [
-        run_one(case, seed, args.intervals, repeat)
+        run_one(case, seed, args.intervals, repeat, args.scale_level)
         for case in CASES for seed in (0, 1) for repeat in range(args.repeats)
     ]
     # The current two parity seeds change admitted input; each identical
@@ -194,7 +195,8 @@ def main():
     durations = [sum(x["metrics_ms"]["interval_samples"]) for x in rows]
     result = {
         "schema": "myravant.causal-scale-pilot.v1",
-        "scope": "existing generated-worksite; NOT larger cluster or three workload levels",
+        "scope": ("legacy worksite pilot" if args.scale_level == 0 else
+                  "one connected noncanonical campaign with annex scale; benchmark not acceptance"),
         "engineering_authored": True, "human_acceptance": False,
         "runtime_sha": sha, "runtime_module_path": str(module.relative_to(root)),
         "environment": {
@@ -202,7 +204,8 @@ def main():
             "processors": os.cpu_count(),
         },
         "workload": {"cases": list(CASES), "seeds": [0, 1],
-                     "repeats": args.repeats, "intervals_per_trial": args.intervals},
+                     "repeats": args.repeats, "intervals_per_trial": args.intervals,
+                     "connected_scale_level": args.scale_level},
         "interval_total_ms_distribution": {
             "min": min(durations), "median": statistics.median(durations),
             "max": max(durations),
