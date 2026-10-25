@@ -87,7 +87,8 @@ def run_one(case, seed, intervals, repeat, scale_level=0):
         try:
             (app, history), initialize_ms = duration_ms(
                 lambda: generated.build_generated_locality(
-                    generated.LocalityRecipe(case, seed, scale_level=scale_level)
+                    (generated.LocalityRecipe(case, seed) if scale_level == 0 else
+                     generated.LocalityRecipe(case, seed, scale_level=scale_level))
                 )
             )
             initial = snapshot(app)
