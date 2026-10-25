@@ -65,7 +65,7 @@ def _build_neutral(*, reverse=False, blocked_limit=3, standing=True,
     for n in wings:
         initial_places[f'wing-{n}-panel'] = f'wing-{n}'
         initial_places[f'wing-{n}-cloth'] = f'wing-{n}'
-        initial_places[f'wing-{n}-worker'] = wing_sources[n-1]
+        initial_places[f'wing-{n}-worker'] = f'wing-{n}'
     relations = tuple(f._located('neutral-' + k if generated_token is None else
                                   'generated-' + generated_token + '-' + k,
                                   uid(k), uid(place)) for k, place in (
