@@ -10,6 +10,7 @@ on:
       - "src/astra_runtime/**"
       - "tests/test_play_tarrow_scale_1.py"
       - "tests/test_play_tarrow_scale_sustained.py"
+      - "scripts/report_myravant_scale_sustained.py"
 
 permissions:
   contents: read
@@ -56,6 +57,8 @@ jobs:
           done
       - name: Run repeated installed cross-site journeys and restarts
         run: python candidate/scripts/report_myravant_connected_scale.py --repository-sha ${{ github.event.pull_request.head.sha }} --output evidence/connected-installed.json
+      - name: Reproduce sustained all-annex public game sessions twice
+        run: python candidate/scripts/report_myravant_scale_sustained.py --repository-sha ${{ github.event.pull_request.head.sha }} --output evidence/sustained-installed.json
       - name: Profile representative level-three save/replay path before optimization
         run: python candidate/scripts/profile_myravant_scale.py --source-root candidate --runtime-sha ${{ github.event.pull_request.head.sha }} --output evidence/connected-level-3-profile.txt
       - name: Upload source-pinned pilot evidence
