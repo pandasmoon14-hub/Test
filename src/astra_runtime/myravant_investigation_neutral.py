@@ -54,7 +54,11 @@ def _build_neutral(*, reverse=False, blocked_limit=3, standing=True,
     edges += tuple(edge for n in wings for edge in (
         (wing_sources[n-1], wing_directions[n-1][0], f'wing-{n}'),
         (f'wing-{n}', wing_directions[n-1][1], wing_sources[n-1])))
-    order = tuple(uid(k) for k in (tuple(reversed(actors)) if reverse else actors))
+    # Parity reverses the historical workshop contention; extra workers remain
+    # after the two eligible workshop contenders, preserving the generated
+    # resource-case owner objective and the explicit first-actor policy.
+    core_order = ('sol', 'jun') if reverse else ('jun', 'sol')
+    order = tuple(uid(k) for k in (*core_order, *wing_workers))
     campaign = ('astra:campaign:neutral-investigation-' + digest([edges, order, blocked_limit, standing])[:18]
                 if generated_token is None else
                 'astra:campaign:generated-worksite-' + digest([generated_token, edges, order, standing])[:20])
