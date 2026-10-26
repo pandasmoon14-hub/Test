@@ -11,6 +11,8 @@ on:
       - "tests/test_play_tarrow_scale_1.py"
       - "tests/test_play_tarrow_scale_sustained.py"
       - "scripts/report_myravant_scale_sustained.py"
+      - "tests/test_play_tarrow_scale_final.py"
+      - "scripts/report_myravant_scale_final_cost.py"
 
 permissions:
   contents: read
@@ -50,6 +52,8 @@ jobs:
         run: python -m pytest -q candidate/tests/test_play_tarrow_scale_1.py
       - name: Exercise sustained multi-annex causal acceptance and replay
         run: python -m pytest -q candidate/tests/test_play_tarrow_scale_sustained.py
+      - name: Adversarial final scale acceptance (live access, replay, fault and tamper)
+        run: python -m pytest -q candidate/tests/test_play_tarrow_scale_final.py
       - name: Measure each bounded connected campaign workload
         run: |
           for level in 1 2 3; do
@@ -59,6 +63,8 @@ jobs:
         run: python candidate/scripts/report_myravant_connected_scale.py --repository-sha ${{ github.event.pull_request.head.sha }} --output evidence/connected-installed.json
       - name: Reproduce sustained all-annex public game sessions twice
         run: python candidate/scripts/report_myravant_scale_sustained.py --repository-sha ${{ github.event.pull_request.head.sha }} --output evidence/sustained-installed.json
+      - name: Profile repeated active-owner scenarios at three connected levels
+        run: python candidate/scripts/report_myravant_scale_final_cost.py --source-root candidate --runtime-sha ${{ github.event.pull_request.head.sha }} --output evidence/final-active-cost.json
       - name: Profile representative level-three save/replay path before optimization
         run: python candidate/scripts/profile_myravant_scale.py --source-root candidate --runtime-sha ${{ github.event.pull_request.head.sha }} --output evidence/connected-level-3-profile.txt
       - name: Upload source-pinned pilot evidence
