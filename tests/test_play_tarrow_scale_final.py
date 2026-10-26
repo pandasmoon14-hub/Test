@@ -63,7 +63,7 @@ def test_access_change_contested_resources_private_evidence_and_long_replay(tmp_
     # In contrast with the older evidence-only all-annex test, this live
     # access-profile history begins with a real assembled passage obstruction.
     app, initial = build_generated_locality(LocalityRecipe("access", 0, scale_level=level))
-    assert len(initial) == 6
+    assert len(initial) == 7
     assert app.fixture.provenance.canon is False
     assert app.current_place_id() == next(p.entity_id for p in app.fixture.place_presentations
                                           if p.name == "Workshop")
@@ -244,7 +244,7 @@ def test_scale_three_resealed_checkpoint_mutations_refused(tmp_path, change):
     envelope = json.loads(path.read_text())
     payload = envelope["payload"]
     if change == "order":
-        payload["profile"]["order"].reverse()
+        payload["profile"]["actor"]["order"].reverse()
     elif change == "lost_work":
         payload["journal"].pop()
     elif change == "duplicate_time":
@@ -252,7 +252,7 @@ def test_scale_three_resealed_checkpoint_mutations_refused(tmp_path, change):
     elif change == "receipt":
         payload["journal"][-1]["result"]["receipt_id"] = "astra:actor_receipt:forged"
     elif change == "binding":
-        payload["profile"]["actors"][0]["actor_id"] = app.fixture.player_entity_id
+        payload["profile"]["actor"]["actors"][0]["actor_id"] = app.fixture.player_entity_id
     else:
         payload["evidence_snapshot"] = {"cross_site_omniscience": True}
     envelope["integrity_digest"] = digest(payload)
