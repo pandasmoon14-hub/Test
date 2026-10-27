@@ -25,7 +25,7 @@ PHASES = (
         "go west", "go north", "go south",
         "untie Cord",  # existing physical owner removes the actual obstruction
         "go north", "go south",
-        "go east", "drop Brush",
+        "go east", "look", "inspect Wing 1 Panel", "drop Brush",
         "tell Wing 1 Worker that Wing 1 Panel residue is clear",
         "ask Wing 1 Worker about Wing 1 Panel residue",
         "ask Wing 1 Worker to clean Wing 1 Panel using Brush by scrubbing",
@@ -37,7 +37,7 @@ PHASES = (
     ),
     (
         "go west", "go west", "go south",
-        "drop Brush",
+        "inspect Wing 2 Panel", "drop Brush",
         "ask Wing 2 Worker to clean Wing 2 Panel using Brush by scrubbing",
         "wait", "wait",
         "ask Wing 2 Worker to pause work",
@@ -45,7 +45,7 @@ PHASES = (
     ),
     (
         "go north", "go west", "go west",
-        "drop Brush",
+        "inspect Wing 3 Panel", "drop Brush",
         "ask Wing 3 Worker to clean Wing 3 Panel using Brush by scrubbing",
         "wait", "wait",
         "go east", "go east", "go north", "go south",
@@ -93,7 +93,9 @@ def campaign(folder, sha):
         assert p.returncode == 0, (phase, p.stdout[-2300:], p.stderr[-1200:])
         if phase == 0:
             assert "assembled barrier obstructs" in p.stdout.casefold()
-            assert "wing 1 panel" in p.stdout.casefold()
+            assert "wing 1 panel" in p.stdout.casefold(), (p.stdout[-4500:], p.stderr[-800:])
+        else:
+            assert f"wing {phase + 1} panel" in p.stdout.casefold(), (p.stdout[-4500:], p.stderr[-800:])
         events = trace_rows(trace)
         assert events and events[-1]["evidence_complete"] is True
         a = InvestigationApplication.restore(fixture=fixture, checkpoint_path=path)
