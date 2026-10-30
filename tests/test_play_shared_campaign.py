@@ -186,6 +186,19 @@ def test_opt_in_root_does_not_convert_old_profiles_or_trust_forged_witness(tmp_p
         SharedCampaignApplication.restore(checkpoint_path=shared.checkpoint_path)
 
 
+def test_historical_checkpoints_reject_the_new_root_and_restore_without_migration(tmp_path):
+    for index, class_type in enumerate(
+        (ActivityApplication, ServiceApplication, InvestigationApplication)
+    ):
+        path = tmp_path / f"historical-{index}.json"
+        historical = class_type.new(checkpoint_path=path)
+        changed(historical.move("south"))
+        before = historical.authoritative_digest()
+        assert historical.restore(checkpoint_path=path).authoritative_digest() == before
+        with pytest.raises(MaterialError):
+            SharedCampaignApplication.restore(checkpoint_path=path)
+
+
 def test_structure_changes_real_route_and_remains_visible_to_actor_after_restart(tmp_path):
     app = new(tmp_path)
     go(app, "south", "west")
@@ -255,6 +268,7 @@ def test_public_two_sessions_share_activity_service_and_investigation_routes(tmp
         text=True, capture_output=True, timeout=120)
     assert first.returncode == 0, (first.stdout, first.stderr)
     assert checkpoint.exists()
+    first_checkpoint = json.loads(checkpoint.read_text(encoding="utf-8"))
     assert "Fingerprint" in first.stdout
     assert "Shared local campaign" in first.stdout
     second_input = ("go west\ngo west\nask oren kesh to undertake bench upkeep\n"
@@ -267,6 +281,14 @@ def test_public_two_sessions_share_activity_service_and_investigation_routes(tmp
     assert "bench upkeep" in second.stdout
     assert "Retained player history" in second.stdout
     assert "Comparison of retained" in second.stdout
+    second_checkpoint = json.loads(checkpoint.read_text(encoding="utf-8"))
+    assert first_checkpoint["format_identity"] == second_checkpoint["format_identity"]
+    assert first_checkpoint["payload"]["campaign"] == second_checkpoint["payload"]["campaign"]
+    assert first_checkpoint["payload"]["root"] == second_checkpoint["payload"]["root"]
+    old_journal = first_checkpoint["payload"]["journal"]
+    actual_journal = second_checkpoint["payload"]["journal"]
+    assert len(actual_journal) > len(old_journal)
+    assert actual_journal[:len(old_journal)] == old_journal  # authenticated prior prefix
     restored = SharedCampaignApplication.restore(checkpoint_path=checkpoint)
     assert restored.service_state.history
     assert restored.activity_records
@@ -277,7 +299,10 @@ def test_public_two_sessions_share_activity_service_and_investigation_routes(tmp
         destination.mkdir(parents=True, exist_ok=True)
         report = {
             "evidence_class": "developer-authored public-client integration",
-            "same_campaign": True,
+            "same_campaign": (first_checkpoint["payload"]["campaign"] ==
+                              second_checkpoint["payload"]["campaign"]),
+            "acknowledged_prefix_preserved": actual_journal[:len(old_journal)] == old_journal,
+            "first_journal_length": len(old_journal),
             "profile": "tarrow-shared-1",
             "campaign": restored.fixture.campaign_id,
             "root": restored.fixture.provenance.initial_state_digest,
