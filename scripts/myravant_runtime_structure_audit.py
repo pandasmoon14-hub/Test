@@ -39,6 +39,7 @@ BINDING_CLASSES = {
     "tarrow-surface-water": "astra_runtime.myravant_surface_water_application.SurfaceWaterApplication",
     "tarrow-structures": "astra_runtime.myravant_structures_application.StructuresApplication",
     "tarrow-activities": "astra_runtime.myravant_activity_application.ActivityApplication",
+    "tarrow-shared": "astra_runtime.myravant_shared_campaign_application.SharedCampaignApplication",
     "tarrow-investigation": "astra_runtime.myravant_investigation_application.InvestigationApplication",
     "tarrow-transformation": "astra_runtime.myravant_transformation_application.TransformationApplication",
     "generated-worksite": "astra_runtime.myravant_investigation_application.InvestigationApplication",
