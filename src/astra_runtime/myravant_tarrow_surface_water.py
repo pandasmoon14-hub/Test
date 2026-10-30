@@ -37,11 +37,13 @@ class SurfaceFixture(ActorFixture):
         )
 
 
-def create_surface_fixture(*, reverse_order=False, shared_workbench=False, structure_case=None, activity_case=None):
+def create_surface_fixture(*, reverse_order=False, shared_workbench=False, structure_case=None, activity_case=None, shared_campaign=False):
     if activity_case is not None and activity_case not in {"standard", "contended"}:
         raise ValueError("unknown bounded activity profile")
     if activity_case is not None and structure_case is None:
         raise ValueError("activity profile requires declared structural root")
+    if type(shared_campaign) is not bool or (shared_campaign and activity_case is None):
+        raise ValueError("shared campaign requires an explicit activity/structures root")
     if type(shared_workbench) is not bool:
         raise ValueError("surface actor-position variant must be explicit")
     if type(reverse_order) is not bool:
@@ -145,6 +147,13 @@ def create_surface_fixture(*, reverse_order=False, shared_workbench=False, struc
             storage=(*layout.storage, *((row[0], destination) for row in new_objects for destination in containers)),
             specialists=(*layout.specialists, 'structures'))
 
+    if shared_campaign:
+        # A new opt-in physical root, never a conversion of older checkpoints.
+        # The whole service peg remains finite material, not a reservation.
+        peg = ("service-peg", "Service Workshop Peg",
+               "One whole noncanonical peg, not a coin or title grant.", "yard-tools")
+        layout = replace(layout, objects=(*layout.objects, peg))
+
     witness = {
         "old_water_root": layout.version, "material": asdict(material),
         "water": profile_payload(profile), "initial": canonical_state(water),
@@ -158,7 +167,9 @@ def create_surface_fixture(*, reverse_order=False, shared_workbench=False, struc
         witness["structure_case"] = structure_case
     if activity_case is not None:
         witness["activity_case"] = activity_case
-    layout = replace(layout, version=("activity-2-" if activity_case is not None else "structures-1-" if structure_case is not None else "surface-water-1-")+digest(witness)[:16])
+    if shared_campaign:
+        witness["shared_campaign"] = "activity-service-investigation-1"
+    layout = replace(layout, version=("shared-campaign-1-" if shared_campaign else "activity-2-" if activity_case is not None else "structures-1-" if structure_case is not None else "surface-water-1-")+digest(witness)[:16])
     root = create_tarrow_fixture(layout=layout)
     return SurfaceFixture(
         **root.__dict__, material_profile=material, water_profile=profile,

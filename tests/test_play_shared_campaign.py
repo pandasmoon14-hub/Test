@@ -1,0 +1,326 @@
+"""P1: existing owners in ONE real journal, not joined independent saves."""
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+
+import pytest
+
+from astra_runtime.myravant_shared_campaign import create_shared_campaign_fixture
+from astra_runtime.myravant_shared_campaign_application import SharedCampaignApplication
+from astra_runtime.myravant_activity_application import ActivityApplication
+from astra_runtime.myravant_service_application import ServiceApplication
+from astra_runtime.myravant_investigation_application import InvestigationApplication
+from astra_runtime.myravant_tarrow import identity
+from astra_runtime.domain.persistent_world_material import MaterialError, digest, placement
+from astra_runtime import myravant_service_commitment as service
+
+
+def changed(outcome):
+    assert outcome.authoritative_changed, outcome.message
+    return outcome
+
+
+def go(app, *steps):
+    for step in steps:
+        changed(app.move(step))
+
+
+def new(tmp_path, **options):
+    return SharedCampaignApplication.new(
+        fixture=create_shared_campaign_fixture(**options),
+        checkpoint_path=tmp_path / "shared.json")
+
+
+def test_one_root_executes_personal_service_physical_work_and_history_after_restart(tmp_path):
+    app = new(tmp_path)
+    original_root = app.fixture.provenance.initial_state_digest
+    original_campaign = app.fixture.campaign_id
+    original_clock = app.runtime_state.logical_time_state.logical_position
+    original_residue = dict(app.water_state.adhered)[identity("sorting-board")]
+
+    # Tali's service is not a standing task or a free item reservation.
+    go(app, "south", "west")
+    changed(app.offer_service())
+    terms = service.latest(app.service_state).terms
+    changed(app.respond_service(terms.version, terms.fingerprint))
+    # Tali already selected voluntary service; a competing activity cannot
+    # silently replace her consent or create a second work reservation.
+    occupied = app.request_activity("Tali Ren", "yard upkeep")
+    assert not occupied.authoritative_changed
+    assert app.activity_records == ()
+    premature = app.settle_service()
+    assert not premature.authoritative_changed
+    assert service.latest(app.service_state).custody_receipt is None
+    for _ in range(12):
+        if service.latest(app.service_state).state == "eligible":
+            break
+        changed(app.wait())
+    assert service.latest(app.service_state).state == "eligible"
+    assert service.latest(app.service_state).work_receipts
+    assert dict(app.water_state.adhered)[identity("sorting-board")] <= original_residue
+
+    # Exact whole-object custody is a separate voluntary action.
+    changed(app.pickup("Service Workshop Peg"))
+    changed(app.settle_service())
+    paid = service.latest(app.service_state)
+    assert paid.state == "settled" and paid.custody_receipt
+    assert placement(app.state.representation, identity("service-peg")).object_entity_id == identity("tali")
+    assert not app.settle_service().authoritative_changed
+
+    # Oren's distinct finite program uses the same continuing world/clock.
+    go(app, "west", "west")
+    changed(app.request_activity("Oren Kesh", "bench upkeep"))
+    for _ in range(45):
+        changed(app.wait())
+        if app.activity_records[0].status != "active":
+            break
+    assert app.activity_records[0].status == "completed"
+    assert len(app.activity_records[0].stages_finished) == 3
+    assert any(c.left == identity("repair-board") and c.fastener == identity("repair-cord")
+               for c in app.connections)
+
+    # Inquiry cannot simply read truth from the fixture, including remotely.
+    changed(app.inspect("Practice Panel"))
+    prior_digest = app.authoritative_digest()
+    historical = app.recall_history("Practice Panel", "residue")
+    comparison = app.compare_history("Practice Panel", "residue")
+    assert not historical.authoritative_changed and not comparison.authoritative_changed
+    assert app.authoritative_digest() == prior_digest
+    assert "Retained player history" in historical.message
+    assert "No account is selected as true" in comparison.message
+
+    # Leave, advance the ONE clock, and return to a local communication route.
+    go(app, "east")
+    changed(app.wait())
+    offsite = app.activity_status("Oren Kesh")
+    assert not offsite.authoritative_changed
+    assert "remote" in offsite.message.casefold() or "last communicated" in offsite.message.casefold()
+    go(app, "west")
+    changed(app.activity_status("Oren Kesh"))
+    assert not app.save().authoritative_changed  # save is read-only and checkpoint-bound
+    resume = SharedCampaignApplication.restore(checkpoint_path=app.checkpoint_path)
+    assert resume.authoritative_digest() == app.authoritative_digest()
+    assert resume.fixture.campaign_id == original_campaign
+    assert resume.fixture.provenance.initial_state_digest == original_root
+    assert resume.runtime_state.logical_time_state.logical_position > original_clock
+    assert resume.activity_records == app.activity_records
+    assert resume.service_state == app.service_state
+    assert resume.evidence_state == app.evidence_state
+    assert resume.journal == app.journal
+    changed(resume.wait())
+    again = SharedCampaignApplication.restore(checkpoint_path=app.checkpoint_path)
+    assert again.authoritative_digest() == resume.authoritative_digest()
+
+
+def test_busy_actor_and_withheld_tool_change_next_interval_without_fabrication(tmp_path):
+    app = new(tmp_path)
+    go(app, "south", "west")
+    changed(app.offer_service())
+    terms = service.latest(app.service_state).terms
+    changed(app.respond_service(terms.version, terms.fingerprint))
+    # Prevent the NPC from obtaining the only qualified tool.
+    changed(app.pickup("Cleaning Brush"))
+    for _ in range(3):
+        changed(app.wait())
+    assert service.latest(app.service_state).state != "eligible"
+    assert service.latest(app.service_state).custody_receipt is None
+    before = app.authoritative_digest()
+    assert not app.settle_service().authoritative_changed
+    assert app.authoritative_digest() == before
+    paused = SharedCampaignApplication.restore(checkpoint_path=app.checkpoint_path)
+    assert paused.authoritative_digest() == before
+    # After repeated failed opportunities the actor has ALREADY withdrawn.
+    # Returning the tool cannot silently revive consent or the old agreement.
+    assert service.latest(paused.service_state).state == "withdrawn"
+    old_version = terms.version
+    old_receipt = service.latest(paused.service_state).withdrawal_receipt
+    assert old_receipt
+    changed(paused.drop("Cleaning Brush"))
+    assert service.latest(paused.service_state).state == "withdrawn"
+    unchanged = paused.authoritative_digest()
+    assert not paused.settle_service().authoritative_changed
+    assert paused.authoritative_digest() == unchanged
+
+    # A NEW voluntary offer and consent is the lawful route to resuming work.
+    changed(paused.offer_service())
+    renewed = service.latest(paused.service_state).terms
+    assert renewed.version == old_version + 1
+    assert paused.service_state.history[0].state == "withdrawn"
+    assert paused.service_state.history[0].withdrawal_receipt == old_receipt
+    changed(paused.respond_service(renewed.version, renewed.fingerprint))
+    for _ in range(12):
+        if service.latest(paused.service_state).state == "eligible":
+            break
+        changed(paused.wait())
+    assert service.latest(paused.service_state).state == "eligible"
+    assert paused.service_state.history[0].state == "withdrawn"
+    assert SharedCampaignApplication.restore(
+        checkpoint_path=app.checkpoint_path).authoritative_digest() == paused.authoritative_digest()
+
+
+def test_opt_in_root_does_not_convert_old_profiles_or_trust_forged_witness(tmp_path):
+    shared = new(tmp_path)
+    first = shared.fixture
+    activity = ActivityApplication.default_fixture()
+    service_root = ServiceApplication.default_fixture()
+    investigation = InvestigationApplication.default_fixture()
+    assert first.provenance.fixture_version.startswith("shared-campaign-1-")
+    assert first.campaign_id not in {activity.campaign_id, service_root.campaign_id,
+                                     investigation.campaign_id}
+    assert identity("service-peg") not in {o.entity_id for o in activity.object_presentations}
+    changed(shared.move("south"))
+    with pytest.raises(MaterialError):
+        ActivityApplication.restore(checkpoint_path=shared.checkpoint_path)
+    with pytest.raises(MaterialError):
+        ServiceApplication.restore(checkpoint_path=shared.checkpoint_path)
+    with pytest.raises(MaterialError):
+        InvestigationApplication.restore(checkpoint_path=shared.checkpoint_path)
+
+    blob = json.loads(shared.checkpoint_path.read_text())
+    blob["payload"]["profile"]["shared_binding"] = "fake-other-root"
+    blob["integrity_digest"] = digest(blob["payload"])
+    shared.checkpoint_path.write_text(json.dumps(blob))
+    with pytest.raises(MaterialError):
+        SharedCampaignApplication.restore(checkpoint_path=shared.checkpoint_path)
+
+
+def test_historical_checkpoints_reject_the_new_root_and_restore_without_migration(tmp_path):
+    for index, class_type in enumerate(
+        (ActivityApplication, ServiceApplication, InvestigationApplication)
+    ):
+        path = tmp_path / f"historical-{index}.json"
+        historical = class_type.new(checkpoint_path=path)
+        changed(historical.move("south"))
+        before = historical.authoritative_digest()
+        assert historical.restore(checkpoint_path=path).authoritative_digest() == before
+        with pytest.raises(MaterialError):
+            SharedCampaignApplication.restore(checkpoint_path=path)
+
+
+def test_structure_changes_real_route_and_remains_visible_to_actor_after_restart(tmp_path):
+    app = new(tmp_path)
+    go(app, "south", "west")
+    for thing in ("work panel", "barrier crossbar"):
+        changed(app.pickup(thing))
+        changed(app.material("put_on", thing, "yard work trestle"))
+    changed(app.pickup("work cord"))
+    changed(app.material("tie", "work panel", "barrier crossbar", "work cord"))
+    before = app.authoritative_digest()
+    # No time or resource side effects from a blocked route.
+    blocked = app.move("north")
+    assert blocked.failure_class == "material_passage_obstructed"
+    assert app.authoritative_digest() == before
+    assert app.move("west").authoritative_changed
+    resumed = SharedCampaignApplication.restore(checkpoint_path=app.checkpoint_path)
+    assert resumed.authoritative_digest() == app.authoritative_digest()
+    go(resumed, "east")
+    changed(resumed.material("untie", "work cord"))
+    assert resumed.move("north").authoritative_changed
+    assert SharedCampaignApplication.restore(
+        checkpoint_path=app.checkpoint_path).authoritative_digest() == resumed.authoritative_digest()
+
+
+def test_existing_structure_variation_changes_actual_blocked_route():
+    def partition(application):
+        go(application, "south", "west")
+        for thing in ("work panel", "barrier crossbar"):
+            changed(application.pickup(thing))
+            changed(application.material("put_on", thing, "yard work trestle"))
+        changed(application.pickup("work cord"))
+        changed(application.material("tie", "work panel", "barrier crossbar", "work cord"))
+
+    ordinary = SharedCampaignApplication.new(
+        fixture=create_shared_campaign_fixture())
+    alternate = SharedCampaignApplication.new(
+        fixture=create_shared_campaign_fixture(structures_case="cross-workshop"))
+    partition(ordinary)
+    partition(alternate)
+    assert ordinary.move("north").failure_class == "material_passage_obstructed"
+    assert alternate.move("west").failure_class == "material_passage_obstructed"
+    assert ordinary.move("west").authoritative_changed
+    assert alternate.move("north").authoritative_changed
+
+
+def test_alternative_activity_root_preserves_separate_root_and_replay(tmp_path):
+    standard = create_shared_campaign_fixture()
+    contended = create_shared_campaign_fixture(activity_case="contended",
+                                                structures_case="cross-workshop")
+    assert standard.campaign_id != contended.campaign_id
+    app = SharedCampaignApplication.new(fixture=contended,
+                                        checkpoint_path=tmp_path / "variant.json")
+    changed(app.wait())
+    restored = SharedCampaignApplication.restore(
+        checkpoint_path=app.checkpoint_path, fixture=contended)
+    assert restored.authoritative_digest() == app.authoritative_digest()
+    with pytest.raises(MaterialError):
+        SharedCampaignApplication.restore(checkpoint_path=app.checkpoint_path)
+
+
+def test_public_two_sessions_share_activity_service_and_investigation_routes(tmp_path):
+    checkpoint = tmp_path / "one-world.json"
+    base = [sys.executable, "-m", "astra_runtime.myravant_terminal",
+            "--locality", "tarrow-shared"]
+    first_input = "help\ngo south\ngo west\noffer tali service\nask tali about service\nsave\nexit\n"
+    first = subprocess.run([*base, "--checkpoint", str(checkpoint)],
+        input=first_input,
+        text=True, capture_output=True, timeout=120)
+    assert first.returncode == 0, (first.stdout, first.stderr)
+    assert checkpoint.exists()
+    first_checkpoint = json.loads(checkpoint.read_text(encoding="utf-8"))
+    assert "Fingerprint" in first.stdout
+    assert "Shared local campaign" in first.stdout
+    second_input = ("go west\ngo west\nask oren kesh to undertake bench upkeep\n"
+                    "wait\ninspect practice panel\nrecall practice panel residue\n"
+                    "compare reports about practice panel residue\nsave\nexit\n")
+    second = subprocess.run([*base, "--load", str(checkpoint)],
+        input=second_input,
+        text=True, capture_output=True, timeout=120)
+    assert second.returncode == 0, (second.stdout, second.stderr)
+    assert "bench upkeep" in second.stdout
+    assert "Retained player history" in second.stdout
+    assert "Comparison of retained" in second.stdout
+    second_checkpoint = json.loads(checkpoint.read_text(encoding="utf-8"))
+    assert first_checkpoint["format_identity"] == second_checkpoint["format_identity"]
+    assert first_checkpoint["payload"]["campaign"] == second_checkpoint["payload"]["campaign"]
+    assert first_checkpoint["payload"]["root"] == second_checkpoint["payload"]["root"]
+    old_journal = first_checkpoint["payload"]["journal"]
+    actual_journal = second_checkpoint["payload"]["journal"]
+    assert len(actual_journal) > len(old_journal)
+    assert actual_journal[:len(old_journal)] == old_journal  # authenticated prior prefix
+    restored = SharedCampaignApplication.restore(checkpoint_path=checkpoint)
+    assert restored.service_state.history
+    assert restored.activity_records
+    assert restored.journal
+    report_dir = os.environ.get("MYRAVANT_SHARED_CAMPAIGN_REPORT_DIR")
+    if report_dir:
+        destination = Path(report_dir)
+        destination.mkdir(parents=True, exist_ok=True)
+        report = {
+            "evidence_class": "developer-authored public-client integration",
+            "same_campaign": (first_checkpoint["payload"]["campaign"] ==
+                              second_checkpoint["payload"]["campaign"]),
+            "acknowledged_prefix_preserved": actual_journal[:len(old_journal)] == old_journal,
+            "first_journal_length": len(old_journal),
+            "profile": "tarrow-shared-1",
+            "campaign": restored.fixture.campaign_id,
+            "root": restored.fixture.provenance.initial_state_digest,
+            "checkpoint_format": restored.checkpoint_format,
+            "journal_count": len(restored.journal),
+            "time_tick": restored.runtime_state.logical_time_state.logical_position,
+            "service_offer_count": len(restored.service_state.history),
+            "activity_count": len(restored.activity_records),
+            "admitted_evidence_count": len(restored.evidence_state.events),
+            "sessions": [
+                {"input": first_input, "exit_code": first.returncode,
+                 "stdout": first.stdout, "stderr": first.stderr},
+                {"input": second_input, "exit_code": second.returncode,
+                 "stdout": second.stdout, "stderr": second.stderr},
+            ],
+            "limits": ("No independent/blind or human play",
+                       "One declared noncanonical shared root only",
+                       "No arbitrary migration of older profile saves"),
+        }
+        (destination / "shared-campaign-public.json").write_text(
+            json.dumps(report, indent=2, sort_keys=True), encoding="utf-8")
