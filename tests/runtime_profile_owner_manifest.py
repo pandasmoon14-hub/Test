@@ -62,6 +62,8 @@ REGISTERED_ROOT_NON_OWNER_FILES = frozenset({
     "myravant_player_sensory_breadth.py",
     "myravant_posture_checkpoint.py",
     "myravant_service_application.py",
+    "myravant_shared_campaign.py",  # opt-in fixture, no semantic ownership
+    "myravant_shared_campaign_application.py",  # composition adapter, existing owner procedures
     "myravant_situated_inquiry.py",
     "myravant_structures_application.py",
     "myravant_surface_water_application.py",
