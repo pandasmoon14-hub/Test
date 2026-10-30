@@ -39,7 +39,7 @@ def test_current_source_report_is_deterministic_complete_and_report_only():
     assert not inv["root_dual_classified"]
     assert not inv["domain_unregistered"]
     assert not inv["domain_registered_missing"]
-    assert len(first["locality_bindings"]) == 14
+    assert len(first["locality_bindings"]) == len(audit.BINDING_CLASSES) == 15
     assert set(first["installed_locality_journey_source_references"]["literal_by_binding"]) == set(audit.BINDING_CLASSES)
     assert all(item["roundtrip"] == "not_run_static_report"
                for item in first["locality_bindings"])
