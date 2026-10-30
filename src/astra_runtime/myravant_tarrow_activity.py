@@ -34,10 +34,11 @@ def _method(kind, name, participants, place):
     return ActivityMethod(kind, name, tuple(identity(x) for x in participants), identity(place))
 
 
-def create_activity_fixture(*, activity_case="standard", structures_case="standard"):
+def create_activity_fixture(*, activity_case="standard", structures_case="standard", shared_campaign=False):
     if activity_case not in {"standard", "contended"}:
         raise ValueError("unknown approved activity case")
-    base = create_structures_fixture(structures_case=structures_case, activity_case=activity_case)
+    base = create_structures_fixture(structures_case=structures_case, activity_case=activity_case,
+                                     shared_campaign=shared_campaign)
     if activity_case == "standard":
         profiles = (
             ActivityProgram("bench upkeep", identity("oren"), (
