@@ -43,6 +43,11 @@ def test_one_root_executes_personal_service_physical_work_and_history_after_rest
     changed(app.offer_service())
     terms = service.latest(app.service_state).terms
     changed(app.respond_service(terms.version, terms.fingerprint))
+    # Tali already selected voluntary service; a competing activity cannot
+    # silently replace her consent or create a second work reservation.
+    occupied = app.request_activity("Tali Ren", "yard upkeep")
+    assert not occupied.authoritative_changed
+    assert app.activity_records == ()
     premature = app.settle_service()
     assert not premature.authoritative_changed
     assert service.latest(app.service_state).custody_receipt is None
@@ -181,6 +186,27 @@ def test_structure_changes_real_route_and_remains_visible_to_actor_after_restart
     assert resumed.move("north").authoritative_changed
     assert SharedCampaignApplication.restore(
         checkpoint_path=app.checkpoint_path).authoritative_digest() == resumed.authoritative_digest()
+
+
+def test_existing_structure_variation_changes_actual_blocked_route():
+    def partition(application):
+        go(application, "south", "west")
+        for thing in ("work panel", "barrier crossbar"):
+            changed(application.pickup(thing))
+            changed(application.material("put_on", thing, "yard work trestle"))
+        changed(application.pickup("work cord"))
+        changed(application.material("tie", "work panel", "barrier crossbar", "work cord"))
+
+    ordinary = SharedCampaignApplication.new(
+        fixture=create_shared_campaign_fixture())
+    alternate = SharedCampaignApplication.new(
+        fixture=create_shared_campaign_fixture(structures_case="cross-workshop"))
+    partition(ordinary)
+    partition(alternate)
+    assert ordinary.move("north").failure_class == "material_passage_obstructed"
+    assert alternate.move("west").failure_class == "material_passage_obstructed"
+    assert ordinary.move("west").authoritative_changed
+    assert alternate.move("north").authoritative_changed
 
 
 def test_alternative_activity_root_preserves_separate_root_and_replay(tmp_path):
