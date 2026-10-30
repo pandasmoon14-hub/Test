@@ -1,5 +1,4 @@
 """P1: existing owners in ONE real journal, not joined independent saves."""
-from dataclasses import replace
 import json
 import subprocess
 import sys
@@ -93,7 +92,7 @@ def test_one_root_executes_personal_service_physical_work_and_history_after_rest
     assert "remote" in offsite.message.casefold() or "last communicated" in offsite.message.casefold()
     go(app, "west")
     changed(app.activity_status("Oren Kesh"))
-    changed(app.save()) if False else app.save()  # save is read-only and checkpoint-bound
+    assert not app.save().authoritative_changed  # save is read-only and checkpoint-bound
     resume = SharedCampaignApplication.restore(checkpoint_path=app.checkpoint_path)
     assert resume.authoritative_digest() == app.authoritative_digest()
     assert resume.fixture.campaign_id == original_campaign
@@ -159,6 +158,29 @@ def test_opt_in_root_does_not_convert_old_profiles_or_trust_forged_witness(tmp_p
     shared.checkpoint_path.write_text(json.dumps(blob))
     with pytest.raises(MaterialError):
         SharedCampaignApplication.restore(checkpoint_path=shared.checkpoint_path)
+
+
+def test_structure_changes_real_route_and_remains_visible_to_actor_after_restart(tmp_path):
+    app = new(tmp_path)
+    go(app, "south", "west")
+    for thing in ("work panel", "barrier crossbar"):
+        changed(app.pickup(thing))
+        changed(app.material("put_on", thing, "yard work trestle"))
+    changed(app.pickup("work cord"))
+    changed(app.material("tie", "work panel", "barrier crossbar", "work cord"))
+    before = app.authoritative_digest()
+    # No time or resource side effects from a blocked route.
+    blocked = app.move("north")
+    assert blocked.failure_class == "material_passage_obstructed"
+    assert app.authoritative_digest() == before
+    assert app.move("west").authoritative_changed
+    resumed = SharedCampaignApplication.restore(checkpoint_path=app.checkpoint_path)
+    assert resumed.authoritative_digest() == app.authoritative_digest()
+    go(resumed, "east")
+    changed(resumed.material("untie", "work cord"))
+    assert resumed.move("north").authoritative_changed
+    assert SharedCampaignApplication.restore(
+        checkpoint_path=app.checkpoint_path).authoritative_digest() == resumed.authoritative_digest()
 
 
 def test_alternative_activity_root_preserves_separate_root_and_replay(tmp_path):
