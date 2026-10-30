@@ -1,5 +1,7 @@
 """P1: existing owners in ONE real journal, not joined independent saves."""
 import json
+import os
+from pathlib import Path
 import subprocess
 import sys
 
@@ -228,18 +230,19 @@ def test_public_two_sessions_share_activity_service_and_investigation_routes(tmp
     checkpoint = tmp_path / "one-world.json"
     base = [sys.executable, "-m", "astra_runtime.myravant_terminal",
             "--locality", "tarrow-shared"]
+    first_input = "help\ngo south\ngo west\noffer tali service\nask tali about service\nsave\nexit\n"
     first = subprocess.run([*base, "--checkpoint", str(checkpoint)],
-        input="help\ngo south\ngo west\noffer tali service\n"
-              "ask tali about service\nsave\nexit\n",
+        input=first_input,
         text=True, capture_output=True, timeout=120)
     assert first.returncode == 0, (first.stdout, first.stderr)
     assert checkpoint.exists()
     assert "Fingerprint" in first.stdout
     assert "Shared local campaign" in first.stdout
+    second_input = ("go west\ngo west\nask oren kesh to undertake bench upkeep\n"
+                    "wait\ninspect practice panel\nrecall practice panel residue\n"
+                    "compare reports about practice panel residue\nsave\nexit\n")
     second = subprocess.run([*base, "--load", str(checkpoint)],
-        input="go west\ngo west\nask oren kesh to undertake bench upkeep\n"
-              "wait\ninspect practice panel\nrecall practice panel residue\n"
-              "compare reports about practice panel residue\nsave\nexit\n",
+        input=second_input,
         text=True, capture_output=True, timeout=120)
     assert second.returncode == 0, (second.stdout, second.stderr)
     assert "bench upkeep" in second.stdout
@@ -249,3 +252,31 @@ def test_public_two_sessions_share_activity_service_and_investigation_routes(tmp
     assert restored.service_state.history
     assert restored.activity_records
     assert restored.journal
+    report_dir = os.environ.get("MYRAVANT_SHARED_CAMPAIGN_REPORT_DIR")
+    if report_dir:
+        destination = Path(report_dir)
+        destination.mkdir(parents=True, exist_ok=True)
+        report = {
+            "evidence_class": "developer-authored public-client integration",
+            "same_campaign": True,
+            "profile": "tarrow-shared-1",
+            "campaign": restored.fixture.campaign_id,
+            "root": restored.fixture.provenance.initial_state_digest,
+            "checkpoint_format": restored.checkpoint_format,
+            "journal_count": len(restored.journal),
+            "time_tick": restored.runtime_state.logical_time_state.logical_position,
+            "service_offer_count": len(restored.service_state.history),
+            "activity_count": len(restored.activity_records),
+            "admitted_evidence_count": len(restored.evidence_state.events),
+            "sessions": [
+                {"input": first_input, "exit_code": first.returncode,
+                 "stdout": first.stdout, "stderr": first.stderr},
+                {"input": second_input, "exit_code": second.returncode,
+                 "stdout": second.stdout, "stderr": second.stderr},
+            ],
+            "limits": ("No independent/blind or human play",
+                       "One declared noncanonical shared root only",
+                       "No arbitrary migration of older profile saves"),
+        }
+        (destination / "shared-campaign-public.json").write_text(
+            json.dumps(report, indent=2, sort_keys=True), encoding="utf-8")
