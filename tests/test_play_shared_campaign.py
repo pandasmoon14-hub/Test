@@ -131,12 +131,31 @@ def test_busy_actor_and_withheld_tool_change_next_interval_without_fabrication(t
     assert app.authoritative_digest() == before
     paused = SharedCampaignApplication.restore(checkpoint_path=app.checkpoint_path)
     assert paused.authoritative_digest() == before
+    # After repeated failed opportunities the actor has ALREADY withdrawn.
+    # Returning the tool cannot silently revive consent or the old agreement.
+    assert service.latest(paused.service_state).state == "withdrawn"
+    old_version = terms.version
+    old_receipt = service.latest(paused.service_state).withdrawal_receipt
+    assert old_receipt
     changed(paused.drop("Cleaning Brush"))
+    assert service.latest(paused.service_state).state == "withdrawn"
+    unchanged = paused.authoritative_digest()
+    assert not paused.settle_service().authoritative_changed
+    assert paused.authoritative_digest() == unchanged
+
+    # A NEW voluntary offer and consent is the lawful route to resuming work.
+    changed(paused.offer_service())
+    renewed = service.latest(paused.service_state).terms
+    assert renewed.version == old_version + 1
+    assert paused.service_state.history[0].state == "withdrawn"
+    assert paused.service_state.history[0].withdrawal_receipt == old_receipt
+    changed(paused.respond_service(renewed.version, renewed.fingerprint))
     for _ in range(12):
         if service.latest(paused.service_state).state == "eligible":
             break
         changed(paused.wait())
     assert service.latest(paused.service_state).state == "eligible"
+    assert paused.service_state.history[0].state == "withdrawn"
     assert SharedCampaignApplication.restore(
         checkpoint_path=app.checkpoint_path).authoritative_digest() == paused.authoritative_digest()
 
