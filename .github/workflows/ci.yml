@@ -47,6 +47,7 @@ jobs:
           MYRAVANT_ACTOR_CAMPAIGN_REPORT_DIR: actor-campaigns
           MYRAVANT_ACTOR_ASSESSOR_REPORT: actor-assessor.json
           MYRAVANT_THREE_LIVES_REPORT_DIR: three-lives-evidence
+          MYRAVANT_SHARED_CAMPAIGN_REPORT_DIR: shared-campaign-evidence
         run: python -m pytest -q -n 2 --dist loadfile --max-worker-restart=0 --durations=50 --durations-min=0.5 --junitxml=suite.xml
       - name: Generate isolated actor mutations
         # Installed campaigns and separate assessment are exported by the full suite.
@@ -75,6 +76,14 @@ jobs:
         with:
           name: myravant-three-lives-preflight-linux
           path: three-lives-evidence/three-lives-public.json
+          if-no-files-found: warn
+
+      - name: Upload shared-campaign public integration evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-shared-campaign-linux
+          path: shared-campaign-evidence/shared-campaign-public.json
           if-no-files-found: warn
 
   retained-evidence-linux:
