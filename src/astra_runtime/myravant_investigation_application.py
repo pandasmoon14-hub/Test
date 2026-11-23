@@ -4,10 +4,11 @@ No query owns world truth, sensing, time, inquiry, commitment or persistence.
 The only additional durable data captures an earlier speaker already disclosed
 by a qualified local report, never another actor's undisclosed source chain.
 """
-from dataclasses import replace
+from dataclasses import asdict, replace
 
 from astra_runtime.myravant_actor_application import ActorApplication
 from astra_runtime.myravant_material_application import _transaction
+from astra_runtime.myravant_transformation_application import PassageReleaseMixin
 from astra_runtime.domain.persistent_world_material import digest
 from astra_runtime.domain import persistent_world_actor_evidence as evidence
 from astra_runtime import myravant_actor_knowledge as knowledge
@@ -214,3 +215,92 @@ class InvestigationApplication(ActorApplication):
 # explicitly disclosed; no query is added to replay methods or journaling.
 InvestigationApplication.ask_report = _transaction(
     InvestigationApplication.ask_report, "ask_report")
+
+
+class SituatedWorksiteApplication(PassageReleaseMixin, InvestigationApplication):
+    """Join existing local work, drying, communication and release procedures."""
+
+    checkpoint_format = "myravant.situated-generated-worksite-owner-journal"
+    replay_methods = (*InvestigationApplication.replay_methods, "request_passage_release")
+    qualify_explicit_cleaning_request = True
+
+    def _checkpoint_profile(self):
+        passage = self.fixture.passage_work
+        return {"investigation": super()._checkpoint_profile(),
+                "passage_work": asdict(passage) if passage is not None else None,
+                "cleaning_policy": "local-visible-qualified-preparation-for-discussion-and-request-1"}
+
+    def inspect_passage_work(self):
+        site = self.fixture.passage_work
+        player = self.fixture.player_entity_id
+        if (site is None or self.current_place_id() != self._assembly(site.arrangements[0]).place
+                or not knowledge._lit(self, player)):
+            return self._result("Inspect passage work from the lit work position.",
+                                failure="passage_work_unavailable")
+        arrangement = self._assembly(site.arrangements[0])
+        if any(self._visible_passage_effect(player, effect) for effect in self._passage_effects()):
+            cord = self.fixture.entity_name(arrangement.fastener)
+            options = [f"The tied {arrangement.name} blocks the {site.direction} passage. Untie {cord}."]
+            options.extend(f"Ask {self.fixture.entity_name(worker)} to release {arrangement.name}."
+                           for worker in site.release_actors
+                           if knowledge.communication_route(self, player, worker, "request"))
+            return self._result("\n".join(options))
+        parts = (arrangement.left, arrangement.right, arrangement.fastener)
+        if not all(self._visible_for_actor(player, part) for part in parts):
+            return self._result("The parts for passage work are out of reach here.",
+                                failure="passage_work_unavailable")
+        left, right, cord = (self.fixture.entity_name(part) for part in parts)
+        first_support = self.fixture.entity_name(arrangement.support_left)
+        second_support = self.fixture.entity_name(arrangement.support_right)
+        return self._result(f"The {arrangement.name} can close the {site.direction} passage. "
+                            f"Put {left} on {first_support}. Put {right} on {second_support}. "
+                            f"Carry {cord} to tie {left} to {right} using {cord}.")
+
+    def inspect_worksite(self):
+        player = self.fixture.player_entity_id
+        options = []
+        for method, target, tool in self.water_profile.allowed_pairs:
+            if method not in {"wipe", "scrub", "soak"}:
+                continue
+            if not all(self._visible_for_actor(player, item) for item in (target, tool)):
+                continue
+            target_name, tool_name = (self.fixture.entity_name(item) for item in (target, tool))
+            if method == "soak":
+                options.append(f"Soak {tool_name} from {target_name}. Inspect both for retained water.")
+            else:
+                needed = " Wiping needs retained water in the cloth." if method == "wipe" else ""
+                options.append(f"{method.capitalize()} {target_name} using {tool_name} "
+                               f"while carrying the tool.{needed}")
+        for actor in self.fixture.actor_order:
+            if knowledge.communication_route(self, player, actor, "status"):
+                options.append(f"Ask {self.fixture.entity_name(actor)} about ways to clean a visible panel, "
+                               "or ask about work.")
+        if self.fixture.passage_work is not None:
+            passage = self.inspect_passage_work()
+            if not passage.failure_class:
+                options.append(passage.message)
+        return self._result("\n".join(options) or "No worksite method is visible here.")
+
+    def suggest_cleaning(self, actor_reference, surface_reference):
+        try:
+            actor = self._actor(actor_reference)
+            self._route(actor, "status")
+            profile = self.actor_profile(actor)
+            if not profile.willing:
+                raise ValueError("The worker declines to discuss a new method.")
+            surface = self._resolve_visible_for_actor(actor, surface_reference)
+            choices = [(tool, method) for target, tool, method in profile.cleaning_pairs
+                       if target == surface and self._visible_for_actor(actor, tool)]
+            if dict(self.water_state.adhered).get(surface) == 0:
+                return self._result("The worker sees no removable residue on that surface.")
+            feasible = self._ready_cleaning_options(actor, surface, choices)
+        except ValueError as exc:
+            return self._result(str(exc), failure="work_method_discussion_unavailable")
+        if not feasible:
+            return self._result("The worker sees no feasible local method right now.")
+        name = self.fixture.entity_name(actor)
+        target = self.fixture.entity_name(surface)
+        methods = [f"ask {name} to clean {target} using {self.fixture.entity_name(tool)} by "
+                   + {"wipe": "wiping", "scrub": "scrubbing"}[method] for tool, method in feasible]
+        return self._result(f"{name} suggests a method based on what is accessible here. "
+                            "Make a fresh request to agree on the work.\n" + "\n".join(methods))

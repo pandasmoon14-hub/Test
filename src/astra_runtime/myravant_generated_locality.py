@@ -8,8 +8,10 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from astra_runtime.domain.persistent_world_material import active_effects, placement
-from astra_runtime.myravant_investigation_application import InvestigationApplication
-from astra_runtime.myravant_investigation_neutral import _build_neutral
+from astra_runtime.myravant_investigation_application import (
+    InvestigationApplication, SituatedWorksiteApplication,
+)
+from astra_runtime.myravant_investigation_neutral import SITUATED_CASES, _build_neutral
 from astra_runtime.myravant_tarrow_investigation import InvestigationFixture
 
 
@@ -39,7 +41,7 @@ class LocalityRecipe:
     scale_level: int = 0  # 0 preserves every historical generated-worksite binding
 
     def __post_init__(self):
-        if (type(self.case) is not str or self.case not in CASES
+        if (type(self.case) is not str or self.case not in (*CASES, *SITUATED_CASES)
                 or type(self.seed) is not int or not 0 <= self.seed <= 65535
                 or type(self.budget) is not int or not 0 <= self.budget <= 16
                 or self.family != FAMILY
@@ -49,6 +51,14 @@ class LocalityRecipe:
         if self.case == "access" and self.require_unobstructed_direct_route:
             raise UnsatisfiableLocality(
                 "admitted barrier history conflicts with required direct clearance")
+        if self.case == "sealed-annex" and self.scale_level == 0:
+            raise UnsatisfiableLocality("the sealed annex requires at least one constructed annex")
+
+    @property
+    def application_type(self):
+        if self.case in SITUATED_CASES:
+            return SituatedWorksiteApplication
+        return InvestigationApplication
 
 
 def create_generated_locality_fixture(recipe: LocalityRecipe):
@@ -62,10 +72,11 @@ def create_generated_locality_fixture(recipe: LocalityRecipe):
             reverse=bool(recipe.seed % 2), standing=recipe.case == "resources",
             generated_case=recipe.case, generated_seed=recipe.seed,
             generated_scale=recipe.scale_level)
-        fixture = InvestigationFixture(**root.__dict__)
+        fixture = (root if recipe.case in SITUATED_CASES
+                   else InvestigationFixture(**root.__dict__))
         # The application runs cross-domain owner validation against this root
         # before any session gets an authoritative reference to it.
-        InvestigationApplication.new(fixture=fixture, checkpoint_path=None)
+        recipe.application_type.new(fixture=fixture, checkpoint_path=None)
         return fixture
     except (ValueError, TypeError) as exc:
         raise InvalidLocality("detached generated candidate failed admission") from exc
@@ -82,7 +93,7 @@ def build_generated_locality(recipe: LocalityRecipe, checkpoint_path=None):
     if path is not None and path.exists():
         raise ValueError("an existing checkpoint must be restored, not regenerated")
     fixture = create_generated_locality_fixture(recipe)
-    app = InvestigationApplication.new(fixture=fixture, checkpoint_path=None)
+    app = recipe.application_type.new(fixture=fixture, checkpoint_path=None)
     if recipe.case == "access":
         operations = (
             ("move", ("east",)),
@@ -95,13 +106,15 @@ def build_generated_locality(recipe: LocalityRecipe, checkpoint_path=None):
         )
     elif recipe.case == "resources":
         operations = (("wait", ()),)
-    else:
+    elif recipe.case == "evidence":
         speaker = "Sol" if recipe.seed % 2 else "Jun"
         operations = (
             ("move", ("east",)),
             ("tell_actor", (speaker, "panel a", "residue", "clear")),
             ("ask_report", (speaker, "panel a", "residue")),
         )
+    else:
+        operations = ()
     receipts = []
     for method, args in operations:
         result = getattr(app, method)(*args)
@@ -119,14 +132,14 @@ def build_generated_locality(recipe: LocalityRecipe, checkpoint_path=None):
                      if p.name == "Brush")
         if placement(app.state.representation, brush).object_entity_id != fixture.actor_order[0]:
             raise InvalidLocality("contested stock was not physically acquired")
-    elif not app.disclosed_relays:
+    elif recipe.case == "evidence" and not app.disclosed_relays:
         raise InvalidLocality("evidence case has no lawful disclosed report")
     if path is not None:
         app.checkpoint_path = path
         save = app.save()
         if save.failure_class:
             raise InvalidLocality("accepted history could not be saved")
-        restored = InvestigationApplication.restore(fixture=fixture, checkpoint_path=path)
+        restored = recipe.application_type.restore(fixture=fixture, checkpoint_path=path)
         if restored.authoritative_digest() != app.authoritative_digest():
             raise InvalidLocality("saved history does not reproduce the accepted root")
         app = restored
