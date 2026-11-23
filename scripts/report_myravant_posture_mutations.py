@@ -14,14 +14,22 @@ import tempfile
 MUTATIONS = (
     ("standing_wrongly_gets_lowered_clearance", "myravant_play_fixture.py",
      "and event.after in x.configurations", "and True",
+     "test_play_posture_movement.py",
      "test_real_access_consequence_and_restored_behavior[standing-False]"),
     ("save_drops_posture_component", "myravant_vsm14_application.py",
-     "if self.posture_state.events:\n            checkpoint_digest = write_posture_checkpoint(",
+     "if self.posture_state.events or self._embodiment_binding is not None:\n            checkpoint_digest = write_posture_checkpoint(",
      "if False:\n            checkpoint_digest = write_posture_checkpoint(",
+     "test_play_posture_movement.py",
      "test_old_checkpoint_and_digest_remain_opt_in"),
     ("restore_ignores_movement_reference", "myravant_posture_checkpoint.py",
      "if matches != 1:", "if False:",
+     "test_play_posture_movement.py",
      "test_replay_rejects_removed_or_changed_movement_qualification"),
+    ("restore_ignores_future_body_clearance_binding", "myravant_posture_checkpoint.py",
+     'components.pop("embodiment_binding", None) != binding:',
+     'components.pop("embodiment_binding", None) != binding and False:',
+     "test_play_development_embodiment.py",
+     "test_static_declaration_change_refuses_before_any_affected_movement[posture-clearance]"),
 )
 
 
@@ -34,13 +42,14 @@ def run_mutations(repository):
         # Own tests directory avoids the original conftest inserting original src.
         shutil.copytree(repository / "src" / "astra_runtime", root / "astra_runtime",
                         ignore=shutil.ignore_patterns("__pycache__"))
-        shutil.copy(repository / "tests" / "test_play_posture_movement.py", root / "test_posture.py")
+        for test_file in {mutation[-2] for mutation in MUTATIONS}:
+            shutil.copy(repository / "tests" / test_file, root / test_file)
         env = dict(os.environ, PYTHONPATH=str(root))
-        for name, filename, before, after, target in MUTATIONS:
+        for name, filename, before, after, test_file, target in MUTATIONS:
             path = root / "astra_runtime" / filename
             source = path.read_text(encoding="utf-8")
             assert source.count(before) == 1, (name, "mutation anchor changed")
-            command = [sys.executable, "-m", "pytest", "-q", "--tb=short", f"test_posture.py::{target}"]
+            command = [sys.executable, "-m", "pytest", "-q", "--tb=short", f"{test_file}::{target}"]
             control = subprocess.run(command, cwd=root, env=env, capture_output=True, text=True, timeout=60)
             assert control.returncode == 0, (name, control.stdout, control.stderr)
             try:
@@ -67,7 +76,8 @@ def main():
     result = run_mutations(Path(__file__).resolve().parents[1])
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, sort_keys=True, indent=2) + "\n", encoding="utf-8")
-    print("Posture mutations: 3/3 intended defects detected; all unmutated controls passed.")
+    count = len(result["mutations"])
+    print(f"Posture mutations: {count}/{count} intended defects detected; all unmutated controls passed.")
 
 
 if __name__ == "__main__":

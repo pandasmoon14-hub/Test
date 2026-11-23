@@ -1222,6 +1222,16 @@ class MyravantPlayApplication:
             failure_class="posture_profile_unavailable",
         )
 
+    def _movement_opportunity_refusal(self, *, source_place_id, direction, method):
+        if method == "crawl":
+            return "That crawling method has no qualified clearance here."
+        hint = ""
+        if any(license.source_place_id == source_place_id and license.direction == direction
+               for license in self.fixture.posture_movement_licenses):
+            hint = ("A recorded crouch, kneel or lying configuration can qualify "
+                    "this fixture clearance; try crouch, then walk east.")
+        return ("Something obstructs that passage from here. " + hint)
+
     def move(
         self, direction: str, *, method: str = "walk",
     ) -> PlayApplicationResult:
@@ -1298,13 +1308,9 @@ class MyravantPlayApplication:
             return PlayApplicationResult(
                 result_type="movement_rejected",
                 message=(
-                    "That crawling method has no qualified clearance here."
-                    if unavailable and method == "crawl" else
-                    "Something obstructs that passage from here. "
-                    + ("A recorded crouch, kneel or lying configuration can qualify "
-                       "this fixture clearance; try crouch, then walk east."
-                       if any(x.source_place_id == source_place_id and x.direction == normalized
-                              for x in self.fixture.posture_movement_licenses) else "")
+                    self._movement_opportunity_refusal(
+                        source_place_id=source_place_id, direction=normalized, method=method,
+                    )
                     if unavailable else
                     "The movement was rejected by the authoritative runtime."
                 ),

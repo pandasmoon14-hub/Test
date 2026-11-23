@@ -1,9 +1,11 @@
-"""Opt-in v11 posture component and AFQR-16/19 movement evidence joins.
+"""Posture components and AFQR-16/19 movement evidence joins.
 
-Legacy histories keep their existing digest and writer. v11 reuses existing
-owner replay and adds checks against placement prestates, not a second world.
+V11 preserves historical posture saves. V12 binds a selected development
+profile and its static opportunities before the first action.
 """
 from __future__ import annotations
+
+from dataclasses import asdict
 
 from astra_runtime.domain.persistent_world_component_checkpoint import (
     COMPONENT_CHECKPOINT_FORMAT_IDENTITY, _validate_envelope_common, _write_envelope,
@@ -21,7 +23,7 @@ from astra_runtime.myravant_fixture_brace import serialize_fixture_brace
 from astra_runtime.myravant_e1_latch_duty import serialize_fixture_duty
 from astra_runtime.myravant_e1_checkpoint import digest_e2_authoritative_state, _restore_e1_payload
 from astra_runtime.myravant_posture import (
-    PostureError, digest_posture, restore_posture, serialize_posture,
+    PostureError, PostureState, digest_posture, restore_posture, serialize_posture,
 )
 from astra_runtime.kernel.command_envelope import create_command_envelope
 from astra_runtime.domain.persistent_world_movement_integration import (
@@ -35,6 +37,41 @@ from astra_runtime.domain.persistent_world_object_displacement import replay_per
 from astra_runtime.domain.persistent_world_actor_object_handoff import replay_persistent_world_actor_object_handoff
 
 POSTURE_CHECKPOINT_VERSION = 11
+EMBODIMENT_CHECKPOINT_VERSION = 12
+
+
+def development_embodiment_binding(fixture):
+    """Pin fixture inputs consumed in future play; current placement stays in replay."""
+    if fixture.embodiment is None:
+        return None
+    provenance = fixture.provenance
+    material = {
+        "scenario": (provenance.fixture_id, provenance.fixture_version),
+        "root": (fixture.campaign_id, provenance.initial_state_digest,
+                 provenance.initial_int3_world_state_digest),
+        "player": fixture.player_entity_id,
+        "profile": asdict(fixture.posture_profile),
+        "configuration_commands": fixture.embodiment.configuration_commands,
+        "routes": [asdict(route) for route in fixture.movement_routes],
+        "posture_clearances": [asdict(license) for license in fixture.posture_movement_licenses],
+        "obstructions": [asdict(license) for license in fixture.movement_obstruction_licenses],
+        "traversal": [asdict(route) for route in fixture.movement_method_routes],
+        "sightlines": [asdict(license) for license in fixture.directional_observation_licenses],
+        "ambient_light": (fixture.ambient_visual_profile_version, dict(fixture.ambient_visual_conditions)),
+        "light_source": fixture.light_source_id,
+        "displacement": [asdict(route) for route in fixture.object_displacement_routes],
+        "fixed_objects": fixture.fixed_object_ids,
+        "storage_pairs": fixture.storage_pairs,
+        "positions": fixture.position_areas,
+        "target_names": [(item.entity_id, item.name) for item in (
+            *fixture.place_presentations, *fixture.object_presentations, *fixture.actor_presentations
+        )],
+        "handoffs": [asdict(route) for route in fixture.actor_object_handoff_routes],
+        "actor_object_requests": [asdict(route) for route in fixture.requested_object_state_routes],
+        "world_routine": fixture.stock_world_routine,
+        "specialist_routes": fixture.specialist_routes,
+    }
+    return _sha256_bytes(_canonical_bytes(material))
 
 
 def has_posture_movement(runtime):
@@ -42,8 +79,15 @@ def has_posture_movement(runtime):
                for t in runtime.movement_state.committed_transitions)
 
 
-def digest_posture_authoritative_state(*, posture_state, **kwargs):
+def digest_posture_authoritative_state(*, posture_state, embodiment_binding=None, **kwargs):
     base = digest_e2_authoritative_state(**kwargs)
+    if embodiment_binding is not None:
+        return _sha256_bytes(_canonical_bytes({
+            "family": "myravant-development-embodiment-v12",
+            "binding": embodiment_binding,
+            "base": base,
+            "posture": serialize_posture(posture_state),
+        }))
     if not posture_state.events:
         return base
     return _sha256_bytes(_canonical_bytes({
@@ -56,8 +100,9 @@ def digest_posture_authoritative_state(*, posture_state, **kwargs):
 def write_posture_checkpoint(
     *, runtime_state, follow_intent_state, service_state, knowledge_state,
     brace_state, duty_state, posture_state, checkpoint_path, qualification_evidence,
+    embodiment_binding=None,
 ):
-    if not posture_state.events:
+    if not posture_state.events and embodiment_binding is None:
         raise PersistentWorldCheckpointEvidenceError("v11 requires recorded posture")
     payload = serialize_persistent_world_vsm14_checkpoint_payload(
         runtime_state=runtime_state, follow_intent_state=follow_intent_state,
@@ -69,9 +114,13 @@ def write_posture_checkpoint(
         fixture_duty=serialize_fixture_duty(duty_state),
         actor_posture=serialize_posture(posture_state),
     )
+    version = POSTURE_CHECKPOINT_VERSION
+    if embodiment_binding is not None:
+        payload["components"]["embodiment_binding"] = embodiment_binding
+        version = EMBODIMENT_CHECKPOINT_VERSION
     return _write_envelope(envelope={
         "format_identity": COMPONENT_CHECKPOINT_FORMAT_IDENTITY,
-        "format_version": POSTURE_CHECKPOINT_VERSION,
+        "format_version": version,
         "campaign_identity": runtime_state.movement_state.representation.campaign_id,
         "authoritative_payload": payload,
         "integrity_digest": _sha256_bytes(_canonical_bytes(payload)),
@@ -186,17 +235,24 @@ def _validate_posture_joins(*, runtime, posture, fixture):
 
 
 def restore_posture_checkpoint(*, checkpoint_path, fixture):
+    binding = development_embodiment_binding(fixture)
+    version = POSTURE_CHECKPOINT_VERSION if binding is None else EMBODIMENT_CHECKPOINT_VERSION
     envelope = _read_checkpoint_envelope(_checkpoint_path(checkpoint_path))
     payload = _validate_envelope_common(
         envelope=envelope, expected_campaign_id=fixture.campaign_id,
-        expected_version=POSTURE_CHECKPOINT_VERSION,
+        expected_version=version,
     )
     if type(payload["components"]) is not dict:
-        raise PersistentWorldCheckpointEvidenceError("v11 components must be an object")
+        raise PersistentWorldCheckpointEvidenceError("posture components must be an object")
     components = dict(payload["components"])
+    if binding is not None and components.pop("embodiment_binding", None) != binding:
+        raise PersistentWorldCheckpointEvidenceError(
+            "development body or course binding does not match the checkpoint"
+        )
     if "actor_posture" not in components:
-        raise PersistentWorldCheckpointEvidenceError("v11 posture component missing")
+        raise PersistentWorldCheckpointEvidenceError("posture component missing")
     material = components.pop("actor_posture")
+    # Both envelopes carry the same existing owner components and replay semantics.
     values = _restore_e1_payload(
         payload={**payload, "components": components}, checkpoint_version=POSTURE_CHECKPOINT_VERSION,
         expected_campaign_id=fixture.campaign_id,
@@ -206,7 +262,11 @@ def restore_posture_checkpoint(*, checkpoint_path, fixture):
         expected_initial_representation_digest=fixture.provenance.initial_state_digest,
     )
     try:
-        posture = restore_posture(material, profile=fixture.posture_profile)
+        empty_posture = PostureState()
+        if binding is not None and _canonical_bytes(material) == _canonical_bytes(serialize_posture(empty_posture)):
+            posture = empty_posture
+        else:
+            posture = restore_posture(material, profile=fixture.posture_profile)
         runtime, follow, service, knowledge, brace, duty = values
         owners = (
             runtime.movement_state.committed_transitions,
