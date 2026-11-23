@@ -3,7 +3,8 @@ name: CI
 on:
   pull_request:
     # Environmental depth is reviewed separately, stacked on locality PR #539.
-    branches: [main, play-tarrow-reach-1, play-tarrow-investigation-1]
+    # Situated generation is reviewed separately, stacked on passage work PR #580.
+    branches: [main, play-tarrow-reach-1, play-tarrow-investigation-1, codex/practical-access-work]
   push:
     branches: [main]
 
@@ -476,6 +477,10 @@ jobs:
           python -m pip install -e .
       - name: Check installed dependencies
         run: python -m pip check
+      - name: Record installed situated worksite journeys
+        env:
+          MYRAVANT_SITUATED_REPORT_DIR: situated-worksite-evidence
+        run: python -m pytest -q tests/test_play_situated_worksite.py
       - name: Run repeated installed locality journeys and isolated mutations
         run: |
           python scripts/report_myravant_generated_locality.py --output generated-locality-evidence.json
@@ -488,6 +493,7 @@ jobs:
           path: |
             generated-locality-evidence.json
             generated-locality-mutations.json
+            situated-worksite-evidence/*/*/*.json
           if-no-files-found: warn
 
   investigation-evidence-linux:

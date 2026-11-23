@@ -364,23 +364,8 @@ for _name in ("begin_transformation","control_transformation","contribute_transf
             _transaction(getattr(TransformationApplication,_name),_name))
 
 
-class PassageWorkApplication(TransformationApplication):
-    """Voluntary recovery of one observed fastening under existing owners."""
-
-    checkpoint_format = "myravant.passage-work-transformation-owner-journal"
-    replay_methods = (*TransformationApplication.replay_methods, "request_passage_release")
-
-    @staticmethod
-    def default_fixture():
-        from astra_runtime.myravant_tarrow_transformation import create_transformation_fixture
-        return create_transformation_fixture(passage_case="sorting-bay-work")
-
-    def _checkpoint_profile(self):
-        return {
-            "transformation": super()._checkpoint_profile(),
-            "passage_work": asdict(self.fixture.passage_work),
-            "release_scope": "current-fastening-1",
-        }
+class PassageReleaseMixin:
+    """Compose scoped fastening recovery with an existing participation application."""
 
     def _validate_transaction(self):
         super()._validate_transaction()
@@ -409,73 +394,24 @@ class PassageWorkApplication(TransformationApplication):
 
     def _passage_effects(self):
         site = self.fixture.passage_work
+        source = self._assembly(site.arrangements[0]).place
         return tuple(
             effect for effect in active_effects(self.state.representation, self.connections,
                                                 self.material_profile)
             if effect.kind == "movement"
-            and (effect.source, effect.direction) == (self.transform_profile.barrier_place, site.direction)
+            and (effect.source, effect.direction) == (source, site.direction)
         )
 
     def _visible_passage_effect(self, observer, effect):
         participants = {obj for row in effect.connections for obj in row[:3]}
         return all(self._visible_for_actor(observer, obj) for obj in participants)
 
-    def inspect_passage_work(self):
-        player = self.fixture.player_entity_id
-        profile = self.transform_profile
-        site = self.fixture.passage_work
-        if self.current_place_id() != profile.barrier_place or not knowledge._lit(self, player):
-            return self._result("Inspect passage work from the lit work position.",
-                                failure="passage_work_unavailable")
-        effects = self._passage_effects()
-        options = [f"Work passage: {site.direction}."]
-        local_workers = [
-            self.fixture.entity_name(actor) for actor in site.release_actors
-            if knowledge.communication_route(self, player, actor, "request")
-        ]
-        for name in site.arrangements:
-            assembly = self._assembly(name)
-            join = (assembly.left, assembly.right, assembly.fastener, assembly.method)
-            if any(join in effect.connections and self._visible_passage_effect(player, effect)
-                   for effect in effects):
-                fastener = self.fixture.entity_name(assembly.fastener)
-                options.append(f"{name.capitalize()} blocks the passage. Untie {fastener}.")
-                options.extend(f"You can ask {worker} to release {name}." for worker in local_workers)
-        if self._visible_for_actor(player, profile.old) and role(self.transform_state, profile.old) == "unfit":
-            target = self.fixture.entity_name(profile.old)
-            support = self.fixture.entity_name(profile.trestle)
-            old = placement(self.state.representation, profile.old)
-            if (old.relation_type, old.object_entity_id) != ("supported_by", profile.trestle):
-                options.append(f"Stage {target} on {support} before refitting or replacing it.")
-            for action, resource, join_word in (
-                ("refitting", profile.tool, "using"), ("replacing", profile.spare, "with"),
-            ):
-                if self._visible_for_actor(player, resource):
-                    options.append(f"You can prepare to start {action} {target} {join_word} "
-                                   f"{self.fixture.entity_name(resource)}. The performer must carry it.")
-        return self._result("\n".join(options))
-
-    def transformation_status(self):
-        task = self.transform_state.work
-        if task is None:
-            return super().transformation_status()
-        player = self.fixture.player_entity_id
-        if task.actor != player:
-            if not knowledge.communication_route(self, player, task.actor, "status"):
-                return self._result("Current transformation status is unavailable here.",
-                                    failure="transformation_status_unavailable")
-            name = self.fixture.entity_name(task.actor)
-            return self._result(f"{name} reports {task.status} {task.method} work "
-                                f"with {task.stage} committed stage(s).")
-        if not self._visible_for_actor(player, task.target):
-            return self._result(f"Your {task.method} work is {task.status} with "
-                                f"{task.stage} committed stage(s). Inspect the component locally for its condition.")
-        return super().transformation_status()
-
     def request_passage_release(self, actor_reference, arrangement_reference):
         pre = self.authoritative_digest()
         player = self.fixture.player_entity_id
         try:
+            if self.fixture.passage_work is None:
+                raise MaterialError("No passage work is declared here.")
             actor = self._actor(actor_reference)
             self._route(actor, "request")
             if not self.actor_profile(actor).willing:
@@ -551,6 +487,77 @@ class PassageWorkApplication(TransformationApplication):
         return self.material_for_actor(actor, operation, self.fixture.entity_name(fastener))
 
 
-PassageWorkApplication.request_passage_release = _transaction(
-    PassageWorkApplication.request_passage_release, "request_passage_release",
+PassageReleaseMixin.request_passage_release = _transaction(
+    PassageReleaseMixin.request_passage_release, "request_passage_release",
 )
+
+
+class PassageWorkApplication(PassageReleaseMixin, TransformationApplication):
+    """Voluntary recovery of one observed fastening under existing owners."""
+
+    checkpoint_format = "myravant.passage-work-transformation-owner-journal"
+    replay_methods = (*TransformationApplication.replay_methods, "request_passage_release")
+
+    @staticmethod
+    def default_fixture():
+        from astra_runtime.myravant_tarrow_transformation import create_transformation_fixture
+        return create_transformation_fixture(passage_case="sorting-bay-work")
+
+    def _checkpoint_profile(self):
+        return {
+            "transformation": super()._checkpoint_profile(),
+            "passage_work": asdict(self.fixture.passage_work),
+            "release_scope": "current-fastening-1",
+        }
+
+    def inspect_passage_work(self):
+        player = self.fixture.player_entity_id
+        profile = self.transform_profile
+        site = self.fixture.passage_work
+        if self.current_place_id() != profile.barrier_place or not knowledge._lit(self, player):
+            return self._result("Inspect passage work from the lit work position.",
+                                failure="passage_work_unavailable")
+        effects = self._passage_effects()
+        options = [f"Work passage: {site.direction}."]
+        local_workers = [
+            self.fixture.entity_name(actor) for actor in site.release_actors
+            if knowledge.communication_route(self, player, actor, "request")
+        ]
+        for name in site.arrangements:
+            assembly = self._assembly(name)
+            join = (assembly.left, assembly.right, assembly.fastener, assembly.method)
+            if any(join in effect.connections and self._visible_passage_effect(player, effect)
+                   for effect in effects):
+                fastener = self.fixture.entity_name(assembly.fastener)
+                options.append(f"{name.capitalize()} blocks the passage. Untie {fastener}.")
+                options.extend(f"You can ask {worker} to release {name}." for worker in local_workers)
+        if self._visible_for_actor(player, profile.old) and role(self.transform_state, profile.old) == "unfit":
+            target = self.fixture.entity_name(profile.old)
+            support = self.fixture.entity_name(profile.trestle)
+            old = placement(self.state.representation, profile.old)
+            if (old.relation_type, old.object_entity_id) != ("supported_by", profile.trestle):
+                options.append(f"Stage {target} on {support} before refitting or replacing it.")
+            for action, resource, join_word in (
+                ("refitting", profile.tool, "using"), ("replacing", profile.spare, "with"),
+            ):
+                if self._visible_for_actor(player, resource):
+                    options.append(f"You can prepare to start {action} {target} {join_word} "
+                                   f"{self.fixture.entity_name(resource)}. The performer must carry it.")
+        return self._result("\n".join(options))
+
+    def transformation_status(self):
+        task = self.transform_state.work
+        if task is None:
+            return super().transformation_status()
+        player = self.fixture.player_entity_id
+        if task.actor != player:
+            if not knowledge.communication_route(self, player, task.actor, "status"):
+                return self._result("Current transformation status is unavailable here.",
+                                    failure="transformation_status_unavailable")
+            name = self.fixture.entity_name(task.actor)
+            return self._result(f"{name} reports {task.status} {task.method} work "
+                                f"with {task.stage} committed stage(s).")
+        if not self._visible_for_actor(player, task.target):
+            return self._result(f"Your {task.method} work is {task.status} with "
+                                f"{task.stage} committed stage(s). Inspect the component locally for its condition.")
+        return super().transformation_status()

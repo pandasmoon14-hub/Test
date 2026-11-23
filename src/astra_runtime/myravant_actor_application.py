@@ -29,6 +29,7 @@ ASSERTIONS={'residue':('present','clear'),'moisture':('wet','dry')}
 class ActorApplication(TimedApplication):
     checkpoint_format='myravant.actor-time-material-owner-journal'
     replay_methods=(*TimedApplication.replay_methods,*CONTROLS)
+    qualify_explicit_cleaning_request = False
 
     @staticmethod
     def default_fixture():
@@ -168,6 +169,28 @@ class ActorApplication(TimedApplication):
         reason=f' Reason: {task.reason}' if task.reason else ''
         return f'{self.fixture.entity_name(actor)} reports {task.status}: {task.kind}, {task.method}; {len(task.contributions)} own committed step(s).'+reason
 
+    def _ready_cleaning_options(self, actor, surface, options):
+        """Probe admitted preparation on disposable owner state."""
+        qualified = []
+        for tool, method in options:
+            candidate = work.WorkTask('candidate', actor, 'cleaning', method,
+                                      (surface, tool), self._actor_place_id(actor))
+            try:
+                staged = self._fork()
+                for _ in range(8):
+                    outcome, intent = staged._prepare_actor(candidate)
+                    if outcome == 'satisfied':
+                        qualified.append((tool, method))
+                        break
+                    if outcome != 'action' or not staged._execute_actor(actor, intent).authoritative_changed:
+                        break
+                    if intent[:2] == ('water', method):
+                        qualified.append((tool, method))
+                        break
+            except ValueError:
+                pass
+        return qualified
+
     def request_cleaning(self,actor_reference,surface_reference,tool_reference=None,method=None):
         pre=self.authoritative_digest()
         try:
@@ -178,23 +201,9 @@ class ActorApplication(TimedApplication):
             tools=[self._resolve_visible_for_actor(actor,tool_reference)] if tool_reference else [t for s,t,m in profile.cleaning_pairs if s==surface and (method is None or method==m) and self._visible_for_actor(actor,t)]
             options=[(t,m) for s,t,m in profile.cleaning_pairs if s==surface and t in tools and (method is None or method==m)]
             if not options:raise ValueError('No declared visible method is available for that goal.')
-            if method is None:
-                qualified=[]
-                for candidate_tool,candidate_method in options:
-                    candidate=work.WorkTask('candidate',actor,'cleaning',candidate_method,(surface,candidate_tool),self._actor_place_id(actor))
-                    try:
-                        staged=self._fork()
-                        for _ in range(8):
-                            outcome,intent=staged._prepare_actor(candidate)
-                            if outcome=='satisfied':qualified.append((candidate_tool,candidate_method));break
-                            if outcome!='action':break
-                            probe=staged._execute_actor(actor,intent)
-                            if not probe.authoritative_changed:break
-                            if intent[:2]==('water',candidate_method):
-                                qualified.append((candidate_tool,candidate_method));break
-                    except ValueError:pass
-                if not qualified:raise ValueError('No currently qualified declared method is available for that goal.')
-                options=qualified
+            if method is None or self.qualify_explicit_cleaning_request:
+                options = self._ready_cleaning_options(actor, surface, options)
+                if not options:raise ValueError('No currently qualified declared method is available for that goal.')
             tool,chosen=options[0]
             self._accept(actor,'cleaning',chosen,(surface,tool),self._actor_place_id(actor),self.fixture.player_entity_id)
             message=self._communicate_status(actor)+f' Selected {chosen} using {self.fixture.entity_name(tool)}; no material has changed and no tool is reserved.'

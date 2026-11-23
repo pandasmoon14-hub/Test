@@ -1467,6 +1467,7 @@ def run_terminal(
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
+    from astra_runtime.myravant_investigation_neutral import SITUATED_CASES
     from astra_runtime.myravant_tarrow_transformation import PASSAGE_WORK_CASES
 
     parser = argparse.ArgumentParser(
@@ -1521,7 +1522,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
         help="Select a different declared structural corridor profile, not a ruleset or generated canon.",
     )
     parser.add_argument(
-        "--generated-case", choices=("access", "resources", "evidence"), default="access",
+        "--generated-case", choices=("access", "resources", "evidence", *SITUATED_CASES), default="access",
         help="Select one admitted noncanonical generated worksite pressure family.",
     )
     parser.add_argument(
@@ -1530,7 +1531,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--generated-scale", type=int, choices=(0, 1, 2, 3), default=0,
-        help="Connected noncanonical annex count (0 is the legacy worksite; 1–3 share one campaign clock).",
+        help="Connected annex count (0 uses the core worksite; 1–3 add rooms on the same clock).",
     )
     parser.add_argument(
         "--transformation-case", choices=("standard", "split-spare", *PASSAGE_WORK_CASES), default="standard",
@@ -1655,10 +1656,11 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.locality == "generated-worksite":
         from astra_runtime.myravant_generated_locality import (
-            LocalityRecipe, create_generated_locality_fixture,
+            LocalityRecipe, SITUATED_CASES, create_generated_locality_fixture,
         )
-        from astra_runtime.myravant_investigation_application import InvestigationApplication
-        from astra_runtime.myravant_tarrow_investigation import execute_investigation_request
+        from astra_runtime.myravant_tarrow_investigation import (
+            execute_investigation_request, execute_situated_worksite_request,
+        )
         try:
             generated_recipe = LocalityRecipe(case=args.generated_case, seed=args.generated_seed,
                                             scale_level=args.generated_scale)
@@ -1666,9 +1668,11 @@ def main(argv: list[str] | None = None) -> int:
         except ValueError:
             sys.stderr.write("Unable to admit that generated worksite configuration.\n")
             return 2
-        application_type = InvestigationApplication
+        application_type = generated_recipe.application_type
         locality_args = {"fixture": generated_fixture}
-        execute_bounded_terminal_request = execute_investigation_request
+        execute_bounded_terminal_request = (execute_situated_worksite_request
+                                            if generated_recipe.case in SITUATED_CASES
+                                            else execute_investigation_request)
 
     if args.locality == "tarrow-transformation":
         from astra_runtime.myravant_transformation_application import (
@@ -1764,10 +1768,13 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     if args.locality == "generated-worksite" and args.load is None:
-        sys.stdout.write(
-            "Generated noncanonical worksite prepared through qualified owner actions; "
-            "private histories remain discoverable only through lawful play.\n"
-        )
+        if generated_recipe.case in SITUATED_CASES:
+            sys.stdout.write("Generated noncanonical worksite. Inspect worksite for local methods.\n")
+        else:
+            sys.stdout.write(
+                "Generated noncanonical worksite prepared through qualified owner actions; "
+                "private histories remain discoverable only through lawful play.\n"
+            )
 
     if args.prepare_investigation:
         sys.stdout.write(

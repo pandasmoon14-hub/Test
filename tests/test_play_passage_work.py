@@ -87,6 +87,19 @@ def test_installed_personal_refit_then_voluntary_release_and_cord_return(tmp_pat
     prefix = partial.transform_state.lineage
     assert len(prefix) == 1 and prefix[0][1] == partial.fixture.player_entity_id
 
+    separate, _ = run(
+        tmp_path, "separate-work-during-partial-refit",
+        "ask tali ren to clean sorting board using cleaning brush by scrubbing",
+        "wait", "wait", "wait", "ask tali ren about sorting board activity", load=True,
+    )
+    assert "Tali Ren reports historical performed evidence: scrub" in separate.stdout
+    kept = restored(tmp_path)
+    assert kept.transform_state == partial.transform_state
+    assert placement(kept.state.representation, identity("barrier-crossbar")) == placement(
+        partial.state.representation, identity("barrier-crossbar"))
+    cleaning = participation.selected(kept.participation_state, identity("tali"))
+    assert cleaning.status == "completed" and len(cleaning.contributions) == 3
+
     next_run, rows = run(
         tmp_path, "assemble-and-agree", "take alignment tool", "work transformation",
         *BOARD_ON_TRESTLE, "take barrier cord", "start assembling passage barrier",
@@ -122,7 +135,8 @@ def test_installed_personal_refit_then_voluntary_release_and_cord_return(tmp_pat
     assert startup["result"]["post_state_digest"] == rows[0]["pre_state_digest"]
     assert app.current_place_id() == identity("yard-sorting") and not app.connections
     task = participation.selected(app.participation_state, identity("tali"))
-    event, = receipt_events(app, "tali", "physical_contribution")
+    event, = (event for event in receipt_events(app, "tali", "physical_contribution")
+              if event[3][0] == "passage_release")
     assert task.status == "completed" and task.contributions == (event[0],)
     assert event[3][1] == "untie"
     assert "Tali Ren reports historical performed evidence: untie" in final.stdout

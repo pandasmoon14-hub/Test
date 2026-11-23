@@ -11,6 +11,7 @@ from astra_runtime.myravant_tarrow import identity
 from astra_runtime.myravant_tarrow_actors import (
     ActorFixture, create_actor_fixture, execute_actor_locality_request,
 )
+from astra_runtime.myravant_tarrow_transformation import PassageWorkSite
 
 
 CASES = ("cleanup", "assembly", "relay", "neutral-contended", "neutral-reverse", "neutral-relay")
@@ -29,6 +30,19 @@ class InvestigationFixture(ActorFixture):
                            "ask <actor> to clean or assemble, ask <actor> about "
                            "<target> <facet>, tell <actor> that <target> residue is clear/present, wait, save.\n")
         return root + super().locality_help
+
+
+@dataclass(frozen=True)
+class SituatedWorksiteFixture(InvestigationFixture):
+    passage_work: PassageWorkSite | None = None
+
+    @property
+    def locality_help(self):
+        help_text = "Inspect worksite for local supplies and methods.\n"
+        if self.actor_order:
+            help_text += ("Ask a local worker about ways to clean a visible panel. "
+                          "Use a fresh work request to try a suggested method.\n")
+        return help_text + super().locality_help
 
 
 def create_investigation_fixture(case="cleanup"):
@@ -80,3 +94,19 @@ def execute_investigation_request(application, raw):
     if operation == "recall":
         return "investigation", application.recall_history(subject, facet)
     return "investigation", application.compare_history(subject, facet)
+
+
+def execute_situated_worksite_request(application, raw):
+    from astra_runtime.myravant_tarrow_transformation import execute_passage_work_request
+
+    text = " ".join(raw.strip().casefold().split())
+    if text == "inspect worksite":
+        return "worksite", application.inspect_worksite()
+    match = re.fullmatch(r"ask (.+?) about ways to clean (.+)", text)
+    if match:
+        return "worksite", application.suggest_cleaning(*match.groups())
+    if application.fixture.passage_work is not None:
+        result = execute_passage_work_request(application, raw)
+        if result is not None:
+            return result
+    return execute_investigation_request(application, raw)
