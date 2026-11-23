@@ -283,7 +283,7 @@ def _is_compound_action(lowered: list[str]) -> bool:
     return False
 
 
-def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
+def parse_terminal_command(raw_text: str, *, fixture=None) -> ParsedTerminalCommand:
     stripped = raw_text.strip()
     if not stripped:
         return ParsedTerminalCommand(action="empty", raw_text=raw_text)
@@ -309,7 +309,10 @@ def parse_terminal_command(raw_text: str) -> ParsedTerminalCommand:
         )
 
     from astra_runtime.myravant_posture import parse_posture
-    posture = parse_posture(" ".join(parts))
+    phrase = " ".join(lowered)
+    embodiment = getattr(fixture, "embodiment", None)
+    posture = (dict(embodiment.configuration_commands).get(phrase)
+               if embodiment is not None else parse_posture(phrase))
     if " ".join(lowered) in {"inspect posture", "check posture"}:
         return ParsedTerminalCommand(action="inspect_self", raw_text=raw_text)
     if posture is not None:
@@ -960,7 +963,7 @@ _HELP_ALIASES = {
 }
 
 
-def _write_help(output: TextIO, topic: str | None = None) -> str:
+def _write_help(output: TextIO, topic: str | None = None, *, fixture=None) -> str:
     """Display concise ordinary help or one requested capability section."""
     normalized = topic.strip().casefold() if topic else ""
     normalized = _HELP_ALIASES.get(normalized, normalized)
@@ -972,12 +975,33 @@ def _write_help(output: TextIO, topic: str | None = None) -> str:
         "help work, help inquiry, help session.\n"
         "For every topic together: help all.\n"
     )
+    topics = _HELP_TOPICS
+    embodiment = getattr(fixture, "embodiment", None)
+    if embodiment is not None:
+        commands = ", ".join(embodiment.primary_commands.values())
+        crawl = (
+            "You can crawl where a clearance is declared. Inspect self for local crawl options.\n"
+            if fixture.movement_method_routes else ""
+        )
+        topics = {
+            **_HELP_TOPICS,
+            "travel": (
+                f"Travel and time — {embodiment.name}\n"
+                "Look for exits and use walk with a direction. Current obstructions govern passage.\n"
+                f"Body configurations: {commands}. Inspect self for your recorded configuration "
+                "and the options available here. Changing configuration does not advance time.\n"
+                f"{crawl}"
+                "For two qualified steps, join them with then. A refusal ends the sequence. "
+                "Wait advances world time."
+            ),
+        }
+        overview += " Use inspect self to see your development body and current options.\n"
     if not normalized:
         visible = overview
     elif normalized == "all":
-        visible = overview + "\n" + "\n\n".join(_HELP_TOPICS.values()) + "\n"
-    elif normalized in _HELP_TOPICS:
-        visible = _HELP_TOPICS[normalized] + "\n"
+        visible = overview + "\n" + "\n\n".join(topics.values()) + "\n"
+    elif normalized in topics:
+        visible = topics[normalized] + "\n"
     else:
         visible = (
             "No help topic named " + repr(topic) + ".\n"
@@ -1087,7 +1111,7 @@ def _explicit_two_step_intent(raw_text: str, *, fixture=None) -> tuple[
         candidate = _classify_bounded_terminal_request(piece, fixture=fixture)
         if admitted is not None and candidate is not None and candidate not in admitted:
             return None
-        step = parse_terminal_command(piece)
+        step = parse_terminal_command(piece, fixture=fixture)
         # Standalone specialists have first refusal even when generic inspect
         # or ask also recognizes the words. Preflight must preserve that meaning.
         route = classify_bounded_terminal_request(piece, fixture=fixture)
@@ -1304,7 +1328,7 @@ def run_terminal(
             )
             return 0
 
-        parsed = parse_terminal_command(raw)
+        parsed = parse_terminal_command(raw, fixture=application.fixture)
 
         if parsed.action == "empty":
             continue
@@ -1319,7 +1343,7 @@ def run_terminal(
             if getattr(application.fixture, "locality_help", None):
                 output_stream.write(application.fixture.locality_help + "\n")
             else:
-                _write_help(output_stream, parsed.argument)
+                _write_help(output_stream, parsed.argument, fixture=application.fixture)
             continue
         # Preflight *both* independently parseable steps before executing
         # either. Once execution begins, each step is independently durable;
@@ -1467,6 +1491,8 @@ def run_terminal(
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
+    from astra_runtime.myravant_development_embodiment import DEVELOPMENT_BODIES, DEVELOPMENT_COURSES
+
     parser = argparse.ArgumentParser(
         prog="myravant-play",
         description="Run the bounded Myravant terminal-play vertical slice.",
@@ -1497,6 +1523,14 @@ def build_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--locality", choices=("development", "tarrow", "tarrow-depth", "tarrow-material", "tarrow-water", "tarrow-time", "tarrow-actors", "tarrow-service", "tarrow-surface-water", "tarrow-structures", "tarrow-activities", "tarrow-investigation", "tarrow-transformation", "generated-worksite"), default="development",
         help="Select a qualified locality; saved campaigns are not converted.",
+    )
+    parser.add_argument(
+        "--development-body", choices=tuple(DEVELOPMENT_BODIES),
+        help="Choose a noncanonical development body. Repeat this choice on --load.",
+    )
+    parser.add_argument(
+        "--development-course", choices=tuple(DEVELOPMENT_COURSES),
+        help="Choose a development body course (default: orchard). Repeat this choice on --load.",
     )
     parser.add_argument(
         "--investigation-case", choices=("cleanup", "assembly", "relay", "neutral-contended", "neutral-reverse", "neutral-relay"), default="cleanup",
@@ -1575,6 +1609,21 @@ def main(argv: list[str] | None = None) -> int:
     checkpoint_path = args.checkpoint or args.load
     application_type = MyravantVSM14Application
     locality_args = {}
+    if args.development_course is not None and args.development_body is None:
+        sys.stderr.write("A development course requires --development-body.\n")
+        return 2
+    if args.development_body is not None:
+        if args.locality != "development" or args.prepare_investigation:
+            sys.stderr.write("Development bodies require the development locality.\n")
+            return 2
+        if args.load is None and checkpoint_path is not None and checkpoint_path.exists():
+            sys.stderr.write("That checkpoint already exists. Use --load to continue it.\n")
+            return 2
+        from astra_runtime.myravant_development_embodiment import create_development_embodiment_fixture
+
+        locality_args = {"fixture": create_development_embodiment_fixture(
+            args.development_body, args.development_course or "orchard",
+        )}
     if args.locality in {"tarrow", "tarrow-depth", "tarrow-material"}:
         from astra_runtime.myravant_tarrow import create_tarrow_fixture, execute_tarrow_request
         application_type = MyravantPlayApplication

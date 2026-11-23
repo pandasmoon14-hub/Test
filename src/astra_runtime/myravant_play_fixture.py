@@ -357,6 +357,19 @@ class FixtureProvenanceReceipt:
 
 
 @dataclass(frozen=True, kw_only=True)
+class EmbodimentPresentation:
+    name: str
+    configuration_commands: tuple[tuple[str, str], ...]
+
+    @property
+    def primary_commands(self) -> dict[str, str]:
+        commands = {}
+        for phrase, configuration in self.configuration_commands:
+            commands.setdefault(configuration, phrase)
+        return commands
+
+
+@dataclass(frozen=True, kw_only=True)
 class MyravantPlayFixture:
     campaign_id: str
     player_entity_id: str
@@ -389,6 +402,7 @@ class MyravantPlayFixture:
     movement_method_routes: tuple[FixtureMovementMethodRoute, ...] = ()
     posture_profile: PostureProfile | None = None
     posture_movement_licenses: tuple[PostureMovementLicense, ...] = ()
+    embodiment: EmbodimentPresentation | None = None
     # Explicit scenario qualifications; defaults preserve the historical fixture.
     fixed_object_ids: tuple[str, ...] = ()
     light_source_id: str = LANTERN_ID
@@ -409,6 +423,28 @@ class MyravantPlayFixture:
             or not set(profile.places) <= {p.entity_id for p in self.place_presentations}
         ):
             raise MyravantPlayFixtureError("posture profile escaped its actor or places")
+        if self.embodiment is not None:
+            if type(self.embodiment) is not EmbodimentPresentation or profile is None:
+                raise MyravantPlayFixtureError("embodiment presentation requires a posture profile")
+            commands = self.embodiment.configuration_commands
+            if (
+                not isinstance(self.embodiment.name, str) or not self.embodiment.name.strip()
+                or type(commands) is not tuple
+                or any(
+                    type(pair) is not tuple or len(pair) != 2
+                    or any(type(value) is not str for value in pair)
+                    for pair in commands
+                )
+                or len({phrase for phrase, _ in commands}) != len(commands)
+                or {configuration for _, configuration in commands} != set(profile.configurations)
+                or any(
+                    not phrase or phrase != " ".join(phrase.casefold().split())
+                    or not all(word.isalpha() for word in phrase.split())
+                    or {"then", "and", "while"}.intersection(phrase.split())
+                    for phrase, _ in commands
+                )
+            ):
+                raise MyravantPlayFixtureError("invalid embodiment configuration commands")
         for license in self.posture_movement_licenses:
             if (
                 type(license) is not PostureMovementLicense or profile is None

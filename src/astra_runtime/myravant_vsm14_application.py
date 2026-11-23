@@ -21,6 +21,7 @@ from astra_runtime.myravant_posture import (
     PostureState, PostureError, digest_posture, execute_posture,
 )
 from astra_runtime.myravant_posture_checkpoint import (
+    development_embodiment_binding,
     digest_posture_authoritative_state, restore_posture_checkpoint,
     write_posture_checkpoint, has_posture_movement,
 )
@@ -140,6 +141,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
         if type(self._brace_state) is not FixtureBraceState:
             raise TypeError("invalid conserved brace state")
         self._posture_state = posture_state if posture_state is not None else PostureState()
+        self._embodiment_binding = development_embodiment_binding(fixture)
         if type(self._posture_state) is not PostureState:
             raise TypeError("invalid posture state")
         self._duty_state = duty_state if duty_state is not None else FixtureDutyState()
@@ -164,9 +166,12 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 expected_pre_digest=digest_posture(self.posture_state),
             )
         except PostureError:
+            message = "That configuration has no qualified profile or opportunity here."
+            if self.fixture.embodiment is not None:
+                message = "You cannot take that configuration here. Inspect self for your current options."
             return PlayApplicationResult(
                 result_type="posture_rejected",
-                message="That configuration has no qualified profile or opportunity here.",
+                message=message,
                 pre_state_digest=pre_digest, post_state_digest=pre_digest,
                 failure_class="posture_opportunity_unavailable",
             )
@@ -189,11 +194,63 @@ class MyravantVSM14Application(MyravantPlayApplication):
     def inspect(self, entity_reference: str) -> PlayApplicationResult:
         result = super().inspect(entity_reference)
         if result.result_type == "self_inspection":
+            description = result.view.description + (
+                f"\nRecorded posture: {self.posture_state.configuration or 'unrecorded'}."
+            )
+            embodiment = self.fixture.embodiment
+            if embodiment is not None:
+                place = self.current_place_id()
+                profile = self.fixture.posture_profile
+                commands = ", ".join(embodiment.primary_commands[pose]
+                                     for pose in profile.configurations)
+                description += f"\nDevelopment body: {embodiment.name}."
+                description += (
+                    f"\nConfiguration commands here: {commands}."
+                    if place in profile.places else
+                    "\nChanging configuration has no qualified opportunity here."
+                )
+                crawl = [f"crawl {route.direction}" for route in self.fixture.movement_method_routes
+                         if route.source_place_id == place and self._crawl_available(route.direction)]
+                description += "\nTravel: walk on open routes."
+                if crawl:
+                    description += f" Crawl options here: {', '.join(crawl)}."
             result = replace(result, view=replace(
-                result.view, description=result.view.description +
-                f"\nRecorded posture: {self.posture_state.configuration or 'unrecorded'}.",
+                result.view, description=description,
             ))
         return result
+
+    def _crawl_available(self, direction: str) -> bool:
+        source = self.current_place_id()
+        _, opportunity = self.fixture.movement_evidence(
+            command_id=self._next_movement_command_id(), source_place_id=source,
+            direction=direction, destination_place_id=self.fixture.destination_for(
+                source_place_id=source, direction=direction,
+            ),
+            representation=self.state.representation, method="crawl",
+        )
+        return opportunity.opportunity_available
+
+    def _movement_opportunity_refusal(self, *, source_place_id, direction, method):
+        embodiment = self.fixture.embodiment
+        if embodiment is None:
+            return super()._movement_opportunity_refusal(
+                source_place_id=source_place_id, direction=direction, method=method,
+            )
+        if method == "crawl":
+            return "You have no qualified crawl here. Inspect self for your current travel options."
+        alternatives = []
+        if source_place_id in self.fixture.posture_profile.places:
+            commands = embodiment.primary_commands
+            alternatives.extend(
+                f"{commands[pose]} then walk {direction}"
+                for license in self.fixture.posture_movement_licenses
+                if license.source_place_id == source_place_id and license.direction == direction
+                for pose in license.configurations
+            )
+        if self._crawl_available(direction):
+            alternatives.append(f"crawl {direction}")
+        hint = f" Try {' or '.join(alternatives)}." if alternatives else ""
+        return "Something obstructs that passage from here." + hint
 
     def _movement_posture_event(self, *, source_place_id, direction, method):
         if not self.posture_state.events:
@@ -273,6 +330,8 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 checkpoint_path=checkpoint_path, fixture=bounded_fixture,
             )
         except PersistentWorldCheckpointFormatError:
+            if bounded_fixture.embodiment is not None:
+                raise
             app = cls._restore_without_posture(
                 checkpoint_path=checkpoint_path, fixture=bounded_fixture,
             )
@@ -355,6 +414,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
     def authoritative_digest(self) -> str:
         return digest_posture_authoritative_state(
             posture_state=self.posture_state,
+            embodiment_binding=self._embodiment_binding,
             runtime_state=self.runtime_state,
             follow_intent_state=self.follow_intent_state,
             service_state=self.service_state,
@@ -1668,7 +1728,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 "save requires --checkpoint or a loaded checkpoint path"
             )
         pre_digest = self.authoritative_digest()
-        if self.posture_state.events:
+        if self.posture_state.events or self._embodiment_binding is not None:
             checkpoint_digest = write_posture_checkpoint(
                 runtime_state=self.runtime_state,
                 follow_intent_state=self.follow_intent_state,
@@ -1676,6 +1736,7 @@ class MyravantVSM14Application(MyravantPlayApplication):
                 brace_state=self.brace_state, duty_state=self.duty_state,
                 posture_state=self.posture_state, checkpoint_path=self.checkpoint_path,
                 qualification_evidence=self.fixture.checkpoint_qualification,
+                embodiment_binding=self._embodiment_binding,
             )
         elif has_e2_npc_work(self.service_state):
             checkpoint_digest = write_e2_checkpoint(

@@ -105,6 +105,9 @@ Focused commands may be appropriate for a bounded change, but report skipped
 tests and missing optional dependencies rather than treating skips as full
 coverage.
 
+Try the [playable development bodies](docs/development/playable_development_bodies.md)
+from the installed terminal to compare body-specific passage and travel options.
+
 ## Contributor and agent guidance
 
 Read [`AGENTS.md`](AGENTS.md) before substantive work. It is the coding-agent
