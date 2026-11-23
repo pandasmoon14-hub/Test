@@ -198,9 +198,9 @@ def _build_neutral(*, reverse=False, blocked_limit=3, standing=True,
         if sealed:
             place_names['wing-1'] = 'Packing Annex'
     descriptions = {
-        'entry': 'The signed workroom lies east. A supply recess opens west.',
-        'studio': 'A marker and a washing panel share the bench. Inspect worksite to check local methods.',
-        'wing-1': 'A packing bench faces the return to the shed.',
+        'entry': 'The workroom lies east. A supply recess opens west.',
+        'studio': 'The north exit leads to Open Walk. Inspect worksite to check local methods.',
+        'wing-1': 'The west exit returns to the shed.',
         'dry-box': 'A lidded box for stowing an absorbent rag. Inspect it or open it to check inside.',
         'jun': 'The resident keeps the rear panel readable.',
         'sol': 'The resident keeps the rear panel readable.',

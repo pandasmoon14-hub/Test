@@ -356,7 +356,7 @@ def test_failed_acknowledgement_preserves_revised_cleaning_agreement(tmp_path, m
 
 
 def test_worksite_discussion_does_not_reach_an_absent_worker():
-    app, _ = build_generated_locality(LocalityRecipe("coordination"))
+    app = LocalityRecipe("coordination").application_type.new()
     original = app.authoritative_digest()
     result = app.suggest_cleaning("Jun", "Panel A")
     assert result.failure_class == "work_method_discussion_unavailable"

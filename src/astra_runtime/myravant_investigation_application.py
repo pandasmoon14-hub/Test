@@ -224,6 +224,13 @@ class SituatedWorksiteApplication(PassageReleaseMixin, InvestigationApplication)
     replay_methods = (*InvestigationApplication.replay_methods, "request_passage_release")
     qualify_explicit_cleaning_request = True
 
+    @staticmethod
+    def default_fixture():
+        from astra_runtime.myravant_generated_locality import (
+            LocalityRecipe, create_generated_locality_fixture,
+        )
+        return create_generated_locality_fixture(LocalityRecipe("coordination"))
+
     def _checkpoint_profile(self):
         passage = self.fixture.passage_work
         return {"investigation": super()._checkpoint_profile(),
