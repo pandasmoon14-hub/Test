@@ -1,4 +1,4 @@
-"""Eleven isolated source-copy #555 regressions; never edit checked-out runtime."""
+"""Isolated whole-component and passage-work regressions."""
 import argparse
 import json
 from pathlib import Path
@@ -51,16 +51,37 @@ MUTATIONS=(
      "test_player_may_retry_after_more_than_profile_maximum_blocked_intervals"),
 )
 
+
+PASSAGE_MUTATIONS = (
+    ("paused_agreement_silently_retargets_replacement_fastening",
+     "myravant_transformation_application.py",
+     "        connection_id = self._release_connection(task)",
+     "        connection_id = self.connections[0].connection_id",
+     "test_stale_release_remains_bound_to_old_fastening_after_restart"),
+    ("remote_request_bypasses_communication",
+     "myravant_transformation_application.py",
+     '            self._route(actor, "request")',
+     "            pass",
+     "test_nonlocal_request_and_inspection_do_not_disclose_work"),
+)
+
+
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--output",type=Path,required=True)
     output=p.parse_args().output
-    report=run_mutations(Path(__file__).resolve().parents[1],
+    repository = Path(__file__).resolve().parents[1]
+    report=run_mutations(repository,
         mutations=MUTATIONS,test_filename="test_play_transformation_1.py")
-    assert len(report["mutations"])==11
+    passage = run_mutations(repository, mutations=PASSAGE_MUTATIONS,
+                            test_filename="test_play_passage_work.py")
+    assert report["repository_sha"] == passage["repository_sha"]
+    report["mutations"].extend(passage["mutations"])
+    count = len(MUTATIONS) + len(PASSAGE_MUTATIONS)
+    assert len(report["mutations"]) == count
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(report,sort_keys=True,indent=2)+"\n")
-    print("Transformation mutations: 11/11 intended defects detected; all controls passed.")
+    print(f"Transformation and passage mutations: {count}/{count} intended defects detected; all controls passed.")
 
 if __name__=="__main__":
     main()

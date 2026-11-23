@@ -72,6 +72,7 @@ from astra_runtime.myravant_vsm14_terminal import execute_vsm14_terminal_input
 
 # Static interpreter routes, not a world command registry or semantic owner.
 BOUNDED_TERMINAL_ROUTES = frozenset({
+    'passage_work',
     'timed',
     'water',
     'material',
@@ -107,6 +108,10 @@ def _classify_bounded_terminal_request(raw_text: str, *, fixture=None) -> str | 
     No application state, opportunity grant, executor, or persistence is touched.
     Qualification remains in the original handlers at each actual execution.
     """
+    if getattr(fixture, 'passage_work', None) is not None:
+        from astra_runtime.myravant_tarrow_transformation import parse_passage_work_request
+        if parse_passage_work_request(raw_text) is not None:
+            return 'passage_work'
     if getattr(fixture, 'environment_profile', None) is not None:
         from astra_runtime.myravant_timed_application import parse_timed
         if parse_timed(raw_text) is not None:
@@ -189,6 +194,9 @@ def execute_classified_bounded_terminal_request(
     if route == 'material':
         from astra_runtime.myravant_material_application import execute_material_request
         return execute_material_request(application, raw_text)[1]
+    if route == 'passage_work':
+        from astra_runtime.myravant_tarrow_transformation import execute_passage_work_request
+        return execute_passage_work_request(application, raw_text)[1]
     if route == 'chest_investigation_goal':
         return execute_chest_investigation(application, raw_text)
     if route == 'chest_readiness_goal':
