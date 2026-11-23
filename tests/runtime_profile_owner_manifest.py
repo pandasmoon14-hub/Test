@@ -44,6 +44,7 @@ REGISTERED_ROOT_NON_OWNER_FILES = frozenset({
     "myravant_cooperative_delivery_goal.py",
     "myravant_d1_brace_goal.py",
     "myravant_d1_checkpoint.py",
+    "myravant_development_embodiment.py",  # development fixture declarations
     "myravant_e1_checkpoint.py",
     "myravant_e1_duty_goal.py",
     "myravant_e2_actor_service_goal.py",
