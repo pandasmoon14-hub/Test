@@ -77,11 +77,18 @@ def play(path, trace, commands, *, load=False):
 
 
 def test_family_inventory_is_complete_for_current_installed_router():
-    # Original default-fixture families remain unchanged; material is profile-scoped.
-    # Its installed and pure-preflight coverage lives in test_play_material.
+    from astra_runtime.myravant_tarrow_transformation import create_transformation_fixture
+
     assert len(FAMILIES) == 23
-    assert len(BOUNDED_TERMINAL_ROUTES) == 26
-    assert {row[0] for row in FAMILIES} | {'material','water','timed'} == BOUNDED_TERMINAL_ROUTES
+    assert len(BOUNDED_TERMINAL_ROUTES) == 27
+    assert {row[0] for row in FAMILIES} | {
+        'material', 'water', 'timed', 'passage_work',
+    } == BOUNDED_TERMINAL_ROUTES
+    release = 'ask tali ren to release passage barrier'
+    assert classify_bounded_terminal_request(release, fixture=App.new().fixture) is None
+    assert classify_bounded_terminal_request(release, fixture=create_transformation_fixture()) is None
+    passage = create_transformation_fixture(passage_case='sorting-bay-work')
+    assert classify_bounded_terminal_request(release, fixture=passage) == 'passage_work'
 
 
 @pytest.mark.parametrize('route,raw,setup', FAMILIES + CORE_ACTORS)

@@ -11,13 +11,37 @@ from astra_runtime.domain.persistent_world_material import TransformationProfile
 
 
 @dataclass(frozen=True)
+class PassageWorkSite:
+    direction: str
+    return_place: str
+    return_direction: str
+    arrangements: tuple[str, ...]
+    release_actors: tuple[str, ...]
+
+
+# Two declared two-way corridors, with different local components and helpers.
+PASSAGE_WORK_CASES = {
+    "sorting-bay-work": ("north", "yard-sorting", "south", "tali", "refit"),
+    "workshop-passage-work": ("west", "workshop", "east", "oren", "replace"),
+}
+
+
+@dataclass(frozen=True)
 class TransformationFixture(ActorFixture):
     transformation_profile: TransformationProfile | None = None
     transformation_actor_methods: tuple[tuple[str, tuple[str, ...]], ...] = ()
+    passage_work: PassageWorkSite | None = None
 
     @property
     def locality_help(self):
-        return ("Transformation: start refitting <component> using <tool>; "
+        passage = (
+            "Passage work: inspect passage work for local options. "
+            "Ask a local worker to release passage barrier or release restored barrier. "
+            "An accepted release applies to the current fastening. "
+            "Ask the worker about work for progress.\n"
+            if self.passage_work is not None else ""
+        )
+        return (passage + "Transformation: start refitting <component> using <tool>; "
                 "start replacing <component> with <spare>; "
                 "start repurposing <component> using <tool>; "
                 "ask <actor> to refit/replace/repurpose <component> using/with <resource>; "
@@ -27,7 +51,22 @@ class TransformationFixture(ActorFixture):
                 + super().locality_help)
 
 
-def create_transformation_fixture(*, actor_order=None, spare_at="yard-tools", tool_at="yard-tools"):
+def create_transformation_fixture(*, actor_order=None, spare_at="yard-tools",
+                                  tool_at="yard-tools", passage_case=None):
+    site = None
+    worker = None
+    if passage_case is not None:
+        if passage_case not in PASSAGE_WORK_CASES:
+            raise ValueError("unsupported passage work case")
+        direction, return_place, return_direction, worker, method = PASSAGE_WORK_CASES[passage_case]
+        site = PassageWorkSite(
+            direction, identity(return_place), return_direction,
+            ("passage barrier", "restored barrier"), (identity(worker),),
+        )
+        if method == "refit":
+            spare_at = "work-bench"
+        else:
+            tool_at = "work-bench"
     if spare_at not in {"yard-tools", "work-bench"} or tool_at not in {"yard-tools", "work-bench"}:
         raise ValueError("unsupported transformation fixture placement")
     base = create_actor_fixture()
@@ -36,13 +75,15 @@ def create_transformation_fixture(*, actor_order=None, spare_at="yard-tools", to
         ("barrier-spare","Barrier Spare","A declared matching whole crossbar, never free output.",spare_at),
         ("alignment-tool","Alignment Tool","A qualified hand tool for bounded component fitting.",tool_at),
     )
+    actor_places = {"oren": "yard-tools" if worker == "oren" else "work-bench",
+                    "tali": "yard-tools"}
     layout = replace(layout,
-        people=tuple((*row[:3], "work-bench" if row[0] == "oren" else
-                      "yard-tools" if row[0] == "tali" else row[3]) for row in layout.people),
+        people=tuple((*row[:3], actor_places.get(row[0], row[3])) for row in layout.people),
         objects=(*layout.objects,*additions),
         storage=(*layout.storage,*tuple((k,c) for k,_,_,_ in additions
             for c in ("coffer","basket","sorting-tray","parts-tray","document-box","guest-box","delivery-box"))),
-        specialists=(*layout.specialists,"timed","actors","transformation"))
+        specialists=(*layout.specialists,"timed","actors","transformation",
+                     *(("passage_work",) if site is not None else ())))
     p=TransformationProfile(identity("barrier-crossbar"),identity("barrier-spare"),
         identity("alignment-tool"),identity("barrier-board"),identity("trestle"),
         identity("repair-board"),identity("repair-cord"),identity("yard-tools"),
@@ -54,13 +95,31 @@ def create_transformation_fixture(*, actor_order=None, spare_at="yard-tools", to
             ((p.barrier_board,p.trestle),(p.spare,p.trestle)),(new_links[0],)),
         MaterialEffect(identity("yard-sorting"),"south","movement",
             ((p.barrier_board,p.trestle),(p.spare,p.trestle)),(new_links[0],)))
+    effects = (*material.effects, *new_effects)
+    if site is not None:
+        # The approved material effects qualify against the same assembly
+        # owners on a different declared corridor.
+        admitted = {(p.barrier_place, site.direction), (site.return_place, site.return_direction)}
+        routes = {(identity(a), d, identity(b)) for a, d, b in layout.edges}
+        if not {
+            (p.barrier_place, site.direction, site.return_place),
+            (site.return_place, site.return_direction, p.barrier_place),
+        } <= routes:
+            raise ValueError("passage work requires an existing two-way route")
+        effects = (
+            *(effect for effect in effects if effect.kind != "movement"),
+            *(replace(effect, source=source, direction=heading)
+              for source, heading in sorted(admitted)
+              for effect in effects
+              if effect.kind == "movement" and effect.source == p.barrier_place),
+        )
     surfaces=("bench","trestle","document-box","tool-shelf","guest-bench")
     material=replace(material,
         support_pairs=(*material.support_pairs,
                        *((p.spare,identity(s)) for s in surfaces),
                        *((p.tool,identity(s)) for s in surfaces)),
         fastening_pairs=(*material.fastening_pairs,*new_links),
-        effects=(*material.effects,*new_effects))
+        effects=effects)
     profiles=tuple(replace(a,standing_kind=None,standing_method=None,
                            standing_participants=(),standing_place=None,
                            assembly_names=(*a.assembly_names,"restored barrier"))
@@ -69,13 +128,21 @@ def create_transformation_fixture(*, actor_order=None, spare_at="yard-tools", to
     if type(order) is not tuple or len(order)!=len(profiles) or set(order)!={a.actor_id for a in profiles}:
         raise ValueError("invalid declared actor order")
     actor_methods=((identity("tali"),("refit","replace")),(identity("oren"),("repurpose",)))
+    if site is not None and worker == "oren":
+        profiles = tuple(replace(a, willing=False) if a.actor_id == identity("tali") else a
+                         for a in profiles)
+        actor_methods = ((identity("oren"), ("replace", "repurpose")),)
     assemblies=(*base.assemblies,AssemblyProfile("restored barrier",p.barrier_place,
                     p.barrier_board,p.spare,p.trestle,p.trestle,identity("barrier-cord"),"tie"))
     witness={"profile":asdict(p),"material":asdict(material),
              "actors":[asdict(a) for a in profiles],"order":order,
              "assemblies":[asdict(a) for a in assemblies],
              "placements":(spare_at,tool_at),"actor_methods":actor_methods,"parent":base.provenance.initial_state_digest}
-    layout=replace(layout,version="transformation-1-"+digest(witness)[:16])
+    version = "transformation-1-"
+    if site is not None:
+        witness["passage_work"] = asdict(site)
+        version = "passage-work-1-"
+    layout=replace(layout,version=version+digest(witness)[:16])
     root=create_tarrow_fixture(layout=layout)
     validate_profile(p,root.initial_state.representation,material)
     return TransformationFixture(**root.__dict__,material_profile=material,
@@ -84,7 +151,26 @@ def create_transformation_fixture(*, actor_order=None, spare_at="yard-tools", to
         trace_subjects=base.trace_subjects,timing_version="transformation-time-1",
         actor_profiles=profiles,actor_order=order,
         actors_version="transformation-actor-1-"+digest(witness)[:16],
-        transformation_profile=p,transformation_actor_methods=actor_methods)
+        transformation_profile=p,transformation_actor_methods=actor_methods,passage_work=site)
+
+
+def parse_passage_work_request(raw):
+    text = " ".join(raw.strip().casefold().split())
+    if text == "inspect passage work":
+        return "inspect", ()
+    match = re.fullmatch(r"ask (.+?) to release (.+)", text)
+    if match:
+        return "release", match.groups()
+    return None
+
+
+def execute_passage_work_request(app, raw):
+    parsed = parse_passage_work_request(raw)
+    if parsed is None:
+        return None
+    kind, args = parsed
+    result = app.inspect_passage_work() if kind == "inspect" else app.request_passage_release(*args)
+    return "passage_work", result
 
 
 def parse_transformation_request(raw):
@@ -104,6 +190,10 @@ def parse_transformation_request(raw):
 
 
 def execute_transformation_request(app,raw):
+    if app.fixture.passage_work is not None:
+        passage = execute_passage_work_request(app, raw)
+        if passage is not None:
+            return passage
     parsed=parse_transformation_request(raw)
     if parsed is None:return execute_actor_locality_request(app,raw)
     kind,args=parsed

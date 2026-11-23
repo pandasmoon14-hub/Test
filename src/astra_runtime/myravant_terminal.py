@@ -1467,6 +1467,8 @@ def run_terminal(
 
 
 def build_argument_parser() -> argparse.ArgumentParser:
+    from astra_runtime.myravant_tarrow_transformation import PASSAGE_WORK_CASES
+
     parser = argparse.ArgumentParser(
         prog="myravant-play",
         description="Run the bounded Myravant terminal-play vertical slice.",
@@ -1531,8 +1533,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
         help="Connected noncanonical annex count (0 is the legacy worksite; 1–3 share one campaign clock).",
     )
     parser.add_argument(
-        "--transformation-case", choices=("standard", "split-spare"), default="standard",
-        help="Select a version-bound noncanonical transformation resource arrangement.",
+        "--transformation-case", choices=("standard", "split-spare", *PASSAGE_WORK_CASES), default="standard",
+        help="Select a version-bound transformation resource arrangement or passage worksite.",
     )
     parser.add_argument(
         "--prepare-investigation",
@@ -1669,11 +1671,19 @@ def main(argv: list[str] | None = None) -> int:
         execute_bounded_terminal_request = execute_investigation_request
 
     if args.locality == "tarrow-transformation":
-        from astra_runtime.myravant_transformation_application import TransformationApplication
-        from astra_runtime.myravant_tarrow_transformation import create_transformation_fixture, execute_transformation_request
-        application_type = TransformationApplication
+        from astra_runtime.myravant_transformation_application import (
+            PassageWorkApplication, TransformationApplication,
+        )
+        from astra_runtime.myravant_tarrow_transformation import (
+            PASSAGE_WORK_CASES, create_transformation_fixture, execute_transformation_request,
+        )
+        case = args.transformation_case
+        passage_case = case if case in PASSAGE_WORK_CASES else None
+        application_type = PassageWorkApplication if passage_case else TransformationApplication
         locality_args = {"fixture": create_transformation_fixture(
-            spare_at="work-bench" if args.transformation_case == "split-spare" else "yard-tools")}
+            spare_at="work-bench" if case == "split-spare" else "yard-tools",
+            passage_case=passage_case,
+        )}
         execute_bounded_terminal_request = execute_transformation_request
 
     if args.locality != "tarrow-surface-water" and (args.surface_order != "standard" or args.surface_case != "standard"):

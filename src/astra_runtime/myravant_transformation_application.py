@@ -7,7 +7,7 @@ from dataclasses import asdict, replace
 from astra_runtime.myravant_actor_application import ActorApplication
 from astra_runtime.myravant_material_application import _transaction
 from astra_runtime.myravant_play_application import PlayApplicationResult
-from astra_runtime.domain.persistent_world_material import MaterialError, digest, placement
+from astra_runtime.domain.persistent_world_material import MaterialError, active_effects, digest, placement
 from astra_runtime.domain.persistent_world_material import (
     TransformationWork, initial_state, role, validate_profile, validate_state, record_stage)
 from astra_runtime.domain import persistent_world_actor_participation as participation
@@ -362,3 +362,195 @@ class TransformationApplication(ActorApplication):
 for _name in ("begin_transformation","control_transformation","contribute_transformation"):
     setattr(TransformationApplication,_name,
             _transaction(getattr(TransformationApplication,_name),_name))
+
+
+class PassageWorkApplication(TransformationApplication):
+    """Voluntary recovery of one observed fastening under existing owners."""
+
+    checkpoint_format = "myravant.passage-work-transformation-owner-journal"
+    replay_methods = (*TransformationApplication.replay_methods, "request_passage_release")
+
+    @staticmethod
+    def default_fixture():
+        from astra_runtime.myravant_tarrow_transformation import create_transformation_fixture
+        return create_transformation_fixture(passage_case="sorting-bay-work")
+
+    def _checkpoint_profile(self):
+        return {
+            "transformation": super()._checkpoint_profile(),
+            "passage_work": asdict(self.fixture.passage_work),
+            "release_scope": "current-fastening-1",
+        }
+
+    def _validate_transaction(self):
+        super()._validate_transaction()
+        if not hasattr(self, "participation_state"):
+            return
+        scopes = [(actor, payload[0], tick) for _, operation, actor, payload, tick in self.actor_events
+                  if operation == "passage_release_scope"]
+        tasks = {(task.actor_id, task.task_id, task.tick) for task in self.participation_state.records
+                 if task.kind == "recovery"}
+        if len(scopes) != len(tasks) or set(scopes) != tasks:
+            raise MaterialError("Passage release lacks its accepted fastening scope.")
+
+    def _scope(self, profile, kind, method, participants, place):
+        if kind != "recovery":
+            return super()._scope(profile, kind, method, participants, place)
+        site = self.fixture.passage_work
+        arrangement = self._assembly(method)
+        if (
+            profile.actor_id not in site.release_actors
+            or method not in site.arrangements
+            or arrangement.method != "tie"
+            or participants != (arrangement.left, arrangement.right, arrangement.fastener)
+            or place != arrangement.place
+        ):
+            raise MaterialError("This actor has no declared scope for that release.")
+
+    def _passage_effects(self):
+        site = self.fixture.passage_work
+        return tuple(
+            effect for effect in active_effects(self.state.representation, self.connections,
+                                                self.material_profile)
+            if effect.kind == "movement"
+            and (effect.source, effect.direction) == (self.transform_profile.barrier_place, site.direction)
+        )
+
+    def _visible_passage_effect(self, observer, effect):
+        participants = {obj for row in effect.connections for obj in row[:3]}
+        return all(self._visible_for_actor(observer, obj) for obj in participants)
+
+    def inspect_passage_work(self):
+        player = self.fixture.player_entity_id
+        profile = self.transform_profile
+        site = self.fixture.passage_work
+        if self.current_place_id() != profile.barrier_place or not knowledge._lit(self, player):
+            return self._result("Inspect passage work from the lit work position.",
+                                failure="passage_work_unavailable")
+        effects = self._passage_effects()
+        options = [f"Work passage: {site.direction}."]
+        local_workers = [
+            self.fixture.entity_name(actor) for actor in site.release_actors
+            if knowledge.communication_route(self, player, actor, "request")
+        ]
+        for name in site.arrangements:
+            assembly = self._assembly(name)
+            join = (assembly.left, assembly.right, assembly.fastener, assembly.method)
+            if any(join in effect.connections and self._visible_passage_effect(player, effect)
+                   for effect in effects):
+                fastener = self.fixture.entity_name(assembly.fastener)
+                options.append(f"{name.capitalize()} blocks the passage. Untie {fastener}.")
+                options.extend(f"You can ask {worker} to release {name}." for worker in local_workers)
+        if self._visible_for_actor(player, profile.old) and role(self.transform_state, profile.old) == "unfit":
+            target = self.fixture.entity_name(profile.old)
+            support = self.fixture.entity_name(profile.trestle)
+            old = placement(self.state.representation, profile.old)
+            if (old.relation_type, old.object_entity_id) != ("supported_by", profile.trestle):
+                options.append(f"Stage {target} on {support} before refitting or replacing it.")
+            for action, resource, join_word in (
+                ("refitting", profile.tool, "using"), ("replacing", profile.spare, "with"),
+            ):
+                if self._visible_for_actor(player, resource):
+                    options.append(f"You can prepare to start {action} {target} {join_word} "
+                                   f"{self.fixture.entity_name(resource)}. The performer must carry it.")
+        return self._result("\n".join(options))
+
+    def transformation_status(self):
+        task = self.transform_state.work
+        if task is None:
+            return super().transformation_status()
+        player = self.fixture.player_entity_id
+        if task.actor != player:
+            if not knowledge.communication_route(self, player, task.actor, "status"):
+                return self._result("Current transformation status is unavailable here.",
+                                    failure="transformation_status_unavailable")
+            name = self.fixture.entity_name(task.actor)
+            return self._result(f"{name} reports {task.status} {task.method} work "
+                                f"with {task.stage} committed stage(s).")
+        if not self._visible_for_actor(player, task.target):
+            return self._result(f"Your {task.method} work is {task.status} with "
+                                f"{task.stage} committed stage(s). Inspect the component locally for its condition.")
+        return super().transformation_status()
+
+    def request_passage_release(self, actor_reference, arrangement_reference):
+        pre = self.authoritative_digest()
+        player = self.fixture.player_entity_id
+        try:
+            actor = self._actor(actor_reference)
+            self._route(actor, "request")
+            if not self.actor_profile(actor).willing:
+                raise MaterialError("The actor declines this work.")
+            arrangement = self._assembly(arrangement_reference)
+            parts = (arrangement.left, arrangement.right, arrangement.fastener)
+            self._scope(self.actor_profile(actor), "recovery", arrangement.name, parts, arrangement.place)
+            if self._actor_place_id(actor) != arrangement.place or not knowledge._lit(self, actor):
+                raise MaterialError("The actor cannot inspect the arrangement from here.")
+            joint = (*parts, arrangement.method)
+            if not any(joint in effect.connections and self._visible_passage_effect(actor, effect)
+                       for effect in self._passage_effects()):
+                raise MaterialError("There is no qualified visible fastening to release for that passage.")
+            connection = next(c for c in self.connections
+                              if (c.left, c.right, c.fastener, c.method) == joint)
+            task = self._accept(actor, "recovery", arrangement.name, parts, arrangement.place, player)
+        except ValueError as exc:
+            return self._result(str(exc), failure="passage_release_unavailable")
+        self._event("passage_release_scope", actor, (task.task_id, connection.connection_id))
+        message = self._communicate_status(actor) + " Release accepted for the current fastening."
+        return self._metadata_result(pre, "request_passage_release", actor, message)
+
+    def _release_connection(self, task):
+        return next(payload[1] for _, operation, actor, payload, _ in self.actor_events
+                    if operation == "passage_release_scope" and actor == task.actor_id
+                    and payload[0] == task.task_id)
+
+    def _task_complete(self, task):
+        if task.kind == "recovery":
+            return not self._passage_effects()
+        return super()._task_complete(task)
+
+    def _goal_visible_complete(self, task):
+        if task.kind == "recovery":
+            actor = task.actor_id
+            return (
+                self._actor_place_id(actor) == task.place_id
+                and knowledge._lit(self, actor)
+                and all(self._visible_for_actor(actor, item) for item in task.participants[:2])
+                and self._task_complete(task)
+            )
+        return super()._goal_visible_complete(task)
+
+    def _prepare_actor(self, task):
+        if task.kind != "recovery":
+            return super()._prepare_actor(task)
+        actor = task.actor_id
+        profile = self.actor_profile(actor)
+        if not profile.willing:
+            return "invalidated", None
+        self._scope(profile, task.kind, task.method, task.participants, task.place_id)
+        if self._actor_place_id(actor) != task.place_id or not knowledge._lit(self, actor):
+            return "blocked", "The worker cannot inspect the passage from here."
+        if self._goal_visible_complete(task):
+            return "satisfied", None
+        if not all(self._visible_for_actor(actor, item) for item in task.participants[:2]):
+            return "blocked", "The worker cannot inspect the arrangement."
+        connection_id = self._release_connection(task)
+        if not any(c.connection_id == connection_id for c in self.connections):
+            return "blocked", "The agreed fastening is gone. Agree on the current arrangement before another release."
+        if not self._visible_for_actor(actor, task.participants[2]):
+            return "blocked", "The fastening is not accessible to the worker."
+        return "action", ("passage_release", "untie", (task.participants[2], connection_id))
+
+    def _execute_actor(self, actor, intent):
+        owner, operation, ids = intent
+        if owner != "passage_release":
+            return super()._execute_actor(actor, intent)
+        fastener, connection_id = ids
+        if not any(c.connection_id == connection_id and c.fastener == fastener for c in self.connections):
+            return self._result("The agreed fastening changed before release.",
+                                failure="passage_release_unavailable")
+        return self.material_for_actor(actor, operation, self.fixture.entity_name(fastener))
+
+
+PassageWorkApplication.request_passage_release = _transaction(
+    PassageWorkApplication.request_passage_release, "request_passage_release",
+)

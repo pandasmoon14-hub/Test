@@ -105,6 +105,9 @@ Focused commands may be appropriate for a bounded change, but report skipped
 tests and missing optional dependencies rather than treating skips as full
 coverage.
 
+Try [practical passage work](docs/development/playable_passage_work.md) in the
+installed terminal to restore a barrier and reopen its corridor with a worker.
+
 ## Contributor and agent guidance
 
 Read [`AGENTS.md`](AGENTS.md) before substantive work. It is the coding-agent
