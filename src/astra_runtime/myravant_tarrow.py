@@ -178,12 +178,19 @@ def create_tarrow_fixture(*, layout: TarrowLayout | None = None):
         ambient_visual_profile_version=f.FIXTURE_AMBIENT_VISUAL_PROFILE_VERSION,
         ambient_visual_condition_digest=f.digest_fixture_ambient_visual_conditions(ambient),
     )
+    public_places = {place.key: place for place in layout.places}
+    signposts = tuple((identity(a), d) for a, d, b in layout.edges
+                      if (a, d, b) in EDGES
+                      or f"{public_places[b].name} ({d})" in public_places[a].description)
+    aliases = (("common", ("common room",)), ("workshop", ("workroom",)))
     return TarrowFixture(
         campaign_id=campaign, player_entity_id=player, initial_state=custody.movement_state,
         initial_object_open_states=opens, initial_object_lit_states=lights,
         ambient_visual_conditions=ambient, ambient_visual_profile_version=f.FIXTURE_AMBIENT_VISUAL_PROFILE_VERSION,
         place_presentations=places, object_presentations=objects, actor_presentations=actors,
         movement_routes=tuple(f.FixtureMovementRoute(source_place_id=identity(a), direction=d, destination_place_id=identity(b)) for a,d,b in layout.edges),
+        signposted_routes=signposts,
+        public_input_aliases=tuple((identity(key), names) for key, names in aliases if key in public_places),
         checkpoint_qualification={"qualification_id": build_record_id("evidence", "tarrow-checkpoint-v" + layout.version), "semantic_owner": "AFQR-01", "qualified": True, "provenance": "owner-approved Tarrow development binding", "fixture_campaign_id": campaign},
         provenance=provenance, fixed_object_ids=tuple(identity(k) for k in layout.fixed),
         light_source_id=identity("lamp"), stock_world_routine=False, specialist_routes=layout.specialists,

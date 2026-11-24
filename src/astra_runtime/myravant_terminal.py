@@ -22,6 +22,7 @@ from astra_runtime.myravant_live_play_evidence import (
 from astra_runtime.myravant_player_sensory_breadth import (
     parse_player_sensory_attempt, execute_player_sensory_attempt,
 )
+from astra_runtime.myravant_player_intentions import IntentSession
 from astra_runtime.myravant_play_application import (
     CheckpointPathRequiredError,
     MyravantPlayApplication,
@@ -1286,9 +1287,18 @@ def run_terminal(
         [MyravantPlayApplication, str],
         tuple[str, PlayApplicationResult] | None,
     ] | None = None,
+    resumed: bool = False,
 ) -> int:
+    intentions = IntentSession(application)
     output_stream.write("Myravant\n\n")
-    _write_durable_result(output_stream, application, application.look(), debug=debug)
+    arrival = application.look()
+    _write_durable_result(output_stream, application, arrival, debug=debug)
+    intentions.context.note_view(arrival.view)
+    signs = intentions.context.route_labels()
+    if signs:
+        output_stream.write(signs + "\n")
+    if resumed:
+        output_stream.write("Names and directions can be discovered again here. Earlier input clarifications have expired.\n")
 
     while True:
         output_stream.write("\n> ")
@@ -1316,19 +1326,51 @@ def run_terminal(
             )
             return 0
         if parsed.action == "help":
+            if parsed.argument in {"travel", "movement", "input"}:
+                output_stream.write("Use a destination on a sign or a route you know. You can ask where to go, name a visible tool, or answer a question with the missing detail.\n")
             if getattr(application.fixture, "locality_help", None):
                 output_stream.write(application.fixture.locality_help + "\n")
             else:
                 _write_help(output_stream, parsed.argument)
             continue
+        # Full questions and non-attempts must be classified before any
+        # legacy executor can treat one of their fragments as an action.
+        source = application.current_place_id()
+        planned = (None if any(mark in raw for mark in ('?', '"', '“', '”'))
+                   else _explicit_two_step_intent(raw, fixture=application.fixture))
+        if planned is not None:
+            intentions.pending = None
+        proposals = intentions.offer(raw, parsed) if planned is None else None
+        if proposals is not None:
+            count = len(proposals)
+            for ordinal, proposal in enumerate(proposals, 1):
+                phase = f"Instruction {ordinal}/{count}: " if count > 1 else ""
+                stopped = False
+                for result in intentions.execute(proposal):
+                    output_stream.write(phase)
+                    visible = _write_durable_result(output_stream, application, result, debug=debug)
+                    _record_result(evidence_recorder,
+                        parsed=ParsedTerminalCommand(action=f"intent_{proposal.action}",
+                            argument=proposal.trace_argument(ordinal, count), raw_text=raw),
+                        visible_output=phase + visible, result=result, error_stream=evidence_error_stream)
+                    if result.failure_class:
+                        stopped = True
+                        break
+                if stopped:
+                    if ordinal < count:
+                        output_stream.write("The rest of that instruction was not attempted.\n")
+                    break
+            if source != application.current_place_id() and (signs := intentions.context.route_labels()):
+                output_stream.write(signs + "\n")
+            continue
         # Preflight *both* independently parseable steps before executing
         # either. Once execution begins, each step is independently durable;
         # a contextual refusal stops the sequence but does not undo a lawful
         # first transition. This is explicit sequence, not simultaneous work.
-        planned = _explicit_two_step_intent(raw, fixture=application.fixture)
         if planned is not None:
             halted = False
             for ordinal, step in enumerate(planned, 1):
+                step_source = application.current_place_id()
                 stream = _interval_stream(application, step.argument)
                 if stream is None:
                     stream = (_execute_composable_core_step(application, step),)
@@ -1338,6 +1380,7 @@ def run_terminal(
                     _record_result(evidence_recorder,
                         parsed=ParsedTerminalCommand(action=f"sequence_{ordinal}_{step.action}",argument=step.argument,raw_text=raw),
                         visible_output=f"Sequence step {ordinal}/2: "+visible,result=result,error_stream=evidence_error_stream)
+                    intentions.notice(step, result, step_source, route=step.action)
                     if result.failure_class is not None:
                         output_stream.write("Sequence halted after this refusal; no later step was attempted.\n")
                         halted = True
@@ -1366,6 +1409,7 @@ def run_terminal(
                     result=result,
                     error_stream=evidence_error_stream,
                 )
+                intentions.notice(parsed, result, source, route=route)
                 continue
         if parsed.action in {
             "look", "look_direction", "focused_observation",
@@ -1379,6 +1423,7 @@ def run_terminal(
                 evidence_recorder, parsed=parsed, visible_output=visible,
                 result=result, error_stream=evidence_error_stream,
             )
+            intentions.notice(parsed, result, source)
             continue
         if parsed.action in {
             "store", "retrieve", "light", "extinguish",
@@ -1393,6 +1438,7 @@ def run_terminal(
                 evidence_recorder, parsed=parsed, visible_output=visible,
                 result=result, error_stream=evidence_error_stream,
             )
+            intentions.notice(parsed, result, source)
             continue
         if parsed.action == "save":
             try:
@@ -1794,6 +1840,7 @@ def main(argv: list[str] | None = None) -> int:
         evidence_recorder=recorder,
         evidence_error_stream=sys.stderr,
         specialized_router=execute_bounded_terminal_request,
+        resumed=args.load is not None,
     )
 
 

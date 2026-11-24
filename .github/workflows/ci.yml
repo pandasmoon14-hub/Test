@@ -47,6 +47,7 @@ jobs:
           MYRAVANT_ACTOR_CAMPAIGN_REPORT_DIR: actor-campaigns
           MYRAVANT_ACTOR_ASSESSOR_REPORT: actor-assessor.json
           MYRAVANT_THREE_LIVES_REPORT_DIR: three-lives-evidence
+          MYRAVANT_INTENTION_REPORT_DIR: intention-journeys
         run: python -m pytest -q -n 2 --dist loadfile --max-worker-restart=0 --durations=50 --durations-min=0.5 --junitxml=suite.xml
       - name: Generate isolated actor mutations
         # Installed campaigns and separate assessment are exported by the full suite.
@@ -75,6 +76,14 @@ jobs:
         with:
           name: myravant-three-lives-preflight-linux
           path: three-lives-evidence/three-lives-public.json
+          if-no-files-found: warn
+
+      - name: Upload installed player-intention journeys
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: myravant-player-intention-journeys-linux
+          path: intention-journeys/*/*.json
           if-no-files-found: warn
 
   retained-evidence-linux:
@@ -471,6 +480,10 @@ jobs:
         run: |
           python scripts/report_myravant_generated_locality.py --output generated-locality-evidence.json
           python scripts/report_myravant_generated_locality_mutations.py --output generated-locality-mutations.json
+      - name: Assess grounded player intentions and run negative controls
+        run: |
+          python scripts/report_myravant_player_intentions.py --output player-intention-assessment.json
+          python scripts/report_myravant_player_intention_mutations.py --output player-intention-mutations.json
       - name: Upload generated locality evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -479,6 +492,8 @@ jobs:
           path: |
             generated-locality-evidence.json
             generated-locality-mutations.json
+            player-intention-assessment.json
+            player-intention-mutations.json
           if-no-files-found: warn
 
   investigation-evidence-linux:
