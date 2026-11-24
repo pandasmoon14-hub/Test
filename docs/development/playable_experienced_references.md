@@ -84,8 +84,10 @@ You hand the Brass Lantern to the Groundskeeper.
 
 The existing handoff owner verifies the recipient's local availability and
 actual custody. A transfer establishes its participants, direction and place.
-The owner for any further agreement to lend or borrow is AFQR-10
-(custody, possession and ownership). Those terms need an admitted loan term.
+A loan requires an admitted agreement. The asset and custody binding belongs to
+[RT-010](../doctrine/control/RT010_inventory_item_vehicle_asset_owner_specification.md),
+with actor consent qualified through AFQR-11. D09 distinguishes custody and
+loaned status.
 
 ## Clarify a later instruction
 
