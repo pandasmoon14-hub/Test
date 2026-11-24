@@ -397,6 +397,9 @@ class MyravantPlayFixture:
     specialist_routes: tuple[str, ...] | None = None
     # Presentation grouping only. Current position remains an AFQR-18 place.
     position_areas: tuple[tuple[str, str], ...] = ()
+    # Presentation-only aliases and locally readable exit signs.
+    signposted_routes: tuple[tuple[str, str], ...] = ()
+    public_input_aliases: tuple[tuple[str, tuple[str, ...]], ...] = ()
 
     def __post_init__(self) -> None:
         if type(self.stock_world_routine) is not bool:
@@ -469,6 +472,14 @@ class MyravantPlayFixture:
                    or r.direction not in CARDINAL_DIRECTIONS
                    or r.source_place_id == r.destination_place_id for r in self.movement_routes)):
             raise MyravantPlayFixtureError("movement corridors require unique declared endpoints and directions")
+        if (len(set(self.signposted_routes)) != len(self.signposted_routes)
+                or not set(self.signposted_routes) <= set(route_keys)):
+            raise MyravantPlayFixtureError("navigation signs must refer to unique declared corridors")
+        alias_ids = [entity for entity, _ in self.public_input_aliases]
+        if (len(set(alias_ids)) != len(alias_ids) or not set(alias_ids) <= set(declared_ids)
+                or any(not names or any(not isinstance(name, str) or not name.strip() for name in names)
+                       for _, names in self.public_input_aliases)):
+            raise MyravantPlayFixtureError("input aliases must describe declared public presentations")
         directional_keys: list[tuple[str, str]] = []
         for observation_license in self.directional_observation_licenses:
             if observation_license.source_place_id not in place_ids:
