@@ -240,6 +240,13 @@ class IntentSession:
 
         proposal = _proposal(body)
         if proposal is None:
+            if original.endswith("?") or _QUESTION.match(body):
+                from astra_runtime.myravant_goal_method_lantern import parse_lantern_destination_goal
+                goal = parse_lantern_destination_goal(raw)
+                if goal is not None:
+                    if goal.method is None:  # The retained owner path offers advice only.
+                        return None
+                    return (Intent("unknown_question", speech="inquiry"),)
             if original.endswith("?"):
                 from astra_runtime.myravant_situated_inquiry import parse_situated_inquiry
                 if parse_situated_inquiry(raw).parsed:

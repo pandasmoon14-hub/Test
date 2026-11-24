@@ -174,6 +174,19 @@ def test_lookup_never_names_hidden_object_or_remote_actor(tmp_path):
         no_change(row)
 
 
+def test_legacy_lantern_advice_cannot_turn_a_question_into_a_throw(tmp_path):
+    _, output, rows = play(tmp_path, "qualified-advice", (), (
+        "take lantern", "go south", "How do I get lantern to orchard?",
+        "How do I get lantern to orchard by throwing",
+        "How do I get lantern to orchard by throwing?",
+    ))
+    assert "You carry the Lantern" in output
+    assert rows[-3]["result_type"] == "destination_goal_methods_observed"
+    assert "You throw the Brass Lantern" not in output
+    for row in rows[-3:]:
+        no_change(row)
+
+
 def test_visible_alias_keeps_identity_when_an_unseen_name_collides(tmp_path):
     path, output, rows = play(tmp_path, "visible-rag", GEN, (
         "I'd like to take the rag.", "Tell Jun that it is wet.",

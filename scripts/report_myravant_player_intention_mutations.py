@@ -22,6 +22,9 @@ MUTATIONS = (
     ("discard_audience_qualified_identity", "myravant_input_context.py",
      '        return entity.rsplit(":", 1)[-1]', '        return label',
      "test_visible_alias_keeps_identity_when_an_unseen_name_collides"),
+    ("route_an_interrogative_to_the_physical_method", "myravant_player_intentions.py",
+     "                    if goal.method is None:", "                    if True:",
+     "test_legacy_lantern_advice_cannot_turn_a_question_into_a_throw"),
 )
 
 
