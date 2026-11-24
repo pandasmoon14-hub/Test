@@ -243,16 +243,22 @@ class ActorApplication(TimedApplication):
         except ValueError as exc:return self._result(str(exc),failure='actor_status_unavailable')
         return self._metadata_result(pre,'participation_status',actor,message)
 
-    def ask_report(self,actor_reference,target_reference,facet):
+    def ask_report(self,actor_reference,target_reference,facet,*,kind=None):
         pre=self.authoritative_digest()
         try:
             actor=self._actor(actor_reference);self._route(actor,'report')
             if facet not in {'residue','moisture','placement','assembly','trace','activity'}:raise ValueError('That topic is unsupported by this evidence profile.')
             target=self.fixture.resolve_object_reference(target_reference)
-            event=evidence.latest(self.evidence_state,actor,target,facet)
-            if event is None:return self._result('No retained evidence for that admitted topic; this does not describe the person’s wider knowledge.')
+            if kind not in {None, 'witnessed', 'reported'}:
+                raise ValueError('That evidence source is unsupported by this report.')
+            event=evidence.latest(self.evidence_state,actor,target,facet,kind=kind)
+            if event is None:
+                if kind is not None:
+                    return self._result('No retained '+kind+' evidence for that topic.',
+                                        failure='actor_report_evidence_unavailable')
+                return self._result('No retained evidence for that admitted topic; this does not describe the person’s wider knowledge.')
             rid=self._event('communication',actor,(target,facet,event.event_id))
-            self.evidence_state=knowledge.report(self.evidence_state,actor,self.fixture.player_entity_id,target,facet,rid,self.runtime_state.logical_time_state.logical_position,qualified=True)
+            self.evidence_state=knowledge.report(self.evidence_state,actor,self.fixture.player_entity_id,target,facet,rid,self.runtime_state.logical_time_state.logical_position,qualified=True,kind=kind)
             value=event.value
             if facet=='placement' and isinstance(value,tuple):
                 labels={'located_at':'at','carried_by':'carried by','contained_by':'inside','supported_by':'resting on','reserved_by':'reserved by'}
@@ -261,7 +267,11 @@ class ActorApplication(TimedApplication):
             source=(' (a statement from '+self.fixture.entity_name(event.source_actor_id)+')') if event.kind=='reported' else ''
             message=f'{self.fixture.entity_name(actor)} reports historical {event.kind} evidence{source}: {value}. This is a report, not a fresh inspection.'
         except ValueError as exc:return self._result(str(exc),failure='actor_report_unavailable')
-        return self._metadata_result(pre,'ask_report',actor,message)
+        result = self._metadata_result(pre, 'ask_report', actor, message)
+        if kind is not None:
+            origin = event.tick if event.origin_tick is None else event.origin_tick
+            result = replace(result, message=f'{message} Evidence from step {origin}.')
+        return result
 
     def tell_actor(self,actor_reference,target_reference,facet,value):
         pre=self.authoritative_digest()

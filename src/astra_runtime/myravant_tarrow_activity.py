@@ -19,8 +19,10 @@ class ActivityFixture(StructuresFixture):
 
     @property
     def locality_help(self):
+        tali = {"standard": "ask Tali Ren to undertake yard upkeep; ",
+                "contended": "ask Tali Ren to undertake bench upkeep; "}
         return ("Actor activities (noncanonical): ask Oren Kesh to undertake bench upkeep; "
-                "ask Tali Ren to undertake yard upkeep (or bench upkeep in the contended case); "
+                + tali.get(self.activity_case, "") +
                 "ask <actor> about activity; ask <actor> to cancel activity. "
                 "Each admitted finite activity performs real cleaning, assembly, and a "
                 "qualified tool-drop recovery stage over separate world intervals. "
@@ -35,7 +37,7 @@ def _method(kind, name, participants, place):
 
 
 def create_activity_fixture(*, activity_case="standard", structures_case="standard"):
-    if activity_case not in {"standard", "contended"}:
+    if activity_case not in {"standard", "contended", "reference"}:
         raise ValueError("unknown approved activity case")
     base = create_structures_fixture(structures_case=structures_case, activity_case=activity_case)
     if activity_case == "standard":
@@ -57,6 +59,13 @@ def create_activity_fixture(*, activity_case="standard", structures_case="standa
                                _method("recovery", "drop", ("cleaning-cloth",), "yard-tools"))),
             )),
         )
+    elif activity_case == "reference":
+        profiles = (ActivityProgram("bench upkeep", identity("oren"), (
+            ActivityStage((_method("cleaning", "scrub", ("practice-panel", "cleaning-brush"), "work-bench"),)),
+            ActivityStage((_method("assembly", "workshop assembly",
+                                   ("repair-board", "repair-peg", "repair-cord"), "work-bench"),)),
+            ActivityStage((_method("recovery", "drop", ("cleaning-brush",), "work-shelf"),)),
+        )),)
     else:
         # Both actors share finite board/tool/fastener state; reverse actor order
         # is part of this distinct immutable root, not a universal fairness rule.

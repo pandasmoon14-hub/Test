@@ -50,6 +50,7 @@ REGISTERED_ROOT_NON_OWNER_FILES = frozenset({
     "myravant_fixture_brace.py",
     "myravant_generated_locality.py",
     "myravant_goal_method_lantern.py",
+    "myravant_experienced_references.py",
     "myravant_input_context.py",
     "myravant_investigation_application.py",
     "myravant_investigation_cases.py",

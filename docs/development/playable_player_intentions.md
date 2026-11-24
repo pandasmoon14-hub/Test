@@ -127,9 +127,10 @@ expose directions already declared by the locality. Directional sightings and ac
 establish routes during the current session. Encountered landmarks are recorded
 at the place they were seen. Planning uses the player's known graph and stops
 at a choice between equally short routes. Each leg rechecks its physical route
-and charges the existing movement and time costs. These notes and pending
-clarifications expire on reload. The ordinary owner checkpoint records accepted
-actions and stays compatible with concise commands.
+and charges the existing movement and time costs. Pending clarifications still
+expire on reload. [Experienced references](playable_experienced_references.md)
+describes which sightings, exchanges and traveled routes can be recovered from
+the ordinary owner checkpoint.
 
 The implementation is offline. The repository's model-boundary evaluation and
 proposal contracts contain no installed gameplay provider that can supply

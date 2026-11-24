@@ -38,7 +38,7 @@ class SurfaceFixture(ActorFixture):
 
 
 def create_surface_fixture(*, reverse_order=False, shared_workbench=False, structure_case=None, activity_case=None):
-    if activity_case is not None and activity_case not in {"standard", "contended"}:
+    if activity_case is not None and activity_case not in {"standard", "contended", "reference"}:
         raise ValueError("unknown bounded activity profile")
     if activity_case is not None and structure_case is None:
         raise ValueError("activity profile requires declared structural root")
@@ -106,6 +106,10 @@ def create_surface_fixture(*, reverse_order=False, shared_workbench=False, struc
         storage=(*layout.storage, *(( "packing-felt", c) for c in containers)),
         specialists=(*layout.specialists, "timed", "actors", "surface-water")
     )
+    if activity_case == "reference":
+        layout = replace(layout, objects=tuple(
+            (*row[:3], "work-bench") if row[0] == "cleaning-brush" else row
+            for row in layout.objects))
     # Option A #561: reuse the exact surface-water and actor owner binding for
     # one NEW opt-in configuration only. Earlier surface roots are unchanged.
     assemblies = base.assemblies
