@@ -146,15 +146,15 @@ def evaluate(case, result, control):
     actual, expected = effects(rows), effects(control["actions"])
     boundary = any("without " in line for line in case.words)
     wrong = actual != expected[:len(actual)]
-    questions = sum(row["failure_class"] in QUESTIONS for row in rows)
+    questions = sum(bool({row["failure_class"], row["result_type"]} & QUESTIONS) for row in rows)
+    unsupported = any({row["failure_class"], row["result_type"]} & UNSUPPORTED for row in rows)
     cues_match = all(text.casefold() in rendered for text in case.cues)
     correct = (actual == expected and result["final_state"] == control["final_state"]
                and cues_match and not prohibited and questions == case.questions)
     return {
         "correct_routing": correct,
         "wrong_commitments": wrong,
-        "false_unsupported": not case.boundary and not correct
-        and any(row["failure_class"] in UNSUPPORTED for row in rows),
+        "false_unsupported": not case.boundary and not correct and unsupported,
         "unnecessary_questions": questions > case.questions,
         "meaningful_constraints_lost": bool(actual and boundary),
         "prohibited_disclosure": prohibited,
