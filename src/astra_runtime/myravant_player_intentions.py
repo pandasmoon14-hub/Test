@@ -237,6 +237,9 @@ class IntentSession:
             return None
         if not polite and parsed.failure_class == "unsupported_compound_intent_sequencing":
             return None
+        if not polite and parsed.action == "retrieve" and not original.endswith("?"):
+            # 'Take X from Y' already names two roles in the storage owner.
+            return None
 
         proposal = _proposal(body)
         if proposal is None:

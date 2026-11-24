@@ -25,6 +25,9 @@ MUTATIONS = (
     ("route_an_interrogative_to_the_physical_method", "myravant_player_intentions.py",
      "                    if goal.method is None:", "                    if True:",
      "test_legacy_lantern_advice_cannot_turn_a_question_into_a_throw"),
+    ("send_retrieval_to_loose_pickup", "myravant_player_intentions.py",
+     '        if not polite and parsed.action == "retrieve" and not original.endswith("?"):',
+     '        if False:', "test_a_named_container_keeps_take_on_the_storage_owner"),
 )
 
 

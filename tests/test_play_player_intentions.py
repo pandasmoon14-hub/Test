@@ -187,6 +187,18 @@ def test_legacy_lantern_advice_cannot_turn_a_question_into_a_throw(tmp_path):
         no_change(row)
 
 
+def test_a_named_container_keeps_take_on_the_storage_owner(tmp_path):
+    _, _, rows = play(tmp_path, "from-container", (), (
+        "take lantern", "go south", "open chest", "put lantern in chest", "close chest",
+        "take lantern from chest", "open chest", "take lantern from chest",
+    ))
+    assert rows[-3]["parsed_action"] == "retrieve"
+    assert rows[-3]["failure_class"] == "storage_container_closed"
+    no_change(rows[-3])
+    assert rows[-1]["parsed_action"] == "retrieve"
+    assert rows[-1]["authoritative_changed"] and rows[-1]["receipt_id"]
+
+
 def test_visible_alias_keeps_identity_when_an_unseen_name_collides(tmp_path):
     path, output, rows = play(tmp_path, "visible-rag", GEN, (
         "I'd like to take the rag.", "Tell Jun that it is wet.",
