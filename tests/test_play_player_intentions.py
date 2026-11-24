@@ -174,6 +174,23 @@ def test_lookup_never_names_hidden_object_or_remote_actor(tmp_path):
         no_change(row)
 
 
+def test_visible_alias_keeps_identity_when_an_unseen_name_collides(tmp_path):
+    path, output, rows = play(tmp_path, "visible-rag", GEN, (
+        "I'd like to take the rag.", "Tell Jun that it is wet.",
+    ))
+    assert "You pick up the Cloth." in output
+    assert "received your statement" in output
+    assert all(row["authoritative_changed"] for row in rows)
+    fixture = create_generated_locality_fixture(LocalityRecipe("access", scale_level=1))
+    app = InvestigationApplication.restore(fixture=fixture, checkpoint_path=path)
+    cloth, annex_cloth = (next(item.entity_id for item in fixture.object_presentations if item.name == name)
+                        for name in ("Cloth", "Wing 1 Cloth"))
+    assert placement(app.state.representation, cloth).object_entity_id == fixture.player_entity_id
+    assert placement(app.state.representation, annex_cloth).relation_type == "located_at"
+    assert any(event.actor_id == fixture.actor_order[0] and event.kind == "reported"
+               and event.target_id == cloth for event in app.evidence_state.events)
+
+
 def test_an_instrument_answer_selects_actual_custody_and_method(tmp_path):
     _, output, rows = play(tmp_path, "tool-choice", ("--locality", "tarrow-time"), (
         "Head into the Service Yard.", "Go to the tool station.", "Grab the cleaning brush.",

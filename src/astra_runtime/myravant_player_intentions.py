@@ -474,8 +474,8 @@ class IntentSession:
             names = ", ".join(f"{fixture.entity_name(tool)} for {verbs[method]}" for method, tool in candidates)
             raise Clarification("instrument", f"Which tool would you like to use? {names}.")
         method, tool = candidates[0]
-        target_name, tool_name = (fixture.entity_name(entity).casefold() for entity in (target, tool))
-        result = (self.app.request_cleaning(fixture.entity_name(person).casefold(), target_name,
+        target_name, tool_name = (context.owner_reference(entity) for entity in (target, tool))
+        result = (self.app.request_cleaning(context.owner_reference(person, person=True), target_name,
                                             tool_reference=tool_name, method=method)
                   if person else self.app.water(method, target_name, tool_name, amount=None))
         if not result.failure_class:
@@ -528,7 +528,8 @@ class IntentSession:
             if action == "inspect":
                 entries += context.local("person")
             target = self._resolve(proposal.target, entries, "target", remembered=context.subject)
-            name = context.fixture.entity_name(target).casefold()
+            inspecting_person = action == "inspect" and target in context.local("person")
+            name = context.owner_reference(target, person=inspecting_person)
             if action in {"report", "statement"}:
                 owner = getattr(self.app, "ask_report" if action == "report" else "tell_actor", None)
                 if owner is None:
@@ -538,15 +539,15 @@ class IntentSession:
                 facet = proposal.facet or self.facet
                 if not facet:
                     raise Clarification("facet", "What did you want to ask about: moisture, residue, or activity?")
-                args = (context.fixture.entity_name(person).casefold(), name, facet)
+                args = (context.owner_reference(person, person=True), name, facet)
                 result = owner(*args) if action == "report" else owner(*args, proposal.value)
                 if not result.failure_class:
                     self.facet = facet
             elif action == "request_object":
-                result = self.app.request_object_from_actor(context.fixture.entity_name(person).casefold(), name)
+                result = self.app.request_object_from_actor(context.owner_reference(person, person=True), name)
             elif action == "place":
                 base = self._resolve(proposal.instrument, entries, "instrument", remembered=context.tool)
-                base_name = context.fixture.entity_name(base).casefold()
+                base_name = context.owner_reference(base)
                 if proposal.method == "store":
                     result = self.app.store_object(object_reference=name, container_reference=base_name)
                 elif hasattr(self.app, "material"):

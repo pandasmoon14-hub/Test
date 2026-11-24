@@ -32,6 +32,20 @@ class InputContext:
     def names(self, entity):
         return (self.fixture.entity_name(entity), *self.aliases.get(entity, ()))
 
+    def owner_reference(self, entity, *, person=False):
+        """Preserve the grounded identity when a label collides elsewhere."""
+        label = self.fixture.entity_name(entity).casefold()
+        resolve = (self.fixture.resolve_actor_reference if person
+                   else self.fixture.resolve_object_reference)
+        try:
+            if resolve(label) == entity:
+                return label
+        except ValueError:
+            pass
+        # The existing owner resolver accepts fixture identity suffixes. The
+        # referent is already audience-qualified before reaching this method.
+        return entity.rsplit(":", 1)[-1]
+
     def match(self, phrase, entries):
         term = reference(phrase)
         labels = [(entity, reference(label)) for entity in entries for label in self.names(entity)]

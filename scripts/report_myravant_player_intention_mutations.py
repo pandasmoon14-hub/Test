@@ -19,6 +19,9 @@ MUTATIONS = (
     ("choose_instrument_without_asking", "myravant_player_intentions.py",
      "        if len(candidates) > 1:\n            verbs", "        if False:\n            verbs",
      "test_an_instrument_answer_selects_actual_custody_and_method"),
+    ("discard_audience_qualified_identity", "myravant_input_context.py",
+     '        return entity.rsplit(":", 1)[-1]', '        return label',
+     "test_visible_alias_keeps_identity_when_an_unseen_name_collides"),
 )
 
 

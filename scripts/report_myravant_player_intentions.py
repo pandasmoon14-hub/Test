@@ -2,7 +2,7 @@
 
 import argparse
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from hashlib import sha256
 import json
 from pathlib import Path
@@ -184,6 +184,18 @@ def repository_sha():
     return subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
 
 
+def control_cases(cases):
+    from astra_runtime.myravant_generated_locality import LocalityRecipe, create_generated_locality_fixture
+
+    fixture = create_generated_locality_fixture(LocalityRecipe("access", scale_level=1))
+    # Bare 'cloth' also matches the annex cloth in the legacy owner resolver.
+    # The canonical control uses the existing exact object reference instead.
+    cloth = next(item.entity_id.rsplit(":", 1)[-1] for item in fixture.object_presentations
+                 if item.name == "Cloth")
+    controls = {"A05": (f"take {cloth}",), "A10": (f"tell jun that {cloth} moisture is wet",)}
+    return (replace(case, control=controls[case.id]) if case.id in controls else case for case in cases)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", required=True, type=Path)
@@ -198,7 +210,7 @@ def main():
     records = []
     with tempfile.TemporaryDirectory(prefix="myravant-grounded-evaluation-") as directory:
         root = Path(directory)
-        for case in CASES:
+        for case in control_cases(CASES):
             ref = (installed(launcher, root, case.id + "-control", case, case.control, head)
                    if case.control else None)
             observed = installed(launcher, root, case.id + "-head", case, case.input, head)

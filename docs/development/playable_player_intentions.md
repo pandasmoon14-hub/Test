@@ -121,8 +121,9 @@ mechanics still need their current owners.
 
 Use a fixture's `public_input_aliases` to add terminology for an admitted
 presentation. It becomes eligible only while that presentation is in the
-player's applicable context. Use `signposted_routes` to expose directions already
-declared by the locality. Directional sightings and actual traversal also
+player's applicable context. A unique visible referent keeps its identity if
+another label collides outside the player's context. Use `signposted_routes` to
+expose directions already declared by the locality. Directional sightings and actual traversal also
 establish routes during the current session. Encountered landmarks are recorded
 at the place they were seen. Planning uses the player's known graph and stops
 at a choice between equally short routes. Each leg rechecks its physical route
