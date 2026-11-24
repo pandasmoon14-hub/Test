@@ -1298,7 +1298,7 @@ def run_terminal(
     if signs:
         output_stream.write(signs + "\n")
     if resumed:
-        output_stream.write("Names and directions can be discovered again here. Earlier input clarifications have expired.\n")
+        output_stream.write("Recorded sightings, exchanges and traveled routes can still be used. Earlier input clarifications have expired.\n")
 
     while True:
         output_stream.write("\n> ")
@@ -1327,7 +1327,7 @@ def run_terminal(
             return 0
         if parsed.action == "help":
             if parsed.argument in {"travel", "movement", "input"}:
-                output_stream.write("Use a destination on a sign or a route you know. You can ask where to go, name a visible tool, or answer a question with the missing detail.\n")
+                output_stream.write("Use a destination on a sign or a route you know. Try \"Take me back to where I saw the brush\" or \"Where is the brush now?\" You can name a visible tool or answer a question with the missing detail.\n")
             if getattr(application.fixture, "locality_help", None):
                 output_stream.write(application.fixture.locality_help + "\n")
             else:
@@ -1557,7 +1557,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
         help="Select ordered opt-in surface-water actor profile variation.",
     )
     parser.add_argument(
-        "--activity-case", choices=("standard", "contended"), default="standard",
+        "--activity-case", choices=("standard", "contended", "reference"), default="standard",
         help="Select declared local actor activity variation.",
     )
     parser.add_argument(

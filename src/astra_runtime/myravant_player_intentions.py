@@ -19,6 +19,7 @@ class Intent:
     value: str = ""
     speech: str = "attempt"
     constraint: str = ""
+    basis: str = ""
 
     def trace_argument(self, ordinal, count):
         fields = {key: value for key, value in asdict(self).items() if value}
@@ -46,7 +47,8 @@ _CONDITIONS = {"wet": ("moisture", "wet"), "damp": ("moisture", "wet"),
                "sooty": ("residue", "present")}
 _PRONOUNS = {"it", "that", "this", "that one", "this one", "them"}
 _PEOPLE = {"him", "her", "them", "they", "he", "she", "that person"}
-_TOOL_RECALL = {"what i used earlier", "same tool"}
+_TOOL_RECALL = {"what i used earlier", "same tool", "tool i used earlier", "this tool", "tool i used"}
+_RECEIVED_TOOL = {"tool i was given", "tool i received", "what they gave me"}
 _POLITE = re.compile(
     r"^(?:please |i (?:want to|would like to|will|should) |i(?:'ll|'d like to) |let me )")
 _QUESTION = re.compile(r"^(?:can|could|may|should|would|does|did|do|is|was|are|were|what|which|where|how|who)\b")
@@ -71,7 +73,7 @@ _DIRECT_TESTIMONY = re.compile(rf"did (.+?) (?:see|notice|find) (.+?) ({_CONDITI
 _STATEMENT = re.compile(rf"tell (.+?) that (.+?) (?:is|was|looks) ({_CONDITION_WORD})")
 _WITNESS_TOPIC = re.compile(r"ask (.+?) what (?:he|she|they|you) (?:saw|noticed|observed)(?: about (.+))?")
 _REPORT_TOPIC = re.compile(r"ask (.+?) about (.+?) (moisture|residue|placement|assembly|trace|activity)")
-_ORDERED = re.compile(r" (?:then|and(?: then)?) (?=(?:ask|tell|check|inspect|look at|take|pick up|drop|use|wipe|scrub|clean|go|head|return|open|close) )")
+_ORDERED = re.compile(r" (?:then|and(?: then)?) (?=(?:ask|tell|check|inspect|examine|look at|take|pick up|drop|use|wipe|scrub|clean|go|head|return|open|close) )")
 
 
 def _cleaning(text, person=""):
@@ -115,6 +117,28 @@ def _unqualified_proposal(text):
     if feasibility:
         candidate = _proposal(feasibility[1])
         return replace(candidate, speech="inquiry") if candidate else Intent("unknown_question", speech="inquiry")
+    location = re.fullmatch(r"where (is|was) (.+?)(?: (now|last time))?", text)
+    there = re.fullmatch(r"(?:is|was) (.+?) (?:still )?there (now|last time)", text)
+    if location or there:
+        target = location[2] if location else there[1]
+        when = (location[3] or ("last time" if location[1] == "was" else "now")) if location else there[2]
+        return Intent("location", target, value=when, speech="inquiry",
+                      method="" if location else "there")
+    witness = re.fullmatch(r"ask (.+?) (?:if|whether) (?:he|she|they|you) (saw|heard about) (.+)", text)
+    if witness:
+        return Intent("report", witness[3], person=witness[1], facet="placement", speech="inquiry",
+                      basis="witnessed" if witness[2] == "saw" else "reported")
+    return_trip = re.fullmatch(r"(?:take|lead) me (?:back )?to (.+)", text)
+    if return_trip:
+        return Intent("travel", return_trip[1], method="walk")
+    exchange = re.fullmatch(
+        r"(?:take|bring|give|return) (.+?) (?:back )?to (?:the )?(?:person|one) "
+        r"(?:who (gave it to me|lent it to me|borrowed it from me)|(i gave it to))", text)
+    if exchange:
+        direction = {"gave it to me": "received", "i gave it to": "gave"}
+        return Intent("return_object", exchange[1], basis=direction.get(exchange[2] or exchange[3], "loan"))
+    if text in {"go get it", "go and get it", "go fetch it", "fetch it"}:
+        return Intent("pickup", "it", basis="local_only")
     for pattern, action, speech in (
         (_TESTIMONY, "report", "inquiry"), (_DIRECT_TESTIMONY, "report", "inquiry"),
         (_STATEMENT, "statement", "statement"),
@@ -153,6 +177,8 @@ def _unqualified_proposal(text):
         verb, target = travel.groups()
         if verb in {"get", "run", "sprint", "sneak"} and not re.match(r"^(?:back|to|there)\b", target):
             return None
+        if verb == "head":
+            target = target.removeprefix("for ")
         target = re.sub(r"^(?:back (?:to |into )?|(?:over )?to |towards? |into )", "", target) or "back"
         return Intent("travel", target, method=_MOVEMENT[verb])
     cleaning = _cleaning(text)
@@ -193,6 +219,7 @@ class IntentSession:
         text = words(original)
         if not text:
             return None
+        text = re.sub(r" please$", "", text)
         if original.startswith(('"', "'", "“", "‘", ">")) or _UNSAFE.match(text):
             self.pending = None
             return (Intent("non_attempt", speech="non_attempt"),)
@@ -204,7 +231,9 @@ class IntentSession:
             if (reply is None and parsed.action in {"unsupported", "ambiguous", "uninterpretable"}
                     and _proposal(text) is None and len(text.split()) <= 5 and not _QUESTION.match(text)):
                 reply = re.fullmatch(r"(.+)", text)
-            if reply:
+            if reply and _proposal(reply[1]) is not None:
+                text = reply[1]
+            elif reply:
                 proposal, field, place = self.pending
                 self.pending = None
                 if place != self.context.here:
@@ -237,11 +266,13 @@ class IntentSession:
             return None
         if not polite and parsed.failure_class == "unsupported_compound_intent_sequencing":
             return None
+        proposal = _proposal(body)
         if not polite and parsed.action == "retrieve" and not original.endswith("?"):
+            if proposal is not None and proposal.action == "return_object":
+                return (proposal,)
             # 'Take X from Y' already names two roles in the storage owner.
             return None
 
-        proposal = _proposal(body)
         if proposal is None:
             if original.endswith("?") or _QUESTION.match(body):
                 from astra_runtime.myravant_goal_method_lantern import parse_lantern_destination_goal
@@ -263,7 +294,7 @@ class IntentSession:
             return None
         if parsed.action == "inspect_self" and not polite:
             return None
-        if polite or proposal.constraint:
+        if polite or proposal.constraint or proposal.basis or proposal.action == "location" or text != words(original):
             return (proposal,)
         from astra_runtime.myravant_terminal_capabilities import classify_bounded_terminal_request
         legacy = classify_bounded_terminal_request(raw, fixture=self.app.fixture)
@@ -308,7 +339,7 @@ class IntentSession:
         context = self.context
         local = context.local(kind)
         term = reference(value)
-        if (term in _PRONOUNS | _PEOPLE | _TOOL_RECALL or re.match(r"^(?:other|front|rear|wet|dry|damp) ", term)
+        if (term in _PRONOUNS | _PEOPLE | _TOOL_RECALL | _RECEIVED_TOOL or re.match(r"^(?:other|front|rear|wet|dry|damp) ", term)
                 or any(term == reference(alias) for entity in local
                        for alias in context.aliases.get(entity, ()))):
             return False
@@ -337,7 +368,7 @@ class IntentSession:
             if len(matches) == 1:
                 context.subject = matches[0]
                 if parsed.action == "inspect":
-                    context.seen.setdefault(matches[0], set()).add(context.here)
+                    context.note_sighting(matches[0], context.here)
             elif parsed.action == "inspect":
                 people = context.match(parsed.argument, context.local("person"))
                 if len(people) == 1:
@@ -378,6 +409,13 @@ class IntentSession:
     def _resolve(self, phrase, options, field, *, remembered=None):
         context = self.context
         term = reference(phrase)
+        relation = re.fullmatch(r"(.+?) (?:by|near|beside|next to) (.+)", term)
+        if relation and not context.match(term, options):
+            names = [context.fixture.entity_name(item) for item in context.match(relation[1], options)]
+            message = "I can't verify that position from here."
+            if names:
+                message += f" Which {relation[1]} do you mean? " + ", ".join(names) + "."
+            raise Clarification(field, message)
         if term in _PRONOUNS | _PEOPLE | _TOOL_RECALL | {"one"}:
             candidates = [remembered] if remembered in options else []
             if remembered is not None and not candidates:
@@ -404,6 +442,29 @@ class IntentSession:
         if term in _PRONOUNS | _PEOPLE | _TOOL_RECALL | {"", "one"} or term.startswith("other "):
             raise Clarification(field, f"Which {label} here do you mean?")
         raise ReferenceUnavailable(f"I can't identify that {label} in the current situation.")
+
+    def _person(self, phrase):
+        context = self.context
+        options = context.local("person")
+        term = reference(phrase)
+        roles = {"person who gave it to me": "received", "person i gave it to": "gave"}
+        if term in roles:
+            matches = context.exchange_matches("it", roles[term])
+            people = tuple(dict.fromkeys(person for _, person, _ in matches))
+        else:
+            told = re.fullmatch(r"person who told me about (.+)", term)
+            if not told:
+                return self._resolve(phrase, options, "person", remembered=context.person)
+            reports = tuple(context.history.events("reported"))
+            subjects = context.remembered_objects(told[1], (event.target_id for event in reports))
+            people = tuple(dict.fromkeys(event.source_actor_id for event in reports
+                                         if event.target_id in subjects))
+        if len(people) == 1 and people[0] in options:
+            return people[0]
+        if len(people) > 1:
+            names = ", ".join(context.fixture.entity_name(person) for person in people)
+            raise Clarification("person", f"Which person from your records do you mean? {names}.")
+        raise ReferenceUnavailable("You can't identify or reach that person here from your records.")
 
     def _travel(self, proposal):
         context = self.context
@@ -465,8 +526,28 @@ class IntentSession:
         if proposal.instrument:
             wording = reference(proposal.instrument)
             condition = re.fullmatch(r"(damp|wet|dry) (.+)", wording)
-            proposed_tool = self._resolve(condition[2] if condition else wording, local, "instrument",
-                                          remembered=context.tool)
+            term = condition[2] if condition else wording
+            remembered = context.tool
+            if term in _RECEIVED_TOOL or term == "this tool":
+                known_tools = {tool for method, surface, tool in pairs if surface == target
+                               and (not proposal.method or proposal.method == method)}
+                if term in _RECEIVED_TOOL:
+                    known_tools &= {obj for obj, _, _ in context.history.exchanges("received")}
+                else:
+                    carried = fixture.public_entities_carried_by(self.app.state.representation,
+                                                                 fixture.player_entity_id)
+                    known_tools &= {item.entity_id for item in carried}
+                    if remembered in local:
+                        known_tools = {remembered}
+                options = tuple(tool for tool in local if tool in known_tools)
+                if len(options) != 1:
+                    names = ", ".join(fixture.entity_name(tool) for tool in options)
+                    raise Clarification("instrument", "Which tool here do you mean?" + (f" {names}." if names else ""))
+                proposed_tool = options[0]
+            else:
+                if term in _TOOL_RECALL:
+                    remembered = context.history.used_tool() or remembered
+                proposed_tool = self._resolve(term, local, "instrument", remembered=remembered)
             if condition:
                 current = dict(self.app.water_state.water).get(proposed_tool)
                 if current is None or bool(current) != (condition[1] != "dry"):
@@ -494,6 +575,84 @@ class IntentSession:
                 context.work_target = target
         return result
 
+    def _location(self, proposal):
+        context = self.context
+        witnessed = tuple(context.history.placements("witnessed"))
+        reported = tuple(context.history.placements("reported"))
+        local = context.local("thing")
+        known = (*local, *context.seen, *(p.entity for p in (*witnessed, *reported)))
+        target = self._resolve(proposal.target, tuple(dict.fromkeys(known)), "target",
+                               remembered=context.subject)
+        context.subject = target
+        name = context.fixture.entity_name(target)
+        last_seen = next((p for p in reversed(witnessed) if p.entity == target), None)
+        if last_seen is None:
+            last_seen = context.session_placement(target)
+        last_report = next((p for p in reversed(reported) if p.entity == target), None)
+        here = context.fixture.entity_name(context.here)
+        anchor = context.placement_anchor.get(target, last_seen)
+        if proposal.value == "now" and target in local:
+            if proposal.method == "there" and anchor is None:
+                return self._result(f"You can identify {name} here at {here}. Name the earlier place you mean.",
+                                    "intent_context_blocked")
+            if proposal.method == "there" and anchor.place != context.here:
+                earlier = context.fixture.entity_name(anchor.place)
+                return self._result(f"You can identify {name} here at {here}. Your earlier sighting was at {earlier}.")
+            return self._result(f"You can identify {name} here at {here}.")
+        clock = self.app.runtime_state.logical_time_state.logical_position
+        details = []
+        if last_seen:
+            context.placement_anchor[target] = last_seen
+            place = context.fixture.entity_name(last_seen.place)
+            details.append(f"You saw {name} at {place} at step {last_seen.tick} ({clock - last_seen.tick} steps ago).")
+        if last_report and proposal.value == "now":
+            place = context.fixture.entity_name(last_report.place)
+            speaker = context.fixture.entity_name(last_report.source)
+            details.append(f"{speaker} reported {name} at {place} as of step {last_report.tick} "
+                           f"({clock - last_report.tick} steps ago).")
+        if proposal.value == "now":
+            details.append("You don't know its current location.")
+        if not details:
+            details.append("You have no retained first-hand placement for that object.")
+        return self._result(" ".join(details))
+
+    def _return_object(self, proposal):
+        context = self.context
+        if proposal.basis == "loan":
+            return self._result("The exchange records who gave or received an item. "
+                                "You have no evidence here of a loan.",
+                                "intent_loan_unestablished")
+        matches = context.exchange_matches(proposal.target, proposal.basis)
+        pairings = tuple(dict.fromkeys((obj, person) for obj, person, _ in matches))
+        if not pairings:
+            return self._result("You have no recorded exchange matching that description.",
+                                "intent_context_blocked")
+        objects = tuple(dict.fromkeys(obj for obj, _ in pairings))
+        if len(objects) > 1:
+            names = ", ".join(context.fixture.entity_name(obj) for obj in objects)
+            raise Clarification("target", f"Which item from your exchanges do you mean? {names}.")
+        if len(pairings) > 1:
+            people = tuple(person for _, person in pairings)
+            if not proposal.person:
+                names = ", ".join(context.fixture.entity_name(person) for person in people)
+                raise Clarification("person", f"Which person from your exchanges do you mean? {names}.")
+            person = self._resolve(proposal.person, people, "person")
+            pairings = ((objects[0], person),)
+        target, person = pairings[0]
+        person_name = context.fixture.entity_name(person)
+        context.subject = target
+        if person not in context.local("person"):
+            last_place = context.fixture.entity_name(
+                next(place for obj, actor, place in reversed(matches) if (obj, actor) == (target, person)))
+            return self._result(f"Your last matching exchange with {person_name} was at {last_place}. "
+                                "You can't reach that person here or tell where they are now.",
+                                "intent_context_blocked")
+        result = self.app.give_object(context.owner_reference(target),
+                                      context.owner_reference(person, person=True))
+        if not result.failure_class:
+            context.person = person
+        return result
+
     def execute(self, proposal):
         context = self.context
         action = proposal.action
@@ -501,6 +660,9 @@ class IntentSession:
             if proposal.constraint:
                 yield self._result(f"I can't guarantee that constraint here ({proposal.constraint}).",
                                    "intent_constraint_unavailable")
+                return
+            if action == "location":
+                yield self._location(proposal)
                 return
             if action == "travel":
                 yield from self._travel(proposal)
@@ -523,8 +685,10 @@ class IntentSession:
                 yield self._result("I heard a question. This action's feasibility cannot be checked in that form.",
                                    "intent_feasibility_unavailable")
                 return
-            person = (self._resolve(proposal.person, context.local("person"), "person",
-                                    remembered=context.person) if proposal.person else None)
+            if action == "return_object":
+                yield self._return_object(proposal)
+                return
+            person = self._person(proposal.person) if proposal.person else None
             if action in {"clean", "work"}:
                 if person and not hasattr(self.app, "request_cleaning"):
                     yield self._result("There is no work agreement procedure here.", "intent_missing_mechanic")
@@ -537,7 +701,17 @@ class IntentSession:
             entries = context.local("thing")
             if action == "inspect":
                 entries += context.local("person")
-            target = self._resolve(proposal.target, entries, "target", remembered=context.subject)
+            if action == "report" and proposal.basis:
+                remembered_placements = (*context.history.placements("witnessed"),
+                                         *context.history.placements("reported"))
+                entries = tuple(dict.fromkeys((*entries, *context.seen,
+                                               *(p.entity for p in remembered_placements))))
+            if proposal.basis == "local_only":
+                if context.subject not in entries:
+                    raise ReferenceUnavailable("You don't know where to get that object from here.")
+                target = context.subject
+            else:
+                target = self._resolve(proposal.target, entries, "target", remembered=context.subject)
             inspecting_person = action == "inspect" and target in context.local("person")
             name = context.owner_reference(target, person=inspecting_person)
             if action in {"report", "statement"}:
@@ -550,7 +724,10 @@ class IntentSession:
                 if not facet:
                     raise Clarification("facet", "What did you want to ask about: moisture, residue, or activity?")
                 args = (context.owner_reference(person, person=True), name, facet)
-                result = owner(*args) if action == "report" else owner(*args, proposal.value)
+                if action == "report":
+                    result = owner(*args, kind=proposal.basis) if proposal.basis else owner(*args)
+                else:
+                    result = owner(*args, proposal.value)
                 if not result.failure_class:
                     self.facet = facet
             elif action == "request_object":
@@ -578,7 +755,7 @@ class IntentSession:
                 else:
                     context.subject = target
                     if action in {"inspect", "condition"}:
-                        context.seen.setdefault(target, set()).add(context.here)
+                        context.note_sighting(target, context.here)
                         if proposal.facet:
                             self.facet = proposal.facet
                 if person:

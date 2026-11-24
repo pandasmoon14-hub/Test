@@ -62,7 +62,7 @@ class ActivityApplication(StructuresApplication):
         super()._validate_transaction()
         if not hasattr(self, "activity_records"):
             return
-        if self.fixture.activity_case not in {"standard", "contended"}:
+        if self.fixture.activity_case not in {"standard", "contended", "reference"}:
             raise ValueError("invalid activity binding")
         for program in self.fixture.activity_programs:
             p = self.actor_profile(program.actor_id)

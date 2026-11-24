@@ -80,7 +80,7 @@ def create_structures_fixture(*, structures_case="standard", activity_case=None)
     parent = create_surface_fixture(structure_case=structures_case,
                                     activity_case=activity_case,
                                     reverse_order=activity_case == "contended",
-                                    shared_workbench=activity_case == "contended")
+                                    shared_workbench=activity_case in {"contended", "reference"})
     cover = CoverExposure(identity("cover-cloth"), identity("barrier-crossbar"),
                           identity("cover-tie"), identity("trestle"),
                           (identity("cleaning-cloth"), identity("packing-felt")))

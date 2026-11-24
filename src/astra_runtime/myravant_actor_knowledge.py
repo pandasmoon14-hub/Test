@@ -91,7 +91,7 @@ def communication_route(app, speaker, listener, communication_class):
         return False
 
 
-def report(state, speaker, listener, target_id, facet, receipt_id, tick, *, qualified):
+def report(state, speaker, listener, target_id, facet, receipt_id, tick, *, qualified, kind=None):
     """Transfer historical evidence with explicit attribution, never live refresh.
 
     The reported value includes its original observation tick and evidence kind;
@@ -101,7 +101,7 @@ def report(state, speaker, listener, target_id, facet, receipt_id, tick, *, qual
         raise ValueError('local communication must be explicitly qualified')
     if facet not in FACETS:
         raise ValueError('facet is outside the admitted actor-evidence profile')
-    original = evidence.latest(state, speaker, target_id, facet)
+    original = evidence.latest(state, speaker, target_id, facet, kind=kind)
     if original is None:
         return state
     event = evidence.EvidenceEvent(_identity((speaker, listener, target_id, facet, receipt_id, tick)),

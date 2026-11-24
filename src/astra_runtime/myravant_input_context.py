@@ -1,7 +1,9 @@
-"""Session-local references from signs, lawful sightings and the player's travel."""
+"""Resolve names using local access, conversational roles and admitted history."""
 
-from collections import deque
+from collections import defaultdict, deque
 import re
+
+from astra_runtime.myravant_experienced_references import ExperiencedReferences, RememberedPlacement
 
 
 def words(text):
@@ -9,7 +11,10 @@ def words(text):
 
 
 def reference(text):
-    return re.sub(r"^(?:the|a|an|my) ", "", words(text))
+    return re.sub(r"^(?:the|a|an|my) ", "", re.sub(r" please$", "", words(text)))
+
+
+_NUMBER_WORDS = dict(zip("0123456789", "zero one two three four five six seven eight nine".split()))
 
 
 class InputContext:
@@ -19,11 +24,25 @@ class InputContext:
         self.aliases = dict(self.fixture.public_input_aliases)
         self.routes = {}
         self.seen = {}
+        self.placement_anchor = {}
         self.previous_place = None
         self.subject = None
         self.person = None
         self.tool = None
         self.work_target = None
+        self.history = ExperiencedReferences(application)
+        self._recover_routes()
+
+    def _recover_routes(self):
+        edges = defaultdict(list)
+        for edge in self.fixture.movement_routes:
+            edges[(edge.source_place_id, edge.destination_place_id)].append(edge.direction)
+        for journey in self.history.movement():
+            source, target = journey.source_place_id, journey.destination_place_id
+            directions = edges[(source, target)]
+            if len(directions) == 1:
+                self.routes[(source, directions[0])] = target
+            self.previous_place = source
 
     @property
     def here(self):
@@ -52,6 +71,13 @@ class InputContext:
         full = list(dict.fromkeys(entity for entity, label in labels if term == label))
         if full:
             return full
+        spelled_out = list(dict.fromkeys(
+            entity for entity, label in labels
+            if re.search(r"\b[0-9]\b", label)
+            and term == " ".join(_NUMBER_WORDS.get(part, part) for part in label.split())
+        ))
+        if spelled_out:
+            return spelled_out
         if len(term) < 2:
             return []
         return list(dict.fromkeys(
@@ -77,10 +103,22 @@ class InputContext:
             candidates.extend(p.entity_id for p in carried if p.entity_id not in candidates)
         return tuple(candidates)
 
+    def note_sighting(self, entity, place):
+        places = self.seen.setdefault(entity, {})
+        places.pop(place, None)
+        places[place] = self.app.runtime_state.logical_time_state.logical_position
+
+    def session_placement(self, entity):
+        places = self.seen.get(entity)
+        if not places:
+            return None
+        place = next(reversed(places))
+        return RememberedPlacement(entity, place, self.fixture.player_entity_id, places[place])
+
     def note_view(self, view):
         for fact in getattr(view, "observation_facts", ()):
             if fact.entity_kind == "object":
-                self.seen.setdefault(fact.entity_id, set()).add(view.place_id)
+                self.note_sighting(fact.entity_id, view.place_id)
         direction = getattr(view, "direction", None)
         if direction is None or not hasattr(view, "target_place_id"):
             return
@@ -121,11 +159,47 @@ class InputContext:
         if term in {"back", "where i came from", "where we came from", "last room", "previous room"}:
             return [self.previous_place] if self.previous_place else []
         named = tuple(dict.fromkeys((self.here, *(place for place, _ in self.routes), *self.routes.values())))
-        landmark = re.fullmatch(r"(?:room|place) (?:with|where i saw) (.+)", term)
+        landmark = re.fullmatch(r"(?:(?:room|place|spot) )?where (?:i|we) (?:(just|last) )?(saw|heard about) (.+)", term)
         if landmark:
-            objects = self.match(landmark[1], tuple(self.seen))
+            when, sense, target = landmark.groups()
+            kind = "witnessed" if sense == "saw" else "reported"
+            records = tuple(self.history.placements(kind))
+            objects = self.remembered_objects(target, (item.entity for item in records))
+            if len(objects) > 1 and self.subject in objects:
+                objects = [self.subject]
+            if objects:
+                places = tuple(dict.fromkeys(item.place for item in reversed(records)
+                                             if item.entity in objects))
+                return list(places[:1] if when and len(objects) == 1 else places)
+            if kind == "witnessed" and not objects:
+                objects = self.remembered_objects(target, self.seen)
+                if len(objects) == 1:
+                    places = list(reversed(self.seen[objects[0]]))
+                    return places[:1] if when else places
+            return []
+        exchange = re.fullmatch(r"where (?:he|she|they|someone) gave (.+) to me", term)
+        if exchange:
+            return list(dict.fromkeys(place for _, _, place in self.exchange_matches(exchange[1], "received")))
+        landmark = re.fullmatch(r"(?:room|place) with (.+)", term)
+        if landmark:
+            objects = self.match(landmark[1], self.seen)
             return [place for place in named if any(place in self.seen[obj] for obj in objects)]
         return self.match(term, named)
+
+    def remembered_objects(self, phrase, entries):
+        entries = tuple(dict.fromkeys(entries))
+        if reference(phrase) in {"it", "this", "that", "this one", "that one", "this tool"}:
+            if self.subject is not None:
+                return [self.subject] if self.subject in entries else []
+            carried = self.fixture.public_entities_carried_by(self.app.state.representation,
+                                                              self.fixture.player_entity_id)
+            return [item.entity_id for item in carried if item.entity_id in entries]
+        return self.match(phrase, entries)
+
+    def exchange_matches(self, phrase, direction):
+        entries = tuple(self.history.exchanges(direction))
+        objects = self.remembered_objects(phrase, (obj for obj, _, _ in entries))
+        return tuple(entry for entry in entries if entry[0] in objects)
 
     def shortest_route(self, target):
         """Return a unique shortest known path or signal a real choice."""

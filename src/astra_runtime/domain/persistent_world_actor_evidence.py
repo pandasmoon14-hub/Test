@@ -94,10 +94,12 @@ def record(state: EvidenceState, event: EvidenceEvent, *, qualified: bool) -> Ev
     return record_many(state, (event,), qualified=qualified)
 
 
-def latest(state: EvidenceState, actor_id: str, target_id: str, facet: str) -> EvidenceEvent | None:
+def latest(state: EvidenceState, actor_id: str, target_id: str, facet: str,
+           *, kind: str | None = None) -> EvidenceEvent | None:
     """Return this actor's last retained evidence, including source and age."""
     return next((e for e in reversed(state.events)
-                 if (e.actor_id, e.target_id, e.facet) == (actor_id, target_id, facet)), None)
+                 if (e.actor_id, e.target_id, e.facet) == (actor_id, target_id, facet)
+                 and (kind is None or e.kind == kind)), None)
 
 
 def canonical_state(state: EvidenceState, *, actor_ids=None, target_ids=None, receipt_ids=None) -> dict:
