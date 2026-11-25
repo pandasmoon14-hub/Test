@@ -5,7 +5,8 @@ it. Advice is read-only. The installed client offers methods grounded in the
 player's local view, their own exchange receipts, and their known routes.
 When methods change whose cooperation, time, tools or water will be involved,
 the client presents the choice. It rechecks each selected step before invoking
-the existing owner procedure.
+the existing owner procedure. An exact unmodified specialist command, such as
+`recover waystone`, retains its established route.
 
 This draft builds on [#583](https://github.com/pandasmoon14-hub/Test/pull/583)
 at `ff1bdd45714f5bd925996aef67fbdd320fb89533`. Its published CI, portability

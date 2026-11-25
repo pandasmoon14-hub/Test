@@ -234,6 +234,11 @@ class IntentSession:
         goal = parse_goal(text, question=original.endswith("?"), followup=self.goals.active is not None)
         if goal is not None:
             self.pending = None
+            if goal.speech == "attempt" and not goal.terms:
+                from astra_runtime.myravant_terminal_capabilities import classify_bounded_terminal_request
+                # A precise, unmodified owner command keeps its established meaning.
+                if classify_bounded_terminal_request(raw, fixture=self.app.fixture) is not None:
+                    return None
             return (goal,)
         if self.pending:
             reply = re.fullmatch(r"(?:no |actually |i meant |with |using )(.+)", text)
