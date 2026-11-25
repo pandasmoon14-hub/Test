@@ -4,6 +4,8 @@ from dataclasses import asdict, dataclass, replace
 import json
 import re
 
+from astra_runtime.myravant_goal_language import GoalCommand, parse_goal
+from astra_runtime.myravant_goal_session import GoalSession
 from astra_runtime.myravant_input_context import InputContext, reference, words
 from astra_runtime.myravant_play_application import PlayApplicationResult
 
@@ -212,6 +214,8 @@ class IntentSession:
         self.app = application
         self.context = InputContext(application)
         self.pending = None
+        self.answering = None
+        self.goals = GoalSession(self.context, self._result)
         self.facet = ""
 
     def offer(self, raw, parsed):
@@ -225,7 +229,17 @@ class IntentSession:
             return (Intent("non_attempt", speech="non_attempt"),)
         if text in {"actually leave it", "leave it", "never mind", "forget it", "cancel that"}:
             self.pending = None
+            self.goals.cancel()
             return (Intent("cancel", speech="correction"),)
+        goal = parse_goal(text, question=original.endswith("?"), followup=self.goals.active is not None)
+        if goal is not None:
+            self.pending = None
+            if goal.speech == "attempt" and not goal.terms:
+                from astra_runtime.myravant_terminal_capabilities import classify_bounded_terminal_request
+                # A precise, unmodified owner command keeps its established meaning.
+                if classify_bounded_terminal_request(raw, fixture=self.app.fixture) is not None:
+                    return None
+            return (goal,)
         if self.pending:
             reply = re.fullmatch(r"(?:no |actually |i meant |with |using )(.+)", text)
             if (reply is None and parsed.action in {"unsupported", "ambiguous", "uninterpretable"}
@@ -238,6 +252,7 @@ class IntentSession:
                 self.pending = None
                 if place != self.context.here:
                     return (Intent("expired", speech="correction"),)
+                self.answering = (proposal, field, place)
                 return (replace(proposal, **{field: reply[1]}),)
             self.pending = None
         if re.match(r"^(?:no |actually |i meant |with |using )", text) and _proposal(text) is None:
@@ -654,6 +669,10 @@ class IntentSession:
         return result
 
     def execute(self, proposal):
+        if isinstance(proposal, GoalCommand):
+            yield from self.goals.execute(proposal)
+            return
+        answering, self.answering = self.answering, None
         context = self.context
         action = proposal.action
         try:
@@ -762,7 +781,12 @@ class IntentSession:
                     context.person = person
             yield result
         except Clarification as exc:
-            self.pending = (proposal, exc.field, context.here)
+            self.pending = (answering if answering and answering[1] == exc.field
+                            else (proposal, exc.field, context.here))
             yield self._result(str(exc), "intent_clarification")
         except ReferenceUnavailable as exc:
-            yield self._result(str(exc), "intent_context_blocked")
+            if answering:
+                self.pending = answering
+                yield self._result(f"{exc} The earlier question is still open.", "intent_context_blocked")
+            else:
+                yield self._result(str(exc), "intent_context_blocked")

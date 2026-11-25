@@ -1298,7 +1298,7 @@ def run_terminal(
     if signs:
         output_stream.write(signs + "\n")
     if resumed:
-        output_stream.write("Recorded sightings, exchanges and traveled routes can still be used. Earlier input clarifications have expired.\n")
+        output_stream.write("Recorded sightings, exchanges and traveled routes can still be used. Earlier input clarifications have expired. Restate an unfinished goal and its limits to continue from recorded progress.\n")
 
     while True:
         output_stream.write("\n> ")
@@ -1328,6 +1328,9 @@ def run_terminal(
         if parsed.action == "help":
             if parsed.argument in {"travel", "movement", "input"}:
                 output_stream.write("Use a destination on a sign or a route you know. Try \"Take me back to where I saw the brush\" or \"Where is the brush now?\" You can name a visible tool or answer a question with the missing detail.\n")
+            if parsed.argument == "input":
+                output_stream.write('Ask "Can I recover this?" or "Could I get this clean without drawing more water?" '
+                                    'A question gives advice. Try "Do that", name a method, or say "Cancel that".\n')
             if getattr(application.fixture, "locality_help", None):
                 output_stream.write(application.fixture.locality_help + "\n")
             else:
