@@ -2,7 +2,7 @@ name: Causal local-scale pilot
 
 on:
   pull_request:
-    branches: [main, codex/grounded-player-intentions]
+    branches: [main, codex/grounded-player-intentions, codex/experienced-player-references]
     paths:
       - "scripts/benchmark_myravant_scale.py"
       - "scripts/compare_myravant_scale.py"
