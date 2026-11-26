@@ -3,6 +3,7 @@
 from dataclasses import dataclass, replace
 import re
 
+from astra_runtime.myravant_condition_session import ConditionSession
 from astra_runtime.myravant_goal_methods import Goal, METHODS
 from astra_runtime.myravant_input_context import reference
 
@@ -30,9 +31,19 @@ class GoalSession:
         self.context = context
         self.result = result
         self.active = None
+        self.conditions = ConditionSession(context, result, self._step)
 
     def cancel(self):
         self.active = None
+        self.conditions.active = None
+
+    def _step(self, step):
+        source = self.context.here
+        result = step.execute(self.context.app)
+        if step.destination and not result.failure_class and self.context.here == step.destination:
+            self.context.note_movement(source, step.args[0])
+            self.context.note_view(result.view)
+        return result
 
     def _bind(self, command):
         c = self.context
@@ -197,7 +208,7 @@ class GoalSession:
 
     def _perform(self, plan, method):
         for _ in range(8):
-            result = method.step.execute(self.context.app)
+            result = self._step(method.step)
             if result.failure_class or not result.authoritative_changed or not result.receipt_id:
                 reason = f"{result.message} The goal is still open. Choose another method or revise the situation."
                 plan.stopped = reason
@@ -226,16 +237,13 @@ class GoalSession:
                 yield self._stop(plan, self._summarize(options) or "There is no known investigative step.")
                 return
             step = options.investigation.step
-            source = self.context.here
-            result = step.execute(self.context.app)
+            result = self._step(step)
             if result.failure_class or self.context.here != step.destination:
                 reason = f"{result.message} The intended handoff is still open."
                 plan.stopped = reason
                 yield replace(result, message=f"Stopped. {reason}",
                               failure_class=result.failure_class or "goal_travel_unavailable")
                 return
-            self.context.note_movement(source, step.args[0])
-            self.context.note_view(result.view)
             plan.committed += 1
             yield result
         yield self._stop(plan, "The current investigation reached its step limit.")

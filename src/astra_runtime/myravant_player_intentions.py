@@ -4,6 +4,7 @@ from dataclasses import asdict, dataclass, replace
 import json
 import re
 
+from astra_runtime.myravant_condition_language import ConditionCommand, parse_condition
 from astra_runtime.myravant_goal_language import GoalCommand, parse_goal
 from astra_runtime.myravant_goal_session import GoalSession
 from astra_runtime.myravant_input_context import InputContext, reference, words
@@ -224,6 +225,12 @@ class IntentSession:
         if not text:
             return None
         text = re.sub(r" please$", "", text)
+        conditional = parse_condition(raw, active=self.goals.conditions.active is not None)
+        if conditional is not None:
+            if conditional.speech == "attempt" and not conditional.problem:
+                self.pending = None
+                self.goals.active = None
+            return (conditional,)
         if original.startswith(('"', "'", "“", "‘", ">")) or _UNSAFE.match(text):
             self.pending = None
             return (Intent("non_attempt", speech="non_attempt"),)
@@ -669,7 +676,11 @@ class IntentSession:
         return result
 
     def execute(self, proposal):
+        if isinstance(proposal, ConditionCommand):
+            yield from self.goals.conditions.execute(proposal)
+            return
         if isinstance(proposal, GoalCommand):
+            self.goals.conditions.active = None
             yield from self.goals.execute(proposal)
             return
         answering, self.answering = self.answering, None

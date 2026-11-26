@@ -1,7 +1,7 @@
 name: Portable development
 on:
   pull_request:
-    branches: [main, codex/grounded-player-intentions, codex/experienced-player-references]
+    branches: [main, codex/grounded-player-intentions, codex/experienced-player-references, codex/constrained-player-goals]
     paths:
       - AGENTS.md
       - README.md
