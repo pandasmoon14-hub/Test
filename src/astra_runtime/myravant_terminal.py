@@ -930,7 +930,10 @@ _HELP_TOPICS: dict[str, str] = {
         "give an explicitly unverified report, compare the two historical "
         "sources, follow either lead with the consenting actor, verify "
         "directly, or physically push the Chest along a qualified route. "
-        "A lead is never proof of present placement."
+        "A lead is never proof of present placement.\n"
+        "At a documented passage or workshop assembly, ask what you can check. "
+        "'If I see that it is open, take me through' requires a personal check. "
+        "You can ask a reachable person what they saw or ask 'Whose account was that?'"
     ),
     "session": (
         "Session controls\n"
@@ -1330,7 +1333,9 @@ def run_terminal(
                 output_stream.write("Use a destination on a sign or a route you know. Try \"Take me back to where I saw the brush\" or \"Where is the brush now?\" You can name a visible tool or answer a question with the missing detail.\n")
             if parsed.argument == "input":
                 output_stream.write('Ask "Can I recover this?" or "Could I get this clean without drawing more water?" '
-                                    'A question gives advice. Try "Do that", name a method, or say "Cancel that".\n')
+                                    'A question gives advice. Try "Do that", name a method, or say "Cancel that".\n'
+                                    'At a documented passage, try "Check whether the north passage is open" or '
+                                    '"If I see that it is open, take me through". You can ask a witness what they saw.\n')
             if getattr(application.fixture, "locality_help", None):
                 output_stream.write(application.fixture.locality_help + "\n")
             else:

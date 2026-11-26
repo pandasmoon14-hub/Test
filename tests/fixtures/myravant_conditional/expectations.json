@@ -1,0 +1,20 @@
+{
+  "authorship": "Codex, implementation author, November 25 America/Denver. Expectations frozen after reading the base and selecting existing mechanics, before runtime edits. Acceptance examples and unfamiliar variants are tracked separately; neither is an independent corpus.",
+  "base": "f186d9e8d1684f24a3eb216ab3f9cdd2ed3209dd",
+  "activities": {
+    "access": "tarrow-structures standard, north edge at Yard Tool Station, work partition",
+    "work": "tarrow-surface-water shared-workbench, workshop assembly, wooden strip stays at the bench"
+  },
+  "cases": [
+    {"id":"open-firsthand","cohort":"acceptance","setup":"open","intent":"Find out whether the passage is usable. Ask someone who saw it if you need to. If you can verify it's open, take me through. Otherwise stop there.","expect":"fresh personal observation and one northward movement; no report"},
+    {"id":"closed-firsthand","cohort":"acceptance","setup":"closed-with-open-report","intent":"If I see that it's open, take me through.","expect":"fresh personal closed fact and older named open account, no movement"},
+    {"id":"stale-source","cohort":"acceptance","setup":"closed-with-open-report","intent":"If Tali says it was open, take me through.","expect":"retained historical claim and authoritative blocked movement; no time or movement receipt"},
+    {"id":"no-witness","cohort":"acceptance","setup":"remote-bench","intent":"Ask Oren whether the north passage at Yard Tool Station is open.","expect":"no scoped firsthand record, unknown, no state change"},
+    {"id":"request-and-external-work","cohort":"acceptance","setup":"bench-supported","intent":"Check whether the workshop assembly is already fitted. If it still needs work, ask Oren to finish the next available step. Leave the wooden strip where it is.","expect":"observation and acceptance without physical work; cancel plan, player ties, Oren observes external satisfaction without credit"},
+    {"id":"same-state-new-standard","cohort":"new-phrasing","setup":"closed-with-open-report","intent":"Cross the passage if I can see that it is open.","expect":"selected personal evidence is false, no movement attempt"},
+    {"id":"advice","cohort":"new-phrasing","setup":"open","intent":"Could I check whether the north passage is clear?","expect":"qualified scope only; no observation, time, or movement receipt"},
+    {"id":"disagreement","cohort":"new-phrasing","setup":"closed-with-open-report","intent":"Take me through if the evidence says it is open.","expect":"conflict attributed; request choice, no crossing"},
+    {"id":"work-already-done","cohort":"new-phrasing","setup":"bench-fitted","intent":"Ask Oren to assemble the workshop assembly if it still needs work. Leave the wooden strip where it is.","expect":"observed fitted, no acceptance or extra material action"},
+    {"id":"protect-participant","cohort":"new-phrasing","setup":"bench-supported","intent":"Ask Oren to assemble the workshop assembly if it still needs work. Leave the repair peg where it is.","expect":"refuse a guarantee incompatible with the selected owner's work scope; no agreement"}
+  ]
+}

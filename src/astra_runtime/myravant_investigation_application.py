@@ -188,10 +188,13 @@ class InvestigationApplication(ActorApplication):
             "\n" + note + truncated +
             " No account is selected as true, false, guilty or conclusive.")
 
-    def ask_report(self, actor_reference, target_reference, facet, *, kind=None):
+    def ask_report(self, actor_reference, target_reference, facet, *, kind=None, assembly_scope=None):
         # Qualification, delivery and the authoritative report remain owned by
         # the approved #548 method. Capture only what that method already displays.
         earlier = None
+        if assembly_scope is not None:
+            return ActorApplication.ask_report.__wrapped__(
+                self, actor_reference, target_reference, facet, kind=kind, assembly_scope=assembly_scope)
         try:
             speaker = self._actor(actor_reference)
             target = self.fixture.resolve_object_reference(target_reference)
@@ -201,7 +204,7 @@ class InvestigationApplication(ActorApplication):
         except ValueError:
             pass
         result = ActorApplication.ask_report.__wrapped__(
-            self, actor_reference, target_reference, facet, kind=kind)
+            self, actor_reference, target_reference, facet, kind=kind, assembly_scope=assembly_scope)
         if result.authoritative_changed and earlier is not None:
             delivered = evidence.latest(self.evidence_state,
                                         self.fixture.player_entity_id, target, facet)

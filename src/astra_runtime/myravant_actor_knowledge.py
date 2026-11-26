@@ -21,6 +21,43 @@ def _lit(app, actor_id):
             or app._actor_local_light_available(actor_id))
 
 
+def _visible_assembly(app, actor, assembly):
+    members = (assembly.left, assembly.right, assembly.fastener)
+    if not all(app._visible_for_actor(actor, member) for member in members):
+        return None
+    joined = any((c.left, c.right, c.fastener, c.method) == (*members, assembly.method)
+                 for c in getattr(app, 'connections', ()))
+    supports = ((assembly.left, assembly.support_left),)
+    if assembly.support_right:
+        supports += ((assembly.right, assembly.support_right),)
+    supported = all(placement(app.state.representation, child).relation_type == 'supported_by'
+                    and placement(app.state.representation, child).object_entity_id == support
+                    for child, support in supports)
+    return assembly.name, 'joined' if joined and supported else 'separate'
+
+
+def observed_assembly(app, actor, assembly, anchor):
+    """Project a currently visible assembly from its admitted work position."""
+    if (app._actor_place_id(actor) != assembly.place or not _lit(app, actor)
+            or not app._visible_for_actor(actor, anchor)):
+        return None
+    return _visible_assembly(app, actor, assembly)
+
+
+def report_source(state, actor, target, facet, *, kind=None, scope=None):
+    if scope is None:
+        return evidence.latest(state, actor, target, facet, kind=kind)
+    name, anchor, place = scope
+    anchor_receipts = {e.receipt_id for e in state.events
+                       if (e.actor_id, e.kind, e.target_id, e.facet, e.value)
+                       == (actor, 'witnessed', anchor, 'placement', ('located_at', place))}
+    return next((e for e in reversed(state.events)
+                 if (e.actor_id, e.kind, e.target_id, e.facet)
+                 == (actor, 'witnessed', target, 'assembly')
+                 and e.receipt_id in anchor_receipts
+                 and e.value in ((name, 'joined'), (name, 'separate'))), None)
+
+
 def observe(app, state, actor_id, receipt_id, tick):
     """Admit only declared facets of objects visible to this actor now."""
     app._actor_place_id(actor_id)
@@ -46,16 +83,10 @@ def observe(app, state, actor_id, receipt_id, tick):
         if relation.relation_type == 'located_at' or relation.object_entity_id == actor_id or app._visible_for_actor(actor_id, relation.object_entity_id):
             facets.append(('placement', (relation.relation_type, relation.object_entity_id)))
         for assembly in app.fixture.assemblies:
-            members = (assembly.left, assembly.right, assembly.fastener)
-            if obj != assembly.left or not all(app._visible_for_actor(actor_id, member) for member in members):
-                continue
-            connections = getattr(app, 'connections', ())
-            joined = any((c.left, c.right, c.fastener, c.method) == (*members, assembly.method) for c in connections)
-            supports = ((assembly.left, assembly.support_left),) + (((assembly.right, assembly.support_right),) if assembly.support_right else ())
-            supported = all(placement(app.state.representation, child).relation_type == 'supported_by'
-                            and placement(app.state.representation, child).object_entity_id == support
-                            for child, support in supports)
-            facets.append(('assembly', (assembly.name, 'joined' if joined and supported else 'separate')))
+            if obj == assembly.left:
+                value = _visible_assembly(app, actor_id, assembly)
+                if value is not None:
+                    facets.append(('assembly', value))
         traces = tuple(sorted({trace.kind for trace in app.environment_state.traces if trace.subject == obj}))
         if traces:
             facets.append(('trace', traces))
@@ -91,7 +122,7 @@ def communication_route(app, speaker, listener, communication_class):
         return False
 
 
-def report(state, speaker, listener, target_id, facet, receipt_id, tick, *, qualified, kind=None):
+def report(state, speaker, listener, target_id, facet, receipt_id, tick, *, qualified, kind=None, scope=None):
     """Transfer historical evidence with explicit attribution, never live refresh.
 
     The reported value includes its original observation tick and evidence kind;
@@ -101,11 +132,12 @@ def report(state, speaker, listener, target_id, facet, receipt_id, tick, *, qual
         raise ValueError('local communication must be explicitly qualified')
     if facet not in FACETS:
         raise ValueError('facet is outside the admitted actor-evidence profile')
-    original = evidence.latest(state, speaker, target_id, facet, kind=kind)
+    original = report_source(state, speaker, target_id, facet, kind=kind, scope=scope)
     if original is None:
         return state
+    qualification = 'qualified-local-delivery' if scope is None else f'qualified-local-delivery-at:{scope[2]}|{original.receipt_id}'
     event = evidence.EvidenceEvent(_identity((speaker, listener, target_id, facet, receipt_id, tick)),
         listener, 'reported', speaker, target_id, facet, original.value, tick, receipt_id,
-        'qualified-local-delivery', origin_tick=original.origin_tick if original.origin_tick is not None else original.tick,
+        qualification, origin_tick=original.origin_tick if original.origin_tick is not None else original.tick,
         source_event_id=original.event_id)
     return evidence.record(state, event, qualified=True)

@@ -243,7 +243,7 @@ class ActorApplication(TimedApplication):
         except ValueError as exc:return self._result(str(exc),failure='actor_status_unavailable')
         return self._metadata_result(pre,'participation_status',actor,message)
 
-    def ask_report(self,actor_reference,target_reference,facet,*,kind=None):
+    def ask_report(self,actor_reference,target_reference,facet,*,kind=None,assembly_scope=None):
         pre=self.authoritative_digest()
         try:
             actor=self._actor(actor_reference);self._route(actor,'report')
@@ -251,14 +251,23 @@ class ActorApplication(TimedApplication):
             target=self.fixture.resolve_object_reference(target_reference)
             if kind not in {None, 'witnessed', 'reported'}:
                 raise ValueError('That evidence source is unsupported by this report.')
-            event=evidence.latest(self.evidence_state,actor,target,facet,kind=kind)
+            scope = None
+            if assembly_scope is not None:
+                a = self._assembly(assembly_scope)
+                anchor = a.support_left
+                if (facet != 'assembly' or kind != 'witnessed' or target != a.left
+                        or anchor not in self.fixture.fixed_object_ids
+                        or a.support_right not in {None, anchor}):
+                    raise ValueError('This is outside the qualified assembly account scope.')
+                scope = (a.name, anchor, a.place)
+            event=knowledge.report_source(self.evidence_state,actor,target,facet,kind=kind,scope=scope)
             if event is None:
                 if kind is not None:
                     return self._result('No retained '+kind+' evidence for that topic.',
                                         failure='actor_report_evidence_unavailable')
                 return self._result('No retained evidence for that admitted topic; this does not describe the person’s wider knowledge.')
             rid=self._event('communication',actor,(target,facet,event.event_id))
-            self.evidence_state=knowledge.report(self.evidence_state,actor,self.fixture.player_entity_id,target,facet,rid,self.runtime_state.logical_time_state.logical_position,qualified=True,kind=kind)
+            self.evidence_state=knowledge.report(self.evidence_state,actor,self.fixture.player_entity_id,target,facet,rid,self.runtime_state.logical_time_state.logical_position,qualified=True,kind=kind,scope=scope)
             value=event.value
             if facet=='placement' and isinstance(value,tuple):
                 labels={'located_at':'at','carried_by':'carried by','contained_by':'inside','supported_by':'resting on','reserved_by':'reserved by'}
